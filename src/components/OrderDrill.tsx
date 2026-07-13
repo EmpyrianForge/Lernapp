@@ -101,6 +101,7 @@ export function OrderDrill({ onExit }: { onExit: () => void }) {
             <span className="deck-title">{t.title}</span>
             <span className="deck-meta">
               <Pill>{t.correct.length} Schritte</Pill>
+              {t.beyond && <Pill tone="var(--muted-bg)">AP2 · Vertiefung</Pill>}
               <span className="muted small">{TOPIC_BY_ID[t.topicId]?.label ?? t.topicId}</span>
             </span>
           </button>

@@ -15,6 +15,7 @@ export interface OrderTask {
   topicId: string
   prompt: string
   correct: string[] // richtige Reihenfolge von oben nach unten
+  beyond?: boolean // über den AP1-Katalog hinaus (Vertiefung/AP2)
 }
 
 export const MATCH_DECKS: MatchDeck[] = [
@@ -181,6 +182,7 @@ export const ORDER_TASKS: OrderTask[] = [
     topicId: 'kommunikation',
     prompt: 'Ordne die Phasen des Produktlebenszyklus.',
     correct: ['Einführung', 'Wachstum', 'Reife', 'Sättigung', 'Degeneration'],
+    beyond: true,
   },
   {
     id: 'order-tuckman',
@@ -202,6 +204,7 @@ export const ORDER_TASKS: OrderTask[] = [
     topicId: 'kommunikation',
     prompt: 'Ordne die Stufen der Werbewirkung.',
     correct: ['Attention', 'Interest', 'Desire', 'Action'],
+    beyond: true,
   },
   {
     id: 'order-kalkulation',

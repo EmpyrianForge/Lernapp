@@ -131,6 +131,7 @@ export const CALC_ITEMS: CalcItem[] = [
   {
     ...base,
     id: 'calc--break-even',
+    ap1Status: 'ap2-grundlagen',
     topicId: 'wirtschaftlichkeit',
     examFrequency: 1.0,
     points: 2,
@@ -238,6 +239,7 @@ export const CALC_ITEMS: CalcItem[] = [
   {
     ...base,
     id: 'calc--afa-linear',
+    ap1Status: 'ap2-grundlagen',
     topicId: 'wirtschaftlichkeit',
     examFrequency: 1.0,
     points: 2,

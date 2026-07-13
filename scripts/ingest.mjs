@@ -106,9 +106,19 @@ function main() {
     const cards = parseCards(parsed.content)
 
     for (const card of cards) {
-      let id = `${meta.topicId}--${slugify(card.front)}`
+      // Per-Karten-Marker [AP2] am Anfang der Frage → als Vertiefung/AP2-Grundlagen
+      // kennzeichnen (über AP1 hinaus). Marker wird aus der Anzeige entfernt.
+      let front = card.front
+      let ap1Status = meta.ap1Status
+      const marker = front.match(/^\[AP2\]\s*/)
+      if (marker) {
+        ap1Status = 'ap2-grundlagen'
+        front = front.slice(marker[0].length)
+      }
+
+      let id = `${meta.topicId}--${slugify(front)}`
       let n = 2
-      while (usedIds.has(id)) id = `${meta.topicId}--${slugify(card.front)}-${n++}`
+      while (usedIds.has(id)) id = `${meta.topicId}--${slugify(front)}-${n++}`
       usedIds.add(id)
 
       items.push({
@@ -117,11 +127,11 @@ function main() {
         type: 'flashcard',
         tags,
         examFrequency: meta.examFrequency,
-        ap1Status: meta.ap1Status,
+        ap1Status,
         operator: null,
         afb: null,
         points: null,
-        front: card.front,
+        front,
         back: card.back,
         source: `Lernapp/Karteikarten/${file}`,
       })

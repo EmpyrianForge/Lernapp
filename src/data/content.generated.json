@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T11:23:35.898Z",
+  "generatedAt": "2026-07-13T16:12:33.698Z",
   "count": 241,
   "items": [
     {
@@ -132,7 +132,7 @@
       "afb": null,
       "points": null,
       "front": "Grenze GPT gegen MBR ab.",
-      "back": "MBR: alt, max. 2 TB, nur 4 primaere Partitionen, keine Redundanz. GPT: bis 9,4 ZB, praktisch beliebig viele Partitionen, redundante Kopie der Partitionstabelle, benoetigt UEFI.",
+      "back": "MBR: alt, max. 2 TB, nur 4 primaere Partitionen. GPT: modern, praktisch keine relevante Groessen- oder Partitionsgrenze, benoetigt UEFI.",
       "source": "Lernapp/Karteikarten/01-Hardware.md"
     },
     {
@@ -630,7 +630,7 @@
       "source": "Lernapp/Karteikarten/02-Netzwerke.md"
     },
     {
-      "id": "netzwerke--wozu-dient-ein-vlan-und-wie-werden-frames-nach",
+      "id": "netzwerke--wozu-dient-ein-vlan",
       "topicId": "netzwerke",
       "type": "flashcard",
       "tags": [
@@ -644,8 +644,8 @@
       "operator": null,
       "afb": null,
       "points": null,
-      "front": "Wozu dient ein VLAN und wie werden Frames nach 802.1Q gekennzeichnet?",
-      "back": "Ein VLAN trennt ein physisches Netz logisch in mehrere Broadcast-Domaenen. Nach 802.1Q wird der Ethernet-Frame um ein 4-Byte-Tag mit der VLAN-ID (12 Bit) ergaenzt, sodass Switches den Verkehr den richtigen VLANs zuordnen.",
+      "front": "Wozu dient ein VLAN?",
+      "back": "Ein VLAN trennt ein physisches Netz logisch in mehrere getrennte Broadcast-Domaenen (z. B. Abteilungen), ohne zusaetzliche Hardware. Die Zuordnung erfolgt ueber eine VLAN-Kennung nach dem Standard IEEE 802.1Q.",
       "source": "Lernapp/Karteikarten/02-Netzwerke.md"
     },
     {
@@ -1077,7 +1077,7 @@
         "lernapp"
       ],
       "examFrequency": 1,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -1400,7 +1400,7 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -2027,7 +2027,7 @@
         "lernapp"
       ],
       "examFrequency": 0.5,
-      "ap1Status": "supporting",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -2260,7 +2260,7 @@
       "afb": null,
       "points": null,
       "front": "Vergleiche FAT32, exFAT, NTFS und ext4 in ihrem Haupteinsatz.",
-      "back": "FAT32: universell kompatibel, aber 4-GiB-Limit. exFAT: fuer grosse Wechseldatentraeger (USB/SD), ohne 4-GiB-Grenze. NTFS: Windows-Standard mit Journaling und Rechten (ACL). ext4: Linux-Standard mit Journaling.",
+      "back": "FAT32: universell kompatibel, aber 4-GiB-Limit. NTFS: Windows-Standard mit Journaling und Rechten (ACL). ext4: Linux-Standard mit Journaling. (AP1 nennt v. a. FAT/NTFS/ext4/APFS; exFAT — fuer grosse Wechseldatentraeger ohne 4-GiB-Grenze — ist Randwissen.)",
       "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
     },
     {
@@ -2488,7 +2488,7 @@
       "afb": null,
       "points": null,
       "front": "Nenne die vier wichtigsten Programmierparadigmen und je ein Kennzeichen.",
-      "back": "Prozedural: Ablauf in Prozeduren/Funktionen. Objektorientiert: Daten + Methoden in Objekten. Funktional: Berechnung durch Funktionen ohne Seiteneffekte. Deklarativ: beschreibt das \"Was\", nicht das \"Wie\" (z. B. SQL).",
+      "back": "AP1-Kern: Prozedural (Ablauf in Prozeduren/Funktionen) und Objektorientiert (Daten + Methoden in Objekten). Ueber AP1 hinaus: Funktional (Berechnung durch Funktionen ohne Seiteneffekte) und Deklarativ (beschreibt das \"Was\", nicht das \"Wie\", z. B. SQL).",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
@@ -2616,7 +2616,7 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -3039,7 +3039,7 @@
       "afb": null,
       "points": null,
       "front": "Unterscheide gesetzliche Gewährleistung und (freiwillige) Garantie.",
-      "back": "Gewährleistung: gesetzlich vorgeschriebene Mängelhaftung des Verkäufers für Mängel, die bei Gefahrübergang bestehen (i. d. R. 2 Jahre, § 438 BGB; im Verbrauchsgüterkauf B2C nicht zum Nachteil des Verbrauchers abdingbar (§ 476 BGB), im B2B jedoch verkürz- oder ausschließbar). Garantie: freiwillige, zusätzliche Zusage des Herstellers/Verkäufers mit frei bestimmbarem Umfang und Dauer, die über die Gewährleistung hinausgeht.",
+      "back": "Gewährleistung: gesetzlich vorgeschriebene Mängelhaftung des Verkäufers für Mängel, die bei Gefahrübergang bestehen (i. d. R. 2 Jahre; gesetzlich vorgeschrieben, nicht freiwillig). Garantie: freiwillige, zusätzliche Zusage des Herstellers/Verkäufers mit frei bestimmbarem Umfang und Dauer, die über die Gewährleistung hinausgeht.",
       "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
     },
     {
@@ -3096,7 +3096,7 @@
       "afb": null,
       "points": null,
       "front": "Welche Funktion hat ein Abnahmeprotokoll?",
-      "back": "Dokumentiert die Abnahme des Werks durch den Kunden: bestätigt vertragsgemäße Leistung bzw. hält festgestellte Mängel/Restpunkte fest. Rechtsfolgen der Abnahme: Fälligkeit der Vergütung, Beginn der Gewährleistungsfrist, Gefahrübergang und Beweislastumkehr zulasten des Kunden.",
+      "back": "Dokumentiert die Abnahme des Werks durch den Kunden: bestätigt vertragsgemäße Leistung bzw. hält festgestellte Mängel/Restpunkte fest. Rechtsfolgen der Abnahme: Fälligkeit der Vergütung und Beginn der Gewährleistungsfrist.",
       "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
     },
     {
@@ -3153,7 +3153,7 @@
       "afb": null,
       "points": null,
       "front": "Wofür stehen die Vollmachts-/Unterschriftskürzel i. V., i. A. und ppa.?",
-      "back": "i. V. (in Vertretung): Unterzeichner handelt mit eigener Vertretungsvollmacht/Verantwortung für den Vorgesetzten. i. A. (im Auftrag): Unterzeichner handelt nur als Bote/ausführend auf Weisung, ohne eigene Entscheidungsbefugnis. ppa. (per procura): Prokurist mit Prokura — einer im Umfang gesetzlich festgelegten (§ 49 HGB), Dritten gegenüber nicht wirksam beschränkbaren Vertretungsmacht. Nicht zu verwechseln mit der engeren Handlungsvollmacht (§ 54 HGB).",
+      "back": "i. V. (in Vertretung): Unterzeichner handelt mit eigener Vertretungsvollmacht/Verantwortung für den Vorgesetzten. i. A. (im Auftrag): Unterzeichner handelt nur als Bote/ausführend auf Weisung, ohne eigene Entscheidungsbefugnis. ppa. (per procura): Prokurist mit Prokura — einer umfassenden, gesetzlich geregelten Handlungs-/Vertretungsvollmacht für den Kaufmann (weiter reichend als die einfache Handlungsvollmacht).",
       "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
     },
     {
@@ -3775,7 +3775,7 @@
         "lernapp"
       ],
       "examFrequency": 0.9,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -3984,7 +3984,7 @@
         "lernapp"
       ],
       "examFrequency": 0.38,
-      "ap1Status": "supporting",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -4041,7 +4041,7 @@
         "lernapp"
       ],
       "examFrequency": 0.38,
-      "ap1Status": "supporting",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -4183,7 +4183,7 @@
       "afb": null,
       "points": null,
       "front": "Grenze die HTTP-Methoden GET und POST ab.",
-      "back": "GET fordert Daten an; Parameter stehen sichtbar in der URL, begrenzte Laenge, veraendert den Serverzustand nicht (= sicher/nur-lesend) und ist zudem idempotent. POST sendet Daten im Body (z. B. Formulare, Passwoerter), keine Laengenbegrenzung, veraendert Daten (weder sicher noch idempotent). Merke: sicher = nur-lesend; idempotent = mehrfaches Ausfuehren fuehrt zum selben Endzustand (PUT/DELETE sind idempotent, aber nicht sicher).",
+      "back": "GET fordert Daten an; Parameter stehen sichtbar in der URL, begrenzte Laenge, dient dem Abrufen/Anzeigen (veraendert nichts). POST sendet Daten im Body (z. B. Formulare, Passwoerter, sensible Daten), keine Laengenbegrenzung, dient dem Senden/Aendern von Daten. Faustregel: GET zum Holen, POST zum Absenden.",
       "source": "Lernapp/Karteikarten/13-Internet-Web.md"
     },
     {
@@ -4598,7 +4598,7 @@
         "lernapp"
       ],
       "examFrequency": 0.45,
-      "ap1Status": "supporting",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
