@@ -1,0 +1,7 @@
+# Zeilenenden im Repository auf LF normalisieren (plattformübergreifend, Vercel/Linux-Build)
+* text=auto eol=lf
+
+# Binärdateien nicht anfassen
+*.png binary
+*.ico binary
+*.woff2 binary

@@ -1,0 +1,4610 @@
+{
+  "generatedAt": "2026-07-13T10:03:32.500Z",
+  "count": 241,
+  "items": [
+    {
+      "id": "hardware--von-neumann-architektur-nenne-die-funktionalen-komponenten-und-ihr",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Von-Neumann-Architektur: Nenne die funktionalen Komponenten und ihr Kernmerkmal.",
+      "back": "Rechenwerk (ALU), Steuerwerk/Leitwerk, Speicher, Ein-/Ausgabewerk, verbunden durch das Bussystem. Kernmerkmal: Programm und Daten liegen im selben Speicher, Befehle werden sequentiell abgearbeitet.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--welche-aufgabe-hat-die-alu-arithmetic-logic-unit-in",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Aufgabe hat die ALU (Arithmetic Logic Unit) in der CPU?",
+      "back": "Sie fuehrt die arithmetischen (Addition, Subtraktion) und logischen Operationen (UND, ODER, Vergleiche) aus. Sie ist Teil des Rechenwerks und wird vom Steuerwerk gesteuert.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--grenze-sram-gegen-dram-ab-aufbau-einsatz",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze SRAM gegen DRAM ab (Aufbau, Einsatz).",
+      "back": "SRAM: Flip-Flops, sehr schnell, teuer, kein Refresh -> Cache. DRAM: Kondensator pro Zelle, guenstig, hohe Dichte, braucht periodischen Refresh -> Arbeitsspeicher (RAM).",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--was-bewirkt-dual-channel-betrieb-beim-arbeitsspeicher",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bewirkt Dual-Channel-Betrieb beim Arbeitsspeicher?",
+      "back": "Der Speichercontroller spricht zwei Speichermodule parallel an und verdoppelt so die Speicherbandbreite. Voraussetzung: baugleiche Module in den farblich passenden Slots.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--beschreibe-die-startsequenz-eines-pcs-von-post-bis-betriebssystem",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Beschreibe die Startsequenz eines PCs von POST bis Betriebssystem.",
+      "back": "BIOS/UEFI startet und fuehrt den POST (Selbsttest der Hardware) durch -> initialisiert Hardware und waehlt das Bootmedium -> laedt den Bootloader -> Bootloader startet das Betriebssystem.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--grenze-uefi-gegen-das-klassische-bios-ab",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze UEFI gegen das klassische BIOS ab.",
+      "back": "BIOS: 16-Bit, MBR, max. 2 TB Bootplatte, textbasiert. UEFI: moderner Firmware-Standard, GPT-Partitionierung, >2 TB, grafische Oberflaeche, Secure Boot und schnellerer Start.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--grenze-gpt-gegen-mbr-ab",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze GPT gegen MBR ab.",
+      "back": "MBR: alt, max. 2 TB, nur 4 primaere Partitionen, keine Redundanz. GPT: bis 9,4 ZB, praktisch beliebig viele Partitionen, redundante Kopie der Partitionstabelle, benoetigt UEFI.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--wofuer-steht-s-m-a-r-t-und-wozu",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer steht S.M.A.R.T. und wozu dient es?",
+      "back": "Self-Monitoring, Analysis and Reporting Technology. Ein Selbstueberwachungssystem in HDDs/SSDs, das Betriebsparameter (z. B. Fehlerraten, Betriebsstunden) erfasst, um einen drohenden Datentraegerausfall fruehzeitig zu melden.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--grenze-die-bussysteme-pcie-und-sata-ab",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze die Bussysteme PCIe und SATA ab.",
+      "back": "PCIe: serielle Punkt-zu-Punkt-Verbindung in Lanes, sehr hohe Bandbreite -> Grafikkarten, NVMe-SSDs. SATA: Bus fuer Massenspeicher, max. ca. 6 Gbit/s (~600 MB/s) -> HDDs, SATA-SSDs.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--was-bezeichnet-der-steckplatz-m-2-und-welche-anbindungen",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bezeichnet der Steckplatz M.2 und welche Anbindungen sind moeglich?",
+      "back": "M.2 ist ein kompakter Steckkarten-Formfaktor (v. a. fuer SSDs). Er kann per SATA (max. ~600 MB/s) oder per PCIe/NVMe (mehrere GB/s) angebunden sein.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--grenze-hdd-und-ssd-hinsichtlich-technik-und-leistung-ab",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze HDD und SSD hinsichtlich Technik und Leistung ab.",
+      "back": "HDD: rotierende Magnetscheiben, mechanisch, guenstig pro GB, langsamer. SSD: Flash-Speicher, keine beweglichen Teile, stossunempfindlich; SATA-SSD ~600 MB/s, NVMe-SSD mehrere GB/s.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--nenne-die-typischen-speicherkapazitaeten-von-cd-dvd-und-blu",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die typischen Speicherkapazitaeten von CD, DVD und Blu-ray Disc.",
+      "back": "CD ca. 700 MB, DVD ca. 4,7 GB (Single Layer), Blu-ray ca. 25 GB (Single Layer).",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--grenze-thin-client-und-fat-client-ab",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Thin Client und Fat Client ab.",
+      "back": "Thin Client: minimale lokale Hardware, Anwendungen/Rechenleistung laufen zentral auf einem Server (Terminal). Fat Client: vollwertiger PC mit eigener CPU/RAM/Speicher, verarbeitet Daten lokal.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--grenze-die-video-anschluesse-vga-dvi-hdmi-und-displayport",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze die Video-Anschluesse VGA, DVI, HDMI und DisplayPort ab.",
+      "back": "VGA: analog, veraltet. DVI: digital (teils analog), kein Ton. HDMI: digital, Bild und Ton, im Consumer-Bereich verbreitet. DisplayPort: digital, Bild und Ton, hoehere Bandbreite, Standard im PC-/Multimonitor-Bereich.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--nenne-die-gaengigen-aufloesungsstufen-hd-full-hd-uhd-4k",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die gaengigen Aufloesungsstufen HD, Full HD, UHD-4K und 8K.",
+      "back": "HD 1280x720, Full HD 1920x1080, UHD/4K 3840x2160, 8K 7680x4320.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--nenne-die-drei-usv-klassen-nach-iec-62040-3",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die drei USV-Klassen nach IEC 62040-3 in aufsteigendem Schutz.",
+      "back": "VFD (Voltage and Frequency Dependent / Offline-Standby) < VI (Voltage Independent / Line-Interactive, mit AVR) < VFI (Voltage and Frequency Independent / Online-Doppelwandler).",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--nenne-je-ein-umweltzeichen-fuer-green-it-und-wofuer",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne je ein Umweltzeichen fuer Green IT und wofuer es steht.",
+      "back": "Energy Star: internationales Label fuer energieeffiziente Geraete. Blauer Engel: deutsches Umweltzeichen fuer besonders umweltvertraegliche Produkte (Energie, Emissionen, Recyclingfaehigkeit).",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--nenne-die-wichtigsten-ergonomischen-richtwerte-fuer-einen-bildschirmarbeitsplatz-arbstaettv",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die wichtigsten ergonomischen Richtwerte fuer einen Bildschirmarbeitsplatz (ArbStaettV).",
+      "back": "Sehabstand zum Monitor 50-70 cm, Beleuchtungsstaerke mind. 500 lux, Monitor-Oberkante in bzw. leicht unter Augenhoehe, Blick leicht nach unten, Aufstellung blendfrei (parallel zum Fenster).",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--grenze-nas-und-das-ab",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze NAS und DAS ab.",
+      "back": "NAS: eigenstaendiges, netzwerkbasiertes Speichersystem, dateibasierter Zugriff ueber SMB/NFS, von mehreren Clients nutzbar. DAS: direkt (z. B. per USB/SATA) an einen Rechner angeschlossener Speicher ohne eigenen Netzwerkzugang.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--mit-welcher-formel-berechnet-man-den-unkomprimierten-speicherbedarf-eines",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Mit welcher Formel berechnet man den unkomprimierten Speicherbedarf eines Bildes?",
+      "back": "Speicherbedarf = Breite (Pixel) x Hoehe (Pixel) x Farbtiefe (Bit) / 8 = Datenmenge in Byte. Farbtiefe in Bit pro Pixel, Division durch 8 ergibt Byte.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "netzwerke--was-ist-der-unterschied-zwischen-dem-iso-osi-referenzmodell",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist der Unterschied zwischen dem ISO/OSI-Referenzmodell und dem TCP/IP-Modell hinsichtlich der Schichtenzahl?",
+      "back": "OSI hat 7 Schichten (Bituebertragung, Sicherung, Vermittlung, Transport, Sitzung, Darstellung, Anwendung). TCP/IP fasst diese in 4 Schichten zusammen: Netzzugang (OSI 1-2), Internet (OSI 3), Transport (OSI 4), Anwendung (OSI 5-7).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--ordnen-sie-die-netzwerkgeraete-hub-switch-und-router-den",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ordnen Sie die Netzwerkgeraete Hub, Switch und Router den OSI-Schichten zu.",
+      "back": "Hub = Schicht 1 (Bituebertragung), Switch = Schicht 2 (Sicherung, arbeitet mit MAC-Adressen), Router = Schicht 3 (Vermittlung, arbeitet mit IP-Adressen).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--nennen-sie-die-wesentlichen-unterschiede-zwischen-tcp-und-udp",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen Sie die wesentlichen Unterschiede zwischen TCP und UDP.",
+      "back": "TCP: verbindungsorientiert, zuverlaessig (Bestaetigung/Neuuebertragung), Reihenfolge gesichert, hoeherer Overhead. UDP: verbindungslos, keine Bestaetigung/Reihenfolgegarantie, geringer Overhead, schneller (z. B. fuer Streaming/DNS/VoIP).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--beschreiben-sie-den-ablauf-des-tcp-3-wege-handshakes",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Beschreiben Sie den Ablauf des TCP-3-Wege-Handshakes.",
+      "back": "1. Client sendet SYN. 2. Server antwortet mit SYN-ACK. 3. Client bestaetigt mit ACK. Danach steht die Verbindung und Datenaustausch beginnt.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--nennen-sie-die-standard-ports-fuer-http-https-ssh",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen Sie die Standard-Ports fuer HTTP, HTTPS, SSH und DNS.",
+      "back": "HTTP = 80, HTTPS = 443, SSH = 22, DNS = 53.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--welche-ports-nutzen-die-mail-protokolle-smtp-imap-und",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Ports nutzen die Mail-Protokolle SMTP, IMAP und POP3 sowie DHCP?",
+      "back": "SMTP = 25, IMAP = 143, POP3 = 110, DHCP = 67 (Server) und 68 (Client).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--nennen-sie-die-drei-privaten-ipv4-adressbereiche-nach-rfc",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen Sie die drei privaten IPv4-Adressbereiche nach RFC 1918.",
+      "back": "10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16. Diese sind nicht im Internet routbar und werden per NAT nach aussen umgesetzt.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--was-bedeutet-eine-adresse-aus-dem-bereich-169-254",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet eine Adresse aus dem Bereich 169.254.0.0/16 (APIPA)?",
+      "back": "Automatic Private IP Addressing: Der Host hat keine IP per DHCP erhalten und sich selbst eine Link-Local-Adresse vergeben. Kommunikation nur im lokalen Segment, kein Routing/Internet.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--nennen-sie-die-wichtigsten-merkmale-von-ipv6-gegenueber-ipv4",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen Sie die wichtigsten Merkmale von IPv6 gegenueber IPv4.",
+      "back": "128 Bit Adresslaenge (statt 32), kein Broadcast (stattdessen Multicast), kein NAT noetig, Autokonfiguration per SLAAC, vereinfachter Header. Kurzschreibweise mit \"::\" fuer aufeinanderfolgende Nullbloecke.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--ordnen-sie-die-ipv6-praefixe-zu-link-local-ula",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ordnen Sie die IPv6-Praefixe zu: Link-Local, ULA, Global Unicast, Loopback.",
+      "back": "Link-Local = fe80::/10, ULA (Unique Local) = fc00::/7, Global Unicast = 2000::/3, Loopback = ::1.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--worin-unterscheiden-sich-slaac-und-dhcpv6-bei-der-ipv6",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich SLAAC und DHCPv6 bei der IPv6-Adressvergabe?",
+      "back": "SLAAC: zustandslose Autokonfiguration, Host bildet Adresse selbst aus Router-Praefix (RA) und Interface-ID. DHCPv6: zustandsbehaftete zentrale Vergabe durch einen Server (analog DHCP bei IPv4), erlaubt zusaetzliche Optionen.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--nennen-und-erklaeren-sie-sechs-wichtige-dns-resource-records",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen und erklaeren Sie sechs wichtige DNS-Resource-Records.",
+      "back": "A = Name auf IPv4, AAAA = Name auf IPv6, CNAME = Alias auf anderen Namen, MX = Mailserver einer Domain, NS = zustaendiger Nameserver, PTR = Reverse-Lookup (IP auf Name).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--wofuer-steht-dora-beim-dhcp-und-was-passiert-in",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer steht DORA beim DHCP und was passiert in den Schritten?",
+      "back": "Discover (Client sucht Server), Offer (Server bietet IP an), Request (Client fordert angebotene IP an), Acknowledge (Server bestaetigt). Ergebnis: Client erhaelt IP, Subnetzmaske, Gateway, DNS.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--wozu-dient-ein-vlan-und-wie-werden-frames-nach",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wozu dient ein VLAN und wie werden Frames nach 802.1Q gekennzeichnet?",
+      "back": "Ein VLAN trennt ein physisches Netz logisch in mehrere Broadcast-Domaenen. Nach 802.1Q wird der Ethernet-Frame um ein 4-Byte-Tag mit der VLAN-ID (12 Bit) ergaenzt, sodass Switches den Verkehr den richtigen VLANs zuordnen.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--ordnen-sie-die-wlan-standards-wi-fi-4-5",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ordnen Sie die WLAN-Standards Wi-Fi 4, 5 und 6 den IEEE-Bezeichnungen zu.",
+      "back": "Wi-Fi 4 = 802.11n, Wi-Fi 5 = 802.11ac, Wi-Fi 6 = 802.11ax. Hoehere Generationen bieten mehr Durchsatz, bessere Effizienz und modernere Modulation.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--was-ist-eine-dmz-und-wozu-dient-sie",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine DMZ und wozu dient sie?",
+      "back": "Demilitarisierte Zone: ein durch Firewalls abgetrenntes Netzsegment zwischen internem Netz und Internet. Dort stehen von aussen erreichbare Server (z. B. Web-, Mailserver), ohne dass das interne LAN direkt exponiert wird.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--worin-unterscheiden-sich-typ-1-und-typ-2-hypervisor",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich Typ-1- und Typ-2-Hypervisor?",
+      "back": "Typ 1 (Bare-Metal) laeuft direkt auf der Hardware (z. B. ESXi, Hyper-V), hohe Performance. Typ 2 (Hosted) laeuft als Anwendung auf einem Betriebssystem (z. B. VirtualBox, VMware Workstation), einfacher, aber mit Overhead.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--worin-unterscheidet-sich-containervirtualisierung-von-klassischer-vm-virtualisierung",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheidet sich Containervirtualisierung von klassischer VM-Virtualisierung?",
+      "back": "Container teilen sich den Kernel des Host-Betriebssystems und kapseln nur Anwendung samt Abhaengigkeiten (leichtgewichtig, schneller Start). VMs enthalten je ein vollstaendiges Gastbetriebssystem auf einem Hypervisor (mehr Overhead, staerkere Isolation).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--grenzen-sie-die-cloud-servicemodelle-iaas-paas-und-saas",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenzen Sie die Cloud-Servicemodelle IaaS, PaaS und SaaS voneinander ab.",
+      "back": "IaaS: Anbieter stellt Infrastruktur (Server, Speicher, Netz) bereit, Kunde verwaltet OS/Anwendungen. PaaS: zusaetzlich Laufzeit-/Entwicklungsplattform, Kunde verwaltet nur die Anwendung. SaaS: fertige Anwendung ueber das Netz, Anbieter verwaltet alles (z. B. Webmail).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--kostenarten-wie-unterscheiden-sich-fixe-und-variable-kosten-nenne",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Kostenarten: Wie unterscheiden sich fixe und variable Kosten? Nenne je ein Beispiel.",
+      "back": "Fixkosten fallen unabhaengig von der Ausbringungsmenge an (z. B. Miete, Leasingrate, Gehaelter). Variable Kosten aendern sich mit der Menge (z. B. Materialverbrauch, Fertigungslohn pro Stueck).",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--grenze-einzelkosten-von-gemeinkosten-ab",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Einzelkosten von Gemeinkosten ab.",
+      "back": "Einzelkosten lassen sich einem Kostentraeger (Produkt/Auftrag) direkt zurechnen (z. B. Rohstoff, Akkordlohn). Gemeinkosten sind nicht direkt zurechenbar und werden ueber Schluessel verteilt (z. B. Strom, Verwaltung, Miete).",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--was-versteht-man-unter-einer-make-or-buy-entscheidung",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter einer Make-or-Buy-Entscheidung?",
+      "back": "Die Entscheidung, eine Leistung/Komponente selbst zu erstellen (Make) oder extern zu beschaffen (Buy). Verglichen werden Kosten, Qualitaet, Know-how, Kapazitaet und Abhaengigkeit vom Lieferanten.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--nenne-die-vier-beschaffungsalternativen-fuer-it-hardware-und-ihr",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die vier Beschaffungsalternativen fuer IT-Hardware und ihr Kernmerkmal.",
+      "back": "Kauf (Eigentum, einmalige hohe Ausgabe), Leasing (Nutzung gegen feste Rate, kein Eigentum), Miete (kurzfristig, jederzeit kuendbar), Pay-per-use (Bezahlung nach tatsaechlicher Nutzung/Verbrauch).",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--welche-vor-und-nachteile-hat-leasing-gegenueber-dem-kauf",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Vor- und Nachteile hat Leasing gegenueber dem Kauf von IT-Ausstattung?",
+      "back": "Vorteil: keine hohe Anfangsinvestition, planbare Raten, stets aktuelle Technik, liquiditaetsschonend. Nachteil: insgesamt teurer, kein Eigentum, langfristige Vertragsbindung.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--wie-berechnet-man-den-bezugspreis-einstandspreis-in-der-handelskalkulation",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie berechnet man den Bezugspreis (Einstandspreis) in der Handelskalkulation?",
+      "back": "Listen-Einkaufspreis minus Rabatt = Zieleinkaufspreis; minus Skonto = Bareinkaufspreis; plus Bezugskosten (z. B. Fracht, Verpackung) = Bezugspreis/Einstandspreis.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--grenze-rabatt-und-skonto-voneinander-ab",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Rabatt und Skonto voneinander ab.",
+      "back": "Rabatt ist ein Preisnachlass auf den Listenpreis (z. B. Mengen-/Wiederverkaeuferrabatt). Skonto ist ein Abzug fuer Zahlung innerhalb der Skontofrist und wird prozentual vom Zieleinkaufspreis abgezogen.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--wofuer-dient-die-nutzwertanalyse-und-wie-ist-ihr-ablauf",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer dient die Nutzwertanalyse und wie ist ihr Ablauf?",
+      "back": "Bewertungsverfahren fuer Entscheidungen mit mehreren, auch qualitativen Kriterien. Ablauf: Kriterien festlegen, gewichten (Summe der Gewichte = 100 % bzw. 1,0), Alternativen je Kriterium mit Punkten bewerten, Teilnutzen (Gewicht x Punkte) summieren, hoechster Gesamtnutzwert gewinnt.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--welche-formel-gilt-fuer-den-break-even-point-menge",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Formel gilt fuer den Break-Even-Point (Menge)?",
+      "back": "Break-Even-Menge = Fixkosten / (Verkaufspreis pro Stueck - variable Stueckkosten), also Fixkosten / Deckungsbeitrag pro Stueck. Am Break-Even decken die Erloese genau die Gesamtkosten (Gewinn = 0).",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--was-ist-der-deckungsbeitrag-und-wie-berechnet-man-ihn",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist der Deckungsbeitrag und wie berechnet man ihn?",
+      "back": "Der Deckungsbeitrag ist der Betrag, der zur Deckung der Fixkosten (und danach zum Gewinn) beitraegt. Stueck-Deckungsbeitrag = Verkaufspreis - variable Stueckkosten.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--wie-ist-die-amortisationsdauer-definiert-und-wie-berechnet-man",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie ist die Amortisationsdauer definiert und wie berechnet man sie?",
+      "back": "Zeitraum, bis die Anschaffungsausgabe durch Rueckfluesse wieder hereingeholt ist. Amortisationsdauer = Investitionsbetrag / jaehrlicher Rueckfluss (Gewinn + Abschreibung).",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--wofuer-steht-der-roi-und-wie-wird-er-berechnet",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer steht der ROI und wie wird er berechnet?",
+      "back": "Return on Investment = Rentabilitaet des eingesetzten Kapitals. ROI = (Gewinn / eingesetztes Kapital) x 100 [%]. Er zeigt, wie viel Prozent Gewinn je eingesetztem Kapitaleuro erwirtschaftet werden.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--wie-berechnet-man-die-lineare-abschreibung-afa",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie berechnet man die lineare Abschreibung (AfA)?",
+      "back": "Jaehrlicher Abschreibungsbetrag = (Anschaffungswert - Restwert) / Nutzungsdauer (in Jahren). Der Betrag ist in jedem Jahr gleich hoch.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--was-bezeichnet-tco-und-warum-ist-es-fuer-beschaffungsentscheidungen",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bezeichnet TCO und warum ist es fuer Beschaffungsentscheidungen wichtig?",
+      "back": "Total Cost of Ownership = Gesamtkosten ueber den gesamten Lebenszyklus. Neben dem Anschaffungspreis zaehlen Betrieb, Wartung, Energie, Support, Schulung und Entsorgung — dadurch wird das wirklich guenstigste Angebot sichtbar.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--grenze-gewaehrleistung-und-garantie-voneinander-ab",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Gewaehrleistung und Garantie voneinander ab.",
+      "back": "Gewaehrleistung ist die gesetzliche Pflicht des Verkaeufers, fuer Mangelfreiheit bei Uebergabe einzustehen (bei Neuware i. d. R. 2 Jahre). Garantie ist eine freiwillige, zusaetzliche Zusage von Hersteller/Verkaeufer mit frei bestimmbarem Umfang.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--warum-ist-das-guenstigste-angebot-nicht-automatisch-das-beste",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Warum ist das guenstigste Angebot nicht automatisch das beste? Nenne Bewertungskriterien.",
+      "back": "Weil neben dem Preis qualitative Faktoren ueber Wirtschaftlichkeit entscheiden: Qualitaet, Lieferzeit/-faehigkeit, Service/Support, Gewaehrleistung, Zuverlaessigkeit des Lieferanten, Folgekosten (TCO). Ein qualitativer Vergleich (z. B. Nutzwertanalyse) ist noetig.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--unterscheide-miete-und-pay-per-use-als-beschaffungsform",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide Miete und Pay-per-use als Beschaffungsform.",
+      "back": "Bei Miete zahlt man eine feste, nutzungsunabhaengige Rate fuer einen Zeitraum. Bei Pay-per-use richtet sich das Entgelt nach der tatsaechlichen Nutzung/Verbrauch (z. B. Druckseiten, Cloud-Rechenzeit), ist also verbrauchsabhaengig.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--welche-kostenbestandteile-fliessen-in-den-jaehrlichen-rueckfluss-cashflow-einer",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Kostenbestandteile fliessen in den jaehrlichen Rueckfluss (Cashflow) einer Investition ein?",
+      "back": "Der jaehrliche Rueckfluss = Gewinn (nach Steuern) + Abschreibungen. Abschreibungen werden zurueckgerechnet, da sie Aufwand, aber keine Auszahlung sind — dieser Betrag steht fuer die Amortisationsrechnung zur Verfuegung.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "projektmanagement--was-umfasst-die-projektinitialisierung-definitionsphase-als-erste-projektphase",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was umfasst die Projektinitialisierung (Definitionsphase) als erste Projektphase?",
+      "back": "Projektidee/-auftrag klaeren, Ziele grob definieren, Machbarkeit und Wirtschaftlichkeit pruefen, Rahmenbedingungen und Stakeholder erfassen; Ergebnis: Projektauftrag als Startfreigabe.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--nennen-sie-die-typischen-phasen-eines-projekts-im-klassischen",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen Sie die typischen Phasen eines Projekts im klassischen (Wasserfall-)Projektmanagement.",
+      "back": "1. Initialisierung/Definition, 2. Planung, 3. Durchfuehrung/Steuerung, 4. Abschluss. Phasen werden nacheinander durchlaufen und durch Meilensteine getrennt; die Projektkontrolle (Soll-Ist-Vergleich) laeuft begleitend ueber alle Phasen.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--was-beschreibt-das-magische-dreieck-des-projektmanagements",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was beschreibt das Magische Dreieck des Projektmanagements?",
+      "back": "Die drei konkurrierenden Zielgroessen Zeit, Kosten und Qualitaet (Leistung/Umfang). Aenderung einer Groesse beeinflusst zwangslaeufig die beiden anderen; ein tragfaehiges Gleichgewicht ist Projektziel.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wofuer-steht-die-smart-regel-bei-der-zielformulierung",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer steht die SMART-Regel bei der Zielformulierung?",
+      "back": "Spezifisch, Messbar, Attraktiv (Akzeptiert), Realistisch, Terminiert. Kriterien fuer eindeutig formulierte, ueberpruefbare Projektziele.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--grenzen-sie-lastenheft-und-pflichtenheft-voneinander-ab",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenzen Sie Lastenheft und Pflichtenheft voneinander ab.",
+      "back": "Lastenheft: vom Auftraggeber, beschreibt WAS und WOFUER (Anforderungen/Ziele). Pflichtenheft: vom Auftragnehmer, beschreibt WIE und WOMIT (Umsetzung/Loesungskonzept) als Antwort auf das Lastenheft.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--was-ist-ein-meilenstein-im-projektmanagement",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Meilenstein im Projektmanagement?",
+      "back": "Ein definiertes Ereignis mit Termin zum Abschluss eines wichtigen Zwischenschritts (Ergebnis, Zeitdauer 0). Dient als Entscheidungs-/Kontrollpunkt zur Fortschrittsmessung (z.B. Meilensteintrendanalyse).",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--was-ist-ein-projektstrukturplan-psp-und-welche-zwei-vorgehensweisen",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Projektstrukturplan (PSP) und welche zwei Vorgehensweisen zur Erstellung gibt es?",
+      "back": "Hierarchische Zerlegung des Projekts in Teilaufgaben bis zu Arbeitspaketen. Top-Down: vom Ganzen ins Detail; Bottom-Up: von Einzelaufgaben zum Gesamtplan (Sammeln und Gruppieren).",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wer-oder-was-sind-stakeholder-und-warum-ist-ihre",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wer oder was sind Stakeholder, und warum ist ihre Analyse wichtig?",
+      "back": "Alle Personen/Gruppen mit Interesse am oder Einfluss auf das Projekt (z.B. Auftraggeber, Nutzer, Team, Lieferanten). Die Stakeholderanalyse hilft, Erwartungen, Einfluss und Risiken fruehzeitig zu erkennen und zu steuern.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--was-berechnen-vorwaerts-und-rueckwaertsrechnung-in-der-netzplantechnik",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was berechnen Vorwaerts- und Rueckwaertsrechnung in der Netzplantechnik?",
+      "back": "Vorwaertsrechnung: fruehester Anfangs-/Endzeitpunkt (FAZ/FEZ), FEZ = FAZ + Dauer. Rueckwaertsrechnung: spaetester Anfangs-/Endzeitpunkt (SAZ/SEZ), SAZ = SEZ - Dauer.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wie-ist-der-gesamtpuffer-gp-eines-vorgangs-definiert-und",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie ist der Gesamtpuffer (GP) eines Vorgangs definiert und was kennzeichnet den kritischen Pfad?",
+      "back": "Gesamtpuffer GP = SAZ - FAZ (= SEZ - FEZ): Zeit, um die ein Vorgang verschoben werden kann, ohne das Projektende zu gefaehrden. Kritischer Pfad = Vorgangsfolge mit Gesamtpuffer 0.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--grenzen-sie-netzplan-und-gantt-diagramm-ab",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenzen Sie Netzplan und Gantt-Diagramm ab.",
+      "back": "Netzplan: zeigt logische Abhaengigkeiten der Vorgaenge, Puffer und kritischen Pfad. Gantt-Diagramm (Balkenplan): zeigt Vorgaenge als Balken auf einer Zeitachse, gut fuer Terminuebersicht, Abhaengigkeiten nur eingeschraenkt.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--grenzen-sie-das-wasserfallmodell-von-scrum-ab",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenzen Sie das Wasserfallmodell von Scrum ab.",
+      "back": "Wasserfall: sequenzielle, planbasierte Phasen mit fixem Umfang, spaetes Feedback. Scrum: iterativ-inkrementell in Sprints, flexibel gegenueber Aenderungen, fruehes und regelmaessiges Feedback durch lauffaehige Increments.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--nennen-und-erklaeren-sie-die-drei-rollen-verantwortlichkeiten-in",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen und erklaeren Sie die drei Rollen (Verantwortlichkeiten) in Scrum.",
+      "back": "Product Owner: verantwortet Product Backlog und Produktwert. Scrum Master: sorgt fuer Einhaltung von Scrum, beseitigt Hindernisse. Entwickler/Entwicklungsteam: selbstorganisiert, setzen das Sprint-Ziel um.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--nennen-sie-die-vier-scrum-events-innerhalb-eines-sprints",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen Sie die vier Scrum-Events innerhalb eines Sprints.",
+      "back": "Sprint Planning (Planung), Daily Scrum (taegliche Abstimmung), Sprint Review (Ergebnispraesentation), Sprint Retrospective (Prozessverbesserung). Der Sprint selbst ist der uebergeordnete Rahmen (Container).",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--grenzen-sie-product-backlog-und-sprint-backlog-ab",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenzen Sie Product Backlog und Sprint Backlog ab.",
+      "back": "Product Backlog: priorisierte Gesamtliste aller Anforderungen ans Produkt, gepflegt vom Product Owner. Sprint Backlog: fuer den aktuellen Sprint ausgewaehlte Backlog-Eintraege plus Umsetzungsplan des Teams.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--was-ist-ein-increment-in-scrum",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Increment in Scrum?",
+      "back": "Das am Ende eines Sprints entstandene, potenziell auslieferbare (fertige) Produktinkrement, das die \"Definition of Done\" erfuellt und zum bisherigen Produkt hinzukommt.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--was-ist-die-kernidee-von-kanban-und-wozu-dient",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist die Kernidee von Kanban und wozu dient das WIP-Limit?",
+      "back": "Visualisierung des Arbeitsflusses auf einem Kanban-Board (Spalten/Status), Ziel ist ein gleichmaessiger Fluss. Das WIP-Limit (Work in Progress) begrenzt die gleichzeitig laufenden Aufgaben pro Spalte, verhindert Ueberlastung und deckt Engpaesse auf.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--nennen-und-beschreiben-sie-die-phasen-der-teamentwicklung-nach",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen und beschreiben Sie die Phasen der Teamentwicklung nach Tuckman.",
+      "back": "Forming (Orientierung), Storming (Konflikte), Norming (Regeln/Zusammenhalt), Performing (produktive Zusammenarbeit), Adjourning (Aufloesung). Das Modell beschreibt den typischen Reifeverlauf einer Gruppe.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wofuer-wird-bpmn-eingesetzt",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer wird BPMN eingesetzt?",
+      "back": "Business Process Model and Notation: standardisierte grafische Notation zur Modellierung von Geschaeftsprozessen (Ablaeufe mit Ereignissen, Aktivitaeten/Tasks, Gateways und Sequenzfluessen), verstaendlich fuer Fach- und IT-Seite.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--grenzen-sie-projektkontrolle-und-projektsteuerung-voneinander-ab",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenzen Sie Projektkontrolle und Projektsteuerung voneinander ab.",
+      "back": "Kontrolle: Soll-Ist-Vergleich, Ermitteln von Abweichungen (z.B. Termin, Kosten, Qualitaet). Steuerung: Ableiten und Umsetzen von Korrektur-/Gegenmassnahmen auf Basis der Abweichungen, um die Projektziele zu sichern.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "it-sicherheit--vertraulichkeit-integritaet-und-verfuegbarkeit-sind-die-drei-klassischen-schutzziele",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Vertraulichkeit, Integritaet und Verfuegbarkeit sind die drei klassischen Schutzziele. Erklaere sie jeweils in einem Satz.",
+      "back": "Vertraulichkeit: Daten sind nur fuer Berechtigte zugaenglich. Integritaet: Daten sind unveraendert/nicht manipuliert. Verfuegbarkeit: Daten und Systeme sind bei Bedarf nutzbar.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--nenne-zwei-ergaenzende-schutzziele-ueber-die-klassische-cia-triade",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne zwei ergaenzende Schutzziele ueber die klassische CIA-Triade hinaus und erklaere sie kurz.",
+      "back": "Authentizitaet: Nachweis der echten Identitaet eines Kommunikationspartners. Nichtabstreitbarkeit (Verbindlichkeit): Eine Handlung kann im Nachhinein nicht geleugnet werden.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--grenze-symmetrische-und-asymmetrische-verschluesselung-gegeneinander-ab",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze symmetrische und asymmetrische Verschluesselung gegeneinander ab.",
+      "back": "Symmetrisch (z. B. AES): ein gemeinsamer Schluessel zum Ver- und Entschluesseln, schnell, Problem der Schluesselverteilung. Asymmetrisch (z. B. RSA/ECC): Schluesselpaar aus Public und Private Key, langsamer, loest die Schluesselverteilung.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--was-versteht-man-unter-hybrider-verschluesselung-und-warum-wird",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter hybrider Verschluesselung und warum wird sie z. B. bei TLS eingesetzt?",
+      "back": "Kombination beider Verfahren: Asymmetrisch wird ein symmetrischer Sitzungsschluessel sicher ausgetauscht, die eigentlichen Nutzdaten werden dann symmetrisch verschluesselt. Vereint sichere Schluesselverteilung mit hoher Geschwindigkeit.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--was-ist-eine-hashfunktion-und-welche-eigenschaften-muss-sie",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine Hashfunktion und welche Eigenschaften muss sie fuer die IT-Sicherheit erfuellen?",
+      "back": "Bildet Daten beliebiger Laenge auf einen Wert fester Laenge ab (z. B. SHA-256). Eigenschaften: Einwegfunktion (nicht umkehrbar), kollisionsresistent, deterministisch. Dient der Pruefung der Integritaet.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--wie-funktioniert-eine-digitale-signatur-und-welche-schutzziele-erfuellt",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie funktioniert eine digitale Signatur und welche Schutzziele erfuellt sie?",
+      "back": "Vom Dokument wird ein Hash gebildet und mit dem privaten Schluessel des Absenders verschluesselt (signiert). Der Empfaenger prueft mit dem oeffentlichen Schluessel. Sichert Integritaet, Authentizitaet und Nichtabstreitbarkeit.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--wofuer-stehen-pki-und-ca-und-welche-rolle-spielt",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer stehen PKI und CA, und welche Rolle spielt ein X.509-Zertifikat?",
+      "back": "PKI (Public-Key-Infrastruktur): System zur Verwaltung digitaler Schluessel/Zertifikate. CA (Certificate Authority): vertrauenswuerdige Stelle, die Zertifikate ausstellt. Das X.509-Zertifikat bindet einen oeffentlichen Schluessel an eine Identitaet und wird von der CA signiert.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--was-bedeutet-2fa-mfa-und-welche-drei-faktorkategorien-werden",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet 2FA/MFA und welche drei Faktorkategorien werden unterschieden?",
+      "back": "Mehr-Faktor-Authentifizierung nutzt mindestens zwei unabhaengige Faktoren aus verschiedenen Kategorien: Wissen (Passwort/PIN), Besitz (Token/Smartphone), Inhaerenz (biometrisches Merkmal wie Fingerabdruck).",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--erklaere-den-unterschied-zwischen-einem-virus-einem-wurm-und",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Unterschied zwischen einem Virus, einem Wurm und einem Trojaner.",
+      "back": "Virus: haengt sich an eine Wirtsdatei und braucht Nutzeraktion zur Verbreitung. Wurm: verbreitet sich selbststaendig ueber Netzwerke ohne Wirt. Trojaner: getarnt als nuetzliches Programm, schleust im Verborgenen Schadfunktionen ein.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--was-ist-ransomware-und-welche-gegenmassnahme-schuetzt-am-wirksamsten",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist Ransomware und welche Gegenmassnahme schuetzt am wirksamsten?",
+      "back": "Schadsoftware, die Daten verschluesselt und fuer die Freigabe Loesegeld fordert. Wirksamster Schutz: regelmaessige, getrennt aufbewahrte Backups (offline/offsite), damit ohne Zahlung wiederhergestellt werden kann.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--erklaere-phishing-und-einen-man-in-the-middle-angriff",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere Phishing und einen Man-in-the-Middle-Angriff.",
+      "back": "Phishing: Nutzer werden ueber gefaelschte Mails/Webseiten zur Preisgabe von Zugangsdaten verleitet. Man-in-the-Middle: Angreifer schaltet sich unbemerkt in die Kommunikation zweier Parteien und kann sie mitlesen oder manipulieren.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--was-ist-der-unterschied-zwischen-dos-und-ddos",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist der Unterschied zwischen DoS und DDoS?",
+      "back": "DoS (Denial of Service): Ueberlastung eines Dienstes von einer Quelle, sodass er nicht mehr erreichbar ist. DDoS (Distributed DoS): dieselbe Ueberlastung koordiniert von vielen verteilten Systemen (Botnetz), dadurch wirkungsvoller und schwerer abzuwehren.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--was-ist-eine-sql-injection-und-wie-beugt-man",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine SQL-Injection und wie beugt man ihr vor?",
+      "back": "Einschleusen von SQL-Code ueber ungepruefte Eingabefelder, um die Datenbank auszulesen oder zu manipulieren. Gegenmassnahme: Eingabevalidierung und Prepared Statements (parametrisierte Abfragen).",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--grenze-xss-und-csrf-voneinander-ab",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze XSS und CSRF voneinander ab.",
+      "back": "XSS (Cross-Site-Scripting): Angreifer schleust Schadskript in eine Webseite ein, das im Browser anderer Nutzer ausgefuehrt wird. CSRF (Cross-Site-Request-Forgery): Angreifer bringt einen angemeldeten Nutzer dazu, unbemerkt eine ungewollte Aktion mit seiner gueltigen Sitzung auszuloesen.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--was-ist-ein-zero-day-angriff",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Zero-Day-Angriff?",
+      "back": "Ausnutzung einer Sicherheitsluecke, die dem Hersteller noch unbekannt ist bzw. fuer die noch kein Patch existiert. Besonders gefaehrlich, weil zum Angriffszeitpunkt keine Gegenmassnahme verfuegbar ist.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--erklaere-die-drei-backup-arten-voll-differenzielle-und-inkrementelle",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere die drei Backup-Arten Voll-, differenzielle und inkrementelle Sicherung.",
+      "back": "Vollsicherung: sichert alle Daten. Differenziell: sichert alle Aenderungen seit der letzten Vollsicherung. Inkrementell: sichert nur Aenderungen seit der letzten Sicherung (egal welcher Art). Inkrementell spart Speicher, Wiederherstellung ist aber aufwendiger.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--was-besagt-die-3-2-1-backup-regel",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was besagt die 3-2-1-Backup-Regel?",
+      "back": "3 Kopien der Daten, auf 2 verschiedenen Speichermedien, davon 1 Kopie ausser Haus (offsite). Schuetzt gegen Medienausfall, lokale Schaeden und Katastrophen.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--welche-schutzbedarfskategorien-kennt-der-bsi-it-grundschutz",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Schutzbedarfskategorien kennt der BSI IT-Grundschutz?",
+      "back": "Drei Kategorien: normal (begrenzte Schadensauswirkung), hoch (betraechtliche Auswirkung), sehr hoch (existenziell bedrohliche Auswirkung). Der Schutzbedarf richtet sich nach dem moeglichen Schaden.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--bringe-die-wlan-sicherheitsstandards-wep-wpa2-und-wpa3-in",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Bringe die WLAN-Sicherheitsstandards WEP, WPA2 und WPA3 in eine Rangfolge und nenne das Verschluesselungsverfahren von WPA2.",
+      "back": "Aufsteigende Sicherheit: WEP (veraltet, unsicher) < WPA2 < WPA3. WPA2 nutzt AES (CCMP); WEP sollte gar nicht mehr eingesetzt werden.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "datenschutz--was-unterscheidet-datenschutz-von-datensicherheit",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was unterscheidet Datenschutz von Datensicherheit?",
+      "back": "Datenschutz schuetzt personenbezogene Daten und das Recht auf informationelle Selbstbestimmung (rechtlich/organisatorisch). Datensicherheit schuetzt alle Daten technisch/organisatorisch vor Verlust, Manipulation und unbefugtem Zugriff. Datensicherheit ist Mittel zum Zweck des Datenschutzes.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--was-sind-personenbezogene-daten-nach-art-4-dsgvo",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was sind personenbezogene Daten nach Art. 4 DSGVO?",
+      "back": "Alle Informationen, die sich auf eine identifizierte oder identifizierbare natuerliche Person beziehen. Beispiele: Name, Adresse, IP-Adresse, Standortdaten, Kundennummer.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--in-welchem-verhaeltnis-stehen-dsgvo-und-bdsg-zueinander",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "In welchem Verhaeltnis stehen DSGVO und BDSG zueinander?",
+      "back": "Die DSGVO ist EU-Verordnung und gilt unmittelbar in allen Mitgliedstaaten (Vorrang). Das BDSG konkretisiert sie national dort, wo die DSGVO Oeffnungsklauseln laesst (z. B. Beschaeftigtendatenschutz).",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--nenne-die-grundsaetze-der-datenverarbeitung-nach-art-5-dsgvo",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die Grundsaetze der Datenverarbeitung nach Art. 5 DSGVO.",
+      "back": "Rechtmaessigkeit/Treu und Glauben/Transparenz, Zweckbindung, Datenminimierung, Richtigkeit, Speicherbegrenzung, Integritaet und Vertraulichkeit sowie Rechenschaftspflicht.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--erklaere-den-grundsatz-der-zweckbindung",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Grundsatz der Zweckbindung.",
+      "back": "Personenbezogene Daten duerfen nur fuer festgelegte, eindeutige und legitime Zwecke erhoben werden und nicht in einer damit unvereinbaren Weise weiterverarbeitet werden.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--erklaere-den-grundsatz-der-datenminimierung",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Grundsatz der Datenminimierung.",
+      "back": "Es duerfen nur so viele personenbezogene Daten verarbeitet werden, wie fuer den jeweiligen Zweck notwendig sind (dem Zweck angemessen, erheblich und auf das Notwendige beschraenkt).",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--was-besagt-der-grundsatz-der-speicherbegrenzung",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was besagt der Grundsatz der Speicherbegrenzung?",
+      "back": "Personenbezogene Daten duerfen nur so lange in identifizierbarer Form gespeichert werden, wie es fuer den Zweck erforderlich ist. Danach: Loeschung oder Anonymisierung.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--nenne-moegliche-rechtsgrundlagen-fuer-eine-datenverarbeitung-nach-art-6",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne moegliche Rechtsgrundlagen fuer eine Datenverarbeitung nach Art. 6 DSGVO.",
+      "back": "Einwilligung der betroffenen Person, Vertragserfuellung, rechtliche Verpflichtung, lebenswichtige Interessen, oeffentliches Interesse, berechtigtes Interesse des Verantwortlichen.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--welche-voraussetzungen-muss-eine-wirksame-einwilligung-erfuellen",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Voraussetzungen muss eine wirksame Einwilligung erfuellen?",
+      "back": "Freiwillig, informiert, fuer den konkreten Zweck, unmissverstaendlich (aktive Handlung) und jederzeit widerrufbar. Die Beweislast traegt der Verantwortliche.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--nenne-die-wichtigsten-betroffenenrechte-nach-der-dsgvo",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die wichtigsten Betroffenenrechte nach der DSGVO.",
+      "back": "Auskunft, Berichtigung, Loeschung (Recht auf Vergessenwerden), Einschraenkung der Verarbeitung, Datenuebertragbarkeit und Widerspruch.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--innerhalb-welcher-frist-muss-der-verantwortliche-auf-einen-antrag",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Innerhalb welcher Frist muss der Verantwortliche auf einen Antrag der betroffenen Person reagieren?",
+      "back": "Grundsaetzlich innerhalb eines Monats nach Eingang des Antrags. Bei Komplexitaet um bis zu zwei weitere Monate verlaengerbar (mit Begruendung).",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--was-ist-das-recht-auf-vergessenwerden",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist das \"Recht auf Vergessenwerden\"?",
+      "back": "Das Recht der betroffenen Person auf Loeschung ihrer personenbezogenen Daten (Art. 17 DSGVO), z. B. wenn Zweck entfaellt, Einwilligung widerrufen wird oder die Verarbeitung unrechtmaessig war.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--worin-unterscheiden-sich-anonymisierung-und-pseudonymisierung",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich Anonymisierung und Pseudonymisierung?",
+      "back": "Anonymisierung entfernt den Personenbezug irreversibel (Daten fallen aus der DSGVO). Pseudonymisierung ersetzt identifizierende Merkmale, ist aber mit Zusatzwissen (Schluessel) reversibel und bleibt personenbezogen.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--was-versteht-man-unter-technischen-und-organisatorischen-massnahmen-tom",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter technischen und organisatorischen Massnahmen (TOM)?",
+      "back": "Massnahmen nach Art. 32 DSGVO zum Schutz personenbezogener Daten. Technisch z. B. Verschluesselung, Zugriffskontrolle; organisatorisch z. B. Berechtigungskonzepte, Schulungen, Vertretungsregelungen.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--innerhalb-welcher-frist-muss-eine-datenpanne-der-aufsichtsbehoerde-gemeldet",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Innerhalb welcher Frist muss eine Datenpanne der Aufsichtsbehoerde gemeldet werden?",
+      "back": "Innerhalb von 72 Stunden nach Bekanntwerden der Verletzung des Schutzes personenbezogener Daten. Bei hohem Risiko sind zusaetzlich die Betroffenen zu benachrichtigen.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--wie-hoch-kann-ein-bussgeld-nach-der-dsgvo-maximal",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie hoch kann ein Bussgeld nach der DSGVO maximal ausfallen?",
+      "back": "Bis zu 20 Mio. EUR oder 4 % des weltweiten Jahresumsatzes des Vorjahres, je nachdem welcher Betrag hoeher ist (leichtere Verstoesse: bis 10 Mio. EUR / 2 %).",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--unterscheide-verantwortlicher-und-auftragsverarbeiter",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide Verantwortlicher und Auftragsverarbeiter.",
+      "back": "Der Verantwortliche entscheidet ueber Zwecke und Mittel der Verarbeitung. Der Auftragsverarbeiter verarbeitet Daten weisungsgebunden im Auftrag (z. B. Cloud-Anbieter), geregelt durch einen Auftragsverarbeitungsvertrag (AVV).",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--was-sind-besondere-kategorien-personenbezogener-daten-nach-art-9",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was sind besondere Kategorien personenbezogener Daten nach Art. 9 DSGVO?",
+      "back": "Besonders schutzwuerdige Daten wie Gesundheit, ethnische Herkunft, religioese/politische Ueberzeugung, Gewerkschaftszugehoerigkeit, Sexualleben, biometrische und genetische Daten. Verarbeitung grundsaetzlich verboten (Ausnahmen erforderlich).",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "betriebssysteme--was-sind-die-zentralen-aufgaben-eines-betriebssystems",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was sind die zentralen Aufgaben eines Betriebssystems?",
+      "back": "Prozess-/CPU-Verwaltung (Scheduling), Speicherverwaltung, Dateiverwaltung, Geraete-/Ein-Ausgabe-Steuerung (Treiber), Benutzer- und Rechteverwaltung sowie Bereitstellung einer Benutzerschnittstelle.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--worin-unterscheiden-sich-praeemptives-und-kooperatives-multitasking",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich praeemptives und kooperatives Multitasking?",
+      "back": "Praeemptiv: das OS entzieht Prozessen per Scheduler die CPU (Zeitscheiben) und verteilt sie selbst. Kooperativ: der Prozess gibt die CPU freiwillig ab; ein haengender Prozess blockiert das gesamte System.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--grenze-prozess-und-thread-voneinander-ab",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Prozess und Thread voneinander ab.",
+      "back": "Prozess: eigenstaendiges Programm mit eigenem, isoliertem Adressraum. Thread: leichtgewichtiger Ausfuehrungsstrang innerhalb eines Prozesses, der sich Adressraum und Ressourcen mit anderen Threads teilt.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--was-ist-die-zentrale-groessenbeschraenkung-von-fat32-und-welche",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist die zentrale Groessenbeschraenkung von FAT32 und welche Folge hat sie?",
+      "back": "Maximale Dateigroesse 4 GiB (genau 4 GiB minus 1 Byte). Folge: grosse Dateien (z. B. Videos, Images) lassen sich nicht speichern; Ausweichformate sind exFAT oder NTFS.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--vergleiche-fat32-exfat-ntfs-und-ext4-in-ihrem-haupteinsatz",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Vergleiche FAT32, exFAT, NTFS und ext4 in ihrem Haupteinsatz.",
+      "back": "FAT32: universell kompatibel, aber 4-GiB-Limit. exFAT: fuer grosse Wechseldatentraeger (USB/SD), ohne 4-GiB-Grenze. NTFS: Windows-Standard mit Journaling und Rechten (ACL). ext4: Linux-Standard mit Journaling.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--was-versteht-man-unter-journaling-bei-einem-dateisystem",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter Journaling bei einem Dateisystem?",
+      "back": "Aenderungen werden vor der Ausfuehrung in einem Journal (Protokoll) vermerkt. Nach einem Absturz kann das Dateisystem so schnell in einen konsistenten Zustand zurueckgefuehrt werden, ohne komplette Pruefung.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--welche-zwei-merkmale-zeichnen-ntfs-gegenueber-fat32-besonders-aus",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche zwei Merkmale zeichnen NTFS gegenueber FAT32 besonders aus?",
+      "back": "Journaling (Ausfallsicherheit/Konsistenz) und eine feingranulare Rechteverwaltung ueber ACLs (Access Control Lists). Zusaetzlich u. a. Komprimierung, Verschluesselung und keine 4-GiB-Grenze.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--erklaere-das-ugo-rwx-rechtemodell-unter-linux",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere das ugo-rwx-Rechtemodell unter Linux.",
+      "back": "Rechte werden fuer drei Klassen vergeben: u = user (Eigentuemer), g = group (Gruppe), o = others (alle anderen). Je Klasse gibt es r = lesen, w = schreiben, x = ausfuehren.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--welche-oktalen-wertigkeiten-haben-die-linux-rechte-r-w",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche oktalen Wertigkeiten haben die Linux-Rechte r, w und x?",
+      "back": "r (lesen) = 4, w (schreiben) = 2, x (ausfuehren) = 1. Die Rechte einer Klasse ergeben sich aus der Summe (z. B. rwx = 4+2+1 = 7, r-x = 4+1 = 5).",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--was-bedeutet-die-rechtemaske-755",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet die Rechtemaske 755?",
+      "back": "rwxr-xr-x: der Eigentuemer darf lesen, schreiben, ausfuehren (7); Gruppe und andere duerfen nur lesen und ausfuehren (5). Typisch fuer ausfuehrbare Dateien und Verzeichnisse.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--wodurch-unterscheiden-sich-die-befehle-chmod-und-chown",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wodurch unterscheiden sich die Befehle chmod und chown?",
+      "back": "chmod (change mode) aendert die Zugriffsrechte (rwx) einer Datei. chown (change owner) aendert den Eigentuemer bzw. die zugeordnete Gruppe einer Datei.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--ordne-die-linux-befehle-ls-cp-mv-ps-und",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ordne die Linux-Befehle ls, cp, mv, ps und grep ihrer Funktion zu.",
+      "back": "ls: Verzeichnisinhalt auflisten. cp: Datei kopieren. mv: verschieben/umbenennen. ps: laufende Prozesse anzeigen. grep: Textzeilen nach einem Muster durchsuchen/filtern.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--welche-windows-befehle-geben-ip-konfiguration-bzw-mac-adresse",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Windows-Befehle geben IP-Konfiguration bzw. MAC-Adresse aus?",
+      "back": "ipconfig zeigt die IP-Konfiguration (IP-Adresse, Subnetzmaske, Gateway; mit /all auch DNS und MAC). getmac gibt gezielt die MAC-Adresse(n) der Netzwerkadapter aus.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--wofuer-setzt-man-ping-tracert-und-nslookup-ein",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer setzt man ping, tracert und nslookup ein?",
+      "back": "ping: prueft die Erreichbarkeit eines Hosts (Antwortzeit). tracert: zeigt die Route/Zwischenstationen (Hops) zum Ziel. nslookup: prueft die DNS-Namensaufloesung (Name zu IP-Adresse).",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--grenze-virtualisierung-vm-und-container-voneinander-ab",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Virtualisierung (VM) und Container voneinander ab.",
+      "back": "VM: der Hypervisor emuliert vollstaendige Hardware, jede VM hat ein eigenes Gastbetriebssystem inkl. Kernel (ressourcenintensiv). Container: teilen sich den Kernel des Host-Systems und kapseln nur die Anwendung/Umgebung (leichtgewichtig, schneller Start).",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--beschreibe-den-grundsaetzlichen-boot-ablauf-eines-rechners",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Beschreibe den grundsaetzlichen Boot-Ablauf eines Rechners.",
+      "back": "1) BIOS/UEFI fuehrt den POST (Hardware-Selbsttest) aus. 2) Der Bootloader wird vom Datentraeger geladen. 3) Der Bootloader startet den Kernel/das Betriebssystem. 4) Systemdienste starten, danach Anmeldung/Benutzeroberflaeche.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "softwareentwicklung--nenne-die-vier-wichtigsten-programmierparadigmen-und-je-ein-kennzeichen",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die vier wichtigsten Programmierparadigmen und je ein Kennzeichen.",
+      "back": "Prozedural: Ablauf in Prozeduren/Funktionen. Objektorientiert: Daten + Methoden in Objekten. Funktional: Berechnung durch Funktionen ohne Seiteneffekte. Deklarativ: beschreibt das \"Was\", nicht das \"Wie\" (z. B. SQL).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--worin-unterscheiden-sich-compiler-und-interpreter",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich Compiler und Interpreter?",
+      "back": "Compiler uebersetzt den gesamten Quellcode vorab einmal in Maschinencode (schnelle Ausfuehrung). Der Interpreter uebersetzt/fuehrt Zeile fuer Zeile zur Laufzeit aus (langsamer, aber flexibler, gute Fehlermeldungen).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-ist-bytecode-und-welche-rolle-spielt-der-jit",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist Bytecode und welche Rolle spielt der JIT-Compiler?",
+      "back": "Bytecode ist ein plattformunabhaengiger Zwischencode (z. B. Java), der von einer virtuellen Maschine ausgefuehrt wird. Der JIT-Compiler (Just-in-Time) uebersetzt haeufig genutzten Bytecode zur Laufzeit in Maschinencode und beschleunigt so die Ausfuehrung.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-ist-der-unterschied-zwischen-einer-kopfgesteuerten-und-einer",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist der Unterschied zwischen einer kopfgesteuerten und einer fussgesteuerten Schleife?",
+      "back": "Kopfgesteuert (while): Bedingung wird VOR dem Durchlauf geprueft, evtl. null Durchlaeufe. Fussgesteuert (do-while): Bedingung wird NACH dem Durchlauf geprueft, mindestens ein Durchlauf.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--nenne-die-drei-grundstrukturen-der-strukturierten-programmierung",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die drei Grundstrukturen der strukturierten Programmierung.",
+      "back": "Sequenz (Anweisungen nacheinander), Verzweigung/Selektion (Bedingung, z. B. if/else) und Wiederholung/Iteration (Schleife).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-ist-der-unterschied-zwischen-einer-klasse-und-einem",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist der Unterschied zwischen einer Klasse und einem Objekt?",
+      "back": "Eine Klasse ist der Bauplan/die Vorlage (definiert Attribute und Methoden). Ein Objekt ist eine konkrete Instanz dieser Klasse mit eigenen Attributwerten.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--erklaere-den-begriff-kapselung-encapsulation-in-der-oop",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Begriff Kapselung (Encapsulation) in der OOP.",
+      "back": "Zusammenfassen von Daten (Attributen) und Methoden in einer Klasse und Verbergen des inneren Zustands nach aussen (Information Hiding). Zugriff nur ueber definierte Schnittstellen (z. B. Getter/Setter), meist durch Sichtbarkeit private geregelt.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-versteht-man-unter-polymorphie-in-der-objektorientierten-programmierung",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter Polymorphie in der objektorientierten Programmierung?",
+      "back": "\"Vielgestaltigkeit\": gleicher Methodenaufruf fuehrt je nach konkretem Objekttyp zu unterschiedlichem Verhalten. Umgesetzt v. a. durch Ueberschreiben (Overriding) von Methoden in abgeleiteten Klassen.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--grenze-assoziation-aggregation-und-komposition-voneinander-ab",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Assoziation, Aggregation und Komposition voneinander ab.",
+      "back": "Assoziation: allgemeine \"kennt/nutzt\"-Beziehung. Aggregation: Teil-Ganzes, Teile existieren unabhaengig weiter (schwache \"hat\"-Beziehung). Komposition: starke Teil-Ganzes-Beziehung, die Teile sterben mit dem Ganzen (existenzabhaengig).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wozu-dient-ein-use-case-diagramm-anwendungsfalldiagramm-in-uml",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wozu dient ein Use-Case-Diagramm (Anwendungsfalldiagramm) in UML?",
+      "back": "Es stellt aus Nutzersicht dar, welche Funktionen (Anwendungsfaelle) ein System bietet und welche Akteure damit interagieren. Es zeigt das \"Was\", nicht den internen Ablauf.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-wird-in-einem-uml-klassendiagramm-dargestellt",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was wird in einem UML-Klassendiagramm dargestellt?",
+      "back": "Die statische Struktur eines Systems: Klassen mit Attributen und Methoden, ihre Sichtbarkeiten (+ public, - private, # protected) sowie die Beziehungen (Assoziation, Vererbung, Aggregation, Komposition) inkl. Multiplizitaeten.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wofuer-wird-ein-aktivitaetsdiagramm-verwendet",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer wird ein Aktivitaetsdiagramm verwendet?",
+      "back": "Zur Modellierung von Ablaeufen/Prozessen: es zeigt Aktionen, deren Reihenfolge, Verzweigungen (Entscheidungen) sowie parallele Ablaeufe (Fork/Join). Vergleichbar mit einem Programmablaufplan auf hoeherer Ebene.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--unterscheide-funktionale-und-nicht-funktionale-anforderungen-mit-je-einem",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide funktionale und nicht-funktionale Anforderungen mit je einem Beispiel.",
+      "back": "Funktional: WAS das System leisten soll (z. B. \"Nutzer kann sich anmelden\"). Nicht-funktional: WIE gut / unter welchen Bedingungen (z. B. Antwortzeit unter 2 s, Sicherheit, Benutzerfreundlichkeit, Verfuegbarkeit).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-ist-ein-schreibtischtest-desk-check",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Schreibtischtest (Desk-Check)?",
+      "back": "Das manuelle, schrittweise Durchspielen eines Algorithmus/Programmablaufs \"auf dem Papier\" mit Testwerten, meist mittels Wertetabelle. Ziel: Logikfehler ohne Rechner vor der Implementierung finden.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--nenne-die-drei-fehlerarten-und-erklaere-sie-kurz",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die drei Fehlerarten und erklaere sie kurz.",
+      "back": "Syntaxfehler: Verstoss gegen Sprachregeln, wird schon beim Kompilieren erkannt. Laufzeitfehler: Programm bricht waehrend der Ausfuehrung ab (z. B. Division durch null). Logikfehler: Programm laeuft, liefert aber falsche Ergebnisse.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-ist-der-unterschied-zwischen-einem-primaerschluessel-und-einem",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist der Unterschied zwischen einem Primaerschluessel und einem Fremdschluessel?",
+      "back": "Der Primaerschluessel identifiziert jeden Datensatz einer Tabelle eindeutig (nicht NULL, einmalig). Der Fremdschluessel verweist auf den Primaerschluessel einer anderen Tabelle und stellt so die Beziehung/referenzielle Integritaet her.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-versteht-man-unter-redundanz-und-welche-folge-kann",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter Redundanz und welche Folge kann sie in einer Datenbank haben?",
+      "back": "Redundanz ist das mehrfache, ueberfluessige Speichern derselben Information. Folge sind Anomalien (Einfuege-, Aenderungs-, Loeschanomalie), also Inkonsistenzen. Vermeidung durch Normalisierung.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-ist-ein-datentyp-und-wozu-dient-er",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Datentyp und wozu dient er?",
+      "back": "Ein Datentyp legt fest, welche Werte eine Variable annehmen kann, welchen Speicherplatz sie belegt und welche Operationen erlaubt sind. Beispiele: Integer (Ganzzahl), Float/Double (Kommazahl), Boolean (wahr/falsch), Char/String (Zeichen/Text).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "qs-vertraege--grenze-werkvertrag-und-dienstvertrag-ab",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Werkvertrag und Dienstvertrag ab.",
+      "back": "Werkvertrag: geschuldet ist ein konkreter Erfolg, ein fertiges Werk (z. B. lauffähige Individualsoftware, abgenommene Website). Der Auftragnehmer trägt das Risiko bis zur Abnahme.\nDienstvertrag: geschuldet ist nur die Tätigkeit/Arbeitsleistung selbst, nicht ein Erfolg (z. B. IT-Beratung, Schulung, Support nach Aufwand). Bezahlt wird die Leistung, unabhängig vom Ergebnis.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--was-beschreibt-der-pdca-zyklus-deming-kreis-und-wofuer",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was beschreibt der PDCA-Zyklus (Deming-Kreis) und wofür stehen die vier Phasen?",
+      "back": "Iterativer Regelkreis zur kontinuierlichen Qualitätsverbesserung (KVP). Plan (planen/Ziele+Maßnahmen festlegen), Do (umsetzen/erproben), Check (Ergebnis mit Soll vergleichen), Act (bei Erfolg standardisieren, sonst nachbessern). Danach beginnt der Kreis erneut.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--grenze-black-box-test-und-white-box-test-ab",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Black-Box-Test und White-Box-Test ab.",
+      "back": "Black-Box-Test: Prüfung nur gegen die Spezifikation ohne Kenntnis des inneren Codes; getestet wird über Ein-/Ausgaben (z. B. Äquivalenzklassen, Grenzwertanalyse). White-Box-Test: Prüfung mit Kenntnis des Quellcodes/der internen Struktur (z. B. Zweig-, Pfad-, Anweisungsüberdeckung).",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--nenne-die-vier-klassischen-teststufen-des-v-modells-in",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die vier klassischen Teststufen des V-Modells in aufsteigender Reihenfolge.",
+      "back": "1. Komponenten-/Unit-Test (einzelne Module isoliert), 2. Integrationstest (Zusammenspiel der Module/Schnittstellen), 3. Systemtest (Gesamtsystem gegen Anforderungen in produktionsnaher Umgebung), 4. Abnahmetest (Prüfung durch den Kunden zur Freigabe).",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--was-ist-ein-regressionstest-und-wann-wird-er-durchgefuehrt",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Regressionstest und wann wird er durchgeführt?",
+      "back": "Wiederholung bereits erfolgreicher Tests nach Änderungen (Bugfix, neues Feature, Refactoring), um sicherzustellen, dass bestehende Funktionen weiterhin fehlerfrei arbeiten. Ziel: Aufdecken neu eingeschleppter Fehler in bisher funktionierenden Teilen. Wird meist automatisiert ausgeführt.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--was-prueft-ein-lasttest-und-wie-unterscheidet-er-sich",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was prüft ein Lasttest und wie unterscheidet er sich vom Stresstest?",
+      "back": "Lasttest: prüft das Systemverhalten unter erwarteter/hoher Nutzlast (z. B. viele gleichzeitige Nutzer) auf Antwortzeiten und Durchsatz. Stresstest: treibt die Last bewusst über die Grenzen hinaus, um Belastungsgrenze und Verhalten bei Überlastung/Ausfall zu ermitteln.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--welche-angaben-gehoeren-in-ein-testprotokoll",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Angaben gehören in ein Testprotokoll?",
+      "back": "Testfall-ID/-beschreibung, Vorbedingungen, Testdaten/Eingaben, erwartetes Ergebnis (Soll), tatsächliches Ergebnis (Ist), Soll-Ist-Abweichung (bestanden/fehlgeschlagen), Datum, Tester und Testumgebung/Version. Dient als Nachweis und Basis der Fehlerbehebung.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--nenne-zentrale-softwarequalitaetsmerkmale-nach-iso-9126-iso-25010",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne zentrale Softwarequalitätsmerkmale nach ISO 9126 / ISO 25010.",
+      "back": "Funktionalität, Zuverlässigkeit, Benutzbarkeit, Effizienz, Änderbarkeit/Wartbarkeit und Übertragbarkeit/Portabilität. (ISO 25010 ergänzt u. a. Kompatibilität und Sicherheit.) Sie beschreiben, woran Softwarequalität objektiv gemessen wird.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--worin-unterscheidet-sich-der-kaufvertrag-vom-werkvertrag",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheidet sich der Kaufvertrag vom Werkvertrag?",
+      "back": "Kaufvertrag: Übereignung einer bereits fertigen, meist standardisierten Sache gegen Zahlung (z. B. Standardsoftware „von der Stange\", Hardware). Werkvertrag: Herstellung eines individuell geschuldeten Erfolgs/Werks (z. B. maßgeschneiderte Software mit Abnahme).",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--was-ist-ein-service-level-agreement-sla-und-was",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Service Level Agreement (SLA) und was regelt es typischerweise?",
+      "back": "Vertraglich vereinbarte Dienstgütevereinbarung zwischen Anbieter und Kunde. Legt messbare Leistungskennzahlen fest: z. B. Verfügbarkeit (in %), Reaktions- und Wiederherstellungszeiten, Servicezeiten, Support-Level sowie Vertragsstrafen (Pönalen) bei Nichteinhaltung.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--erklaere-das-support-modell-first-second-und-third-level",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erkläre das Support-Modell First-, Second- und Third-Level.",
+      "back": "First-Level: erste Anlaufstelle, nimmt Anfragen auf und löst Standard-/Routineprobleme. Second-Level: übernimmt komplexere Fälle mit tieferem Fachwissen. Third-Level: Spezialisten/Hersteller/Entwickler für die schwierigsten Probleme. Nicht lösbare Fälle werden eskaliert (weitergereicht).",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--unterscheide-gesetzliche-gewaehrleistung-und-freiwillige-garantie",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide gesetzliche Gewährleistung und (freiwillige) Garantie.",
+      "back": "Gewährleistung: gesetzlich vorgeschriebene Mängelhaftung des Verkäufers für Mängel, die bei Gefahrübergang bestehen (i. d. R. 2 Jahre, nicht abdingbar). Garantie: freiwillige, zusätzliche Zusage des Herstellers/Verkäufers mit frei bestimmbarem Umfang und Dauer, die über die Gewährleistung hinausgeht.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--was-besagt-das-urheberrecht-bei-software-und-was-ist",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was besagt das Urheberrecht bei Software und was ist ein Nutzungsrecht (Lizenz)?",
+      "back": "Urheberrecht: schützt den Schöpfer (Programmierer) als geistiges Eigentum; es ist nicht übertragbar/nicht verkäuflich und verbleibt beim Urheber. Nutzungsrecht (Lizenz): das einräumbare Recht, die Software in vereinbartem Umfang zu nutzen (einfach/ausschließlich, zeitlich/räumlich begrenzt). Der Kunde erwirbt die Lizenz, nicht das Urheberrecht.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--was-ist-ein-soll-ist-vergleich-und-wozu-dient",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Soll-Ist-Vergleich und wozu dient er in der Leistungserbringung?",
+      "back": "Gegenüberstellung des geplanten/vereinbarten Zustands (Soll, z. B. Lastenheft/Pflichtenheft) mit dem tatsächlich erreichten Ergebnis (Ist). Aufgedeckte Abweichungen sind Grundlage für Abnahme, Mängelrügen und Steuerungsmaßnahmen (Controlling).",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--welche-funktion-hat-ein-abnahmeprotokoll",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Funktion hat ein Abnahmeprotokoll?",
+      "back": "Dokumentiert die Abnahme des Werks durch den Kunden: bestätigt vertragsgemäße Leistung bzw. hält festgestellte Mängel/Restpunkte fest. Rechtsfolgen der Abnahme: Fälligkeit der Vergütung, Beginn der Gewährleistungsfrist, Gefahrübergang und Beweislastumkehr zulasten des Kunden.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--unterscheide-schlechtleistung-falschleistung-und-minderleistung",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide Schlechtleistung, Falschleistung und Minderleistung.",
+      "back": "Schlechtleistung: Leistung ist mangelhaft/qualitativ fehlerhaft (erfüllt Anforderungen nicht richtig). Falschleistung: es wurde etwas anderes als das Geschuldete geliefert (falsche Ware/Leistung). Minderleistung: die Leistung ist unvollständig, es wurde zu wenig geliefert (Mengenabweichung).",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--vergleiche-einlinien-mehrlinien-und-matrixorganisation",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Vergleiche Einlinien-, Mehrlinien- und Matrixorganisation.",
+      "back": "Einliniensystem: jede Stelle hat genau einen Vorgesetzten, klare Weisungswege (aber lange Wege). Mehrliniensystem: eine Stelle erhält Weisungen von mehreren spezialisierten Vorgesetzten (kürzere Wege, aber Kompetenzkonflikte). Matrixorganisation: Verknüpfung zweier Dimensionen (z. B. Funktion und Projekt) → doppelte Unterstellung, fördert Zusammenarbeit, birgt Konfliktpotenzial.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--wofuer-stehen-die-vollmachts-unterschriftskuerzel-i-v-i-a",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofür stehen die Vollmachts-/Unterschriftskürzel i. V., i. A. und ppa.?",
+      "back": "i. V. (in Vertretung): Unterzeichner handelt mit eigener Vertretungsvollmacht/Verantwortung für den Vorgesetzten. i. A. (im Auftrag): Unterzeichner handelt nur als Bote/ausführend auf Weisung, ohne eigene Entscheidungsbefugnis. ppa. (per procura): Prokurist mit umfangreicher gesetzlicher Handlungsvollmacht (Prokura) für den Kaufmann.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "kommunikation--nenne-die-vier-ebenen-einer-nachricht-im-4-ohren",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die vier Ebenen einer Nachricht im 4-Ohren-Modell nach Schulz von Thun.",
+      "back": "Sachebene (Sachinhalt), Selbstoffenbarung (was ich von mir preisgebe), Beziehungsebene (wie ich zum Gegenueber stehe), Appell (wozu ich veranlassen will).",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--was-besagt-das-erste-axiom-von-watzlawick-und-welche",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was besagt das erste Axiom von Watzlawick und welche praktische Folge hat es in der Kundenberatung?",
+      "back": "\"Man kann nicht nicht kommunizieren\" — auch Schweigen, Mimik und Koerperhaltung sind Botschaften. Folge: Nonverbale Signale des Beraters wirken immer mit, auch ungewollt.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--erklaere-das-eisbergmodell-der-kommunikation",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere das Eisbergmodell der Kommunikation.",
+      "back": "Nur ein kleiner Teil (ca. 20 %) ist die sichtbare Sachebene ueber Wasser. Der groessere Teil unter Wasser ist die Beziehungsebene: Gefuehle, Werte, Motive. Konflikte entstehen meist unter der Oberflaeche.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--grenze-das-sender-empfaenger-modell-von-den-begriffen-kodierung",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze das Sender-Empfaenger-Modell von den Begriffen Kodierung und Dekodierung ab.",
+      "back": "Der Sender kodiert eine Nachricht (Gedanke → Zeichen/Sprache), uebermittelt sie ueber einen Kanal, der Empfaenger dekodiert sie. Missverstaendnisse entstehen durch Stoerungen oder unterschiedliche Kodierung/Dekodierung.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--was-ist-eine-ich-botschaft-und-warum-ist-sie",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine Ich-Botschaft und warum ist sie im Konfliktgespraech einer Du-Botschaft vorzuziehen?",
+      "back": "Ich-Botschaft schildert eigene Wahrnehmung/Wirkung (\"Ich habe den Eindruck, dass...\") statt Vorwurf (\"Sie machen immer...\"). Sie wirkt weniger angreifend, senkt Abwehr und haelt das Gespraech loesungsoffen.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--nenne-drei-techniken-des-aktiven-zuhoerens",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne drei Techniken des aktiven Zuhoerens.",
+      "back": "Paraphrasieren (Inhalt in eigenen Worten spiegeln), Verbalisieren von Gefuehlen, Nachfragen/Zusammenfassen. Ziel: Verstaendnis sichern und Wertschaetzung zeigen.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--was-bedeutet-batna-im-harvard-konzept",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet BATNA im Harvard-Konzept?",
+      "back": "Best Alternative To a Negotiated Agreement — die beste Handlungsalternative, falls keine Einigung zustande kommt. Sie bestimmt die eigene Verhandlungsmacht und die Verhandlungsuntergrenze.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--nenne-die-vier-grundprinzipien-des-harvard-konzepts",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die vier Grundprinzipien des Harvard-Konzepts.",
+      "back": "1. Menschen und Probleme getrennt behandeln. 2. Auf Interessen statt Positionen konzentrieren. 3. Optionen zum beiderseitigen Vorteil entwickeln. 4. Auf objektiven Kriterien bestehen.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--grenze-beduerfnis-bedarf-und-nachfrage-voneinander-ab",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Beduerfnis, Bedarf und Nachfrage voneinander ab.",
+      "back": "Beduerfnis = Mangelempfinden mit Wunsch nach Beseitigung. Bedarf = Beduerfnis, das mit Kaufkraft hinterlegt ist. Nachfrage = am Markt tatsaechlich geaeusserter Bedarf zu einem bestimmten Preis.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--was-gehoert-in-eine-beduerfnis-bedarfsanalyse-im-kundengespraech",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was gehoert in eine Beduerfnis-/Bedarfsanalyse im Kundengespraech?",
+      "back": "Systematisches Ermitteln der Kundenanforderungen durch offene Fragen: Ist-Zustand, Ziele, Budget, Rahmenbedingungen und Prioritaeten. Grundlage fuer ein passendes Angebot.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--nenne-wichtige-kriterien-der-quellenkritik-bei-der-informationsbeschaffung",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne wichtige Kriterien der Quellenkritik bei der Informationsbeschaffung.",
+      "back": "Aktualitaet (Stand der Information), Autor/Herausgeber (Kompetenz, Interessen), Nachpruefbarkeit/Belege und Objektivitaet (sachlich vs. werblich). Mehrere unabhaengige Quellen vergleichen.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--grenze-monopol-oligopol-und-polypol-nach-anzahl-der-anbieter",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Monopol, Oligopol und Polypol nach Anzahl der Anbieter ab.",
+      "back": "Monopol: ein Anbieter, viele Nachfrager. Oligopol: wenige Anbieter. Polypol: viele Anbieter und viele Nachfrager (vollkommener Markt/Wettbewerb).",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--grenze-die-haftung-bei-gmbh-und-einzelunternehmen-ab",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze die Haftung bei GmbH und Einzelunternehmen ab.",
+      "back": "GmbH: Haftung beschraenkt auf das Gesellschaftsvermoegen (Mindeststammkapital 25.000 EUR). Einzelunternehmen: unbeschraenkte Haftung des Inhabers auch mit dem Privatvermoegen.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--wofuer-stehen-die-vier-stufen-des-aida-modells",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer stehen die vier Stufen des AIDA-Modells?",
+      "back": "Attention (Aufmerksamkeit), Interest (Interesse), Desire (Verlangen/Wunsch), Action (Kaufhandlung). Stufenmodell der Werbewirkung.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--erklaere-zweck-und-vorgehen-der-abc-analyse",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere Zweck und Vorgehen der ABC-Analyse.",
+      "back": "Einteilung von Objekten (z. B. Kunden, Artikel) nach Wertanteil in A (wenige, hoher Wertanteil), B (mittel), C (viele, geringer Wertanteil). Ziel: Konzentration der Ressourcen auf die wichtigen A-Faelle.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--nenne-die-phasen-des-produktlebenszyklus-in-richtiger-reihenfolge",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die Phasen des Produktlebenszyklus in richtiger Reihenfolge.",
+      "back": "Einfuehrung, Wachstum, Reife, Saettigung, Degeneration (Rueckgang). Umsatz- und Gewinnverlauf variieren je Phase.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--grenze-b2b-b2c-und-b2g-ab",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze B2B, B2C und B2G ab.",
+      "back": "B2B: Geschaeft zwischen Unternehmen. B2C: Unternehmen an Endverbraucher (Consumer). B2G: Unternehmen an oeffentliche Auftraggeber/Behoerden (Government).",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--grenze-outsourcing-und-offshoring-voneinander-ab",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Outsourcing und Offshoring voneinander ab.",
+      "back": "Outsourcing: Auslagerung von Aufgaben an einen externen Dienstleister (Frage: intern/extern). Offshoring: Verlagerung ins (kostenguenstigere) Ausland (Frage: Standort). Kombinierbar, aber nicht dasselbe.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--nenne-die-drei-phasen-des-change-modells-nach-lewin",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die drei Phasen des Change-Modells nach Lewin.",
+      "back": "Unfreeze (Auftauen: Veraenderungsbereitschaft schaffen), Change/Move (Veraenderung durchfuehren), Refreeze (Einfrieren: neuen Zustand stabilisieren).",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--was-ist-kaizen-und-wie-unterscheidet-es-sich-von",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist Kaizen und wie unterscheidet es sich von einem einmaligen Change-Projekt?",
+      "back": "Kaizen = Philosophie der kontinuierlichen Verbesserung in kleinen Schritten (KVP), dauerhaft durch alle Mitarbeiter. Change-Projekt ist dagegen eine zeitlich begrenzte, groessere Einzelmassnahme.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "neu-2025--ki-gestuetzte-chatbots-im-kundenservice-nenne-je-zwei-vor",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "KI-gestützte Chatbots im Kundenservice: Nenne je zwei Vor- und Nachteile.",
+      "back": "Vorteile: 24/7-Verfügbarkeit, schnelle Antworten, Entlastung von Routineanfragen, Kostenersparnis bei hohem Volumen. Nachteile: Fehler/\"Halluzinationen\", fehlendes Kontext-/Empathieverständnis, Datenschutzrisiko bei Eingaben, Anschaffungs-/Wartungskosten.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--welche-ethischen-und-rechtlichen-aspekte-sind-beim-einsatz-von",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche ethischen und rechtlichen Aspekte sind beim Einsatz von KI zu beachten?",
+      "back": "Datenschutz (DSGVO, keine personenbezogenen Daten unkontrolliert eingeben), Transparenz/Kennzeichnungspflicht, Vermeidung von Verzerrung (Bias/Diskriminierung), Urheberrecht an Trainingsdaten/Ausgaben, Verantwortung/Haftung für Ergebnisse.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--wofuer-steht-bpmn-und-wozu-dient-es",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofür steht BPMN und wozu dient es?",
+      "back": "Business Process Model and Notation: standardisierte grafische Notation zur Modellierung von Geschäftsprozessen, verständlich für Fachbereich und IT.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--nenne-die-vier-kategorien-der-bpmn-grundelemente",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die vier Kategorien der BPMN-Grundelemente.",
+      "back": "Flussobjekte (Ereignisse/Kreis, Aktivitäten/abgerundetes Rechteck, Gateways/Raute), Verbindende Objekte (Sequenzfluss, Nachrichtenfluss, Assoziation), Swimlanes (Pools/Lanes), Artefakte (z. B. Datenobjekte).",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--wie-ist-eine-ipv6-adresse-aufgebaut",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie ist eine IPv6-Adresse aufgebaut?",
+      "back": "128 Bit lang, dargestellt als acht durch Doppelpunkt getrennte Blöcke à 16 Bit in Hexadezimal. Kürzung: führende Nullen weglassen, eine Folge von Null-Blöcken einmalig durch \"::\" ersetzen.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--welche-moeglichkeiten-der-ipv6-adresskonfiguration-gibt-es",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Möglichkeiten der IPv6-Adresskonfiguration gibt es?",
+      "back": "Statisch (manuell), SLAAC (Stateless Address Autoconfiguration über Router Advertisements) und DHCPv6 (stateful). Jedes Interface hat zusätzlich automatisch eine Link-local-Adresse (fe80::/10).",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--was-ist-eine-hashfunktion-und-welche-eigenschaften-hat-sie",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine Hashfunktion und welche Eigenschaften hat sie?",
+      "back": "Einwegfunktion, die eine beliebig lange Eingabe auf einen Hashwert fester Länge abbildet. Eigenschaften: deterministisch, praktisch nicht umkehrbar, kollisionsresistent, Lawineneffekt (kleine Änderung → völlig anderer Hash).",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--worin-unterscheiden-sich-hashing-und-verschluesselung",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich Hashing und Verschlüsselung?",
+      "back": "Hashing ist eine Einwegfunktion ohne Schlüssel und nicht umkehrbar (Integrität/Passwortspeicherung). Verschlüsselung ist umkehrbar und nutzt einen Schlüssel zur Wiederherstellung des Klartexts (Vertraulichkeit).",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--was-bewirkt-ein-salt-beim-hashen-von-passwoertern",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bewirkt ein \"Salt\" beim Hashen von Passwörtern?",
+      "back": "Ein zufälliger Wert, der vor dem Hashen dem Passwort hinzugefügt wird. Er sorgt für unterschiedliche Hashes bei gleichen Passwörtern und verhindert Angriffe über vorberechnete Tabellen (Rainbow Tables).",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--was-ist-zwei-faktor-authentifizierung-2fa-und-welche-faktorkategorien",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist Zwei-Faktor-Authentifizierung (2FA) und welche Faktorkategorien gibt es?",
+      "back": "Anmeldung mit zwei Faktoren aus verschiedenen Kategorien: Wissen (Passwort/PIN), Besitz (Token, Smartphone, Smartcard), Inhärenz/Biometrie (Fingerabdruck, Gesicht). MFA nutzt zwei oder mehr solcher Faktoren.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--wozu-dient-ein-uml-aktivitaetsdiagramm-und-welche-elemente-enthaelt",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wozu dient ein UML-Aktivitätsdiagramm und welche Elemente enthält es?",
+      "back": "Verhaltensdiagramm zur Darstellung von Abläufen/Kontrollflüssen. Elemente: Startknoten (gefüllter Kreis), Aktionen (abgerundetes Rechteck), Kontrollfluss (Pfeil), Entscheidung/Zusammenführung (Raute), Parallelisierung/Synchronisation (Fork/Join-Balken), Endknoten.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--nenne-mindestens-fuenf-betroffenenrechte-nach-dsgvo",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne mindestens fünf Betroffenenrechte nach DSGVO.",
+      "back": "Recht auf Auskunft (Art. 15), Berichtigung (16), Löschung/\"Vergessenwerden\" (17), Einschränkung der Verarbeitung (18), Datenübertragbarkeit (20) und Widerspruch (21). Ergänzend: Informationspflicht (Art. 13/14).",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--nenne-die-vier-grundprinzipien-der-barrierefreiheit-im-web-wcag",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die vier Grundprinzipien der Barrierefreiheit im Web (WCAG).",
+      "back": "Wahrnehmbar, Bedienbar, Verständlich, Robust (englisch POUR: Perceivable, Operable, Understandable, Robust).",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--wie-berechnet-man-die-uebertragungszeit-einer-datenmenge-und-was",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie berechnet man die Übertragungszeit einer Datenmenge, und was ist beim Umgang mit Bit und Byte zu beachten?",
+      "back": "Übertragungszeit = Datenmenge / Übertragungsrate. Achtung: 1 Byte = 8 Bit; Datenraten werden in bit/s angegeben, Datenmengen oft in Byte → vor dem Rechnen auf gleiche Einheit umstellen.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--was-ist-ein-erp-system",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein ERP-System?",
+      "back": "Enterprise Resource Planning: Software zur abteilungsübergreifenden Planung und Steuerung aller Unternehmensressourcen (Personal, Kapital, Material, Betriebsmittel) auf Basis einer zentralen, einheitlichen Datenbasis.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--grenze-crm-und-scm-voneinander-ab",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze CRM und SCM voneinander ab.",
+      "back": "CRM (Customer Relationship Management) steuert die Kundenbeziehungen: Marketing, Vertrieb, Service. SCM (Supply Chain Management) steuert die Lieferkette vom Lieferanten bis zum Kunden: Beschaffung, Produktion, Logistik.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--was-versteht-man-unter-haertung-hardening-eines-betriebssystems-und",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter Härtung (Hardening) eines Betriebssystems und welche Maßnahmen gehören dazu?",
+      "back": "Reduktion der Angriffsfläche eines Systems. Maßnahmen: nicht benötigte Dienste/Software entfernen, offene Ports schließen, Standardpasswörter ändern, Rechte minimieren (Least Privilege), Updates/Patches einspielen, Logging aktivieren.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--worin-unterscheiden-sich-anonymisierung-und-pseudonymisierung",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich Anonymisierung und Pseudonymisierung?",
+      "back": "Bei der Anonymisierung wird der Personenbezug irreversibel entfernt (kein Rückschluss möglich, fällt aus der DSGVO). Bei der Pseudonymisierung werden Identifikatoren durch ein Pseudonym ersetzt; mit einem separat gehaltenen Schlüssel ist der Rückschluss weiterhin möglich, es bleibt ein personenbezogenes Datum.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "multimedia--worin-unterscheiden-sich-ascii-und-unicode",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich ASCII und Unicode?",
+      "back": "ASCII kodiert 128 Zeichen in 7 Bit (nur englisches Alphabet, Ziffern, Steuerzeichen). Unicode ist ein universeller Zeichensatz für nahezu alle Schriftsysteme mit über einer Million moeglichen Codepunkten.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--was-ist-utf-8-und-welchen-vorteil-hat-es",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist UTF-8 und welchen Vorteil hat es?",
+      "back": "UTF-8 ist eine Kodierung von Unicode mit variabler Laenge (1 bis 4 Byte pro Zeichen). Vorteil: ASCII-kompatibel (Zeichen 0-127 bleiben 1 Byte) und platzsparend fuer lateinische Texte.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--grenze-verlustfreie-und-verlustbehaftete-kompression-ab-nenne-je-ein",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze verlustfreie und verlustbehaftete Kompression ab. Nenne je ein Beispiel.",
+      "back": "Verlustfrei: Originaldaten sind exakt wiederherstellbar (z. B. ZIP, PNG, FLAC). Verlustbehaftet: irrelevante Informationen werden dauerhaft entfernt, kleinere Dateien, aber Qualitaetsverlust (z. B. JPEG, MP3).",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--worin-unterscheiden-sich-rastergrafik-und-vektorgrafik",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich Rastergrafik und Vektorgrafik?",
+      "back": "Rastergrafik besteht aus Pixeln (Bitmap), wird beim Vergroessern unscharf/pixelig (z. B. JPEG, PNG). Vektorgrafik beschreibt Formen mathematisch (Punkte, Linien, Kurven), ist beliebig skalierbar ohne Qualitaetsverlust (z. B. SVG).",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--wie-berechnet-man-die-farbtiefe-und-wie-viele-farben",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie berechnet man die Farbtiefe und wie viele Farben ergeben sich bei 8, 16 und 24 Bit?",
+      "back": "Farbanzahl = 2^Farbtiefe. 8 Bit = 256 Farben, 16 Bit = 65.536 Farben, 24 Bit (True Color) = ca. 16,7 Mio. Farben (je 8 Bit fuer Rot, Gruen, Blau).",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--wofuer-stehen-die-farbmodelle-rgb-und-cmyk-und-wo",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer stehen die Farbmodelle RGB und CMYK und wo werden sie eingesetzt?",
+      "back": "RGB (Rot/Gruen/Blau) ist additiv fuer selbstleuchtende Bildschirme. CMYK (Cyan/Magenta/Yellow/Key=Schwarz) ist subtraktiv fuer den Druck. Bildschirmfarben lassen sich nicht immer 1:1 drucken.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--was-versteht-man-unter-der-aufloesung-eines-bildes-und",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter der Aufloesung eines Bildes und was bedeutet DPI?",
+      "back": "Aufloesung = Anzahl der Bildpunkte (z. B. 1920x1080 Pixel). DPI (dots per inch) gibt die Punktdichte beim Druck/Scan an; hoehere DPI bedeuten feinere Details.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--was-ist-ein-paritaetsbit-und-wozu-dient-es",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Paritaetsbit und wozu dient es?",
+      "back": "Ein zusaetzliches Bit, das die Anzahl der Einsen auf gerade (even) oder ungerade (odd) ergaenzt. Es dient der einfachen Fehlererkennung bei der Datenuebertragung; einzelne Bitfehler werden erkannt, aber nicht korrigiert.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--grenze-container-format-und-codec-voneinander-ab",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Container-Format und Codec voneinander ab.",
+      "back": "Ein Codec (Coder/Decoder) ver- und entschluesselt bzw. komprimiert die eigentlichen Audio-/Videodaten (z. B. H.264, AAC). Ein Container (z. B. MP4, MKV) buendelt mehrere Spuren (Video, Audio, Untertitel) in einer Datei.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--wie-berechnet-man-den-unkomprimierten-speicherbedarf-eines-bildes",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie berechnet man den unkomprimierten Speicherbedarf eines Bildes?",
+      "back": "Speicherbedarf = Breite (Pixel) x Hoehe (Pixel) x Farbtiefe (Bit) / 8 = Datenmenge in Byte. Beispiel: 1000 x 800 x 24 / 8 = 2.400.000 Byte = ca. 2,4 MB.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--was-gibt-die-bildwiederholrate-fps-an",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was gibt die Bildwiederholrate (fps) an?",
+      "back": "Frames per Second = Anzahl der Einzelbilder pro Sekunde bei Video/Animation. Mehr fps ergeben fluessigere Bewegung (z. B. Kino 24 fps, TV 25/30 fps, Gaming 60+ fps). Mehr fps = groessere Datenmenge.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--was-ist-eine-pruefziffer-z-b-bei-ean-iban",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine Pruefziffer (z. B. bei EAN/IBAN)?",
+      "back": "Eine aus den uebrigen Ziffern nach einem festen Verfahren (z. B. Modulo) berechnete Ziffer. Sie ermoeglicht die Erkennung von Zahlendrehern und Tippfehlern bei der Eingabe von Nummern.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "internet--aus-welchen-bestandteilen-ist-eine-url-aufgebaut",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Aus welchen Bestandteilen ist eine URL aufgebaut?",
+      "back": "Schema://Host:Port/Pfad?Query#Fragment. Beispiel: https://www.example.com:443/shop?id=5#top. Schema = Protokoll, Host = Domain, Port optional, Pfad = Ressource, Query = Parameter, Fragment = Sprungmarke.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--grenze-url-uri-und-urn-voneinander-ab",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze URL, URI und URN voneinander ab.",
+      "back": "URI ist der Oberbegriff fuer eine Ressourcen-Kennung. URL ist eine URI, die zusaetzlich den Ort/Zugriffsweg angibt (z. B. https://...). URN benennt eine Ressource eindeutig ohne Ortsangabe (z. B. ISBN).",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--worin-unterscheiden-sich-http-und-https",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich HTTP und HTTPS?",
+      "back": "HTTP uebertraegt Daten im Klartext (Port 80). HTTPS ist HTTP ueber eine TLS-verschluesselte Verbindung (Port 443); Daten sind vertraulich und die Serveridentitaet ist per Zertifikat gesichert.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--grenze-die-http-methoden-get-und-post-ab",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze die HTTP-Methoden GET und POST ab.",
+      "back": "GET fordert Daten an; Parameter stehen sichtbar in der URL, begrenzte Laenge, sollte nichts veraendern (idempotent). POST sendet Daten im Body (z. B. Formulare, Passwoerter), keine Laengenbegrenzung, kann Daten veraendern.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--was-bedeuten-die-http-statuscodes-200-301-404-und",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeuten die HTTP-Statuscodes 200, 301, 404 und 500?",
+      "back": "200 OK (erfolgreich), 301 Moved Permanently (dauerhafte Weiterleitung), 404 Not Found (Ressource nicht vorhanden), 500 Internal Server Error (Serverfehler). 4xx = Client-, 5xx = Serverfehler.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--welche-rolle-spielen-html-css-und-javascript-im-web",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Rolle spielen HTML, CSS und JavaScript im Web?",
+      "back": "HTML strukturiert den Inhalt (Ueberschriften, Absaetze, Links). CSS gestaltet das Aussehen (Layout, Farben, Schrift). JavaScript macht die Seite interaktiv/dynamisch im Browser (Client-seitig).",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--worin-unterscheiden-sich-statische-und-dynamische-webseiten",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich statische und dynamische Webseiten?",
+      "back": "Statische Seiten liefern fuer alle Nutzer denselben, fest hinterlegten HTML-Inhalt. Dynamische Seiten erzeugen den Inhalt zur Laufzeit (z. B. per PHP + Datenbank), individuell und aktuell (z. B. Onlineshop).",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--grenze-client-seitige-und-server-seitige-verarbeitung-ab",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Client-seitige und Server-seitige Verarbeitung ab.",
+      "back": "Client-seitig laeuft im Browser des Nutzers (HTML/CSS/JavaScript). Server-seitig laeuft auf dem Webserver (z. B. PHP, Java), erzeugt die Antwort und hat Zugriff auf Datenbanken; sensible Logik gehoert auf den Server.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--was-ist-ein-cms-und-nenne-ein-beispiel",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein CMS und nenne ein Beispiel?",
+      "back": "Content-Management-System: Software zum Erstellen und Verwalten von Webinhalten ohne Programmierkenntnisse, mit Trennung von Inhalt und Layout (Templates). Beispiele: WordPress, TYPO3, Joomla.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--wozu-dienen-cookies",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wozu dienen Cookies?",
+      "back": "Kleine Textdateien, die eine Website im Browser speichert, um Zustand ueber HTTP hinweg zu behalten: z. B. Login-Session, Warenkorb, Einstellungen. Fuer nicht notwendige Cookies ist eine Einwilligung erforderlich.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--was-sind-die-vier-grundprinzipien-der-barrierefreiheit-wcag",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was sind die vier Grundprinzipien der Barrierefreiheit (WCAG)?",
+      "back": "Wahrnehmbar, Bedienbar, Verstaendlich, Robust (englisch POUR). Ziel: Webinhalte auch fuer Menschen mit Einschraenkungen nutzbar machen (z. B. Alternativtexte, Tastaturbedienung, Kontrast).",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--wann-besteht-in-deutschland-eine-impressumspflicht",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wann besteht in Deutschland eine Impressumspflicht?",
+      "back": "Fuer geschaeftsmaessige/nicht rein private Telemedien (Websites) nach dem Digitale-Dienste-Gesetz. Das Impressum muss leicht erkennbar und erreichbar sein (Name, Anschrift, Kontakt, ggf. Register/USt-ID).",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--was-passiert-vereinfacht-wenn-man-eine-url-im-browser",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was passiert (vereinfacht), wenn man eine URL im Browser aufruft?",
+      "back": "1. DNS loest den Domainnamen in eine IP-Adresse auf. 2. Der Browser baut eine (TLS-)Verbindung zum Server auf. 3. Er sendet einen HTTP-Request. 4. Der Server antwortet mit HTML/Ressourcen. 5. Der Browser rendert die Seite.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "software-lizenzen--grenze-systemsoftware-und-anwendungssoftware-ab",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Systemsoftware und Anwendungssoftware ab.",
+      "back": "Systemsoftware steuert und verwaltet den Rechner (Betriebssystem, Treiber, Dienstprogramme). Anwendungssoftware loest konkrete Nutzeraufgaben (z. B. Textverarbeitung, Browser, ERP).",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--worin-unterscheiden-sich-standardsoftware-und-individualsoftware",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich Standardsoftware und Individualsoftware?",
+      "back": "Standardsoftware ist fertig „von der Stange\" fuer viele Kunden (guenstig, schnell verfuegbar, wenig anpassbar). Individualsoftware wird speziell fuer einen Auftraggeber entwickelt (passgenau, aber teuer und zeitaufwendig).",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--wofuer-stehen-erp-crm-und-scm",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer stehen ERP, CRM und SCM?",
+      "back": "ERP (Enterprise Resource Planning): unternehmensweite Ressourcenplanung auf zentraler Datenbasis. CRM (Customer Relationship Management): Kundenbeziehungen (Marketing/Vertrieb/Service). SCM (Supply Chain Management): Steuerung der Lieferkette.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--wofuer-stehen-cms-und-dms",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofuer stehen CMS und DMS?",
+      "back": "CMS (Content-Management-System): Erstellen/Verwalten von (Web-)Inhalten mit Trennung von Inhalt und Layout. DMS (Dokumenten-Management-System): elektronische Verwaltung, Archivierung und Versionierung von Dokumenten.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--grenze-open-source-software-und-proprietaere-software-ab",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Open-Source-Software und proprietaere Software ab.",
+      "back": "Open Source: Quellcode ist offen, darf eingesehen, veraendert und weitergegeben werden (oft kostenlos). Proprietaere (Closed-Source-)Software: Quellcode ist geheim, Nutzung nur nach Lizenzbedingungen des Herstellers.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--worin-unterscheiden-sich-copyleft-lizenzen-gpl-und-permissive-lizenzen",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich Copyleft-Lizenzen (GPL) und permissive Lizenzen (MIT)?",
+      "back": "Copyleft (z. B. GPL): abgeleitete Werke muessen unter derselben freien Lizenz weitergegeben werden („ansteckend\"). Permissiv (z. B. MIT, BSD, Apache): sehr wenige Auflagen, Weiterverwendung auch in proprietaerer Software erlaubt.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--was-ist-eine-eula",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine EULA?",
+      "back": "End User License Agreement: der Endnutzer-Lizenzvertrag, dem man bei Installation/Nutzung einer Software zustimmt. Er regelt Nutzungsrechte und -grenzen (z. B. Anzahl der Geraete, Weitergabeverbot).",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--grenze-kauf-oem-volumen-und-abonnement-saas-lizenz-ab",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Kauf-, OEM-, Volumen- und Abonnement-/SaaS-Lizenz ab.",
+      "back": "Kauf: dauerhaftes Nutzungsrecht einer Version. OEM: an eine Hardware gebunden, nicht uebertragbar. Volumenlizenz: viele Arbeitsplaetze zu Sonderkonditionen. Abo/SaaS: zeitlich befristete Nutzung gegen laufende Gebuehr (z. B. Microsoft 365).",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--grenze-freeware-shareware-und-public-domain-ab",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Freeware, Shareware und Public Domain ab.",
+      "back": "Freeware: kostenlos nutzbar, aber Urheberrecht bleibt beim Autor. Shareware: kostenlos testbar, fuer den Vollumfang/Dauergebrauch kostenpflichtig. Public Domain: gemeinfrei, keine urheberrechtlichen Einschraenkungen.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--was-ist-itil",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ITIL?",
+      "back": "IT Infrastructure Library: ein Sammlung bewaehrter Vorgehensweisen (Best Practices) fuer das IT-Service-Management, u. a. mit Prozessen wie Incident-, Problem- und Change-Management.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--was-versteht-man-unter-einem-software-release-und-einem",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter einem Software-Release und einem Patch?",
+      "back": "Ein Release ist eine freigegebene Programmversion (mit Versionsnummer). Ein Patch ist eine kleinere Korrektur/Aktualisierung, die Fehler behebt oder Sicherheitsluecken schliesst, ohne die Hauptversion zu wechseln.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--was-ist-middleware",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist Middleware?",
+      "back": "Software, die zwischen Betriebssystem/Netzwerk und Anwendungen vermittelt und deren Zusammenarbeit ermoeglicht (z. B. Datenbank-Treiber, Message-Broker, Applikationsserver). Sie verbirgt Komplexitaet der Kommunikation.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    }
+  ]
+}

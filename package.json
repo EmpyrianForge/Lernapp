@@ -1,0 +1,32 @@
+{
+  "name": "ap1-lernapp",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Interaktive Lernapp zur Vorbereitung auf die IHK-Abschlussprüfung Teil 1 (FIAE). Offline-first PWA, Spaced Repetition (SM-2), kein Backend.",
+  "scripts": {
+    "ingest": "node scripts/ingest.mjs",
+    "gen-icons": "node scripts/gen-icons.mjs",
+    "predev": "node scripts/ingest.mjs",
+    "prebuild": "node scripts/ingest.mjs",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit"
+  },
+  "dependencies": {
+    "dexie": "^4.0.10",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "gray-matter": "^4.0.3",
+    "sharp": "^0.35.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-pwa": "^0.21.1"
+  }
+}

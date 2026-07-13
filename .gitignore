@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+# Generierter Content-Seed (wird von scripts/ingest.mjs erzeugt). Wird eingecheckt,
+# damit die App auch ohne Vault-Zugriff baut — hier zur Sicherheit trotzdem ignoriert,
+# falls du reine Builds willst. Zum Einchecken die nächste Zeile auskommentieren.
+# src/data/content.generated.json
+dev-dist
