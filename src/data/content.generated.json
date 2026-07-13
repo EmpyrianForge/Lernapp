@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T10:03:32.500Z",
+  "generatedAt": "2026-07-13T11:23:35.898Z",
   "count": 241,
   "items": [
     {
@@ -341,7 +341,7 @@
       "afb": null,
       "points": null,
       "front": "Nenne die wichtigsten ergonomischen Richtwerte fuer einen Bildschirmarbeitsplatz (ArbStaettV).",
-      "back": "Sehabstand zum Monitor 50-70 cm, Beleuchtungsstaerke mind. 500 lux, Monitor-Oberkante in bzw. leicht unter Augenhoehe, Blick leicht nach unten, Aufstellung blendfrei (parallel zum Fenster).",
+      "back": "Sehabstand zum Monitor 50-70 cm, Beleuchtungsstaerke mind. 500 lux (konkreter Richtwert nach ASR A3.4; die ArbStaettV selbst fordert nur \"ausreichende Beleuchtung\" ohne Zahlenwert), Monitor-Oberkante in bzw. leicht unter Augenhoehe, Blick leicht nach unten, Aufstellung blendfrei (parallel zum Fenster).",
       "source": "Lernapp/Karteikarten/01-Hardware.md"
     },
     {
@@ -3039,7 +3039,7 @@
       "afb": null,
       "points": null,
       "front": "Unterscheide gesetzliche Gewährleistung und (freiwillige) Garantie.",
-      "back": "Gewährleistung: gesetzlich vorgeschriebene Mängelhaftung des Verkäufers für Mängel, die bei Gefahrübergang bestehen (i. d. R. 2 Jahre, nicht abdingbar). Garantie: freiwillige, zusätzliche Zusage des Herstellers/Verkäufers mit frei bestimmbarem Umfang und Dauer, die über die Gewährleistung hinausgeht.",
+      "back": "Gewährleistung: gesetzlich vorgeschriebene Mängelhaftung des Verkäufers für Mängel, die bei Gefahrübergang bestehen (i. d. R. 2 Jahre, § 438 BGB; im Verbrauchsgüterkauf B2C nicht zum Nachteil des Verbrauchers abdingbar (§ 476 BGB), im B2B jedoch verkürz- oder ausschließbar). Garantie: freiwillige, zusätzliche Zusage des Herstellers/Verkäufers mit frei bestimmbarem Umfang und Dauer, die über die Gewährleistung hinausgeht.",
       "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
     },
     {
@@ -3153,7 +3153,7 @@
       "afb": null,
       "points": null,
       "front": "Wofür stehen die Vollmachts-/Unterschriftskürzel i. V., i. A. und ppa.?",
-      "back": "i. V. (in Vertretung): Unterzeichner handelt mit eigener Vertretungsvollmacht/Verantwortung für den Vorgesetzten. i. A. (im Auftrag): Unterzeichner handelt nur als Bote/ausführend auf Weisung, ohne eigene Entscheidungsbefugnis. ppa. (per procura): Prokurist mit umfangreicher gesetzlicher Handlungsvollmacht (Prokura) für den Kaufmann.",
+      "back": "i. V. (in Vertretung): Unterzeichner handelt mit eigener Vertretungsvollmacht/Verantwortung für den Vorgesetzten. i. A. (im Auftrag): Unterzeichner handelt nur als Bote/ausführend auf Weisung, ohne eigene Entscheidungsbefugnis. ppa. (per procura): Prokurist mit Prokura — einer im Umfang gesetzlich festgelegten (§ 49 HGB), Dritten gegenüber nicht wirksam beschränkbaren Vertretungsmacht. Nicht zu verwechseln mit der engeren Handlungsvollmacht (§ 54 HGB).",
       "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
     },
     {
@@ -3381,7 +3381,7 @@
       "afb": null,
       "points": null,
       "front": "Grenze Monopol, Oligopol und Polypol nach Anzahl der Anbieter ab.",
-      "back": "Monopol: ein Anbieter, viele Nachfrager. Oligopol: wenige Anbieter. Polypol: viele Anbieter und viele Nachfrager (vollkommener Markt/Wettbewerb).",
+      "back": "Monopol: ein Anbieter, viele Nachfrager. Oligopol: wenige Anbieter. Polypol: viele Anbieter und viele Nachfrager. (Polypol ist die Marktform nach Anbieterzahl; erst ein Polypol auf einem vollkommenen Markt ergibt die vollstaendige/vollkommene Konkurrenz.)",
       "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
     },
     {
@@ -3894,7 +3894,7 @@
       "afb": null,
       "points": null,
       "front": "Worin unterscheiden sich ASCII und Unicode?",
-      "back": "ASCII kodiert 128 Zeichen in 7 Bit (nur englisches Alphabet, Ziffern, Steuerzeichen). Unicode ist ein universeller Zeichensatz für nahezu alle Schriftsysteme mit über einer Million moeglichen Codepunkten.",
+      "back": "ASCII kodiert 128 Zeichen in 7 Bit (Steuerzeichen, Leerzeichen, Ziffern, Gross- und Kleinbuchstaben des englischen Alphabets sowie Satz- und Sonderzeichen). Unicode ist ein universeller Zeichensatz für nahezu alle Schriftsysteme mit über einer Million moeglichen Codepunkten.",
       "source": "Lernapp/Karteikarten/12-Multimedia.md"
     },
     {
@@ -4183,7 +4183,7 @@
       "afb": null,
       "points": null,
       "front": "Grenze die HTTP-Methoden GET und POST ab.",
-      "back": "GET fordert Daten an; Parameter stehen sichtbar in der URL, begrenzte Laenge, sollte nichts veraendern (idempotent). POST sendet Daten im Body (z. B. Formulare, Passwoerter), keine Laengenbegrenzung, kann Daten veraendern.",
+      "back": "GET fordert Daten an; Parameter stehen sichtbar in der URL, begrenzte Laenge, veraendert den Serverzustand nicht (= sicher/nur-lesend) und ist zudem idempotent. POST sendet Daten im Body (z. B. Formulare, Passwoerter), keine Laengenbegrenzung, veraendert Daten (weder sicher noch idempotent). Merke: sicher = nur-lesend; idempotent = mehrfaches Ausfuehren fuehrt zum selben Endzustand (PUT/DELETE sind idempotent, aber nicht sicher).",
       "source": "Lernapp/Karteikarten/13-Internet-Web.md"
     },
     {

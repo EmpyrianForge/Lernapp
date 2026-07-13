@@ -32,6 +32,6 @@ export const OPERATORS: OperatorInfo[] = [
   { operator: 'begründen', afb: 'III', expectation: 'Aussage + Argument(e) mit „…, weil …" (2–3 Argumente).' },
   { operator: 'beurteilen / bewerten', afb: 'III', expectation: 'Kriterien + Pro/Contra + explizites Fazit (Entscheidung benennen!).' },
   { operator: 'vergleichen', afb: 'II', expectation: 'Gemeinsamkeiten UND Unterschiede — am besten als Tabelle.' },
-  { operator: 'berechnen', afb: 'I–II', expectation: 'Formel + Rechenweg + Zwischenschritte + Einheit (Teilpunkte!).' },
-  { operator: 'entwickeln / entwerfen', afb: 'II–III', expectation: 'Konstruktion (Diagramm/Pseudocode) + Beschriftung.' },
+  { operator: 'berechnen', afb: 'I', expectation: 'Formel + Rechenweg + Zwischenschritte + Einheit (Teilpunkte!).' },
+  { operator: 'entwickeln / entwerfen', afb: 'III', expectation: 'Konstruktion (Diagramm/Pseudocode) + Beschriftung.' },
 ]
