@@ -9,3 +9,6 @@ dist-ssr
 # falls du reine Builds willst. Zum Einchecken die nächste Zeile auskommentieren.
 # src/data/content.generated.json
 dev-dist
+
+# TS incremental build info (Artefakt)
+*.tsbuildinfo
