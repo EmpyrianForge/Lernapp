@@ -3,7 +3,7 @@ import { OOP_LESSONS, type OopLesson } from '../data/oop-lessons'
 import { MarkdownText } from './markdown'
 import { Pill } from './ui'
 
-// OOP-Grundlagen mit Erklärung + Code in drei Formen (Pseudocode/Java/Python).
+// OOP-Kurs mit Erklärung, Merksätzen und Code in drei Formen (Pseudocode/Java/Python).
 type Lang = 'pseudocode' | 'java' | 'python'
 const LANGS: [Lang, string][] = [
   ['pseudocode', 'Pseudocode'],
@@ -26,6 +26,7 @@ function LessonView({ idx, onExit, onNav }: { idx: number; onExit: () => void; o
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Übersicht</button>
         <div className="study-meta">
+          <Pill>{lesson.section}</Pill>
           {lesson.level === 'vertiefung' && <Pill tone="var(--muted-bg)">AP2 · Vertiefung</Pill>}
         </div>
         <span className="counter">{idx + 1} / {OOP_LESSONS.length}</span>
@@ -33,6 +34,14 @@ function LessonView({ idx, onExit, onNav }: { idx: number; onExit: () => void; o
 
       <h2 className="oop-title">{lesson.title}</h2>
       <p className="oop-explain"><MarkdownText text={lesson.explanation} /></p>
+
+      {lesson.keyPoints.length > 0 && (
+        <ul className="oop-keypoints">
+          {lesson.keyPoints.map((k, i) => (
+            <li key={i}><MarkdownText text={k} /></li>
+          ))}
+        </ul>
+      )}
 
       <div className="lang-toggle" role="tablist" aria-label="Code-Sprache">
         {LANGS.map(([l, label]) => (
@@ -49,6 +58,13 @@ function LessonView({ idx, onExit, onNav }: { idx: number; onExit: () => void; o
       </div>
 
       <pre className="code-block" aria-label={`Code (${lang})`}><code>{lesson[lang]}</code></pre>
+
+      {lesson.output && (
+        <div className="code-output">
+          <span className="co-label">Ausgabe (Konsole)</span>
+          <pre>{lesson.output}</pre>
+        </div>
+      )}
 
       {lang === 'pseudocode' && (
         <p className="muted small">💡 Pseudocode ist die Form, die in der AP1 verlangt wird.</p>
@@ -75,6 +91,8 @@ export function OopMode({ onExit }: { onExit: () => void }) {
     )
   }
 
+  const sections = [...new Set(OOP_LESSONS.map((l) => l.section))]
+
   return (
     <section className="panel">
       <header className="panel-head">
@@ -82,20 +100,29 @@ export function OopMode({ onExit }: { onExit: () => void }) {
         <h2>OOP-Grundlagen</h2>
       </header>
       <p className="muted small">
-        Objektorientierung mit Code-Beispielen. Wähle je Konzept zwischen <strong>Pseudocode</strong> (AP1-Prüfungsform),
-        <strong> Java</strong> (Berufsschule/IHK) und <strong>Python</strong>. Durchgängiges Beispiel: eine Klasse „Konto".
+        Objektorientierung mit Code-Beispielen. Je Konzept umschaltbar: <strong>Pseudocode</strong> (AP1-Prüfungsform),
+        <strong> Java</strong> (Berufsschule/IHK) und <strong>Python</strong>. Lauffähige Beispiele zeigen die geprüfte Konsolen-Ausgabe.
       </p>
-      <div className="deck-list">
-        {OOP_LESSONS.map((l, i) => (
-          <button key={l.id} className="deck-card" onClick={() => setIdx(i)}>
-            <span className="deck-title">{l.title}</span>
-            <span className="deck-meta">
-              <Pill>{i + 1}</Pill>
-              {l.level === 'vertiefung' && <Pill tone="var(--muted-bg)">AP2</Pill>}
-            </span>
-          </button>
-        ))}
-      </div>
+
+      {sections.map((sec) => (
+        <div key={sec} className="oop-section">
+          <h3 className="section-title">{sec}</h3>
+          <div className="deck-list">
+            {OOP_LESSONS.map((l, i) =>
+              l.section === sec ? (
+                <button key={l.id} className="deck-card" onClick={() => setIdx(i)}>
+                  <span className="deck-title">{l.title}</span>
+                  <span className="deck-meta">
+                    <Pill>{i + 1}</Pill>
+                    {l.level === 'vertiefung' && <Pill tone="var(--muted-bg)">AP2</Pill>}
+                    {l.output && <span className="muted small">mit Ausgabe</span>}
+                  </span>
+                </button>
+              ) : null,
+            )}
+          </div>
+        </div>
+      ))}
     </section>
   )
 }
