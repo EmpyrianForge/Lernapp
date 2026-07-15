@@ -10,6 +10,7 @@ const P: Record<string, ReactNode> = {
   activity: <path d="M3 12h4l2.5-6 4 12 2.5-6H21" />,
   calculator: <><rect x="5" y="3" width="14" height="18" rx="2" /><rect x="8" y="6" width="8" height="3" rx="0.5" /><path d="M8.5 13h0M12 13h0M15.5 13h0M8.5 17h0M12 17h0M15.5 17h0" /></>,
   braces: <><path d="M8 4c-1.6 0-2 1-2 2.5S6 9 4.5 9C6 9 6 10.5 6 12s.4 5 2 5" /><path d="M16 4c1.6 0 2 1 2 2.5S18 9 19.5 9C18 9 18 10.5 18 12s-.4 5-2 5" /></>,
+  code: <><path d="M9 8l-4 4 4 4" /><path d="M15 8l4 4-4 4" /><line x1="13.5" y1="6" x2="10.5" y2="18" /></>,
   'file-text': <><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5" /><path d="M9 13h6M9 16.5h4" /></>,
   clipboard: <><rect x="5" y="5" width="14" height="16" rx="2" /><path d="M9 5V3.6A1.6 1.6 0 0 1 10.6 2h2.8A1.6 1.6 0 0 1 15 3.6V5" /><path d="M8.5 11h7M8.5 14.5h5" /></>,
   target: <><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r="0.7" fill="currentColor" stroke="none" /></>,

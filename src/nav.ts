@@ -16,6 +16,7 @@ export type View =
   | 'symbols'
   | 'netzplan'
   | 'weak'
+  | 'oop'
   | 'examtasks'
   | 'reference'
   | 'mycards'

@@ -19,6 +19,7 @@ import { NutzwertDrill } from './components/NutzwertDrill'
 import { SymbolDrill } from './components/SymbolDrill'
 import { NetzplanDrill } from './components/NetzplanDrill'
 import { WeakTraining } from './components/WeakTraining'
+import { OopMode } from './components/OopMode'
 import { ExamTasksMode } from './components/ExamTasksMode'
 import { ReferenceMode } from './components/ReferenceMode'
 import { MyCardsMode } from './components/MyCardsMode'
@@ -109,6 +110,7 @@ export function App() {
         {view === 'symbols' && <SymbolDrill onExit={exit} />}
         {view === 'netzplan' && <NetzplanDrill onExit={exit} />}
         {view === 'weak' && <WeakTraining onExit={exit} />}
+        {view === 'oop' && <OopMode onExit={exit} />}
         {view === 'examtasks' && <ExamTasksMode onExit={exit} />}
         {view === 'reference' && <ReferenceMode onExit={exit} />}
         {view === 'mycards' && <MyCardsMode onExit={exit} />}

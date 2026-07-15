@@ -23,6 +23,7 @@ const MODES: ModeDef[] = [
   { view: 'examtasks', icon: 'file-text', title: 'Prüfungsaufgaben', desc: 'Mehrteilige Aufgaben mit Musterlösung' },
   { view: 'exam', icon: 'clipboard', title: 'Prüfungssimulation', desc: '90 Min, 4 Bereiche, gegen 100 P' },
   { view: 'operators', icon: 'target', title: 'Operatoren', desc: 'Was jeder Operator für volle Punkte will' },
+  { view: 'oop', icon: 'code', title: 'OOP-Grundlagen', desc: 'Klassen & Objekte mit Code (Pseudo/Java/Python)' },
   { view: 'stats', icon: 'bar-chart', title: 'Statistik', desc: 'Heatmap, Verlauf, Noten-Verteilung' },
 ]
 
