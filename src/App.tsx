@@ -18,6 +18,10 @@ import { BaseConvDrill } from './components/BaseConvDrill'
 import { NutzwertDrill } from './components/NutzwertDrill'
 import { SymbolDrill } from './components/SymbolDrill'
 import { NetzplanDrill } from './components/NetzplanDrill'
+import { CodeQuizMode } from './components/CodeQuizMode'
+import { BugFindMode } from './components/BugFindMode'
+import { IPv6Drill } from './components/IPv6Drill'
+import { LogicDrill } from './components/LogicDrill'
 import { WeakTraining } from './components/WeakTraining'
 import { OopMode } from './components/OopMode'
 import { ExamTasksMode } from './components/ExamTasksMode'
@@ -109,6 +113,10 @@ export function App() {
         {view === 'nutzwert' && <NutzwertDrill onExit={exit} />}
         {view === 'symbols' && <SymbolDrill onExit={exit} />}
         {view === 'netzplan' && <NetzplanDrill onExit={exit} />}
+        {view === 'codequiz' && <CodeQuizMode onExit={exit} />}
+        {view === 'bugfind' && <BugFindMode onExit={exit} />}
+        {view === 'ipv6' && <IPv6Drill onExit={exit} />}
+        {view === 'logic' && <LogicDrill onExit={exit} />}
         {view === 'weak' && <WeakTraining onExit={exit} />}
         {view === 'oop' && <OopMode onExit={exit} />}
         {view === 'examtasks' && <ExamTasksMode onExit={exit} />}
