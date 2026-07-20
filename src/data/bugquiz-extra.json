@@ -1,0 +1,58 @@
+[
+  {
+    "id": "bug-chmod-wert-berechnen",
+    "title": "chmod-Wert berechnen",
+    "code": "int lesen = 4;\nint schreiben = 2;\nint ausfuehren = 1;\nint rechteBesitzer = lesen + schreiben + ausfuehren;\nint rechteGruppe = lesen + ausfuehren;\nint rechteAndere = lesen;\nString oktal = \"\" + rechteBesitzer + rechteGruppe + rechteBesitzer;\nSystem.out.println(\"chmod \" + oktal);",
+    "errorType": "logik",
+    "buggyLine": 7,
+    "explanation": "Zeile 7 haengt faelschlich rechteBesitzer statt rechteAndere an. Fuer rwxr-xr-- muesste 754 herauskommen (7=rwx, 5=r-x, 4=r--), es entsteht aber 757. Das Programm laeuft, gibt aber die falschen Rechte fuer 'andere' aus (Logikfehler)."
+  },
+  {
+    "id": "bug-bezugspreis-mit-skonto",
+    "title": "Bezugspreis mit Skonto",
+    "code": "double listenpreis = 1000.0;\ndouble rabattProzent = 10.0;\ndouble skontoProzent = 3.0;\ndouble zielpreis = listenpreis - (listenpreis * rabattProzent / 100);\ndouble skonto = zielpreis * skontoProzent / 100;\ndouble bezugspreis = zielpreis + skonto;\nSystem.out.println(\"Bezugspreis: \" + bezugspreis);",
+    "errorType": "logik",
+    "buggyLine": 6,
+    "explanation": "Zeile 6 addiert das Skonto statt es abzuziehen. Skonto ist ein Preisnachlass fuer schnelle Zahlung und muss subtrahiert werden (bezugspreis = zielpreis - skonto). Aus 900 EUR Zielpreis minus 27 EUR Skonto ergeben sich 873 EUR; das Programm liefert stattdessen 927 EUR (Logikfehler)."
+  },
+  {
+    "id": "bug-dezimal-zu-binaer",
+    "title": "Dezimal zu Binaer",
+    "code": "int zahl = 13;\nString binaer = \"\";\nwhile (zahl > 0) {\n    binaer = binaer + (zahl % 2);\n    zahl = zahl / 2;\n}\nSystem.out.println(\"Binaer: \" + binaer);",
+    "errorType": "logik",
+    "buggyLine": 4,
+    "explanation": "Zeile 4 haengt die Reste in falscher Reihenfolge an. Bei der Restwertmethode entstehen die Bits von rechts (niederwertigstes zuerst) und muessen daher vorne eingefuegt werden (binaer = (zahl % 2) + binaer). Fuer 13 kommt so '1011' statt korrekt '1101' heraus (Logikfehler)."
+  },
+  {
+    "id": "bug-speicherbedarf-eines-bildes",
+    "title": "Speicherbedarf eines Bildes",
+    "code": "int breite = 1920;\nint hoehe = 1080;\nint farbtiefeBit = 24;\nlong bytesGesamt = breite * hoehe * farbtiefeBit / 8;\ndouble megabyte = bytesGesamt / 1024 / 1024;\nSystem.out.println(\"Groesse in MB: \" + megabyte);",
+    "errorType": "logik",
+    "buggyLine": 5,
+    "explanation": "Zeile 5 rechnet mit Ganzzahldivision: bytesGesamt (long) wird durch 1024/1024 geteilt, bevor das Ergebnis dem double zugewiesen wird. Die Nachkommastellen gehen dabei verloren (5 statt 5,93 MB). Korrekt waere z. B. bytesGesamt / 1024.0 / 1024.0 (Logikfehler)."
+  },
+  {
+    "id": "bug-paritaetsbit-pruefen-gerade-paritaet",
+    "title": "Paritaetsbit pruefen (gerade Paritaet)",
+    "code": "int[] datenbits = {1, 0, 1, 1, 0, 0, 1};\nint anzahlEinsen = 0;\nfor (int i = 0; i < datenbits.length; i++) {\n    anzahlEinsen = anzahlEinsen + datenbits[i];\n}\nint paritaetsbit = anzahlEinsen % 2 == 0 ? 1 : 0;\nSystem.out.println(\"Paritaetsbit: \" + paritaetsbit);",
+    "errorType": "logik",
+    "buggyLine": 6,
+    "explanation": "Zeile 6 vertauscht die Zweige: Bei gerader Paritaet muss die Gesamtzahl der Einsen gerade sein. Ist die Anzahl der Datenbits-Einsen bereits gerade, muss das Paritaetsbit 0 sein (nicht 1). Korrekt: anzahlEinsen % 2 == 0 ? 0 : 1. Das Programm laeuft, erzeugt aber ein falsches Paritaetsbit (Logikfehler)."
+  },
+  {
+    "id": "bug-usv-ueberbrueckungszeit",
+    "title": "USV-Ueberbrueckungszeit",
+    "code": "int kapazitaetWh = 1500;\nint lastWatt = 300;\ndouble wirkungsgrad = 0.9;\ndouble ueberbrueckungStunden = kapazitaetWh * wirkungsgrad / lastWatt;\nint minuten = (int) ueberbrueckungStunden * 60;\nSystem.out.println(\"Ueberbrueckung: \" + minuten + \" Minuten\");",
+    "errorType": "logik",
+    "buggyLine": 5,
+    "explanation": "Zeile 5 wendet den Cast wegen des Operator-Vorrangs nur auf ueberbrueckungStunden an, bevor mit 60 multipliziert wird: 4,5 wird zunaechst zu 4 abgeschnitten, dann *60 = 240 statt 270 Minuten. Korrekt waere (int)(ueberbrueckungStunden * 60) (Logikfehler)."
+  },
+  {
+    "id": "bug-backup-groesse-vollsicherung",
+    "title": "Backup-Groesse Vollsicherung",
+    "code": "int[] dateiGroessenMB = {120, 340, 80, 500};\nint gesamt = 0;\nfor (int i = 1; i < dateiGroessenMB.length; i++) {\n    gesamt = gesamt + dateiGroessenMB[i];\n}\nSystem.out.println(\"Backup-Groesse: \" + gesamt + \" MB\");",
+    "errorType": "logik",
+    "buggyLine": 3,
+    "explanation": "Zeile 3 startet die Schleife bei i=1 und ueberspringt dadurch das erste Dateielement (120 MB). Eine Vollsicherung muss alle Dateien ab i=0 summieren. Das Programm liefert 920 statt 1040 MB (Logikfehler)."
+  }
+]

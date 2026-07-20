@@ -2,6 +2,8 @@
 // tippt die Konsolenausgabe ein. Trainiert den Schreibtischtest (AP1-Kernstoff).
 // Alle Ausgaben wurden durch echtes Ausführen der Python-Variante geprüft.
 
+import extra from './codequiz-extra.json'
+
 export interface CodeQuizTask {
   id: string
   title: string
@@ -11,7 +13,7 @@ export interface CodeQuizTask {
   output: string
 }
 
-export const CODE_QUIZ: CodeQuizTask[] = [
+const CODE_QUIZ_BASE: CodeQuizTask[] = [
   {
     id: 'cq-summe',
     title: 'Summe 1 bis 5',
@@ -77,3 +79,6 @@ export const CODE_QUIZ: CodeQuizTask[] = [
     output: '70',
   },
 ]
+
+// Zusätzliche, per Workflow generierte & (Python-)ausführungsgeprüfte Code-Ausgabe-Aufgaben.
+export const CODE_QUIZ: CodeQuizTask[] = [...CODE_QUIZ_BASE, ...(extra as CodeQuizTask[])]

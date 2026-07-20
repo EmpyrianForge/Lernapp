@@ -1,0 +1,1180 @@
+[
+  {
+    "id": "calc--ein-unternehmen-besitzt-das-netz-192-168-20-0",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Ein Unternehmen besitzt das Netz 192.168.20.0/24 und moechte es in mindestens 6 gleich grosse Subnetze aufteilen. Berechnen Sie die noetige Anzahl an Subnetzbits, die resultierende Praefixlaenge (CIDR), die dezimale Subnetzmaske sowie die Anzahl nutzbarer Hosts pro Subnetz.",
+    "solutionSteps": [
+      "Subnetzbits: 2^n >= 6 -> 2^3 = 8 >= 6, also n = 3 Subnetzbits",
+      "neue Praefixlaenge = 24 + 3 = /27",
+      "Subnetzmaske dezimal: /27 = 255.255.255.224 (letztes Oktett: 128+64+32 = 224)",
+      "Hostbits = 32 - 27 = 5",
+      "nutzbare Hosts pro Subnetz = 2^5 - 2 = 32 - 2 = 30"
+    ],
+    "answer": "3 Subnetzbits -> /27 -> 255.255.255.224 -> 30 nutzbare Hosts pro Subnetz",
+    "unit": "Hosts",
+    "rubric": [
+      {
+        "criterion": "Subnetzbits n = 3 (2^3 >= 6)",
+        "points": 1
+      },
+      {
+        "criterion": "Praefix /27",
+        "points": 1
+      },
+      {
+        "criterion": "Subnetzmaske 255.255.255.224",
+        "points": 1
+      },
+      {
+        "criterion": "30 nutzbare Hosts pro Subnetz",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "2^n >= Anzahl Subnetze, nicht n >= Anzahl",
+      "Subnetzbits zum Praefix ADDIEREN (24+3), nicht abziehen",
+      "-2 fuer Netz- und Broadcast-Adresse bei den Hosts"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-host-hat-die-ip-adresse-192-168-1",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "III",
+    "points": 4,
+    "prompt": "Ein Host hat die IP-Adresse 192.168.1.200 mit der Subnetzmaske /28. Bestimmen Sie die Blockgroesse, die Netzadresse, die Broadcast-Adresse und die Anzahl nutzbarer Hosts dieses Subnetzes.",
+    "solutionSteps": [
+      "/28 -> Subnetzmaske 255.255.255.240, Hostbits = 32-28 = 4",
+      "Blockgroesse = 256 - 240 = 16 (bzw. 2^4 = 16)",
+      "Netzadresse: 200 / 16 = 12,5 -> abrunden auf 12; 12 x 16 = 192 -> 192.168.1.192",
+      "Broadcast = Netzadresse + Blockgroesse - 1 = 192 + 16 - 1 = 207 -> 192.168.1.207",
+      "nutzbare Hosts = 2^4 - 2 = 16 - 2 = 14 (erster Host .193, letzter Host .206)"
+    ],
+    "answer": "Blockgroesse 16 -> Netz 192.168.1.192, Broadcast 192.168.1.207, 14 nutzbare Hosts",
+    "unit": "Hosts",
+    "rubric": [
+      {
+        "criterion": "Blockgroesse 16 (256-240)",
+        "points": 1
+      },
+      {
+        "criterion": "Netzadresse 192.168.1.192",
+        "points": 1
+      },
+      {
+        "criterion": "Broadcast-Adresse 192.168.1.207",
+        "points": 1
+      },
+      {
+        "criterion": "14 nutzbare Hosts",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Netzadresse ist Vielfaches der Blockgroesse (192, nicht 200)",
+      "Broadcast = naechste Netzadresse minus 1",
+      "240 als Maskenoktett: 256-16=240"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-server-dienst-soll-eine-verfuegbarkeit-von-99-95",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Ein Server-Dienst soll eine Verfuegbarkeit von 99,95 % pro Jahr erreichen. Berechnen Sie die maximal zulaessige Ausfallzeit (Downtime) pro Jahr in Stunden und in Minuten. Rechnen Sie mit 365 Tagen = 8.760 Stunden.",
+    "solutionSteps": [
+      "Ausfallanteil = 1 - 0,9995 = 0,0005 (= 0,05 %)",
+      "Downtime = 8.760 h x 0,0005 = 4,38 h",
+      "Umrechnung in Minuten: 4,38 h x 60 = 262,8 min",
+      "Kontrolle: 4 h + 0,38 h x 60 = 4 h 22,8 min"
+    ],
+    "answer": "ca. 4,38 h = 262,8 min maximale Ausfallzeit pro Jahr",
+    "unit": "h / min",
+    "rubric": [
+      {
+        "criterion": "Ausfallanteil 0,0005 (1 - 0,9995)",
+        "points": 1
+      },
+      {
+        "criterion": "Downtime 4,38 h",
+        "points": 1
+      },
+      {
+        "criterion": "262,8 min (bzw. 4 h 22,8 min)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "mit dem Ausfallanteil (1 - Verfuegbarkeit) rechnen, nicht mit 0,9995",
+      "Jahr = 8.760 h",
+      "h -> min mit x60, nicht /60"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ueber-eine-leitung-mit-300-mbit-s-soll-ein",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Ueber eine Leitung mit 300 Mbit/s soll ein Backup von 12 GB uebertragen werden. Aufgrund von Protokoll-Overhead betraegt die effektive Nutzrate nur 80 % der Bandbreite. Berechnen Sie die Uebertragungszeit. (1 Byte = 8 Bit, 1 GB = 1.000 MB)",
+    "solutionSteps": [
+      "Datenmenge in Bit: 12 GB x 8 = 96 Gbit = 96.000 Mbit",
+      "effektive Nutzrate = 300 Mbit/s x 0,80 = 240 Mbit/s",
+      "Uebertragungszeit = 96.000 Mbit / 240 Mbit/s = 400 s",
+      "Umrechnung: 400 s = 6 min 40 s"
+    ],
+    "answer": "400 s = 6 min 40 s Uebertragungszeit",
+    "unit": "s",
+    "rubric": [
+      {
+        "criterion": "Datenmenge 96.000 Mbit (12 GB x 8)",
+        "points": 1
+      },
+      {
+        "criterion": "effektive Rate 240 Mbit/s (300 x 0,8)",
+        "points": 1
+      },
+      {
+        "criterion": "Zeit = 400 s",
+        "points": 1
+      },
+      {
+        "criterion": "Umrechnung 6 min 40 s",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Byte in Bit umrechnen (x8): GB -> Gbit",
+      "Overhead: nur 80 % der Bandbreite nutzbar (x0,8)",
+      "Sekunden -> Minuten: 400/60 = 6 Rest 40"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-internet-provider-erhaelt-den-adressblock-10-10-0",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Ein Internet-Provider erhaelt den Adressblock 10.10.0.0/22 und teilt ihn vollstaendig in /24-Netze auf. Berechnen Sie die Anzahl der /24-Netze, die Anzahl nutzbarer Hosts pro /24-Netz und die Gesamtzahl nutzbarer Hosts aller /24-Netze.",
+    "solutionSteps": [
+      "Anzahl /24-Netze: Differenz der Praefixe = 24 - 22 = 2 Bit -> 2^2 = 4 Netze",
+      "nutzbare Hosts pro /24: Hostbits = 32 - 24 = 8 -> 2^8 - 2 = 256 - 2 = 254",
+      "Gesamt nutzbare Hosts = 4 x 254 = 1.016"
+    ],
+    "answer": "4 /24-Netze, je 254 Hosts, gesamt 1.016 nutzbare Hosts",
+    "unit": "Hosts",
+    "rubric": [
+      {
+        "criterion": "4 Subnetze (2^2 aus /22 nach /24)",
+        "points": 1
+      },
+      {
+        "criterion": "254 nutzbare Hosts pro /24",
+        "points": 1
+      },
+      {
+        "criterion": "1.016 Hosts gesamt (4 x 254)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Anzahl Subnetze = 2^(Praefixdifferenz), hier 2^2",
+      "pro /24 nur 254 statt 256 (Netz + Broadcast abziehen)",
+      "Gesamt = Netze x nutzbare Hosts, nicht 2^10 - 2"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--fuer-einen-arbeitsplatzrechner-fallen-an-anschaffung-1-200-eur",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I-II",
+    "points": 3,
+    "prompt": "Fuer einen Arbeitsplatzrechner fallen an: Anschaffung 1.200 EUR (einmalig) sowie jaehrlich Stromkosten 35 EUR, Wartung/Support 90 EUR und Softwarelizenz 60 EUR. Die geplante Nutzungsdauer betraegt 5 Jahre. Berechnen Sie die gesamten TCO (Total Cost of Ownership) ueber die Nutzungsdauer sowie die durchschnittlichen Kosten pro Jahr.",
+    "solutionSteps": [
+      "laufende Kosten pro Jahr = 35 + 90 + 60 = 185 EUR",
+      "laufende Kosten ueber 5 Jahre = 185 x 5 = 925 EUR",
+      "TCO gesamt = Anschaffung + laufende Kosten = 1.200 + 925 = 2.125 EUR",
+      "Kosten pro Jahr = 2.125 / 5 = 425 EUR"
+    ],
+    "answer": "TCO = 2.125 EUR gesamt -> 425 EUR pro Jahr",
+    "unit": "EUR",
+    "rubric": [
+      {
+        "criterion": "laufende Kosten 185 EUR/Jahr",
+        "points": 1
+      },
+      {
+        "criterion": "TCO gesamt 2.125 EUR",
+        "points": 1
+      },
+      {
+        "criterion": "425 EUR pro Jahr",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Anschaffung nur einmal, nicht pro Jahr rechnen",
+      "laufende Kosten mit Nutzungsdauer (5 Jahre) multiplizieren",
+      "TCO gesamt durch Jahre teilen fuer Jahreskosten"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--eine-lieferantenrechnung-nennt-folgende-konditionen-zahlungsziel-30-tage-netto",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Eine Lieferantenrechnung nennt folgende Konditionen: Zahlungsziel 30 Tage netto oder Zahlung innerhalb von 10 Tagen mit 2 % Skonto. Berechnen Sie den effektiven Jahreszins, dem die Ausnutzung des Skontos entspricht (kaufmaennisches Jahr mit 360 Tagen).",
+    "solutionSteps": [
+      "Zeitspanne, die durch Skontozahlung gewonnen wird = Zahlungsziel - Skontofrist = 30 - 10 = 20 Tage",
+      "effektiver Jahreszins = Skontosatz x 360 / (Zahlungsziel - Skontofrist)",
+      "= 2 % x 360 / 20",
+      "= 2 % x 18 = 36 %"
+    ],
+    "answer": "36 % p.a.",
+    "unit": "%",
+    "rubric": [
+      {
+        "criterion": "Bezugsspanne 20 Tage (30 - 10)",
+        "points": 1
+      },
+      {
+        "criterion": "Formel Skontosatz x 360 / Tage angewandt",
+        "points": 1
+      },
+      {
+        "criterion": "Ergebnis 36 %",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "kaufmaennisches Jahr = 360 Tage",
+      "nicht durch 30, sondern durch Differenz (Zahlungsziel - Skontofrist = 20) teilen",
+      "hoher Zins zeigt: Skonto lohnt sich fast immer"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--3-techniker-richten-18-arbeitsplaetze-in-4-tagen-ein",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "3 Techniker richten 18 Arbeitsplaetze in 4 Tagen ein. Wie viele Tage benoetigen 4 Techniker bei gleicher Arbeitsleistung, um 30 Arbeitsplaetze einzurichten? (zusammengesetzter Dreisatz)",
+    "solutionSteps": [
+      "Gesamtaufwand fuer 18 Arbeitsplaetze = 3 Techniker x 4 Tage = 12 Techniker-Tage",
+      "Aufwand pro Arbeitsplatz = 12 / 18 = 0,6667 Techniker-Tage",
+      "Aufwand fuer 30 Arbeitsplaetze = 30 x 0,6667 = 20 Techniker-Tage",
+      "Dauer bei 4 Technikern = 20 / 4 = 5 Tage"
+    ],
+    "answer": "5 Tage",
+    "unit": "Tage",
+    "rubric": [
+      {
+        "criterion": "12 Techniker-Tage fuer 18 Arbeitsplaetze",
+        "points": 1
+      },
+      {
+        "criterion": "20 Techniker-Tage fuer 30 Arbeitsplaetze",
+        "points": 1
+      },
+      {
+        "criterion": "5 Tage bei 4 Technikern",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "ueber Techniker-Tage (Mannstunden-Prinzip) rechnen, nicht einfach proportional",
+      "mehr Techniker = weniger Tage (antiproportional)",
+      "mehr Arbeitsplaetze = mehr Aufwand (proportional)"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-angebot-weist-einen-bruttopreis-von-4-760-eur",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I-II",
+    "points": 3,
+    "prompt": "Ein Angebot weist einen Bruttopreis von 4.760 EUR inklusive 19 % Umsatzsteuer aus. Berechnen Sie den Nettopreis und den enthaltenen Umsatzsteuerbetrag. Ermitteln Sie ausserdem den Nettopreis, wenn der Lieferant zusaetzlich 3 % Rabatt auf den Nettopreis gewaehrt.",
+    "solutionSteps": [
+      "Nettopreis = Bruttopreis / 1,19 = 4.760 / 1,19 = 4.000 EUR",
+      "Umsatzsteuer = Brutto - Netto = 4.760 - 4.000 = 760 EUR",
+      "Netto nach 3 % Rabatt = 4.000 x (1 - 0,03) = 4.000 x 0,97 = 3.880 EUR"
+    ],
+    "answer": "Netto 4.000 EUR, USt 760 EUR, nach Rabatt 3.880 EUR",
+    "unit": "EUR",
+    "rubric": [
+      {
+        "criterion": "Nettopreis 4.000 EUR (Division durch 1,19)",
+        "points": 1
+      },
+      {
+        "criterion": "USt-Betrag 760 EUR",
+        "points": 1
+      },
+      {
+        "criterion": "Netto nach Rabatt 3.880 EUR",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Brutto zu Netto: durch 1,19 teilen, nicht x0,81",
+      "USt = Brutto minus Netto (nicht Brutto x0,19)",
+      "Rabatt auf den Nettopreis anwenden"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-softwaremodul-soll-erstellt-werden-eigenfertigung-120-stunden-interner",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Ein Softwaremodul soll erstellt werden. Eigenfertigung: 120 Stunden interner Aufwand zu einem Stundenverrechnungssatz von 65 EUR. Fremdbezug: eine externe Agentur bietet das Modul zur Pauschale von 8.500 EUR an. Ermitteln Sie durch Kostenvergleich die guenstigere Variante und die Differenz.",
+    "solutionSteps": [
+      "Kosten Eigenfertigung = 120 h x 65 EUR = 7.800 EUR",
+      "Kosten Fremdbezug = 8.500 EUR (Pauschale)",
+      "Differenz = 8.500 - 7.800 = 700 EUR",
+      "Eigenfertigung ist um 700 EUR guenstiger"
+    ],
+    "answer": "Eigenfertigung guenstiger um 700 EUR (7.800 EUR statt 8.500 EUR)",
+    "unit": "EUR",
+    "rubric": [
+      {
+        "criterion": "Eigenfertigungskosten 7.800 EUR",
+        "points": 1
+      },
+      {
+        "criterion": "Vergleich mit Fremdbezug 8.500 EUR",
+        "points": 1
+      },
+      {
+        "criterion": "Differenz 700 EUR + Entscheidung Eigenfertigung",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Stundenzahl x Stundensatz korrekt multiplizieren",
+      "guenstigere Variante = geringere Kosten",
+      "Entscheidung klar benennen, nicht nur Differenz"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--fuer-eine-serveranwendung-stehen-zwei-betriebsvarianten-zur-wahl-on",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II-III",
+    "points": 4,
+    "prompt": "Fuer eine Serveranwendung stehen zwei Betriebsvarianten zur Wahl. On-Premise: Serveranschaffung 6.000 EUR einmalig zzgl. laufende Kosten (Strom, Wartung) von 1.200 EUR pro Jahr. Cloud: 450 EUR pro Monat. Vergleichen Sie beide Varianten ueber einen Betrachtungszeitraum von 3 Jahren und geben Sie die guenstigere Variante samt Differenz an.",
+    "solutionSteps": [
+      "On-Premise laufende Kosten 3 Jahre = 1.200 x 3 = 3.600 EUR",
+      "On-Premise gesamt = 6.000 + 3.600 = 9.600 EUR",
+      "Cloud gesamt = 450 EUR x 36 Monate = 16.200 EUR",
+      "Differenz = 16.200 - 9.600 = 6.600 EUR",
+      "On-Premise ist um 6.600 EUR guenstiger"
+    ],
+    "answer": "On-Premise guenstiger: 9.600 EUR statt 16.200 EUR, Differenz 6.600 EUR",
+    "unit": "EUR",
+    "rubric": [
+      {
+        "criterion": "On-Premise Gesamtkosten 9.600 EUR",
+        "points": 1
+      },
+      {
+        "criterion": "Cloud Gesamtkosten 16.200 EUR (36 Monate)",
+        "points": 1
+      },
+      {
+        "criterion": "Differenz 6.600 EUR",
+        "points": 1
+      },
+      {
+        "criterion": "Entscheidung On-Premise guenstiger",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "einmalige Anschaffung nur einmal ansetzen",
+      "Cloud auf 36 Monate hochrechnen (nicht 3 x 450)",
+      "laufende On-Premise-Kosten x3 Jahre nicht vergessen",
+      "Entscheidung explizit benennen"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-backup-von-42-gb-soll-ueber-eine-leitung",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Ein Backup von 42 GB soll ueber eine Leitung mit 100 Mbit/s uebertragen werden. Die Leitung wird effektiv nur zu 80 % genutzt. Berechnen Sie die reine Uebertragungszeit in Minuten (1 GB = 1000 MB, 1 Byte = 8 Bit).",
+    "solutionSteps": [
+      "Datenmenge in Bit: 42 GB = 42.000 MB = 42.000 x 8 = 336.000 Mbit",
+      "Effektive Bandbreite = 100 Mbit/s x 0,80 = 80 Mbit/s",
+      "Zeit = 336.000 Mbit / 80 Mbit/s = 4.200 s",
+      "4.200 s / 60 = 70 min"
+    ],
+    "answer": "70 min",
+    "unit": "min",
+    "rubric": [
+      {
+        "criterion": "Umrechnung in 336.000 Mbit",
+        "points": 1
+      },
+      {
+        "criterion": "effektive Bandbreite 80 Mbit/s",
+        "points": 1
+      },
+      {
+        "criterion": "Zeit 4.200 s",
+        "points": 1
+      },
+      {
+        "criterion": "Ergebnis 70 min",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Byte->Bit x8 nicht vergessen",
+      "GB->MB x1000 (dezimal)",
+      "80 % Auslastung senkt die Rate",
+      "s->min /60"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-raid-5-wird-aus-6-festplatten-zu-je",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Ein RAID 5 wird aus 6 Festplatten zu je 4 TB aufgebaut. Berechnen Sie die nutzbare Netto-Kapazitaet sowie den prozentualen Kapazitaetsverlust durch die Paritaet (auf ganze Prozent gerundet).",
+    "solutionSteps": [
+      "RAID 5: Kapazitaet einer Platte geht fuer Paritaet verloren -> nutzbar = (n-1) Platten",
+      "Brutto = 6 x 4 TB = 24 TB",
+      "Netto = (6 - 1) x 4 TB = 5 x 4 TB = 20 TB",
+      "Verlust = 4 TB von 24 TB = 4/24 = 0,1667 = 17 %"
+    ],
+    "answer": "20 TB netto; ca. 17 % Verlust",
+    "unit": "TB / %",
+    "rubric": [
+      {
+        "criterion": "Netto-Kapazitaet 20 TB",
+        "points": 1
+      },
+      {
+        "criterion": "Verlust 4 TB erkannt",
+        "points": 1
+      },
+      {
+        "criterion": "Verlust ca. 17 %",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "RAID 5: nur EINE Platte Paritaet (n-1), nicht zwei",
+      "Verlust bezogen auf Brutto (24 TB), nicht Netto",
+      "RAID 6 waere n-2"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-server-soll-eine-jaehrliche-verfuegbarkeit-von-99-9",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Ein Server soll eine jaehrliche Verfuegbarkeit von 99,9 % erreichen. Berechnen Sie die maximal zulaessige Ausfallzeit (Downtime) pro Jahr in Minuten. Rechnen Sie mit 365 Tagen zu je 24 Stunden.",
+    "solutionSteps": [
+      "Jahresstunden = 365 x 24 = 8.760 h",
+      "Ausfallanteil = 100 % - 99,9 % = 0,1 % = 0,001",
+      "Downtime = 8.760 h x 0,001 = 8,76 h",
+      "In Minuten: 8,76 h x 60 = 525,6 min"
+    ],
+    "answer": "525,6 min (ca. 8,76 h)",
+    "unit": "min",
+    "rubric": [
+      {
+        "criterion": "Jahresstunden 8.760 h",
+        "points": 1
+      },
+      {
+        "criterion": "Ausfallanteil 0,1 % = 0,001 angesetzt",
+        "points": 1
+      },
+      {
+        "criterion": "Downtime 525,6 min",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "0,1 % = 0,001 (nicht 0,01)",
+      "8.760 h/Jahr",
+      "h->min x60"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-unkomprimierter-audiomitschnitt-hat-eine-abtastrate-von-44-100",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Ein unkomprimierter Audiomitschnitt hat eine Abtastrate von 44.100 Hz, eine Aufloesung von 16 Bit pro Abtastwert und 2 Kanaele (Stereo). Berechnen Sie den Speicherbedarf fuer 3 Minuten in MB (1 MB = 1.000.000 Byte).",
+    "solutionSteps": [
+      "Datenrate = 44.100 Hz x 16 Bit x 2 Kanaele = 1.411.200 Bit/s",
+      "In Byte/s: 1.411.200 / 8 = 176.400 Byte/s",
+      "Dauer = 3 min = 180 s",
+      "Gesamt = 176.400 Byte/s x 180 s = 31.752.000 Byte",
+      "In MB = 31.752.000 / 1.000.000 = 31,752 MB"
+    ],
+    "answer": "ca. 31,75 MB",
+    "unit": "MB",
+    "rubric": [
+      {
+        "criterion": "Datenrate 1.411.200 Bit/s",
+        "points": 1
+      },
+      {
+        "criterion": "176.400 Byte/s (Bit/8)",
+        "points": 1
+      },
+      {
+        "criterion": "180 s eingesetzt",
+        "points": 1
+      },
+      {
+        "criterion": "Ergebnis ca. 31,75 MB",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "2 Kanaele (Stereo) beruecksichtigen",
+      "Bit->Byte /8",
+      "min->s x60",
+      "MB dezimal /1.000.000"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-administrator-soll-unter-linux-fuer-die-datei-config",
+    "topicId": "betriebssysteme",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.63,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I-II",
+    "points": 3,
+    "prompt": "Ein Administrator soll unter Linux fuer die Datei config.env genau folgende Zugriffsrechte vergeben: Der Eigentuemer darf lesen und schreiben, die Gruppe darf nur lesen, alle anderen erhalten keinerlei Rechte. Berechnen Sie den zugehoerigen oktalen chmod-Wert.",
+    "solutionSteps": [
+      "Wertigkeiten: r = 4, w = 2, x = 1",
+      "Eigentuemer: lesen + schreiben = 4 + 2 = 6",
+      "Gruppe: nur lesen = 4",
+      "Andere: keine Rechte = 0",
+      "Oktalwert (Eigentuemer|Gruppe|Andere) = 640",
+      "Symbolische Schreibweise: rw-r-----"
+    ],
+    "answer": "640 (rw-r-----)",
+    "unit": "chmod-Oktalwert",
+    "rubric": [
+      {
+        "criterion": "Eigentuemer-Ziffer 6 (4+2)",
+        "points": 1
+      },
+      {
+        "criterion": "Gruppen-Ziffer 4 und Andere-Ziffer 0",
+        "points": 1
+      },
+      {
+        "criterion": "Gesamtergebnis 640",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "r=4, w=2, x=1 nicht vertauschen",
+      "Reihenfolge Eigentuemer-Gruppe-Andere einhalten",
+      "'keine Rechte' = 0, nicht weglassen"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--bei-der-analyse-einer-speicheradresse-taucht-der-hexadezimalwert-0x3a7",
+    "topicId": "betriebssysteme",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.63,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Bei der Analyse einer Speicheradresse taucht der Hexadezimalwert 0x3A7 auf. Rechnen Sie diesen Wert in das Dezimalsystem und in das Dualsystem (8-Bit-Gruppen, fuehrende Nullen erlaubt) um.",
+    "solutionSteps": [
+      "Ziffernwerte: 3, A = 10, 7",
+      "Dezimal = 3 x 16^2 + 10 x 16^1 + 7 x 16^0",
+      "= 3 x 256 + 10 x 16 + 7 x 1",
+      "= 768 + 160 + 7 = 935",
+      "Dual je Hexziffer (4 Bit): 3 = 0011, A = 1010, 7 = 0111",
+      "Dual gesamt = 0011 1010 0111 (= 1110100111)"
+    ],
+    "answer": "0x3A7 = 935 (dez) = 0011 1010 0111 (dual)",
+    "unit": "Zahlenwert",
+    "rubric": [
+      {
+        "criterion": "Stellenwerte 256/16/1 korrekt angesetzt",
+        "points": 1
+      },
+      {
+        "criterion": "Dezimalergebnis 935",
+        "points": 1
+      },
+      {
+        "criterion": "Dualergebnis 001110100111",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "A = 10, nicht 11",
+      "16er-Potenzen: 16^2 = 256",
+      "Jede Hexziffer wird zu genau 4 Bit"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-dateisystem-gibt-eine-blocknummer-als-dezimalzahl-214-aus",
+    "topicId": "betriebssysteme",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.63,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Ein Dateisystem gibt eine Blocknummer als Dezimalzahl 214 aus. Wandeln Sie 214 in das Dualsystem und in das Hexadezimalsystem um.",
+    "solutionSteps": [
+      "Dual durch fortlaufende Division durch 2 (Reste von unten): 214,107,53,26,13,6,3,1",
+      "Reste (von unten nach oben): 1 1 0 1 0 1 1 0",
+      "Dual = 1101 0110",
+      "Probe: 128 + 64 + 16 + 4 + 2 = 214",
+      "Hex aus 4er-Gruppen: 1101 = D, 0110 = 6",
+      "Hex = D6"
+    ],
+    "answer": "214 = 1101 0110 (dual) = D6 (hex)",
+    "unit": "Zahlenwert",
+    "rubric": [
+      {
+        "criterion": "Dualzahl 11010110 korrekt",
+        "points": 1
+      },
+      {
+        "criterion": "Probe/Stellenwerte belegen 214",
+        "points": 1
+      },
+      {
+        "criterion": "Hexergebnis D6",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Reste in richtiger Reihenfolge (von unten) lesen",
+      "4-Bit-Gruppen von rechts bilden",
+      "1101 = D (13), nicht C"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-ntfs-volume-ist-mit-einer-clustergroesse-von-4",
+    "topicId": "betriebssysteme",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.63,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "II-III",
+    "points": 4,
+    "prompt": "Ein NTFS-Volume ist mit einer Clustergroesse von 4 KiB (4.096 Byte) formatiert. Es wird eine Datei mit exakt 26.500 Byte gespeichert. Berechnen Sie, wie viele Cluster belegt werden, wie viel Speicher dadurch tatsaechlich reserviert wird und wie gross der interne Verschnitt (Slack) ist.",
+    "solutionSteps": [
+      "Benoetigte Cluster = 26.500 Byte / 4.096 Byte = 6,47...",
+      "Aufrunden auf ganze Cluster (Datei belegt Cluster immer vollstaendig) = 7 Cluster",
+      "Reservierter Speicher = 7 x 4.096 Byte = 28.672 Byte",
+      "Interner Verschnitt (Slack) = 28.672 Byte - 26.500 Byte = 2.172 Byte"
+    ],
+    "answer": "7 Cluster -> 28.672 Byte reserviert -> 2.172 Byte Slack",
+    "unit": "Byte",
+    "rubric": [
+      {
+        "criterion": "Aufrunden auf 7 Cluster",
+        "points": 2
+      },
+      {
+        "criterion": "Reservierter Speicher 28.672 Byte",
+        "points": 1
+      },
+      {
+        "criterion": "Slack 2.172 Byte",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Immer aufrunden - ein angebrochener Cluster zaehlt voll",
+      "4 KiB = 4.096 Byte (nicht 4.000)",
+      "Slack = reserviert minus Dateigroesse"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--gegeben-ist-folgender-netzplan-vorgangsknoten-vorgang-dauer-tage-vorgaenger",
+    "topicId": "projektmanagement",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II-III",
+    "points": 6,
+    "prompt": "Gegeben ist folgender Netzplan (Vorgangsknoten). Vorgang: Dauer (Tage), Vorgaenger:\nA: 3, --\nB: 5, A\nC: 2, A\nD: 4, B und C\nE: 6, C\nF: 2, D und E\nBerechnen Sie die Projektdauer, bestimmen Sie den kritischen Pfad und geben Sie den Gesamtpuffer der Vorgaenge C und E an.",
+    "solutionSteps": [
+      "Vorwaertsrechnung FAZ/FEZ (FAZ = groesster FEZ der Vorgaenger, FEZ = FAZ + Dauer):",
+      "A: FAZ 0, FEZ 3",
+      "B: FAZ 3, FEZ 8",
+      "C: FAZ 3, FEZ 5",
+      "D: FAZ = max(FEZ B, FEZ C) = max(8,5) = 8, FEZ 12",
+      "E: FAZ = FEZ C = 5, FEZ 11",
+      "F: FAZ = max(FEZ D, FEZ E) = max(12,11) = 12, FEZ 14 -> Projektdauer 14 Tage",
+      "Rueckwaertsrechnung SEZ/SAZ (SEZ = kleinster SAZ der Nachfolger, SAZ = SEZ - Dauer):",
+      "F: SEZ 14, SAZ 12",
+      "E: SEZ = SAZ F = 12, SAZ 6",
+      "D: SEZ = SAZ F = 12, SAZ 8",
+      "C: SEZ = min(SAZ D, SAZ E) = min(8,6) = 6, SAZ 4",
+      "B: SEZ = SAZ D = 8, SAZ 3",
+      "A: SEZ = min(SAZ B, SAZ C) = min(3,4) = 3, SAZ 0",
+      "Gesamtpuffer GP = SAZ - FAZ: A 0, B 0, C = 4-3 = 1, D 0, E = 6-5 = 1, F 0",
+      "Kritischer Pfad = Vorgaenge mit GP 0: A - B - D - F (3+5+4+2 = 14)"
+    ],
+    "answer": "Projektdauer 14 Tage; kritischer Pfad A-B-D-F; Gesamtpuffer C = 1 Tag, E = 1 Tag",
+    "unit": "Tage",
+    "rubric": [
+      {
+        "criterion": "Projektdauer 14 Tage (korrekte Vorwaertsrechnung)",
+        "points": 2
+      },
+      {
+        "criterion": "Kritischer Pfad A-B-D-F",
+        "points": 2
+      },
+      {
+        "criterion": "Gesamtpuffer C = 1 und E = 1",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "FAZ = GROESSTER FEZ der Vorgaenger (nicht kleinster)",
+      "SEZ = KLEINSTER SAZ der Nachfolger",
+      "Kritischer Pfad hat Gesamtpuffer 0",
+      "C und E liegen NICHT auf dem kritischen Pfad, obwohl E lang ist"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--fuer-ein-modul-benoetigen-3-entwickler-laut-schaetzung-12",
+    "topicId": "projektmanagement",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I-II",
+    "points": 3,
+    "prompt": "Fuer ein Modul benoetigen 3 Entwickler laut Schaetzung 12 Arbeitstage. Der interne Tagessatz betraegt 640 EUR je Entwickler und Tag. Berechnen Sie den Gesamtaufwand in Personentagen, die Dauer bei Einsatz von 4 Entwicklern (umgekehrt proportional) und die Personalkosten des Moduls.",
+    "solutionSteps": [
+      "Gesamtaufwand = Entwickler x Arbeitstage = 3 x 12 = 36 Personentage",
+      "Dauer bei 4 Entwicklern (umgekehrt proportional): 36 PT / 4 = 9 Arbeitstage",
+      "Personalkosten = 36 PT x 640 EUR = 23.040 EUR"
+    ],
+    "answer": "36 Personentage; 9 Arbeitstage bei 4 Entwicklern; 23.040 EUR",
+    "unit": "Personentage / EUR",
+    "rubric": [
+      {
+        "criterion": "Gesamtaufwand 36 Personentage",
+        "points": 1
+      },
+      {
+        "criterion": "Dauer 9 Arbeitstage bei 4 Entwicklern",
+        "points": 1
+      },
+      {
+        "criterion": "Personalkosten 23.040 EUR",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Personentage bleiben konstant, egal wie viele Entwickler",
+      "Mehr Entwickler = kuerzere Dauer (umgekehrt proportional, nicht direkt)",
+      "Kosten ueber Personentage x Tagessatz, nicht ueber die verkuerzte Dauer"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--fuer-einen-vorgang-liegt-eine-dreipunktschaetzung-pert-vor-optimistisch",
+    "topicId": "projektmanagement",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Fuer einen Vorgang liegt eine Dreipunktschaetzung (PERT) vor: optimistisch 4 PT, wahrscheinlich 7 PT, pessimistisch 16 PT. Berechnen Sie den erwarteten Aufwand te und die Standardabweichung sigma.",
+    "solutionSteps": [
+      "Erwarteter Aufwand te = (o + 4m + p) / 6",
+      "te = (4 + 4 x 7 + 16) / 6 = (4 + 28 + 16) / 6 = 48 / 6 = 8 PT",
+      "Standardabweichung sigma = (p - o) / 6 = (16 - 4) / 6 = 12 / 6 = 2 PT"
+    ],
+    "answer": "te = 8 Personentage; sigma = 2 Personentage",
+    "unit": "Personentage",
+    "rubric": [
+      {
+        "criterion": "Formel und Erwartungswert te = 8 PT",
+        "points": 2
+      },
+      {
+        "criterion": "Standardabweichung sigma = 2 PT",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Der wahrscheinliche Wert m wird VIERFACH gewichtet",
+      "Gesamt durch 6 teilen (1 + 4 + 1)",
+      "Standardabweichung nur aus p und o: (p - o) / 6"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-projekt-ist-mit-80-personentagen-zu-je-550",
+    "topicId": "projektmanagement",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II-III",
+    "points": 4,
+    "prompt": "Ein Projekt ist mit 80 Personentagen zu je 550 EUR budgetiert. Zum Statustermin sind laut Projektleitung 60 % des Arbeitsumfangs fertiggestellt, dafuer wurden bereits 52 Personentage verbraucht. Berechnen Sie das Budget, den prognostizierten Gesamtaufwand (lineare Hochrechnung), die prognostizierten Gesamtkosten und die zu erwartende Budgetueberschreitung.",
+    "solutionSteps": [
+      "Budget = 80 PT x 550 EUR = 44.000 EUR",
+      "Hochrechnung Gesamtaufwand = verbrauchte PT / Fertigstellungsgrad = 52 / 0,60 = 86,67 PT",
+      "Prognostizierte Gesamtkosten = 86,67 PT x 550 EUR = 47.666,67 EUR",
+      "Budgetueberschreitung = 47.666,67 - 44.000 = 3.666,67 EUR"
+    ],
+    "answer": "Budget 44.000 EUR; Prognose 86,67 PT bzw. 47.666,67 EUR; Ueberschreitung 3.666,67 EUR",
+    "unit": "EUR",
+    "rubric": [
+      {
+        "criterion": "Budget 44.000 EUR",
+        "points": 1
+      },
+      {
+        "criterion": "Prognostizierter Gesamtaufwand 86,67 PT",
+        "points": 1
+      },
+      {
+        "criterion": "Prognostizierte Gesamtkosten 47.666,67 EUR",
+        "points": 1
+      },
+      {
+        "criterion": "Budgetueberschreitung 3.666,67 EUR",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Hochrechnung = verbrauchte PT geteilt durch Fertigstellungsgrad (nicht x 0,6)",
+      "52 PT sind erst 60 % -> Gesamt liegt ueber 80 PT",
+      "Ueberschreitung ist Differenz Prognose minus Budget, nicht minus Verbrauch"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-server-sla-garantiert-eine-verfuegbarkeit-von-99-95",
+    "topicId": "it-sicherheit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.75,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I-II",
+    "points": 3,
+    "prompt": "Ein Server-SLA garantiert eine Verfügbarkeit von 99,95 % pro Jahr. Ein Jahr wird mit 8.760 Betriebsstunden angesetzt. Berechnen Sie die maximal zulässige Ausfallzeit (Downtime) pro Jahr und geben Sie diese in Stunden sowie in Minuten an.",
+    "solutionSteps": [
+      "Ausfallanteil = 100 % - 99,95 % = 0,05 % = 0,0005",
+      "Downtime = 8.760 h x 0,0005 = 4,38 h",
+      "Umrechnung: 4,38 h = 4 h + 0,38 h; 0,38 h x 60 = 22,8 min",
+      "=> 4 h 22,8 min bzw. 4,38 h x 60 = 262,8 min"
+    ],
+    "answer": "4,38 h = 4 h 22,8 min (262,8 min) maximal zulässige Ausfallzeit pro Jahr",
+    "unit": "h / min",
+    "rubric": [
+      {
+        "criterion": "Ausfallanteil 0,05 % = 0,0005 ermittelt",
+        "points": 1
+      },
+      {
+        "criterion": "Downtime = 8.760 h x 0,0005 = 4,38 h",
+        "points": 1
+      },
+      {
+        "criterion": "Umrechnung in 4 h 22,8 min bzw. 262,8 min",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Verfügbarkeit von 100 % abziehen, nicht direkt 99,95 % rechnen",
+      "Prozent in Dezimal wandeln (0,05 % = 0,0005, nicht 0,05)",
+      "0,38 h sind nicht 38 min, sondern 0,38 x 60 = 22,8 min",
+      "8.760 h/Jahr verwenden (365 x 24)"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-unternehmen-sichert-500-gb-daten-sonntags-wird-ein",
+    "topicId": "it-sicherheit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.75,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II-III",
+    "points": 4,
+    "prompt": "Ein Unternehmen sichert 500 GB Daten. Sonntags wird ein Vollbackup erstellt, danach von Montag bis Samstag täglich ein Backup mit einer täglichen Änderungsmenge von je 20 GB. Berechnen Sie den gesamten Speicherbedarf für eine Woche a) bei inkrementeller und b) bei differenzieller Sicherungsstrategie sowie c) die Differenz zwischen beiden.",
+    "solutionSteps": [
+      "Inkrementell: jedes Backup sichert nur die Änderungen seit dem letzten Backup => je 20 GB",
+      "Inkrementell gesamt = 500 GB (Voll) + 6 x 20 GB = 500 + 120 = 620 GB",
+      "Differenziell: jedes Backup sichert alle Änderungen seit dem letzten Vollbackup => Mo 20, Di 40, Mi 60, Do 80, Fr 100, Sa 120 GB",
+      "Summe der Diff-Backups = 20+40+60+80+100+120 = 420 GB",
+      "Differenziell gesamt = 500 GB (Voll) + 420 GB = 920 GB",
+      "Differenz = 920 GB - 620 GB = 300 GB"
+    ],
+    "answer": "inkrementell 620 GB, differenziell 920 GB, Differenz 300 GB (differenziell benötigt mehr Speicher)",
+    "unit": "GB",
+    "rubric": [
+      {
+        "criterion": "Inkrementell gesamt = 620 GB",
+        "points": 1
+      },
+      {
+        "criterion": "Differenzielle Backupreihe 20..120 GB, Summe 420 GB",
+        "points": 1
+      },
+      {
+        "criterion": "Differenziell gesamt = 920 GB",
+        "points": 1
+      },
+      {
+        "criterion": "Differenz = 300 GB",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Inkrementell sichert nur seit dem letzten Backup (konstant 20 GB), differenziell seit dem letzten Vollbackup (wachsend)",
+      "Das Vollbackup (500 GB) in beiden Strategien mitzählen",
+      "Differenz-Backups aufsummieren (arithmetische Reihe), nicht nur den letzten Tag nehmen",
+      "6 Tage Mo-Sa, nicht 7"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--ein-passwort-besteht-aus-genau-8-zeichen-aus-einem",
+    "topicId": "it-sicherheit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.75,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II-III",
+    "points": 4,
+    "prompt": "Ein Passwort besteht aus genau 8 Zeichen aus einem Zeichenvorrat von 62 Zeichen (a-z, A-Z, 0-9). Ein Angreifer kann per Brute-Force 1 Milliarde (1 x 10^9) Passwörter pro Sekunde testen. Berechnen Sie die Anzahl der möglichen Passwörter und die maximale Zeit zum vollständigen Durchprobieren (in Tagen).",
+    "solutionSteps": [
+      "Anzahl möglicher Passwörter = 62^8 (62 Möglichkeiten je Stelle, 8 Stellen)",
+      "62^8 = 218.340.105.584.896 ≈ 2,1834 x 10^14",
+      "maximale Zeit = Anzahl / Rate = 218.340.105.584.896 / 1.000.000.000 ≈ 218.340 s",
+      "Umrechnung: 218.340 s / 3.600 = 60,65 h",
+      "60,65 h / 24 ≈ 2,53 Tage"
+    ],
+    "answer": "ca. 2,1834 x 10^14 (218.340.105.584.896) Passwörter, maximale Suchzeit ca. 218.340 s ≈ 2,53 Tage",
+    "unit": "Anzahl / Tage",
+    "rubric": [
+      {
+        "criterion": "Ansatz Anzahl = 62^8",
+        "points": 1
+      },
+      {
+        "criterion": "62^8 = 218.340.105.584.896 ≈ 2,18 x 10^14",
+        "points": 1
+      },
+      {
+        "criterion": "Zeit = Anzahl / 1 x 10^9 ≈ 218.340 s",
+        "points": 1
+      },
+      {
+        "criterion": "Umrechnung ≈ 60,65 h bzw. ≈ 2,53 Tage",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "62^8, nicht 62 x 8 oder 8^62",
+      "Zeichenvorrat korrekt zählen: 26+26+10 = 62",
+      "Sekunden in Tage: /3600 dann /24 (nicht /1000)",
+      "Aufgabe fragt Maximalzeit (alle Kombinationen); der statistische Mittelwert wäre die Hälfte"
+    ],
+    "source": "Lernapp — generiert & geprueft (2026-07)"
+  }
+]

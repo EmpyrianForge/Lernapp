@@ -3,6 +3,8 @@
 // (Programm bricht zur Laufzeit ab) · Logik (läuft, liefert aber falsches Ergebnis).
 // Beispiele in Java (Berufsschul-Sprache), da Syntaxfehler sprachgebunden sind.
 
+import extra from './bugquiz-extra.json'
+
 export type ErrorType = 'syntax' | 'laufzeit' | 'logik'
 
 export interface BugQuizTask {
@@ -14,7 +16,7 @@ export interface BugQuizTask {
   explanation: string
 }
 
-export const BUG_QUIZ: BugQuizTask[] = [
+const BUG_QUIZ_BASE: BugQuizTask[] = [
   {
     id: 'bug-semikolon',
     title: 'Summenschleife',
@@ -64,3 +66,6 @@ export const BUG_QUIZ: BugQuizTask[] = [
     explanation: 'Zeile 2 setzt den Startwert auf 0. Bei lauter negativen Werten ist keiner größer als 0, das Ergebnis bleibt 0 statt -2. Korrekt wäre `max = werte[0]`. Läuft fehlerfrei, aber falsch — Logikfehler.',
   },
 ]
+
+// Zusätzliche, per Workflow generierte & gegengeprüfte „Finde den Fehler"-Aufgaben.
+export const BUG_QUIZ: BugQuizTask[] = [...BUG_QUIZ_BASE, ...(extra as BugQuizTask[])]

@@ -1,6 +1,8 @@
 // Datensätze für die interaktiven Drills „Zuordnung" (Match) und „Reihenfolge" (Order).
 // Fachlich aus der Wissensbasis (01-Themenkatalog / Karteikarten).
 
+import extra from './interactive-extra.json'
+
 export interface MatchDeck {
   id: string
   title: string
@@ -18,7 +20,7 @@ export interface OrderTask {
   beyond?: boolean // über den AP1-Katalog hinaus (Vertiefung/AP2)
 }
 
-export const MATCH_DECKS: MatchDeck[] = [
+const MATCH_BASE: MatchDeck[] = [
   {
     id: 'match-ports',
     title: 'Ports ↔ Dienste',
@@ -126,7 +128,7 @@ export const MATCH_DECKS: MatchDeck[] = [
   },
 ]
 
-export const ORDER_TASKS: OrderTask[] = [
+const ORDER_BASE: OrderTask[] = [
   {
     id: 'order-osi',
     title: 'OSI-Schichten',
@@ -214,3 +216,7 @@ export const ORDER_TASKS: OrderTask[] = [
     correct: ['Listen-Einkaufspreis', 'Zieleinkaufspreis (− Rabatt)', 'Bareinkaufspreis (− Skonto)', 'Bezugspreis (+ Bezugskosten)'],
   },
 ]
+
+// Zusätzliche, per Workflow generierte & gegengeprüfte Zuordnungs-/Reihenfolge-Aufgaben.
+export const MATCH_DECKS: MatchDeck[] = [...MATCH_BASE, ...(extra.match as MatchDeck[])]
+export const ORDER_TASKS: OrderTask[] = [...ORDER_BASE, ...(extra.order as OrderTask[])]

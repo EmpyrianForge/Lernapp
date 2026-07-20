@@ -1,4 +1,5 @@
 import type { TraceItem } from '../types'
+import extra from './trace-extra.json'
 
 // Schreibtischtest-/Pseudocode-Aufgaben (type: "trace"). In AP1 Frühjahr 2025 war der
 // Schreibtischtest die zweitgrößte Aufgabe (14 P, 4-fach verschachteltes If) —
@@ -16,7 +17,7 @@ const base = {
   source: 'Lernapp/03-Rechenschemata.md',
 }
 
-export const TRACE_ITEMS: TraceItem[] = [
+const TRACE_BASE: TraceItem[] = [
   {
     ...base,
     id: 'trace--durchschnitt-schleife',
@@ -165,3 +166,6 @@ export const TRACE_ITEMS: TraceItem[] = [
     pitfalls: ['kopfgesteuert: Bedingung wird VOR jedem Durchlauf geprüft', 'Abbruch, sobald kapital > 1300 (nach dem Erhöhen prüfen)'],
   },
 ]
+
+// Zusätzliche, per Workflow generierte & gegengeprüfte Schreibtischtests.
+export const TRACE_ITEMS: TraceItem[] = [...TRACE_BASE, ...(extra as TraceItem[])]

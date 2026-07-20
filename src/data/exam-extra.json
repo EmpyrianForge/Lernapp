@@ -1,0 +1,504 @@
+[
+  {
+    "id": "task-netzwerkstoerung-im-grossraumbuero-dhcp-ports-und-kabelwahl",
+    "title": "Netzwerkstoerung im Grossraumbuero: DHCP, Ports und Kabelwahl",
+    "topicId": "netzwerke",
+    "scenario": "Sie arbeiten im IT-Support eines mittelstaendischen Unternehmens. Nach dem Umzug einer Abteilung in ein neues Grossraumbuero melden mehrere Mitarbeiter, dass ihre PCs keine Verbindung ins Firmennetz bekommen. In den Netzwerkeinstellungen der betroffenen Geraete wird eine IP-Adresse aus dem Bereich 169.254.x.x angezeigt. Andere PCs im selben Raum funktionieren normal. Im Serverraum laeuft ein zentraler DHCP-Server, die Uplink-Strecke zum Etagenverteiler ist rund 90 m lang.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "erklaeren",
+        "points": 5,
+        "prompt": "Erklaeren Sie, welche Aufgabe der DHCP-Server hat und wie die automatische Adressvergabe im Normalfall ablaeuft (Ablauf mit den vier Schritten).",
+        "modelAnswer": "DHCP (Dynamic Host Configuration Protocol) vergibt automatisch IP-Konfigurationen (IP-Adresse, Subnetzmaske, Standardgateway, DNS-Server) an Clients, sodass keine manuelle Konfiguration noetig ist. Der Ablauf folgt dem DORA-Prinzip: 1. DISCOVER - der Client sendet per Broadcast eine Anfrage nach einem DHCP-Server. 2. OFFER - ein DHCP-Server antwortet und bietet eine freie IP-Konfiguration an. 3. REQUEST - der Client fordert das Angebot verbindlich an (per Broadcast). 4. ACKNOWLEDGE - der Server bestaetigt die Zuweisung und der Client uebernimmt die Konfiguration (mit Lease-Dauer). DHCP nutzt UDP mit Port 67 (Server) und 68 (Client).",
+        "rubric": [
+          "Aufgabe: automatische Vergabe der IP-Konfiguration (IP/Maske/Gateway/DNS)",
+          "DORA benannt bzw. 4 Schritte Discover/Offer/Request/Acknowledge",
+          "Kurzbeschreibung der Schritte korrekt (Broadcast/Angebot/Anforderung/Bestaetigung)",
+          "Port 67/68 oder Lease erwaehnt (Bonus)"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "begruenden",
+        "points": 4,
+        "prompt": "Die betroffenen PCs zeigen eine Adresse aus 169.254.0.0/16. Begruenden Sie, was diese Adresse bedeutet und welche Ursache dahinter steckt.",
+        "modelAnswer": "Der Bereich 169.254.0.0/16 ist der APIPA-Bereich (Automatic Private IP Addressing / Link-Local). Ein Client vergibt sich selbst eine solche Adresse, wenn er beim Start keinen DHCP-Server erreicht bzw. keine Antwort (kein OFFER) erhaelt. Die Ursache ist also, dass die DHCP-Anfrage den Server nicht erreicht oder keine Konfiguration zugeteilt wird - z. B. weil die physische Verbindung gestoert ist, der DHCP-Bereich (Pool) erschoepft ist oder ein Uplink/Switchport defekt ist. Eine Kommunikation mit dem Firmennetz ist mit einer APIPA-Adresse nicht moeglich, da sie nur link-lokal gilt und kein Gateway gesetzt ist.",
+        "rubric": [
+          "169.254.x.x = APIPA / Link-Local-Adresse",
+          "Selbstvergabe, weil kein DHCP-Server erreichbar / kein OFFER",
+          "Moegliche Ursache genannt (Kabel/Uplink defekt, Pool erschoepft, Port defekt)",
+          "Folge: keine Kommunikation ins Firmennetz (kein Gateway)"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "beurteilen",
+        "points": 4,
+        "prompt": "Fuer die 90 m lange Uplink-Strecke zwischen Etagenverteiler und Serverraum steht Twisted-Pair-Kupferkabel (Cat 6, max. 100 m) und alternativ Lichtwellenleiter (LWL) zur Auswahl. Beurteilen Sie, welche Verkabelung fuer diese Strecke geeigneter ist.",
+        "modelAnswer": "Beide Varianten sind fuer 90 m grundsaetzlich moeglich, da Cat-6-Kupfer bis 100 m spezifiziert ist. Kupfer (TP) ist guenstiger und einfacher zu konfektionieren, liegt hier aber nahe an der 100-m-Grenze und ist anfaellig fuer elektromagnetische Stoerungen (EMV). LWL (Glasfaser) ist unempfindlich gegen elektromagnetische Einstreuungen, ueberbrueckt deutlich groessere Distanzen, bietet hoehere Bandbreiten und ist abhoersicherer, jedoch teurer und aufwendiger in der Montage. Fuer eine feste Uplink-/Backbone-Strecke (permanent, lang, ggf. stoerbehaftete Umgebung) ist LWL die zukunftssicherere und robustere Wahl; fuer eine reine Anbindung ohne Stoerquellen und mit Kostenfokus genuegt Cat 6. Empfehlung: LWL fuer den Uplink, da naeher an der Kupfer-Grenze und stoerungsfrei.",
+        "rubric": [
+          "Beide bei 90 m technisch moeglich (Cat 6 bis 100 m)",
+          "Kupfer: guenstig/einfach, aber EMV-anfaellig und nahe Laengengrenze",
+          "LWL: stoerungsfrei, groessere Reichweite, hoehere Bandbreite, aber teurer",
+          "Begruendete Empfehlung (LWL fuer Backbone/Uplink)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-beschaffung-angebotsvergleich-und-amortisation-neuer-etikettendrucker",
+    "title": "Beschaffung: Angebotsvergleich und Amortisation neuer Etikettendrucker",
+    "topicId": "wirtschaftlichkeit",
+    "scenario": "Die Logistikabteilung der Nordwind Handels GmbH benoetigt einen neuen Industrie-Etikettendrucker fuer den Versand. Zwei Anbieter haben Angebote abgegeben. Anbieter A: Listenpreis 2.400,00 EUR, 15 % Rabatt, 2 % Skonto bei Zahlung innerhalb von 10 Tagen, Bezugskosten (Fracht/Versicherung) 60,00 EUR. Anbieter B: Listenpreis 2.100,00 EUR, 10 % Rabatt, kein Skonto, Bezugskosten 90,00 EUR. Der neue Drucker soll den alten ersetzen und spart durch geringeren Etiketten- und Wartungsaufwand jaehrlich 640,00 EUR gegenueber der bisherigen Loesung. Alle Betraege verstehen sich netto.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "berechnen",
+        "points": 6,
+        "prompt": "Ermitteln Sie fuer beide Anbieter jeweils den Bezugspreis (Einstandspreis) unter Ausnutzung des Skontos. Zeigen Sie den Rechenweg.",
+        "modelAnswer": "Anbieter A: Listenpreis 2.400,00 - 15 % Rabatt (360,00) = Zieleinkaufspreis 2.040,00; - 2 % Skonto (40,80) = Bareinkaufspreis 1.999,20; + Bezugskosten 60,00 = Bezugspreis 2.059,20 EUR. Anbieter B: Listenpreis 2.100,00 - 10 % Rabatt (210,00) = Zieleinkaufspreis 1.890,00; kein Skonto -> Bareinkaufspreis 1.890,00; + Bezugskosten 90,00 = Bezugspreis 1.980,00 EUR.",
+        "rubric": [
+          "A: Rabatt 360,00 -> Zieleinkaufspreis 2.040,00",
+          "A: Skonto 40,80 -> Bareinkaufspreis 1.999,20",
+          "A: + Bezugskosten 60,00 -> Bezugspreis 2.059,20 EUR",
+          "B: Rabatt 210,00 -> Zieleinkaufspreis 1.890,00",
+          "B: + Bezugskosten 90,00 -> Bezugspreis 1.980,00 EUR"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "begruenden",
+        "points": 4,
+        "prompt": "Fuer welches Angebot sollte sich der Einkauf allein aus Kostensicht entscheiden? Begruenden Sie Ihre Entscheidung und nennen Sie zusaetzlich einen nicht-monetaeren Faktor, der die Entscheidung beeinflussen koennte.",
+        "modelAnswer": "Anbieter B ist mit 1.980,00 EUR guenstiger als Anbieter A mit 2.059,20 EUR (Differenz 79,20 EUR), daher ist B aus reiner Kostensicht zu waehlen. Nicht-monetaere Faktoren koennen die Entscheidung dennoch drehen, z. B. Lieferzeit/Lieferzuverlaessigkeit, Servicequalitaet und Garantie/Gewaehrleistung, Ersatzteilverfuegbarkeit, Kompatibilitaet mit vorhandener Software oder Energieeffizienz.",
+        "rubric": [
+          "Entscheidung fuer Anbieter B mit Zahlenbezug (1.980,00 < 2.059,20)",
+          "Differenz 79,20 EUR bzw. korrekter Kostenvergleich genannt",
+          "Ein sinnvoller nicht-monetaerer Faktor (z. B. Lieferzeit, Service/Garantie, Kompatibilitaet, Energieeffizienz)"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "berechnen",
+        "points": 3,
+        "prompt": "Berechnen Sie fuer das guenstigere Angebot (Anbieter B) die Amortisationsdauer in Jahren bei einer jaehrlichen Ersparnis von 640,00 EUR. Runden Sie das Ergebnis sinnvoll.",
+        "modelAnswer": "Amortisationsdauer = Anschaffungskosten / jaehrliche Ersparnis = 1.980,00 EUR / 640,00 EUR/Jahr = 3,09 Jahre, also rund 3,1 Jahre bzw. etwa 3 Jahre und 1 Monat.",
+        "rubric": [
+          "Ansatz: Bezugspreis / jaehrliche Ersparnis (1.980,00 / 640,00)",
+          "Ergebnis ca. 3,09 Jahre",
+          "sinnvolle Rundung/Interpretation (rund 3,1 Jahre bzw. ~3 Jahre 1 Monat)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-sicherheitskonzept-fuer-eine-steuerkanzlei-schutzziele-backup-ransomware",
+    "title": "Sicherheitskonzept fuer eine Steuerkanzlei: Schutzziele, Backup & Ransomware",
+    "topicId": "it-sicherheit",
+    "scenario": "Die Steuerkanzlei Brandt & Partner verarbeitet auf einem neuen zentralen Dateiserver hochsensible Mandantendaten (Steuererklaerungen, Kontodaten). Nachdem ein befreundetes Buero durch einen Ransomware-Angriff mehrere Tage arbeitsunfaehig war, beauftragt die Kanzleileitung Sie als IT-Verantwortlichen, ein tragfaehiges Sicherheits- und Datensicherungskonzept auszuarbeiten. Der Server laeuft werktags von 8 bis 18 Uhr; nachts steht ein Zeitfenster fuer Sicherungen zur Verfuegung.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "beschreiben",
+        "points": 4,
+        "prompt": "Beschreiben Sie drei der vier Grundwerte der Informationssicherheit (VIVA) und ordnen Sie jedem ein konkretes Beispiel aus der Kanzlei zu.",
+        "modelAnswer": "Vertraulichkeit: Nur Berechtigte duerfen Mandantendaten einsehen (z. B. Zugriffsrechte/Verschluesselung, damit Steuerdaten nicht an Dritte gelangen). Integritaet: Daten duerfen nicht unbemerkt veraendert werden (z. B. eine gebuchte Steuererklaerung bleibt unveraendert/nachvollziehbar). Verfuegbarkeit: Daten und Systeme sind bei Bedarf nutzbar (z. B. der Server ist zu den Arbeitszeiten erreichbar). Authentizitaet: Die Echtheit/Herkunft ist gesichert (z. B. Anmeldung mit eindeutigem Benutzerkonto, damit klar ist, wer eine Aenderung vorgenommen hat).",
+        "rubric": [
+          "Drei Grundwerte korrekt benannt (Vertraulichkeit/Integritaet/Verfuegbarkeit/Authentizitaet)",
+          "Jeweils fachlich richtige Kurzbeschreibung",
+          "Jeweils ein passendes Kanzlei-Beispiel"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "vergleichen",
+        "points": 6,
+        "prompt": "Vergleichen Sie Vollsicherung, differenzielle und inkrementelle Sicherung hinsichtlich Sicherungsdauer/Speicherbedarf und Ruecksicherungsaufwand. Sprechen Sie fuer die naechtlichen Sicherungen eine begruendete Empfehlung aus.",
+        "modelAnswer": "Vollsicherung: sichert alle Daten; lange Sicherungsdauer und hoher Speicherbedarf, aber schnellste/einfachste Ruecksicherung (nur ein Datensatz noetig). Differenzielle Sicherung: sichert alle seit der letzten Vollsicherung geaenderten Daten; Sicherungsdauer/Umfang waechst bis zur naechsten Vollsicherung, Ruecksicherung braucht Vollsicherung + letzte differenzielle Sicherung (2 Datensaetze). Inkrementelle Sicherung: sichert nur die seit der letzten Sicherung (voll oder inkrementell) geaenderten Daten; kuerzeste Sicherungsdauer und geringster Speicherbedarf, aber aufwendigste Ruecksicherung (Vollsicherung + alle inkrementellen Sicherungen in Reihenfolge). Empfehlung: woechentliche Vollsicherung am Wochenende plus taeglich inkrementelle (oder differenzielle) Sicherungen nachts, da die kurzen Zeitfenster so eingehalten werden und der Speicherbedarf gering bleibt; bei hoechster Wiederherstellungssicherheit ist die differenzielle Variante vorzuziehen.",
+        "rubric": [
+          "Vollsicherung: alle Daten, hoher Aufwand, schnellste Wiederherstellung",
+          "Differenziell: seit letzter Vollsicherung, Wiederherstellung = Voll + letzte differenzielle",
+          "Inkrementell: seit letzter Sicherung, geringster Speicher, Wiederherstellung = Voll + alle inkrementellen",
+          "Begruendete Empfehlung (Vollsicherung + taegliche inkrementelle/differenzielle)"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "begruenden",
+        "points": 4,
+        "prompt": "Begruenden Sie, warum zusaetzlich zur regelmaessigen Sicherung mindestens eine Kopie offline bzw. raeumlich getrennt aufbewahrt werden sollte (3-2-1-Regel), um dem geschilderten Ransomware-Risiko zu begegnen.",
+        "modelAnswer": "Ransomware verschluesselt alle erreichbaren Daten, auch dauerhaft verbundene Backup-Laufwerke oder Netzlaufwerke; eine nur online vorgehaltene Sicherung wird dann mitverschluesselt und ist wertlos. Ein Offline-Backup (z. B. getrennte Platte/Bandkassette, nicht dauerhaft verbunden) ist fuer die Schadsoftware nicht erreichbar und bleibt sauber, sodass die Daten wiederhergestellt und Loesegeldforderungen ignoriert werden koennen. Die raeumliche Trennung (Offsite) schuetzt zusaetzlich vor physischen Schaeden wie Brand oder Diebstahl. Die 3-2-1-Regel (3 Kopien, 2 Medien, 1 extern/offline) sichert damit die Verfuegbarkeit auch im Katastrophenfall.",
+        "rubric": [
+          "Ransomware verschluesselt auch verbundene Online-Backups",
+          "Offline/getrenntes Backup ist fuer die Schadsoftware nicht erreichbar -> Wiederherstellung moeglich",
+          "Zusatznutzen raeumliche Trennung (Brand/Diebstahl) bzw. Nennung 3-2-1-Regel"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-neue-workstations-fuer-die-cad-abteilung-komponentenwahl-und-verfuegbarkeit",
+    "title": "Neue Workstations fuer die CAD-Abteilung: Komponentenwahl und Verfuegbarkeit",
+    "topicId": "hardware",
+    "scenario": "Die Konstruktionsabteilung eines mittelstaendischen Maschinenbauers soll fuenf neue Workstations fuer CAD- und Simulationsarbeit erhalten. Ein Systemhaus hat ein Angebot vorgelegt: Prozessor mit 16 Kernen, 64 GB DDR5-RAM, dedizierte Grafikkarte mit 16 GB VRAM, zwei NVMe-SSDs (je 2 TB) sowie ein Netzteil mit 80-PLUS-Gold-Zertifizierung. Die Rechner laufen im Dauerbetrieb; ein Ausfall der lokal gespeicherten Projektdaten waehrend eines laufenden Auftrags soll moeglichst vermieden werden. Sie sollen das Angebot fachlich bewerten und eine Empfehlung zur Datensicherheit der lokalen Platten abgeben.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "begruenden",
+        "points": 4,
+        "prompt": "Erklaeren Sie, warum fuer CAD- und Simulationsanwendungen eine dedizierte Grafikkarte mit eigenem VRAM einer im Prozessor integrierten Grafikeinheit (iGPU) vorzuziehen ist. Nennen Sie zwei fachliche Gruende.",
+        "modelAnswer": "Eine dedizierte GPU besitzt eigenen, schnellen Grafikspeicher (VRAM), sodass grosse 3D-Modelle und Texturen gehalten werden koennen, ohne den Arbeitsspeicher des Systems mitzunutzen; eine iGPU teilt sich dagegen den langsameren System-RAM (Shared Memory) und bremst so das gesamte System aus. Zweitens verfuegt eine dedizierte GPU ueber deutlich mehr parallele Recheneinheiten und optimierte Treiber (z. B. fuer OpenGL/CUDA), wodurch die Darstellung und Berechnung komplexer Modelle fluessig und schnell erfolgt. Die iGPU ist fuer solche rechenintensiven Aufgaben zu leistungsschwach und wuerde zu Rucklern und langen Ladezeiten fuehren.",
+        "rubric": [
+          "Eigener VRAM vs. geteilter System-RAM (Shared Memory) der iGPU",
+          "Mehr parallele Recheneinheiten / hoehere Grafikleistung der dedizierten GPU",
+          "Fachlicher Bezug zu CAD/3D (grosse Modelle, fluessige Darstellung, Rechenlast)"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "beurteilen",
+        "points": 5,
+        "prompt": "Der Kunde moechte die lokalen Projektdaten gegen den Ausfall einer einzelnen SSD absichern; eine Verdopplung der nutzbaren Kapazitaet ist dabei zweitrangig. Beurteilen Sie, ob sich die zwei verbauten 2-TB-NVMe-SSDs als RAID 1 (Spiegelung) eignen, und nennen Sie die nutzbare Kapazitaet sowie einen Nachteil dieser Loesung.",
+        "modelAnswer": "RAID 1 (Spiegelung) eignet sich gut: Beide SSDs speichern identische Daten, sodass beim Ausfall einer Platte die andere den Betrieb ohne Datenverlust fortsetzt; die Verfuegbarkeit steigt also. Die nutzbare Kapazitaet betraegt nur 2 TB (nicht 4 TB), da die Daten gespiegelt werden und eine Platte lediglich als redundante Kopie dient. Nachteil: Die Haelfte der gekauften Kapazitaet ist nicht nutzbar (die Kosten pro nutzbarem GB verdoppeln sich), und RAID ersetzt kein Backup versehentlich geloeschte oder durch Schadsoftware verschluesselte Dateien werden sofort auf beide Platten gespiegelt.",
+        "rubric": [
+          "RAID 1 geeignet: Spiegelung erhoeht Ausfallsicherheit/Verfuegbarkeit",
+          "Nutzbare Kapazitaet = 2 TB (nur eine Plattengroesse)",
+          "Nachteil genannt (halbe Nutzkapazitaet ODER RAID ersetzt kein Backup)"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "erklaeren",
+        "points": 4,
+        "prompt": "Erklaeren Sie, was die Angabe '80 PLUS Gold' beim Netzteil bedeutet und welcher wirtschaftliche bzw. oekologische Vorteil sich daraus im beschriebenen Dauerbetrieb ergibt.",
+        "modelAnswer": "'80 PLUS Gold' ist eine Zertifizierung fuer den Wirkungsgrad (Effizienz) eines Netzteils: Sie garantiert, dass mindestens rund 87-90 % der aus dem Stromnetz aufgenommenen Energie tatsaechlich an die Komponenten weitergegeben werden; nur ein geringer Teil geht als Abwaerme verloren. Im Dauerbetrieb bedeutet ein hoher Wirkungsgrad einen geringeren Stromverbrauch bei gleicher Rechenleistung, was Energiekosten spart (wirtschaftlicher Vorteil) und den CO2-Ausstoss senkt (Green-IT / oekologischer Vorteil). Zudem entsteht weniger Abwaerme, wodurch Luefter leiser laufen und die Komponenten geschont werden.",
+        "rubric": [
+          "80 PLUS Gold = Effizienz-/Wirkungsgrad-Zertifizierung (ca. 87-90 %)",
+          "Weniger Verlustleistung/Abwaerme, hoeherer Anteil nutzbarer Energie",
+          "Vorteil im Dauerbetrieb: Stromkosten sparen UND/ODER Green-IT/CO2-Reduktion"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-datentraeger-und-systemstart-im-gemischten-arbeitsumfeld",
+    "title": "Datentraeger und Systemstart im gemischten Arbeitsumfeld",
+    "topicId": "betriebssysteme",
+    "scenario": "Sie richten in einem Medienunternehmen einen Schnittplatz ein. Videodateien (haeufig ueber 8 GB gross) muessen per USB-Datentraeger zwischen einem Windows-11-PC und einer Linux-Workstation ausgetauscht werden. Ein Kollege hat einen 128-GB-USB-Stick mit FAT32 formatiert und beschwert sich, dass sich eine 12-GB-Datei nicht kopieren laesst. Zusaetzlich startet ein aelterer Rechner nach einem Stromausfall nicht mehr sauber und Sie sollen den Systemstart pruefen.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "vergleichen",
+        "points": 6,
+        "prompt": "Vergleichen Sie die Dateisysteme FAT32, exFAT und NTFS im Hinblick auf den beschriebenen Datenaustausch. Nennen Sie je Dateisystem einen entscheidenden Vor- oder Nachteil und sprechen Sie eine begruendete Empfehlung fuer den USB-Stick aus.",
+        "modelAnswer": "FAT32: sehr breite Kompatibilitaet (Windows, Linux, macOS, Kameras), aber maximale Dateigroesse nur 4 GB -> deshalb scheitert die 12-GB-Datei. NTFS: unterstuetzt sehr grosse Dateien, Journaling und Rechteverwaltung, unter Linux/macOS aber oft nur eingeschraenkt (haeufig nur lesend) nutzbar. exFAT: keine praxisrelevante 4-GB-Grenze, fuer grosse Flash-Speicher optimiert und plattformuebergreifend (Windows, macOS, Linux) beschreibbar, besitzt jedoch kein Journaling. Empfehlung: exFAT, weil es sowohl die grossen Videodateien als auch den Austausch zwischen Windows und Linux zuverlaessig ermoeglicht.",
+        "rubric": [
+          "FAT32: hohe Kompatibilitaet, aber 4-GB-Dateigrenze (Ursache des Problems)",
+          "NTFS: grosse Dateien/Journaling, aber unter Linux/macOS eingeschraenkt beschreibbar",
+          "exFAT: keine 4-GB-Grenze, plattformuebergreifend beschreibbar",
+          "Begruendete Empfehlung exFAT fuer den USB-Austausch"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "erklaeren",
+        "points": 4,
+        "prompt": "Erklaeren Sie den Begriff Journaling bei Dateisystemen und welchen Vorteil er nach dem beschriebenen Stromausfall bietet.",
+        "modelAnswer": "Beim Journaling protokolliert das Dateisystem geplante Schreiboperationen zunaechst in einem gesonderten Bereich (Journal), bevor die Aenderungen tatsaechlich auf den Datentraeger geschrieben werden. Kommt es waehrend eines Schreibvorgangs zu einem Absturz oder Stromausfall, kann das System anhand des Journals gezielt erkennen, welche Operationen unvollstaendig waren, und das Dateisystem schnell wieder in einen konsistenten Zustand bringen. Dadurch entfaellt ein langwieriges Pruefen des gesamten Datentraegers und das Risiko von Inkonsistenzen/Datenverlust sinkt. Journaling nutzen z. B. NTFS und ext4.",
+        "rubric": [
+          "Schreiboperationen werden vor Ausfuehrung im Journal protokolliert",
+          "Nach Absturz/Stromausfall schnelle Wiederherstellung eines konsistenten Zustands",
+          "Kein vollstaendiges Pruefen des Datentraegers noetig / geringeres Datenverlustrisiko",
+          "Beispiel NTFS oder ext4"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "beschreiben",
+        "points": 3,
+        "prompt": "Beschreiben Sie in der richtigen Reihenfolge die grundlegenden Phasen des Systemstarts (Boot-Ablauf) von der Einschaltung bis zum Laden des Betriebssystems.",
+        "modelAnswer": "1. Firmware-Start: Nach dem Einschalten fuehrt die Firmware (BIOS bzw. UEFI) den POST (Power-On Self-Test) durch und prueft die Hardware. 2. Bootloader: Die Firmware sucht das Bootmedium und laedt den Bootloader (aus dem MBR bzw. von der EFI-Systempartition). 3. Betriebssystem/Kernel: Der Bootloader laedt den Betriebssystemkern (Kernel) in den Arbeitsspeicher und uebergibt ihm die Kontrolle. 4. Initialisierung: Das Betriebssystem startet Treiber und Dienste und stellt die Benutzeranmeldung bereit.",
+        "rubric": [
+          "Firmware/POST (BIOS oder UEFI) als erster Schritt",
+          "Bootloader wird geladen (MBR bzw. EFI-Partition)",
+          "Kernel/Betriebssystem wird geladen und uebernimmt",
+          "Korrekte Reihenfolge"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-vorgehensmodell-fuer-die-neue-buchungs-app-waehlen",
+    "title": "Vorgehensmodell fuer die neue Buchungs-App waehlen",
+    "topicId": "projektmanagement",
+    "scenario": "Ein mittelstaendisches Reiseunternehmen beauftragt Ihr IT-Systemhaus mit der Entwicklung einer internen Buchungs-App. Der Auftraggeber kann die fachlichen Anforderungen noch nicht vollstaendig festlegen und wuenscht sich regelmaessig lauffaehige Zwischenstaende, um Feedback zu geben. Die Geschaeftsfuehrung Ihres Hauses verlangt vor Projektbeginn dennoch eine Aufwands- und Terminplanung. Ihr Team diskutiert, ob nach dem Wasserfallmodell oder mit Scrum gearbeitet werden soll.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "vergleichen",
+        "points": 6,
+        "prompt": "Vergleichen Sie das Wasserfallmodell und Scrum hinsichtlich Anforderungsklarheit, Ablauf/Phasen und Umgang mit Aenderungen. Nennen Sie je Modell einen typischen Einsatzfall.",
+        "modelAnswer": "Wasserfall: sequenzielles Phasenmodell (Analyse, Entwurf, Implementierung, Test, Betrieb), Phasen laufen nacheinander ab; setzt zu Beginn vollstaendig und stabil festgelegte Anforderungen voraus; spaete Aenderungen sind aufwendig/teuer. Einsatzfall: klar spezifizierte Projekte mit festen Vorgaben (z. B. behoerdliche/normgebundene Software). Scrum: iterativ-inkrementell in kurzen Sprints, nach jedem Sprint ein lauffaehiges Inkrement; Anforderungen duerfen anfangs unklar sein und werden ueber das Product Backlog laufend angepasst; Aenderungen sind jederzeit einplanbar. Einsatzfall: Projekte mit unklaren/sich aendernden Anforderungen und Wunsch nach fruehem Kundenfeedback (wie hier die Buchungs-App).",
+        "rubric": [
+          "Wasserfall = sequenziell/phasenbasiert, feste Anforderungen zu Beginn",
+          "Scrum = iterativ-inkrementell in Sprints, Anforderungen anpassbar (Backlog)",
+          "Umgang mit Aenderungen unterschieden (Wasserfall teuer/spaet vs. Scrum jederzeit)",
+          "je ein passender Einsatzfall genannt"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "begruenden",
+        "points": 4,
+        "prompt": "Begruenden Sie, welches der beiden Modelle fuer dieses Projekt geeigneter ist. Beziehen Sie sich auf zwei konkrete Angaben aus der Handlungssituation.",
+        "modelAnswer": "Scrum ist geeigneter. Begruendung 1: Der Auftraggeber kann die Anforderungen noch nicht vollstaendig festlegen - Scrum arbeitet iterativ und erlaubt es, Anforderungen ueber das Product Backlog laufend zu praezisieren und zu aendern, waehrend Wasserfall vollstaendige Anforderungen zu Beginn voraussetzt. Begruendung 2: Der Kunde wuenscht regelmaessig lauffaehige Zwischenstaende fuer Feedback - Scrum liefert nach jedem Sprint ein lauffaehiges Inkrement, das im Sprint Review begutachtet wird, sodass Feedback frueh einfliesst und das Risiko einer Fehlentwicklung sinkt.",
+        "rubric": [
+          "Entscheidung fuer Scrum klar getroffen",
+          "Bezug auf unklare/unvollstaendige Anforderungen -> iterativ/Backlog",
+          "Bezug auf gewuenschte lauffaehige Zwischenstaende -> Inkremente/Sprint Review",
+          "nachvollziehbare, fachlich korrekte Begruendung (kein blosses Nennen)"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "erklaeren",
+        "points": 3,
+        "prompt": "Die Geschaeftsfuehrung verlangt trotz Scrum eine Aufwandsplanung. Erklaeren Sie, wie in Scrum der Aufwand einzelner Anforderungen geschaetzt wird, und nennen Sie den Zweck.",
+        "modelAnswer": "In Scrum schaetzt das Entwicklungsteam den relativen Aufwand von Backlog-Eintraegen (User Stories) gemeinsam, z. B. mit Story Points und der Planning-Poker-Methode: Jedes Teammitglied bewertet verdeckt, anschliessend wird die Schaetzung diskutiert, bis ein Konsens entsteht. Geschaetzt wird relativ (Vergleich der Stories untereinander), nicht in exakten Stunden. Zweck: realistischere, teamgetragene Schaetzungen, Bestimmung der Team-Velocity und damit Grundlage fuer Sprint- und Release-/Aufwandsplanung.",
+        "rubric": [
+          "Team schaetzt gemeinsam, relativ (Story Points / Planning Poker)",
+          "Bezug auf Backlog-Eintraege / User Stories",
+          "Zweck genannt (realistische Planung, Velocity/Kapazitaet, Grundlage der Planung)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-kundendaten-in-der-cloud-auftragsverarbeitung-und-tom",
+    "title": "Kundendaten in der Cloud: Auftragsverarbeitung und TOM",
+    "topicId": "datenschutz",
+    "scenario": "Die Möbel-Handel GmbH (ca. 60 Beschäftigte) betreibt einen Online-Shop und verwaltet dort Namen, Adressen, Bestell- und Zahlungsdaten ihrer Kundinnen und Kunden. Das Unternehmen möchte den E-Mail-Versand von Bestellbestätigungen und Newslettern künftig nicht mehr selbst betreiben, sondern an einen externen Cloud-Dienstleister auslagern, der die Kundendaten auf seinen Servern speichert und verarbeitet. Die Datenschutzbeauftragte prüft das Vorhaben nach den Vorgaben der DSGVO.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "erklaeren",
+        "points": 4,
+        "prompt": "Erklären Sie, warum in diesem Fall eine Auftragsverarbeitung im Sinne der DSGVO vorliegt und welche vertragliche Regelung die Möbel-Handel GmbH mit dem Dienstleister treffen muss.",
+        "modelAnswer": "Der Cloud-Dienstleister verarbeitet personenbezogene Daten (Kundendaten) ausschließlich weisungsgebunden für die Möbel-Handel GmbH und bestimmt nicht selbst über Zweck und Mittel der Verarbeitung. Damit ist er Auftragsverarbeiter, die GmbH bleibt Verantwortliche. Nach Art. 28 DSGVO muss dazu ein schriftlicher Auftragsverarbeitungsvertrag (AVV) abgeschlossen werden. Dieser regelt u. a. Gegenstand, Dauer, Art und Zweck der Verarbeitung, die Art der Daten und Betroffenen, die Weisungsgebundenheit, Vertraulichkeit, technisch-organisatorische Maßnahmen, den Umgang mit Unterauftragnehmern sowie Löschung/Rückgabe der Daten nach Auftragsende.",
+        "rubric": [
+          "Dienstleister verarbeitet Daten weisungsgebunden -> Auftragsverarbeiter, GmbH bleibt Verantwortliche",
+          "Auftragsverarbeitungsvertrag (AVV) nach Art. 28 DSGVO nötig (schriftlich)",
+          "Mind. zwei Pflichtinhalte des AVV genannt (z. B. Zweck/Art der Daten, Weisung, TOM, Unterauftragnehmer, Löschung)"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "nennen",
+        "points": 4,
+        "prompt": "Nennen Sie vier geeignete technische oder organisatorische Maßnahmen (TOM) nach Art. 32 DSGVO, mit denen die Sicherheit der Kundendaten gewährleistet werden kann.",
+        "modelAnswer": "Beispiele: (1) Verschlüsselung der Daten bei Übertragung und Speicherung (z. B. TLS/HTTPS, verschlüsselte Datenträger). (2) Zugriffskontrolle durch Rollen- und Rechtekonzept sowie starke Authentifizierung. (3) Regelmäßige Datensicherungen (Backups) zur Sicherstellung von Verfügbarkeit und Wiederherstellbarkeit. (4) Pseudonymisierung personenbezogener Daten. Weitere: Protokollierung von Zugriffen, Firewall/Netzwerksicherheit, Schulung der Mitarbeitenden, physische Zutrittskontrolle zum Rechenzentrum.",
+        "rubric": [
+          "Verschlüsselung (Transport und/oder Speicherung) genannt",
+          "Zugriffs-/Zugangskontrolle bzw. Berechtigungskonzept genannt",
+          "Backup/Verfügbarkeit oder Pseudonymisierung genannt",
+          "Insgesamt vier korrekte, unterscheidbare TOM"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "unterscheiden",
+        "points": 4,
+        "prompt": "Unterscheiden Sie Pseudonymisierung und Anonymisierung und beurteilen Sie, welches Verfahren weiterhin dem Anwendungsbereich der DSGVO unterliegt.",
+        "modelAnswer": "Bei der Pseudonymisierung werden identifizierende Merkmale durch ein Kennzeichen (z. B. eine ID) ersetzt; über eine getrennt gespeicherte Zuordnungstabelle bzw. einen Schlüssel ist ein Personenbezug weiterhin herstellbar. Bei der Anonymisierung wird der Personenbezug dauerhaft und unwiderruflich entfernt, sodass keine Zuordnung zu einer Person mehr möglich ist. Beurteilung: Pseudonymisierte Daten gelten weiterhin als personenbezogen und unterliegen der DSGVO (sie sind nur eine Schutzmaßnahme nach Art. 32). Anonymisierte Daten sind nicht mehr personenbezogen und fallen nicht mehr unter die DSGVO.",
+        "rubric": [
+          "Pseudonymisierung: Personenbezug über Schlüssel/Zuordnung weiterhin herstellbar",
+          "Anonymisierung: Personenbezug dauerhaft/unwiderruflich entfernt",
+          "Beurteilung: pseudonymisierte Daten unterliegen weiter der DSGVO, anonymisierte nicht"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-webshop-relaunch-barrierefreiheit-datenuebertragung-und-green-it",
+    "title": "Webshop-Relaunch: Barrierefreiheit, Datenuebertragung und Green-IT",
+    "topicId": "neu-2025",
+    "scenario": "Ein mittelstaendisches Handelsunternehmen relauncht seinen Onlineshop. Die Geschaeftsfuehrung weist darauf hin, dass seit dem 28.06.2025 das Barrierefreiheitsstaerkungsgesetz (BFSG) gilt und der Shop entsprechend zugaenglich sein muss. Zusaetzlich sollen hochaufloesende Produktvideos eingebunden werden, weshalb die IT die Uebertragungszeiten prueft. Die Leitung moechte den Relaunch ausserdem moeglichst nachhaltig gestalten (Green-IT).",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "erklaeren",
+        "points": 4,
+        "prompt": "Erklaeren Sie den Begriff 'digitale Barrierefreiheit' und nennen Sie drei konkrete technische Massnahmen, mit denen der Shop barrierefreier gestaltet werden kann.",
+        "modelAnswer": "Digitale Barrierefreiheit bedeutet, Webangebote so zu gestalten, dass alle Menschen sie unabhaengig von koerperlichen oder kognitiven Einschraenkungen (z. B. Seh-, Hoer- oder motorische Behinderung) uneingeschraenkt wahrnehmen und bedienen koennen. Seit dem 28.06.2025 verpflichtet das Barrierefreiheitsstaerkungsgesetz (BFSG) u. a. Onlineshops dazu. Massnahmen: ausreichender Farbkontrast zwischen Text und Hintergrund; Alternativtexte (alt-Attribute) fuer Bilder/Produktfotos; vollstaendige Bedienbarkeit per Tastatur; klare Ueberschriftenstruktur; Untertitel fuer Videos; skalierbare/vergroesserbare Schrift.",
+        "rubric": [
+          "Definition: nutzbar fuer alle Menschen unabhaengig von Einschraenkungen",
+          "Rechts-/Kontextbezug (BFSG bzw. betroffene Zielgruppen)",
+          "Mindestens drei konkrete technische Massnahmen genannt"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "berechnen",
+        "points": 5,
+        "prompt": "Ein Produktvideo ist 300 MB gross. Der Kundenanschluss hat eine Bandbreite von 50 Mbit/s. Berechnen Sie die theoretische Downloadzeit. Berechnen Sie ausserdem die realistische Downloadzeit, wenn durch Overhead nur 80 % der Bandbreite nutzbar sind. (1 Byte = 8 Bit)",
+        "modelAnswer": "Umrechnung der Dateigroesse in Bit: 300 MB * 8 = 2400 Mbit. Theoretische Zeit = 2400 Mbit / 50 Mbit/s = 48 s. Effektive Nutzrate = 50 Mbit/s * 0,8 = 40 Mbit/s. Realistische Zeit = 2400 Mbit / 40 Mbit/s = 60 s.",
+        "rubric": [
+          "Umrechnung MB in Mbit (Faktor 8): 2400 Mbit",
+          "Theoretische Downloadzeit 48 s",
+          "Effektive Rate 40 Mbit/s und realistische Zeit 60 s"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "beurteilen",
+        "points": 4,
+        "prompt": "Zur nachhaltigen Umsetzung schlaegt die IT vor, die Videos staerker zu komprimieren und den Shop in ein zertifiziertes Green-Rechenzentrum zu verlagern. Beurteilen Sie diese beiden Massnahmen hinsichtlich Nachhaltigkeit (Green-IT).",
+        "modelAnswer": "Staerkere (verlustbehaftete) Kompression reduziert das Datenvolumen: weniger Netzlast und geringerer Energieverbrauch bei Uebertragung und Endgeraeten, zugleich sinken Traffic- und Speicherkosten und die Ladezeiten verbessern sich. Nachteil ist ein moeglicher Qualitaetsverlust der Videos. Ein Green-Rechenzentrum (Oekostrom, guter PUE-Wert, Abwaermenutzung, Virtualisierung/hohe Auslastung) senkt den CO2-Fussabdruck des Betriebs. Nachteil ist der einmalige Migrationsaufwand. Insgesamt sind beide Massnahmen sinnvoll, da sie Energieverbrauch, CO2-Ausstoss und Betriebskosten dauerhaft senken; die Kompression sollte so gewaehlt werden, dass die Produktdarstellung akzeptabel bleibt.",
+        "rubric": [
+          "Nachhaltigkeitswirkung der Kompression (weniger Datenvolumen/Energie/Kosten)",
+          "Nachhaltigkeitswirkung Green-RZ (Oekostrom/PUE/CO2)",
+          "Abwaegung mit mind. einem Nachteil und begruendetem Gesamturteil"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-modul-lagerverwaltung-oop-grundlagen-und-pseudocode",
+    "title": "Modul Lagerverwaltung: OOP-Grundlagen und Pseudocode",
+    "topicId": "softwareentwicklung",
+    "scenario": "In einem Softwareprojekt entwickelt Ihr Team ein Modul zur Verwaltung von Artikeln in einem Lagerverwaltungssystem. Ein Auszubildender erstellt dazu eine Klasse 'Artikel', die u. a. die Eigenschaften 'artikelnummer', 'bezeichnung', 'lagerbestand' und 'mindestbestand' abbildet. Fuer jeden real vorhandenen Artikel wird zur Laufzeit ein eigenes Objekt erzeugt. Ausserdem soll eine Funktion den Warenausgang buchen und rechtzeitig vor Lieferengpaessen warnen.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "erklaeren",
+        "points": 5,
+        "prompt": "Erklaeren Sie die Begriffe Klasse, Objekt, Attribut, Methode und Konstruktor und ordnen Sie jedem Begriff ein passendes Beispiel aus dem beschriebenen Lagermodul zu.",
+        "modelAnswer": "Klasse: Bauplan/Vorlage, der Struktur (Attribute) und Verhalten (Methoden) festlegt - hier die Klasse 'Artikel'. Objekt: konkrete Auspraegung (Instanz) einer Klasse zur Laufzeit - z. B. das Objekt fuer die 'Bohrmaschine A1'. Attribut: Eigenschaft/Datenfeld eines Objekts, das dessen Zustand speichert - z. B. 'lagerbestand' oder 'mindestbestand'. Methode: Funktion innerhalb der Klasse, die das Verhalten beschreibt - z. B. 'bestandReduzieren()'. Konstruktor: spezielle Methode, die beim Erzeugen eines Objekts automatisch aufgerufen wird und die Attribute mit Anfangswerten initialisiert - z. B. setzt beim Anlegen eines Artikels Artikelnummer, Bezeichnung und Anfangsbestand.",
+        "rubric": [
+          "Klasse als Bauplan/Vorlage (mit Beispiel Artikel)",
+          "Objekt als konkrete Instanz zur Laufzeit (mit Beispiel)",
+          "Attribut als Eigenschaft/Datenfeld (z. B. lagerbestand)",
+          "Methode als Verhalten/Funktion (z. B. bestandReduzieren)",
+          "Konstruktor initialisiert Attribute beim Erzeugen"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "begruenden",
+        "points": 3,
+        "prompt": "Der Auszubildende deklariert das Attribut 'lagerbestand' als private und stellt den Zugriff nur ueber Methoden bereit. Begruenden Sie diese Entscheidung.",
+        "modelAnswer": "Mit der Sichtbarkeit private wird das Attribut gekapselt (Datenkapselung): Es kann nicht von aussen direkt gelesen oder veraendert werden. Der Zugriff erfolgt ausschliesslich ueber kontrollierte Methoden, die Werte pruefen koennen (z. B. Verhindern eines negativen Bestands oder unzulaessiger Buchungen). Dadurch bleibt der Objektzustand konsistent, die interne Umsetzung kann spaeter geaendert werden, ohne den restlichen Code zu beeintraechtigen. Bei public waere ein direkter, unkontrollierter Zugriff moeglich, der zu fehlerhaften/inkonsistenten Daten fuehren koennte.",
+        "rubric": [
+          "private bewirkt Kapselung/kein direkter Zugriff von aussen",
+          "Zugriff nur ueber Methoden ermoeglicht Pruefung/Validierung (z. B. kein negativer Bestand)",
+          "Vorteil: Konsistenz/Wartbarkeit bzw. Abgrenzung zu public"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "erstellen",
+        "points": 5,
+        "prompt": "Erstellen Sie den Pseudocode der Methode 'bestandReduzieren(menge)': Der Bestand soll um 'menge' verringert werden, wenn genuegend Bestand vorhanden ist; andernfalls ist eine Fehlermeldung auszugeben. Faellt der Bestand nach der Buchung unter 'mindestbestand', soll zusaetzlich eine Warnung ausgegeben werden.",
+        "modelAnswer": "FUNKTION bestandReduzieren(menge)\n  WENN menge <= lagerbestand DANN\n    lagerbestand = lagerbestand - menge\n    WENN lagerbestand < mindestbestand DANN\n      AUSGABE \"Warnung: Mindestbestand unterschritten\"\n    ENDE WENN\n  SONST\n    AUSGABE \"Fehler: Nicht genuegend Bestand vorhanden\"\n  ENDE WENN\nENDE FUNKTION",
+        "rubric": [
+          "Auswahl/Verzweigung prueft menge <= lagerbestand (SONST-Zweig mit Fehlermeldung)",
+          "Korrekte Aktualisierung lagerbestand = lagerbestand - menge",
+          "Verschachtelte Pruefung lagerbestand < mindestbestand mit Warnungsausgabe",
+          "Nachvollziehbarer, syntaktisch sauberer Pseudocode (WENN/DANN/SONST/ENDE)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-softwareprojekt-vertragsart-teststufen-und-fehlerarten",
+    "title": "Softwareprojekt: Vertragsart, Teststufen und Fehlerarten",
+    "topicId": "qs-vertraege",
+    "scenario": "Die byteWerk GmbH (IT-Systemhaus) entwickelt fuer einen Handelskunden ein neues Warenwirtschafts-Modul. Vertraglich ist die fertige, lauffaehige Software als Ergebnis vereinbart; der Kunde nimmt sie am Ende ab. Nach der Einfuehrung schliesst der Kunde zusaetzlich einen laufenden Support-Vertrag, in dem byteWerk ein monatliches Betreuungskontingent bereitstellt, ohne einen bestimmten Erfolg zuzusichern. Waehrend der Entwicklung sichert das Team die Qualitaet ueber mehrere Teststufen ab.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "begruenden",
+        "points": 5,
+        "prompt": "Ordnen Sie die Entwicklung des Warenwirtschafts-Moduls und den spaeteren Support-Vertrag jeweils der passenden Vertragsart nach BGB zu und begruenden Sie Ihre Zuordnung.",
+        "modelAnswer": "Die Entwicklung ist ein Werkvertrag: Geschuldet ist ein konkreter Erfolg (die fertige, lauffaehige Software), der vom Kunden abgenommen wird; erst mit der Abnahme wird die Verguetung faellig und die Gewaehrleistung greift. Der Support-Vertrag ist ein Dienstvertrag: Geschuldet ist nur die Taetigkeit bzw. das Bereitstellen des Betreuungskontingents, nicht ein bestimmter Erfolg; die Verguetung erfolgt fuer die geleistete Arbeitszeit, unabhaengig vom Ergebnis.",
+        "rubric": [
+          "Entwicklung = Werkvertrag",
+          "Begruendung Werkvertrag: Erfolg/fertiges Werk geschuldet, Abnahme",
+          "Support = Dienstvertrag",
+          "Begruendung Dienstvertrag: Taetigkeit/kein Erfolg geschuldet"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "beschreiben",
+        "points": 4,
+        "prompt": "Beschreiben Sie die vier Teststufen in ihrer korrekten Reihenfolge, die byteWerk vor der Uebergabe durchlaeuft.",
+        "modelAnswer": "1. Unit-/Komponententest: einzelne Bausteine (z. B. eine Funktion/Klasse) werden isoliert geprueft. 2. Integrationstest: das Zusammenspiel mehrerer Komponenten/Schnittstellen wird geprueft. 3. Systemtest: das komplette System wird gegen die Anforderungen in einer produktionsnahen Umgebung getestet. 4. Abnahmetest: der Kunde prueft, ob die Software seine Anforderungen erfuellt, und nimmt sie ab.",
+        "rubric": [
+          "Unit-/Komponententest zuerst (einzelne Bausteine)",
+          "Integrationstest (Zusammenspiel/Schnittstellen)",
+          "Systemtest (Gesamtsystem gegen Anforderungen)",
+          "Abnahmetest durch Kunden, korrekte Reihenfolge"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "erklaeren",
+        "points": 4,
+        "prompt": "Erklaeren Sie die drei Fehlerarten Syntaxfehler, Laufzeitfehler und Logikfehler und geben Sie je ein Beispiel an.",
+        "modelAnswer": "Syntaxfehler: Verstoss gegen die Sprachregeln, wird schon vom Compiler/Interpreter erkannt, das Programm laeuft gar nicht (z. B. fehlendes Semikolon oder falsch geschriebenes Schluesselwort). Laufzeitfehler: tritt erst waehrend der Ausfuehrung auf und bricht das Programm ab (z. B. Division durch Null oder Zugriff auf ein nicht vorhandenes Array-Element). Logikfehler: das Programm laeuft fehlerfrei, liefert aber ein falsches Ergebnis, weil die Denk-/Ablauflogik falsch ist (z. B. + statt * bei einer Preisberechnung).",
+        "rubric": [
+          "Syntaxfehler: Regelverstoss, vom Compiler erkannt + Beispiel",
+          "Laufzeitfehler: Abbruch waehrend Ausfuehrung + Beispiel",
+          "Logikfehler: laeuft, aber falsches Ergebnis + Beispiel"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-markteintritt-praesentieren-marktform-kommunikation-visualisierung",
+    "title": "Markteintritt praesentieren: Marktform, Kommunikation & Visualisierung",
+    "topicId": "kommunikation",
+    "scenario": "Sie sind Auszubildende/r in einem IT-Systemhaus. Die Geschaeftsfuehrung erwaegt, einen neuen Cloud-Backup-Dienst fuer kleine Handwerksbetriebe anzubieten, und beauftragt Sie mit einer kurzen Praesentation zur Marktlage. Ihre Recherche ergibt: In der Region bieten insgesamt drei etwa gleich grosse Anbieter einen vergleichbaren Dienst an, dem eine grosse Zahl potenzieller Kundenbetriebe (Nachfrager) gegenuebersteht. Die Praesentation halten Sie vor der Geschaeftsfuehrung und der Vertriebsleitung.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "bestimmen",
+        "points": 4,
+        "prompt": "Bestimmen Sie die vorliegende Marktform anhand der Anzahl von Anbietern und Nachfragern und begruenden Sie Ihre Einordnung mit Bezug auf Angebot und Nachfrage.",
+        "modelAnswer": "Es handelt sich um ein Angebotsoligopol: Wenige Anbieter (drei) stehen vielen Nachfragern (zahlreiche Handwerksbetriebe) gegenueber. Auf der Angebotsseite bestimmen also nur wenige Marktteilnehmer das Angebot, waehrend die Nachfrage von vielen ausgeht. Fuer das Systemhaus bedeutet das: Der einzelne Anbieter hat einen gewissen Preis-/Gestaltungsspielraum, muss aber das Verhalten der wenigen Konkurrenten stark beachten (gegenseitige Abhaengigkeit).",
+        "rubric": [
+          "Marktform korrekt: (Angebots-)Oligopol",
+          "Begruendung: wenige Anbieter vs. viele Nachfrager",
+          "Bezug auf Angebot/Nachfrage bzw. Konsequenz (Konkurrenzbeachtung/Preisspielraum)"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "erklaeren",
+        "points": 5,
+        "prompt": "Erklaeren Sie drei Regeln bzw. Grundsaetze, die Sie fuer eine gelungene, empfaengerorientierte Praesentation vor der Geschaeftsfuehrung beachten sollten.",
+        "modelAnswer": "1) Empfaenger-/Zielgruppenorientierung: Inhalt und Sprache an das Vorwissen und die Interessen der Geschaeftsfuehrung anpassen (Fokus auf Nutzen, Kosten, Marktchance statt technischer Details). 2) Klare Struktur: Roter Faden mit Einleitung, Hauptteil und Schluss/Handlungsempfehlung, damit die Kernaussage nachvollziehbar bleibt. 3) Verstaendliche, sachliche Ausdrucksweise: kurze Saetze, Fachbegriffe erklaeren, ruhige Koerpersprache und Blickkontakt, um Glaubwuerdigkeit und Aufmerksamkeit zu sichern. (Weitere moegliche Regeln: Visualisierung unterstuetzend einsetzen, Zeitrahmen einhalten, Rueckfragen zulassen.)",
+        "rubric": [
+          "Empfaenger-/Zielgruppenorientierung genannt und erklaert",
+          "Klare Struktur / roter Faden erklaert",
+          "Verstaendliche Sprache bzw. Koerpersprache/Auftreten erklaert",
+          "Regeln jeweils sinnvoll erlaeutert, nicht nur genannt"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "begruenden",
+        "points": 4,
+        "prompt": "Sie moechten die Entwicklung der Marktanteile der drei Anbieter ueber die letzten fuenf Jahre darstellen. Waehlen Sie einen geeigneten Diagrammtyp und begruenden Sie Ihre Wahl.",
+        "modelAnswer": "Geeignet ist ein Liniendiagramm, da es die zeitliche Entwicklung (fuenf Jahre) mehrerer Groessen (drei Anbieter) uebersichtlich als Verlauf/Trend darstellt; Steigungen und Ueberholvorgaenge sind sofort erkennbar. Alternativ waere ein gruppiertes/gestapeltes Saeulendiagramm moeglich, um die Anteile je Jahr zu vergleichen. Ein Kreisdiagramm ist hier ungeeignet, weil es nur einen einzelnen Zeitpunkt und keine Entwicklung ueber die Zeit abbilden kann.",
+        "rubric": [
+          "Geeigneter Diagrammtyp gewaehlt (Linien- oder Saeulendiagramm)",
+          "Begruendung: Darstellung von Entwicklung/Trend ueber Zeit",
+          "Bezug: mehrere Anbieter/Reihen vergleichbar (bzw. Kreisdiagramm als ungeeignet erkannt)"
+        ]
+      }
+    ]
+  }
+]

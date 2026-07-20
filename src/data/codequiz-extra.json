@@ -1,0 +1,90 @@
+[
+  {
+    "id": "cq-vokale-im-wort-zaehlen",
+    "title": "Vokale im Wort zaehlen",
+    "pseudocode": "wort = \"Fachinformatiker\"\nanzahl = 0\nFUER JEDES zeichen IN wort\n    WENN zeichen IN \"aeiou\" DANN\n        anzahl = anzahl + 1\n    ENDE WENN\nENDE FUER\nAUSGABE anzahl",
+    "java": "String wort = \"Fachinformatiker\";\nint anzahl = 0;\nfor (int i = 0; i < wort.length(); i++) {\n    char c = wort.charAt(i);\n    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {\n        anzahl++;\n    }\n}\nSystem.out.println(anzahl);",
+    "python": "wort = \"Fachinformatiker\"\nanzahl = 0\nfor zeichen in wort:\n    if zeichen in \"aeiou\":\n        anzahl += 1\nprint(anzahl)",
+    "output": "6"
+  },
+  {
+    "id": "cq-binaerzahl-in-dezimal-umrechnen",
+    "title": "Binaerzahl in Dezimal umrechnen",
+    "pseudocode": "bits = [1, 0, 1, 1]\nwert = 0\nFUER JEDES b IN bits\n    wert = wert * 2 + b\nENDE FUER\nAUSGABE wert",
+    "java": "int[] bits = {1, 0, 1, 1};\nint wert = 0;\nfor (int i = 0; i < bits.length; i++) {\n    wert = wert * 2 + bits[i];\n}\nSystem.out.println(wert);",
+    "python": "bits = [1, 0, 1, 1]\nwert = 0\nfor b in bits:\n    wert = wert * 2 + b\nprint(wert)",
+    "output": "11"
+  },
+  {
+    "id": "cq-dateirechte-in-oktalform",
+    "title": "Dateirechte in Oktalform",
+    "pseudocode": "rechte = [[1,1,1], [1,0,1], [0,0,0]]\nergebnis = \"\"\nFUER JEDES zeile IN rechte\n    wert = zeile[0] * 4 + zeile[1] * 2 + zeile[2] * 1\n    ergebnis = ergebnis + TEXT(wert)\nENDE FUER\nAUSGABE ergebnis",
+    "java": "int[][] rechte = {{1,1,1}, {1,0,1}, {0,0,0}};\nString ergebnis = \"\";\nfor (int i = 0; i < rechte.length; i++) {\n    int wert = rechte[i][0] * 4 + rechte[i][1] * 2 + rechte[i][2] * 1;\n    ergebnis = ergebnis + wert;\n}\nSystem.out.println(ergebnis);",
+    "python": "rechte = [[1,1,1], [1,0,1], [0,0,0]]\nergebnis = \"\"\nfor zeile in rechte:\n    wert = zeile[0] * 4 + zeile[1] * 2 + zeile[2] * 1\n    ergebnis = ergebnis + str(wert)\nprint(ergebnis)",
+    "output": "750"
+  },
+  {
+    "id": "cq-zahlbetrag-nach-skonto",
+    "title": "Zahlbetrag nach Skonto",
+    "pseudocode": "betrag = 2000\nskonto = betrag * 3 / 100\nzahlbetrag = betrag - skonto\nAUSGABE zahlbetrag",
+    "java": "int betrag = 2000;\nint skonto = betrag * 3 / 100;\nint zahlbetrag = betrag - skonto;\nSystem.out.println(zahlbetrag);",
+    "python": "betrag = 2000\nskonto = betrag * 3 // 100\nzahlbetrag = betrag - skonto\nprint(zahlbetrag)",
+    "output": "1940"
+  },
+  {
+    "id": "cq-nutzwert-aus-gewichten-berechnen",
+    "title": "Nutzwert aus Gewichten berechnen",
+    "pseudocode": "gewichte = [5, 3, 2]\nbewertungen = [4, 3, 5]\nnutzwert = 0\nFUER i VON 0 BIS 2\n    nutzwert = nutzwert + gewichte[i] * bewertungen[i]\nENDE FUER\nAUSGABE nutzwert",
+    "java": "int[] gewichte = {5, 3, 2};\nint[] bewertungen = {4, 3, 5};\nint nutzwert = 0;\nfor (int i = 0; i <= 2; i++) {\n    nutzwert = nutzwert + gewichte[i] * bewertungen[i];\n}\nSystem.out.println(nutzwert);",
+    "python": "gewichte = [5, 3, 2]\nbewertungen = [4, 3, 5]\nnutzwert = 0\nfor i in range(0, 3):\n    nutzwert += gewichte[i] * bewertungen[i]\nprint(nutzwert)",
+    "output": "39"
+  },
+  {
+    "id": "cq-nutzbare-hosts-im-subnetz",
+    "title": "Nutzbare Hosts im Subnetz",
+    "pseudocode": "hostbits = 5\nzweierpotenz = 1\nFUER i VON 1 BIS hostbits\n    zweierpotenz = zweierpotenz * 2\nENDE FUER\nhosts = zweierpotenz - 2\nAUSGABE hosts",
+    "java": "int hostbits = 5;\nint zweierpotenz = 1;\nfor (int i = 1; i <= hostbits; i++) {\n    zweierpotenz = zweierpotenz * 2;\n}\nint hosts = zweierpotenz - 2;\nSystem.out.println(hosts);",
+    "python": "hostbits = 5\nzweierpotenz = 1\nfor i in range(1, hostbits + 1):\n    zweierpotenz = zweierpotenz * 2\nhosts = zweierpotenz - 2\nprint(hosts)",
+    "output": "30"
+  },
+  {
+    "id": "cq-durchschnittliche-ping-zeit",
+    "title": "Durchschnittliche Ping-Zeit",
+    "pseudocode": "zeiten = [20, 30, 25, 45]\nsumme = 0\nFUER JEDES z IN zeiten\n    summe = summe + z\nENDE FUER\ndurchschnitt = summe / 4\nAUSGABE durchschnitt",
+    "java": "int[] zeiten = {20, 30, 25, 45};\nint summe = 0;\nfor (int i = 0; i < zeiten.length; i++) {\n    summe = summe + zeiten[i];\n}\nint durchschnitt = summe / 4;\nSystem.out.println(durchschnitt);",
+    "python": "zeiten = [20, 30, 25, 45]\nsumme = 0\nfor z in zeiten:\n    summe += z\ndurchschnitt = summe // 4\nprint(durchschnitt)",
+    "output": "30"
+  },
+  {
+    "id": "cq-paritaetsbit-bestimmen",
+    "title": "Paritaetsbit bestimmen",
+    "pseudocode": "bits = [1, 0, 1, 1, 0, 0]\neinsen = 0\nFUER JEDES b IN bits\n    WENN b == 1 DANN\n        einsen = einsen + 1\n    ENDE WENN\nENDE FUER\nparitaet = einsen MOD 2\nAUSGABE paritaet",
+    "java": "int[] bits = {1, 0, 1, 1, 0, 0};\nint einsen = 0;\nfor (int i = 0; i < bits.length; i++) {\n    if (bits[i] == 1) {\n        einsen++;\n    }\n}\nint paritaet = einsen % 2;\nSystem.out.println(paritaet);",
+    "python": "bits = [1, 0, 1, 1, 0, 0]\neinsen = 0\nfor b in bits:\n    if b == 1:\n        einsen += 1\nparitaet = einsen % 2\nprint(paritaet)",
+    "output": "1"
+  },
+  {
+    "id": "cq-datenmenge-inkrementeller-backups",
+    "title": "Datenmenge inkrementeller Backups",
+    "pseudocode": "gesamt = 100\nFUER i VON 1 BIS 5\n    gesamt = gesamt + 8\nENDE FUER\nAUSGABE gesamt",
+    "java": "int gesamt = 100;\nfor (int i = 1; i <= 5; i++) {\n    gesamt = gesamt + 8;\n}\nSystem.out.println(gesamt);",
+    "python": "gesamt = 100\nfor i in range(1, 6):\n    gesamt += 8\nprint(gesamt)",
+    "output": "140"
+  },
+  {
+    "id": "cq-gesamtwert-eines-artikels-klasse",
+    "title": "Gesamtwert eines Artikels (Klasse)",
+    "pseudocode": "KLASSE Artikel\n    ATTRIBUT menge\n    ATTRIBUT preis\n    KONSTRUKTOR(m, p)\n        menge = m\n        preis = p\n    METHODE gesamtwert()\n        RUECKGABE menge * preis\nENDE KLASSE\n\na = NEU Artikel(3, 50)\nAUSGABE a.gesamtwert()",
+    "java": "class Artikel {\n    int menge;\n    int preis;\n    Artikel(int m, int p) {\n        menge = m;\n        preis = p;\n    }\n    int gesamtwert() {\n        return menge * preis;\n    }\n}\n\nArtikel a = new Artikel(3, 50);\nSystem.out.println(a.gesamtwert());",
+    "python": "class Artikel:\n    def __init__(self, m, p):\n        self.menge = m\n        self.preis = p\n    def gesamtwert(self):\n        return self.menge * self.preis\n\na = Artikel(3, 50)\nprint(a.gesamtwert())",
+    "output": "150"
+  },
+  {
+    "id": "cq-passwoerter-mit-mindestlaenge-zaehlen",
+    "title": "Passwoerter mit Mindestlaenge zaehlen",
+    "pseudocode": "laengen = [4, 8, 12, 6]\nanzahl = 0\nFUER JEDES l IN laengen\n    WENN l >= 8 DANN\n        anzahl = anzahl + 1\n    ENDE WENN\nENDE FUER\nAUSGABE anzahl",
+    "java": "int[] laengen = {4, 8, 12, 6};\nint anzahl = 0;\nfor (int i = 0; i < laengen.length; i++) {\n    if (laengen[i] >= 8) {\n        anzahl++;\n    }\n}\nSystem.out.println(anzahl);",
+    "python": "laengen = [4, 8, 12, 6]\nanzahl = 0\nfor l in laengen:\n    if l >= 8:\n        anzahl += 1\nprint(anzahl)",
+    "output": "2"
+  }
+]

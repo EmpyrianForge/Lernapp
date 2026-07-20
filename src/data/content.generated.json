@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-20T08:06:30.604Z",
-  "count": 241,
+  "generatedAt": "2026-07-20T12:54:28.509Z",
+  "count": 304,
   "items": [
     {
       "id": "hardware--von-neumann-architektur-nenne-die-funktionalen-komponenten-und-ihr",
@@ -383,6 +383,82 @@
       "source": "Lernapp/Karteikarten/01-Hardware.md"
     },
     {
+      "id": "hardware--erklaere-die-drei-usv-klassen-nach-iec-62040-3",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere die drei USV-Klassen nach IEC 62040-3 (VFD, VI, VFI) und nenne je einen typischen Einsatzbereich.",
+      "back": "VFD (Voltage and Frequency Dependent, Offline/Standby): schaltet erst bei Ausfall auf Batterie um, kurze Umschaltzeit, kein Schutz vor Spannungsschwankungen - fuer unkritische Einzel-PCs/Heim-PCs. VI (Voltage Independent, Line-Interactive): gleicht Spannungsschwankungen ueber AVR aus, Frequenz bleibt netzabhaengig - fuer Server/Netzwerktechnik im KMU. VFI (Voltage and Frequency Independent, Online/Doppelwandler): Verbraucher wird staendig aus Wechselrichter versorgt (Dauerbetrieb), unterbrechungsfrei ohne Umschaltzeit, entkoppelt Spannung UND Frequenz - fuer Rechenzentren/kritische Server.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--was-bewirken-raid-0-raid-1-und-raid-5",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bewirken RAID 0, RAID 1 und RAID 5 jeweils bezueglich Verfuegbarkeit, Kapazitaet und Mindestanzahl Platten?",
+      "back": "RAID 0 (Striping): verteilt Daten auf >=2 Platten, hoehere Geschwindigkeit, volle Kapazitaet (n Platten nutzbar), KEINE Redundanz - Ausfall einer Platte = Totalverlust. RAID 1 (Mirroring): >=2 Platten, Daten gespiegelt, nur halbe Kapazitaet (n/2), vertraegt Ausfall einer Platte. RAID 5 (Striping mit verteilter Paritaet): >=3 Platten, Nutzkapazitaet (n-1) Platten, vertraegt Ausfall genau einer Platte, gutes Verhaeltnis Kapazitaet/Sicherheit. Wichtig: RAID ersetzt kein Backup (Schutz vor Hardwareausfall, nicht vor Loeschen/Ransomware).",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--nenne-die-zentralen-anforderungen-an-einen-ergonomischen-bildschirmarbeitsplatz-nach",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die zentralen Anforderungen an einen ergonomischen Bildschirmarbeitsplatz nach ArbStaettV/ASR A3.4 (Beleuchtung, Sehabstand, Bildschirm, Sitzhaltung).",
+      "back": "Beleuchtung: mind. 500 lx am Arbeitsplatz (Buero), blend- und reflexionsfrei, Bildschirm im 90-Grad-Winkel zum Fenster. Sehabstand zum Monitor: ca. 50-70 cm. Oberste Bildschirmzeile in oder leicht unter Augenhoehe, Blick leicht nach unten geneigt. Sitzhaltung: Ober-/Unterarme sowie Ober-/Unterschenkel jeweils ca. 90-Grad-Winkel, Fuesse flach am Boden. Verstellbarer Stuhl und Tisch, ausreichend Beinraum, matte Oberflaechen gegen Reflexionen. Ziel: Vermeidung von Zwangshaltungen und Ueberlastung (Gesundheitsschutz).",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--unterscheide-ssd-und-hdd-hinsichtlich-funktionsprinzip-geschwindigkeit-mechanischer-empfindlichkeit",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide SSD und HDD hinsichtlich Funktionsprinzip, Geschwindigkeit, mechanischer Empfindlichkeit und typischen Einsatzgruenden.",
+      "back": "HDD (Hard Disk Drive): magnetische, rotierende Scheiben mit beweglichem Schreib-/Lesekopf - mechanisch, dadurch stossempfindlich, hoehere Zugriffszeiten/geringerer Durchsatz, aber guenstiger pro GB und hohe Kapazitaeten (Massenspeicher/Archiv/Backup). SSD (Solid State Drive): Flash-Speicher ohne bewegliche Teile - sehr schnelle Zugriffszeiten und hoher Durchsatz (besonders als NVMe ueber PCIe), robust gegen Stoesse, geraeuschlos, geringerer Stromverbrauch, teurer pro GB, begrenzte Schreibzyklen. Einsatz: SSD als System-/Anwendungslaufwerk fuer Geschwindigkeit, HDD fuer grosse, kostenguenstige Datenmengen.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
       "id": "netzwerke--was-ist-der-unterschied-zwischen-dem-iso-osi-referenzmodell",
       "topicId": "netzwerke",
       "type": "flashcard",
@@ -744,6 +820,82 @@
       "source": "Lernapp/Karteikarten/02-Netzwerke.md"
     },
     {
+      "id": "netzwerke--ein-netz-192-168-10-0-24-soll-in",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ein Netz 192.168.10.0/24 soll in mindestens 4 gleich grosse Subnetze geteilt werden. Nenne neue Praefixlaenge, Subnetzmaske, Hosts pro Subnetz und die Netz-ID des 3. Subnetzes.",
+      "back": "4 Subnetze brauchen 2 zusaetzliche Bits (2^2=4), also Praefix /26. Subnetzmaske: 255.255.255.192. Blockgroesse 64. Hosts je Subnetz: 2^6 - 2 = 62 nutzbare Adressen. Subnetze: .0, .64, .128, .192 -> 3. Subnetz = 192.168.10.128/26 (nutzbar .129-.190, Broadcast .191).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--beschreibe-den-dhcp-ablauf-dora-und-nenne-ueber-welche",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Beschreibe den DHCP-Ablauf DORA und nenne, ueber welche Adressierung Discover und Offer laufen.",
+      "back": "DORA = Discover, Offer, Request, Acknowledge. 1) Discover: Client sendet Broadcast (255.255.255.255), da er noch keine IP hat. 2) Offer: Server bietet IP-Konfiguration an (Adresse, Maske, Gateway, DNS, Lease). 3) Request: Client fordert das gewaehlte Angebot per Broadcast an (auch bei mehreren Servern). 4) Acknowledge: Server bestaetigt die Zuweisung (Lease). Ports: Server 67, Client 68 (UDP).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--wozu-dient-nat-und-warum-ist-es-fuer-ipv4",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wozu dient NAT und warum ist es fuer IPv4 wichtig? Grenze zu IPv6 ab.",
+      "back": "NAT (Network Address Translation) uebersetzt private IP-Adressen (z. B. 192.168.x.x) in eine oeffentliche Adresse am Router. Meist PAT/Masquerading: viele interne Geraete teilen sich eine oeffentliche IP, unterschieden ueber Portnummern. Wichtig, weil IPv4-Adressen knapp sind und so viele Hosts hinter einer oeffentlichen Adresse arbeiten. IPv6 hat durch den riesigen Adressraum (128 Bit) genug globale Adressen, daher wird NAT dort in der Regel nicht mehr benoetigt.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--erklaere-den-unterschied-zwischen-kollisionsdomaene-und-broadcastdomaene-und-wie",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Unterschied zwischen Kollisionsdomaene und Broadcastdomaene und wie Switch bzw. Router diese beeinflussen.",
+      "back": "Kollisionsdomaene: Bereich, in dem gleichzeitig gesendete Frames kollidieren koennen. Ein Switch trennt Kollisionsdomaenen pro Port (jeder Port = eigene Kollisionsdomaene, Vollduplex), ein Hub nicht. Broadcastdomaene: Bereich, den ein Broadcast erreicht. Ein Switch leitet Broadcasts an alle Ports weiter (eine Broadcastdomaene), ein Router trennt Broadcastdomaenen (leitet Broadcasts nicht weiter). VLANs teilen einen Switch ebenfalls in mehrere Broadcastdomaenen.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
       "id": "wirtschaftlichkeit--kostenarten-wie-unterscheiden-sich-fixe-und-variable-kosten-nenne",
       "topicId": "wirtschaftlichkeit",
       "type": "flashcard",
@@ -1083,6 +1235,82 @@
       "points": null,
       "front": "Welche Kostenbestandteile fliessen in den jaehrlichen Rueckfluss (Cashflow) einer Investition ein?",
       "back": "Der jaehrliche Rueckfluss = Gewinn (nach Steuern) + Abschreibungen. Abschreibungen werden zurueckgerechnet, da sie Aufwand, aber keine Auszahlung sind — dieser Betrag steht fuer die Amortisationsrechnung zur Verfuegung.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--beschreibe-das-rechenschema-zur-ermittlung-des-bezugspreises-einstandspreises-beim",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Beschreibe das Rechenschema zur Ermittlung des Bezugspreises (Einstandspreises) beim quantitativen Angebotsvergleich.",
+      "back": "Listeneinkaufspreis - Lieferrabatt = Zieleinkaufspreis; - Lieferskonto = Bareinkaufspreis; + Bezugskosten (z. B. Fracht, Verpackung, Versicherung) = Bezugspreis (Einstandspreis). Verglichen wird der Bezugspreis, nicht der Listenpreis, da nur er die tatsaechlichen Beschaffungskosten abbildet.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--erklaere-den-ablauf-einer-nutzwertanalyse-und-wozu-sie-beim",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Ablauf einer Nutzwertanalyse und wozu sie beim Angebotsvergleich dient.",
+      "back": "Sie bewertet Angebote nach nicht-monetaeren (qualitativen) Kriterien. Schritte: 1) Kriterien festlegen (z. B. Service, Qualitaet, Lieferzeit), 2) Kriterien gewichten (Summe der Gewichte = 100 %), 3) je Angebot Punkte pro Kriterium vergeben, 4) Teilnutzen = Punkte x Gewicht, 5) Gesamtnutzwert = Summe der Teilnutzen. Das Angebot mit dem hoechsten Nutzwert gewinnt. Sinnvoll, wenn nicht allein der Preis entscheidet.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--unterscheide-amortisationszeit-und-roi-nenne-je-die-formel",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide Amortisationszeit und ROI. Nenne je die Formel.",
+      "back": "Amortisationszeit (Payback): Zeitraum, bis eine Investition durch Rueckfluesse gedeckt ist. Formel: Amortisationszeit = Investitionsbetrag / jaehrlicher Rueckfluss (Gewinn + Abschreibungen) -> Ergebnis in Jahren, je kuerzer desto besser. ROI (Return on Investment): Rentabilitaet in Prozent. Formel: ROI = (Gewinn / investiertes Kapital) x 100. Amortisation misst die Dauer, ROI misst die prozentuale Verzinsung.",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--was-umfasst-der-tco-ansatz-und-warum-ist-der",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was umfasst der TCO-Ansatz und warum ist der Anschaffungspreis allein irrefuehrend?",
+      "back": "TCO (Total Cost of Ownership) erfasst alle Kosten ueber den gesamten Lebenszyklus, nicht nur den Kaufpreis. Direkte Kosten: Anschaffung, Software/Lizenzen, Installation. Laufende/indirekte Kosten: Energie/Strom, Wartung, Support, Schulung, Administration, Ausfall, Entsorgung. Ein guenstiges Geraet kann durch hohen Stromverbrauch oder teure Wartung insgesamt teurer sein -> nur die Gesamtkosten erlauben eine wirtschaftlich korrekte Entscheidung.",
       "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
     },
     {
@@ -1466,6 +1694,82 @@
       "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
     },
     {
+      "id": "projektmanagement--erklaere-in-der-netzplantechnik-den-unterschied-zwischen-freiem-und",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere in der Netzplantechnik den Unterschied zwischen freiem und gesamtem Puffer (GP vs. FP) und wie man beide berechnet.",
+      "back": "Gesamtpuffer (GP) = SAZ - FAZ (bzw. SEZ - FEZ): Zeit, um die ein Vorgang verschoben/verlaengert werden kann, ohne das Projektende zu gefaehrden (verbraucht aber Puffer nachfolgender Vorgaenge). Freier Puffer (FP) = FAZ(kleinster Nachfolger) - FEZ: Zeit, um die ein Vorgang verschoben werden kann, ohne den fruehesten Anfang eines Nachfolgers zu beeinflussen. Es gilt FP <= GP. Vorgaenge auf dem kritischen Pfad haben GP = 0.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wie-berechnet-man-bei-der-aufwandsschaetzung-nach-der-drei",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie berechnet man bei der Aufwandsschaetzung nach der Drei-Zeiten-Methode (PERT) den erwarteten Aufwand, und warum ist diese Methode dem einfachen Mittelwert ueberlegen?",
+      "back": "Erwarteter Wert te = (O + 4*M + P) / 6, mit O = optimistisch, M = wahrscheinlichster (Most likely), P = pessimistisch. Der wahrscheinlichste Wert wird mit 4 gewichtet, die Extremwerte je mit 1. Vorteil gegenueber einfachem Mittel: Die staerkere Gewichtung des realistischen Werts liefert eine ausgewogenere Schaetzung und daempft den Einfluss extremer Ausreisser; zusaetzlich laesst sich die Streuung/Unsicherheit ueber die Standardabweichung (P-O)/6 abschaetzen.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--nenne-die-5-teamphasen-nach-tuckman-in-richtiger-reihenfolge",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die 5 Teamphasen nach Tuckman in richtiger Reihenfolge und charakterisiere jede kurz.",
+      "back": "1. Forming: Orientierung, hoefliches Kennenlernen, Unsicherheit, Rollen unklar. 2. Storming: Konflikte, Machtkaempfe, Kritik, Positionierung. 3. Norming: Regeln/Normen entstehen, Zusammenarbeit festigt sich, Rollen klaeren sich. 4. Performing: leistungsfaehiges, selbstorganisiertes Arbeiten, Fokus auf Ziel. 5. Adjourning (Aufloesung): Projektende, Abschluss/Reflexion, Aufloesung des Teams. Die Storming-Phase ist normal und notwendig, keine Fehlentwicklung.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--grenze-lastenheft-und-pflichtenheft-ab-wer-erstellt-was-mit",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Lastenheft und Pflichtenheft ab: Wer erstellt was, mit welchem Inhalt, und in welcher Reihenfolge?",
+      "back": "Lastenheft: erstellt vom Auftraggeber (Kunde). Beschreibt das WAS und WOFUER - die Gesamtheit der Anforderungen aus Anwendersicht (Ziele, Rahmenbedingungen), loesungsneutral. Dient als Ausschreibungs-/Angebotsgrundlage. Pflichtenheft: erstellt vom Auftragnehmer (Lieferant) auf Basis des Lastenhefts. Beschreibt das WIE - die konkrete technische Umsetzung/Realisierung der Anforderungen. Reihenfolge: erst Lastenheft (AG), dann Pflichtenheft (AN); das vom AG abgenommene Pflichtenheft ist rechtlich verbindliche Vertrags-/Leistungsgrundlage.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
       "id": "it-sicherheit--vertraulichkeit-integritaet-und-verfuegbarkeit-sind-die-drei-klassischen-schutzziele",
       "topicId": "it-sicherheit",
       "type": "flashcard",
@@ -1827,6 +2131,82 @@
       "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
     },
     {
+      "id": "it-sicherheit--grenze-die-drei-firewall-typen-paketfilter-stateful-inspection-und",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze die drei Firewall-Typen Paketfilter, Stateful Inspection und Application-Level-Gateway (Proxy) voneinander ab.",
+      "back": "Paketfilter: entscheidet zustandslos anhand von IP-Adressen, Ports und Protokoll (Schicht 3/4), schnell aber ohne Kontext. Stateful Inspection: fuehrt eine Zustandstabelle bestehender Verbindungen und laesst nur Pakete erlaubter/bestehender Sessions durch (erkennt z. B. zugehoerige Antwortpakete). Application-Level-Gateway (Proxy): arbeitet auf der Anwendungsschicht (Schicht 7), untersucht die Nutzdaten des jeweiligen Protokolls (z. B. HTTP), trennt Client und Server vollstaendig, hoechste Sicherheit aber langsamer.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--warum-reicht-reines-hashing-von-passwoertern-nicht-aus-und",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Warum reicht reines Hashing von Passwoertern nicht aus, und was bewirkt ein Salt?",
+      "back": "Ohne Salt liefern gleiche Passwoerter identische Hashwerte, wodurch vorberechnete Tabellen (Rainbow Tables) das Zurueckrechnen ermoeglichen und gleiche Passwoerter erkennbar werden. Ein Salt ist ein individueller Zufallswert, der vor dem Hashen an das Passwort angehaengt und mitgespeichert wird. Dadurch ergibt jedes Passwort einen einzigartigen Hash, Rainbow Tables werden unbrauchbar und identische Passwoerter sind nicht mehr erkennbar. Zusaetzlich nutzt man bewusst langsame Verfahren (z. B. bcrypt/PBKDF2/Argon2), um Brute-Force zu erschweren.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--erklaere-das-prinzip-der-minimalen-rechte-least-privilege-und",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere das Prinzip der minimalen Rechte (Least Privilege) und das Need-to-know-Prinzip.",
+      "back": "Least Privilege: Jeder Benutzer, jedes Programm und jeder Dienst erhaelt nur genau die Rechte, die zur Erfuellung seiner Aufgabe notwendig sind, nicht mehr. Need-to-know: Zugriff auf Informationen wird nur gewaehrt, wenn er fuer die konkrete Aufgabe erforderlich ist. Ziel beider Prinzipien ist die Reduktion der Angriffsflaeche und die Begrenzung von Schaeden bei kompromittierten Konten oder Fehlern (Schutzziel Vertraulichkeit).",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
+      "id": "it-sicherheit--grenze-brute-force-und-woerterbuchangriff-auf-passwoerter-ab-und",
+      "topicId": "it-sicherheit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "it-sicherheit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Brute-Force- und Woerterbuchangriff auf Passwoerter ab und nenne je eine Gegenmassnahme.",
+      "back": "Brute-Force: systematisches Durchprobieren aller moeglichen Zeichenkombinationen, sicher erfolgreich aber sehr rechen-/zeitaufwaendig, besonders bei langen Passwoertern. Woerterbuchangriff: gezieltes Testen von Eintraegen aus Listen haeufiger Passwoerter und Begriffe, schneller aber nur gegen schwache/gaengige Passwoerter wirksam. Gegenmassnahmen: lange, komplexe und nicht im Woerterbuch stehende Passwoerter, Kontosperrung/Verzoegerung nach Fehlversuchen (Rate Limiting), Zwei-Faktor-Authentifizierung sowie langsame gesalzene Hashverfahren.",
+      "source": "Lernapp/Karteikarten/05-IT-Sicherheit.md"
+    },
+    {
       "id": "datenschutz--was-unterscheidet-datenschutz-von-datensicherheit",
       "topicId": "datenschutz",
       "type": "flashcard",
@@ -2169,6 +2549,82 @@
       "source": "Lernapp/Karteikarten/06-Datenschutz.md"
     },
     {
+      "id": "datenschutz--ein-kunde-verlangt-auskunft-ueber-seine-gespeicherten-daten-art",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ein Kunde verlangt Auskunft ueber seine gespeicherten Daten (Art. 15 DSGVO). Welche Frist gilt und wann darf sie verlaengert werden?",
+      "back": "Antwort unverzueglich, spaetestens 1 Monat nach Eingang des Antrags. Bei komplexen oder zahlreichen Antraegen Verlaengerung um bis zu 2 weitere Monate (max. 3 Monate gesamt) moeglich. Der Betroffene muss ueber die Verlaengerung samt Gruenden innerhalb des ersten Monats informiert werden. Die Auskunft ist grundsaetzlich kostenlos.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--was-ist-eine-auftragsverarbeitung-nach-art-28-dsgvo-und",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine Auftragsverarbeitung nach Art. 28 DSGVO und welche formale Voraussetzung ist zwingend?",
+      "back": "Ein externer Dienstleister (Auftragsverarbeiter) verarbeitet personenbezogene Daten weisungsgebunden im Auftrag des Verantwortlichen (z. B. Cloud-Hosting, Lohnabrechnung). Zwingend ist ein Auftragsverarbeitungsvertrag (AVV) in Schriftform/elektronisch mit Pflichtinhalten: Gegenstand, Dauer, Art/Zweck, Datenkategorien, Weisungsbindung, Vertraulichkeit, TOM (Art. 32), Unterauftragnehmer, Loeschung/Rueckgabe. Verantwortlicher bleibt haftbar und muss die Zuverlaessigkeit pruefen.",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--nenne-die-rechtsgrundlagen-fuer-eine-rechtmaessige-datenverarbeitung-nach-art",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die Rechtsgrundlagen fuer eine rechtmaessige Datenverarbeitung nach Art. 6 Abs. 1 DSGVO (mindestens vier).",
+      "back": "Eine Verarbeitung ist nur rechtmaessig, wenn mindestens eine Bedingung erfuellt ist: (a) Einwilligung der betroffenen Person, (b) Vertragserfuellung / vorvertragliche Massnahmen, (c) rechtliche Verpflichtung (z. B. Aufbewahrungspflichten), (d) Schutz lebenswichtiger Interessen, (e) oeffentliches Interesse/oeffentliche Gewalt, (f) berechtigtes Interesse des Verantwortlichen (nach Interessenabwaegung). Ohne eine dieser Grundlagen ist die Verarbeitung unzulaessig (Verbotsprinzip mit Erlaubnisvorbehalt).",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
+      "id": "datenschutz--unterscheide-privacy-by-design-und-privacy-by-default-nach",
+      "topicId": "datenschutz",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenschutz",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.5,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide 'Privacy by Design' und 'Privacy by Default' nach Art. 25 DSGVO mit je einem Beispiel.",
+      "back": "Privacy by Design (Datenschutz durch Technikgestaltung): Datenschutz wird bereits bei Konzeption/Entwicklung eines Systems technisch und organisatorisch eingebaut, nicht nachtraeglich (z. B. Verschluesselung und Datensparsamkeit von Anfang an eingeplant). Privacy by Default (datenschutzfreundliche Voreinstellungen): die datensparsamsten Einstellungen sind ab Werk aktiv, ohne dass der Nutzer eingreifen muss (z. B. Profil standardmaessig nicht oeffentlich, Tracking standardmaessig deaktiviert).",
+      "source": "Lernapp/Karteikarten/06-Datenschutz.md"
+    },
+    {
       "id": "betriebssysteme--was-sind-die-zentralen-aufgaben-eines-betriebssystems",
       "topicId": "betriebssysteme",
       "type": "flashcard",
@@ -2470,6 +2926,101 @@
       "points": null,
       "front": "Beschreibe den grundsaetzlichen Boot-Ablauf eines Rechners.",
       "back": "1) BIOS/UEFI fuehrt den POST (Hardware-Selbsttest) aus. 2) Der Bootloader wird vom Datentraeger geladen. 3) Der Bootloader startet den Kernel/das Betriebssystem. 4) Systemdienste starten, danach Anmeldung/Benutzeroberflaeche.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--erklaere-den-zweck-des-journalings-bei-dateisystemen-wie-ntfs",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Zweck des Journalings bei Dateisystemen wie NTFS oder ext4. Welches Problem loest es?",
+      "back": "Das Journal ist ein Protokollbereich, in den geplante Metadaten-Aenderungen VOR dem eigentlichen Schreiben eingetragen werden. Nach einem Absturz/Stromausfall kann das System das Journal abarbeiten und so einen konsistenten Zustand wiederherstellen, ohne das gesamte Dateisystem pruefen zu muessen. Es verhindert Inkonsistenzen bei unterbrochenen Schreibvorgaengen und verkuerzt die Pruefzeit nach dem Neustart (kein vollstaendiger fsck/chkdsk noetig).",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--eine-datei-hat-die-oktalen-rechte-640-loese-die",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Eine Datei hat die oktalen Rechte 640. Loese die Bedeutung fuer Owner, Gruppe und Andere auf (r=4, w=2, x=1).",
+      "back": "640 = Owner 6 (rw-), Gruppe 4 (r--), Andere 0 (---). Der Eigentuemer darf lesen und schreiben, die Gruppe darf nur lesen, alle anderen haben keinerlei Zugriff. Ausfuehrrecht (x) ist bei keinem gesetzt, die Datei kann also nicht als Programm gestartet werden.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--wandle-die-dezimalzahl-173-in-das-binaer-und-das",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wandle die Dezimalzahl 173 in das Binaer- und das Hexadezimalsystem um. Zeige den Rechenweg.",
+      "back": "Binaer: 173 = 128+32+8+4+1 = 10101101. Hexadezimal: 173 / 16 = 10 Rest 13, also hoeherwertige Ziffer 10 = A, niederwertige 13 = D -> 0xAD. Kontrolle: A=1010, D=1101 -> 10101101 (bin) stimmt mit dem Binaerwert ueberein.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--was-bewirkt-die-zuteilung-von-arbeitsspeicher-durch-das-betriebssystem",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bewirkt die Zuteilung von Arbeitsspeicher durch das Betriebssystem beim virtuellen Speicher (Paging/Auslagerung)? Nenne Vor- und Nachteil.",
+      "back": "Beim virtuellen Speicher taeuscht das OS jedem Prozess einen zusammenhaengenden, grossen Adressraum vor. Selten genutzte Speicherseiten (Pages) werden bei Bedarf auf einen Auslagerungsbereich (Swap/Auslagerungsdatei) der Festplatte/SSD verschoben und bei Zugriff zurueckgeladen. Vorteil: Es koennen mehr bzw. groessere Programme laufen, als physischer RAM vorhanden ist, und Prozesse sind gegeneinander isoliert. Nachteil: Zugriffe auf ausgelagerte Seiten sind deutlich langsamer (Page Fault); staendiges Ein-/Auslagern (Thrashing) bremst das System stark.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--nenne-die-wesentlichen-zustaende-die-ein-prozess-durchlaeuft-und",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die wesentlichen Zustaende, die ein Prozess durchlaeuft, und was bei den Zustandsuebergaengen 'bereit -> aktiv' und 'aktiv -> blockiert' passiert.",
+      "back": "Grundzustaende: bereit (rechenbereit, wartet auf CPU), aktiv/laufend (belegt die CPU) und blockiert (wartet auf ein Ereignis, z. B. E/A). 'bereit -> aktiv': Der Scheduler des Betriebssystems teilt dem Prozess die CPU zu (Dispatching). 'aktiv -> blockiert': Der Prozess fordert eine Ressource oder E/A an, die nicht sofort verfuegbar ist, gibt die CPU ab und wartet, bis das Ereignis eintritt; danach geht er zurueck in 'bereit'.",
       "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
     },
     {
@@ -2815,6 +3366,82 @@
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
+      "id": "softwareentwicklung--worin-unterscheiden-sich-kopfgesteuerte-und-fussgesteuerte-schleife-wie-oft",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich kopfgesteuerte und fussgesteuerte Schleife? Wie oft wird der Schleifenrumpf jeweils mindestens durchlaufen?",
+      "back": "Kopfgesteuert (while): Bedingung wird VOR dem Rumpf geprueft -> Rumpf wird 0- bis n-mal ausgefuehrt (mindestens 0). Fussgesteuert (do-while / repeat-until): Bedingung wird NACH dem Rumpf geprueft -> Rumpf wird 1- bis n-mal ausgefuehrt (mindestens 1). Merkmal: Die fussgesteuerte Schleife durchlaeuft den Rumpf also garantiert mindestens einmal, die kopfgesteuerte moeglicherweise gar nicht.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-ist-ein-schreibtischtest-und-wozu-dient-er-nenne",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Schreibtischtest und wozu dient er? Nenne die typischen Spalten der Wertetabelle.",
+      "back": "Der Schreibtischtest (Trockentest) ist die manuelle, schrittweise Durchrechnung eines Algorithmus (Pseudocode/PAP) per Hand ohne Rechner, um die Logik zu pruefen und v. a. Logikfehler vor der Implementierung zu finden. Man fuehrt eine Wertetabelle: je Spalte eine Variable (plus ggf. Bedingung/Ausgabe), je Zeile ein Ausfuehrungsschritt; man traegt die Werteaenderungen fortlaufend ein und vergleicht das Endergebnis mit dem Sollwert. Er deckt vor allem Logikfehler auf (Laufzeitfehler nur bedingt), jedoch keine Syntaxfehler.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wozu-dient-ein-konstruktor-in-der-oop-und-wie",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wozu dient ein Konstruktor in der OOP und wie unterscheiden sich die Sichtbarkeiten public und private?",
+      "back": "Der Konstruktor ist eine spezielle Methode, die beim Erzeugen (Instanziieren) eines Objekts automatisch aufgerufen wird und die Attribute mit Startwerten initialisiert. public: Attribut/Methode ist von aussen (anderen Klassen) direkt zugreifbar. private: nur innerhalb der eigenen Klasse zugreifbar; der Zugriff von aussen erfolgt kontrolliert ueber public-Methoden (Getter/Setter). Ziel: Datenkapselung, um ungueltige Zustaende zu verhindern.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--grenze-struktogramm-nassi-shneiderman-und-programmablaufplan-pap-voneinander-ab",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Struktogramm (Nassi-Shneiderman) und Programmablaufplan (PAP) voneinander ab.",
+      "back": "Beide stellen Algorithmen grafisch dar. Struktogramm (Nassi-Shneiderman-Diagramm, DIN 66261): ineinander verschachtelte Rechteckbloecke ohne Verbindungslinien; erzwingt strukturierte Programmierung, Spruenge (GOTO) sind nicht darstellbar. PAP (Flussdiagramm, DIN 66001): Symbole (Rechteck=Anweisung, Raute=Verzweigung, Oval=Start/Ende) verbunden durch Pfeile; flexibler, kann aber auch unstrukturierte Spruenge abbilden und dadurch unuebersichtlich werden.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
       "id": "qs-vertraege--grenze-werkvertrag-und-dienstvertrag-ab",
       "topicId": "qs-vertraege",
       "type": "flashcard",
@@ -3154,6 +3781,82 @@
       "points": null,
       "front": "Wofür stehen die Vollmachts-/Unterschriftskürzel i. V., i. A. und ppa.?",
       "back": "i. V. (in Vertretung): Unterzeichner handelt mit eigener Vertretungsvollmacht/Verantwortung für den Vorgesetzten. i. A. (im Auftrag): Unterzeichner handelt nur als Bote/ausführend auf Weisung, ohne eigene Entscheidungsbefugnis. ppa. (per procura): Prokurist mit Prokura — einer umfassenden, gesetzlich geregelten Handlungs-/Vertretungsvollmacht für den Kaufmann (weiter reichend als die einfache Handlungsvollmacht).",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--grenze-werkvertrag-und-dienstvertrag-bgb-ab-was-ist-jeweils",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Werkvertrag und Dienstvertrag (BGB) ab. Was ist jeweils geschuldet und je ein IT-Beispiel?",
+      "back": "Werkvertrag (§ 631 BGB): geschuldet ist ein konkreter Erfolg/das fertige Werk (z. B. Erstellung einer fertigen Individualsoftware, Aufbau eines Netzwerks). Es gibt Abnahme und Gewaehrleistung fuer Maengel. Dienstvertrag (§ 611a BGB): geschuldet ist nur das Taetigwerden/die Leistung, nicht der Erfolg (z. B. IT-Support/Schulung, Beratung nach Zeit, Betrieb per Zeitabrechnung). Keine Erfolgshaftung, keine Abnahme.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--nenne-die-vier-teststufen-im-v-modell-in-reihenfolge",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die vier Teststufen im V-Modell in Reihenfolge und was jede prueft.",
+      "back": "1) Unit-/Komponententest: kleinste Einheiten (Methoden/Klassen) isoliert, meist durch Entwickler. 2) Integrationstest: Zusammenspiel/Schnittstellen mehrerer Komponenten. 3) Systemtest: das komplette System gegen die spezifizierten Anforderungen (in Testumgebung). 4) Abnahmetest: der Kunde prueft gegen seine Anforderungen unter realen Bedingungen, Basis fuer die Abnahme. Reihenfolge: von klein/detailliert zu gross/fachlich.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--was-regelt-ein-sla-und-welche-typischen-kennzahlen-werden",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was regelt ein SLA und welche typischen Kennzahlen werden darin vereinbart?",
+      "back": "Ein Service Level Agreement ist die vertragliche Vereinbarung messbarer Qualitaets-/Leistungsziele zwischen Dienstleister und Kunde. Typische Kennzahlen: Verfuegbarkeit in Prozent (z. B. 99,9 %), Reaktionszeit (Zeit bis Bearbeitungsbeginn), Wiederherstellungs-/Loesungszeit (z. B. MTTR), Service-/Support-Zeiten. Ergaenzt um Konsequenzen bei Nichteinhaltung, z. B. Vertragsstrafen/Poenale oder Gutschriften.",
+      "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
+    },
+    {
+      "id": "qs-vertraege--unterscheide-syntaxfehler-laufzeitfehler-und-logischen-fehler-und-gib-an",
+      "topicId": "qs-vertraege",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "qs-vertraege",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.55,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide Syntaxfehler, Laufzeitfehler und logischen Fehler und gib an, wann sie jeweils auffallen.",
+      "back": "Syntaxfehler: Verstoss gegen die Sprachregeln (z. B. fehlendes Semikolon); faellt schon beim Kompilieren/Interpretieren auf, Programm startet nicht. Laufzeitfehler: erst waehrend der Ausfuehrung (z. B. Division durch 0, Zugriff auf null/ungueltigen Index), fuehrt zum Programmabsturz. Logischer Fehler: Programm laeuft fehlerfrei, liefert aber falsche Ergebnisse (falsche Formel/Bedingung); faellt nur durch Testen/Ergebnispruefung (z. B. Schreibtischtest) auf.",
       "source": "Lernapp/Karteikarten/09-QS-Vertraege-Leistung.md"
     },
     {
@@ -3537,6 +4240,82 @@
       "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
     },
     {
+      "id": "kommunikation--erklaere-die-vier-seiten-einer-nachricht-nach-dem-kommunikationsquadrat",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere die vier Seiten einer Nachricht nach dem Kommunikationsquadrat (Schulz von Thun) und nenne je ein Beispiel fuer den Satz 'Die Ampel ist gruen'.",
+      "back": "Jede Nachricht hat vier Ebenen: 1) Sachinhalt (Worueber informiere ich? -> Die Ampel zeigt gruen). 2) Selbstoffenbarung (Was gebe ich von mir preis? -> Ich habe es eilig). 3) Beziehung (Was halte ich vom anderen? -> Du brauchst meine Hilfe beim Fahren). 4) Appell (Wozu will ich veranlassen? -> Gib Gas / Fahr los). Sender und Empfaenger koennen auf unterschiedlichen Ebenen senden/hoeren, was zu Missverstaendnissen fuehrt (vier 'Schnaebel' und vier 'Ohren').",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--nenne-die-marktformen-nach-anzahl-der-anbieter-und-nachfrager",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die Marktformen nach Anzahl der Anbieter und Nachfrager und ordne je ein Beispiel zu (Angebotsseite).",
+      "back": "Eingeteilt nach Anbieterzahl (Angebotsseite): Monopol = ein Anbieter, viele Nachfrager (z. B. lokaler Wasserversorger). Oligopol = wenige Anbieter, viele Nachfrager (z. B. Mobilfunknetzbetreiber, Tankstellenketten). Polypol = viele Anbieter, viele Nachfrager (z. B. Wochenmarkt, App-Entwickler). Analog gibt es auf der Nachfrageseite Nachfragemonopol (ein Nachfrager) und Nachfrageoligopol. Weniger Anbieter bedeuten tendenziell mehr Preissetzungsmacht und weniger Wettbewerbsdruck.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--erklaere-den-zusammenhang-von-angebot-nachfrage-und-marktpreis-was",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Zusammenhang von Angebot, Nachfrage und Marktpreis. Was passiert bei Angebotsueberhang bzw. Nachfrageueberhang?",
+      "back": "Der Marktpreis bildet sich im Gleichgewichtspunkt, wo sich Angebots- und Nachfragekurve schneiden (angebotene = nachgefragte Menge). Die Nachfrage sinkt bei steigendem Preis, das Angebot steigt bei steigendem Preis. Angebotsueberhang (Preis zu hoch): mehr angeboten als nachgefragt -> Preis sinkt. Nachfrageueberhang (Preis zu niedrig): mehr nachgefragt als angeboten -> Preis steigt. Der Markt strebt automatisch zum Gleichgewichtspreis zurueck.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--nenne-vier-zentrale-regeln-fuer-eine-gelungene-praesentation-bzw",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne vier zentrale Regeln fuer eine gelungene Praesentation bzw. adressatengerechte Kommunikation im IT-Umfeld (z. B. Ergebnispraesentation vor Kunden).",
+      "back": "1) Adressatengerecht: Fachtiefe und Vokabular an Vorwissen anpassen (Fachjargon fuer Techniker, verstaendliche Sprache fuer Fachfremde/Kunden). 2) Struktur/roter Faden: klare Gliederung (Einleitung, Hauptteil, Schluss), zentrale Botschaft zuerst. 3) Visualisierung sinnvoll: wenig Text pro Folie, Diagramme statt Zahlenwuesten, gute Lesbarkeit (Kontrast, Schriftgroesse -> auch Barrierefreiheit). 4) Aktives, wertschaetzendes Verhalten: Blickkontakt, deutlich sprechen, Feedback/Rueckfragen zulassen, Ich-Botschaften statt Vorwuerfe.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
       "id": "neu-2025--ki-gestuetzte-chatbots-im-kundenservice-nenne-je-zwei-vor",
       "topicId": "neu-2025",
       "type": "flashcard",
@@ -3879,6 +4658,82 @@
       "source": "Lernapp/Karteikarten/11-Neu-2025.md"
     },
     {
+      "id": "neu-2025--nenne-je-zwei-chancen-und-zwei-risiken-beim-einsatz",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne je zwei Chancen und zwei Risiken beim Einsatz von KI-Chatbots im Kundenservice eines Unternehmens.",
+      "back": "Chancen: (1) 24/7-Verfuegbarkeit und schnellere Reaktionszeiten, (2) Entlastung der Mitarbeiter bei Routineanfragen / Kostensenkung, ggf. Skalierbarkeit bei hohem Anfragevolumen. Risiken: (1) Fehlerhafte/erfundene Antworten (Halluzinationen), (2) Datenschutzprobleme bei Eingabe personenbezogener Daten, ggf. Diskriminierung durch Bias in Trainingsdaten oder fehlende Empathie bei sensiblen Anliegen.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--was-bedeutet-transparenz-bzw-kennzeichnungspflicht-beim-einsatz-von-ki",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet Transparenz bzw. Kennzeichnungspflicht beim Einsatz von KI-Chatbots und warum ist sie ethisch geboten?",
+      "back": "Nutzer muessen erkennen koennen, dass sie mit einer KI/Maschine und nicht mit einem Menschen kommunizieren (Kennzeichnungspflicht, u. a. gefordert durch die EU-KI-Verordnung/AI Act). Geboten ist dies, weil verdeckte KI taeuscht, die Selbstbestimmung des Nutzers untergraebt und Vertrauen zerstoert. Zusaetzlich sollte nachvollziehbar sein, wie Entscheidungen zustande kommen und wie mit eingegebenen Daten umgegangen wird.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--ein-video-hat-1920x1080-pixel-24-bit-farbtiefe-25",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ein Video hat 1920x1080 Pixel, 24 Bit Farbtiefe, 25 Bilder/s und dauert 10 Sekunden. Berechne den unkomprimierten Speicherbedarf (in MB, 1 MB = 1.000.000 Byte).",
+      "back": "Pro Bild: 1920 x 1080 = 2.073.600 Pixel; 24 Bit Farbtiefe = 3 Byte pro Pixel -> 2.073.600 x 3 = 6.220.800 Byte. Anzahl Bilder: 25 Bilder/s x 10 s = 250 Bilder. Gesamt: 6.220.800 x 250 = 1.555.200.000 Byte = ca. 1.555,2 MB (rund 1,56 GB). Deshalb ist Videokompression (Codecs) in der Praxis zwingend.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--nenne-drei-konkrete-massnahmen-der-green-it-zur-steigerung",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne drei konkrete Massnahmen der Green-IT zur Steigerung der Nachhaltigkeit in einem Rechenzentrum bzw. am Arbeitsplatz und erklaere kurz die Kennzahl PUE.",
+      "back": "Massnahmen: (1) Virtualisierung/Konsolidierung von Servern zur besseren Auslastung, (2) energieeffiziente Hardware und Netzteile (z. B. 80-PLUS), Energiesparmodi/Standby, (3) Abwaermenutzung bzw. effiziente (freie) Kuehlung, laengere Nutzungsdauer und fachgerechtes Recycling der Geraete. PUE (Power Usage Effectiveness) = Gesamtenergie des Rechenzentrums / Energie der reinen IT-Technik; Idealwert = 1,0 (je naeher an 1, desto effizienter, da wenig Energie fuer Kuehlung/Verluste draufgeht).",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
       "id": "multimedia--worin-unterscheiden-sich-ascii-und-unicode",
       "topicId": "multimedia",
       "type": "flashcard",
@@ -4104,6 +4959,120 @@
       "points": null,
       "front": "Was ist eine Pruefziffer (z. B. bei EAN/IBAN)?",
       "back": "Eine aus den uebrigen Ziffern nach einem festen Verfahren (z. B. Modulo) berechnete Ziffer. Sie ermoeglicht die Erkennung von Zahlendrehern und Tippfehlern bei der Eingabe von Nummern.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--berechne-den-unkomprimierten-speicherbedarf-eines-raw-bildes-mit-1920x1080",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Berechne den unkomprimierten Speicherbedarf eines RAW-Bildes mit 1920x1080 Pixeln und einer Farbtiefe von 24 Bit. Gib das Ergebnis in MB (1 MB = 1024 KB) an.",
+      "back": "Pixelanzahl x Farbtiefe: 1920 x 1080 = 2.073.600 Pixel. 24 Bit = 3 Byte pro Pixel. 2.073.600 x 3 Byte = 6.220.800 Byte. In KB: 6.220.800 / 1024 = 6075 KB. In MB: 6075 / 1024 = ca. 5,93 MB. Faustformel: Breite x Hoehe x Farbtiefe(Bit) / 8 = Byte.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--was-bedeutet-die-farbtiefe-eines-bildes-und-wie-viele",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet die Farbtiefe eines Bildes und wie viele Farben lassen sich bei 8 Bit, 16 Bit und 24 Bit (True Color) darstellen?",
+      "back": "Farbtiefe = Anzahl der Bit pro Pixel; sie bestimmt die Anzahl darstellbarer Farben nach 2^n. 8 Bit = 2^8 = 256 Farben; 16 Bit (High Color) = 2^16 = 65.536 Farben; 24 Bit (True Color) = 2^24 = 16.777.216 Farben (je 8 Bit fuer Rot, Gruen, Blau).",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--warum-benoetigt-utf-8-fuer-deutsche-umlaute-ae-oe",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Warum benoetigt UTF-8 fuer deutsche Umlaute (ae, oe, ue) mehr Speicher als fuer die Buchstaben a-z, und wie ist UTF-8 grundsaetzlich aufgebaut?",
+      "back": "UTF-8 ist eine variable Laengencodierung (1-4 Byte) und abwaertskompatibel zu ASCII. Zeichen U+0000 bis U+007F (ASCII, inkl. a-z) werden in 1 Byte codiert. Umlaute liegen im Bereich ab U+0080 und benoetigen 2 Byte. Vorteil: kompakt fuer lateinische Texte, trotzdem Zugriff auf den gesamten Unicode-Zeichensatz.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--grenze-rastergrafik-und-vektorgrafik-ab-und-nenne-je-einen",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Rastergrafik und Vektorgrafik ab und nenne je einen typischen Einsatzzweck sowie das Skalierungsverhalten.",
+      "back": "Rastergrafik: aus einzelnen Pixeln aufgebaut (z. B. JPEG, PNG), verliert beim Vergroessern Qualitaet (Pixel/Treppeneffekt), ideal fuer Fotos. Vektorgrafik: aus mathematischen Objekten (Linien, Kurven, Flaechen) beschrieben (z. B. SVG), verlustfrei beliebig skalierbar, ideal fuer Logos, Icons und Illustrationen.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--berechne-den-unkomprimierten-speicherbedarf-einer-audioaufnahme-in-cd-qualitaet",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Berechne den unkomprimierten Speicherbedarf einer Audioaufnahme in CD-Qualitaet (44,1 kHz Abtastrate, 16 Bit Aufloesung, Stereo) fuer 60 Sekunden.",
+      "back": "Formel: Abtastrate x Bittiefe x Kanaele x Zeit / 8 = Byte. 44.100 x 16 x 2 x 60 = 84.672.000 Bit. In Byte: / 8 = 10.584.000 Byte. In MB: 10.584.000 / 1024 / 1024 = ca. 10,09 MB. Merke: CD-Audio erzeugt ca. 10 MB pro Minute unkomprimiert.",
+      "source": "Lernapp/Karteikarten/12-Multimedia.md"
+    },
+    {
+      "id": "multimedia--erklaere-das-prinzip-einer-pruefziffer-z-b-bei-ean",
+      "topicId": "multimedia",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "multimedia",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.38,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere das Prinzip einer Pruefziffer (z. B. bei EAN/Barcodes) und wozu sie dient.",
+      "back": "Eine Pruefziffer ist eine aus den vorangehenden Ziffern nach festem Verfahren berechnete Zusatzziffer, die an eine Zahlenfolge angehaengt wird. Sie dient der Fehlererkennung bei Eingabe/Uebertragung (z. B. Zahlendreher, falsche Ziffer). Beim Einlesen wird sie neu berechnet und mit der gespeicherten verglichen; bei Abweichung liegt ein Fehler vor. Anders als eine einfache Paritaet kann sie durch Gewichtung auch Vertauschungen (Zahlendreher) erkennen.",
       "source": "Lernapp/Karteikarten/12-Multimedia.md"
     },
     {
@@ -4367,6 +5336,126 @@
       "source": "Lernapp/Karteikarten/13-Internet-Web.md"
     },
     {
+      "id": "internet--beschreibe-den-ablauf-einer-dns-namensaufloesung-wenn-ein-nutzer",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Beschreibe den Ablauf einer DNS-Namensaufloesung, wenn ein Nutzer eine Domain im Browser eingibt. Nenne die beteiligten Server.",
+      "back": "Der Browser fragt zunaechst den lokalen Cache/die hosts-Datei, dann den konfigurierten DNS-Resolver (meist beim Provider). Findet dieser den Eintrag nicht, fragt er rekursiv weiter: 1) Root-Nameserver (verweist auf TLD-Server, z. B. .de), 2) TLD-Nameserver (verweist auf autoritativen Server der Domain), 3) autoritativer Nameserver (liefert den A-/AAAA-Record mit der IP-Adresse). Der Resolver cached das Ergebnis (TTL) und gibt die IP an den Browser, der dann die HTTP(S)-Verbindung aufbaut.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--erklaere-den-aufbau-einer-url-am-beispiel-https-shop",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Aufbau einer URL am Beispiel https://shop.example.de:443/produkte?id=5#top und benenne die Bestandteile.",
+      "back": "Schema/Protokoll: https:// | Host (Subdomain.Domain.TLD): shop.example.de | Port: 443 (Standard bei HTTPS, meist weggelassen) | Pfad: /produkte | Query-String (Parameter): ?id=5 | Fragment/Anker: #top (Sprungmarke im Dokument, nur clientseitig).",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--warum-gilt-http-als-zustandslos-stateless-und-wie-werden",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Warum gilt HTTP als zustandslos (stateless) und wie werden trotzdem Sitzungen (z. B. Login) realisiert?",
+      "back": "Zustandslos bedeutet: Jede HTTP-Anfrage wird unabhaengig behandelt, der Server merkt sich zwischen zwei Requests keinen Zustand. Sitzungen werden dennoch ermoeglicht, indem der Server eine Session-ID vergibt und diese per Cookie im Browser speichert; bei jeder Folgeanfrage sendet der Client das Cookie mit, sodass der Server den Nutzer/Zustand (z. B. Warenkorb, Login) wiedererkennt.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--nenne-die-fuenf-klassen-der-http-statuscodes-mit-ihrer",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die fuenf Klassen der HTTP-Statuscodes mit ihrer Bedeutung und je einem Beispielcode.",
+      "back": "1xx Informational (z. B. 100 Continue) | 2xx Erfolg (z. B. 200 OK) | 3xx Umleitung (z. B. 301 Moved Permanently, 304 Not Modified) | 4xx Client-Fehler (z. B. 404 Not Found, 403 Forbidden) | 5xx Server-Fehler (z. B. 500 Internal Server Error, 503 Service Unavailable).",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--wodurch-unterscheidet-sich-https-von-http-und-welches-verschluesselungsverfahren",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wodurch unterscheidet sich HTTPS von HTTP und welches Verschluesselungsverfahren kommt beim Verbindungsaufbau (TLS) zum Einsatz?",
+      "back": "HTTPS ist HTTP ueber eine mit TLS verschluesselte Verbindung (Standardport 443 statt 80). Es sichert Vertraulichkeit, Integritaet und Authentizitaet (Server-Zertifikat). Beim TLS-Handshake wird hybride Verschluesselung genutzt: asymmetrisch (Public/Private Key) wird ein Sitzungsschluessel sicher ausgehandelt/uebertragen, die eigentliche Datenuebertragung erfolgt dann schnell symmetrisch mit diesem Sitzungsschluessel.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
+      "id": "internet--vergleiche-die-http-methoden-get-und-post-hinsichtlich-zweck",
+      "topicId": "internet",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "internet",
+        "web",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Vergleiche die HTTP-Methoden GET und POST hinsichtlich Zweck, Datenuebertragung und Eignung.",
+      "back": "GET: fordert Ressourcen an, Parameter stehen sichtbar im URL-Query-String, cachebar und in der Browser-History speicherbar; sollte keine Daten aendern (safe und idempotent). POST: sendet Daten im Request-Body (nicht in der URL), geeignet fuer groessere/sensible Daten und aendernde Aktionen (z. B. Formular, Anlegen eines Datensatzes); nicht idempotent, wird nicht gecached. Fuer Passwoerter/vertrauliche Daten daher POST statt GET verwenden.",
+      "source": "Lernapp/Karteikarten/13-Internet-Web.md"
+    },
+    {
       "id": "software-lizenzen--grenze-systemsoftware-und-anwendungssoftware-ab",
       "topicId": "software-lizenzen",
       "type": "flashcard",
@@ -4604,6 +5693,126 @@
       "points": null,
       "front": "Was ist Middleware?",
       "back": "Software, die zwischen Betriebssystem/Netzwerk und Anwendungen vermittelt und deren Zusammenarbeit ermoeglicht (z. B. Datenbank-Treiber, Message-Broker, Applikationsserver). Sie verbirgt Komplexitaet der Kommunikation.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--vergleiche-copyleft-und-permissive-open-source-lizenzen-anhand-von",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Vergleiche Copyleft- und permissive Open-Source-Lizenzen anhand von GPL und MIT. Welche Pflicht unterscheidet sie?",
+      "back": "Copyleft (GPL): Abgeleitete Werke muessen unter derselben Lizenz weitergegeben werden, der Quellcode muss offengelegt werden (viral). MIT (permissiv): Nutzung, Aenderung und auch Einbindung in proprietaere/kommerzielle Software erlaubt, nur der Lizenztext/Copyright-Hinweis muss beigefuegt werden. Kernunterschied: GPL erzwingt Offenlegung des Codes bei Weitergabe, MIT nicht.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--erklaere-den-unterschied-zwischen-freeware-shareware-und-open-source",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Erklaere den Unterschied zwischen Freeware, Shareware und Open Source. Ist Freeware automatisch quelloffen?",
+      "back": "Freeware: kostenlos nutzbar, aber Quellcode bleibt geschlossen und Aenderung/Weitergabe sind meist untersagt. Shareware: kostenlose Testversion (zeitlich oder funktional begrenzt), fuer Vollnutzung ist Kauf/Lizenz noetig. Open Source: Quellcode offen einsehbar, aenderbar und weitergebbar. Nein: Freeware ist gratis, aber NICHT quelloffen - kostenlos und Open Source sind zwei verschiedene Eigenschaften.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--was-ist-eine-eula-und-welchen-zweck-erfuellt-sie",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine EULA und welchen Zweck erfuellt sie beim proprietaeren Softwarekauf?",
+      "back": "EULA (End User License Agreement) ist der Endbenutzer-Lizenzvertrag zwischen Hersteller und Nutzer. Beim Kauf proprietaerer Software erwirbt man kein Eigentum an der Software, sondern nur ein Nutzungsrecht (Lizenz). Die EULA regelt Umfang der Nutzung (z. B. Anzahl Installationen/Geraete, gewerblich/privat), Weitergabeverbot, Haftungsausschluss und Verbot von Reverse Engineering.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--unterscheide-kauf-perpetual-lizenz-und-abo-subscription-modell-saas",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Unterscheide Kauf-/Perpetual-Lizenz und Abo-/Subscription-Modell (SaaS) hinsichtlich Kosten und Nutzungsrecht.",
+      "back": "Perpetual-/Kauflizenz: Einmalzahlung, dauerhaftes Nutzungsrecht der jeweiligen Version, Updates oft kostenpflichtig; hohe Anschaffung, planbar (CAPEX). Abo/Subscription (SaaS): laufende Gebuehr (monatlich/jaehrlich), Nutzungsrecht nur waehrend Laufzeit, Updates/Support inklusive, endet bei Kuendigung; niedrige Einstiegskosten, planbare laufende Ausgaben (OPEX). SaaS wird meist im Browser genutzt, Betrieb liegt beim Anbieter.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--ordne-software-rechtlich-ein-was-schuetzt-das-urheberrecht-und",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ordne Software rechtlich ein: Was schuetzt das Urheberrecht, und ab wann entsteht der Schutz?",
+      "back": "Software ist als Computerprogramm urheberrechtlich geschuetztes Werk (in DE nach UrhG). Geschuetzt ist die konkrete Umsetzung (der Quell- und Objektcode), NICHT die zugrunde liegende Idee, der Algorithmus oder das Konzept. Der Schutz entsteht automatisch mit der Schoepfung/Erstellung - eine Anmeldung oder Registrierung ist nicht erforderlich. Der Urheber vergibt Nutzungsrechte per Lizenz.",
+      "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "software-lizenzen--was-ist-lizenz-compliance-und-welche-risiken-drohen-bei",
+      "topicId": "software-lizenzen",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "software",
+        "lizenzen",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.45,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist Lizenz-Compliance und welche Risiken drohen bei Lizenzverstoessen (Unter-/Fehllizenzierung) im Unternehmen?",
+      "back": "Lizenz-Compliance bedeutet die Einhaltung aller Lizenzbedingungen und der Nachweis, dass fuer jede genutzte Software eine ausreichende, gueltige Lizenz vorliegt (z. B. per Lizenzmanagement/Audit). Risiken bei Verstoessen: Unterlizenzierung (mehr Installationen als Lizenzen) fuehrt zu Nachzahlungen, Schadenersatz, Vertragsstrafen und rechtlichen Schritten des Herstellers; bei Copyleft (GPL) drohen zusaetzlich Offenlegungspflicht oder Vertriebsverbot. Auch Ueberlizenzierung ist ineffizient (unnoetige Kosten).",
       "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
     }
   ]

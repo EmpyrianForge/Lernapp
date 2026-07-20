@@ -1,0 +1,413 @@
+{
+  "match": [
+    {
+      "id": "match-chmod-oktalziffern-rechte",
+      "title": "chmod-Oktalziffern <-> Rechte",
+      "instruction": "Ordne jeder Oktalziffer die passende symbolische Rechte-Darstellung zu (r=4, w=2, x=1).",
+      "pairs": [
+        {
+          "left": "7",
+          "right": "rwx"
+        },
+        {
+          "left": "6",
+          "right": "rw-"
+        },
+        {
+          "left": "5",
+          "right": "r-x"
+        },
+        {
+          "left": "4",
+          "right": "r--"
+        },
+        {
+          "left": "0",
+          "right": "---"
+        }
+      ]
+    },
+    {
+      "id": "match-osi-schicht-dateneinheit-pdu",
+      "title": "OSI-Schicht <-> Dateneinheit (PDU)",
+      "instruction": "Ordne jeder OSI-Schicht die auf ihr verwendete Protokolldateneinheit zu.",
+      "pairs": [
+        {
+          "left": "Bituebertragungsschicht (1)",
+          "right": "Bit"
+        },
+        {
+          "left": "Sicherungsschicht (2)",
+          "right": "Rahmen (Frame)"
+        },
+        {
+          "left": "Vermittlungsschicht (3)",
+          "right": "Paket"
+        },
+        {
+          "left": "Transportschicht (4)",
+          "right": "Segment"
+        }
+      ]
+    },
+    {
+      "id": "match-dsgvo-fristen-sachverhalt",
+      "title": "DSGVO-Fristen <-> Sachverhalt",
+      "instruction": "Ordne jedem Vorgang die gesetzliche DSGVO-Frist zu.",
+      "pairs": [
+        {
+          "left": "Meldung einer Datenpanne an die Aufsichtsbehoerde",
+          "right": "72 Stunden"
+        },
+        {
+          "left": "Auskunft an die betroffene Person (Regelfall)",
+          "right": "1 Monat"
+        },
+        {
+          "left": "Zulaessige Verlaengerung bei komplexen Auskuenften",
+          "right": "2 weitere Monate"
+        },
+        {
+          "left": "Benachrichtigung Betroffener bei hohem Risiko",
+          "right": "unverzueglich"
+        }
+      ]
+    },
+    {
+      "id": "match-schutzziele-viva-bedeutung",
+      "title": "Schutzziele (VIVA) <-> Bedeutung",
+      "instruction": "Ordne jedem IT-Schutzziel die passende Beschreibung zu.",
+      "pairs": [
+        {
+          "left": "Vertraulichkeit",
+          "right": "Nur Befugte erhalten Zugriff auf die Daten"
+        },
+        {
+          "left": "Integritaet",
+          "right": "Daten sind unveraendert und korrekt"
+        },
+        {
+          "left": "Verfuegbarkeit",
+          "right": "Systeme sind bei Bedarf nutzbar"
+        },
+        {
+          "left": "Authentizitaet",
+          "right": "Echtheit und Identitaet sind nachweisbar"
+        }
+      ]
+    },
+    {
+      "id": "match-netzplan-zeitwerte-bedeutung",
+      "title": "Netzplan-Zeitwerte <-> Bedeutung",
+      "instruction": "Ordne jeder Abkuerzung aus der Netzplantechnik ihre Bedeutung zu.",
+      "pairs": [
+        {
+          "left": "FAZ",
+          "right": "Fruehester Anfangszeitpunkt"
+        },
+        {
+          "left": "FEZ",
+          "right": "Fruehester Endzeitpunkt"
+        },
+        {
+          "left": "SAZ",
+          "right": "Spaetester Anfangszeitpunkt"
+        },
+        {
+          "left": "SEZ",
+          "right": "Spaetester Endzeitpunkt"
+        },
+        {
+          "left": "GP",
+          "right": "Gesamtpuffer"
+        }
+      ]
+    },
+    {
+      "id": "match-dezimal-binaer",
+      "title": "Dezimal <-> Binaer",
+      "instruction": "Ordne jeder Dezimalzahl ihre binaere Darstellung zu.",
+      "pairs": [
+        {
+          "left": "5",
+          "right": "101"
+        },
+        {
+          "left": "8",
+          "right": "1000"
+        },
+        {
+          "left": "10",
+          "right": "1010"
+        },
+        {
+          "left": "16",
+          "right": "10000"
+        },
+        {
+          "left": "255",
+          "right": "11111111"
+        }
+      ]
+    },
+    {
+      "id": "match-raid-level-eigenschaft",
+      "title": "RAID-Level <-> Eigenschaft",
+      "instruction": "Ordne jedem RAID-Level seine kennzeichnende Eigenschaft zu.",
+      "pairs": [
+        {
+          "left": "RAID 0",
+          "right": "Striping ohne Redundanz"
+        },
+        {
+          "left": "RAID 1",
+          "right": "Spiegelung (Mirroring)"
+        },
+        {
+          "left": "RAID 5",
+          "right": "Striping mit verteilter Paritaet"
+        },
+        {
+          "left": "RAID 10",
+          "right": "Kombination aus Spiegelung und Striping"
+        }
+      ]
+    },
+    {
+      "id": "match-kaufmaennische-begriffe-definition",
+      "title": "Kaufmaennische Begriffe <-> Definition",
+      "instruction": "Ordne jedem Begriff der Angebotskalkulation seine Definition zu.",
+      "pairs": [
+        {
+          "left": "Listenpreis",
+          "right": "Ausgangspreis vor allen Abzuegen"
+        },
+        {
+          "left": "Rabatt",
+          "right": "Mengen- oder Treuenachlass auf den Listenpreis"
+        },
+        {
+          "left": "Skonto",
+          "right": "Nachlass bei Zahlung innerhalb der Skontofrist"
+        },
+        {
+          "left": "Bezugskosten",
+          "right": "Fracht-, Transport- und Verpackungskosten"
+        },
+        {
+          "left": "Bezugspreis",
+          "right": "Einstandspreis nach allen Ab- und Zuschlaegen"
+        }
+      ]
+    },
+    {
+      "id": "match-teststufen-pruefobjekt",
+      "title": "Teststufen <-> Pruefobjekt",
+      "instruction": "Ordne jeder Teststufe ihr Pruefobjekt zu.",
+      "pairs": [
+        {
+          "left": "Unit-Test",
+          "right": "Einzelne Komponente bzw. einzelnes Modul"
+        },
+        {
+          "left": "Integrationstest",
+          "right": "Zusammenspiel mehrerer Module"
+        },
+        {
+          "left": "Systemtest",
+          "right": "Gesamtsystem gegen die Anforderungen"
+        },
+        {
+          "left": "Abnahmetest",
+          "right": "Pruefung durch den Kunden vor der Abnahme"
+        }
+      ]
+    },
+    {
+      "id": "match-tuckman-teamphasen-merkmal",
+      "title": "Tuckman-Teamphasen <-> Merkmal",
+      "instruction": "Ordne jeder Teamphase nach Tuckman ihr Merkmal zu.",
+      "pairs": [
+        {
+          "left": "Forming",
+          "right": "Orientierung und Kennenlernen"
+        },
+        {
+          "left": "Storming",
+          "right": "Konflikte und Machtkaempfe"
+        },
+        {
+          "left": "Norming",
+          "right": "Regeln und Zusammenhalt entstehen"
+        },
+        {
+          "left": "Performing",
+          "right": "Produktives, eingespieltes Arbeiten"
+        },
+        {
+          "left": "Adjourning",
+          "right": "Aufloesung des Teams"
+        }
+      ]
+    },
+    {
+      "id": "match-lizenzmodelle-merkmal",
+      "title": "Lizenzmodelle <-> Merkmal",
+      "instruction": "Ordne jedem Software-Lizenzmodell sein Merkmal zu.",
+      "pairs": [
+        {
+          "left": "Proprietaer",
+          "right": "Quellcode geheim, meist kostenpflichtig"
+        },
+        {
+          "left": "Open Source",
+          "right": "Quellcode einsehbar und veraenderbar"
+        },
+        {
+          "left": "Freeware",
+          "right": "Kostenlos, aber Quellcode geschlossen"
+        },
+        {
+          "left": "Shareware",
+          "right": "Kostenlos testen, danach zahlungspflichtig"
+        },
+        {
+          "left": "SaaS-Abo",
+          "right": "Nutzung ueber die Cloud gegen laufende Gebuehr"
+        }
+      ]
+    }
+  ],
+  "order": [
+    {
+      "id": "order-hybrider-schluesselaustausch-sitzungsschluessel",
+      "title": "Hybrider Schluesselaustausch (Sitzungsschluessel)",
+      "prompt": "Ordne die Schritte, wie beim hybriden Verfahren ein symmetrischer Sitzungsschluessel sicher zum Empfaenger gelangt.",
+      "correct": [
+        "Sender erzeugt zufaelligen symmetrischen Sitzungsschluessel",
+        "Sender verschluesselt Sitzungsschluessel mit oeffentlichem Schluessel des Empfaengers",
+        "Sender uebermittelt den verschluesselten Sitzungsschluessel",
+        "Empfaenger entschluesselt ihn mit seinem privaten Schluessel",
+        "Beide nutzen den symmetrischen Sitzungsschluessel fuer die Nutzdaten"
+      ]
+    },
+    {
+      "id": "order-digitale-signatur-erstellen-und-pruefen",
+      "title": "Digitale Signatur erstellen und pruefen",
+      "prompt": "Ordne den Ablauf vom Erstellen bis zum Pruefen einer digitalen Signatur einer Nachricht.",
+      "correct": [
+        "Hashwert der Nachricht berechnen",
+        "Hashwert mit privatem Schluessel des Senders verschluesseln (Signatur)",
+        "Nachricht und Signatur an Empfaenger senden",
+        "Empfaenger entschluesselt Signatur mit oeffentlichem Schluessel des Senders",
+        "Empfaenger berechnet eigenen Hash der Nachricht",
+        "Beide Hashwerte vergleichen"
+      ]
+    },
+    {
+      "id": "order-subnetz-berechnung-aus-cidr",
+      "title": "Subnetz-Berechnung aus CIDR",
+      "prompt": "Ordne die Rechenschritte, um aus einer IPv4-Adresse mit Praefix die Netzadresse zu bestimmen.",
+      "correct": [
+        "Praefixlaenge in Subnetzmaske umwandeln",
+        "IP-Adresse und Subnetzmaske binaer darstellen",
+        "Bitweises UND von Adresse und Maske bilden",
+        "Ergebnis als Netzadresse (Netz-ID) ablesen"
+      ]
+    },
+    {
+      "id": "order-dns-namensaufloesung-beim-webseitenaufruf",
+      "title": "DNS-Namensaufloesung beim Webseitenaufruf",
+      "prompt": "Ordne die Schritte der DNS-Aufloesung, wenn ein Domainname noch nicht im Cache liegt.",
+      "correct": [
+        "Anfrage an konfigurierten DNS-Resolver senden",
+        "Resolver fragt Root-Nameserver",
+        "Root verweist auf zustaendigen TLD-Nameserver",
+        "TLD verweist auf autoritativen Nameserver der Domain",
+        "Autoritativer Server liefert die IP-Adresse zurueck",
+        "Resolver gibt IP an den Client zurueck"
+      ]
+    },
+    {
+      "id": "order-dezimal-nach-hexadezimal-umwandeln",
+      "title": "Dezimal nach Hexadezimal umwandeln",
+      "prompt": "Ordne das Vorgehen, um eine Dezimalzahl per fortlaufender Division in eine Hexadezimalzahl zu wandeln.",
+      "correct": [
+        "Dezimalzahl ganzzahlig durch 16 teilen",
+        "Rest der Division notieren",
+        "Ganzzahligen Quotienten erneut durch 16 teilen",
+        "Vorgang wiederholen, bis Quotient 0 ist",
+        "Reste von unten nach oben zur Hexzahl zusammensetzen"
+      ]
+    },
+    {
+      "id": "order-angebotsvergleich-ueber-den-bezugspreis",
+      "title": "Angebotsvergleich ueber den Bezugspreis",
+      "prompt": "Ordne die Kalkulationsschritte vom Listeneinkaufspreis bis zum Bezugspreis.",
+      "correct": [
+        "Listeneinkaufspreis ansetzen",
+        "Rabatt abziehen (= Zieleinkaufspreis)",
+        "Skonto abziehen (= Bareinkaufspreis)",
+        "Bezugskosten hinzuaddieren (= Bezugspreis)"
+      ]
+    },
+    {
+      "id": "order-netzplan-vorwaertsrechnung",
+      "title": "Netzplan-Vorwaertsrechnung",
+      "prompt": "Ordne die Schritte der Vorwaertsrechnung zur Bestimmung der fruehesten Zeitpunkte im Netzplan.",
+      "correct": [
+        "Startvorgang mit FAZ = 0 festlegen",
+        "FEZ = FAZ + Dauer je Vorgang berechnen",
+        "FAZ des Nachfolgers = groesstes FEZ aller Vorgaenger uebernehmen",
+        "Rechnung bis zum Endvorgang fortsetzen"
+      ]
+    },
+    {
+      "id": "order-chmod-rechte-oktal-berechnen",
+      "title": "chmod-Rechte oktal berechnen",
+      "prompt": "Ordne die Schritte, um aus gewuenschten Zugriffsrechten die oktale chmod-Angabe zu bilden.",
+      "correct": [
+        "Benoetigte Rechte je Klasse (Eigentuemer/Gruppe/Andere) festlegen",
+        "Werte je Recht zuordnen (r=4, w=2, x=1)",
+        "Werte innerhalb jeder Klasse addieren",
+        "Die drei Ziffern in Reihenfolge Eigentuemer-Gruppe-Andere zusammensetzen"
+      ]
+    },
+    {
+      "id": "order-meldung-einer-datenschutz-datenpanne",
+      "title": "Meldung einer Datenschutz-Datenpanne",
+      "prompt": "Ordne die Schritte nach Feststellung einer meldepflichtigen Datenpanne gemaess DSGVO.",
+      "correct": [
+        "Vorfall erkennen und intern dokumentieren",
+        "Risiko fuer Betroffene bewerten",
+        "Sofortmassnahmen zur Eindaemmung umsetzen",
+        "Aufsichtsbehoerde binnen 72 Stunden benachrichtigen",
+        "Bei hohem Risiko Betroffene informieren"
+      ]
+    },
+    {
+      "id": "order-nutzwertanalyse-durchfuehren",
+      "title": "Nutzwertanalyse durchfuehren",
+      "prompt": "Ordne die Schritte einer Nutzwertanalyse zur Auswahl der besten Alternative.",
+      "correct": [
+        "Bewertungskriterien festlegen",
+        "Kriterien gewichten (Summe 100 %)",
+        "Alternativen je Kriterium mit Punkten bewerten",
+        "Punkte mit Gewichtung multiplizieren",
+        "Teilnutzen je Alternative aufsummieren",
+        "Alternative mit hoechstem Gesamtnutzwert waehlen"
+      ]
+    },
+    {
+      "id": "order-speicherbedarf-eines-bildes-berechnen",
+      "title": "Speicherbedarf eines Bildes berechnen",
+      "prompt": "Ordne die Rechenschritte, um den unkomprimierten Speicherbedarf eines Rasterbildes zu bestimmen.",
+      "correct": [
+        "Bildbreite mal Bildhoehe = Anzahl Pixel",
+        "Anzahl Pixel mal Farbtiefe in Bit = Gesamtbits",
+        "Gesamtbits durch 8 = Bytes",
+        "Bytes in Kilobyte/Megabyte umrechnen"
+      ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import type { CalcItem } from '../types'
+import extra from './calc-extra.json'
 
 // Handkuratierte Rechenaufgaben (type: "calc") — 1:1 aus den Musterlösungen in
 // 03-Rechenschemata.md abgeleitet. Jede Aufgabe trägt solutionSteps + rubric
@@ -14,7 +15,7 @@ const base = {
   source: 'Lernapp/03-Rechenschemata.md',
 }
 
-export const CALC_ITEMS: CalcItem[] = [
+const CALC_BASE: CalcItem[] = [
   {
     ...base,
     id: 'calc--subnetting-26',
@@ -279,3 +280,6 @@ export const CALC_ITEMS: CalcItem[] = [
     pitfalls: ['nur produktive Stunden ansetzen (nicht die volle Jahresarbeitszeit)', 'Gewinnaufschlag auf die Selbstkosten (× 1,20)'],
   },
 ]
+
+// Zusätzliche, per Workflow generierte & fachlich gegengeprüfte Rechenaufgaben.
+export const CALC_ITEMS: CalcItem[] = [...CALC_BASE, ...(extra as CalcItem[])]

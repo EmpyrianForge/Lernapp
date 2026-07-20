@@ -2,6 +2,8 @@
 // mit Operator, Punkten, Musterlösung und Rubric). Modelliert nach dem realen
 // AP1-Blueprint Frühjahr 2025 (02-Aufgabentypen-Operatoren.md).
 
+import extra from './exam-extra.json'
+
 export interface ExamPart {
   label: string
   operator: string
@@ -19,7 +21,7 @@ export interface ExamTask {
   parts: ExamPart[]
 }
 
-export const EXAM_TASKS: ExamTask[] = [
+const EXAM_BASE: ExamTask[] = [
   {
     id: 'task-nutzwert-notebooks',
     title: 'Beschaffung: Notebooks auswählen',
@@ -307,3 +309,6 @@ export const EXAM_TASKS: ExamTask[] = [
     ],
   },
 ]
+
+// Zusätzliche, per Workflow generierte & gegengeprüfte Prüfungsaufgaben.
+export const EXAM_TASKS: ExamTask[] = [...EXAM_BASE, ...(extra as ExamTask[])]
