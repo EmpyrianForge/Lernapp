@@ -115,6 +115,14 @@ function main() {
         ap1Status = 'ap2-grundlagen'
         front = front.slice(marker[0].length)
       }
+      // Per-Karten-Marker [RAND] am Anfang → Prüfungs-Randstoff (peripher, aber AP1).
+      // Bleibt sichtbar/lernbar (kein Ausblenden), nur als „Randstoff" markiert.
+      let peripheral = false
+      const randMarker = front.match(/^\[RAND\]\s*/)
+      if (randMarker) {
+        peripheral = true
+        front = front.slice(randMarker[0].length)
+      }
 
       let id = `${meta.topicId}--${slugify(front)}`
       let n = 2
@@ -128,6 +136,7 @@ function main() {
         tags,
         examFrequency: meta.examFrequency,
         ap1Status,
+        ...(peripheral ? { peripheral: true } : {}),
         operator: null,
         afb: null,
         points: null,

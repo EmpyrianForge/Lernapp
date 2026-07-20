@@ -107,6 +107,7 @@ export function TraceMode({ onExit }: { onExit: () => void }) {
         <div className="study-meta">
           <Pill>Schreibtischtest</Pill>
           <Pill tone="var(--accent-dim)">{item.points} P</Pill>
+          {item.peripheral && <Pill tone="var(--muted-bg)">Randstoff</Pill>}
         </div>
         <span className="counter">{idx + 1} / {items.length}</span>
       </header>

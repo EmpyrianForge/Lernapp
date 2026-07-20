@@ -92,6 +92,7 @@ export function Reviewer({ items, title, onExit }: Props) {
         <div className="study-meta">
           <Pill>{topic?.label ?? item.topicId}</Pill>
           {item.ap1Status === 'ap2-grundlagen' && <Pill tone="var(--muted-bg)">AP2-Grundlagen</Pill>}
+          {item.peripheral && <Pill tone="var(--accent-dim)">Randstoff</Pill>}
           <button
             className={`star ${bookmarks.has(item.id) ? 'on' : ''}`}
             aria-pressed={bookmarks.has(item.id)}

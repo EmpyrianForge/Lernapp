@@ -13,6 +13,7 @@ export interface FlashcardItem {
   tags: string[]
   examFrequency: number
   ap1Status: Ap1Status
+  peripheral?: boolean // AP1-Randstoff: kann drankommen, aber peripher/seltener — bleibt voll sichtbar, nur markiert
   operator: string | null
   afb: string | null
   points: number | null
@@ -33,6 +34,7 @@ export interface CalcItem {
   tags: string[]
   examFrequency: number
   ap1Status: Ap1Status
+  peripheral?: boolean
   operator: 'berechnen'
   afb: string
   points: number
@@ -52,6 +54,7 @@ export interface TraceItem {
   tags: string[]
   examFrequency: number
   ap1Status: Ap1Status
+  peripheral?: boolean
   operator: 'entwickeln'
   afb: string
   points: number

@@ -279,7 +279,7 @@
       "rechnen"
     ],
     "examFrequency": 1,
-    "ap1Status": "ap2-grundlagen",
+    "ap1Status": "core",
     "operator": "berechnen",
     "afb": "II",
     "points": 3,
@@ -311,7 +311,8 @@
       "nicht durch 30, sondern durch Differenz (Zahlungsziel - Skontofrist = 20) teilen",
       "hoher Zins zeigt: Skonto lohnt sich fast immer"
     ],
-    "source": "Lernapp — generiert & geprueft (2026-07)"
+    "source": "Lernapp — generiert & geprueft (2026-07)",
+    "peripheral": true
   },
   {
     "id": "calc--3-techniker-richten-18-arbeitsplaetze-in-4-tagen-ein",
@@ -958,7 +959,7 @@
       "rechnen"
     ],
     "examFrequency": 0.88,
-    "ap1Status": "ap2-grundlagen",
+    "ap1Status": "core",
     "operator": "berechnen",
     "afb": "II",
     "points": 3,
@@ -985,7 +986,8 @@
       "Gesamt durch 6 teilen (1 + 4 + 1)",
       "Standardabweichung nur aus p und o: (p - o) / 6"
     ],
-    "source": "Lernapp — generiert & geprueft (2026-07)"
+    "source": "Lernapp — generiert & geprueft (2026-07)",
+    "peripheral": true
   },
   {
     "id": "calc--ein-projekt-ist-mit-80-personentagen-zu-je-550",
@@ -996,7 +998,7 @@
       "rechnen"
     ],
     "examFrequency": 0.88,
-    "ap1Status": "ap2-grundlagen",
+    "ap1Status": "core",
     "operator": "berechnen",
     "afb": "II-III",
     "points": 4,
@@ -1032,7 +1034,8 @@
       "52 PT sind erst 60 % -> Gesamt liegt ueber 80 PT",
       "Ueberschreitung ist Differenz Prognose minus Budget, nicht minus Verbrauch"
     ],
-    "source": "Lernapp — generiert & geprueft (2026-07)"
+    "source": "Lernapp — generiert & geprueft (2026-07)",
+    "peripheral": true
   },
   {
     "id": "calc--ein-server-sla-garantiert-eine-verfuegbarkeit-von-99-95",

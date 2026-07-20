@@ -249,7 +249,8 @@
       "Schleife endet, wenn b = 0",
       "Ergebnis steht am Ende in a, nicht in b"
     ],
-    "source": "Lernapp — generiert & geprueft (2026-07)"
+    "source": "Lernapp — generiert & geprueft (2026-07)",
+    "peripheral": true
   },
   {
     "id": "trace--schreibtischtest-eingabe-woerter-ha-llo-welt-die-teile-werden",
@@ -478,7 +479,8 @@
       "Nach dem Treffer sofort abbrechen, i=3 und i=4 nicht mehr pruefen",
       "Startwert -1 bedeutet noch nicht gefunden"
     ],
-    "source": "Lernapp — generiert & geprueft (2026-07)"
+    "source": "Lernapp — generiert & geprueft (2026-07)",
+    "peripheral": true
   },
   {
     "id": "trace--schreibtischtest-kopfgesteuerte-schleife-eingabe-zahl-4096-es-soll-gezaehlt",
