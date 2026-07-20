@@ -1,0 +1,26 @@
+# Traefik-Dynamic-Config fuer den Lernapp-Backup-Dienst.
+# Kopiere diese Datei in deinen Traefik-Dynamic-Ordner (File-Provider),
+# z. B.  /docker/traefik/dynamic/backup.yml  — Traefik laedt sie automatisch nach.
+#
+# Passe an:
+#   - Host(`...`)  auf deine (Sub-)Domain (A-Record muss auf den VPS zeigen)
+#   - entryPoints / certResolver auf die Namen aus DEINER Traefik-Static-Config
+#     (haeufig: websecure + letsencrypt)
+#   - die Backend-URL, falls dein Docker-Gateway nicht 172.17.0.1 ist
+#     (pruefen mit:  docker network inspect bridge | grep Gateway )
+
+http:
+  routers:
+    lernapp-backup:
+      rule: "Host(`backup.example.com`)"
+      entryPoints:
+        - websecure
+      service: lernapp-backup
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    lernapp-backup:
+      loadBalancer:
+        servers:
+          - url: "http://172.17.0.1:8787"

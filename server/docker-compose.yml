@@ -1,6 +1,14 @@
-# Backup-Dienst + Caddy (automatisches HTTPS via Let's Encrypt).
-# Voraussetzung: DOMAIN zeigt per DNS auf diesen VPS, Ports 80 + 443 sind offen.
-# Start:  cp .env.example .env  (Werte anpassen)  &&  docker compose up -d
+# Backup-Dienst OHNE eigenen Reverse Proxy — für Server, auf denen schon einer läuft
+# (z. B. Traefik oder nginx auf Port 443). Der Container lauscht NUR auf dem
+# Docker-Host-Gateway 172.17.0.1:8787, ist also aus dem Internet nicht direkt
+# erreichbar — TLS + Routing macht dein bestehender Reverse Proxy.
+#
+# Start:  cp .env.example .env  (ALLOW_ORIGIN setzen)  &&  docker compose up -d
+# Danach im Reverse Proxy einen HTTPS-Host auf  http://172.17.0.1:8787  zeigen lassen
+# (Traefik-Beispiel: traefik/backup.yml in den dynamic-Ordner kopieren).
+#
+# Kein bestehender Proxy? Dann stattdessen  docker-compose.caddy.yml  nutzen
+# (bringt Caddy + automatisches Let's-Encrypt-HTTPS mit).
 
 services:
   backup:
@@ -12,24 +20,7 @@ services:
       - ALLOW_ORIGIN=${ALLOW_ORIGIN}
     volumes:
       - ./data:/data
-    expose:
-      - "8787"
-
-  caddy:
-    image: caddy:2-alpine
-    restart: unless-stopped
+    # Nur ans Docker-Gateway binden -> vom Host & von anderen Containern (Traefik)
+    # erreichbar, aber nicht auf der oeffentlichen IP.
     ports:
-      - "80:80"
-      - "443:443"
-    environment:
-      - DOMAIN=${DOMAIN}
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - backup
-
-volumes:
-  caddy_data:
-  caddy_config:
+      - "172.17.0.1:8787:8787"

@@ -1,0 +1,40 @@
+# NUR falls auf dem Server noch KEIN Reverse Proxy laeuft und Port 80 + 443 frei sind.
+# Bringt Caddy mit -> automatisches HTTPS via Let's Encrypt.
+# Voraussetzung: DOMAIN zeigt per DNS auf diesen VPS, Ports 80 + 443 sind offen.
+# Start:  cp .env.example .env  (DOMAIN + ALLOW_ORIGIN setzen)
+#         docker compose -f docker-compose.caddy.yml up -d
+#
+# Laeuft schon Traefik/nginx auf 443? Dann NICHT diese Datei nehmen, sondern die
+# normale docker-compose.yml (Dienst hinter dem bestehenden Proxy).
+
+services:
+  backup:
+    build: .
+    restart: unless-stopped
+    environment:
+      - PORT=8787
+      - DATA_DIR=/data
+      - ALLOW_ORIGIN=${ALLOW_ORIGIN}
+    volumes:
+      - ./data:/data
+    expose:
+      - "8787"
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backup
+
+volumes:
+  caddy_data:
+  caddy_config:
