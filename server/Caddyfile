@@ -1,0 +1,6 @@
+# Caddy holt automatisch ein Let's-Encrypt-Zertifikat für DOMAIN
+# und leitet alles verschlüsselt an den Backup-Dienst weiter.
+{$DOMAIN} {
+	encode gzip
+	reverse_proxy backup:8787
+}

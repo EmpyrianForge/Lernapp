@@ -553,6 +553,8 @@ h3.sec { margin: 1.4rem 0 0.6rem; font-size: 1rem; }
 .shortcut-list { list-style: none; margin: 0.4rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
 .shortcut-list li { display: flex; align-items: center; gap: 0.8rem; }
 .shortcut-list kbd { min-width: 8rem; text-align: center; }
+.cloud-ok { color: var(--good); font-weight: 600; }
+.cloud-err { color: var(--bad); font-weight: 600; }
 
 /* Overlay */
 .overlay-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: grid; place-items: center; z-index: 100; padding: 1rem; }

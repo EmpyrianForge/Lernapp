@@ -4,9 +4,12 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from 'react'
+import { cloudGet, cloudHealth, cloudPut, type CloudResult } from '../lib/cloud'
+import { exportJSON, importJSON } from '../db/db'
 import type { FlashcardItem, Grade, UserState } from '../types'
 import {
   getKV,
@@ -56,6 +59,15 @@ interface AppStateValue {
   readinessHistory: ReadinessPoint[]
   lastExport: string | null
   markExported: () => void
+  cloudUrl: string
+  cloudKey: string
+  cloudAuto: boolean
+  lastCloudBackup: string | null
+  setCloudConfig: (url: string, key: string) => void
+  setCloudAuto: (v: boolean) => void
+  cloudTest: () => Promise<CloudResult>
+  cloudBackup: () => Promise<CloudResult>
+  cloudRestore: () => Promise<CloudResult>
   reloadStates: () => Promise<void>
 }
 
@@ -71,6 +83,10 @@ const THEME_KEY = 'theme'
 const FONT_SCALE_KEY = 'fontScale'
 const READINESS_KEY = 'readinessHistory'
 const LAST_EXPORT_KEY = 'lastExport'
+const CLOUD_URL_KEY = 'cloudUrl'
+const CLOUD_KEY_KEY = 'cloudKey'
+const CLOUD_AUTO_KEY = 'cloudAuto'
+const LAST_CLOUD_KEY = 'lastCloudBackup'
 interface StreakData {
   count: number
   lastStudy: string | null
@@ -89,6 +105,11 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const [fontScale, setFontScaleState] = useState(1)
   const [readinessHistory, setReadinessHistory] = useState<ReadinessPoint[]>([])
   const [lastExport, setLastExport] = useState<string | null>(null)
+  const [cloudUrl, setCloudUrlState] = useState('')
+  const [cloudKey, setCloudKeyState] = useState('')
+  const [cloudAuto, setCloudAutoState] = useState(false)
+  const [lastCloudBackup, setLastCloudBackup] = useState<string | null>(null)
+  const autoTimer = useRef<number | null>(null)
 
   const reloadStates = useCallback(async () => {
     const map = await loadAllStates()
@@ -107,6 +128,10 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       const fs = (await getKV<number>(FONT_SCALE_KEY)) ?? 1
       const rh = (await getKV<ReadinessPoint[]>(READINESS_KEY)) ?? []
       const le = (await getKV<string>(LAST_EXPORT_KEY)) ?? null
+      const cUrl = (await getKV<string>(CLOUD_URL_KEY)) ?? ''
+      const cKey = (await getKV<string>(CLOUD_KEY_KEY)) ?? ''
+      const cAuto = (await getKV<boolean>(CLOUD_AUTO_KEY)) ?? false
+      const cLast = (await getKV<string>(LAST_CLOUD_KEY)) ?? null
       const cards = await loadUserCards()
       registerUserCards(cards)
       if (!active) return
@@ -118,6 +143,10 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       setFontScaleState(fs)
       setUserCards(cards)
       setLastExport(le)
+      setCloudUrlState(cUrl)
+      setCloudKeyState(cKey)
+      setCloudAutoState(cAuto)
+      setLastCloudBackup(cLast)
       // Streak nur zeigen, wenn er noch „lebt" (letzter Lerntag >= vorgestern, 1 Tag Freeze-Kulanz).
       const alive = sd.lastStudy != null && sd.lastStudy >= addDays(today, -2)
       setStreak(alive ? sd.count : 0)
@@ -245,6 +274,54 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     void setKV(LAST_EXPORT_KEY, d)
   }, [])
 
+  const setCloudConfig = useCallback((url: string, key: string) => {
+    setCloudUrlState(url)
+    setCloudKeyState(key)
+    void setKV(CLOUD_URL_KEY, url)
+    void setKV(CLOUD_KEY_KEY, key)
+  }, [])
+
+  const setCloudAuto = useCallback((v: boolean) => {
+    setCloudAutoState(v)
+    void setKV(CLOUD_AUTO_KEY, v)
+  }, [])
+
+  const cloudTest = useCallback(() => cloudHealth(cloudUrl), [cloudUrl])
+
+  const cloudBackup = useCallback(async (): Promise<CloudResult> => {
+    if (!cloudUrl || !cloudKey) return { ok: false, error: 'Nicht konfiguriert' }
+    const blob = await exportJSON()
+    const res = await cloudPut(cloudUrl, cloudKey, blob)
+    if (res.ok) {
+      const d = res.savedAt || todayISO()
+      setLastCloudBackup(d)
+      void setKV(LAST_CLOUD_KEY, d)
+    }
+    return res
+  }, [cloudUrl, cloudKey])
+
+  const cloudRestore = useCallback(async (): Promise<CloudResult> => {
+    if (!cloudUrl || !cloudKey) return { ok: false, error: 'Nicht konfiguriert' }
+    const res = await cloudGet(cloudUrl, cloudKey)
+    if (res.ok && res.payload !== undefined) {
+      await importJSON(JSON.stringify(res.payload))
+      await reloadStates()
+    }
+    return { ok: res.ok, savedAt: res.savedAt, error: res.error }
+  }, [cloudUrl, cloudKey, reloadStates])
+
+  // Auto-Backup: 20 s nach der letzten Änderung sichern (entprellt), wenn aktiviert.
+  useEffect(() => {
+    if (!ready || !cloudAuto || !cloudUrl || !cloudKey) return
+    if (autoTimer.current) window.clearTimeout(autoTimer.current)
+    autoTimer.current = window.setTimeout(() => {
+      void cloudBackup()
+    }, 20000)
+    return () => {
+      if (autoTimer.current) window.clearTimeout(autoTimer.current)
+    }
+  }, [states, drillStats, bookmarks, userCards, cloudAuto, cloudUrl, cloudKey, ready, cloudBackup])
+
   // Theme + Schriftgröße auf das Wurzelelement anwenden.
   useEffect(() => {
     const root = document.documentElement
@@ -261,6 +338,8 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       coreOnly, setCoreOnly, drillStats, recordDrill,
       bookmarks, toggleBookmark, userCards, addUserCard, deleteUserCard,
       theme, setTheme, fontScale, setFontScale, readinessHistory, lastExport, markExported,
+      cloudUrl, cloudKey, cloudAuto, lastCloudBackup, setCloudConfig, setCloudAuto,
+      cloudTest, cloudBackup, cloudRestore,
       reloadStates,
     }),
     [
@@ -268,6 +347,8 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       coreOnly, setCoreOnly, drillStats, recordDrill,
       bookmarks, toggleBookmark, userCards, addUserCard, deleteUserCard,
       theme, setTheme, fontScale, setFontScale, readinessHistory, lastExport, markExported,
+      cloudUrl, cloudKey, cloudAuto, lastCloudBackup, setCloudConfig, setCloudAuto,
+      cloudTest, cloudBackup, cloudRestore,
       reloadStates,
     ],
   )

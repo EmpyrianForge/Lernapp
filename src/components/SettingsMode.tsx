@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import type { Theme } from '../state/AppState'
 import { useAppState } from '../state/AppState'
 import { exportJSON, importJSON } from '../db/db'
@@ -15,8 +15,36 @@ const SHORTCUTS: [string, string][] = [
 ]
 
 export function SettingsMode({ onExit }: { onExit: () => void }) {
-  const { theme, setTheme, fontScale, setFontScale, lastExport, markExported, reloadStates } = useAppState()
+  const {
+    theme, setTheme, fontScale, setFontScale, lastExport, markExported, reloadStates,
+    cloudUrl, cloudKey, cloudAuto, lastCloudBackup, setCloudConfig, setCloudAuto,
+    cloudTest, cloudBackup, cloudRestore,
+  } = useAppState()
   const fileRef = useRef<HTMLInputElement>(null)
+
+  const [url, setUrl] = useState(cloudUrl)
+  const [key, setKey] = useState(cloudKey)
+  const [cloudMsg, setCloudMsg] = useState<{ ok: boolean; text: string } | null>(null)
+  const [busy, setBusy] = useState(false)
+  const configured = cloudUrl.trim().length > 0 && cloudKey.trim().length >= 16
+
+  const saveCloud = () => {
+    setCloudConfig(url.trim(), key.trim())
+    setCloudMsg({ ok: true, text: 'Gespeichert.' })
+  }
+  const runCloud = async (fn: () => Promise<{ ok: boolean; savedAt?: string; error?: string }>, okText: string) => {
+    setBusy(true)
+    setCloudMsg(null)
+    const res = await fn()
+    setBusy(false)
+    setCloudMsg({ ok: res.ok, text: res.ok ? okText : `Fehler: ${res.error ?? 'unbekannt'}` })
+    return res
+  }
+  const doRestore = async () => {
+    if (!confirm('Lokalen Lernstand mit dem Server-Backup überschreiben? Danach wird die App neu geladen.')) return
+    const res = await runCloud(cloudRestore, 'Wiederhergestellt.')
+    if (res.ok) setTimeout(() => window.location.reload(), 600)
+  }
 
   async function onExport() {
     const json = await exportJSON()
@@ -78,6 +106,41 @@ export function SettingsMode({ onExit }: { onExit: () => void }) {
         <button className="btn" onClick={() => fileRef.current?.click()}>⬆ Importieren</button>
         <input ref={fileRef} type="file" accept="application/json" hidden onChange={onImport} />
       </div>
+
+      <h3 className="sec">Cloud-Backup (VPS)</h3>
+      <p className="muted small">
+        Sichert den Lernstand zusätzlich auf deinen eigenen Server (HTTPS-URL + geheimer Schlüssel).
+        Server aufsetzen: siehe <code>server/README.md</code> im Projekt.
+      </p>
+      <label className="field">
+        <span>Server-URL (HTTPS)</span>
+        <input className="search-input" type="url" inputMode="url" placeholder="https://backup.deine-domain.de"
+          value={url} onChange={(e) => setUrl(e.target.value)} autoCapitalize="off" autoCorrect="off" spellCheck={false} />
+      </label>
+      <label className="field">
+        <span>Geheimer Schlüssel (min. 16 Zeichen)</span>
+        <input className="search-input" type="password" placeholder="langer Zufallswert (openssl rand -hex 24)"
+          value={key} onChange={(e) => setKey(e.target.value)} autoComplete="off" />
+      </label>
+      <div className="row" style={{ justifyContent: 'flex-start' }}>
+        <button className="btn" onClick={saveCloud}>Speichern</button>
+        <button className="btn" disabled={busy || !cloudUrl.trim()} onClick={() => runCloud(cloudTest, 'Server erreichbar.')}>Verbindung testen</button>
+        <button className="btn primary" disabled={busy || !configured} onClick={() => runCloud(cloudBackup, 'Auf dem Server gesichert.')}>Jetzt sichern</button>
+        <button className="btn" disabled={busy || !configured} onClick={doRestore}>Wiederherstellen</button>
+      </div>
+      <label className="core-toggle" style={{ marginTop: '0.6rem' }}>
+        <input type="checkbox" checked={cloudAuto} onChange={(e) => setCloudAuto(e.target.checked)} disabled={!configured} />
+        <span>Automatisch sichern</span>
+        <span className="muted small">— 20 s nach jeder Änderung</span>
+      </label>
+      {cloudMsg && <p className={`small ${cloudMsg.ok ? 'cloud-ok' : 'cloud-err'}`}>{cloudMsg.text}</p>}
+      <p className="muted small">
+        {configured
+          ? lastCloudBackup
+            ? `Letztes Cloud-Backup: ${formatDE(lastCloudBackup.slice(0, 10))}.`
+            : 'Konfiguriert — noch kein Cloud-Backup.'
+          : 'Noch nicht eingerichtet (URL + Schlüssel ≥ 16 Zeichen speichern).'}
+      </p>
 
       <h3 className="sec">Tastatur-Kürzel</h3>
       <ul className="shortcut-list">

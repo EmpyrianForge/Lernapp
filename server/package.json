@@ -1,0 +1,13 @@
+{
+  "name": "ap1-lernapp-backup-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimaler Backup-Server für die AP1 Lernapp (ein JSON-Blob je Schlüssel, ohne Dependencies).",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

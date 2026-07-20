@@ -12,3 +12,6 @@ dev-dist
 
 # TS incremental build info (Artefakt)
 *.tsbuildinfo
+
+# Backup-Server-Daten (VPS, nicht committen)
+server/data*/
