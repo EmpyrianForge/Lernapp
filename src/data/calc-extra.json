@@ -279,7 +279,7 @@
       "rechnen"
     ],
     "examFrequency": 1,
-    "ap1Status": "core",
+    "ap1Status": "ap2-grundlagen",
     "operator": "berechnen",
     "afb": "II",
     "points": 3,
@@ -958,7 +958,7 @@
       "rechnen"
     ],
     "examFrequency": 0.88,
-    "ap1Status": "core",
+    "ap1Status": "ap2-grundlagen",
     "operator": "berechnen",
     "afb": "II",
     "points": 3,
@@ -996,7 +996,7 @@
       "rechnen"
     ],
     "examFrequency": 0.88,
-    "ap1Status": "core",
+    "ap1Status": "ap2-grundlagen",
     "operator": "berechnen",
     "afb": "II-III",
     "points": 4,

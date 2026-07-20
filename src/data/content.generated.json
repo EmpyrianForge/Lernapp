@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-20T12:54:28.509Z",
+  "generatedAt": "2026-07-20T13:27:48.798Z",
   "count": 304,
   "items": [
     {
@@ -868,7 +868,7 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -887,7 +887,7 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -2996,7 +2996,7 @@
         "lernapp"
       ],
       "examFrequency": 0.63,
-      "ap1Status": "supporting",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -3015,7 +3015,7 @@
         "lernapp"
       ],
       "examFrequency": 0.63,
-      "ap1Status": "supporting",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -5447,7 +5447,7 @@
         "lernapp"
       ],
       "examFrequency": 0.45,
-      "ap1Status": "supporting",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
