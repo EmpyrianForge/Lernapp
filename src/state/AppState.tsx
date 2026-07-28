@@ -10,7 +10,7 @@ import {
 } from 'react'
 import { cloudGet, cloudHealth, cloudPut, type CloudResult } from '../lib/cloud'
 import { exportJSON, importJSON } from '../db/db'
-import type { FlashcardItem, Grade, UserState } from '../types'
+import type { FlashcardItem, Grade, Track, UserState } from '../types'
 import {
   getKV,
   loadAllStates,
@@ -23,7 +23,7 @@ import {
 import { initialState, review as reviewSm2 } from '../lib/sm2'
 import { addDays, todayISO } from '../lib/date'
 import { dueCount } from '../lib/scheduler'
-import { registerUserCards, USER_CARD_PREFIX } from '../data/content'
+import { registerUserCards, setActiveTrack, USER_CARD_PREFIX } from '../data/content'
 import { examReadiness } from '../lib/mastery'
 
 export type Theme = 'system' | 'light' | 'dark'
@@ -38,6 +38,8 @@ export interface ReadinessPoint {
 interface AppStateValue {
   ready: boolean
   today: string
+  track: Track
+  setTrack: (t: Track) => void
   states: Map<string, UserState>
   stateOf: (itemId: string) => UserState | undefined
   review: (itemId: string, grade: Grade) => Promise<void>
@@ -95,6 +97,7 @@ interface StreakData {
 export function AppStateProvider({ children }: { children: ReactNode }) {
   const today = todayISO()
   const [ready, setReady] = useState(false)
+  const [track, setTrackState] = useState<Track>('ap1')
   const [states, setStates] = useState<Map<string, UserState>>(new Map())
   const [streak, setStreak] = useState(0)
   const [coreOnly, setCoreOnlyState] = useState(false)
@@ -196,6 +199,14 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const setCoreOnly = useCallback((v: boolean) => {
     setCoreOnlyState(v)
     void setKV(CORE_ONLY_KEY, v)
+  }, [])
+
+  // Track wechseln (AP1 / AP2 / Hydra): den Content-Pool in-place auf den Track
+  // filtern UND den React-State setzen -> Re-Render + abgeleitete Werte (dueTotal)
+  // rechnen neu. Der Lernstand (states) ist per itemId getrennt, bleibt also erhalten.
+  const setTrack = useCallback((t: Track) => {
+    setActiveTrack(t)
+    setTrackState(t)
   }, [])
 
   const recordDrill = useCallback((type: string, correct: number, total: number) => {
@@ -330,11 +341,11 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     root.style.fontSize = `${Math.round(fontScale * 100)}%`
   }, [theme, fontScale])
 
-  const dueTotal = useMemo(() => dueCount(states, today, coreOnly), [states, today, coreOnly])
+  const dueTotal = useMemo(() => dueCount(states, today, coreOnly), [states, today, coreOnly, track])
 
   const value = useMemo<AppStateValue>(
     () => ({
-      ready, today, states, stateOf, review, streak, dueTotal,
+      ready, today, track, setTrack, states, stateOf, review, streak, dueTotal,
       coreOnly, setCoreOnly, drillStats, recordDrill,
       bookmarks, toggleBookmark, userCards, addUserCard, deleteUserCard,
       theme, setTheme, fontScale, setFontScale, readinessHistory, lastExport, markExported,
@@ -343,7 +354,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       reloadStates,
     }),
     [
-      ready, today, states, stateOf, review, streak, dueTotal,
+      ready, today, track, setTrack, states, stateOf, review, streak, dueTotal,
       coreOnly, setCoreOnly, drillStats, recordDrill,
       bookmarks, toggleBookmark, userCards, addUserCard, deleteUserCard,
       theme, setTheme, fontScale, setFontScale, readinessHistory, lastExport, markExported,

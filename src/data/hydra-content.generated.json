@@ -1,0 +1,2471 @@
+{
+  "generatedAt": "2026-07-23",
+  "gapPass": "2026-07-27",
+  "count": 221,
+  "cards": [
+    {
+      "topic": "ueberblick",
+      "slug": "was-ist-hydra",
+      "front": "Was ist Hydra in einem Satz und welches Architekturprinzip verfolgt es?",
+      "back": "Hydra ist ein **zentrales Monitoring-Dashboard** für mehrere WordPress-Sites, das den Betriebszustand aus bereits eingesetzten Tools zusammenführt und visualisiert. Es verkörpert das **Single-Pane-of-Glass**-Prinzip: Hydra ersetzt die Tools nicht, sondern **aggregiert** ihre Daten in eine zentrale Übersicht. Pro Site sieht man **Erreichbarkeit, Update-Status und Backup-Status** auf einen Blick.",
+      "tags": [
+        "single-pane-of-glass",
+        "aggregator",
+        "definition"
+      ]
+    },
+    {
+      "topic": "ueberblick",
+      "slug": "problem-ausgangslage",
+      "front": "Welches Problem löst Hydra bzw. was war die Ausgangslage?",
+      "back": "Das Monitoring der betreuten WordPress-Sites war über **mehrere getrennte Tools verstreut**: Odoo (Kundendaten), InfiniteWP (Updates), WP Time Capsule/S3 (Backups) und Uptime Robot (Erreichbarkeit). Es gab keine gemeinsame Übersicht, der Status musste in jedem Tool einzeln geprüft werden. Hydra bündelt diese Quellen über eine **kanonische Site-Entität** zu einer zentralen Sicht.",
+      "tags": [
+        "problem",
+        "ausgangslage",
+        "quellen"
+      ]
+    },
+    {
+      "topic": "ueberblick",
+      "slug": "vier-quellen",
+      "front": "Welche vier Quellen aggregiert Hydra und welchen Aspekt liefert jede?",
+      "back": "1. **Odoo** — Projekt-/Kundenkontext (Stammdaten)\n2. **InfiniteWP** — Update-Status (Core/Plugin/Theme, Vulns)\n3. **WP Time Capsule / S3** — Backup-Status (letztes Backup, Größe)\n4. **Uptime Robot** — Erreichbarkeit/Uptime\n\nAlle vier bleiben eigenständig in Betrieb; Hydra ist **komplementär, nicht redundant**.",
+      "tags": [
+        "quellen",
+        "odoo",
+        "infinitewp"
+      ]
+    },
+    {
+      "topic": "ueberblick",
+      "slug": "v1-vs-v2",
+      "front": "Was ist der Unterschied zwischen Hydra V1 und V2, und welches ist die eigentliche Projektleistung?",
+      "back": "**V1** = die funktionierende, aber limitierte Ausgangslage: PHP-Backend + Google Apps Script/Sheet, aggregiert drei der vier Quellen.\n**V2** = der **Neubau in Python** (FastAPI + SQLAlchemy 2.0 + Alembic + PostgreSQL/SQLite), der die bewährte V1-Fachlogik übernimmt und die limitierende Plattform ersetzt.\nDie **Projektleistung (AP2) ist ausschließlich V2**; V1 gilt nur als analysierte IST-Ausgangslage.",
+      "tags": [
+        "v1",
+        "v2",
+        "projektleistung"
+      ]
+    },
+    {
+      "topic": "ueberblick",
+      "slug": "v1-grenzen",
+      "front": "Warum wurde V1 abgelöst — welche Grenzen trieben den Neubau?",
+      "back": "V1 funktioniert, ist aber durch seine Plattform limitiert:\n- **Google Sheet als \"Datenbank\"** (keine Constraints/Transaktionen, langsam bei vielen Zeilen)\n- **Apps-Script-6-Minuten-Limit** (Batch/Cursor-Workarounds nötig)\n- Geschäftsregeln in **Sheet-Tabs** statt Datenmodell (schwer testbar/versionierbar)\n- **keine automatisierten Tests**\n- **Uptime** nicht ins Dashboard integriert.",
+      "tags": [
+        "v1",
+        "grenzen",
+        "treiber"
+      ]
+    },
+    {
+      "topic": "ueberblick",
+      "slug": "projektziel-nutzen",
+      "front": "Was ist das Projektziel (SOLL) von Hydra V2 und worin liegt der Nutzen?",
+      "back": "Ein **wartbarer Neubau**, der die bewährte V1-Fachlogik übernimmt und die limitierende Plattform ersetzt: **Python mit PostgreSQL + geplanten Jobs (Scheduler) + Web-Dashboard** statt Sheet + Apps Script. Ziel unverändert: pro Site **Erreichbarkeit, Update- und Backup-Status** zentral (Single Pane of Glass). Nutzen: gesparte Prüfzeit über vier Tools hinweg und **Risikovermeidung** (übersehene Updates/Backups).",
+      "tags": [
+        "projektziel",
+        "soll",
+        "nutzen"
+      ]
+    },
+    {
+      "topic": "ueberblick",
+      "slug": "read-only-abgrenzung",
+      "front": "Was bedeutet der Read-only-Charakter von Hydra und wie grenzt sich das Projekt ab?",
+      "back": "Hydra ist eine reine **read-only Aggregations-/Visualisierungsschicht**: Es spielt **keine Updates ein**, erstellt **keine Backups** und ersetzt **keine** der Quell-Tools. Es fragt die WP-Installationen auch **nicht direkt** ab — Update-Daten kommen aus InfiniteWP. Dieser Read-only-Zugriff ist zugleich ein Sicherheitsvorteil (nur lesende Zugriffe auf die Quellen).",
+      "tags": [
+        "read-only",
+        "abgrenzung",
+        "it-sicherheit"
+      ]
+    },
+    {
+      "topic": "ueberblick",
+      "slug": "make-or-buy-ko-kriterium",
+      "front": "Warum fiel die Make-or-Buy-Entscheidung zugunsten des Eigenbaus (Make)?",
+      "back": "Zuerst entscheidet das **K.-o.-Kriterium Funktionsdeckung** (vor dem Preis): Kein fertiges SaaS-Tool (WP Umbrella, MainWP, ManageWP, Patchstack) aggregiert **Odoo-Stammdaten + bestehendes InfiniteWP + Backup + Uptime** über eine **kanonische Domain**. Damit scheidet \"Buy\" bereits **funktional** aus — nicht erst am Preis. Das ist Hydras Alleinstellung.",
+      "tags": [
+        "make-or-buy",
+        "wirtschaftlichkeit",
+        "funktionsdeckung"
+      ]
+    },
+    {
+      "topic": "ueberblick",
+      "slug": "roi-amortisation",
+      "front": "Wie wird die Wirtschaftlichkeit von Hydra über ROI/Amortisation argumentiert (Beispielrechnung)?",
+      "back": "**Amortisation (Monate) = Einmalkosten / monatliche Ersparnis.**\nBeispiel: Statusabfrage über 4 Tools bisher ca. 6 h/Monat, mit Hydra ca. 0,5 h -> Ersparnis 5,5 h x 25 EUR ca. **138 EUR/Monat**. Bei Einmalkosten ca. 2.000 EUR (30 Sites, <=80 h) amortisiert sich das in ca. **15 Monaten**. Zusätzlich zählt die **Risikovermeidung** (übersehene Updates/Backups). (Annahmen, im Betrieb zu verifizieren.)",
+      "tags": [
+        "roi",
+        "amortisation",
+        "wirtschaftlichkeit"
+      ]
+    },
+    {
+      "topic": "ueberblick",
+      "slug": "single-pane-komplementaer",
+      "front": "Warum konkurriert Hydra nicht mit Tools wie MainWP, sondern ergänzt sie?",
+      "back": "Hydra **konkurriert nicht**, sondern **aggregiert** die bestehenden Tools — sie bleiben in Betrieb, die Beziehung ist **komplementär, nicht redundant**. Der Mehrwert entsteht gerade durch das Zusammenführen der bereits vorhandenen Quellen (Odoo, InfiniteWP, Backup, Uptime) zu einer kanonischen Site-Sicht, die kein einzelnes Tool bietet. Deshalb ersetzt es keine Quelle, sondern liegt als Sichtschicht darüber.",
+      "tags": [
+        "komplementaer",
+        "single-pane-of-glass",
+        "abgrenzung"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "python-warum",
+      "front": "Welche Programmiersprache nutzt der Hydra-Neubau (V2) und warum diese Wahl?",
+      "back": "**Python 3.14**. Gründe: sehr gut lesbar (doku-/wartungsfreundlich, wichtig für die AP2-Bewertung), erstklassiges TDD-Tooling (**pytest**), alle benötigten Bibliotheken vorhanden (SQLAlchemy, FastAPI, boto3, requests) sowie einfaches Scheduling/Deployment mit wenig „Magie\". Der gesamte V2-Code ist Python.",
+      "tags": [
+        "python",
+        "sprache",
+        "begruendung"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "fastapi-warum",
+      "front": "Was ist FastAPI und warum wurde es (statt PHP/Laravel) als Web-Framework gewählt?",
+      "back": "**FastAPI** ist ein modernes Python-**Web-Framework**, das über den ASGI-Server **uvicorn** läuft. In Hydra liefert es die HTTP-Endpunkte und das server-gerenderte Dashboard. Gründe: sehr wenig Boilerplate, **automatische API-Doku** (`/docs`) für Nachvollziehbarkeit/Demo, und Typ-Hinweise + **Pydantic** validieren Ein-/Ausgaben automatisch. Für den read-only-Lesepfad zählt v. a. die Developer-Experience, nicht „Performance\".",
+      "tags": [
+        "fastapi",
+        "framework",
+        "begruendung"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "fastapi-sync-post",
+      "front": "Wie sichert Hydra die FastAPI-Endpunkte ab und warum ist `/sync` bewusst ein POST?",
+      "back": "Die DB-**Session** kommt per **Dependency Injection** (`Depends(get_db)`, per `yield` — FastAPI schließt sie nach dem Request). Ein optionaler **API-Key-Guard** (`X-API-Key`-Header) schützt `/`, `/api/sites` und `/sync`; `/health` bleibt offen. **`/sync` ist POST**, weil es Daten ÄNDERT (kein Link/Prefetch löst einen Sync aus), und antwortet mit **Redirect 303** (Post/Redirect/Get).",
+      "tags": [
+        "fastapi",
+        "sicherheit",
+        "dependency-injection"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "sqlalchemy-orm",
+      "front": "Was ist SQLAlchemy und warum wird ein ORM in Hydra eingesetzt?",
+      "back": "**SQLAlchemy 2.0** ist die bekannteste **ORM**-Bibliothek für Python: eine Klasse = eine Tabelle, ein Objekt = eine Zeile, ein Attribut = eine Spalte; SQLAlchemy übersetzt das automatisch in SQL. Gründe: **SQL bleibt sichtbar** (`echo=True` zeigt jedes Statement — passt zum AP2-Thema SQL), **DB-unabhängig** (gleicher Code für SQLite und PostgreSQL, nur die URL wechselt) und reif, mit Alembic für Migrationen.",
+      "tags": [
+        "sqlalchemy",
+        "orm",
+        "begruendung"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "sqlalchemy-upsert",
+      "front": "Was ist Hydras idempotentes Kernmuster beim Sync und wie setzt SQLAlchemy es um?",
+      "back": "Das **UPSERT** („einfügen ODER aktualisieren\"): zweimal ausgeführt entsteht **keine Dublette** — genau das braucht jeder Sync-Lauf. Umgesetzt mit `insert(...).on_conflict_do_update(index_elements=[\"domain\"], set_={...})` über den UNIQUE-Key `domain`. Erzeugtes SQL: `INSERT ... ON CONFLICT (domain) DO UPDATE SET ...`. Die Logik ist für SQLite (Dev) und PostgreSQL (Prod) identisch.",
+      "tags": [
+        "sqlalchemy",
+        "upsert",
+        "idempotenz"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "alembic-migrationen",
+      "front": "Was ist Alembic und welche Aufgabe erfüllt es in Hydra?",
+      "back": "**Alembic** ist das Migrations-Werkzeug für SQLAlchemy: eine **Migration** ist ein versioniertes Skript, das genau eine Struktur-Änderung beschreibt — in beide Richtungen (`upgrade`/`downgrade`). Kurzbild: „wie git, aber für die DB-Struktur\". So entwickelt V2 sein **PostgreSQL-Schema weiter, ohne Daten zu löschen** (kein `create_all` im Betrieb; 4 Migrationen). AP2-Pluspunkt: Änderungen sind nachvollziehbar & belegbar (Qualitätssicherung).",
+      "tags": [
+        "alembic",
+        "migrationen",
+        "begruendung"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "postgresql-warum",
+      "front": "Warum ist PostgreSQL Hydras produktiver Datenspeicher (statt SQLite im Betrieb)?",
+      "back": "**PostgreSQL 16** ist ein ausgereiftes, freies **RDBMS** und der **kanonische Datenspeicher** (Tabellen `sites`, `*_state`, `sync_run`). Gründe gegenüber SQLite im Betrieb: echter **Server** (robust bei parallelen Zugriffen und größeren Datenmengen), striktere Typen, vollwertiges `ALTER TABLE`, starke Constraints/Indizes und erstklassiges `INSERT ... ON CONFLICT` (Hydras Upsert). Anbindung über den Treiber **psycopg 3**.",
+      "tags": [
+        "postgresql",
+        "datenbank",
+        "begruendung"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "sqlite-dev",
+      "front": "Wofür nutzt Hydra SQLite und warum ist es dafür geeignet?",
+      "back": "**SQLite** ist eine winzige Datei-Datenbank (kein Server, keine Installation) und dient als **Entwicklungs-/Test-DB** (Default; Lernprojekt → `hydra_demo.db`, Tests → `:memory:`). Gründe: **null Setup** (sofort lauffähig, ideal für automatische Tests) und **gleiche SQLAlchemy-Modelle** wie bei PostgreSQL. Produktiv wird gewechselt, weil SQLite bei vielen parallelen Schreibzugriffen und `ALTER TABLE` limitiert ist.",
+      "tags": [
+        "sqlite",
+        "datenbank",
+        "dev"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "database-url-wechsel",
+      "front": "Wie gelingt der Wechsel zwischen SQLite (Dev) und PostgreSQL (Prod) ohne Code-Änderung?",
+      "back": "Nur die **Verbindungs-URL** ändert sich — in Hydra über die Umgebungsvariable **`DATABASE_URL`** —, der übrige Code bleibt gleich, weil **SQLAlchemy** die DB abstrahiert. Beispiel: `sqlite:///hydra_demo.db` ↔ `postgresql+psycopg://user:pass@host:5432/hydra`. Der DB-Typ steckt allein in der **Engine-URL** (Dialekt + Treiber). Genau das macht Dev-DB und Prod-DB austauschbar.",
+      "tags": [
+        "database-url",
+        "sqlalchemy",
+        "config"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "apscheduler-warum",
+      "front": "Was ist APScheduler und warum löst es in Hydra die Sync-Läufe aus?",
+      "back": "**APScheduler** (Advanced Python Scheduler) führt Funktionen **zeitgesteuert** aus — wie Cron, aber **im selben Python-Prozess** wie die FastAPI-App. Es ersetzt die Google-Apps-Script-Trigger aus V1. Gründe: kein externer Cron/Dienst nötig (einfaches Deployment), ein Prozess/ein Ort, flexible Trigger. Ist: ein Intervall-Job ruft `sync_all()` alle `SYNC_INTERVAL_MINUTES` (Default 15); Start nur bei `RUN_SCHEDULER=1` über den FastAPI-`lifespan`.",
+      "tags": [
+        "apscheduler",
+        "scheduler",
+        "begruendung"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "pytest-tdd",
+      "front": "Was ist pytest und warum ist es für Hydra (AP2) besonders relevant?",
+      "back": "**pytest** ist das Standard-**Test-Framework** für Python. Es sichert die Kernlogik ab, allen voran die **Domain-Normalisierung** (`normalize(input) -> str`, reine Ein-/Ausgabe = ideales **TDD**-Thema). Gründe: wenig Zeremonie (`assert` genügt), starke **Fixtures** und **Parametrisierung**. Tests sind AP2-Bewertungsschwerpunkt (TDD/Qualitätssicherung); sie laufen gegen SQLite `:memory:` (schnell, isoliert). 124 Tests grün.",
+      "tags": [
+        "pytest",
+        "tdd",
+        "tests"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "jinja2-server-rendered",
+      "front": "Welche Rolle spielt Jinja2 im Hydra-Frontend und warum keine SPA?",
+      "back": "**Jinja2** ist die **Template-Engine**: sie erzeugt die Statustabelle **serverseitig** aus Vorlage + Daten (`{{ }}` = Ausgabe, `{% %}` = Logik). **Autoescaping** ist an → Schutz vor **XSS**. Kein React/Vue, weil: read-only-Dashboard, 80-h-Rahmen und kleines Bundle — der Server bleibt „Herr der Wahrheit\", das HTML kommt fertig vom Server. Installiert wird Jinja2 über FastAPI.",
+      "tags": [
+        "jinja2",
+        "templating",
+        "frontend"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "htmx-bewusst-verworfen",
+      "front": "Warum setzt Hydra für Interaktivität Vanilla-JS statt HTMX (oder einer SPA) ein?",
+      "back": "Die Interaktivität (Filter-Chips, Suche, Sortierung, Detail-Ansicht, **Auto-Refresh**) macht schlankes **Vanilla-JS** (`fetch` + DOM): ein periodischer `fetch('/api/sites')` aktualisiert die Tabelle — **dieselbe Datenquelle** wie Dashboard und JSON-API (eine Quelle der Wahrheit). **HTMX wird bewusst nicht eingesetzt**: natives `fetch` reicht, ist abhängigkeitsfrei/offline. Ohne JS greift ein `<noscript>`-Fallback.",
+      "tags": [
+        "vanilla-js",
+        "htmx",
+        "frontend"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "boto3-s3",
+      "front": "Was ist boto3 und warum wird es in Hydra für die Backup-Prüfung genutzt?",
+      "back": "**boto3** ist das offizielle **AWS-SDK für Python**. In Hydra liest es die **Backup-Daten aus S3** (WP Time Capsule legt Backups dort ab) → `backup_state`-Tabelle. Gründe: es **ersetzt** den in V1 von Hand gebauten AWS-**SigV4**-Client (kein eigener Signatur-Code → weniger Fehlerquellen/Wartung) und kümmert sich um Auth, Retries, Pagination. Meist genügen `head_object`/`list_objects_v2` (Metadaten) statt Download.",
+      "tags": [
+        "boto3",
+        "s3",
+        "aws"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "requests-http",
+      "front": "Wofür nutzt Hydra die requests-Bibliothek?",
+      "back": "**requests** ist Pythons HTTP-Bibliothek; sie ruft Dienste über das Netz auf — in Hydra die Connectoren **Odoo (JSON-RPC)** und **UptimeRobot (REST v3, Bearer-Token im Header)**. Sie **ersetzt PHPs cURL** aus V1. Wichtig: immer einen `timeout` setzen.",
+      "tags": [
+        "requests",
+        "http",
+        "connector"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "tldextract-domain",
+      "front": "Welche Bibliothek bildet das Herzstück der Domain-Normalisierung und wie?",
+      "back": "**tldextract** zieht aus einem Host die **registrierbare Domain** (eTLD+1): `shop.kunde.co.uk` → `kunde.co.uk`. Es nutzt die **Public Suffix List (PSL)** statt selbst an Punkten zu zerlegen (`ext.top_domain_under_public_suffix`). Für **deterministische Tests** wird die PSL-Version eingefroren. Das Ergebnis ist der UNIQUE-Schlüssel `domain_normalized`.",
+      "tags": [
+        "tldextract",
+        "domain",
+        "normalisierung"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "python-dotenv-secrets",
+      "front": "Wie verwaltet Hydra Zugangsdaten und warum so?",
+      "back": "**python-dotenv** lädt Secrets (DB, Odoo, S3, UptimeRobot) aus einer **`.env`-Datei** in die Umgebung (`load_dotenv()` → `os.environ[...]`) — **nie im Code**. Entspricht V1s `keys.env`. Die `.env` gehört in `.gitignore`, in der IHK-Doku werden reale Keys **anonymisiert**. Passt zum AP2-Sicherheitsthema (Zugangsdaten getrennt vom Code, Least-Privilege).",
+      "tags": [
+        "dotenv",
+        "secrets",
+        "sicherheit"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "stack-gesamtbegruendung",
+      "front": "Wie begründest du im Fachgespräch die Wahl des gesamten Hydra-Stacks in einem Satz?",
+      "back": "Drei Kernargumente: **SQL-Nähe** (Prüfungsthema) — SQLAlchemy zeigt echtes SQL, PostgreSQL als „richtige\" DB; **TDD-Tooling** — pytest ist Standard, die Domain-Normalisierung ein ideales TDD-Thema; **wenig „Framework-Magie\"**, gut lesbar, einfaches Scheduling/Deployment. Die ausführliche begründete Entscheidung inkl. Alternativen (Laravel/PHP, Node/TS) steht in Kap. 4.1 des Entwurfs.",
+      "tags": [
+        "stack",
+        "begruendung",
+        "entscheidung"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "erm-ueberblick",
+      "front": "Wie ist das Datenmodell von Hydra V2 strukturiert (Entitäten und Kardinalitäten)?",
+      "back": "Eine kanonische **`sites`**-Tabelle als Anker, dazu je Datenquelle eine **1:1**-`*_state`-Tabelle (`odoo_state`, `infinitewp_state`, `backup_state`, `uptime_state`) und ein **1:n**-Audit-Log `sync_run` — insgesamt **sechs Tabellen**. Die vier States hängen über `site_id` an der Site, `sync_run` protokolliert viele Läufe je Site. Umgesetzt als SQLAlchemy-ORM-Klassen in `app/models.py`.",
+      "tags": [
+        "erm",
+        "kardinalität",
+        "überblick"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "surrogat-vs-natuerlicher-schluessel",
+      "front": "Was ist in `sites` der Surrogatschlüssel und was der natürliche (fachliche) Schlüssel?",
+      "back": "**Surrogatschlüssel** ist `id` (`int`, Auto-Increment/IDENTITY) — künstlich, fachlich bedeutungslos, dafür stabil. **Natürlicher (fachlicher) Schlüssel** ist `domain` (`String(255)`, `unique=True`) — der Geschäftsschlüssel, über den das Upsert (get-or-create) läuft. Der Surrogatschlüssel bleibt auch dann stabil, wenn sich fachliche Werte ändern.",
+      "tags": [
+        "primärschlüssel",
+        "surrogatschlüssel"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "shared-primary-key-1zu1",
+      "front": "Wie erzwingt Hydra technisch die echte 1:1-Beziehung zwischen `sites` und den `*_state`-Tabellen?",
+      "back": "Über einen **Shared Primary Key**: In allen vier `*_state`-Tabellen ist `site_id` **Primärschlüssel UND Fremdschlüssel zugleich** (`mapped_column(ForeignKey(\"sites.id\"), primary_key=True)`). Weil ein PK eindeutig ist, kann es je Site **höchstens eine** State-Zeile geben — das erzwingt die 1:1-Kardinalität sauberer als ein reiner FK.",
+      "tags": [
+        "1zu1",
+        "shared-pk",
+        "fremdschlüssel"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "referenzielle-integritaet-cascade",
+      "front": "Wie sichert Hydra die referenzielle Integrität beim Löschen einer Site?",
+      "back": "Über `cascade=\"all, delete-orphan\"` auf allen Beziehungen von `Site` (die vier States und `sync_runs`). Löscht man eine Site, gehen ihre State-Zeilen und Sync-Läufe mit — es bleiben keine **verwaisten** Zeilen zurück, die auf keine Site mehr zeigen. Die Kaskade ist hier ORM-seitig definiert; der FK `site_id` stellt die Referenz her.",
+      "tags": [
+        "referenzielle-integrität",
+        "cascade"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "kardinalitaet-1zun-syncrun",
+      "front": "Warum ist `sync_run` eine 1:n-Beziehung und wie unterscheidet sich ihr Schlüssel von den `*_state`-Tabellen?",
+      "back": "Eine Site hat **viele** Sync-Läufe (1:n). Deshalb hat `sync_run` einen **eigenen** Surrogat-PK `id`, und `site_id` ist hier **nur Fremdschlüssel** (nicht PK, nicht eindeutig) → beliebig viele Läufe je Site. Im Objektmodell ist die n-Seite `Mapped[list[\"SyncRun\"]]`. Kontrast: bei den `*_state` ist `site_id` PK=FK (max. eine Zeile).",
+      "tags": [
+        "1zun",
+        "kardinalität",
+        "fremdschlüssel"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "unique-index-domain",
+      "front": "Welche Constraints/Indizes trägt die Spalte `sites.domain` und wozu?",
+      "back": "`domain: Mapped[str] = mapped_column(String(255), unique=True, index=True)`. Der **UNIQUE-Constraint** erzwingt Eindeutigkeit auf DB-Ebene (verhindert Domain-Dubletten, Basis fürs Upsert), der **Index** (B-Baum) beschleunigt Suchen/Joins über die Domain. Die Migration legt ihn als `ix_sites_domain` an. `domain` ist implizit NOT NULL.",
+      "tags": [
+        "unique",
+        "index",
+        "constraints"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "index-syncrun-siteid",
+      "front": "Warum trägt `sync_run.site_id` einen eigenen Index?",
+      "back": "`site_id: Mapped[int] = mapped_column(ForeignKey(\"sites.id\"), index=True)`. Der Index beschleunigt das Nachschlagen **aller Läufe einer Site** (WHERE/JOIN über den Fremdschlüssel) — ohne ihn müsste die DB die ganze Tabelle durchlaufen. Er wurde separat in Migration 2 (`ix_sync_run_site_id`) angelegt.",
+      "tags": [
+        "index",
+        "fremdschlüssel",
+        "performance"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "state-gemeinsames-muster",
+      "front": "Welche Spalten teilen sich alle vier `*_state`-Tabellen und was unterscheidet sie?",
+      "back": "Gemeinsam: `site_id` (PK=FK), `synced_at` (`DateTime(timezone=True)`, `default`/`server_default=func.now()`) und `status` (`String(20)`, `default=\"ok\"`) — die **technischen Meta-Spalten**. Unterschiedlich sind nur die **fachlichen Datenspalten**: z. B. Odoo `partner_id`/`project_name`, InfiniteWP `core/plugin/theme_updates`, Backup `last_backup_at`/`size_mb`, Uptime `is_up`/`uptime_ratio`. Das ist Meta-/Fachspalten-Trennung.",
+      "tags": [
+        "state",
+        "muster",
+        "meta-spalten"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "datentypen-defaults",
+      "front": "Welche Datentypen und Defaults nutzen die State-Tabellen beispielhaft?",
+      "back": "`String(255)` = VARCHAR(255) (Domänen-/Längenbeschränkung), `DateTime(timezone=True)` = TIMESTAMPTZ (zeitzonenbehaftet), `bool`, `float`, `int`. Defaults z. B. `core_updates default=0`, `status default=\"ok\"`, `is_up default=True`, `uptime_ratio default=100.0` (optimistischer Startwert). `Mapped[int]` ohne `| None` erzeugt NOT NULL, `Mapped[int | None]` erlaubt NULL.",
+      "tags": [
+        "datentypen",
+        "default",
+        "nullwert"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "default-vs-serverdefault",
+      "front": "Was ist der Unterschied zwischen `default` und `server_default` bei den Zeitstempeln?",
+      "back": "`default=func.now()` setzt den Wert **in Python vor dem INSERT** (nur über das ORM wirksam). `server_default=func.now()` legt den Default **in der DB selbst** an — greift auch bei direktem SQL und vor allem bei **Migrationen**, wo bestehende Zeilen einen Wert brauchen. Hydra deklariert beide auf `synced_at`/`started_at`.",
+      "tags": [
+        "default",
+        "server_default",
+        "migration"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "vuln-count-spalte",
+      "front": "Wofür dient die Spalte `infinitewp_state.vuln_count` und wie ist sie definiert?",
+      "back": "Sie speichert die Anzahl bekannter Schwachstellen (installierte Version < Fix-Version, abgeglichen gegen `wpvulns_db` via `app/vulns.py`). Definition: `mapped_column(default=0, server_default=\"0\")`. Das `server_default=\"0\"` versorgt beim nachträglichen ALTER TABLE auch **bestehende** Zeilen, damit die NOT-NULL-Spalte gültig bleibt. Die Ampel wertet `vuln_count > 0` als **orange** (Sicherheit).",
+      "tags": [
+        "vuln_count",
+        "sicherheit",
+        "server_default"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "relationship-vs-fk",
+      "front": "Ist `Site.odoo` eine Datenbankspalte? Was leistet `relationship(...)`?",
+      "back": "Nein — `relationship(...)` ist **keine DB-Spalte**, sondern eine ORM-**Navigationsbeziehung** (Assoziation), die das verknüpfte Objekt bei Bedarf lädt (Lazy Loading). Die echte Referenz in der DB ist der Fremdschlüssel `site_id` auf der State-Seite. `uselist=False` macht 1:1, `back_populates` hält beide Objektseiten bidirektional synchron (`Site.odoo` ↔ `OdooState.site`).",
+      "tags": [
+        "orm",
+        "relationship",
+        "assoziation"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "alembic-migrationen",
+      "front": "Welche vier Alembic-Migrationen bilden das Schema, und was tut jede?",
+      "back": "1) `ced5bcd1d7e9` — initial: legt alle sechs Tabellen an (inkl. `ix_sites_domain`). 2) `b8bb1d7aaeea` — erzeugt **nur** den Index `ix_sync_run_site_id`. 3) `1eb3a9df9234` — `alter_column` aller Zeitstempel `TIMESTAMP → DateTime(timezone=True)` (timestamptz). 4) `2f7a9c4e1b6d` — fügt `vuln_count` hinzu (`server_default=\"0\"`, Batch-Modus → SQLite-portabel). Schema läuft ausschließlich über Alembic, nicht `create_all`.",
+      "tags": [
+        "alembic",
+        "migration",
+        "versionierung"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "persistenz-orm-database",
+      "front": "Wie ist die Persistenz-/ORM-Schicht aufgebaut (`database.py`)?",
+      "back": "`app/database.py` stellt die drei SQLAlchemy-Säulen bereit: `engine = create_engine(DATABASE_URL, echo=DEBUG_SQL)` (Verbindung/Pool), `SessionLocal = sessionmaker(bind=engine)` (Session-Fabrik, Unit of Work) und `class Base(DeclarativeBase)` (Elternklasse aller Modelle, `Base.metadata` kennt alle Tabellen). `get_db()` ist eine `yield`-Dependency: eine Session pro FastAPI-Request. Der DB-Typ (SQLite Dev / Postgres Prod) steckt allein in der `DATABASE_URL`.",
+      "tags": [
+        "persistenz",
+        "orm",
+        "database"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "etl-grundzyklus",
+      "front": "Was bedeutet ETL im Hydra-Kontext, und welche vier Connectoren speisen es?",
+      "back": "**ETL = Extract → Transform → Load**. Hydra extrahiert Rohdaten aus vier Quellen, normalisiert sie auf einen gemeinsamen Schlüssel (die **Domain**) und lädt sie **idempotent** in die kanonische DB. Die vier read-only Connectoren: `iwp_source` (InfiniteWP-MySQL), `odoo_source` (JSON-RPC), `uptime_source` (Uptime-Robot REST v3), `backup_source` (S3/boto3). Jeder liefert fertige `ingest_*`-Zeilen; der ETL-Kern in `app/ingest.py` verarbeitet sie.",
+      "tags": [
+        "etl",
+        "connectoren",
+        "architektur"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "iwp-direkt-db",
+      "front": "Warum liest Hydra InfiniteWP direkt aus der MySQL-DB statt über dessen Web-API?",
+      "back": "Drei Gründe: (1) **kein Rate-Limit / kein Token-Ablauf**, deterministisch abrufbar; (2) die interessanten Rohdaten (der `stats`-Blob) liegen **ohnehin nur in der DB**; (3) ein **read-only-User** kann per Konstruktion nichts kaputtmachen (IT-Sicherheit). Zudem 1:1-Übernahme des in V1 bewährten Wegs (dort PDO). Umgesetzt in `app/iwp_source.py`, Treiber **PyMySQL** über SQLAlchemy (`mysql+pymysql://`).",
+      "tags": [
+        "infinitewp",
+        "mysql",
+        "architektur"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "iwp-readonly-least-privilege",
+      "front": "Wo steckt bei der InfiniteWP-Anbindung das \"read-only\" — im Client oder in der DB?",
+      "back": "Im **DB-User** (`GRANT SELECT`), nicht im Client — das ist **Least Privilege**. Der Client sendet lediglich nur SELECTs, aber die eigentliche Garantie ist der nur-lesende MySQL-User (`CREATE USER hydra_ro ...; GRANT SELECT`). Selbst ein Fehler oder eine Lücke im Code könnte in der Fremd-DB nichts verändern. Zusätzlich: MySQL-Port 3306 nie offen ins Internet (`host=127.0.0.1` oder SSH-Tunnel).",
+      "tags": [
+        "infinitewp",
+        "sicherheit",
+        "least-privilege"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "iwp-prefix-sql-injection",
+      "front": "Wie schützt sich der InfiniteWP-Connector gegen SQL-Injection, obwohl der Tabellen-Prefix roh ins SQL muss?",
+      "back": "Werte kommen als **gebundene Parameter** (nie String-Konkatenation). Nur der **Tabellen-Prefix** ist nicht bindbar (Tabellennamen sind keine Parameter) → er wird streng per **Positivliste** validiert: `_PREFIX_OK = re.compile(r\"\\A[A-Za-z0-9_]+\\Z\")`, sonst `ValueError`. Bewusst `\\A...\\Z` statt `^...$`, weil `$` ein abschließendes Newline durchließe (`\"iwp_\\n\"`). Das ist der SQL-Injection-Schutz für genau diesen Sonderfall.",
+      "tags": [
+        "infinitewp",
+        "sql-injection",
+        "sicherheit"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "iwp-keine-verschluesselung",
+      "front": "Wie wird der InfiniteWP-`stats`-Blob dekodiert — und warum ist \"Decryption\" der falsche Begriff?",
+      "back": "Es ist **keine Verschlüsselung** (kein AES, kein Secret-Key), sondern **Encoding + Serialisierung**. Format 1 (`site_stats.stats`): `base64_decode` → PHP-`unserialize` → verschachteltes Array. Python-Port (`app/decode_iwp.py`): `base64.b64decode` → `phpserialize.loads(..., decode_strings=True)`. Reproduzierbar **ohne Geheimnisse**, nur mit Format-Wissen. In V1 mit `allowed_classes=false` als Schutz gegen PHP-Objekt-Injection.",
+      "tags": [
+        "infinitewp",
+        "decoding",
+        "serialisierung"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "iwp-wpvulns-format2",
+      "front": "Wie wird die InfiniteWP-Schwachstellen-DB (`wpvulns_db`, Format 2) dekodiert, und wie oft pro Sync?",
+      "back": "Format 2: `base64_decode` → optionalen Marker `_|_coMpResSed_|_` abschneiden → `gzip`-Dekompression → `json_decode`. Python: `base64` → Marker-Strip → `gzip.decompress` → `json.loads` (`decode_wpvulns`). Die Fix-Map `{slug: fixed_in}` (Plugins + Themes zusammengeführt) wird per `fetch_wpvulns_map` **einmal pro Sync-Lauf** geholt, nicht je Site — bewusste **N+1-Vermeidung**.",
+      "tags": [
+        "infinitewp",
+        "wpvulns",
+        "effizienz"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "iwp-decode-first",
+      "front": "Warum dekodiert `ingest_infinitewp` den Blob ZUERST und legt die Site erst danach an?",
+      "back": "Würde man die Site vor dem Decode anlegen und der Blob wäre kaputt, stünde eine **leere Site fälschlich auf \"grün\"** (sie hätte keinen Status). Das Decoden ist in `try/except` gekapselt → **Ausfall-Isolation je Site**: ein kaputter Blob lässt nur diese eine Site scheitern (`errors += 1`), **keine Phantom-Site** entsteht. Existiert die Site schon (aus anderer Quelle), wird der Fehler als `SyncRun(status=\"error\")` protokolliert.",
+      "tags": [
+        "infinitewp",
+        "fehler-isolation",
+        "ingest"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "odoo-jsonrpc",
+      "front": "Über welche Schnittstelle und welches Modell holt Hydra die Kunden-/Domain-Zuordnung aus Odoo?",
+      "back": "Über **JSON-RPC** (`/jsonrpc`): `execute_kw` → `search_read` auf das Modell **`sale.order.line`** (`app/odoo_source.py`). Client ist `OdooClient` (via `requests`); der Login tauscht Zugangsdaten gegen eine **uid**, das **Passwort wird bei jedem `execute_kw` mitgeschickt** (so verlangt es Odoos RPC). Bewusst **read-only** (nur `search_read`). Ergebnis je Domain: `{\"domain\", \"partner_id\", \"project_name\"}`.",
+      "tags": [
+        "odoo",
+        "json-rpc",
+        "connectoren"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "odoo-domain-extraktion",
+      "front": "Wie zieht der Odoo-Connector Domains aus dem Freitext einer Bestellzeile?",
+      "back": "`_extract_domains()` (Port des V1-`DomainExtractor`): zuerst **E-Mails entfernen** (sonst würde deren Domain mitgezählt), dann URLs (Host) + \"nackte\" Domains per Regex sammeln, säubern (klein, führendes `www.` weg, Pfad/Query abschneiden), gegen einen Positiv-Check (`_CLEAN_OK`) prüfen, **dedupen** (dict als reihenfolge-erhaltendes Set) und sortiert zurückgeben. Die Domain bleibt **roh** — kanonisch macht sie erst `normalize()` im Ingest.",
+      "tags": [
+        "odoo",
+        "regex",
+        "datenextraktion"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "odoo-or-ilike",
+      "front": "Wie baut der Odoo-Connector den \"Name enthält eines der Keywords\"-Filter?",
+      "back": "`_or_ilike(field, keywords)` baut Odoos Domain-Filter in **polnischer (Präfix-)Notation**: N-1 vorangestellte `'|'` verknüpfen N `(field, \"ilike\", kw)`-Bedingungen, z. B. `['|', (name,ilike,w1), (name,ilike,w2)]`. Die Keywords kommen aus der ENV `ODOO_KEYWORDS` (kommagetrennt, bereinigt) — konfigurierbar ohne Codeänderung. Die Grenzfälle 0/1/n Keywords werden je eigens behandelt.",
+      "tags": [
+        "odoo",
+        "filter",
+        "konfiguration"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "uptime-rest-v3-bearer",
+      "front": "Wie bindet Hydra Uptime Robot an, und wie entsteht daraus eine `ingest_uptime`-Zeile?",
+      "back": "Über die **REST-v3-API**: `GET https://api.uptimerobot.com/v3/monitors` mit **Bearer-Token** im Authorization-Header (`app/uptime_source.py`). Hydra holt **alle** Monitore, leitet die Domain aus der Monitor-URL ab (Host, klein, `www.` weg), mappt Status → `is_up` (String `\"up\"` bzw. Legacy-Zahl 2) und nimmt `uptimeRatio`; fehlt der Wert, **Heuristik 100/0** je Status. Ergebnis: `{\"domain\", \"is_up\", \"uptime_ratio\"}`.",
+      "tags": [
+        "uptime-robot",
+        "rest",
+        "bearer"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "backup-s3-boto3",
+      "front": "Wie ermittelt der Backup-Connector (WP Time Capsule / S3) je Domain den Backup-Zustand?",
+      "back": "Via **boto3** (`list_objects_v2`): die \"Ordner\" unter dem Base-Prefix (**S3 CommonPrefixes**, Delimiter `/`) = die Domains; je Domain das **neueste Objekt** (max `LastModified`) + **Gesamtgröße** (in einem Pass). Health-Regel (aus V1): **\"ok\"**, wenn ein Backup existiert UND jünger als `BACKUP_MAX_AGE_HOURS` (Default **36**) ist, sonst **\"error\"**. boto3 übernimmt SigV4, XML-Parsing und Paginierung (Generator via ContinuationToken).",
+      "tags": [
+        "backup",
+        "s3",
+        "boto3"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "get-or-create-upsert",
+      "front": "Wie stellt der ETL-Kern Idempotenz sicher (get-or-create / UPSERT)?",
+      "back": "`_hole_oder_lege_site_an()` sucht die Site per `select(Site).where(Site.domain == domain)`; fehlt sie, wird sie neu angelegt und **`flush()`** vergibt sofort die `id`. Der **UNIQUE-Constraint auf `domain`** verhindert Dubletten. Der zugehörige `*_state` (1:1) wird angelegt **oder** seine Felder aktualisiert (UPSERT), `synced_at = func.now()`. So erzeugt derselbe Lauf zweimal **keine** Dubletten — genau das braucht ein wiederkehrender Sync.",
+      "tags": [
+        "idempotenz",
+        "upsert",
+        "ingest"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "fehler-isolation-demo-fallback",
+      "front": "Wie schaltet `sync_all` zwischen echter Quelle und Demo um, und wie isoliert es Fehler?",
+      "back": "**Je Quelle per ENV** scharfgeschaltet (`DB_IWP_URL`, `ODOO_URL`, `UPTIMEROBOT_API_KEY`, `BACKUP_BUCKET`): ist die ENV gesetzt, wird der echte Connector gelesen; scheitert das, wird in `try/except` **nur diese eine Quelle** übersprungen (Warnung ins Log), die übrigen synchronisieren weiter (**Fehler-Isolation an der Connector-Grenze**). Fehlt die Config, greift der **Demo-Fallback** aus `app/demo_data.py`.",
+      "tags": [
+        "sync",
+        "fehler-isolation",
+        "demo-fallback"
+      ]
+    },
+    {
+      "topic": "connectoren",
+      "slug": "dependency-injection-testbarkeit",
+      "front": "Wie sind die vier Connectoren ohne echte Netz-/DB-Zugriffe testbar?",
+      "back": "Durch **Dependency Injection**: jede Fetch-Funktion nimmt ihre Abhängigkeit optional herein — `fetch_infinitewp_rows(engine=...)` (SQLite-Fake statt MySQL), `fetch_odoo_rows(client=...)`, `fetch_uptime_rows(client=...)`, `fetch_backup_rows(client=..., now=...)` (fixes `now` macht die Health-Regel deterministisch). Ohne Argument wird der echte Client aus der Config gebaut. So laufen die Tests **netzfrei und deterministisch** gegen Fakes.",
+      "tags": [
+        "dependency-injection",
+        "testbarkeit",
+        "connectoren"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "normalize-zweck",
+      "front": "Wozu dient normalize() in Hydra V2 und warum ist es der Kern?",
+      "back": "`normalize(raw, collapse_subdomains=False)` bringt jede URL/jeden Host auf **eine** eindeutige Schreibweise, den Schlüssel **`domain_normalized`**. Dieselbe Site erscheint in den Quellen verschieden (`https://Kunde.de/`, `www.kunde.de`, `kunde.de:443`); nur so lässt sich später alles **derselben** Site zuordnen (Matching/Upsert). Fachlich der **Transform-Schritt** eines ETL-Prozesses.",
+      "tags": [
+        "normalize",
+        "domain_normalized",
+        "etl"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "normalize-ablauf",
+      "front": "Welche vier Schritte durchläuft normalize() vom Rohstring zur Domain?",
+      "back": "1) **Host holen**: `urlsplit`, notfalls `http://` voranstellen (sonst wäre alles Pfad). 2) **`.hostname`** liefert lowercase + ohne Port, dann `rstrip(\".\")`. 3) **Modus**: FQDN (nur führendes `www.` weg) oder eTLD+1 via PSL. 4) **`idna.encode(host, uts46=True)`** → Punycode/ASCII. Nutzt `urllib.parse` (stdlib), `tldextract`, `idna`.",
+      "tags": [
+        "normalize",
+        "urlsplit",
+        "punycode"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "normalize-leerstring",
+      "front": "In welchen Fällen gibt normalize() den Leerstring \"\" zurück und was bedeutet das?",
+      "back": "`\"\"` = **kein Treffer / Unmatched-Record**. Es entsteht bei: kein Host, **IP-Adresse**, `localhost`/einzelnem Label, reinem Suffix (`com`), oder kaputtem/**nicht punycode-kodierbarem** Host (Emoji, Leerzeichen, `-bad-.de`, `a..b.de`). Geprüft von `_ist_registrierbare_domain` (braucht **Name UND Public Suffix** plus erfolgreiche `idna.encode`). Bewusst ein **definierter Fehlerwert** statt einer Ausnahme.",
+      "tags": [
+        "normalize",
+        "validierung",
+        "fehlerwert"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "fqdn-vs-etld1",
+      "front": "Was unterscheidet FQDN-Modus und eTLD+1-Modus (collapse_subdomains)?",
+      "back": "**FQDN (Standard, `False`)**: Subdomains **bleiben**, nur ein führendes `www.` fällt weg — `www.shop.kunde.de → shop.kunde.de`. **eTLD+1 (`True`)**: auf die **registrierbare Domain** laut Public Suffix List reduziert — `shop.kunde.de → kunde.de`, `a.b.co.uk → b.co.uk`. Umgesetzt via `_extract(host).top_domain_under_public_suffix`. Fachbegriff: **Fallunterscheidung/Strategie** über einen Default-Parameter.",
+      "tags": [
+        "fqdn",
+        "etld+1",
+        "psl"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "punycode-idna",
+      "front": "Wie behandelt normalize() internationale Domains und warum idna statt der stdlib?",
+      "back": "IDN → **Punycode/ASCII** per `idna.encode(host, uts46=True)`, z. B. `münchen.de → xn--mnchen-3ya.de`. **`uts46=True`** wendet die UTS-46-Regeln (u. a. Vereinheitlichung) korrekt an — im Gegensatz zum fehleranfälligen stdlib-`str.encode(\"idna\")`. Fachbegriff **Internationalisierung (I18N)**; es ist reine, verlustfreie **Transkodierung**, keine Verschlüsselung.",
+      "tags": [
+        "punycode",
+        "idna",
+        "i18n"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "tldextract-reproduzierbar",
+      "front": "Warum wird tldextract mit suffix_list_urls=() konfiguriert?",
+      "back": "`tldextract.TLDExtract(suffix_list_urls=())` macht **keinen Netzabruf** und nutzt nur die mit der Lib **gebündelte, „eingefrorene\" Public Suffix List**. Das liefert bei gleicher Eingabe stets dasselbe Ergebnis → **Determinismus/Reproduzierbarkeit** und **netzunabhängige Tests**. Einmal beim Import angelegt und modulweit wiederverwendet (Modul-Singleton, DRY, Konfigurationsmanagement).",
+      "tags": [
+        "tldextract",
+        "determinismus",
+        "psl"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "reine-funktion-idempotenz",
+      "front": "Was heißt \"reine Funktion\" und \"Idempotenz\" am Beispiel normalize()?",
+      "back": "**Reine Funktion**: hängt nur von der Eingabe ab, verändert keinen äußeren Zustand, gleiche Eingabe → gleiche Ausgabe (deterministisch, seiteneffektfrei) → ideal **isoliert testbar** (pytest). **Idempotenz**: `normalize(normalize(x)) == normalize(x)` — erneutes Anwenden ändert nichts; genau das macht das Ergebnis als **Upsert-Schlüssel** tauglich. Gilt ebenso für `status`, `vulns`, `decode_iwp`.",
+      "tags": [
+        "reine-funktion",
+        "idempotenz",
+        "testbarkeit"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "decode-site-stats",
+      "front": "Wie dekodiert decode_site_stats das InfiniteWP-Format 1 (site_stats.stats)?",
+      "back": "**base64 → PHP-`unserialize` → (verschachteltes) dict**: `phpserialize.loads(base64.b64decode(b64), decode_strings=True)`. `decode_strings=True` gibt Byte-Strings als lesbare `str` zurück. Das ist **Deserialisierung**, keine Krypto — nur Format-Wissen nötig. Reines Daten-Decoding (in V1 `allowed_classes=false`) verhindert **Objekt-Injektion**.",
+      "tags": [
+        "decode_iwp",
+        "phpserialize",
+        "deserialisierung"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "decode-wpvulns",
+      "front": "Welche Pipeline durchläuft decode_wpvulns für das Format 2 (wpvulns_db)?",
+      "back": "Mehrstufige Dekodier-Pipeline: **base64 → optionalen Marker abschneiden → gzip → JSON**. `base64.b64decode(b64.strip())`, dann Marker `_|_coMpResSed_|_` **nur** entfernen, wenn er wirklich vorn steht (`startswith`), zuletzt `json.loads(gzip.decompress(...))`. Der Marker steht als benannte **bytes-Konstante** (`_COMPRESS_MARKER`); beide Datenvarianten (mit/ohne Marker) werden korrekt behandelt.",
+      "tags": [
+        "decode_iwp",
+        "gzip",
+        "json"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "extract-update-counts-robust",
+      "front": "Wie zählt extract_update_counts offene Updates robust gegen fehlende Felder?",
+      "back": "Zählt Einträge in `upgradable_plugins`/`upgradable_themes` → `{\"plugin_updates\": n, \"theme_updates\": m}`. **`stats.get(...) or {}`** liefert bei fehlendem Feld ein leeres dict statt `None` → kein Absturz, dann einfach 0. `phpserialize` gibt PHP-Arrays (auch Listen) als dict zurück; `len()` zählt in beiden Fällen korrekt. Reiner **ETL-Transform** (Kennzahl ableiten).",
+      "tags": [
+        "decode_iwp",
+        "robustheit",
+        "nullwert"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "ist-verwundbar-version",
+      "front": "Nach welcher Regel und mit welchem Werkzeug entscheidet ist_verwundbar()?",
+      "back": "Regel (**Geschäftslogik**): installiert ist verwundbar, wenn **älter als die Fix-Version** — `Version(installiert) < Version(behoben_in)`. Zwingend mit **`packaging.version.Version`**, weil Versionen eine **semantische Ordnung** haben: als String wäre `\"10\" < \"9\"` falsch (`ist_verwundbar(\"10.0\",\"9.0\") → False`). Gleich = sicher. Bei `InvalidVersion` **`False`** (Fail-safe, kein Fehlalarm).",
+      "tags": [
+        "vulns",
+        "packaging",
+        "versionsvergleich"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "fixmap-hoechste",
+      "front": "Was tun finde_verwundbare() und baue_fix_map(), und warum die höchste fixed_in?",
+      "back": "`finde_verwundbare(installiert, behoben_in)` gibt die verwundbaren Slugs zurück; unbekannter Slug → `.get()`=None → übersprungen. `baue_fix_map(wpvulns)` verdichtet die dekodierte `wpvulns_db` zu **`{slug: fixed_in}`** und nimmt je Slug die **höchste** `fixed_in`-Version (Maximum per `Version`-Objekt, nicht lexikografisch). Unlesbare Versionen werden per `InvalidVersion` aussortiert. Ergebnis mündet in `vuln_count` auf `infinitewp_state`.",
+      "tags": [
+        "vulns",
+        "fix_map",
+        "vuln_count"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "gesamt-status-prioritaet",
+      "front": "Nach welcher Prioritätsreihenfolge bildet gesamt_status() die Gesamt-Ampel?",
+      "back": "**Erste zutreffende Regel gewinnt (erst das Schlimmste):** 🔴 **rot** wenn `uptime` da und `not is_up`; 🟠 **orange** wenn `infinitewp` da und (`core_updates>0` **oder** `vuln_count>0`) — Kern-Update oder Schwachstelle; 🟡 **gelb** bei Plugin-/Theme-Update oder Backup `status != \"ok\"`; sonst 🟢 **gruen**. Die **Prüfreihenfolge kodiert die Rangfolge** (Guard/Early-Return); `down` schlägt `core`.",
+      "tags": [
+        "status",
+        "ampel",
+        "prioritaet"
+      ]
+    },
+    {
+      "topic": "kernlogik",
+      "slug": "status-none-toleranz",
+      "front": "Wie verhindert gesamt_status() Fehlalarme bei fehlenden Status-Daten?",
+      "back": "**None-Toleranz**: vor jedem Zugriff `up/iwp/bak is not None`, und `(iwp.core_updates or 0)` / `(iwp.vuln_count or 0)` ersetzen Nullwerte durch sichere Defaults (greift bei frisch gebauten States vor dem DB-Flush). Eine Site **ganz ohne** Status-Datensätze ist korrekt **gruen**, kein Fehlalarm — als eigener Test abgesichert. Der Default-Zweig macht die Funktion **total** (immer genau eine der vier Stufen).",
+      "tags": [
+        "status",
+        "none-toleranz",
+        "robustheit"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "sql-injection-schutz",
+      "front": "Was ist SQL-Injection und wie schützt Hydra V2 dagegen?",
+      "back": "**SQL-Injection** = das Einschleusen von SQL-Code über ungeprüfte Eingaben. Hydra schützt zweifach: (1) Werte werden als **gebundene Parameter** (Prepared Statements) übergeben, nie in den SQL-Text konkateniert; (2) der einzige roh in den SQL-Text eingesetzte Teil — der Tabellen-**Prefix** — wird per Whitelist streng validiert (`_pruefe_prefix` in `iwp_source.py`). Zusätzlich schützt der read-only DB-User (Least Privilege) als zweite Schicht.",
+      "tags": [
+        "sql-injection",
+        "prepared-statements",
+        "iwp_source"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "prepared-statements",
+      "front": "Warum sind gebundene Parameter (Prepared Statements) sicherer als String-Verkettung?",
+      "back": "Prepared Statements **trennen Befehl und Daten**: Eingabewerte werden gebunden übergeben (in SQLAlchemy über `text()` mit benannten Parametern), nie in den SQL-String konkateniert — so kann eine Eingabe keinen Befehl mehr „einschmuggeln\". V1 nutzte dafür **PDO**. **Ausnahme:** Tabellennamen (der Prefix) lassen sich *nicht* parametrisieren, nur Werte — deshalb greift dort stattdessen eine Whitelist-Validierung.",
+      "tags": [
+        "prepared-statements",
+        "pdo",
+        "sqlalchemy"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "prefix-nicht-parametrisierbar",
+      "front": "Warum wird der InfiniteWP-Tabellen-Prefix validiert statt als Parameter gebunden?",
+      "back": "Ein gebundener Parameter kann nur **Werte** übergeben, keine **Tabellennamen**. Der Prefix (`iwp_3_`) fließt aber in die Tabellennamen der `SELECT`s und muss daher roh in den SQL-Text interpoliert werden. Weil das die einzige Angriffsfläche für SQL-Injection ist, prüft `_pruefe_prefix()` ihn streng, bevor er eingesetzt wird — bei ungültiger Eingabe wird sofort eine `ValueError` geworfen (**fail-fast**).",
+      "tags": [
+        "prefix",
+        "validierung",
+        "sql-injection"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "prefix-whitelist-regex",
+      "front": "Wie genau validiert Hydra den Prefix, und warum `\\A...\\Z` statt `^...$`?",
+      "back": "Regex `\\A[A-Za-z0-9_]+\\Z` — eine **Positivliste (Allowlist/Whitelisting)**: nur Buchstaben, Ziffern, Unterstrich sind erlaubt, alles andere wird abgewiesen (sicherer als „böse\" Zeichen zu verbieten). `\\A`/`\\Z` matchen strikt String-Anfang/-Ende; `^`/`$` würden ein **abschließendes Newline** durchlassen (`\"iwp_\\n\"` wäre für `^...$` gültig).",
+      "tags": [
+        "whitelist",
+        "regex",
+        "prefix"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "least-privilege",
+      "front": "Was bedeutet das Least-Privilege-Prinzip in Hydra konkret?",
+      "back": "**Least Privilege** = jedes Programm bekommt nur die minimal nötigen Rechte. Hydra liest die fremde InfiniteWP-MySQL-DB mit einem **read-only DB-User** (`GRANT SELECT`). Selbst bei einem Bug oder kompromittiertem Zugang sind so **keine Schreib- oder Löschzugriffe** auf die Quell-DB möglich — dokumentiert in `config.py` (DB_IWP_URL) und `iwp_source.py`.",
+      "tags": [
+        "least-privilege",
+        "read-only",
+        "grant-select"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "read-only-db-user",
+      "front": "Wie ist der Zugriff auf die fremde InfiniteWP-Datenbank technisch abgesichert?",
+      "back": "Der DB-User hat ausschließlich `GRANT SELECT` (read-only). Im Code wird nur `engine.connect()` genutzt (nicht `begin()`/`commit()`), und der `with`-Block (**Context Manager**) gibt die Verbindung sicher in den Pool zurück. Das ist **Defense in Depth**: auch wenn die Prefix-Validierung versagte, könnte die Fremd-DB nichts verändert werden. Zusätzlich läuft der Zugriff in V1 durch einen SSH-Tunnel (Port nicht öffentlich).",
+      "tags": [
+        "read-only",
+        "defense-in-depth",
+        "ssh-tunnel"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "secrets-management-env",
+      "front": "Wo liegen Zugangsdaten wie DB-Passwörter, und warum nicht im Code?",
+      "back": "In einer separaten, git-ignorierten **`.env`-Datei**, aus der `config.py` sie via `load_dotenv()` in **Umgebungsvariablen** lädt (`os.environ.get`). Prinzip: **Trennung von Code und Konfiguration** (12-Factor, Faktor III). So gelangen Secrets (DB_IWP_URL, ODOO_PASSWORD, API_KEY …) nie ins Versionskontrollsystem, und dasselbe Artefakt läuft in Dev/Test/Prod nur mit anderen Umgebungswerten.",
+      "tags": [
+        "secrets",
+        "env",
+        "12-factor"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "dotenv-laden",
+      "front": "Wie stellt `config.py` sicher, dass die `.env` zuverlässig gefunden wird?",
+      "back": "`load_dotenv(Path(__file__).resolve().parent.parent / \".env\")` — die `.env` wird über einen **absoluten Pfad** vom Projektordner aus geladen, nicht vom Arbeitsverzeichnis (CWD). So findet auch ein aus einem anderen Ordner gestarteter uvicorn-Server sie. Fehlt die Datei, passiert nichts — dann greifen die **Defaults** (z. B. lokale SQLite), die Software bleibt ohne Konfiguration lauffähig.",
+      "tags": [
+        "dotenv",
+        "config",
+        "robustheit"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "tls-https-traefik",
+      "front": "Wie wird der Transportweg zum Dashboard verschlüsselt?",
+      "back": "Hydra ist hinter **Traefik (v3)** als **Reverse-Proxy** vorbereitet: Traefik nimmt Anfragen aus dem Internet an, terminiert **HTTPS/TLS** mit einem **Let's-Encrypt-Zertifikat** und leitet intern an die App weiter. HTTPS ist die verschlüsselte HTTP-Variante („versiegelter Umschlag statt Postkarte\"). Deployment-Artefakte (docker-compose, Traefik-Beispiel) liegen bei.",
+      "tags": [
+        "tls",
+        "https",
+        "traefik"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "api-key-guard",
+      "front": "Wie funktioniert der optionale API-Key-Schutz der Endpunkte?",
+      "back": "Ist in der Config ein `API_KEY` gesetzt, muss jede geschützte Route den Header **`X-API-Key`** mit genau diesem Wert mitschicken, sonst antwortet Hydra mit **HTTP 401**. Umgesetzt als FastAPI-**Dependency** `require_api_key`, per `Depends(...)` an `/`, `/api/sites` und `/sync` gehängt — der Check läuft *vor* dem Route-Code, kommt also gar nicht erst zur DB-Abfrage (Querschnittsbelang, nicht dupliziert).",
+      "tags": [
+        "api-key",
+        "authentifizierung",
+        "fastapi"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "api-key-default-offen",
+      "front": "Warum ist der API-Key standardmäßig leer (= offen), und was heißt das für den Betrieb?",
+      "back": "Default `API_KEY=\"\"` bedeutet **offen** — bewusst nur für die lokale Entwicklung, damit man ohne Setup starten kann. Im Betrieb **muss** der Schlüssel gesetzt werden (oder ein Auth-Proxy davor). Ein echtes „secure by default\" wäre strenger; der Kompromiss ist im Code-Kommentar (`config.py`) klar benannt. Der `RUN_SCHEDULER`-Flag entkoppelt zudem den Auto-Sync bei Mehr-Worker-Deployments.",
+      "tags": [
+        "secure-by-default",
+        "api-key",
+        "betrieb"
+      ]
+    },
+    {
+      "topic": "sicherheit",
+      "slug": "datensparsamkeit",
+      "front": "Wie setzt Hydra das Prinzip der Datensparsamkeit (nur nötige Daten) um?",
+      "back": "**Datenminimierung an zwei Stellen:** (1) Bei der Odoo-Quelle filtert `ODOO_KEYWORDS` schon beim Extract, sodass nur fachlich relevante Bestellzeilen (WordPress-Betreuung o. Ä.) überhaupt eingelesen werden. (2) `_serialize_site()` in `main.py` reduziert das reiche ORM-Objektgeflecht auf **genau die Felder**, die das Frontend braucht (Fassade/Information Hiding). Es werden nur Status-/Zählwerte je Site gespeichert und angezeigt, kein Überschuss.",
+      "tags": [
+        "datensparsamkeit",
+        "etl-filter",
+        "serialisierung"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "entrypoint-startkette",
+      "front": "Was passiert beim Start des Hydra-Containers, und in welcher Reihenfolge?",
+      "back": "Der `docker-entrypoint.sh` fährt eine feste Kette: `set -e`, dann **`alembic upgrade head`** (Schema aktualisieren, idempotent), dann **`exec uvicorn app.main:app --host 0.0.0.0 --port 8000`**. Das `exec` ersetzt die Shell durch uvicorn, damit Docker das STOP-Signal (`SIGTERM`) **direkt** an den Server durchreicht (sauberes Beenden statt hartem Kill). So ist das Schema bei jedem Start aktuell, bevor der Server Requests annimmt (**selbstmigrierend**).",
+      "tags": [
+        "docker",
+        "entrypoint",
+        "uvicorn"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "zustandslosigkeit",
+      "front": "Warum steckt die Datenbank bewusst NICHT im App-Image, und was bringt das?",
+      "back": "Die DB wird per **`DATABASE_URL`** ausgelagert (eigener Container / externer Dienst) — das App-Image trägt keine Daten und ist damit **zustandslos**. Vorteil: Man kann es beliebig **neu ausrollen oder skalieren**, ohne Datenverlust; das Image bleibt austauschbar. In Hydra sichtbar im `Dockerfile` (kopiert nur `app/` + `alembic/`, keine DB) und in `docker-compose.yml` (die DB ist der separate `db`-Service). Kombiniert mit gepinnter Basis (`python:3.14-slim`) → reproduzierbares Verhalten auf jedem Host.",
+      "tags": [
+        "zustandslos",
+        "skalierbarkeit",
+        "docker"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "dockerfile-layer-caching",
+      "front": "Warum kopiert das Dockerfile erst `requirements.txt` und installiert, bevor der Code kopiert wird?",
+      "back": "Wegen **Layer-Caching**: Docker cached die Schicht mit `COPY requirements.txt` + `pip install`. Solange sich `requirements.txt` nicht ändert, wird `pip` **nicht neu** ausgeführt → schnelle Builds. Der App-Code (`COPY app ./app` usw.) ändert sich häufig und liegt deshalb in einer **späteren** Schicht. Die Basis ist mit `python:3.14-slim` gepinnt (schlank, reproduzierbar); `--no-cache-dir` hält das Image klein.",
+      "tags": [
+        "dockerfile",
+        "caching",
+        "build"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "compose-zwei-container",
+      "front": "Wie ist der `docker-compose.yml`-Stack von Hydra V2 aufgebaut?",
+      "back": "Zwei Container: **`db`** = `postgres:16` mit persistentem Volume `hydra_pgdata` und `pg_isready`-**Healthcheck**; **`app`** = das FastAPI-Image (`build: .`), das die DB über `DATABASE_URL` (`postgresql+psycopg://hydra:...@db:5432/hydra`, Host = Servicename `db`) anspricht. Die App startet per **`depends_on: condition: service_healthy`** erst, wenn die DB wirklich annahmebereit ist. Port `8100:8000` (Host:Container) wird hinter den TLS-Proxy gehängt.",
+      "tags": [
+        "docker-compose",
+        "postgres",
+        "stack"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "volume-persistenz",
+      "front": "Was passiert mit den DB-Daten bei `docker compose down` gegenüber `down -v`?",
+      "back": "Die Postgres-Daten liegen im benannten Volume **`hydra_pgdata`** (gemountet auf `/var/lib/postgresql/data`). **`docker compose down`** stoppt die Container, das Volume und damit die Daten **bleiben** erhalten. **`docker compose down -v`** löscht zusätzlich das Volume → **alle DB-Daten weg**. Merksatz fürs Fachgespräch: Ohne `-v` überleben die Daten einen Neustart, mit `-v` ist es ein sauberer Teardown.",
+      "tags": [
+        "volume",
+        "persistenz",
+        "docker-compose"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "traefik-tls",
+      "front": "Wie wird HTTPS/TLS für Hydra bereitgestellt, wenn die App selbst kein HTTPS spricht?",
+      "back": "Über **Traefik v3** als **File-Provider** (`deploy/traefik-hydra.example.yml`). Der Router lauscht auf `entryPoints: websecure` und terminiert TLS via **`certResolver: letsencrypt`** (Let's Encrypt automatisch) für `Host(hydra.kreativekonstruction.de)`. Das Backend erreicht die App über die **Docker-Bridge** `http://172.17.0.1:8100` (der veröffentlichte Host-Port), weil Traefik außerhalb des compose-Netzes läuft. Die App spricht bewusst **kein** HTTPS — das erledigt ausschließlich der Proxy.",
+      "tags": [
+        "traefik",
+        "tls",
+        "reverse-proxy"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "ci-zwei-engines",
+      "front": "Wogegen läuft die CI (`.github/workflows/ci.yml`), und warum gegen zwei Datenbanken?",
+      "back": "Bei **jedem Push und Pull-Request** läuft die Suite **zweimal**: (1) gegen **In-Memory-SQLite** (`pytest -q`), (2) gegen ein echtes **PostgreSQL 16** als Sidecar-Service — dort erst `alembic upgrade head`, dann dieselbe Suite mit gesetztem `DATABASE_URL`/`TEST_DATABASE_URL`. `tests/conftest.py` liest `TEST_DATABASE_URL` und schaltet dieselben Tests auf die echte DB. So ist der früher **nur manuelle** Postgres-Lauf jetzt **automatisiert** — Unterschiede zwischen den Engines fallen sofort auf (Qualitätssicherung, AP2).",
+      "tags": [
+        "ci",
+        "github-actions",
+        "postgres"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "alembic-migrationen",
+      "front": "Wie kommt das DB-Schema in Betrieb in die Datenbank, statt über `create_all`?",
+      "back": "Ausschließlich über **Alembic-Migrationen**: `alembic upgrade head` bringt die DB auf den neuesten Stand — beim Container-Start automatisch im entrypoint, **nicht** über `Base.metadata.create_all`. So ist jede Schemastufe **versioniert und reproduzierbar** (aktuell **4 Revisionen** in einer Kette). Der Befehl ist **idempotent** (mehrfach unschädlich). Bricht die Migration ab, stoppt der Container wegen `set -e` **bewusst** — kein Server auf halbem Schema.",
+      "tags": [
+        "alembic",
+        "migrationen",
+        "schema"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "run-scheduler-multiworker",
+      "front": "Was ist bei `RUN_SCHEDULER` im Mehr-Worker-Betrieb zu beachten?",
+      "back": "Der Auto-Sync-Takt fährt mit **APScheduler in-process** (gesteuert über `RUN_SCHEDULER` = an/aus und `SYNC_INTERVAL_MINUTES` = Takt). Bei mehreren Prozessen/Containern (z. B. `gunicorn -w N` oder skalierte `app`) darf `RUN_SCHEDULER` in **genau einem** Worker auf `1` stehen, in allen anderen auf `0`. Sonst laufen **N Scheduler parallel** und syncen mehrfach/rasend gegen dieselbe DB. Im `docker-compose.yml` ist deshalb `RUN_SCHEDULER: \"1\"` gesetzt (ein Prozess).",
+      "tags": [
+        "scheduler",
+        "apscheduler",
+        "multi-worker"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "database-url-umschalten",
+      "front": "Wie schaltet man Hydra zwischen SQLite und PostgreSQL um, ohne den Code zu ändern?",
+      "back": "Der **DB-Typ steckt allein in der `DATABASE_URL`** — das ist die Stärke von **SQLAlchemy**; am Python-Code ändert sich **nichts**. Umschalten = eine Zeile in der `.env`: z. B. `postgresql+psycopg://hydra:hydra@localhost:5432/hydra` für Postgres 16; Zeile entfernen → es greift der SQLite-Default (absolut auf den Projektordner). Der Treiber `psycopg[binary]` liegt bereits in `requirements.txt`. Dieselbe Mechanik nutzt CI und compose (Host dort = Servicename `db`).",
+      "tags": [
+        "sqlalchemy",
+        "database-url",
+        "konfiguration"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "app-port-nicht-oeffentlich",
+      "front": "Warum darf der veröffentlichte App-Port (8100) nicht offen ins Internet, und wie wird die App geschützt?",
+      "back": "Die App spricht **kein HTTPS** und soll **nur über den Traefik-Proxy** erreichbar sein; TLS macht ausschließlich Traefik. Der Port `8100` ist die Docker-Bridge-Anbindung fürs Backend (`172.17.0.1:8100`), nicht fürs offene Internet. Zusätzlicher Schutz: die Umgebungsvariable **`API_KEY`** — leer = offen (nur Dev/intern!), gesetzt = jede geschützte Route braucht den Header `X-API-Key`. Ausgenommen ist nur `GET /health`.",
+      "tags": [
+        "sicherheit",
+        "api-key",
+        "port"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "env-secrets",
+      "front": "Woher bezieht Hydra V2 im Betrieb seine Konfiguration und Secrets?",
+      "back": "Ausschließlich aus **Umgebungsvariablen / einer `.env`-Datei** — nie hart in YAML oder Image. Docker Compose liest automatisch eine **`.env` neben der `docker-compose.yml`** (z. B. `DB_PASSWORD`, `API_KEY`, Connector-Creds wie `DB_IWP_URL`, `ODOO_*`, `UPTIMEROBOT_API_KEY`, `BACKUP_*`). `app/config.py` liest sie mit sinnvollen Defaults, sodass ohne `.env` der Dev-Modus läuft. Secrets werden per `.dockerignore` aus dem Build-Kontext gehalten und kommen erst zur Laufzeit dazu.",
+      "tags": [
+        "env",
+        "secrets",
+        "konfiguration"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "persistenz",
+      "front": "Was ist Persistenz? (und wo bei Hydra?)",
+      "back": "**Persistenz** = dauerhaftes Speichern von Daten über die Programmlaufzeit hinaus (in einer Datenbank), sodass sie nach Neustart erhalten bleiben. In Hydra bilden die ORM-Klassen in `app/models.py` (`Site`, die vier `*_state`-Tabellen, `sync_run`) das persistente Schema; erst `session.commit()` in `app/ingest.py` schreibt die gesammelten Änderungen dauerhaft fort.",
+      "tags": [
+        "datenbank",
+        "orm"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "orm",
+      "front": "Was ist ein ORM (objektrelationale Abbildung)? (und wo bei Hydra?)",
+      "back": "**ORM** vermittelt zwischen Objektmodell (Klassen) und relationalem Schema (Tabellen) und löst den *Impedance Mismatch*: **Klasse = Tabelle, Objekt = Zeile, Attribut = Spalte**. Hydra nutzt **SQLAlchemy 2.0**; in `app/models.py` erben alle Modelle von `Base` (Declarative) und `__tablename__` bindet die Klasse an die physische Tabelle — Datenzugriff über Python-Objekte statt handgeschriebenem SQL.",
+      "tags": [
+        "orm",
+        "sqlalchemy"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "referenzielle-integritaet",
+      "front": "Was ist referenzielle Integrität? (und wo bei Hydra?)",
+      "back": "**Referenzielle Integrität** = ein Fremdschlüssel darf nur auf existierende Datensätze verweisen, es dürfen keine „verwaisten\" Zeilen entstehen. In `app/models.py` erzwingt der Fremdschlüssel `site_id` (`ForeignKey('sites.id')`) die Bindung, und `cascade='all, delete-orphan'` an den `relationship`-Beziehungen der `Site` löscht die zugehörigen `*_state`- und `sync_run`-Zeilen mit, wenn die Site gelöscht wird.",
+      "tags": [
+        "datenbank",
+        "constraints"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "idempotenz",
+      "front": "Was ist Idempotenz? (und wo bei Hydra?)",
+      "back": "**Idempotenz** = dieselbe Operation mehrfach ausgeführt führt zum selben Endzustand, ohne Dubletten. In `app/ingest.py` leistet das der **UPSERT**: `_hole_oder_lege_site_an()` sucht die Site per `select(...).where(Site.domain==domain)` und legt sie nur an, wenn sie fehlt; der **UNIQUE-Constraint** auf `Site.domain` sichert das zusätzlich auf DB-Ebene. So erzeugt ein wiederholter Sync-Lauf nie doppelte Sites.",
+      "tags": [
+        "ingest",
+        "upsert"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "transaktion-acid",
+      "front": "Was ist eine Transaktion (ACID)? (und wo bei Hydra?)",
+      "back": "Eine **Transaktion** bündelt mehrere DB-Schritte nach dem **ACID**-Prinzip zu „ganz oder gar nicht\" (Atomarität, Konsistenz, Isolation, Dauerhaftigkeit); bei Fehler folgt ein Rollback. In `app/ingest.py` steht am Ende jeder `ingest_*`-Funktion **genau ein `session.commit()`** — ein Sync-Lauf ist damit eine atomare Arbeitseinheit: entweder alle Status- und `sync_run`-Änderungen werden gemeinsam gespeichert oder keine.",
+      "tags": [
+        "transaktion",
+        "commit"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "dependency-injection",
+      "front": "Was ist Dependency Injection? (und wo bei Hydra?)",
+      "back": "**Dependency Injection** (Inversion of Control) = Abhängigkeiten werden von außen hereingereicht statt selbst erzeugt → lose Kopplung und Testbarkeit. In Hydra bekommen die `ingest_*`-Funktionen die `session` als Parameter (im Test eine In-Memory-Session), `fetch_backup_rows(client, now)` nimmt Client und Zeit entgegen, und in `app/main.py` liefert `Depends(get_db)` / `Depends(require_api_key)` DB-Session bzw. Auth automatisch in die Route.",
+      "tags": [
+        "architektur",
+        "testbarkeit"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "ausnahmebehandlung",
+      "front": "Was ist Ausnahmebehandlung / Fehlerisolation? (und wo bei Hydra?)",
+      "back": "**Ausnahmebehandlung** fängt Fehler kontrolliert ab, statt das Programm abstürzen zu lassen. In `app/ingest.py:ingest_infinitewp()` kapselt ein `try/except` genau die fehleranfällige Blob-Deserialisierung: ein kaputter Blob lässt nur *diese eine* Site scheitern (als `error` gezählt/protokolliert), nicht den ganzen Lauf. Ergänzend wirft `_pruefe_prefix()` (iwp_source.py) fail-fast ein `ValueError`, `require_api_key()` eine `HTTPException`.",
+      "tags": [
+        "robustheit",
+        "fehler"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "sql-injection-prepared-statements",
+      "front": "Was ist SQL-Injection und wie schützen Prepared Statements? (und wo bei Hydra?)",
+      "back": "**SQL-Injection** = Einschleusen von SQL über ungeprüfte Eingaben. Schutz sind **parametrisierte Abfragen** (Prepared Statements): Werte werden *gebunden*, nie in den SQL-Text konkateniert. In Hydra binden `select(Site).where(Site.domain==domain)` (ingest) und `text(...)` (iwp_source) die Werte. Der einzige roh eingesetzte Teil — der Tabellen-**Prefix** — wird per Allowlist-Regex `\\A[A-Za-z0-9_]+\\Z` in `_pruefe_prefix()` streng validiert.",
+      "tags": [
+        "sicherheit",
+        "sql"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "nebenlaeufigkeit",
+      "front": "Was ist Nebenläufigkeit / Thread-Sicherheit? (und wo bei Hydra?)",
+      "back": "**Nebenläufigkeit** = mehrere Abläufe laufen (quasi-)gleichzeitig, was Race Conditions erzeugen kann. In `app/iwp_source.py` können Scheduler-Thread und HTTP-`/sync`-Thread `_get_engine()` parallel betreten; das ist bewusst ohne Lock, weil der SQLAlchemy-Engine-Pool selbst thread-safe ist und ein doppelt gebauter Engine vom GC eingesammelt wird. In `app/main.py` begrenzt `RUN_SCHEDULER` den Sync-Takt auf genau einen Worker-Prozess.",
+      "tags": [
+        "threads",
+        "scheduler"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "serialisierung",
+      "front": "Was ist Serialisierung? (und wo bei Hydra?)",
+      "back": "**Serialisierung** = ein Objekt in ein transportierbares Format (z. B. JSON) überführen; Deserialisierung ist der Rückweg. In `app/main.py` wandelt `_serialize_site()` das ORM-Objekt samt Beziehungen in ein flaches, JSON-taugliches `dict`, das FastAPI automatisch als JSON ausliefert. Umgekehrt *deserialisiert* Hydra in `iwp_source.py`/`decode_iwp.py` den InfiniteWP-Blob (base64 → gzip → JSON); Odoo liefert bereits fertiges JSON.",
+      "tags": [
+        "json",
+        "api"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "kapselung",
+      "front": "Was ist Kapselung / Geheimnisprinzip? (und wo bei Hydra?)",
+      "back": "**Kapselung** bündelt Daten und Verhalten in einer Einheit und verbirgt Interna hinter einer Schnittstelle (Information Hiding). In `app/models.py` bündeln die Modellklassen Spalten und Methoden (`__repr__`). In `app/ingest.py` markiert der führende Unterstrich `_hole_oder_lege_site_an()` als modul-privates Implementierungsdetail. `_serialize_site()` (main.py) wirkt als Fassade: das Frontend sieht nur das stabile `dict`, nicht das DB-Schema.",
+      "tags": [
+        "oop",
+        "information-hiding"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "reine-funktion",
+      "front": "Was ist eine reine Funktion? (und wo bei Hydra?)",
+      "back": "Eine **reine Funktion** liefert bei gleicher Eingabe stets die gleiche Ausgabe und hat keine Seiteneffekte (keine DB, kein globaler Zustand) → leicht testbar. Beispiele in Hydra: `_lokal()` (Zeitformatierung, main.py), `_pruefe_prefix()` und `_record_to_row()` (iwp_source.py) sowie `_health_status()` und `_domains_from_prefixes()` (backup_source.py) — die fachliche Health-Regel ist bewusst netz-/DB-frei isoliert.",
+      "tags": [
+        "funktional",
+        "testbarkeit"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "etl",
+      "front": "Was ist ETL (Extract-Transform-Load)? (und wo bei Hydra?)",
+      "back": "**ETL** = Daten **extrahieren**, ins Zielschema **transformieren** (normalisieren/dekodieren) und **laden**. Das ist der Kern von `app/ingest.py`: je Rohzeile Domain `normalize()` (Transform), Blob dekodieren, dann per UPSERT in die `*_state`-Tabellen laden. Extract liefern die Connectoren `fetch_infinitewp_rows()` (SQL-JOIN über `siteID`) und `fetch_backup_rows()` (S3-Listing) — jeweils Extract → Transform (Alter/Größe/Health) → Load-Zeile.",
+      "tags": [
+        "pipeline",
+        "ingest"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "post-redirect-get",
+      "front": "Was ist das Muster Post/Redirect/Get? (und wo bei Hydra?)",
+      "back": "**Post/Redirect/Get** verhindert Doppel-Absenden: nach einem zustandsändernden **POST** leitet der Server per **303 „See Other\"** auf eine GET-Seite um, sodass ein Neuladen (F5) die Aktion nicht erneut auslöst. In `app/main.py` ist `/sync` bewusst `@app.post`; nach `sync_all(db)` gibt es `RedirectResponse(url='/', status_code=303)` zurück — ein F5 auf dem Dashboard startet keinen erneuten Sync.",
+      "tags": [
+        "http",
+        "web"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "progressive-enhancement",
+      "front": "Was ist Progressive Enhancement? (und wo bei Hydra?)",
+      "back": "**Progressive Enhancement** = die Grundfunktion arbeitet ohne JavaScript, Interaktivität wird nur *zusätzlich* aufgesetzt. In `app/main.py` rendert die Dashboard-Route serverseitig fertiges HTML (`response_class=HTMLResponse`, Jinja2), das schon beim ersten Aufruf ohne JS lesbar ist (`<noscript>` im Template). Filter, Suche, sortierbare Spalten und Auto-Refresh ergänzt schlankes Vanilla-JS (`fetch`) obendrauf — kein HTMX/SPA.",
+      "tags": [
+        "frontend",
+        "web"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "least-privilege",
+      "front": "Was ist das Least-Privilege-Prinzip? (und wo bei Hydra?)",
+      "back": "**Least Privilege** = jede Komponente erhält nur die minimal nötigen Rechte. In `app/iwp_source.py` liest Hydra die InfiniteWP-MySQL-DB mit einem **read-only DB-User** (`GRANT SELECT`) — selbst ein Fehler könnte die Fremd-DB nicht verändern; die Verbindung wird per `with engine.connect()` sicher zurückgegeben. Beim Backup-Connector (`backup_source.py`) kommen die S3-Credentials aus der AWS-Standardkette statt aus dem Code.",
+      "tags": [
+        "sicherheit"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "surrogatschluessel",
+      "front": "Was ist ein Surrogatschlüssel (vs. natürlicher Schlüssel)? (und wo bei Hydra?)",
+      "back": "Ein **Surrogatschlüssel** ist ein künstlicher, fachlich bedeutungsloser Primärschlüssel (Auto-Increment), ein **natürlicher/fachlicher Schlüssel** hat Geschäftsbedeutung. In `app/models.py` hat `Site` beides: `id` (Surrogat, stabil) als PK und `domain` (natürlich, `unique=True`) als Geschäftsschlüssel fürs Upsert. `sync_run` bekommt einen eigenen Surrogat-PK, weil je Site viele Läufe existieren und die Domain dort nicht eindeutig wäre.",
+      "tags": [
+        "datenbank",
+        "schluessel"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "kardinalitaet-1zu1-1zun",
+      "front": "Wie wird die Kardinalität 1:1 vs. 1:n technisch umgesetzt? (und wo bei Hydra?)",
+      "back": "In `app/models.py` ist bei den vier `*_state`-Tabellen `site_id` **gleichzeitig PK und FK** (*Shared Primary Key*): weil der PK eindeutig ist, kann es je Site höchstens eine Status-Zeile geben → echte **1:1**-Bindung. Bei `sync_run` ist `site_id` **nur FK** (mit `index=True`, nicht eindeutig) → beliebig viele Läufe je Site → **1:n**. Im Objektmodell entspricht das `uselist=False` (1:1) vs. `Mapped[list[...]]` (1:n).",
+      "tags": [
+        "datenmodell",
+        "kardinalitaet"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "n-plus-1-eager-loading",
+      "front": "Was ist das N+1-Problem und wie löst Eager Loading es? (und wo bei Hydra?)",
+      "back": "Das **N+1-Problem**: nach 1 Abfrage für die Liste folgt je Element eine weitere Nachlade-Query (N Stück) → Abfrageflut. In `app/main.py` lädt `selectinload(...)` die vier Beziehungen (`uptime`, `infinitewp`, `backup`, `odoo`) **vorab in wenigen gebündelten Queries** (Eager statt Lazy Loading), bevor `_serialize_site()` sie liest. Auch `ingest.py` nutzt bewusst `session.add(SyncRun(...))` statt `.append`, um das Nachladen der Historie zu sparen.",
+      "tags": [
+        "performance",
+        "orm"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "lazy-init-verbindungspool",
+      "front": "Was sind Lazy Initialization und Verbindungspool? (und wo bei Hydra?)",
+      "back": "**Lazy Initialization** erzeugt eine teure Ressource erst beim ersten Bedarf; ein **Verbindungspool** hält wiederverwendbare offene DB-Verbindungen bereit. In `app/iwp_source.py` wird `_engine` erst in `_get_engine()` beim ersten Zugriff aus `DB_IWP_URL` gebaut (der bloße Import braucht weder Treiber noch erreichbare DB); der SQLAlchemy-Engine *ist* der Pool (`pool_pre_ping=True` prüft tote Verbindungen). Auch boto3 wird in `backup_source.py` lazy importiert.",
+      "tags": [
+        "performance",
+        "ressourcen"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "upsert-get-or-create",
+      "front": "Was ist ein UPSERT (get-or-create)? (und wo bei Hydra?)",
+      "back": "**UPSERT** = „einfügen ODER aktualisieren\": existiert der Eintrag, wird er aktualisiert, sonst neu angelegt. In `app/ingest.py` sichert `_hole_oder_lege_site_an()` per get-or-create die Site (mit `session.flush()`, damit `site.id` sofort vergeben ist), und der Status wird angelegt (`if site.uptime is None: site.uptime = UptimeState()`) oder am bestehenden 1:1-Objekt aktualisiert. Das ist die Grundlage der Idempotenz über wiederholte Läufe.",
+      "tags": [
+        "ingest",
+        "idempotenz"
+      ]
+    },
+    {
+      "topic": "ihk-begriffe",
+      "slug": "validierung-datenbereinigung",
+      "front": "Was bedeutet Validierung / Datenbereinigung? (und wo bei Hydra?)",
+      "back": "**Validierung/Datenbereinigung** prüft und vereinheitlicht Eingaben, bevor sie verarbeitet werden. In `app/ingest.py` wird jede Roh-Domain per `normalize()` auf eine kanonische Form gebracht; ist das Ergebnis leer (`if not domain`), wird der Datensatz als `unmatched` gezählt und per **Guard Clause** übersprungen (kein Müll in der DB). Bei InfiniteWP entsteht die Site zudem erst *nach* erfolgreichem Decode, damit keine leere Zeile fälschlich „grün\" erscheint.",
+      "tags": [
+        "datenqualitaet",
+        "ingest"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "warum-fastapi-statt-laravel",
+      "front": "Warum FastAPI (Python) statt Laravel/PHP für den V2-Neubau?",
+      "back": "**Laravel/PHP war dokumentierte, gleichwertige Alternative**, Node/TS wurde verworfen. Ausschlaggebend für Python/FastAPI: **SQL-Nähe** (Prüfungsthema, SQLAlchemy zeigt echtes SQL), starkes **TDD-Tooling** (pytest), gute Lesbarkeit, einfaches Scheduling/Deployment und wenig \"Framework-Magie\". Ehrlich eingeordnet: Der Async-Vorteil von FastAPI ist für den **read-only-Lesepfad gering** - die Wahl fiel primär über Vorerfahrung und die Auto-Docs (`/docs`), nicht über \"Performance\".",
+      "tags": [
+        "stack",
+        "begruendung"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "warum-postgresql",
+      "front": "Warum PostgreSQL als Betriebsdatenbank?",
+      "back": "PostgreSQL 16 ist der **kanonische Datenspeicher** im Betrieb - eine \"richtige\" relationale DB, die zum Prüfungsthema **SQL-Nähe** passt und Typen wie `timestamptz` (tz-aware Zeitstempel) sauber unterstützt. Angebunden über `psycopg[binary]`. Der Neubau ist auf echtem **PostgreSQL 16 (Docker) validiert**, und die pytest-Suite läuft in **CI gegen SQLite UND echtes Postgres 16** (als Sidecar) - so ist die DB-Portabilität nachgewiesen.",
+      "tags": [
+        "postgresql",
+        "datenbank"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "sqlite-dev-postgres-prod",
+      "front": "Warum SQLite in der Entwicklung, aber PostgreSQL im Betrieb - und wie geht das ohne Code-Änderung?",
+      "back": "**SQLite** ist eine Zero-Setup-Datei-DB (`hydra_v2.db`, in Tests In-Memory) - schneller Dev-Einstieg ohne Server. **PostgreSQL 16** ist der Betriebsspeicher. Umgeschaltet wird **allein über die `DATABASE_URL`** (ENV), **kein Code ändert sich** - möglich durch das ORM SQLAlchemy als Abstraktionsschicht. Dass beide funktionieren, sichert die **CI gegen SQLite und echtes Postgres 16** ab.",
+      "tags": [
+        "datenbank",
+        "sqlalchemy"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "datenqualitaet-normalisierung",
+      "front": "Wie stellst du Datenqualität sicher, wenn vier Quellen dieselbe Site unterschiedlich benennen?",
+      "back": "Kern ist die **Domain-Normalisierung** (`normalize.py`, test-getrieben): `www.`-Strip, **IDN -> Punycode**, standardmäßig **FQDN**, `eTLD+1` per Parameter zuschaltbar; **IP/localhost/Müll werden abgewiesen -> `''`** (Unmatched-Record, wird **nicht gespeichert**). Die normalisierte `domain` ist **UNIQUE NOT NULL** und dient als **Join-Key** über alle Quellen. Allein dieser Kern stellt **43 der 124 Tests**.",
+      "tags": [
+        "datenqualitaet",
+        "normalisierung"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "idempotenz-keine-dubletten",
+      "front": "Wie verhinderst du, dass wiederholte Sync-Läufe Dubletten erzeugen?",
+      "back": "Durch **idempotentes UPSERT**: statt rohem `ON CONFLICT` ein **Get-or-Create** über die UNIQUE-`domain` (`_hole_oder_lege_site_an`) plus ORM-Upsert des jeweiligen `*_state`. Zweimal syncen erzeugt dank **UNIQUE-`domain` + UPSERT keine Dubletten**. Jeder Lauf schreibt zusätzlich einen **Audit-Eintrag** in `sync_run` (`source`, `status`, `note`, `started_at`) - so bleibt die Herkunft nachvollziehbar.",
+      "tags": [
+        "etl",
+        "idempotenz"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "groesste-herausforderung-iwp-decode",
+      "front": "Was war die größte technische Herausforderung im Projekt?",
+      "back": "Das **Auslesen des Update-Status aus InfiniteWP**: Die Daten liegen in der IWP-MySQL-DB (`iwp_3_`) als **verschachtelte Blobs** vor - `site_stats` als **base64 + PHP-serialize**, `wpvulns` als **base64 + Marker `_|_coMpResSed_|_` + gzip + JSON** (keine Krypto/Secrets). Diese Dekodier-Logik war in V1 bereits gelöst und wurde als **reine Python-Funktion** portiert (`decode_iwp.py`) - isoliert testbar und mit **Fehler-Isolation** (ein kaputter Blob scheitert nur die eine Site).",
+      "tags": [
+        "herausforderung",
+        "infinitewp"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "wie-getestet",
+      "front": "Wie hast du das Projekt getestet?",
+      "back": "Mit **pytest**, aktuell **124 Tests grün**. Die reine Logik (`normalize`, `decode_iwp`, `vulns`, `status`) ist **test-getrieben (TDD)** entstanden - ideal, weil sie **keine DB-Abhängigkeit** hat. `conftest.py` liefert je Test eine **frische In-Memory-Session**. Die vier Connectoren werden **gegen selbst erzeugte Fixtures/Fakes** getestet (Fake-MySQL, Fake-Odoo etc.). Die Suite läuft **in CI automatisch gegen SQLite und echtes Postgres 16**.",
+      "tags": [
+        "tests",
+        "pytest",
+        "tdd"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "read-only-umsetzung",
+      "front": "Wie ist der read-only-Charakter von Hydra umgesetzt?",
+      "back": "Hydra **aggregiert nur, es steuert nichts** (*Single Pane of Glass*) - es ersetzt die Monitoring-Tools nicht. Konkret: **Odoo** über einen **Read-only-User** (JSON-RPC `search_read`), **InfiniteWP** über **read-only MySQL**, **S3** und **Uptime Robot** rein lesend. Auch das Dashboard liest nur (`SELECT`). Es gibt keinen Schreibpfad zurück in die Quellsysteme - dadurch ist der Betrieb ungefährlich und die Herkunft der Daten bleibt unangetastet.",
+      "tags": [
+        "read-only",
+        "sicherheit"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "neubau-statt-v1-erweitern",
+      "front": "Warum ein eigener Python-Neubau (V2) statt die bestehende V1 zu erweitern?",
+      "back": "**V1** (PHP-API + Google Apps Script/Sheet) ist die **analysierte Ausgangslage**, nicht die Prüfungsleistung. Das **AP2-Projekt ist ausdrücklich nur V2** - der Neubau auf dem **Ziel-Stack** (Python, FastAPI, SQLAlchemy, PostgreSQL), der die prüfungsrelevante **SQL-Nähe** und TDD sauber zeigt. Die **bewährten Quellen-Zugriffe wurden aus V1 portiert** (nicht neu erfunden), aber in einer sauberen, getesteten und deploybaren Architektur - statt das Apps-Script/Sheet-Konstrukt fortzuschreiben.",
+      "tags": [
+        "v1-v2",
+        "begruendung"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "was-macht-hydra-nutzen",
+      "front": "Was ist Hydras Grundidee und Nutzen in einem Satz (Fachgespräch-Einstieg)?",
+      "back": "Hydra ist ein zentrales **Monitoring-Dashboard für mehrere WordPress-Sites**, das die Daten der **bereits eingesetzten Tools** (Odoo, InfiniteWP, WP Time Capsule/S3, Uptime Robot) zu einer **Single Pane of Glass** zusammenführt: pro Site auf einen Blick **Erreichbarkeit, Update-Status und Backup-Status** plus Projekt-/Kundenkontext. Es **ersetzt die Tools nicht, sondern aggregiert** ihre Daten - der Nutzen ist der eingesparte Tool-Wechsel und die zentrale Ampel.",
+      "tags": [
+        "nutzen",
+        "aggregation"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "fehler-isolation-quellenausfall",
+      "front": "Was passiert im Dashboard, wenn eine der vier Quellen ausfällt?",
+      "back": "Jeder Connector-Call ist **isoliert** (try/except, `Promise.allSettled`-Äquivalent in `sync_all`). Fällt eine Quelle aus, wird **nur deren Kachel/Zustand** auf `status=error` gesetzt - der letzte `synced_at` bleibt sichtbar, und das **restliche Dashboard degradiert nicht**. Ein Circuit-Breaker greift erst bei häufigen Fehlern. Diese Ausfall-Isolation gilt auch feiner: ein kaputter IWP-Blob scheitert nur die betroffene Site, nicht den ganzen Lauf.",
+      "tags": [
+        "robustheit",
+        "fehler-isolation"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "gesamtstatus-ampel-ableitung",
+      "front": "Wie leitest du aus vier Einzelzuständen eine Gesamt-Ampel je Site ab?",
+      "back": "Über eine **priorisierte Geschäftsregel** in `status.py` (`gesamt_status`): **Erreichbarkeit down -> rot (kritisch)**, sonst **Core-Update offen -> orange**, sonst **Backup veraltet oder Plugin/Theme-Update -> gelb (Achtung)**, sonst **grün (ok)**. Zusätzlich hebt ein Vuln-Abgleich (`vuln_count > 0`) auf orange. Die Regeln sind eine bewusste, anpassbare Designentscheidung; die Priorität rot > orange > gelb > grün ist per Test abgesichert.",
+      "tags": [
+        "status",
+        "geschaeftsregel"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "warum-kein-spa-htmx",
+      "front": "Warum server-rendered Jinja2 + Vanilla-JS statt einer SPA (oder HTMX)?",
+      "back": "Begründet mit dem **read-only-Charakter, dem 80-Stunden-Rahmen und einem kleinen Bundle**: server-rendered HTML mit **minimalem Vanilla-JS** (`fetch` für Sortieren/Filtern/Suche/Auto-Refresh) reicht völlig. **HTMX wurde bewusst nicht verwendet** - natives `fetch` ist abhängigkeitsfrei. Zusätzlich gibt es einen **`<noscript>`-Fallback**. Eine SPA (Node/TS) wäre für ein Aggregations-Dashboard Over-Engineering gewesen.",
+      "tags": [
+        "frontend",
+        "yagni"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "barrierefreiheit-dashboard",
+      "front": "Wie hast du Barrierefreiheit (WCAG) im Dashboard berücksichtigt?",
+      "back": "Status ist **dreifach codiert**: Farbe **+** form-unterscheidbares Icon **+** Klartext-Label - **Farbe ist nie alleiniger Träger** (WCAG 1.4.1). Die Farbpalette stammt aus **Okabe-Ito** (CVD-/farbfehlsichtigkeits-sicher, z. B. Grün `#009E73`, Orange `#E69F00`, Rot `#D55E00`); Rot-Grün wird gemieden, Blau/Orange als robustestes Paar. Kontraste werden gegen die WCAG-AA-Schwellen geprüft (>=3:1 Non-Text, >=4,5:1 Text).",
+      "tags": [
+        "wcag",
+        "barrierefreiheit",
+        "gui"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "flache-struktur-yagni",
+      "front": "Warum eine flache `app/`-Struktur statt der ursprünglich geplanten Paket-Hierarchie?",
+      "back": "Der Entwurf sah `core/ · connectors/ · db/ · web/` vor; gebaut wurde ein **flacher `app/`-Ordner mit einer Datei je Verantwortung**. Begründung (**YAGNI**): Bei rund 17 kleinen Modulen hätten Unterpakete fast nur `__init__.py` und Import-Umwege erzeugt - **Struktur ohne Inhalt**. Die Trennung reine Logik <-> ETL <-> Web ist schon über die **Dateinamen** klar. Gehalten wird die Grenze nicht durch Ordner, sondern durch **Abhängigkeitsrichtung**: `normalize/decode/vulns/status` importieren nichts aus `ingest/main` - daher ohne DB/Web testbar.",
+      "tags": [
+        "architektur",
+        "yagni"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "was-anders-machen-offen",
+      "front": "Was ist noch offen bzw. was würdest du als Nächstes anders/besser machen?",
+      "back": "Drei bewusst offene Punkte: (1) **Live-Betrieb der Connectoren** - alle vier Source-Module sind gebaut und gegen Fixtures getestet, laufen aber bis zu **echten Credentials + Netzzugang** noch gegen den **Demo-Fallback**. (2) Der **`stale`-Status** (altersbedingt veraltet) ist im Modell dokumentiert, aber **noch nicht implementiert** - Code schreibt nur `ok`/`error`. (3) Der **Live-Deploy auf den VPS** steht aus - Docker/Compose/CI-Artefakte liegen bereit, das Ausrollen ist bestätigungspflichtig noch nicht erfolgt.",
+      "tags": [
+        "offen",
+        "ausblick"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "zeitbudget-80h",
+      "front": "Wie viel Zeit umfasst das AP2-Projekt und was zählt in dieses Budget hinein?",
+      "back": "**Max. 80 Stunden** als **harte Obergrenze** — und zwar **Projektarbeit + Dokumentation zusammen**. Der im Antrag geplante Aufwand darf sie nicht überschreiten; im Hydra-Gantt sind die 80 h auf Analyse, Konzeption, Implementierung, QS und Abschluss aufgeteilt.",
+      "tags": [
+        "projektmanagement",
+        "ihk",
+        "zeitplanung"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "soll-ist-zeituebersicht",
+      "front": "Welcher Zeit-Bestandteil ist laut IHK-Merkblatt Pflicht in der Doku und wozu dient er?",
+      "back": "Die **Übersicht der benötigten Zeiten (Soll-/Ist)** ist Pflichtbestandteil (Merkblatt 2.3, „muss\"). Sie stellt dem geplanten Aufwand den tatsächlichen gegenüber (**Soll-Ist-Vergleich**) und ist Grundlage der kritischen Reflexion / Lessons Learned. Ebenfalls Pflicht: **Glossar** und **Quellenangaben**.",
+      "tags": [
+        "soll-ist",
+        "doku",
+        "pflichtinhalt"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "vorgehensmodell",
+      "front": "Welches Vorgehensmodell nutzt Hydra und wie wird die Wahl gegenüber Scrum begründet?",
+      "back": "**Voll-Scrum** lässt sich im 80h-Solo-Projekt nicht sinnvoll umsetzen. Gewählt wird **Kanban** (kleines WIP-Limit; Board Backlog → In Bearbeitung → Test → Done) bzw. ein **Phasenmodell mit adaptierten agilen Elementen** — nur die zielführenden Scrum-Bestandteile werden angewendet. Diese Adaption muss man explizit reflektieren.",
+      "tags": [
+        "vorgehensmodell",
+        "kanban",
+        "agil"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "projektphasen",
+      "front": "In welche Phasen gliedert sich der Hydra-Projektplan und welche ist der größte Block?",
+      "back": "Fünf Phasen: **Analyse** (IST + Lösungsalternativen), **Konzeption** (Architektur/Datenmodell + API-Konzept), **Implementierung** (Backend/Connectoren + Frontend/Dashboard), **Qualitätssicherung** (Tests & Fehlerbehebung) und **Abschluss** (Doku + Abnahme/Puffer). Größter Block ist die **Implementierung inkl. Testing**; Doku-Aufwand realistisch mit ~10–15 % einplanen.",
+      "tags": [
+        "projektphasen",
+        "gantt",
+        "zeitplanung"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "tdd-red-green-refactor",
+      "front": "Wo und wie wurde in Hydra TDD (Red-Green-Refactor) angewendet?",
+      "back": "TDD wurde am **Domain-Normalisierungs-Kern** umgesetzt: Tests zuerst (**rot**) → Implementierung (**grün**) → Refactor. Der Vertrag „**ungültige Eingabe → `''`**\" wurde bewusst erst als roter Test formuliert. Belegt: **10 rote Tests** (IPs, `localhost`, kaputte Hosts wurden zuvor durchgereicht) → nach Einbau der Gültigkeitsprüfung alle grün.",
+      "tags": [
+        "tdd",
+        "qualitaetssicherung",
+        "testen"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "testanzahl-124",
+      "front": "Wie viele automatisierte Tests hat Hydra und wie verteilen sie sich?",
+      "back": "**124 Tests, alle grün** (124/124). Davon entfallen **43 auf `test_normalize.py`** (Domain-Normalisierung), die restlichen **81** decken InfiniteWP-Decoding, ETL/Ingest, die **vier Source-Connectoren** (InfiniteWP, Odoo, Uptime Robot, S3/Backup), die Gesamt-Ampel `gesamt_status`, `sync_all` und den Vuln-Abgleich ab. Framework: **pytest** (plain `assert`, `@pytest.mark.parametrize`).",
+      "tags": [
+        "testen",
+        "pytest",
+        "qualitaetssicherung"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "aequivalenz-grenzwertanalyse",
+      "front": "Nach welcher Methodik wurden die Hydra-Testfälle systematisch entworfen?",
+      "back": "Systematisch via **Äquivalenzklassenbildung + Grenzwertanalyse**. Der Normalisierungs-Kern (43 Tests) gliedert sich in vier Klassen: **FQDN-Modus**, **eTLD+1-Modus**, **adversariale Zusatzfälle** (IPs, IPv6, `user:pass@host`, Punycode, Fullwidth, `localhost`) und **ungültige Eingaben → `''`**. Jeder Erwartungswert wurde vor Aufnahme empirisch verifiziert.",
+      "tags": [
+        "testfallentwurf",
+        "aequivalenzklassen",
+        "grenzwertanalyse"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "ci-postgres",
+      "front": "Wie stellt Hydra sicher, dass die Tests nicht nur gegen SQLite, sondern auch gegen PostgreSQL laufen?",
+      "back": "Die Suite läuft standardmäßig gegen **SQLite In-Memory** (`conftest.py`-Fixture; schnell, isoliert). Über die Env-Variable **`TEST_DATABASE_URL`** läuft dieselbe Suite auch gegen eine echte DB. Die **CI** (`.github/workflows/ci.yml`) prüft bei jedem Push/PR gegen SQLite **und** ein **PostgreSQL 16** (Sidecar, `alembic upgrade head`) — der früher nur manuelle Postgres-Lauf ist damit automatisiert.",
+      "tags": [
+        "ci",
+        "postgres",
+        "testen"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "adversariale-code-review",
+      "front": "Was ergab der adversariale Multi-Agenten-Code-Review in Hydra?",
+      "back": "Ein Multi-Agenten-Review mit **6 Linsen** (Korrektheit, Python-Konventionen, SQLAlchemy, FastAPI, Sicherheit, Tests) lieferte **27 Roh-Funde** → nach Gegenprüfung **15 bestätigt** (keiner „high\") → **alle 15 behoben**. Highlights: fehlgeschlagenes IWP-Decoding zeigte eine Site fälschlich grün, die Kern-Ampel war ungetestet, N+1 → `selectinload`, `/sync` GET→POST.",
+      "tags": [
+        "code-review",
+        "qualitaetssicherung",
+        "sicherheit"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "make-or-buy-ko-kriterium",
+      "front": "Wie fällt die Make-or-Buy-Entscheidung bei Hydra und welches Kriterium entscheidet zuerst?",
+      "back": "Zuerst greift das **K.-o.-Kriterium Funktionsdeckung** (vor dem Preis): Kein SaaS (WP Umbrella, MainWP, ManageWP, Patchstack) aggregiert **Odoo-Stammdaten + bestehendes InfiniteWP + Backup + Uptime** über eine **kanonische Domain**. „Buy\" scheidet damit **funktional** aus, nicht erst monetär. Hydra konkurriert nicht mit diesen Tools, sondern **aggregiert** sie.",
+      "tags": [
+        "wirtschaftlichkeit",
+        "make-or-buy",
+        "nutzwert"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "amortisation-roi",
+      "front": "Wie wird die Wirtschaftlichkeit von Hydra über Amortisation/ROI berechnet?",
+      "back": "**Amortisationsdauer (Monate) = Einmalkosten / monatliche Ersparnis**. Beispiel (Annahmen): ~2.000 € Einmalkosten (30 Sites, ~25 €/h, ≤80 h); Statusabfrage bisher ~6 h/Mon → mit Hydra ~0,5 h → Ersparnis 5,5 h × 25 € ≈ **138 €/Mon** → Amortisation in ca. **15 Monaten**. Zusätzlich über Risikovermeidung (übersehene Updates/Backups) argumentierbar.",
+      "tags": [
+        "wirtschaftlichkeit",
+        "roi",
+        "amortisation"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "nutzwertanalyse",
+      "front": "Wie ist die Nutzwertanalyse in Hydra aufgebaut und wozu dient sie?",
+      "back": "Sie bewertet die **weichen (nicht-monetären) Faktoren** der Alternativen. Skala **1–3** (1 = schlecht, 3 = gut), gewichtete **Kriterien mit Summe 100 %** (u. a. Funktionsdeckung 30 %, Datenhoheit 25 %, Wartbarkeit, Vendor-Lock-in, Kosten), Ergebnis = **Σ(Punkt × Gewicht)**. Da das K.-o.-Kriterium zuerst greift, wird **MainWP** (self-hosted) als faire Buy-Option gegen Hydra mitgeführt.",
+      "tags": [
+        "wirtschaftlichkeit",
+        "nutzwertanalyse",
+        "entscheidung"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "praesentation-fachgespraech",
+      "front": "Wie ist der IHK-Rahmen für Präsentation und Fachgespräch und wie zählt die AP2 in die Note?",
+      "back": "**Ca. 15 Min Präsentation + ca. 15 Min Fachgespräch = max. 30 Min gesamt**. Innerhalb der AP2 zählen **Dokumentation 50 % + Präsentation inkl. Fachgespräch 50 %**. Die Doku umfasst **ca. 15 (max. 18) Seiten** ohne Anlagen (Arial 11 pt, 1,5-zeilig). Pflichtbegriff im QS-Kapitel: „**durchgeführte Maßnahme zur Umsetzung der Qualitätskontrolle**\".",
+      "tags": [
+        "ihk",
+        "praesentation",
+        "fachgespraech"
+      ]
+    },
+    {
+      "topic": "grundlagen",
+      "slug": "was-ist-scrum-rollen-artefakte-events",
+      "front": "Was ist Scrum? Nenne die drei Rollen, die Artefakte und die Events.",
+      "back": "**Scrum** ist ein **agiles, iterativ-inkrementelles** Rahmenwerk: Arbeit läuft in **Sprints** (feste Zeitboxen). **3 Rollen:** **Product Owner** (priorisiert das Backlog, verantwortet den Wert), **Scrum Master** (moderiert den Prozess, räumt Hindernisse), **Entwicklungsteam** (setzt um). **3 Artefakte:** **Product Backlog**, **Sprint Backlog**, **Increment** (lieferbares Ergebnis). **Events:** Sprint (Klammer), Sprint Planning, Daily Scrum, Sprint Review, Retrospektive. Bei Hydra bewusst **nicht** gewählt: als Solo-Projekt mit vorab genehmigtem Fixumfang lassen sich weder die drei Rollen besetzen noch echte Sprint-Reviews mit einem Kunden abhalten.",
+      "tags": [
+        "scrum",
+        "agil",
+        "vorgehensmodell"
+      ]
+    },
+    {
+      "topic": "grundlagen",
+      "slug": "was-ist-kanban-board-pull-wip",
+      "front": "Was ist Kanban (Board, Pull-Prinzip, WIP-Limit) und warum bei einem Solo-Read-only-Projekt oft die ehrlichere Wahl?",
+      "back": "**Kanban** ist ein agiles Vorgehen zum **Visualisieren und Steuern** von Arbeit — ohne festen Sprint-Rhythmus. **Board:** Spalten `Backlog → In Arbeit → Test → Done`, jede Aufgabe eine Karte. **Pull-Prinzip:** man **zieht** neue Arbeit erst, wenn Kapazität frei wird (statt sie zuzuweisen/pushen). **WIP-Limit** (Work in Progress): begrenzt die Zahl gleichzeitig laufender Karten → verhindert Verzettelung und macht Engpässe sichtbar. Für ein **read-only Ein-Personen-Dashboard** wie Hydra ehrlicher als Scrum: das WIP-Limit passt zur Ein-Mann-Kapazität, ohne Rollen und Zeremonien zu erfinden, die es real nicht gibt.",
+      "tags": [
+        "kanban",
+        "agil",
+        "wip-limit",
+        "pull"
+      ]
+    },
+    {
+      "topic": "grundlagen",
+      "slug": "wasserfallmodell-vor-nachteile",
+      "front": "Was ist das Wasserfallmodell, welche Vor-/Nachteile hat es und warum passt es zum genehmigten IHK-Fixumfang?",
+      "back": "Das **Wasserfallmodell** ist ein **plangetriebenes** Vorgehen mit **sequenziellen Phasen** (Analyse → Entwurf → Implementierung → Test → Abnahme), die wie eine Kaskade nacheinander abgearbeitet werden — eine Phase endet, bevor die nächste beginnt. **Vorteile:** klar planbar, gut dokumentierbar, feste Meilensteine. **Nachteile:** unflexibel bei späten Änderungen; ein Fehler aus einer frühen Phase wirkt teuer weiter. Zu Hydra passt es, weil der **IHK-Projektantrag Ziel und Umfang vor Start einfriert** (Fixumfang, begrenztes Stundenbudget): bei festem, genehmigtem Scope ist ein phasenorientiertes Vorgehen ehrlicher als agile Iteration ohne echten Kunden-Feedback-Loop.",
+      "tags": [
+        "wasserfall",
+        "vorgehensmodell",
+        "ihk"
+      ]
+    },
+    {
+      "topic": "grundlagen",
+      "slug": "lastenheft-vs-pflichtenheft",
+      "front": "Was ist der Unterschied zwischen Lastenheft und Pflichtenheft (Auftraggeber-Was vs. Auftragnehmer-Wie) — schließt ein Pflichtenheft agile Iterationen aus?",
+      "back": "**Lastenheft** = der **Auftraggeber** beschreibt, **WAS** er will (Anforderungen/Ziele, lösungsneutral). **Pflichtenheft** = der **Auftragnehmer** antwortet darauf, **WIE** er es technisch umsetzt (konkrete Realisierung). Merksatz: **Lastenheft = Wunschzettel, Pflichtenheft = Bauplan**. Ein Pflichtenheft **schließt agile Iterationen nicht aus** — es hält den Umsetzungsweg fest, darf aber verfeinert werden. Bei Hydra übernimmt die **Anforderungsanalyse** (funktionale/nicht-funktionale Anforderungen) die Lastenheft-Rolle, das **Technik-/Architekturkonzept** die Pflichtenheft-Rolle.",
+      "tags": [
+        "lastenheft",
+        "pflichtenheft",
+        "anforderungen"
+      ]
+    },
+    {
+      "topic": "grundlagen",
+      "slug": "ap2-katalog-sicherheit-abgedeckt",
+      "front": "Welche Sicherheits-/Datenschutz-Punkte des AP2-Katalogs deckt Hydra aktiv ab und welche nur am Rande (genannt/verworfen)?",
+      "back": "**Aktiv umgesetzt und demonstrierbar:** **SQL-Injection**-Schutz (Prepared Statements + Prefix-Validierung im InfiniteWP-Connector), **Man-in-the-Middle**-Schutz durch **TLS/HTTPS** (Reverse-Proxy), **Least-Privilege** (read-only `GRANT SELECT`, IAM-Leserechte für S3) und **Datensparsamkeit/Pseudonymisierung** in der Doku. **Nur genannt/bewusst verworfen** (nicht Projektgegenstand): **DDoS**-Abwehr, **RADIUS/Kerberos** (Auth-Protokolle), **TOM** allgemein, **BitLocker**/Festplattenverschlüsselung. Nutzen im Fachgespräch: du kannst sauber trennen, was du **wirklich gebaut** hast, von dem, was du nur **fachlich einordnen** kannst.",
+      "tags": [
+        "ap2-katalog",
+        "it-sicherheit",
+        "datenschutz"
+      ]
+    },
+    {
+      "topic": "grundlagen",
+      "slug": "was-ist-wordpress",
+      "front": "Was ist WordPress und warum steht es im Zentrum von Hydra?",
+      "back": "**WordPress (WP)** ist das weltweit meistgenutzte **CMS** (Content-Management-System) zum Erstellen und Betreiben von Websites, ohne selbst programmieren zu müssen — „Word für Webseiten\". Es besteht aus **Core + Plugins + Themes**, die alle **updatepflichtig** sind. Hydra steht deshalb im Zentrum, weil der gesamte betreute Betrieb aus vielen WP-Sites besteht: Hydra bündelt deren **Update-, Backup-, Erreichbarkeits- und Kundenstatus** zu einem **Single Pane of Glass**. Ohne WordPress als Domäne gäbe es kein Monitoring-Objekt.",
+      "tags": [
+        "wordpress",
+        "cms",
+        "domaene"
+      ]
+    },
+    {
+      "topic": "grundlagen",
+      "slug": "wp-core-plugin-theme-unterschied",
+      "front": "Was ist der Unterschied zwischen WP-Core, Plugin und Theme — und warum zählt Hydra deren Updates getrennt?",
+      "back": "**Core** = das WordPress-Grundprogramm selbst (wie ein Betriebssystem). **Plugin** = eine Erweiterung, die eine neue Funktion hinzufügt, z. B. Shop oder Kontaktformular (\"App zum Nachinstallieren\"). **Theme** = die Design-Vorlage (Layout, Farben, Schriften; „Outfit der Seite\"). Jede der drei Ebenen hat **eigene Versionen und eigene Sicherheitslücken**. Hydra zählt offene Updates deshalb **getrennt** nach Core/Plugin/Theme (`extract_update_counts`), weil ein veraltetes Plugin ein anderes Risiko und einen anderen Handlungsbedarf bedeutet als ein veralteter Core — die Trennung macht den Status je Site aussagekräftig.",
+      "tags": [
+        "wordpress",
+        "core-plugin-theme",
+        "updates"
+      ]
+    },
+    {
+      "topic": "grundlagen",
+      "slug": "wordpress-updates-sicherheitsrisiko",
+      "front": "Warum sind veraltete WordPress-Updates ein Sicherheitsrisiko — was passiert, wenn man sie aufschiebt?",
+      "back": "Updates schließen nicht nur Fehler, sondern vor allem **Sicherheitslücken (Vulnerabilities)**. Eine solche Lücke erhält eine weltweit eindeutige **CVE**-Nummer und ist damit **öffentlich bekannt** — Angreifer können automatisiert nach ungepatchten Seiten scannen. Wer Updates aufschiebt, lässt ein „bekannt defektes Türschloss\" offen; je älter der Stand, desto mehr bekannte **Einfallstore**. Beispiel aus der Domäne: **CVE-2020-8772** (Auth-Bypass im InfiniteWP-Client, CVSS 9.8). Genau diesen Rückstand macht Hydra sichtbar: offene Update-Zahlen plus Verwundbarkeits-Zähler je Site (`infinitewp_state.vuln_count`).",
+      "tags": [
+        "updates",
+        "cve",
+        "vulnerability",
+        "sicherheit"
+      ]
+    },
+    {
+      "topic": "grundlagen",
+      "slug": "http-statuscodes-200-404-429-500",
+      "front": "Was bedeuten die HTTP-Statuscodes 200, 404, 429 und 500 — und wie geht Hydra mit 429 (Rate-Limit) um?",
+      "back": "HTTP-Statuscodes sind dreistellige Server-Rückmeldungen, gruppiert nach erster Ziffer: **2xx Erfolg**, **4xx Client-/Anfragefehler**, **5xx Serverfehler**. Konkret: **200 OK** (erfolgreich), **404 Not Found** (Ressource existiert nicht), **429 Too Many Requests** (Rate-Limit überschritten), **500 Internal Server Error** (unerwarteter Serverfehler). Bei **429** ist die saubere Reaktion **Backoff/Retry** — warten und mit wachsender Pause erneut versuchen, statt das Limit weiter zu reizen. Hydra umgeht das Problem an seiner wichtigsten Quelle zudem ganz, indem es **InfiniteWP read-only direkt aus der MySQL-DB** liest statt über eine ratenbegrenzte API.",
+      "tags": [
+        "http",
+        "statuscodes",
+        "rate-limit",
+        "backoff"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "ihk-projektablauf-fristen-meilensteine",
+      "front": "Welche Meilensteine und Fristen strukturieren den IHK-Projektablauf vom Antrag bis zur Präsentation?",
+      "back": "Chronologie (IHK Würzburg-Schweinfurt, kalenderfix, nicht jahresgebunden): **1. Projektantrag** über das Bildungsportal (**tibros**) **bis 15.03. (Sommer) / 15.10. (Winter)**. **2. Genehmigung** durch den Prüfungsausschuss (bis Ende März/Oktober). **3. Durchführung** — erst **nach** Genehmigung, **max. 80 h** (Projektarbeit + Doku). **4. Doku-Upload bis 15.06. / 15.01.** (Terminüberschreitung = Nichtteilnahme/Ausschluss, § 23 Abs. 3 PO). **5. Präsentation + Fachgespräch** (Juni/Juli bzw. Jan/Feb), zusammen **max. 30 Min**. Merksatz: Antrag -> Genehmigung -> Bauen -> Abgeben -> Vortragen.",
+      "tags": [
+        "ihk",
+        "fristen",
+        "meilensteine",
+        "tibros"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "ihk-projektantrag-zweck-genehmigung-frist",
+      "front": "Wozu dient der IHK-Projektantrag, warum darf das Projekt erst nach Genehmigung starten, und bis wann/über welches Portal wird er eingereicht?",
+      "back": "Der **Projektantrag** beschreibt Aufgabenstellung, Zielsetzung, geplante Phasen und Aufwand (**max. 80 h**) VOR Projektbeginn. Der **Prüfungsausschuss** prüft, ob das Vorhaben prüfungstauglich ist (Umfang, Eigenleistung, Fachtiefe). **Projektstart erst nach Genehmigung** — sonst Täuschungsrisiko, und die Zeiterfassung zählt erst ab Freigabe. Eingereicht über das **IHK-Bildungsportal (tibros, ihk-bildungsportal.de)** **bis 15.03. (Sommer) / 15.10. (Winter)**. Bei Hydra beschreibt der Antrag ausdrücklich den **V2-Neubau**; die bestehende V1 ist nur **Ausgangslage**, nicht Projektleistung.",
+      "tags": [
+        "ihk",
+        "projektantrag",
+        "tibros",
+        "genehmigung"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "ihk-doku-formvorgaben-umfang-schrift-raender",
+      "front": "Welche formalen Vorgaben gelten für die IHK-Projektdoku (Umfang, Schriftart/-größe, Zeilenabstand, Ränder)?",
+      "back": "Empfehlung des Prüfungsausschusses (IHK Würzburg-Schweinfurt, faktisch maßgeblich): **Umfang ca. 15, max. 18 Seiten** ohne Anlagen/Tabellen. **Arial 11 pt**, **Zeilenabstand 1,5**. **Heftrand links 2,5 cm**, **Korrekturrand rechts 2,5 cm**. Kopf-/Fußzeile mit **Seitennummerierung**. Wichtig für die Argumentation: Umfang/Schrift/Ränder sind formal \"Empfehlung\", die **80-h-Grenze und die Fristen** dagegen hart. Bei Hydra heißt das: fokussiert schreiben, umfangreiche Code-Listings, ERM und lange Tabellen in den **Anhang** verlagern (zählt nicht zu den 18 Seiten).",
+      "tags": [
+        "ihk",
+        "formvorgaben",
+        "dokumentation"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "ihk-doku-inhaltliche-pflichtbestandteile",
+      "front": "Welche inhaltlichen Pflichtbestandteile muss die IHK-Projektdokumentation laut Merkblatt (2.3) enthalten?",
+      "back": "Merkblatt 2.3 nennt als Inhalte: **Ausgangslage, Projektziel, Projektergebnisse, Analysen, Konzepte, durchgeführte Maßnahme zur Umsetzung der Qualitätskontrolle** (exakter Wortlaut!) **und Fazit**. Zusätzlich **zwingend** (\"muss Bestandteil sein\"): **Übersicht der benötigten Zeiten (Soll-/Ist)**, **Glossar** und **Quellenangaben**. Bei Hydra: IST-Analyse (V1-Grenzen) -> SOLL (Single Pane of Glass) -> Wirtschaftlichkeit + Make-or-Buy -> Architektur/Datenmodell -> TDD-Teststrategie als \"Qualitätskontrolle\" -> Soll-Ist-Vergleich + Lessons Learned im Fazit.",
+      "tags": [
+        "ihk",
+        "dokumentation",
+        "pflichtinhalte",
+        "merkblatt"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "ihk-doku-zielgruppe-und-kundendokumentation",
+      "front": "Für welche Zielgruppe schreibst du die Projektdoku, und wozu dient die separate Kundendokumentation?",
+      "back": "Die **Projektdokumentation** richtet sich an eine **technisch erfahrene, aber branchenfremde** Leserschaft (der Prüfer kennt Software, aber nicht deinen Betrieb): Domänenbegriffe kurz erklären (Odoo, InfiniteWP, UptimeRobot, S3, \"kanonische Site-Entität\"). Davon **getrennt** liefert Hydra eine **Kundendokumentation / Benutzeranleitung** — **benutzergerecht** für den Anwender/Betreiber, der das Dashboard bedient (Login, Status lesen, Filtern), **ohne** Architektur- oder Code-Details. Merksatz: Projektdoku = **wie/warum gebaut** (für Prüfer), Benutzerhandbuch = **wie bedient** (für Anwender).",
+      "tags": [
+        "ihk",
+        "zielgruppe",
+        "kundendokumentation"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "ihk-doku-anhang-glossar-quellen-eigenstaendigkeit",
+      "front": "Welche Pflichtbestandteile muss der Anhang der Projektdoku (Merkblatt 2.3) enthalten und wozu dienen sie?",
+      "back": "Der **Anhang** (zählt nicht in die ~15/18 Seiten) trägt drei formal wichtige Teile: **Glossar** (erklärt Fachbegriffe/Abkürzungen für die branchenfremde Zielgruppe), **Quellenverzeichnis** (belegt übernommenes Wissen, sichert gegen Plagiatsvorwurf) und die **Eigenständigkeitserklärung** (Versicherung, die Arbeit selbst verfasst zu haben). Achtung: Im Unterfranken-Merkblatt sind **Glossar und Quellenangaben \"muss\"**, die **Eigenständigkeitserklärung ist dort nicht ausdrücklich genannt** — vor Abgabe bei der IHK / im Bildungsportal klären. Bei Hydra kommen zudem Code-Listings, ERM und (anonymisierte) Screenshots in den Anhang.",
+      "tags": [
+        "ihk",
+        "anhang",
+        "glossar",
+        "eigenstaendigkeitserklaerung"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "eigenleistung-v1-nicht-projektleistung",
+      "front": "Was war deine Eigenleistung im AP2-Projekt, und warum zählt die bestehende V1 nicht dazu?",
+      "back": "Die **Projektleistung** ist der im Antrag genehmigte **V2-Neubau** (Analyse, Konzept, Datenmodell, Connectoren, TDD, Inbetriebnahme). Die **V1** (PHP-API + Google-Sheet) ist bewusst als **IST/Ausgangslage** ausgewiesen, nicht als eigene Leistung — sie entstand **vor** der Antragsgenehmigung und liegt außerhalb des **80-h-Fensters** (Zeiterfassung zählt erst ab Genehmigung). Sie als Projektarbeit auszugeben wäre **Täuschung**; die erprobte V1-Fachlogik wird lediglich **portiert**. Diese ehrliche Abgrenzung ist im Fachgespräch eine Stärke, kein Makel.",
+      "tags": [
+        "projektleistung",
+        "eigenleistung",
+        "v1-v2"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "hydra-projektumfeld-rollenkontext-anzahl-sites",
+      "front": "In welchem Betriebs- und Rollenkontext entsteht Hydra, und wie viele WordPress-Sites werden betreut (Projektumfeld)?",
+      "back": "Das **Projektumfeld** (Merkblatt-Pflichtinhalt, Teil der Ausgangslage) verortet die Arbeit: Hydra entsteht im Kontext der **Betreuung/Wartung von WordPress-Kundensites** durch _<Betrieb/Abteilung eintragen>_, in der Rolle als _<Rolle, z. B. FIAE-Azubi in der Entwicklung, eintragen>_. Betreut werden aktuell **_<Anzahl>_ WordPress-Sites**, deren Update-, Backup- und Erreichbarkeitsstatus heute über mehrere Tools verstreut sind. Dieser Kontext begründet den Bedarf einer **Single Pane of Glass**. Konkrete Zahlen, Firmen- und Kundennamen in der Doku **anonymisieren**.",
+      "tags": [
+        "projektumfeld",
+        "ausgangslage",
+        "kontext"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "projekt",
+      "slug": "lastenheft-vs-pflichtenheft",
+      "front": "Lastenheft vs. Pflichtenheft — was ist der Unterschied (WAS der Auftraggeber will vs. WIE es umgesetzt wird)?",
+      "back": "**Lastenheft** = die **Anforderungen des Auftraggebers**: **WAS** und **WOFÜR** (Ziele, fachliche Wünsche) — grob und lösungsneutral. **Pflichtenheft** = die **Antwort des Auftragnehmers**: **WIE** und **WOMIT** (konkrete technische Umsetzung, Architektur, Rahmenbedingungen). Merksatz: Lastenheft stellt die Aufgabe, Pflichtenheft beantwortet sie. Bei Hydra spiegelt sich das im Übergang von der **Analyse** (Anforderungen: Single Pane of Glass, read-only, Barrierefreiheit) zur **Konzeption** (Stack, Connector-/Adapter-Pattern, Datenmodell). Wichtig: Ein Pflichtenheft schließt **agile Iterationen nicht aus**.",
+      "tags": [
+        "lastenheft",
+        "pflichtenheft",
+        "anforderungen"
+      ]
+    },
+    {
+      "topic": "projekt",
+      "slug": "iso-25010-qualitaetsmerkmale-hydra",
+      "front": "Was ist die ISO/IEC 25010 und welche Qualitätsmerkmale sind für Hydra relevant?",
+      "back": "**ISO/IEC 25010** ist das genormte Modell für **Softwareproduktqualität** (Nachfolger von ISO 9126); die **Revision 2023** führt **9 Merkmale**. An ihr verankert Hydra seine **Qualitätsanforderungen** (Doku-Kapitel), auf die dann die \"Maßnahme zur Umsetzung der Qualitätskontrolle\" antwortet. Für Hydra relevant sind vier: **Functional Suitability** (korrekte Aggregation/Gesamtampel), **Reliability** (stabiler Sync, isolierte Fehler), **Maintainability** (lesbarer Code, `normalize()`, Testabdeckung) und **Security** (Least Privilege, Prepared Statements, TLS). Für eine Doku 2026 die **25010:2023** zitieren, nicht die alten sechs ISO-9126-Merkmale.",
+      "tags": [
+        "iso-25010",
+        "qualitaet",
+        "normen"
+      ]
+    },
+    {
+      "topic": "datenschutz",
+      "slug": "hydra-doku-anonymisieren-warum-merkblatt",
+      "front": "Warum musst du deine Hydra-Doku vor der IHK-Abgabe anonymisieren, und welche Vorgabe steht dahinter?",
+      "back": "Das IHK-**Merkblatt (2.1)** verlangt: keine **Betriebsgeheimnisse** offenlegen und **Datenschutz** wahren. Die Doku geht an den Prüfungsausschuss (Dritte) und wird archiviert - reale Kundendaten, interne Infrastruktur und Zugangsdaten dürfen darin nicht auftauchen. Zwei Schutzgüter: **Geschäftsgeheimnis** (interne Domains, S3-Bucket-Namen, Kundenliste) und **DSGVO** (kundenbezogene Daten). Bei Hydra betrifft das u.a. `api.user-mind.de`, Bucket-Namen, reale Kunden-Domains und alle Credentials. Im **Arbeits-Vault** dürfen reale Namen stehen (einfacher zu entwickeln); der Anonymisierungs-Pass ist der bewusste Endspurt vor der Abgabe.",
+      "tags": [
+        "datenschutz",
+        "ihk",
+        "merkblatt",
+        "anonymisierung"
+      ]
+    },
+    {
+      "topic": "datenschutz",
+      "slug": "hydra-doku-welche-bezeichner-ersetzen",
+      "front": "Welche sensiblen Angaben ersetzt du in der Hydra-Doku und wodurch (Anonymisierungs-Checkliste)?",
+      "back": "Gilt für **Text, Code-Listings im Anhang, Screenshots und Präsentation**. Ersetzt werden u.a.:\n- reale Domain `api.user-mind.de` -> `api.<firma>.tld`\n- S3-Buckets `um-iwp-v3-backups` / `um-wtc-*` -> `<iwp-backups-bucket>` / `<wtc-backups-bucket>`\n- Region `eu-central-1` -> generisch behalten oder `<region>`\n- Tabellen-Prefix `iwp_3_` -> `iwp_<n>_`\n- lokale Pfade `C:\\Users\\kvnba\\...` -> entfernen/verallgemeinern\n- reale Kunden-Domains -> `kunde.de` / `beispiel.de`\n- `API_KEY_HYDRA`/Tokens -> `<API_KEY>` (**+ Key rotieren!**)\n- Odoo `ODOO_URL/DB/USER` -> Platzhalter\n\nAuch **Dashboard-Screenshots** auf reale Domains/Namen prüfen. Systematisch per Obsidian-Volltextsuche über `user-mind.de`, `um-iwp`, `iwp_3_`, `kvnba`, `API_KEY`.",
+      "tags": [
+        "datenschutz",
+        "anonymisierung",
+        "checkliste"
+      ]
+    },
+    {
+      "topic": "datenschutz",
+      "slug": "anonymisierung-vs-pseudonymisierung-art4",
+      "front": "Anonymisierung vs. Pseudonymisierung (DSGVO Art. 4) - was ist der Unterschied und welche setzt deine Doku-Anonymisierung ein?",
+      "back": "**Anonymisierung**: Personenbezug **unwiderruflich** entfernt, kein Rückschluss möglich - das Datum fällt **aus der DSGVO heraus**. **Pseudonymisierung** (Art. 4 Nr. 5): Identifikatoren durch Pseudonyme ersetzt, Zuordnung mit **Zusatzwissen/Schlüssel** noch möglich - bleibt **personenbezogenes Datum**, DSGVO gilt weiter (Pseudonymisierung ist nur eine **TOM**, kein Freibrief). Bei Hydra: die konsistente Ersetzung `api.user-mind.de -> api.<firma>.tld` ist streng genommen **Pseudonymisierung** (wer die Firma kennt, kann rückschließen); Ziel der Abgabe ist echte **Anonymisierung** - keine Zuordnung ohne Insiderwissen, kein Betriebsgeheimnis rekonstruierbar. Merkregel: gleiche Ersetzung überall + Schlüssel = Pseudonym; unumkehrbar + kontextfrei = anonym.",
+      "tags": [
+        "datenschutz",
+        "dsgvo",
+        "art-4",
+        "pseudonymisierung"
+      ]
+    },
+    {
+      "topic": "datenschutz",
+      "slug": "key-rotation-bei-secret-leak",
+      "front": "Ein API-Key war in einem Chat-Screenshot sichtbar - warum genügt Ersetzen in der Doku nicht, und wo überall rotierst du ihn?",
+      "back": "Sobald ein Secret einmal **exponiert** war, gilt es als **kompromittiert**: der echte Key bleibt gültig und missbrauchbar, egal ob er in der Doku durch `<API_KEY>` ersetzt wird. Ersetzen schützt nur die künftige Doku, nicht das Live-System. Konsequenz: **Key rotieren** = neuen erzeugen und alten widerrufen - und zwar an **allen** Ablageorten: auf dem Server (`keys.env`) **und** in den Apps-Script **Script Properties**, dort jeweils **neu setzen**. Prinzip: \"einmal geleakt = ungültig machen\". Vorbeugend (Least Privilege + Geheimnisschutz): `.env` strikt in `.gitignore`, nur `.env.example` mit Platzhaltern einchecken.",
+      "tags": [
+        "datenschutz",
+        "key-rotation",
+        "secrets",
+        "incident"
+      ]
+    },
+    {
+      "topic": "datenschutz",
+      "slug": "tom-art-32-dsgvo-hydra",
+      "front": "Was sind TOM (Technisch-Organisatorische Maßnahmen, Art. 32 DSGVO) und welche konkreten TOM weist Hydra vor?",
+      "back": "**TOM** nach **Art. 32 DSGVO** (\"Sicherheit der Verarbeitung\") sind technische + organisatorische Maßnahmen für ein dem Risiko angemessenes Schutzniveau; der AP2-Prüfungskatalog nennt sie **wörtlich**. Hydra weist u.a. vor:\n- **Verschlüsselung im Transport**: alle Outbound-Calls (Odoo, UptimeRobot, S3) über **TLS/HTTPS** (Ziel TLS 1.3), Zertifikatsprüfung aktiv -> Schutz vor **Man-in-the-Middle**.\n- **Zugriffskontrolle / Least Privilege**: read-only Credentials je Quelle (DB-User nur `SELECT`, IAM nur `s3:GetObject`/`ListBucket`).\n- **Pseudonymisierung**: Anonymisierung der Abgabe-Doku.\n- **Datensparsamkeit**: nur die für die Anzeige nötigen Felder werden persistiert.\n- **Geheimnisschutz**: Secrets in `.env` (in `.gitignore`), nicht im Code; Dashboard-Login mit **gehashten** Passwörtern.",
+      "tags": [
+        "datenschutz",
+        "dsgvo",
+        "tom",
+        "art-32"
+      ]
+    },
+    {
+      "topic": "datenschutz",
+      "slug": "hydra-personenbezogene-daten-dsgvo-relevanz",
+      "front": "Verarbeitet Hydra personenbezogene/kundenbezogene Daten, und welche DSGVO-Relevanz hat das Projekt?",
+      "back": "**Personenbezogene Daten** (Art. 4 Nr. 1 DSGVO) = alle Informationen über eine identifizierte oder **identifizierbare** natürliche Person. Hydra ist primär **B2B und read-only**, berührt aber Daten mit möglichem Personenbezug: **Kunden-Domains** (z.B. `max-mustermann.de`, per WHOIS zuordenbar) und **Odoo-Kundenstammdaten** (Namen/Projekte - bei Einzelunternehmern/natürlichen Personen personenbezogen). Damit ist die **DSGVO einschlägig**, auch wenn kein klassisches Personenprofil verarbeitet wird. Folgen fürs Design: **Datensparsamkeit** (nur nötige Felder), **Least Privilege** (nur lesend, nie Schreibzugriff auf die Sites), keine unnötige Persistenz - und **Anonymisierung** der Abgabe-Doku. Besondere Kategorien (Art. 9) werden nicht verarbeitet.",
+      "tags": [
+        "datenschutz",
+        "dsgvo",
+        "personenbezogene-daten",
+        "art-4"
+      ]
+    },
+    {
+      "topic": "entwurf",
+      "slug": "fastapi-async-vorteil-irrelevant",
+      "front": "Warum bringt FastAPIs Async-Fähigkeit Hydra kaum etwas, und worauf stützt sich die Framework-Wahl wirklich?",
+      "back": "**Async I/O** rentiert sich erst bei **hoher Nebenläufigkeit** (viele parallele, I/O-wartende Requests). Hydras Lesepfad ist aber **read-only**, wenig frequentiert (ein Dashboard für wenige Betreuer) und wird ohnehin durch getaktete Sync-Läufe gespeist - da entsteht kein Concurrency-Druck, den `async` auflösen müsste. Die **Entscheidung für FastAPI** stützt sich also **nicht auf Performance**, sondern auf **Vorerfahrung**, die automatischen **Auto-Docs** (OpenAPI/Swagger unter `/docs`), SQL-Nähe als Prüfungsthema und gutes TDD-Tooling (`pytest`). **Laravel/PHP** ist als gleichwertige Alternative dokumentiert, **Node/TS** wurde verworfen. Lehre: ein Framework nach den real wirksamen Kriterien wählen, nicht nach dem plakativsten Feature.",
+      "tags": [
+        "fastapi",
+        "async",
+        "technologieauswahl",
+        "alternativen"
+      ]
+    },
+    {
+      "topic": "entwurf",
+      "slug": "adapter-connector-pattern-open-closed",
+      "front": "Welches Architekturmuster liegt Hydras vier Connectoren zugrunde, und welches SOLID-Prinzip nutzt es?",
+      "back": "Jede Quelle ist über einen eigenen **Adapter/Connector** hinter einem **gemeinsamen Interface** angebunden (`iwp_source`, `odoo_source`, `uptime_source`, `backup_source`) - konzeptionell `fetch() -> SiteRecord[]` mit `source_name`. Der Adapter **kapselt** Auth, Endpoint, Paging und das quellspezifische Mapping und liefert dem Kern ein **einheitliches internes Schema**. Das nutzt das **Open/Closed-Prinzip** (das O in **SOLID**): *offen für Erweiterung, geschlossen für Änderung* - eine **neue Quelle = ein neuer Adapter**, der ETL-Kern (`normalize`, Ingest, Ampel) bleibt **unverändert**. Vorteil: kein API-Lock-in im Kern und pro Adapter isoliert test- und ersetzbar.",
+      "tags": [
+        "adapter-pattern",
+        "open-closed",
+        "solid",
+        "connectoren"
+      ]
+    },
+    {
+      "topic": "entwurf",
+      "slug": "kein-generisches-plugin-framework-yagni",
+      "front": "Warum baut Hydra kein generisches Plugin-/Adapter-Framework, sondern nur eine Liste von 4 konkreten Adaptern?",
+      "back": "Weil es bei **genau vier fixen Quellen** kein dynamisches Laden, keine Discovery und keine Plugin-Registry-Mechanik braucht - eine schlichte **Liste/Registry konkreter Adapter-Klassen** mit gemeinsamem Interface genügt. Ein abstraktes Plugin-Framework wäre **spekulative Abstraktion** (**YAGNI** - *You Aren't Gonna Need It*): mehr Code, mehr Doku, mehr Fehlerfläche für einen Erweiterungsfall, der nicht ansteht. Faustregel: **Abstraktion erst bei echter Mehrfachverwendung**. Das hält Hydra im **80h-AP2-Rahmen** wartbar und redundanzfrei; die **Open/Closed**-Erweiterbarkeit (neue Quelle = neuer Adapter) bleibt trotzdem erhalten, ganz ohne Framework-Overhead.",
+      "tags": [
+        "yagni",
+        "over-engineering",
+        "adapter",
+        "wartbarkeit"
+      ]
+    },
+    {
+      "topic": "entwurf",
+      "slug": "pull-statt-push-hub-and-spoke",
+      "front": "Warum zieht Hydra die Daten per Pull (Polling) statt per Push (Webhooks), und was ist das Hub-and-Spoke-Bild dazu?",
+      "back": "Hydra kann bei den **Fremd-Tools** (Odoo, InfiniteWP, S3, UptimeRobot) **keine Webhooks/Push erzwingen** - man betreibt sie nicht und kann ihre Ausgangs-Schnittstellen nicht diktieren. Also **Pull**: der Scheduler (**APScheduler**) fragt periodisch (~5-15 min) alle Quellen über deren APIs/DB ab. Das Bild dazu ist **Batch-Hub-and-Spoke**: die **Hydra-DB ist der Hub**, die **vier Tools sind die Spokes**; die Daten fließen stapelweise (**Batch**) nach innen, der Datenfluss bleibt strikt **read-only** (kein Schreibpfad zurück). Beim Polling lässt sich per **Conditional GET** (`If-None-Match`/ETag, `If-Modified-Since`) Bandbreite und Rate-Limit-Quota sparen: unveränderte Ressource -> **304 Not Modified** ohne Body.",
+      "tags": [
+        "pull-vs-push",
+        "polling",
+        "hub-and-spoke",
+        "read-only"
+      ]
+    },
+    {
+      "topic": "entwurf",
+      "slug": "kein-retry-idempotente-selbstheilung",
+      "front": "Warum braucht Hydras Scheduler keinen Retry-Mechanismus, und wie heilt sich ein fehlgeschlagener Lauf selbst?",
+      "back": "**Cron/APScheduler hat kein Auto-Retry** - und Hydra braucht auch keins. Fällt eine Quelle in einem Lauf aus, wird der Fehler **isoliert** (try/catch je Connector), die betroffene `*_state` bekommt `status=error`, ihr letzter `synced_at` bleibt sichtbar, die anderen Quellen laufen weiter (**graceful degradation**). Beim **nächsten Tick** wiederholt sich der komplette Sync - und weil der Ingest **idempotent** ist (**Get-or-Create** über die UNIQUE-`domain`, Upsert der State-Zeile), erzeugt die Wiederholung **keine Dubletten**, sondern überschreibt sauber. So **heilt sich ein fehlgeschlagener Lauf beim nächsten Durchlauf selbst**; ein expliziter Retry wäre redundant. Ein **Circuit-Breaker** käme erst bei häufig fehlschlagenden Calls in Frage - im AP2-Rahmen Over-Engineering.",
+      "tags": [
+        "idempotenz",
+        "scheduler",
+        "fehlertoleranz",
+        "self-healing"
+      ]
+    },
+    {
+      "topic": "entwurf",
+      "slug": "schichtmodell-collector-speicher-praesentation",
+      "front": "Nach welchem Schichtmodell trennt Hydra Sammeln, Speichern und Anzeigen (Medallion-light)?",
+      "back": "Hydra trennt den Datenfluss in drei Schichten - angelehnt an die **Medallion-Architektur** (Bronze/Silver/Gold):\n- **Collector (Bronze/Roh):** die **Connectoren** holen die Quell-Responses und dekodieren sie (z.B. den InfiniteWP-Blob) - möglichst nah am Original, damit Debug/Audit/Reprocessing möglich bleibt.\n- **Speicher (Silver/kanonisch):** **matchen** über `normalize()`, konformen und ablegen -> die kanonische `sites`-Tabelle + je Quelle eine `*_state`-Tabelle.\n- **Präsentation (Gold/View):** eine **read-optimierte** Serialisierung (`_serialize_site()`) speist Dashboard und `/api/sites`.\nGewinn dieser Trennung: klare **ETL-Verantwortlichkeiten**, testbare Einzelschichten und **Nachvollziehbarkeit** - Rohbezug, kanonischer Zustand und Anzeige laufen nicht durcheinander.",
+      "tags": [
+        "schichtenarchitektur",
+        "etl",
+        "medallion",
+        "trennung"
+      ]
+    },
+    {
+      "topic": "entwurf",
+      "slug": "status-lebenszyklus-ok-stale-error",
+      "front": "Welche Zustände durchläuft eine Quelle je Sync (ok/stale/error), und was ist am Status stale bewusst noch offen?",
+      "back": "Jede Quelle führt in ihrer `*_state`-Tabelle einen eigenen **`status`** plus **`synced_at`** und durchläuft je Sync einen kleinen **Zustandsautomaten**: erster Lauf ok -> **`ok`** (bleibt bei Erfolg), **`ok -> error`** bei fehlgeschlagenem Sync, **`error -> ok`** beim nächsten erfolgreichen Lauf. So **degradiert nur die betroffene Kachel** (`status=error`), während der letzte `synced_at` als **Frischestatus** sichtbar bleibt - nicht das ganze Dashboard fällt aus. **Bewusst noch offen:** der **zeitbasierte `stale`-Zustand** (`ok -> stale`, wenn die Daten *zu alt* sind, obwohl der letzte Sync technisch ok war) ist im gebauten V2 **noch nicht implementiert** - er ist als Erweiterung entworfen, aber nicht codiert.",
+      "tags": [
+        "statusmodell",
+        "graceful-degradation",
+        "stale",
+        "offene-punkte"
+      ]
+    },
+    {
+      "topic": "entwurf",
+      "slug": "statustabelle-gui-entwurf-semantisches-table",
+      "front": "Wie ist der GUI-Entwurf der Hydra-Statustabelle aufgebaut, und warum ein semantisches <table>?",
+      "back": "Grundmuster ist eine **Statustabelle mit einer Zeile je kanonischer Site** (Join über die normalisierte Domain). Spalten: **Site/Domain**, **Status** (Icon **+** Klartext), **Updates** (Core/Plugin/Theme getrennt), **Backup** (Alter), **Erreichbarkeit** (Uptime-%/letzter Check) und **Kunde/Projekt** (aus Odoo); die **Gesamt-Ampel je Zeile** wird aus den Teilsignalen abgeleitet (Offline > Update fällig > Backup veraltet > OK). Umgesetzt als **semantisches `<table>`** mit `<caption>`, `<thead>`, `<th scope=\"col\">` und `<tbody>` - nicht als `<div>`-Grid. Grund: `scope` gibt **Screenreadern** die **Header-Zell-Beziehung** (Barrierefreiheit), und die semantische Struktur ist in der Doku sauber begründbar (**Progressive Enhancement**: die Tabelle funktioniert auch ohne JS).",
+      "tags": [
+        "dashboard-ui",
+        "semantik",
+        "barrierefreiheit",
+        "gui-entwurf"
+      ]
+    },
+    {
+      "topic": "entwurf",
+      "slug": "auto-refresh-barrierefrei-aria-live-wcag-222",
+      "front": "Wie macht Hydra den Auto-Refresh barrierefrei (aria-live), und wie erfüllt es WCAG 2.2.2 Pause/Stop?",
+      "back": "Der periodische Auto-Refresh wird über **ARIA-Live-Regionen** für Screenreader hörbar gemacht: `aria-live=\"polite\"` bzw. `role=\"status\"` für normale Aktualisierungen (Technik **ARIA22**, deckt **WCAG 4.1.3 Status Messages**), und `role=\"alert\"` **nur** bei einem **neu auftretenden kritischen Status** (z.B. eine Site fällt aus) - damit nicht jede Routine-Aktualisierung als Alarm vorgelesen wird. **WCAG 2.2.2 Pause/Stop (Level A)** verlangt, dass automatisch aktualisierende Inhalte **steuerbar** sind: Hydra erfüllt das mit einem **Pause/Weiter-Toggle**, einem manuellen **\"Jetzt aktualisieren\"**-Button und einem **wählbaren Intervall**. Zusätzlich wird das Polling **nicht schneller** als die Kadenz der Quell-Tools getaktet, sonst entsteht **Live-Region-Spam** für Screenreader.",
+      "tags": [
+        "barrierefreiheit",
+        "aria-live",
+        "wcag-2.2.2",
+        "auto-refresh"
+      ]
+    },
+    {
+      "topic": "abnahme",
+      "slug": "abnahmekriterien-messbar-nachweis",
+      "front": "Welche messbaren Abnahmekriterien hattest du für Hydra V2 definiert und wie wurden sie bei der Abnahme nachgewiesen?",
+      "back": "**Abnahmekriterien** sind die vorab vereinbarten, **messbaren** Bedingungen, unter denen der Auftraggeber das Projekt als erfüllt akzeptiert. Sie werden aus den **Anforderungen** (`[[03_Analyse]]`) abgeleitet: jede funktionale/nicht-funktionale Anforderung wird zu einem prüfbaren Kriterium mit **Soll-Wert** und **Nachweis-Methode** (objektiv bestanden/nicht bestanden, nicht \"läuft gut\"). Aufbau je Zeile: *Kriterium - Soll - Nachweis - Ergebnis*. Typische Hydra-Kandidaten: alle vier Quellen liefern je Sync **eine kanonische Zeile** pro Site; die Gesamt-Ampel (`gesamt_status()`) bildet die Einzelzustände korrekt ab; Ausfall einer Quelle bricht den Lauf nicht (**Fehler-Isolation**); die Suite läuft grün gegen SQLite **und** PostgreSQL. Nachgewiesen wird per **Testprotokoll**, Live-Demo am Dashboard und CI-Lauf.\n\n**⚠️ Deine echten Werte eintragen:** die konkrete Kriterienliste mit Soll-Werten (z. B. \"N Sites korrekt aggregiert\", \"Ladezeit < X s\") und das jeweils dokumentierte Abnahme-Ergebnis.",
+      "tags": [
+        "abnahme",
+        "abnahmekriterien",
+        "anforderungen",
+        "nachweis"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "abnahme",
+      "slug": "abnahmeprotokoll-inhalt-ablage",
+      "front": "Was gehört in ein Abnahmeprotokoll (Auftraggeber, Datum, Ergebnis) und wohin in der IHK-Doku?",
+      "back": "Das **Abnahmeprotokoll** ist der formale Beleg, dass der Auftraggeber die Leistung geprüft und angenommen hat. Pflicht-Inhalte: **Projektbezeichnung**, **Auftraggeber/abnehmende Person**, **Abnahmedatum**, die geprüften **Abnahmekriterien mit Ergebnis** (bestanden / mit Auflagen / nicht bestanden), etwaige **Restpunkte/Mängel** samt Frist sowie **Unterschriften** beider Seiten. Eine Abnahme *mit Auflagen* ist zulässig, wenn nur Kleinigkeiten offen sind. In der IHK-Doku gehört das ausgefüllte Protokoll in den **Anhang** (`[[09_Anhang]]`, 9.4 Belege/Screenshots) - der Fließtext in Kap. 7 verweist nur darauf. **Datenschutz:** reale Namen/Domains vor Abgabe anonymisieren (Merkblatt 2.1).\n\n**⚠️ Deine echten Werte eintragen:** Name des Auftraggebers/Abnehmenden, Abnahmedatum, konkretes Ergebnis und ggf. offene Punkte.",
+      "tags": [
+        "abnahme",
+        "abnahmeprotokoll",
+        "anhang",
+        "dokumentation"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "abnahme",
+      "slug": "formale-abnahme-vs-test",
+      "front": "Was ist eine (formale) Abnahme, wie unterscheidet sie sich vom Test, und welche Bedeutung hat sie?",
+      "back": "Die **(formale) Abnahme** ist die rechtsverbindliche Erklärung des **Auftraggebers**, dass die Leistung vertragsgemäß ist - ein **organisatorisch-vertraglicher** Akt (Werkvertrag, sinngemäß Paragraf 640 BGB). Der **Test** ist demgegenüber eine **technische** Tätigkeit des Auftragnehmers während der Entwicklung (Unit-/Integrationstests, `pytest`), die die Korrektheit *nachweist*. Kurz: Test = *\"funktioniert es?\"* (intern, wiederholt), Abnahme = *\"akzeptiere ich es?\"* (einmalig, durch den Kunden). Bedeutung: mit der Abnahme geht die **Gefahr über**, oft wird die **Vergütung fällig** und die **Gewährleistungsfrist** beginnt; sie schließt die Projektphase formal ab. Bei Hydra sind die grünen Tests die **Grundlage**, aber erst die Abnahme durch den betreuenden Betreiber macht das Projekt \"fertig\".",
+      "tags": [
+        "abnahme",
+        "test",
+        "werkvertrag",
+        "ihk"
+      ]
+    },
+    {
+      "topic": "abnahme",
+      "slug": "uebergabe-schulung-einweisung",
+      "front": "Wie sahen Übergabe und Schulung/Einweisung des Auftraggebers bei Hydra aus und was gehört in diesen Doku-Teil?",
+      "back": "**Übergabe** und **Einweisung/Schulung** sind der letzte Schritt der **Einführung** (Kap. 7.3) und Voraussetzung dafür, dass der Auftraggeber das System selbständig nutzen kann. In diesen Doku-Teil gehören: **Inbetriebnahme/Deployment** (Container-Start, `alembic upgrade head`, `.env`-Secrets, Scheduler-Takt via `SYNC_INTERVAL_MINUTES`), Übergabe der **Zugänge** und der **Kundendokumentation** (`[[Benutzerhandbuch]]`) sowie eine **Einweisung** am laufenden Dashboard (Status lesen, sortieren/filtern, \"Jetzt aktualisieren\"). Bei einem **read-only** Monitoring-Tool ist die Schulung bewusst schlank: keine Bedien-Gefahr durch Schreibaktionen, Fokus auf *Interpretation* der Ampel. Beim Übergeben der DB-/API-Zugänge gilt **Least Privilege** (nur SELECT-Rechte).\n\n**⚠️ Deine echten Werte eintragen:** wann/wie die Übergabe stattfand, wer eingewiesen wurde und in welcher Form (Termin, Remote, Doku-Übergabe).",
+      "tags": [
+        "abnahme",
+        "uebergabe",
+        "schulung",
+        "einfuehrung"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "abnahme",
+      "slug": "kundendokumentation-benutzerhandbuch-pflicht",
+      "front": "Welche Kundendokumentation liefert Hydra (separates Benutzerhandbuch) und warum ist eine Anwenderdoku Pflicht?",
+      "back": "Neben der technischen **Projektdokumentation** liefert Hydra eine separate **Kundendokumentation** - das **Benutzerhandbuch** (`[[Benutzerhandbuch]]`, referenziert in `[[09_Anhang]]` 9.5). Grund für die Trennung ist die **Zielgruppe**: die Projektdoku richtet sich an technisch Erfahrene/Prüfer, das Benutzerhandbuch an den **Anwender** (den betreuenden Betreiber), der das Dashboard nur *liest*. Es ist deshalb **adressatengerecht** ohne Fachjargon geschrieben (Aufruf/Login, Status-Übersicht lesen, Sortieren & Filtern, FAQ/Fehlermeldungen, Screenshots). Eine solche Anwenderanleitung ist im AP2-Projekt faktisch **Pflicht**, weil verständliche, adressatengerechte Kommunikation und die Übergabe eines *nutzbaren* Produkts zur geprüfteten Kompetenz gehören - ohne Handbuch bleibt die **Einführung** unvollständig.",
+      "tags": [
+        "abnahme",
+        "kundendokumentation",
+        "benutzerhandbuch",
+        "zielgruppe"
+      ]
+    },
+    {
+      "topic": "fazit",
+      "slug": "soll-ist-vergleich-ziele",
+      "front": "Soll-Ist-Vergleich: Wie belegst du, welche Ziele Hydra V2 erreicht hat und welche nur teilweise/nicht?",
+      "back": "Der **Soll-Ist-Vergleich** ist der Kern des **Fazits** (Kap. 8.1): er stellt die zu Projektbeginn in der **Einleitung** (`[[01_Einleitung]]`) gesetzten **Ziele (Soll)** dem **erreichten Ergebnis (Ist)** gegenüber - je Ziel eine Zeile mit Status *erreicht / teilweise / nicht erreicht* und **Beleg**. Belege sind objektiv: grüne Testsuite, lauffähiges Dashboard, Abnahmeprotokoll, CI-Lauf. Ehrlich ist eine Mischung: das Kernziel **Single Pane of Glass** über vier Quellen ist erreicht; bewusst offen Gebliebenes (z. B. der zeitbasierte `stale`-Status oder das noch ausstehende VPS-Deployment) wird als *teilweise/offen* ausgewiesen statt geschönt. Diese **kritische Selbsteinschätzung** wertet die Prüfung eher auf als ab.\n\n**⚠️ Deine echten Werte eintragen:** deine konkrete Ziel-Liste aus Kap. 1 mit dem jeweiligen Ist-Status und Beleg.",
+      "tags": [
+        "fazit",
+        "soll-ist",
+        "ziele",
+        "reflexion"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "fazit",
+      "slug": "zeit-soll-ist-stunden-phase",
+      "front": "Zeit-Soll-Ist: Wie stellst du geplante vs. tatsächliche Stunden je Phase dar und begründest Abweichungen?",
+      "back": "Der **Zeit-Soll-Ist-Vergleich** ist laut IHK-Merkblatt **Pflichtbestandteil** des Fazits: eine Tabelle mit den **Projektphasen** (Analyse, Entwurf, Implementierung, Test/QS, Doku ...), je Phase **geplante** vs. **tatsächliche** Stunden und die **Abweichung**. Die Summe muss im genehmigten Zeitfenster (AP2: **80 h**) bleiben. Entscheidend ist nicht Punktgenauigkeit, sondern die **Begründung** der Abweichungen (z. B. \"Implementierung länger wegen Einarbeitung Alembic/`timestamptz`-Fund; Test kürzer dank TDD\"). Das belegt **Projektsteuerung** und realistische Selbsteinschätzung. Die Planzahlen stammen aus dem Projektplan-Kapitel; das Fazit vergleicht dagegen.\n\n**⚠️ Deine echten Werte eintragen:** die reale Stundentabelle je Phase (Soll/Ist) und deine Begründungen der Abweichungen - keine erfundenen Zahlen.",
+      "tags": [
+        "fazit",
+        "zeit-soll-ist",
+        "projektsteuerung",
+        "phasen"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "fazit",
+      "slug": "lessons-learned-reflexion",
+      "front": "Lessons Learned: Wie strukturierst du die kritische Reflexion (gut/schlecht/Erkenntnis) im Fazit?",
+      "back": "**Lessons Learned** (Kap. 8.2) ist die **kritische Reflexion**: was lief **gut**, was **schlecht**, welche **konkrete Erkenntnis** ziehst du daraus. Struktur je Punkt: *Beobachtung -> Ursache -> Konsequenz fürs nächste Mal*. Prüfer erwarten **Ehrlichkeit**, nicht Selbstlob - auch Fehlgriffe gehören hinein, wenn du zeigst, dass du sie verstanden hast. Für Hydra bieten sich echte Projektmomente an: der **timestamptz-Fund** (Autogenerate ist nur so genau wie die DB, gegen die es diff't -> früher gegen PostgreSQL testen), der **OneDrive-Reload-Sturm** (Arbeitsordner aus der Cloud-Sync herausholen) oder die Wahl der **flachen `app/`-Struktur** statt Paket-Hierarchie (YAGNI). Merke: eine Lesson ist erst eine, wenn eine **Handlungsableitung** folgt.\n\n**⚠️ Deine echten Werte eintragen:** deine tatsächlichen Erkenntnisse - welche Momente dich am meisten gelehrt haben und was du konkret mitnimmst.",
+      "tags": [
+        "fazit",
+        "lessons-learned",
+        "reflexion",
+        "ihk"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "fazit",
+      "slug": "ausblick-weiterentwicklungen",
+      "front": "Ausblick: Welche konkreten Weiterentwicklungen siehst du für Hydra?",
+      "back": "Der **Ausblick** (Kap. 8.3) zeigt, dass das Projekt **erweiterbar** gedacht ist - er benennt konkrete, aber bewusst **nicht** umgesetzte Erweiterungen (Abgrenzung zum genehmigten Umfang). Für Hydra sind drei Richtungen dokumentiert: (1) **weitere Quellen** anbinden - dank **Adapter-/Connector-Muster** (Open/Closed-Prinzip) ist eine neue Quelle \"nur\" ein neuer Adapter, der Kern bleibt unverändert; (2) **aktives Alerting/Benachrichtigen** statt rein read-only (z. B. bei rotem Gesamtstatus); (3) **Historie/Trend-Auswertung** über die Zeit statt nur des aktuellen Zustands. Diese Punkte greifen bestehende Architekturentscheidungen auf und wirken dadurch glaubwürdig statt beliebig.",
+      "tags": [
+        "fazit",
+        "ausblick",
+        "erweiterbarkeit",
+        "adapter"
+      ]
+    },
+    {
+      "topic": "fazit",
+      "slug": "alerting-ohne-read-only-aufzugeben",
+      "front": "Wie würdest du Alerting/Benachrichtigungen in Hydra ergänzen, ohne den read-only-Charakter aufzugeben?",
+      "back": "Hydra ist heute rein **read-only / Pull**: es *liest* vier Quellen und *zeigt* an, greift aber nie schreibend ein. **Alerting** passt dazu, solange die Benachrichtigung nur eine **weitere Ausgabe** desselben Lesezustands ist - kein Schreibzugriff auf die Fremd-Tools. Umsetzungsidee: nach jedem Sync prüft eine kleine Regel den mit `gesamt_status()` berechneten Zustand; **kippt** eine Site neu auf **rot**, wird eine Nachricht ausgelöst (E-Mail/Webhook/Chat). Wichtig sind **Flankenerkennung** (nur beim *Statuswechsel* melden, nicht bei jedem Tick -> keine Alarm-Flut) und **Idempotenz**. Der read-only-Charakter bleibt gewahrt: Benachrichtigen ist Beobachten, nicht Steuern. Die dafür nötige \"vorher/nachher\"-Information liefert die **Historie** (`sync_run`).",
+      "tags": [
+        "fazit",
+        "alerting",
+        "read-only",
+        "gesamt-status"
+      ]
+    },
+    {
+      "topic": "fazit",
+      "slug": "historie-trend-sync-run-basis",
+      "front": "Wie ließe sich eine Status-Historie/Trend-Auswertung umsetzen, und welche Struktur bildet dafür schon die Basis?",
+      "back": "Heute zeigt Hydra nur den **aktuellen** Zustand - die `*_state`-Tabellen werden je Sync **idempotent** überschrieben (kein Verlauf). Für eine **Historie/Trend-Auswertung** braucht man Zustände *über die Zeit*. Die Basis ist bereits da: die Tabelle **`sync_run`** (1:n zu `sites`) protokolliert **jeden** Sync-Lauf als **Audit-Eintrag** mit Zeitstempel - sie wird, anders als die State-Tabellen, **nicht** überschrieben, sondern wächst an (append-only). Ausbau: je Lauf zusätzlich den ermittelten **Status/Update-Zahlen** je Site mitschreiben, dann lassen sich Verläufe abfragen (\"wie oft war Site X letzte Woche rot?\") und als **Trend** darstellen. Konzeptionell ist das ein Schritt Richtung **Data-Warehouse** (Historisierung statt Momentaufnahme).",
+      "tags": [
+        "fazit",
+        "historie",
+        "sync-run",
+        "trend"
+      ]
+    },
+    {
+      "topic": "dokumentation",
+      "slug": "kundendoku-vs-technische-doku",
+      "front": "Worin unterscheiden sich Kundendokumentation (Benutzerhandbuch) und technische/Projektdokumentation bei Hydra (Zielgruppe, Inhalt, Sprache)?",
+      "back": "Zwei getrennte Dokumente mit unterschiedlicher **Zielgruppe** (Adressatengerechtheit):\n- **Technische/Projektdokumentation** (IHK-Abgabe): für **Prüfer/Entwickler**; erklärt *wie* und *warum* gebaut wurde -- Architektur, Datenmodell, `normalize()`, Wirtschaftlichkeit, QS. Fachsprache erwünscht.\n- **Kundendokumentation / Benutzerhandbuch** (`20_Kundendokumentation`): für **Anwender**, die das Dashboard bedienen; erklärt *wie man es benutzt* -- Login, Ampeln lesen, Sortieren/Filtern, FAQ. Fachjargon vermeiden.\n\nFaustregel: technische Doku = **Innensicht** (Konstruktion), Kundendoku = **Außensicht** (Bedienung). Bei Hydra liefert das Projekt beides getrennt, weil ein Anwender kein SQLAlchemy-Wissen braucht, um eine rote Ampel zu deuten.",
+      "tags": [
+        "kundendoku",
+        "technische-doku",
+        "zielgruppe",
+        "abgrenzung"
+      ]
+    },
+    {
+      "topic": "dokumentation",
+      "slug": "zielgruppe-benutzerhandbuch",
+      "front": "Wer ist die Zielgruppe des Hydra-Benutzerhandbuchs (Anwender, nicht Entwickler) und wie steuert das Sprache und Detailtiefe?",
+      "back": "**Adressatengerechte Kommunikation** beginnt bei der Zielgruppe: Das Benutzerhandbuch richtet sich an den/die **Anwender**, der/die die betreuten WordPress-Sites überwacht -- also an **Bediener** des Dashboards, nicht an Entwickler. Konsequenz:\n- **Sprache:** alltagsnah, kein Code-/Framework-Jargon (`SQLAlchemy`, `ETL` weglassen); Begriffe wie \"Ampel\", \"Backup-Alter\" statt Interna.\n- **Detailtiefe:** *Wie bediene ich?* statt *Wie ist es gebaut?* -- nur was für die tägliche Nutzung nötig ist (Datensparsamkeit auch beim Text).\n- **Aufgabenorientierung:** Schritt-für-Schritt entlang echter Nutzerziele.\n\n**⚠️ Deine echten Werte eintragen:** die konkrete Anwender-Rolle/Persona präzise benennen (Wer bedient Hydra im Betrieb -- welche Rolle im Betreuungs-Team?).",
+      "tags": [
+        "zielgruppe",
+        "benutzerhandbuch",
+        "adressatengerecht"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "dokumentation",
+      "slug": "gliederung-benutzerhandbuch",
+      "front": "Wie ist das Hydra-Benutzerhandbuch gegliedert (Was ist Hydra -> Login -> Status lesen -> Sortieren/Filtern -> FAQ) und warum in dieser Reihenfolge?",
+      "back": "Die Gliederung folgt dem **Nutzungsablauf** (vom Einstieg zur Vertiefung):\n1. **Was ist Hydra?** -- Zweck in einem Satz, damit der Leser den Kontext hat.\n2. **Aufruf / Login** -- wie komme ich rein (Voraussetzung für alles Weitere).\n3. **Die Status-Übersicht lesen** -- Ampelfarben, Update-/Backup-/Erreichbarkeits-Spalten deuten (Kern).\n4. **Sortieren & Filtern** -- gezielt zu den kritischen Sites navigieren.\n5. **FAQ / Fehlermeldungen** -- Selbsthilfe bei typischen Problemen.\n\nDidaktisches Prinzip: **vom Groben ins Feine**, jede Sektion setzt nur die vorige voraus -- so findet auch ein Erst-Nutzer sofort seinen Weg.\n\n**⚠️ Deine echten Werte eintragen:** die Kapitel sind im Wiki noch `TODO` -- Inhalte je Abschnitt ausformulieren (Login-Schritte, Ampel-Legende mit Screenshot, konkrete FAQ-Einträge).",
+      "tags": [
+        "gliederung",
+        "benutzerhandbuch",
+        "struktur"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "dokumentation",
+      "slug": "verstaendliche-sprache-benutzerhandbuch",
+      "front": "Wie sorgst du im Benutzerhandbuch für adressatengerechte, verständliche Sprache (kein Fachjargon, Screenshots, Beispiele)?",
+      "back": "Mittel für **verständliche, adressatengerechte** Anwenderdoku:\n- **Fachjargon meiden/erklären:** technische Begriffe durch Alltagssprache ersetzen (statt \"HTTP 429\" -> \"Server hat kurz gebremst\"); Unvermeidbares in einem Mini-Glossar erklären.\n- **Screenshots** der echten Oberfläche mit **Markierungen/Beschriftungen** -- zeigen statt beschreiben (dabei reale Kundendaten in den Bildern **anonymisieren**).\n- **Konkrete Beispiele** statt abstrakter Regeln (\"Wenn die Ampel rot ist, dann ...\").\n- **Aktiv & direkt** (Leseransprache \"Sie\"), kurze Sätze, nummerierte Handlungsschritte.\n\nQualitätsmaßstab der Kundendoku: der Anwender löst seine Aufgabe ohne Rückfrage.",
+      "tags": [
+        "sprache",
+        "verstaendlichkeit",
+        "screenshots",
+        "adressatengerecht"
+      ]
+    },
+    {
+      "topic": "praesentation",
+      "slug": "roter-faden-praesentation",
+      "front": "Welcher rote Faden strukturiert die Hydra-Präsentation und warum diese Dramaturgie (Problem -> Lösung -> Technik -> Ergebnis)?",
+      "back": "Der **rote Faden** ist eine Dramaturgie in vier Schritten:\n1. **Problem** -- fragmentiertes Monitoring über 4-5 Tools (holt den Zuhörer ab, erzeugt \"Warum überhaupt?\").\n2. **Lösung** -- das Ziel *Single Pane of Glass* (was, noch nicht wie).\n3. **Technik** -- wie es gebaut ist (Aggregation, Domain-Join, Connectoren) -- erst *nachdem* der Nutzen klar ist.\n4. **Ergebnis** -- Demo + Soll-Ist, der Beweis, dass das Problem gelöst ist.\n\nWarum so: Der Prüfer soll erst den **Nutzen** verstehen, bevor Technik kommt -- Technik ohne Problembezug wirkt beliebig. Problem und Ergebnis rahmen den Vortrag als Klammer.\n\n**⚠️ Deine echten Werte eintragen:** das konkrete Ausgangs-Problem (Zahl der Tools/Sites) und das messbare End-Ergebnis (Soll-Ist) mit deinen echten Werten belegen.",
+      "tags": [
+        "roter-faden",
+        "dramaturgie",
+        "praesentation"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "praesentation",
+      "slug": "foliengeruest-praesentation",
+      "front": "Wie ist das Foliengerüst der Hydra-Präsentation aufgebaut (die ~9 Folien von Titel bis Fazit)?",
+      "back": "Entwurf mit **ca. 9 Folien** entlang des roten Fadens (max. 15 Min -> grob 1,5 Min/Folie):\n1. **Titel / Vorstellung**\n2. **Projektumfeld & Problem** (fragmentiertes Monitoring über 4-5 Tools)\n3. **Ziel: Single Pane of Glass**\n4. **Lösungsalternativen & Make-or-Buy** (warum Eigenbau als Aggregator)\n5. **Architektur** (Aggregations-Modell, Domain-Join)\n6. **Umsetzung-Highlights** (Connectoren, Domain-Matching `normalize()`)\n7. **Qualitätssicherung** (TDD)\n8. **Ergebnis / Demo**\n9. **Fazit & Ausblick**\n\nPrinzip: eine Kernaussage pro Folie, wenig Text, keine Code-Wände; Zeitbudget im Blick behalten.\n\n**⚠️ Deine echten Werte eintragen:** Folieninhalte je Slide ausformulieren (Kernaussagen, Diagramme, echte Zahlen) -- das Wiki-Gerüst ist noch Entwurf.",
+      "tags": [
+        "foliengeruest",
+        "folien",
+        "praesentation"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "praesentation",
+      "slug": "zielgruppe-praesentation",
+      "front": "Wer ist die Zielgruppe der Abschlusspräsentation und wie stellst du für sie adressatengerechte Tiefe/Sprache her?",
+      "back": "Zielgruppe ist der **IHK-Prüfungsausschuss** -- ein **gemischtes** Gremium: teils IT-Fachleute, teils fachfremde Mitglieder (z. B. Arbeitgeber-/Arbeitnehmervertreter). Konsequenz für **Adressatengerechtheit**:\n- **Nutzen zuerst**, Technik dosiert -- jeder muss dem Vortrag folgen können, ohne den Code zu kennen.\n- **Fachbegriffe kurz erklären** (z. B. \"Aggregation = alles an einem Ort zusammenführen\"); tiefe Details für das **Fachgespräch** aufheben.\n- **Visualisieren** (Architektur-Bild, Ampel-Demo) statt Fließtext.\n\nDie Tiefe richtet sich also nach dem **breitesten** Zuhörer der Folie -- das anschließende Fachgespräch bedient dann gezielt die Technik-Tiefe.",
+      "tags": [
+        "zielgruppe",
+        "pruefungsausschuss",
+        "adressatengerecht",
+        "praesentation"
+      ]
+    },
+    {
+      "topic": "praesentation",
+      "slug": "demo-und-fallback-praesentation",
+      "front": "Wie zeigst du die Hydra-Demo in der Präsentation und welchen Fallback hast du gegen technische Ausfälle (Live vs. Screenshots/Video)?",
+      "back": "Die **Ergebnis-/Demo-Folie** ist der Beweis der Lösung -- hier zählt **Risikomanagement**:\n- **Live-Demo** wirkt am stärksten (echtes Dashboard, Ampeln, Sortieren/Filtern), ist aber fragil: Netz, Beamer-Adapter (**die IHK stellt keine Adapter -- HDMI/VGA selbst mitbringen!**), Datenstand.\n- **Fallback obligatorisch:** **Screenshots oder ein kurzes Bildschirm-Video** der Demo einbetten, damit der Vortrag auch ohne Live-System läuft; ggf. **Demo-Modus** mit vorbereiteten Daten statt Live-Quellen.\n- **Geübter Ablauf:** feste Klick-Reihenfolge, kein \"Herumsuchen\" vor dem Ausschuss.\n\nPrinzip: nie von einem **Single Point of Failure** abhängig machen -- der Inhalt muss auch bei Technikpanne stehen.\n\n**⚠️ Deine echten Werte eintragen:** dein konkretes Demo-Skript (welche Sites/Klicks in welcher Reihenfolge) und den vorbereiteten Fallback (Screenshots/Video) festlegen.",
+      "tags": [
+        "demo",
+        "fallback",
+        "risiko",
+        "praesentation"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "wirtschaft",
+      "slug": "preisvergleich-buy-make-entscheidung",
+      "front": "Warum bevorteilt der reine Preisvergleich Buy, und weshalb ist Make trotzdem die richtige Entscheidung für Hydra?",
+      "back": "Der **reine Preisvergleich** stellt SaaS-Jahreskosten (ein fertiges Abo) den **einmaligen Entwicklungskosten** der Eigenentwicklung gegenüber — und rein monetär gewinnt fast immer **Buy**, weil bezahlte Entwicklungszeit teurer ist als ein günstiges Abo. Die ehrliche Argumentation dreht die Reihenfolge um: Zuerst greift das **K.-o.-Kriterium Funktionsdeckung**. Kein SaaS aggregiert **Odoo**-Kundenstammdaten + **InfiniteWP** + Backup + Uptime über die kanonische Domain — Buy scheidet also **funktional** aus, bevor der Preis überhaupt zählt. Dazu kommen weiche Faktoren (**Datenhoheit**, Integration, kein **Vendor-Lock-in**). Merksatz: Der Preisvergleich *plausibilisiert* die Entscheidung, er *trägt* sie nicht — sonst kauft man das billigere Tool, das das eigentliche Problem gar nicht löst.",
+      "tags": [
+        "Make-or-Buy",
+        "Preisvergleich",
+        "K.o.-Kriterium",
+        "Wirtschaftlichkeit"
+      ]
+    },
+    {
+      "topic": "wirtschaft",
+      "slug": "saas-alternativen-preismodelle",
+      "front": "Welche vier SaaS-Alternativen wurden für Hydras Make-or-Buy-Analyse geprüft (Preismodell je Tool), und warum ist keine ein echter Ersatz?",
+      "back": "Vier gängige WordPress-Management-/Security-Plattformen, je nach **Preismodell**:\n- **WP Umbrella** — pro Site (~1,99 EUR/Site/Monat, Cloud).\n- **MainWP** — flat unlimited (~199 USD/Jahr) und **self-hosted** → die datenschutzfreundlichste Buy-Option.\n- **ManageWP** — Add-on je Site (~1–2 USD/Add-on, Cloud/GoDaddy).\n- **Patchstack** — nur Security (**79 USD/Monat** monatlich bzw. 69 USD bei Jahreszahlung, bis 25 Sites).\n\nAlle vier sind **agentenbasierte** Tools, die Sites direkt *verwalten* — Hydra dagegen ist **read-only Aggregation**. Keines liest **Odoo**-Stammdaten oder das bestehende **InfiniteWP** aus; Patchstack deckt nicht einmal Update-/Backup-/Uptime-Status ab. Deshalb ist keine ein echter Ersatz — sie scheiden am **K.-o.-Kriterium Funktionsdeckung** aus. Fairness-Tipp: MainWP als beste Buy-Option in die Nutzwertanalyse aufnehmen, damit das Datenhoheits-Argument kein Strohmann wird.",
+      "tags": [
+        "Make-or-Buy",
+        "SaaS",
+        "Marktanalyse",
+        "Alternativen"
+      ]
+    },
+    {
+      "topic": "wirtschaft",
+      "slug": "kostenarten-einmal-laufend-rechenmodell",
+      "front": "Welche Kostenarten unterscheidet Hydras Wirtschaftlichkeitsrechnung, und wie berechnet sich das Make-Rechenmodell (Einmal- vs. laufende Kosten)?",
+      "back": "Zwei Klassifikationen: **einmalig vs. laufend** und **direkt vs. indirekt** (Gemeinkosten). Für die Eigenentwicklung (**Make**):\n- `Einmalkosten = Entwicklungszeit (h) × interner Stundensatz` — die direkten Personalkosten der Erstellung.\n- `Laufende Kosten = Hosting/Betrieb pro Jahr` — bei Hydra **marginal**, weil nur ein zusätzlicher **Container** auf bereits vorhandener Infrastruktur läuft (kein neuer Server).\n- `Gesamtkosten(n Jahre) = Einmalkosten + n × laufende Kosten`.\n\nGegenüber steht **Buy** = Sites × Preis/Site/Monat × 12 × n — reine laufende Kosten ohne Einmalinvest. Wichtig: Die **indirekten** Gemeinkosten (Miete, IT, Strom) stecken bereits im internen Stundensatz und dürfen nicht doppelt gezählt werden. Konkret bei Hydra: `<~X h Entwicklung × ~Y EUR/h>` — echte Werte aus **Zeiterfassung** und Buchhaltung einsetzen.",
+      "tags": [
+        "Kostenarten",
+        "Kostenvergleich",
+        "Make",
+        "Wirtschaftlichkeit"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "wirtschaft",
+      "slug": "interner-stundensatz-zusammensetzung",
+      "front": "Wie setzt sich der interne Stundensatz zusammen, und wie hast du ihn für Hydras Kalkulation ermittelt (Vollkostenansatz, kein Gewinnaufschlag)?",
+      "back": "Der **interne Stundensatz** ist ein **Vollkostensatz**: `Bruttogehalt + Personalnebenkosten (AG-Anteil Sozialversicherung, Berufsgenossenschaft) + anteilige Gemeinkosten (Miete, IT, Kapitalkosten)`. Entscheidend: **kein Gewinnaufschlag** — anders als ein Marktpreis/Kundenangebot, denn intern wird nur der **Selbstkostenaufwand** kalkuliert, nicht verkauft. Best Practice: den Satz **nicht selbst herleiten**, sondern die **Buchhaltung** nach dem Vorgabewert (Azubi 3. Lehrjahr) fragen — vergessene Gemeinkosten oder eine falsche Umlage sind die Hauptfehlerquelle. Bewertet wird die **Methodenkompetenz** (nachvollziehbare, konsistente Herleitung), nicht der exakte Cent. Bei Hydra angesetzt: `<~Z EUR/h>` (Vollkosten Azubi, aus der Buchhaltung).",
+      "tags": [
+        "Stundensatz",
+        "Vollkosten",
+        "Kalkulation",
+        "Wirtschaftlichkeit"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "wirtschaft",
+      "slug": "kostenvergleich-und-nutzwertanalyse-kombination",
+      "front": "Warum kombinierst du für Hydra Kostenvergleich UND Nutzwertanalyse, und welche Kriterien deckt jede der beiden Methoden ab?",
+      "back": "Beide Methoden erfassen unterschiedliche **Kriterienarten** und ergänzen sich:\n- **Kostenvergleich + Amortisation** → **harte, monetäre** Faktoren (Einmal-/laufende Kosten, ROI, Amortisationsdauer), objektiv in EUR messbar.\n- **Nutzwertanalyse (NWA)** → **weiche, nicht-monetäre** Faktoren, die kein Preis abbildet: Datenhoheit, Integration/Funktionsfit, Wartbarkeit, Vendor-Lock-in — je mit **Gewichtung (Σ = 100 %)** und definierter Skala.\n\nBei Hydra kippt genau die NWA die Entscheidung: rein monetär läge Buy vorn, aber Funktionsdeckung und Datenhoheit geben **Make** den Ausschlag. **Warnung:** Die NWA darf nicht zur **Selbst-Rechtfertigung** frisiert werden (Kriterien/Gewichte so biegen, dass Make gewinnt); harte **K.-o.-Kriterien** gehören vorgeschaltet, nicht in die Punktrechnung geschmuggelt. Genau diese Kombination beider Methoden erwartet das IHK-Projekt.",
+      "tags": [
+        "Nutzwertanalyse",
+        "Kostenvergleich",
+        "Methodik",
+        "Make-or-Buy"
+      ]
+    },
+    {
+      "topic": "analyse",
+      "slug": "v1-ist-techstack-vs-v2",
+      "front": "Welchen Technologie-Stack nutzte die V1 (IST) und wie unterscheidet er sich vom V2-Stack?",
+      "back": "Die **V1 (IST)** ist ein **PHP-Backend ohne Framework** mit `PDO`/MySQL, `cURL` für **JSON-RPC** (InfiniteWP), einem **eigenen AWS-SigV4-S3-Client** für die Backup-Prüfung und **Google Apps Script/Sheet** als Datenschicht, abgesichert per **API-Key**. Die eigentlichen Grenzen: das **Google Sheet als \"Datenbank\"** (keine Constraints/Transaktionen, keine referenzielle Integrität) und das **6-Min-Limit** von Apps Script — genau das treibt den Neubau. **V2** tauscht die Plattform: **FastAPI**, **SQLAlchemy 2.0** auf **PostgreSQL/SQLite**, **`boto3`** statt SigV4-Handarbeit, `requests`, **Alembic**, **APScheduler**, **pytest**. Wichtig für die Doku: die *Fachlogik* (Domain-Normalisierung, InfiniteWP-Decoding) wird übernommen, nur die *limitierende Plattform* ersetzt.",
+      "tags": [
+        "analyse",
+        "ist",
+        "techstack",
+        "v1-vs-v2"
+      ]
+    },
+    {
+      "topic": "analyse",
+      "slug": "hydra-nutzer-stakeholder-doku-zielgruppe",
+      "front": "Wer sind Nutzer/Stakeholder von Hydra und an welche Doku-Zielgruppe richtet sich die Ausarbeitung?",
+      "back": "**Nutzer/Stakeholder** ist der **Betreiber/Dienstleister, der die WordPress-Sites betreut**: er braucht pro Site auf einen Blick Erreichbarkeit, Update- und Backup-Status (*Single Pane of Glass*). Projektumfeld: **<Betrieb/Abteilung/Rolle eintragen>**, betreut werden **<Anzahl Sites eintragen>** WordPress-Sites. Davon strikt zu trennen ist die **Zielgruppe der Doku**: **technisch erfahren, aber branchenfremd** — deshalb werden Odoo, InfiniteWP, WP Time Capsule/S3, Uptime Robot und die kanonische `Site`-Entität **kurz erklärt statt vorausgesetzt**. Die separate **Kundendokumentation (Benutzerhandbuch)** adressiert dagegen den reinen Anwender. Adressatengerechte Kommunikation ist ein explizites IHK-Bewertungskriterium.",
+      "tags": [
+        "analyse",
+        "stakeholder",
+        "zielgruppe",
+        "projektumfeld"
+      ],
+      "projectSpecific": true
+    },
+    {
+      "topic": "analyse",
+      "slug": "funktionale-vs-nichtfunktionale-anforderungen",
+      "front": "Unterscheide funktionale und nicht-funktionale Anforderungen an Hydra mit je einem Beispiel.",
+      "back": "**Funktionale Anforderung** = *WAS* das System leisten muss. Hydra-Beispiel: **pro Site Erreichbarkeit, Update- und Backup-Status zentral anzeigen** (*Single Pane of Glass*). **Nicht-funktionale Anforderung** = *WIE gut* / unter welchen Qualitäts-Randbedingungen — bei Hydra in benannten Kategorien: **IT-Sicherheit** (sichere Credential-Verwahrung, **read-only** Zugriffe, **Least Privilege**), **Barrierefreiheit** (**WCAG** 1.4.1/1.4.3/2.2.2 — Status **nie nur per Farbe**), **Wartbarkeit/Lesbarkeit** und **Korrektheit der Aggregation** (verankert an **ISO 25010:2023**). Merksatz: funktional = *Funktion*, nicht-funktional = *Eigenschaft/Qualität* derselben Funktion.",
+      "tags": [
+        "analyse",
+        "anforderungen",
+        "iso-25010",
+        "wcag"
+      ]
+    },
+    {
+      "topic": "analyse",
+      "slug": "lastenheft-vs-pflichtenheft",
+      "front": "Lastenheft vs. Pflichtenheft — was ist der Unterschied und wo findet sich das bei Hydra?",
+      "back": "**Lastenheft** = der **Auftraggeber** beschreibt das **WAS und WOZU** (Anforderungen aus Kundensicht, möglichst lösungsneutral). **Pflichtenheft** = der **Auftragnehmer** antwortet mit dem **WIE** (konkretes Umsetzungskonzept: Architektur, Datenmodell, Techstack). Merksatz: *\"Lasten = Wunsch des Kunden, Pflicht = Umsetzungsvertrag des Umsetzers\"*. Bei Hydra fallen beide Rollen im **IHK-Einzelprojekt** in **Personalunion** zusammen: die **Ziel-/Anforderungsebene** (Single Pane of Glass, read-only Aggregation) entspricht dem Lastenheft, das **Soll-Konzept** in Analyse/Entwurf (Connector-Architektur, kanonische `Site`-Entität, ISO-25010-Qualitätsziele) dem Pflichtenheft. Ein Pflichtenheft schließt iteratives Vorgehen übrigens **nicht** aus — es fixiert das *Was/Wie*, nicht die Reihenfolge der Umsetzung.",
+      "tags": [
+        "analyse",
+        "lastenheft",
+        "pflichtenheft",
+        "soll-konzept"
+      ]
+    },
+    {
+      "topic": "qs",
+      "slug": "iso-25010-qualitaetsmerkmale",
+      "front": "An welchem Normmodell richtet Hydra seine Qualitätsanforderungen aus und welche vier Merkmale sind relevant?",
+      "back": "Hydra verankert seine Qualitätsanforderungen an **ISO/IEC 25010:2023**, dem aktuellen **Produktqualitätsmodell**, das **ISO 9126 ablöst**. Vier der acht Merkmale sind für Hydra relevant: **Functional Suitability** (die vier Quellen fachlich korrekt aggregieren), **Reliability** (Korrektheit/Verlässlichkeit der Aggregation, Fehler-Isolation je Quelle in `sync_all`), **Maintainability** (lesbarer, testbarer Code — flache `app/`-Struktur, reine Funktionen) und **Security** (read-only, Least Privilege, sichere Credential-Verwahrung). Warum 2023 statt 9126: **9126 ist zurückgezogen**; sich an der gültigen Fassung 25010:2023 auszurichten zeigt Normbewusstsein und ist im Fachgespräch verteidigbar.",
+      "tags": [
+        "qs",
+        "iso-25010",
+        "qualitaetsmerkmale",
+        "norm"
+      ]
+    },
+    {
+      "topic": "qs",
+      "slug": "unit-vs-integrationstests",
+      "front": "Welche Testarten (Unit- vs. Integrationstests) gibt es in Hydra und was fällt jeweils darunter?",
+      "back": "**Unit-Test** = prüft eine **isolierte Einheit ohne I/O**. Hydra-Beispiel: die **reine Funktion `normalize()`** (Rohstring → Domain) — nur Ein-/Ausgabe, kein Netz, keine DB (**43** der **124** Tests, `test_normalize.py`; ideales **TDD**-Thema). **Integrationstest** = prüft das **Zusammenspiel mehrerer Komponenten/Schichten**. Hydra-Beispiel: die **vier Source-Connectoren gegen Fixtures**, der **ETL-/Ingest-Pfad gegen eine echte DB-Session** (SQLite `:memory:` via `conftest.py`) sowie der **Lauf gegen echtes PostgreSQL 16** in der CI (`alembic upgrade head`, per `TEST_DATABASE_URL`). Faustregel: Unit = *eine Funktion, in Millisekunden, ohne Außenwelt*; Integration = *mehrere Teile + Persistenz zusammen*.",
+      "tags": [
+        "qs",
+        "tests",
+        "unit",
+        "integration"
+      ]
+    },
+    {
+      "topic": "qs",
+      "slug": "coverage-messung-pytest-cov",
+      "front": "Wie wird die Testabdeckung gemessen und was sagt Coverage über die Testqualität aus?",
+      "back": "Gemessen mit **`pytest-cov`**: `pytest --cov=. --cov-report=term-missing`. **Coverage** = Anteil der bei den Tests **tatsächlich ausgeführten Code-Zeilen**; `term-missing` listet die **nicht abgedeckten Zeilennummern**, sodass man gezielt ungetestete Pfade sieht. Wichtige Einordnung fürs Fachgespräch: hohe Coverage ist **notwendig, aber nicht hinreichend** — sie belegt nur, dass Code *ausgeführt* wurde, nicht dass sein Ergebnis *korrekt geprüft* ist (eine Zeile ohne aussagekräftiges `assert` zählt trotzdem als abgedeckt). Coverage steuert also, **wo** Tests fehlen, ersetzt aber kein sauberes Testdesign (Äquivalenzklassen + Grenzwertanalyse).",
+      "tags": [
+        "qs",
+        "coverage",
+        "pytest-cov",
+        "testqualitaet"
+      ]
+    },
+    {
+      "topic": "qs",
+      "slug": "definition-of-done",
+      "front": "Was war die Definition of Done in Hydra — wann galt ein Arbeitspaket als abgeschlossen?",
+      "back": "Die **Definition of Done (DoD)** ist das **verbindliche, geteilte Kriterium**, wann ein Arbeitspaket wirklich *fertig* ist — nicht \"läuft bei mir\", sondern überprüfbar. Bei Hydra galt ein Feature als erledigt, wenn: **alle automatisierten Tests grün** (`124/124`), **alle bestätigten Review-Funde behoben** (15/15 aus dem adversarialen Multi-Agenten-Review) und die **Doku aktualisiert** ist (Obsidian-Wiki bzw. Code-Referenz). Ergänzt durch das **TDD-Prinzip** (Red-Green-Refactor): ein Vertrag gilt erst als erfüllt, wenn der zuvor **rote** Test **grün** ist. So verhindert die DoD \"90 %-fertig\"-Aufgaben und macht Qualität zum objektiven Zustand statt zur Selbsteinschätzung.",
+      "tags": [
+        "qs",
+        "definition-of-done",
+        "tdd",
+        "qualitaet"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "uvicorn-reload-dir-onedrive",
+      "front": "Warum startet Hydra `uvicorn` in der Entwicklung mit `--reload-dir app`, und warum liegt der Arbeitsordner außerhalb von OneDrive?",
+      "back": "In der Entwicklung läuft der ASGI-Server als **`uvicorn app.main:app --reload`**, damit Codeänderungen sofort greifen. Der **Auto-Reload** überwacht dafür das Dateisystem — und OneDrive **berührt** (touch) beim Cloud-Sync ständig Dateien im virtuellen Environment (`.venv`), was einen **Reload-Sturm** auslöst (der Server startet in Endlosschleife neu). Zwei Gegenmaßnahmen: (1) **`--reload-dir app`** grenzt die Überwachung auf den eigenen Quellcode (`app/`) ein, statt das ganze Projekt inkl. `.venv` zu beobachten; (2) der Arbeitsordner wurde **aus dem OneDrive-Pfad heraus verlagert**, sodass keine Cloud-Synchronisation mehr auf die Dateien zugreift. Reine **Dev-Ergonomie** — den Produktivbetrieb (ohne `--reload`) berührt das nicht.",
+      "tags": [
+        "betrieb",
+        "uvicorn",
+        "dev-setup"
+      ]
+    },
+    {
+      "topic": "betrieb",
+      "slug": "hydra-zeitzonen-utc-lokalzeit",
+      "front": "Wie behandelt Hydra Zeitzonen — warum tz-aware/UTC speichern, und wie wird der letzte Sync in Lokalzeit angezeigt?",
+      "back": "Grundregel: **speichern in UTC / tz-aware, anzeigen in Lokalzeit**. Alle Zeitstempel sind als **`DateTime(timezone=True)`** (Postgres: `timestamptz`) modelliert, gesetzt per `server_default=func.now()`. Fürs Dashboard liest die Route `max(SyncRun.started_at)`; da **SQLite** naive (zeitzonenlose) Stempel liefert, werden diese zuerst als UTC interpretiert (`.replace(tzinfo=timezone.utc)`) und dann mit **`.astimezone()`** in die lokale Zeit umgerechnet (`app/main.py`). Ohne diese Umrechnung ginge die Anzeige im Sommer 2 h nach (naiver UTC-Stempel fälschlich als Lokalzeit gelesen). IHK-Stichwort: konsistente **Persistenz** in UTC entkoppelt Speicherung und Darstellung.",
+      "tags": [
+        "betrieb",
+        "zeitzonen",
+        "timestamptz",
+        "persistenz"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "mainwp-vs-infinitewp-quelle",
+      "front": "MainWP hätte eine dokumentierte REST-API — warum bleibt InfiniteWP trotzdem Hydras Update-Quelle, und wie mindern Sie dessen Risiko?",
+      "back": "**MainWP** wäre technisch die sauberere Quelle (dokumentierte **REST-API** statt DB-Zugriff), aber **InfiniteWP ist bereits produktiv im Einsatz** und verwaltet die betreuten WordPress-Sites schon. Ein Wechsel auf MainWP hieße, **jede Site neu anzubinden** — hoher Migrationsaufwand ohne fachlichen Mehrwert fürs reine **Monitoring**. Hydra ist bewusst **read-only** und liest den Bestand aus, statt InfiniteWP zu ersetzen. Das **Risiko** des fehlenden API-Zugangs mindert Hydra durch (1) **rein lesenden** Zugriff auf die MySQL-DB mit einem **Least-Privilege**-User (nur `SELECT`), (2) **gebundene Parameter** (Prepared Statements) und (3) **Whitelist-Validierung** des Tabellen-Prefix (`\\A[A-Za-z0-9_]+\\Z`) gegen SQL-Injection. So bleibt der Kompromiss beherrschbar, ohne die bestehende Infrastruktur umzubauen.",
+      "tags": [
+        "fachgespraech",
+        "infinitewp",
+        "make-or-buy",
+        "sicherheit"
+      ]
+    },
+    {
+      "topic": "fachgespraech",
+      "slug": "v1-funktionen-yagni-weglassung",
+      "front": "Welche V1-Funktionen hast du bewusst NICHT nach V2 portiert (YAGNI), und wodurch wurden sie ersetzt?",
+      "back": "Nach dem **YAGNI**-Prinzip ließ V2 mehrere V1-Eigenbauten weg, weil eine einfachere Lösung genügt: (1) die **Odoo-Subscription/Dedupe-Logik** entfällt, weil der **idempotente Ingest** (get-or-create über den UNIQUE-`domain`-Schlüssel) Dubletten schon strukturell verhindert; (2) der handgeschriebene **AWS-SigV4-/XML-S3-Client** weicht der Standardbibliothek **`boto3`** (weniger Code, gewartete Signatur, weniger Fehlerquellen); (3) die eigene **Uptime-Overlap-Rechnung** aus Incident-Zeiträumen fällt weg — Hydra nutzt die von Uptime Robot direkt gelieferte **`uptimeRatio`**. So sinkt die Wartungslast: kein Nachbauen von Funktionen, die eine Bibliothek oder das kanonische Datenmodell schon abdecken.",
+      "tags": [
+        "fachgespraech",
+        "yagni",
+        "boto3",
+        "idempotenz"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "link-statt-merge-state-tabellen",
+      "front": "Warum speichert Hydra die vier Quellen in je eigenen `*_state`-Tabellen (Link-Ansatz) statt sie destruktiv in `sites` zu mergen?",
+      "back": "Hydra **verlinkt** die Quelldaten, statt sie zu **verschmelzen**: die kanonische `sites`-Tabelle trägt nur den fachlichen Schlüssel (`domain`) plus Anzeigename, und je Quelle hängt eine eigene **`*_state`**-Tabelle (`odoo_state`, `infinitewp_state`, `backup_state`, `uptime_state`) per `site_id` (PK **und** FK, echte 1:1) daran. Vorteile: (1) **nachvollziehbare Herkunft/Provenance** — je Feld sieht man Quelle, `synced_at` und `status`; (2) fällt eine Quelle aus, bleiben die übrigen States unberührt (**Fehler-Isolation**, kein Überschreiben mit Lücken); (3) eine neue Quelle ist eine neue Tabelle, ohne `sites` umzubauen. Ein destruktiver Merge würde die Herkunft **einebnen** und bei Teilausfällen gute Daten mit leeren überschreiben.",
+      "tags": [
+        "datenmodell",
+        "provenance",
+        "1zu1",
+        "erm"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "source-state-jsonb-vs-typisierte-tabellen",
+      "front": "Welche ERM-Alternative gab es zu den vier typisierten `*_state`-Tabellen (eine generische `source_state`-Tabelle mit JSONB), und warum die vier?",
+      "back": "Die Alternative wäre **eine schmale, generische Tabelle** `source_state(site_id, source, payload JSONB, synced_at, status)` mit **UPSERT** auf dem zusammengesetzten Schlüssel `(site_id, source)` — flexibel, weil neue Quellen ohne Migration passten. Hydra wählt stattdessen **vier typisierte Tabellen**, weil: (1) jede Quelle **echte, getypte Spalten** hat (`core_updates int`, `is_up bool`, `last_backup_at timestamptz`) statt schemaloser Blobs — die DB erzwingt so **Datentypen und referenzielle Integrität**; (2) Abfragen/Indizes gehen ohne JSON-Extraktion; (3) das ERM ist **selbstdokumentierend** und in der Doku klarer begründbar. Der Preis — eine Migration je neuer Quelle — ist bei nur vier festen Quellen vernachlässigbar (**YAGNI**: keine Flexibilität auf Vorrat).",
+      "tags": [
+        "datenmodell",
+        "erm",
+        "jsonb",
+        "yagni"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "syncrun-session-add-statt-append",
+      "front": "Warum schreibt Hydras Ingest den Audit-Eintrag per `session.add(SyncRun(...))` statt über `site.sync_runs.append(...)`?",
+      "back": "Beide Wege legen einen **`SyncRun`**-Audit-Eintrag an, aber `site.sync_runs.append(...)` würde die Beziehung **`sync_runs` zuerst laden** — SQLAlchemy muss die **ganze bisherige Lauf-Historie** der Site aus der DB nachladen (ein SELECT), nur um das Objekt an die Collection zu hängen. Bei jedem Sync und jeder Site wäre das eine unnötige Abfrage (verwandt mit dem **N+1-Problem**). `session.add(SyncRun(site_id=site.id, source=..., status=...))` setzt den Fremdschlüssel **direkt** und fügt die Zeile ohne Nachladen ein. Im InfiniteWP-Fehlerpfad wird der Eintrag bewusst **nur bei bereits existierender Site** geschrieben (`status=\"error\"`, `note=...`). IHK-Stichwort: bewusster Umgang mit **Lazy Loading** in der ORM-Schicht (`app/ingest.py`).",
+      "tags": [
+        "datenmodell",
+        "sqlalchemy",
+        "lazy-loading",
+        "audit"
+      ]
+    },
+    {
+      "topic": "datenmodell",
+      "slug": "alembic-migration2-timestamptz-autogenerate",
+      "front": "Warum tat Alembic-Migration 2 trotz Titel 'tz-aware timestamps' nur den Index, und wann wurde der `timestamptz`-Wechsel wirklich sichtbar?",
+      "back": "**Lern-Erkenntnis zu Alembic-Autogenerate:** Migration 2 (`b8bb1d7aaeea`) heißt „tz-aware timestamps + index\", ihr `upgrade()` erzeugt aber **nur** den Index `ix_sync_run_site_id`. Grund: sie wurde gegen **SQLite** autogeneriert — und SQLite unterscheidet **`DateTime` nicht von `DateTime(timezone=True)`** (kein eigener TZ-Typ). Alembics `--autogenerate` sah dort **keinen Typunterschied**, der TZ-Anteil fiel weg. Erst **Migration 3** (`1eb3a9df9234`), gegen echtes **PostgreSQL 16** autogeneriert, erkannte den Wechsel `TIMESTAMP → TIMESTAMP WITH TIME ZONE` und schrieb die `alter_column`-Ops. Merksatz: der `timestamptz`-Wechsel ist auf SQLite ein **No-op**, auf Postgres ein echter, per Autogenerate **erst dort** erkennbarer Schema-Schritt — ein Beleg, warum die **CI zusätzlich gegen Postgres** testet.",
+      "tags": [
+        "datenmodell",
+        "alembic",
+        "timestamptz",
+        "ci"
+      ]
+    },
+    {
+      "topic": "techstack",
+      "slug": "serialize-site-einzige-serialisierungsquelle",
+      "front": "Wozu dient `_serialize_site()`, und warum ist es die einzige Serialisierungs-Quelle für Dashboard, `/api/sites` und den JS-Auto-Refresh?",
+      "back": "**`_serialize_site()`** (in `app/main.py`) verwandelt eine `Site` samt ihrer 1:1-States in **ein flaches dict** — Rohfelder je Quelle **plus** die fertige Gesamt-Ampel (`gesamt_status()` inkl. `symbol`/`label`). Drei Konsumenten teilen sich **genau diese eine** Funktion: `GET /` (Template + JSON-Insel/`<noscript>`), `GET /api/sites` (gibt `[_serialize_site(s) …]` direkt als JSON aus) und der **JS-Auto-Refresh**, der `/api/sites` erneut holt. Das ist gelebtes **DRY / Single Source of Truth**: kommt ein Feld hinzu, taucht es überall zugleich auf — **Template und API können nicht auseinanderlaufen**. Zudem ist die Funktion **`None`-tolerant** (fehlt ein `*_state`, liefert sie Defaults `0`/`None`), sodass Teilausfälle die Serialisierung nicht brechen. IHK-Stichwort: **Serialisierung** als bewusst zentralisierte Abbildung Objekt → Transportformat.",
+      "tags": [
+        "techstack",
+        "dry",
+        "serialisierung",
+        "fastapi"
+      ]
+    }
+  ]
+}

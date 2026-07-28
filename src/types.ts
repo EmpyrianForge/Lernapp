@@ -6,6 +6,10 @@ export type ItemType = 'flashcard' | 'calc' | 'trace'
 export type Ap1Status = 'core' | 'supporting' | 'ap2-grundlagen'
 export type Grade = 1 | 2 | 3 | 4
 
+// Lern-Track (Fach). Fehlt das Feld an einem Item, gilt es als 'ap1' (Bestand).
+// 'hydra' = der abgetrennte Bereich für das IHK-Abschlussprojekt.
+export type Track = 'ap1' | 'ap2' | 'hydra'
+
 export interface FlashcardItem {
   id: string
   topicId: string
@@ -14,6 +18,7 @@ export interface FlashcardItem {
   examFrequency: number
   ap1Status: Ap1Status
   peripheral?: boolean // AP1-Randstoff: kann drankommen, aber peripher/seltener — bleibt voll sichtbar, nur markiert
+  track?: Track // fehlt = 'ap1'; 'hydra' = Abschlussprojekt-Bereich
   operator: string | null
   afb: string | null
   points: number | null

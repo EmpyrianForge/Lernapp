@@ -91,6 +91,22 @@ h1, h2, h3 { line-height: 1.25; letter-spacing: -0.02em; font-weight: 600; }
   background: none; border: none; color: var(--text); cursor: pointer; padding: 0.3rem;
 }
 .brand svg { color: var(--accent); }
+/* Track-Umschalter (AP1 / AP2 / Hydra) — Segmented Control in der Topbar */
+.track-switch {
+  display: inline-flex; gap: 2px; padding: 3px;
+  background: var(--muted-bg); border: 1px solid var(--border); border-radius: var(--radius);
+}
+.track-tab {
+  font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  border: none; background: transparent; color: var(--muted);
+  padding: 0.3rem 0.72rem; border-radius: 6px; transition: background 0.12s, color 0.12s;
+}
+.track-tab:hover { color: var(--text); }
+.track-tab.active { background: var(--panel); color: var(--text); box-shadow: var(--shadow); }
+@media (max-width: 560px) {
+  .track-switch { padding: 2px; }
+  .track-tab { padding: 0.28rem 0.5rem; font-size: 0.78rem; }
+}
 .icon-btn { display: inline-flex; align-items: center; gap: 0.35rem; }
 .backup { display: flex; gap: 0.4rem; }
 .main { animation: fade 0.2s ease; }

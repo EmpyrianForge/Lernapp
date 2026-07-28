@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react'
 import type { View } from './nav'
+import type { Track } from './types'
 import { useAppState } from './state/AppState'
 import { exportJSON, importJSON } from './db/db'
 import { Dashboard } from './components/Dashboard'
+import { HydraDashboard } from './components/HydraDashboard'
 import { FlashcardMode } from './components/FlashcardMode'
 import { QuizMode } from './components/QuizMode'
 import { CalcMode } from './components/CalcMode'
@@ -71,8 +73,14 @@ function BackupControls() {
 }
 
 export function App() {
-  const { ready } = useAppState()
+  const { ready, track, setTrack } = useAppState()
   const [view, setView] = useState<View>('dashboard')
+
+  // Track (Fach) wechseln -> Content-Pool umstellen und zurück aufs Dashboard.
+  const switchTrack = (t: Track) => {
+    setTrack(t)
+    setView('dashboard')
+  }
 
   if (!ready) {
     return (
@@ -88,8 +96,21 @@ export function App() {
     <div className="app">
       <header className="topbar">
         <button className="brand" onClick={() => setView('dashboard')}>
-          <Icon name="brand" size={19} /> AP1 Lernapp
+          <Icon name="brand" size={19} /> {track === 'hydra' ? 'Hydra' : track === 'ap2' ? 'AP2 Lernapp' : 'AP1 Lernapp'}
         </button>
+        <div className="track-switch" role="tablist" aria-label="Fach wählen">
+          {(['ap1', 'ap2', 'hydra'] as const).map((t) => (
+            <button
+              key={t}
+              role="tab"
+              aria-selected={track === t}
+              className={`track-tab${track === t ? ' active' : ''}`}
+              onClick={() => switchTrack(t)}
+            >
+              {t === 'ap1' ? 'AP1' : t === 'ap2' ? 'AP2' : 'Hydra'}
+            </button>
+          ))}
+        </div>
         <div className="topbar-actions">
           <BackupControls />
           <button className="btn ghost sm icon-btn" aria-label="Einstellungen" onClick={() => setView('settings')}><Icon name="gear" size={17} /></button>
@@ -97,7 +118,7 @@ export function App() {
       </header>
 
       <main className="main">
-        {view === 'dashboard' && <Dashboard go={setView} />}
+        {view === 'dashboard' && (track === 'hydra' ? <HydraDashboard go={setView} /> : <Dashboard go={setView} />)}
         {view === 'flashcards' && <FlashcardMode onExit={exit} />}
         {view === 'quiz' && <QuizMode onExit={exit} />}
         {view === 'calc' && <CalcMode onExit={exit} />}
