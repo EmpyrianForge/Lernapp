@@ -78,11 +78,16 @@ h1, h2, h3 { line-height: 1.25; letter-spacing: -0.02em; font-weight: 600; }
 .row { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
 
 /* ---- Layout ---- */
-.app { max-width: 860px; margin: 0 auto; padding: 0 1rem 3rem; min-height: 100vh; }
+.app {
+  max-width: 860px; margin: 0 auto; min-height: 100vh; min-height: 100dvh;
+  /* iOS Safe-Area: Seiten (Landscape/Notch) + unten (Home-Indicator) freihalten */
+  padding: 0 calc(1rem + env(safe-area-inset-right)) calc(3rem + env(safe-area-inset-bottom)) calc(1rem + env(safe-area-inset-left));
+}
 .app.loading { display: grid; place-items: center; }
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0.9rem 0.2rem; position: sticky; top: 0; z-index: 10;
+  /* oben zusaetzlich die Safe-Area (Dynamic Island / Notch) freihalten */
+  padding: calc(0.9rem + env(safe-area-inset-top)) 0.2rem 0.9rem; position: sticky; top: 0; z-index: 10;
   background: linear-gradient(180deg, var(--bg) 70%, transparent);
 }
 .brand {
