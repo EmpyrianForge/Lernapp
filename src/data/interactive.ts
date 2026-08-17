@@ -199,6 +199,7 @@ const ORDER_BASE: OrderTask[] = [
     topicId: 'projektmanagement',
     prompt: 'Ordne die drei Phasen des Lewin-Modells.',
     correct: ['Unfreeze (Auftauen)', 'Change (Verändern)', 'Refreeze (Einfrieren)'],
+    beyond: true,
   },
   {
     id: 'order-aida',

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-20T13:40:20.753Z",
+  "generatedAt": "2026-08-17T14:16:11.330Z",
   "count": 304,
   "items": [
     {
@@ -1060,7 +1060,7 @@
         "lernapp"
       ],
       "examFrequency": 1,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -1079,7 +1079,7 @@
         "lernapp"
       ],
       "examFrequency": 1,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -1136,7 +1136,7 @@
         "lernapp"
       ],
       "examFrequency": 1,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -1668,7 +1668,7 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -2031,6 +2031,7 @@
       ],
       "examFrequency": 0.75,
       "ap1Status": "core",
+      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
@@ -2412,7 +2413,7 @@
         "lernapp"
       ],
       "examFrequency": 0.5,
-      "ap1Status": "ap2-grundlagen",
+      "ap1Status": "supporting",
       "operator": null,
       "afb": null,
       "points": null,
@@ -3081,6 +3082,7 @@
       ],
       "examFrequency": 0.88,
       "ap1Status": "core",
+      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
@@ -3194,7 +3196,7 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -3327,7 +3329,7 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -3346,7 +3348,7 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "core",
+      "ap1Status": "ap2-grundlagen",
       "operator": null,
       "afb": null,
       "points": null,
@@ -3423,7 +3425,6 @@
       ],
       "examFrequency": 0.88,
       "ap1Status": "core",
-      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
@@ -4396,6 +4397,7 @@
       ],
       "examFrequency": 0.9,
       "ap1Status": "core",
+      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
@@ -4529,6 +4531,7 @@
       ],
       "examFrequency": 0.9,
       "ap1Status": "core",
+      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,

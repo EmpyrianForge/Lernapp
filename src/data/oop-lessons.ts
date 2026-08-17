@@ -112,8 +112,8 @@ export const OOP_LESSONS: OopLesson[] = [
   {
     id: 'statisch',
     title: 'Statische Member (static)',
-    section: S_GRUND,
-    level: 'ap1',
+    section: S_VERTIEF,
+    level: 'vertiefung',
     explanation:
       'Ein **statisches** Attribut/eine statische Methode gehört zur **Klasse selbst**, nicht zu einem einzelnen Objekt — alle Objekte teilen sich denselben Wert. Klassiker: ein Zähler, der mitzählt, wie viele Objekte erzeugt wurden. Zwei Konten → `anzahl` = 2.',
     keyPoints: ['Statisch = gehört der Klasse, nicht dem Objekt', 'Alle Objekte teilen sich den einen Wert', 'Zugriff über den Klassennamen (`Konto.anzahl`)'],
@@ -138,8 +138,8 @@ export const OOP_LESSONS: OopLesson[] = [
   {
     id: 'beziehungen',
     title: 'Assoziation / Aggregation / Komposition',
-    section: S_STRUKTUR,
-    level: 'ap1',
+    section: S_VERTIEF,
+    level: 'vertiefung',
     explanation:
       'Objekte stehen in **Beziehungen** zueinander:\n**Assoziation** = allgemeine „kennt/nutzt"-Beziehung.\n**Aggregation** = Teil-Ganzes, die Teile leben unabhängig weiter (schwache „hat"-Beziehung, z. B. Kunde ↔ Konten).\n**Komposition** = starke Teil-Ganzes-Beziehung, die Teile sterben mit dem Ganzen (z. B. Rechnung ↔ Rechnungsposten).',
     keyPoints: ['Assoziation: kennt/nutzt', 'Aggregation: „hat", Teile existieren unabhängig', 'Komposition: existenzabhängig — Teil stirbt mit dem Ganzen'],
