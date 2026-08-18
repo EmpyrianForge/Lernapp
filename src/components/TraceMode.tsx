@@ -4,6 +4,7 @@ import { useAppState } from '../state/AppState'
 import { TRACES } from '../data/content'
 import { shuffle } from '../lib/scheduler'
 import { GradeButtons, Pill, ProgressBar } from './ui'
+import { Code } from './Code'
 import { Icon } from './Icon'
 
 // Schreibtischtest: Pseudocode lesen, eigene Wertetabelle Zeile für Zeile führen,
@@ -116,7 +117,7 @@ export function TraceMode({ onExit }: { onExit: () => void }) {
 
       <div className="card">
         <p className="q">{item.prompt}</p>
-        <pre className="pseudocode" aria-label="Pseudocode">{item.pseudocode.join('\n')}</pre>
+        <Code code={item.pseudocode.join('\n')} lang="pseudocode" lines label="Pseudocode" className="pseudocode" />
         <p className="muted small">Deine Wertetabelle (mitführen, dann vergleichen):</p>
         <TraceGrid key={gridKey} item={item} />
       </div>

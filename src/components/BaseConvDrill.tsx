@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAppState } from '../state/AppState'
 import { Icon } from './Icon'
+import { useGuide } from './DrillGuide'
 
 // Zahlensystem-Umrechner: klickbare Bits (128..1) bilden ein Byte; Dezimal/Hex/Binär
 // aktualisieren sich live. Aufgabe: gegebene Zahl (dez oder hex) mit den Bits darstellen.
@@ -19,6 +20,7 @@ const toBin = (bits: boolean[]) => bits.map((b) => (b ? '1' : '0')).join('')
 
 export function BaseConvDrill({ onExit }: { onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('baseconv')
   const [target, setTarget] = useState(randTarget)
   const [bits, setBits] = useState<boolean[]>(() => Array(8).fill(false))
   const [checked, setChecked] = useState<null | boolean>(null)
@@ -49,9 +51,10 @@ export function BaseConvDrill({ onExit }: { onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><span className="pill">Zahlensysteme</span></div>
+        <div className="study-meta"><span className="pill">Zahlensysteme</span>{guide.button}</div>
         <span className="counter">{score.correct}/{score.total} ✓</span>
       </header>
+      {guide.panel}
 
       <div className="card">
         <p className="q">

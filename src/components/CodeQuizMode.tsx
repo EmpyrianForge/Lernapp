@@ -4,6 +4,8 @@ import { CODE_QUIZ } from '../data/code-quiz'
 import { shuffle } from '../lib/scheduler'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { Code } from './Code'
+import { useGuide } from './DrillGuide'
 
 // "Was gibt der Code aus?" — Code lesen, Konsolenausgabe eintippen, prüfen.
 type Lang = 'pseudocode' | 'java' | 'python'
@@ -17,6 +19,7 @@ const norm = (s: string) => s.trim().replace(/\r/g, '')
 
 export function CodeQuizMode({ onExit }: { onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('codequiz')
   const [items] = useState(() => shuffle(CODE_QUIZ))
   const [idx, setIdx] = useState(0)
   const [lang, setLangState] = useState<Lang>(
@@ -60,9 +63,10 @@ export function CodeQuizMode({ onExit }: { onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><Pill>Was gibt der Code aus?</Pill></div>
+        <div className="study-meta"><Pill>Was gibt der Code aus?</Pill>{guide.button}</div>
         <span className="counter">{score.correct}/{score.total} ✓</span>
       </header>
+      {guide.panel}
 
       <p className="q">{item.title} — was steht am Ende in der Konsole?</p>
 
@@ -74,7 +78,7 @@ export function CodeQuizMode({ onExit }: { onExit: () => void }) {
         ))}
       </div>
 
-      <pre className="code-block" aria-label={`Code (${lang})`}><code>{item[lang]}</code></pre>
+      <Code code={item[lang]} lang={lang} lines label={`Code (${lang})`} />
 
       <label className="cq-answer">
         <span className="co-label">Deine Ausgabe</span>

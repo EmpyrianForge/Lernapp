@@ -8,6 +8,7 @@ import {
 import { useAppState } from '../state/AppState'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { useGuide } from './DrillGuide'
 
 // Interaktiver Netzplan: der Lerner füllt je Knoten FAZ/FEZ/SAZ/SEZ/GP, prüft gegen
 // die berechnete Lösung; kritischer Pfad (GP = 0) wird hervorgehoben.
@@ -68,6 +69,7 @@ function NodeBox({
 
 function Game({ plan, onExit }: { plan: Netzplan; onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('netzplan')
   const calc = useMemo(() => computeNetzplan(plan.activities), [plan])
   const [ans, setAns] = useState<Ans>({})
   const [checked, setChecked] = useState(false)
@@ -89,7 +91,9 @@ function Game({ plan, onExit }: { plan: Netzplan; onExit: () => void }) {
       <header className="panel-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
         <h2>{plan.title}</h2>
+        {guide.button}
       </header>
+      {guide.panel}
       <p className="muted small">
         Fülle je Knoten oben <strong>FAZ · Dauer · FEZ</strong>, unten <strong>SAZ · GP · SEZ</strong>.
         FEZ = FAZ + Dauer · FAZ = max(FEZ Vorgänger) · SAZ = SEZ − Dauer · GP = SAZ − FAZ.

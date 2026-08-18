@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react'
 import { useAppState } from '../state/AppState'
 import { Icon } from './Icon'
+import { useGuide } from './DrillGuide'
 import {
   type PermGrid,
   emptyGrid,
@@ -18,6 +19,7 @@ const COLS = ['r', 'w', 'x'] as const
 
 export function ChmodDrill({ onExit }: { onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('chmod')
   const [target, setTarget] = useState(() => randomTarget())
   const [grid, setGrid] = useState<PermGrid>(emptyGrid)
   const [checked, setChecked] = useState<null | boolean>(null)
@@ -50,9 +52,10 @@ export function ChmodDrill({ onExit }: { onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><span className="pill">chmod-Rechte</span></div>
+        <div className="study-meta"><span className="pill">chmod-Rechte</span>{guide.button}</div>
         <span className="counter">{score.correct}/{score.total} ✓</span>
       </header>
+      {guide.panel}
 
       <div className="card">
         <p className="q">Setze die Rechte für:</p>

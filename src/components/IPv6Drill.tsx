@@ -3,12 +3,14 @@ import { useAppState } from '../state/AppState'
 import { randomIPv6, type IPv6Drill as Drill } from '../lib/ipv6'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { useGuide } from './DrillGuide'
 
 // IPv6-Kürzen: volle Adresse -> kanonische Kurzform (RFC 5952). Generativ.
 const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, '')
 
 export function IPv6Drill({ onExit }: { onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('ipv6')
   const [drill, setDrill] = useState<Drill>(() => randomIPv6())
   const [answer, setAnswer] = useState('')
   const [checked, setChecked] = useState(false)
@@ -32,9 +34,10 @@ export function IPv6Drill({ onExit }: { onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><Pill>IPv6 kürzen</Pill></div>
+        <div className="study-meta"><Pill>IPv6 kürzen</Pill>{guide.button}</div>
         <span className="counter">{score.correct}/{score.total} ✓</span>
       </header>
+      {guide.panel}
 
       <div className="card">
         <p className="q">Kürze diese IPv6-Adresse (führende Nullen weg, längste Null-Folge als <code>::</code>):</p>

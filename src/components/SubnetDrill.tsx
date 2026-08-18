@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAppState } from '../state/AppState'
 import { maskBits, randomDrill, type SubnetDrill as Drill } from '../lib/net'
 import { Icon } from './Icon'
+import { useGuide } from './DrillGuide'
 
 // Generativer Subnetting-Drill mit visueller Bit-Leiste der Netzmaske.
 // Netzwerke — die häufigste Rechenaufgabe der AP1 (02-Aufgabentypen-Operatoren.md).
@@ -46,6 +47,7 @@ function BitRuler({ cidr }: { cidr: number }) {
 
 export function SubnetDrill({ onExit }: { onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('subnet')
   const [drill, setDrill] = useState<Drill>(() => randomDrill())
   const [ans, setAns] = useState<Answers>(empty)
   const [checked, setChecked] = useState(false)
@@ -72,9 +74,10 @@ export function SubnetDrill({ onExit }: { onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><span className="pill">Subnetting</span></div>
+        <div className="study-meta"><span className="pill">Subnetting</span>{guide.button}</div>
         <span className="counter">{score.correct}/{score.total} ✓</span>
       </header>
+      {guide.panel}
 
       <div className="card">
         <p className="q">Gegeben: <strong>{drill.ip}/{drill.cidr}</strong></p>

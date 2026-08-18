@@ -5,6 +5,7 @@ import { useAppState } from '../state/AppState'
 import { shuffle } from '../lib/scheduler'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { useGuide } from './DrillGuide'
 
 // Reihenfolge-Drill: Elemente per ▲/▼ in die richtige Ordnung bringen (touch-/tastaturfreundlich).
 
@@ -17,6 +18,7 @@ function initialOrder(correct: string[]): string[] {
 
 function Game({ task, onExit }: { task: OrderTask; onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('order')
   const [items, setItems] = useState<string[]>(() => initialOrder(task.correct))
   const [checked, setChecked] = useState(false)
 
@@ -46,8 +48,9 @@ function Game({ task, onExit }: { task: OrderTask; onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><span className="pill">{task.title}</span></div>
+        <div className="study-meta"><span className="pill">{task.title}</span>{guide.button}</div>
       </header>
+      {guide.panel}
       <p className="muted small">{task.prompt}</p>
 
       <ol className="order-list">

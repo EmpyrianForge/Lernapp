@@ -3,10 +3,13 @@ import { useAppState } from '../state/AppState'
 import { randomLogic, type LogicDrill as Drill } from '../lib/logic'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { Code } from './Code'
+import { useGuide } from './DrillGuide'
 
 // Bedingungen/Logik: booleschen Ausdruck (UND/ODER/NICHT, Vergleiche) auswerten.
 export function LogicDrill({ onExit }: { onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('logic')
   const [drill, setDrill] = useState<Drill>(() => randomLogic())
   const [chosen, setChosen] = useState<boolean | null>(null)
   const [checked, setChecked] = useState(false)
@@ -32,9 +35,10 @@ export function LogicDrill({ onExit }: { onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><Pill>Bedingungen / Logik</Pill></div>
+        <div className="study-meta"><Pill>Bedingungen / Logik</Pill>{guide.button}</div>
         <span className="counter">{score.correct}/{score.total} ✓</span>
       </header>
+      {guide.panel}
 
       <div className="card">
         <p className="muted small">Gegeben:</p>
@@ -44,7 +48,7 @@ export function LogicDrill({ onExit }: { onExit: () => void }) {
           <span>c = <strong>{drill.vars.c}</strong></span>
         </div>
         <p className="q">Ist dieser Ausdruck wahr oder falsch?</p>
-        <pre className="code-block logic-expr"><code>{drill.expr}</code></pre>
+        <Code code={drill.expr} lang="pseudocode" className="logic-expr" label="Ausdruck" />
       </div>
 
       {!checked ? (

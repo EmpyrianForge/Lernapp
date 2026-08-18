@@ -3,6 +3,7 @@ import { useAppState } from '../state/AppState'
 import { shuffle } from '../lib/scheduler'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { useGuide } from './DrillGuide'
 
 // UML/BPMN-Symbol-Zuordnung: gezeichnetes Symbol ↔ Bedeutung, Tap-to-Pair.
 // BPMN & UML-Aktivitätsdiagramm sind neu/verstärkt im Katalog 2025 (11-Neu-2025).
@@ -70,6 +71,7 @@ const DECKS: SymDeck[] = [
 
 function Game({ deck, onExit }: { deck: SymDeck; onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('symbols')
   const rights = useMemo(() => shuffle(deck.pairs.map((p, li) => ({ meaning: p.meaning, li }))), [deck])
   const [selLeft, setSelLeft] = useState<number | null>(null)
   const [matched, setMatched] = useState<Set<number>>(new Set())
@@ -110,9 +112,10 @@ function Game({ deck, onExit }: { deck: SymDeck; onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><span className="pill">{deck.title}</span></div>
+        <div className="study-meta"><span className="pill">{deck.title}</span>{guide.button}</div>
         <span className="counter">{matched.size}/{deck.pairs.length}</span>
       </header>
+      {guide.panel}
       <p className="muted small">Erst ein Symbol antippen, dann die passende Bedeutung. Fehlversuche: {mistakes}</p>
 
       <div className="match-cols">

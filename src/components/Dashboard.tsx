@@ -12,41 +12,50 @@ interface ModeDef {
   icon: string
   title: string
   desc: string
+  tone: string // Farbton-Klasse (siehe .tone-* in styles.css) — gibt jedem Bereich Identität
 }
 
 const MODES: ModeDef[] = [
-  { view: 'flashcards', icon: 'cards', title: 'Karteikarten', desc: 'Fällige Karten, Spaced Repetition, interleaved' },
-  { view: 'quiz', icon: 'help', title: 'Themen-Quiz', desc: 'Frei gewählte Themen, Sofort-Feedback' },
-  { view: 'weak', icon: 'activity', title: 'Schwachstellen', desc: 'Gezielt deine schwächsten Karten üben' },
-  { view: 'calc', icon: 'calculator', title: 'Rechnen', desc: 'Rechenwege mit Teilpunkten & Fallen' },
-  { view: 'trace', icon: 'braces', title: 'Schreibtischtest', desc: 'Pseudocode Zeile für Zeile durchspielen' },
-  { view: 'examtasks', icon: 'file-text', title: 'Prüfungsaufgaben', desc: 'Mehrteilige Aufgaben mit Musterlösung' },
-  { view: 'exam', icon: 'clipboard', title: 'Prüfungssimulation', desc: '90 Min, 4 Bereiche, gegen 100 P' },
-  { view: 'operators', icon: 'target', title: 'Operatoren', desc: 'Was jeder Operator für volle Punkte will' },
-  { view: 'oop', icon: 'code', title: 'OOP-Grundlagen', desc: 'Klassen & Objekte mit Code (Pseudo/Java/Python)' },
-  { view: 'stats', icon: 'bar-chart', title: 'Statistik', desc: 'Heatmap, Verlauf, Noten-Verteilung' },
+  { view: 'flashcards', icon: 'cards', title: 'Karteikarten', desc: 'Fällige Karten, Spaced Repetition, interleaved', tone: 'indigo' },
+  { view: 'quiz', icon: 'help', title: 'Themen-Quiz', desc: 'Frei gewählte Themen, Sofort-Feedback', tone: 'blue' },
+  { view: 'weak', icon: 'activity', title: 'Schwachstellen', desc: 'Gezielt deine schwächsten Karten üben', tone: 'rose' },
+  { view: 'calc', icon: 'calculator', title: 'Rechnen', desc: 'Rechenwege mit Teilpunkten & Fallen', tone: 'amber' },
+  { view: 'trace', icon: 'braces', title: 'Schreibtischtest', desc: 'Pseudocode Zeile für Zeile durchspielen', tone: 'purple' },
+  { view: 'examtasks', icon: 'file-text', title: 'Prüfungsaufgaben', desc: 'Mehrteilige Aufgaben mit Musterlösung', tone: 'teal' },
+  { view: 'exam', icon: 'clipboard', title: 'Prüfungssimulation', desc: '90 Min, 4 Bereiche, gegen 100 P', tone: 'orange' },
+  { view: 'operators', icon: 'target', title: 'Operatoren', desc: 'Was jeder Operator für volle Punkte will', tone: 'cyan' },
+  { view: 'oop', icon: 'code', title: 'OOP-Grundlagen', desc: 'Klassen & Objekte mit Code (Pseudo/Java/Python)', tone: 'purple' },
+  { view: 'stats', icon: 'bar-chart', title: 'Statistik', desc: 'Heatmap, Verlauf, Noten-Verteilung', tone: 'green' },
 ]
 
 const TOOLS: ModeDef[] = [
-  { view: 'reference', icon: 'search', title: 'Nachschlagen', desc: 'Suche, Formeln, Lesezeichen' },
-  { view: 'mycards', icon: 'card-plus', title: 'Meine Karten', desc: 'Eigene Karteikarten anlegen' },
-  { view: 'settings', icon: 'gear', title: 'Einstellungen', desc: 'Design, Schrift, Backup' },
+  { view: 'reference', icon: 'search', title: 'Nachschlagen', desc: 'Suche, Formeln, Lesezeichen', tone: 'cyan' },
+  { view: 'mycards', icon: 'card-plus', title: 'Meine Karten', desc: 'Eigene Karteikarten anlegen', tone: 'teal' },
+  { view: 'settings', icon: 'gear', title: 'Einstellungen', desc: 'Design, Schrift, Backup', tone: 'indigo' },
 ]
 
 const INTERACTIVE: ModeDef[] = [
-  { view: 'chmod', icon: 'lock', title: 'chmod-Rechte', desc: 'rwx-Matrix klicken → Oktalzahl live' },
-  { view: 'subnet', icon: 'network', title: 'Subnetting', desc: 'Netz/Broadcast/Hosts mit Bit-Leiste' },
-  { view: 'baseconv', icon: 'hash', title: 'Zahlensysteme', desc: 'Bits klicken → Dez/Hex/Bin live' },
-  { view: 'nutzwert', icon: 'scale', title: 'Nutzwertanalyse', desc: 'Bewertungsmatrix rechnen, Sieger finden' },
-  { view: 'netzplan', icon: 'git-graph', title: 'Netzplan', desc: 'FAZ/FEZ/SAZ/SEZ + kritischer Pfad' },
-  { view: 'match', icon: 'link', title: 'Zuordnung', desc: 'Ports, Cloud, Backup, Krypto, IPv6' },
-  { view: 'symbols', icon: 'shapes', title: 'UML/BPMN-Symbole', desc: 'Gezeichnetes Symbol → Bedeutung' },
-  { view: 'order', icon: 'list', title: 'Reihenfolge', desc: 'OSI, DORA, Handshake, Phasen sortieren' },
-  { view: 'codequiz', icon: 'code', title: 'Was gibt der Code aus?', desc: 'Ausgabe vorhersagen (Pseudo/Java/Python)' },
-  { view: 'bugfind', icon: 'alert', title: 'Fehler finden', desc: 'Syntax-, Laufzeit- oder Logikfehler erkennen' },
-  { view: 'ipv6', icon: 'network', title: 'IPv6 kürzen', desc: 'Volle Adresse → gekürzte Form (::)' },
-  { view: 'logic', icon: 'help', title: 'Bedingungen / Logik', desc: 'UND/ODER/NICHT auswerten: wahr oder falsch?' },
+  { view: 'chmod', icon: 'lock', title: 'chmod-Rechte', desc: 'rwx-Matrix klicken → Oktalzahl live', tone: 'amber' },
+  { view: 'subnet', icon: 'network', title: 'Subnetting', desc: 'Netz/Broadcast/Hosts mit Bit-Leiste', tone: 'blue' },
+  { view: 'baseconv', icon: 'hash', title: 'Zahlensysteme', desc: 'Bits klicken → Dez/Hex/Bin live', tone: 'cyan' },
+  { view: 'nutzwert', icon: 'scale', title: 'Nutzwertanalyse', desc: 'Bewertungsmatrix rechnen, Sieger finden', tone: 'green' },
+  { view: 'netzplan', icon: 'git-graph', title: 'Netzplan', desc: 'FAZ/FEZ/SAZ/SEZ + kritischer Pfad', tone: 'teal' },
+  { view: 'match', icon: 'link', title: 'Zuordnung', desc: 'Ports, Cloud, Backup, Krypto, IPv6', tone: 'purple' },
+  { view: 'symbols', icon: 'shapes', title: 'UML/PAP-Symbole', desc: 'Gezeichnetes Symbol → Bedeutung', tone: 'rose' },
+  { view: 'order', icon: 'list', title: 'Reihenfolge', desc: 'OSI, DORA, Handshake, Phasen sortieren', tone: 'indigo' },
+  { view: 'codequiz', icon: 'code', title: 'Was gibt der Code aus?', desc: 'Ausgabe vorhersagen (Pseudo/Java/Python)', tone: 'blue' },
+  { view: 'bugfind', icon: 'alert', title: 'Fehler finden', desc: 'Syntax-, Laufzeit- oder Logikfehler erkennen', tone: 'orange' },
+  { view: 'ipv6', icon: 'network', title: 'IPv6 kürzen', desc: 'Volle Adresse → gekürzte Form (::)', tone: 'cyan' },
+  { view: 'logic', icon: 'help', title: 'Bedingungen / Logik', desc: 'UND/ODER/NICHT auswerten: wahr oder falsch?', tone: 'purple' },
 ]
+
+// Farbton je Thema — färbt die Mastery-Balken, damit Themen wiedererkennbar werden.
+const TOPIC_TONE: Record<string, string> = {
+  hardware: 'amber', netzwerke: 'blue', wirtschaftlichkeit: 'green', projektmanagement: 'teal',
+  'it-sicherheit': 'rose', datenschutz: 'purple', betriebssysteme: 'orange',
+  softwareentwicklung: 'indigo', 'qs-vertraege': 'cyan', kommunikation: 'purple',
+  'neu-2025': 'green', multimedia: 'rose', internet: 'blue', 'software-lizenzen': 'amber',
+}
 
 export function Dashboard({ go }: { go: (v: View) => void }) {
   const { states, dueTotal, streak, coreOnly, setCoreOnly, lastExport, today } = useAppState()
@@ -138,7 +147,7 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
 
       <section className="modes">
         {MODES.map((m) => (
-          <button key={m.view} className="mode-card" onClick={() => go(m.view)}>
+          <button key={m.view} className={`mode-card tone-${m.tone}`} onClick={() => go(m.view)}>
             <span className="mode-icon" aria-hidden="true"><Icon name={m.icon} size={22} /></span>
             <span className="mode-title">{m.title}</span>
             <span className="mode-desc">{m.desc}</span>
@@ -149,7 +158,7 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
       <h2 className="section-title"><Icon name="grid" size={17} /> Interaktive Übungen</h2>
       <section className="modes">
         {INTERACTIVE.map((m) => (
-          <button key={m.view} className="mode-card interactive" onClick={() => go(m.view)}>
+          <button key={m.view} className={`mode-card interactive tone-${m.tone}`} onClick={() => go(m.view)}>
             <span className="mode-icon" aria-hidden="true"><Icon name={m.icon} size={22} /></span>
             <span className="mode-title">{m.title}</span>
             <span className="mode-desc">{m.desc}</span>
@@ -160,7 +169,7 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
       <h2 className="section-title"><Icon name="wrench" size={17} /> Werkzeuge</h2>
       <section className="modes">
         {TOOLS.map((m) => (
-          <button key={m.view} className="mode-card" onClick={() => go(m.view)}>
+          <button key={m.view} className={`mode-card tone-${m.tone}`} onClick={() => go(m.view)}>
             <span className="mode-icon" aria-hidden="true"><Icon name={m.icon} size={22} /></span>
             <span className="mode-title">{m.title}</span>
             <span className="mode-desc">{m.desc}</span>
@@ -173,7 +182,7 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
         <p className="muted small">Gewichtet nach Prüfungshäufigkeit (Heuristik). Rot = schwach, priorisiert.</p>
         <ul className="mastery-list">
           {masteries.map((m) => (
-            <li key={m.topic.id} className={m.weak && m.seen > 0 ? 'weak' : ''}>
+            <li key={m.topic.id} className={`tone-${TOPIC_TONE[m.topic.id] ?? 'indigo'} ${m.weak && m.seen > 0 ? 'weak' : ''}`}>
               <div className="mastery-top">
                 <span className="mastery-name">{m.topic.label}</span>
                 <span className="mastery-num muted small">

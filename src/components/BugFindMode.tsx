@@ -4,6 +4,8 @@ import { BUG_QUIZ, type ErrorType } from '../data/bug-quiz'
 import { shuffle } from '../lib/scheduler'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { Code } from './Code'
+import { useGuide } from './DrillGuide'
 
 // "Fehler finden" — Fehlerart (Syntax/Laufzeit/Logik) eines Code-Bugs erkennen.
 const TYPES: [ErrorType, string][] = [
@@ -14,6 +16,7 @@ const TYPES: [ErrorType, string][] = [
 
 export function BugFindMode({ onExit }: { onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('bugfind')
   const [items] = useState(() => shuffle(BUG_QUIZ))
   const [idx, setIdx] = useState(0)
   const [chosen, setChosen] = useState<ErrorType | null>(null)
@@ -50,20 +53,20 @@ export function BugFindMode({ onExit }: { onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><Pill>Fehler finden</Pill></div>
+        <div className="study-meta"><Pill>Fehler finden</Pill>{guide.button}</div>
         <span className="counter">{score.correct}/{score.total} ✓</span>
       </header>
+      {guide.panel}
 
       <p className="q">Welche Fehlerart steckt in diesem Code?</p>
 
-      <div className="code-lines" aria-label="Code">
-        {item.code.split('\n').map((line, i) => (
-          <div key={i} className={`code-line ${checked && i + 1 === item.buggyLine ? 'bug' : ''}`}>
-            <span className="ln">{i + 1}</span>
-            <span className="lc">{line || ' '}</span>
-          </div>
-        ))}
-      </div>
+      <Code
+        code={item.code}
+        lang="java"
+        lines
+        markLine={checked ? item.buggyLine : undefined}
+        label="Code"
+      />
 
       <div className="type-choice" role="group" aria-label="Fehlerart">
         {TYPES.map(([t, label]) => (

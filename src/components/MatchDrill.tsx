@@ -5,12 +5,14 @@ import { useAppState } from '../state/AppState'
 import { shuffle } from '../lib/scheduler'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { useGuide } from './DrillGuide'
 
 // Zuordnungs-Drill: erst einen Begriff links wählen, dann den passenden Wert rechts.
 // Tap-to-Pair statt HTML5-Drag → touch- und tastaturfreundlich.
 
 function Game({ deck, onExit }: { deck: MatchDeck; onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('match')
   const rights = useMemo(
     () => shuffle(deck.pairs.map((p, li) => ({ right: p.right, li }))),
     [deck],
@@ -54,9 +56,10 @@ function Game({ deck, onExit }: { deck: MatchDeck; onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><span className="pill">{deck.title}</span></div>
+        <div className="study-meta"><span className="pill">{deck.title}</span>{guide.button}</div>
         <span className="counter">{matched.size}/{deck.pairs.length}</span>
       </header>
+      {guide.panel}
       <p className="muted small">{deck.instruction} Fehlversuche: {mistakes}</p>
 
       <div className="match-cols">

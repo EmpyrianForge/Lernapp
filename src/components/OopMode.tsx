@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { OOP_LESSONS, type OopLesson } from '../data/oop-lessons'
 import { MarkdownText } from './markdown'
 import { Pill } from './ui'
+import { Code } from './Code'
 
 // OOP-Kurs mit Erklärung, Merksätzen und Code in drei Formen (Pseudocode/Java/Python).
 type Lang = 'pseudocode' | 'java' | 'python'
@@ -57,7 +58,7 @@ function LessonView({ idx, onExit, onNav }: { idx: number; onExit: () => void; o
         ))}
       </div>
 
-      <pre className="code-block" aria-label={`Code (${lang})`}><code>{lesson[lang]}</code></pre>
+      <Code code={lesson[lang]} lang={lang} label={`Code (${lang})`} />
 
       {lesson.output && (
         <div className="code-output">

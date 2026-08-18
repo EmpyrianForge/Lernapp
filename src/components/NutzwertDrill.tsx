@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useAppState } from '../state/AppState'
 import { shuffle } from '../lib/scheduler'
 import { Icon } from './Icon'
+import { useGuide } from './DrillGuide'
 
 // Nutzwertanalyse-Trainer: gewichtete Bewertungsmatrix ist gegeben, der Lerner berechnet
 // die Nutzwerte je Alternative und benennt den Sieger. Häufigste „große" AP1-Aufgabe
@@ -49,6 +50,7 @@ const parse = (s: string) => parseFloat(s.replace(',', '.').trim())
 
 export function NutzwertDrill({ onExit }: { onExit: () => void }) {
   const { recordDrill } = useAppState()
+  const guide = useGuide('nutzwert')
   const [sc, setSc] = useState<Scenario>(genScenario)
   const [ansA, setAnsA] = useState('')
   const [ansB, setAnsB] = useState('')
@@ -79,9 +81,10 @@ export function NutzwertDrill({ onExit }: { onExit: () => void }) {
     <section className="panel study">
       <header className="study-head">
         <button className="btn ghost" onClick={onExit}>← Beenden</button>
-        <div className="study-meta"><span className="pill">Nutzwertanalyse</span></div>
+        <div className="study-meta"><span className="pill">Nutzwertanalyse</span>{guide.button}</div>
         <span className="counter">{score.correct}/{score.total} ✓</span>
       </header>
+      {guide.panel}
 
       <div className="card">
         <p className="q">Berechne die Nutzwerte beider Alternativen und benenne den Sieger. (Bewertung 1–10, höher = besser)</p>
