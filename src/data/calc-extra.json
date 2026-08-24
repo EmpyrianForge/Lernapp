@@ -1179,5 +1179,1687 @@
       "Aufgabe fragt Maximalzeit (alle Kombinationen); der statistische Mittelwert wäre die Hälfte"
     ],
     "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "calc--in-einem-buerogebaeude-soll-ein-arbeitsplatz-an-den-etagenverteiler",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "In einem Bürogebäude soll ein Arbeitsplatz an den Etagenverteiler angeschlossen werden. Die fest zu verlegende Trasse setzt sich zusammen aus 12 m im Steigschacht, 63 m auf der Etagentrasse, 3 m Abgang in der Wand zur Netzwerkdose und 2,5 m Führung innerhalb des Verteilerschranks. Auf die fest verlegte Strecke wird ein Verlegezuschlag von 5 % für Schlaufen und Reserve gerechnet. Im Verteiler wird ein 3-m-Rangierkabel eingesetzt, am Arbeitsplatz ein 5-m-Anschlusskabel. Prüfen Sie rechnerisch, ob die Grenzwerte für Permanent Link und Channel eingehalten werden, und geben Sie die jeweilige Reserve an.",
+    "solutionSteps": [
+      "Fest verlegte Trassenlänge aufsummieren: 12 m + 63 m + 3 m + 2,5 m = 80,5 m",
+      "Verlegezuschlag von 5 % aufschlagen: 80,5 m x 1,05 = 84,525 m, gerundet 84,53 m - das ist der Permanent Link (fest verlegtes Installationskabel mit Massivleiter).",
+      "Permanent Link mit dem Grenzwert 90 m vergleichen: 84,53 m < 90 m -> eingehalten; Reserve = 90 m - 84,53 m = 5,47 m",
+      "Channel berechnen (Permanent Link + alle Rangier-/Anschlusskabel): 84,53 m + 3 m + 5 m = 92,53 m",
+      "Channel mit dem Grenzwert 100 m vergleichen: 92,53 m < 100 m -> eingehalten; Reserve = 100 m - 92,53 m = 7,47 m. Ergebnis: Die Strecke ist normgerecht, es bleiben knapp 7,5 m Reserve für längere Patchkabel."
+    ],
+    "answer": "Permanent Link 84,53 m (Grenzwert 90 m, Reserve 5,47 m) und Channel 92,53 m (Grenzwert 100 m, Reserve 7,47 m) - beide Grenzwerte werden eingehalten.",
+    "unit": "luecke-verkabelung",
+    "rubric": [
+      {
+        "criterion": "Fest verlegte Trassenlänge korrekt aufsummiert (80,5 m)",
+        "points": 2
+      },
+      {
+        "criterion": "Verlegezuschlag von 5 % korrekt angewendet, Permanent Link = 84,53 m",
+        "points": 2
+      },
+      {
+        "criterion": "Vergleich mit dem Permanent-Link-Grenzwert 90 m inkl. Aussage und Reserve (5,47 m)",
+        "points": 2
+      },
+      {
+        "criterion": "Channel inkl. beider Patchkabel berechnet (92,53 m) und mit 100 m verglichen (Reserve 7,47 m)",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Die Patchkabel fälschlich in den Permanent Link einrechnen - dieser umfasst nur die fest verlegte Strecke.",
+      "Den Verlegezuschlag vergessen oder erst auf den Channel statt auf die fest verlegte Strecke anwenden.",
+      "Die 100-m-Grenze auf das Installationskabel beziehen; für den festen Teil gelten nur 90 m.",
+      "Annehmen, 90 m + 5 m + 5 m sei starr vorgeschrieben - entscheidend sind die beiden Obergrenzen 90 m und 100 m.",
+      "Die Führungslänge im Schrank oder den Abgang in der Wand nicht mitzählen."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--fuer-eine-etage-mit-46-arbeitsplaetzen-wird-ein-etagenverteiler",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 10,
+    "prompt": "Für eine Etage mit 46 Arbeitsplätzen wird ein Etagenverteiler geplant. Jeder Arbeitsplatz erhält eine Doppeldose mit 2 Ports, jeder Port wird einzeln bis in den Verteiler verkabelt. Eingesetzt werden Patchfelder mit je 24 Ports (1 HE), unter jedem Patchfeld wird ein Kabelführungspanel (1 HE) montiert. Für die Anbindung werden Switches mit je 48 Ports (1 HE) beschafft. Die mittlere Kabellänge je Strecke beträgt 45 m; auf den Gesamtbedarf werden 10 % Verschnitt aufgeschlagen. Das Installationskabel wird auf Trommeln zu 500 m geliefert. Berechnen Sie die Portanzahl, die Anzahl der Patchfelder, die benötigten Höheneinheiten und die Anzahl der Kabeltrommeln.",
+    "solutionSteps": [
+      "Portanzahl: 46 Arbeitsplätze x 2 Ports = 92 Ports",
+      "Patchfelder: 92 Ports / 24 Ports je Feld = 3,83 -> aufrunden auf 4 Patchfelder (4 x 24 = 96 Ports, davon 4 als Reserve frei).",
+      "Höheneinheiten Patchfelder und Kabelführung: 4 x 1 HE + 4 x 1 HE = 8 HE",
+      "Switches: 92 Ports / 48 Ports je Switch = 1,92 -> aufrunden auf 2 Switches = 2 x 1 HE = 2 HE",
+      "Höheneinheiten gesamt: 8 HE + 2 HE = 10 HE (zuzüglich Reserve für PDU, USV und spätere Erweiterung)",
+      "Kabelbedarf netto: 92 Strecken x 45 m = 4.140 m",
+      "Kabelbedarf brutto mit 10 % Verschnitt: 4.140 m x 1,10 = 4.554 m",
+      "Trommeln: 4.554 m / 500 m = 9,108 -> aufrunden auf 10 Trommeln (10 x 500 m = 5.000 m, verbleibende Reserve 446 m)."
+    ],
+    "answer": "92 Ports, 4 Patchfelder, 10 HE (4 Patchfelder + 4 Kabelführungspanels + 2 Switches), Kabelbedarf 4.554 m brutto = 10 Kabeltrommeln zu 500 m.",
+    "unit": "luecke-verkabelung",
+    "rubric": [
+      {
+        "criterion": "Portanzahl aus Arbeitsplätzen und Doppeldosen korrekt ermittelt (92 Ports)",
+        "points": 2
+      },
+      {
+        "criterion": "Anzahl Patchfelder korrekt mit Aufrundung bestimmt (3,83 -> 4 Stück)",
+        "points": 2
+      },
+      {
+        "criterion": "Höheneinheiten vollständig aufaddiert (4 + 4 + 2 = 10 HE), Kabelführungspanels und 2 Switches berücksichtigt",
+        "points": 2
+      },
+      {
+        "criterion": "Kabelbedarf netto 4.140 m und brutto mit 10 % Verschnitt 4.554 m korrekt berechnet",
+        "points": 2
+      },
+      {
+        "criterion": "Anzahl Kabeltrommeln korrekt mit Aufrundung bestimmt (9,108 -> 10 Trommeln)",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Bei Patchfeldern, Switches und Trommeln mathematisch runden statt immer aufrunden - Teilstücke sind nicht beschaffbar.",
+      "Die Doppeldose als einen Port zählen und dadurch nur 46 statt 92 Strecken ansetzen.",
+      "Die Kabelführungspanels bei der HE-Berechnung vergessen.",
+      "Den Verschnitt erst auf die Trommelanzahl statt auf die Kabellänge aufschlagen.",
+      "Die Schrankgrösse exakt auf 10 HE auslegen, ohne Reserve für PDU, USV und spätere Erweiterungen einzuplanen."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-unternehmen-hat-den-adressblock-192-168-50-0",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 12,
+    "prompt": "Ein Unternehmen hat den Adressblock 192.168.50.0/24 zur Verfügung und soll ihn per VLSM auf folgende Bereiche aufteilen: Vertrieb 60 Hosts, Produktion 28 Hosts, Verwaltung 12 Hosts, WAN-Kopplung zum Aussenstandort 2 Hosts. Bestimmen Sie für jeden Bereich Präfixlänge, Netz-ID, erste und letzte Hostadresse sowie die Broadcast-Adresse. Geben Sie ausserdem an, welcher Adressbereich als Reserve frei bleibt, und vergleichen Sie den Adressverbrauch mit einer Aufteilung in gleich große Subnetze.",
+    "solutionSteps": [
+      "Bedarfe absteigend sortieren: Vertrieb 60, Produktion 28, Verwaltung 12, WAN 2.",
+      "Präfixe aus dem Bedarf ableiten (2^h - 2 >= Bedarf): 60 -> 2^6-2 = 62 >= 60 -> /26 (64 Adressen); 28 -> 2^5-2 = 30 >= 28 -> /27 (32 Adressen); 12 -> 2^4-2 = 14 >= 12 -> /28 (16 Adressen); 2 -> 2^2-2 = 2 -> /30 (4 Adressen).",
+      "Vertrieb (größter Bedarf zuerst) ab .0: 192.168.50.0/26, Maske 255.255.255.192, Hosts 192.168.50.1 bis 192.168.50.62, Broadcast 192.168.50.63.",
+      "Produktion ab der nächsten freien Adresse .64 (64 ist Vielfaches von 32, Blockgrenze eingehalten): 192.168.50.64/27, Maske 255.255.255.224, Hosts 192.168.50.65 bis 192.168.50.94, Broadcast 192.168.50.95.",
+      "Verwaltung ab .96 (96 ist Vielfaches von 16): 192.168.50.96/28, Maske 255.255.255.240, Hosts 192.168.50.97 bis 192.168.50.110, Broadcast 192.168.50.111.",
+      "WAN ab .112 (112 ist Vielfaches von 4): 192.168.50.112/30, Maske 255.255.255.252, Hosts 192.168.50.113 und 192.168.50.114, Broadcast 192.168.50.115.",
+      "Verbrauch: 64 + 32 + 16 + 4 = 116 Adressen. Frei bleiben 256 - 116 = 140 Adressen, also der Bereich 192.168.50.116 bis 192.168.50.255.",
+      "Vergleich mit fester Maskenlänge: Alle vier Subnetze müssten so groß sein wie der größte Bedarf, also 4 x /26 = 4 x 64 = 256 Adressen. Das gesamte /24 wäre aufgebraucht und es bliebe keine Reserve. VLSM spart hier 140 Adressen."
+    ],
+    "answer": "Vertrieb 192.168.50.0/26 (Hosts .1-.62, Broadcast .63); Produktion 192.168.50.64/27 (Hosts .65-.94, Broadcast .95); Verwaltung 192.168.50.96/28 (Hosts .97-.110, Broadcast .111); WAN 192.168.50.112/30 (Hosts .113-.114, Broadcast .115). Verbraucht: 116 Adressen, frei als Reserve: 192.168.50.116 bis 192.168.50.255 (140 Adressen). Bei fester Maskenlänge wären 4 x /26 = 256 Adressen nötig, also der komplette Block ohne Reserve.",
+    "unit": "luecke-vlsm",
+    "rubric": [
+      {
+        "criterion": "Bedarfe absteigend sortiert und je Bereich die korrekte Präfixlänge /26, /27, /28, /30 aus 2^h - 2 >= Bedarf hergeleitet",
+        "points": 4
+      },
+      {
+        "criterion": "Netz-IDs lückenlos und auf gültigen Blockgrenzen vergeben (.0, .64, .96, .112)",
+        "points": 3
+      },
+      {
+        "criterion": "Erste/letzte Hostadresse und Broadcast je Subnetz korrekt angegeben",
+        "points": 3
+      },
+      {
+        "criterion": "Freien Reservebereich 192.168.50.116 bis 192.168.50.255 (140 Adressen) korrekt bestimmt",
+        "points": 1
+      },
+      {
+        "criterion": "Vergleich mit fester Maskenlänge (4 x /26 = 256 Adressen, keine Reserve) korrekt begründet",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die 2 nicht nutzbaren Adressen (Netz-ID und Broadcast) vergessen: Bei 30 Hosts reicht /27 gerade noch (30 nutzbar), bei 31 Hosts nicht mehr.",
+      "Mit dem kleinsten Bedarf zu beginnen - dann liegen größere Blöcke später nicht mehr auf gültigen Blockgrenzen.",
+      "Blockgrenze missachten, z. B. ein /27 bei .70 statt bei .64 beginnen lassen.",
+      "Broadcast-Adresse als Hostadresse mitzählen (z. B. .63 dem Vertrieb als Host geben).",
+      "Für die WAN-Strecke unnötig ein /29 oder größer vergeben statt /30."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-router-hat-acht-einzelrouten-in-seiner-tabelle-10",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "peripheral": true,
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Ein Router hat acht Einzelrouten in seiner Tabelle: 10.20.16.0/24, 10.20.17.0/24, 10.20.18.0/24, 10.20.19.0/24, 10.20.20.0/24, 10.20.21.0/24, 10.20.22.0/24 und 10.20.23.0/24. Fassen Sie diese Netze zu einer einzigen Sammelroute zusammen. Geben Sie Präfixlänge, Subnetzmaske, Netz-ID, Broadcast-Adresse und die Anzahl nutzbarer Hostadressen des zusammengefassten Blocks an.",
+    "solutionSteps": [
+      "Anzahl der Netze bestimmen: 8 aufeinanderfolgende /24-Netze, 8 = 2^3, also k = 3 Bits.",
+      "Neues Präfix = altes Präfix - k = 24 - 3 = /21.",
+      "Blockgrenze prüfen: Die Blockgrösse im dritten Oktett beträgt 2^3 = 8. Die erste Netznummer 16 ist ohne Rest durch 8 teilbar (16 : 8 = 2), die Zusammenfassung ist also zulässig.",
+      "Subnetzmaske zu /21: Das dritte Oktett lautet binär 11111000 -> 128+64+32+16+8 = 248, also 255.255.248.0.",
+      "Netz-ID der Sammelroute: 10.20.16.0/21.",
+      "Letztes enthaltenes Netz ist 10.20.23.0/24, damit ist die Broadcast-Adresse des Blocks 10.20.23.255.",
+      "Hostbits: 32 - 21 = 11 -> 2^11 = 2048 Adressen, davon 2048 - 2 = 2046 nutzbare Hostadressen.",
+      "Ergebnis der Zusammenfassung: statt 8 Einträgen nur noch 1 Eintrag in der Routingtabelle."
+    ],
+    "answer": "Sammelroute 10.20.16.0/21, Subnetzmaske 255.255.248.0, Netz-ID 10.20.16.0, Broadcast 10.20.23.255, 2046 nutzbare Hostadressen (8 Routen werden zu 1 Eintrag).",
+    "unit": "luecke-vlsm",
+    "rubric": [
+      {
+        "criterion": "Anzahl der Netze als Zweierpotenz erkannt (8 = 2^3, also 3 Bits)",
+        "points": 1
+      },
+      {
+        "criterion": "Präfix korrekt auf /21 verkürzt",
+        "points": 2
+      },
+      {
+        "criterion": "Subnetzmaske 255.255.248.0 korrekt hergeleitet",
+        "points": 1
+      },
+      {
+        "criterion": "Netz-ID 10.20.16.0 angegeben und Blockgrenze geprüft (16 teilbar durch 8)",
+        "points": 2
+      },
+      {
+        "criterion": "Broadcast 10.20.23.255 und 2046 nutzbare Hostadressen korrekt berechnet",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Präfix in die falsche Richtung ändern: Beim Zusammenfassen wird das Präfix KUERZER (/21), nicht länger.",
+      "Die Blockgrenze nicht prüfen - z. B. 10.20.18.0 bis 10.20.25.0 lassen sich trotz 8 Netzen nicht zu einem /21 zusammenfassen, weil 18 nicht durch 8 teilbar ist.",
+      "Statt der Zweierpotenz einfach die Netzanzahl abziehen (24 - 8 statt 24 - 3).",
+      "Bei der Hostanzahl nur das letzte Oktett betrachten (254 statt 2046) und die 2 nicht nutzbaren Adressen vergessen."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--im-2-4-ghz-band-liegt-die-mittenfrequenz-von",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 10,
+    "prompt": "Im 2,4-GHz-Band liegt die Mittenfrequenz von Kanal 1 bei 2412 MHz, der Abstand zwischen zwei benachbarten Kanalnummern beträgt 5 MHz. Ein Kanal belegt jeweils 20 MHz Bandbreite (symmetrisch um die Mittenfrequenz).\na) Berechnen Sie die Mittenfrequenzen von Kanal 6 und Kanal 11.\nb) Weisen Sie rechnerisch nach, dass sich Kanal 1 und Kanal 6 nicht überlappen, Kanal 1 und Kanal 3 dagegen schon.\nc) Begründen Sie mit dem benötigten Mindestabstand, wie viele überlappungsfreie Kanäle sich im Bereich der Kanäle 1 bis 13 sinnvoll nutzen lassen.\nd) In einem Gebäude werden 9 Access Points im 2,4-GHz-Band betrieben. Berechnen Sie, wie viele APs sich rechnerisch denselben Kanal teilen müssen.",
+    "solutionSteps": [
+      "a) Allgemein gilt: f(n) = 2412 MHz + (n - 1) x 5 MHz",
+      "a) Kanal 6: f = 2412 MHz + 5 x 5 MHz = 2412 MHz + 25 MHz = 2437 MHz",
+      "a) Kanal 11: f = 2412 MHz + 10 x 5 MHz = 2412 MHz + 50 MHz = 2462 MHz",
+      "b) Belegter Bereich = Mittenfrequenz +/- 10 MHz. Kanal 1: 2402-2422 MHz, Kanal 6: 2427-2447 MHz -> kein gemeinsamer Frequenzbereich, also überlappungsfrei (Abstand der Mittenfrequenzen 25 MHz > 20 MHz Kanalbreite).",
+      "b) Kanal 3: f = 2412 MHz + 2 x 5 MHz = 2422 MHz, belegter Bereich 2412-2432 MHz. Überschneidung mit Kanal 1 (2402-2422 MHz) im Bereich 2412-2422 MHz, also 10 MHz Überlappung -> gegenseitige Störung.",
+      "c) Erforderlicher Mindestabstand der Mittenfrequenzen = Kanalbandbreite = 20 MHz, das entspricht 20 MHz / 5 MHz = 4 Kanalnummern. Bei genau 4 Kanalnummern Abstand (1/5/9/13) grenzen die Kanäle unmittelbar aneinander; wegen der Nebenaussendungen realer Sender wählt man in der Praxis 5 Kanalnummern (= 25 MHz) als Sicherheitsabstand.",
+      "c) Mit 5er-Abstand passen in die Kanäle 1 bis 13 genau die drei Kanäle 1, 6 und 11 (2412 / 2437 / 2462 MHz); ein vierter Kanal wäre Kanal 16 und liegt ausserhalb des in Deutschland zugelassenen Bereichs. Ergebnis: 3 überlappungsfrei nutzbare Kanäle.",
+      "d) 9 APs / 3 Kanäle = 3 APs pro Kanal; die Kanäle 1, 6 und 11 werden also je dreimal vergeben, und die APs mit gleichem Kanal müssen räumlich möglichst weit auseinander bzw. durch Wände oder Geschossdecken getrennt platziert werden."
+    ],
+    "answer": "a) Kanal 6 = 2437 MHz, Kanal 11 = 2462 MHz; b) Kanal 1 (2402-2422 MHz) und Kanal 6 (2427-2447 MHz) überlappen nicht, Kanal 1 und Kanal 3 (2412-2432 MHz) überlappen um 10 MHz; c) 3 überlappungsfreie Kanäle (1, 6, 11); d) 3 Access Points pro Kanal",
+    "unit": "luecke-wlan",
+    "rubric": [
+      {
+        "criterion": "Mittenfrequenzen von Kanal 6 (2437 MHz) und Kanal 11 (2462 MHz) korrekt berechnet",
+        "points": 2
+      },
+      {
+        "criterion": "Belegte Frequenzbereiche aus Mittenfrequenz +/- 10 MHz gebildet und Überlappungsfreiheit von 1/6 sowie Überlappung von 1/3 (10 MHz) nachgewiesen",
+        "points": 3
+      },
+      {
+        "criterion": "Mindestabstand von 20 MHz (= 4 Kanalnummern, praktisch 5 Kanalnummern) hergeleitet und daraus 3 nutzbare Kanäle (1, 6, 11) begründet",
+        "points": 3
+      },
+      {
+        "criterion": "Anzahl der APs pro Kanal korrekt berechnet (9 / 3 = 3) und Konsequenz für die Platzierung genannt",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Die Kanalbreite von 20 MHz nur einseitig statt symmetrisch (+/- 10 MHz) um die Mittenfrequenz ansetzen.",
+      "Mit (n) statt (n - 1) rechnen: Kanal 6 liegt 5 Schritte über Kanal 1, also +25 MHz und nicht +30 MHz.",
+      "Aus 13 Kanälen fälschlich 13 nutzbare Funkzellen ableiten - entscheidend ist der Abstand der Mittenfrequenzen, nicht die Kanalanzahl.",
+      "Co-Channel-Interferenz übersehen: APs auf demselben Kanal stören sich zwar nicht spektral, teilen sich aber über CSMA/CA die Sendezeit und damit die Datenrate."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-unternehmen-betreibt-25-arbeitsplatzrechner-mit-einer-durchschnittlichen-leistungsaufnahme",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Ein Unternehmen betreibt 25 Arbeitsplatzrechner mit einer durchschnittlichen Leistungsaufnahme von je 120 W. Die Rechner laufen an 220 Arbeitstagen im Jahr jeweils 8 Stunden. Der Strompreis beträgt 0,30 EUR/kWh. a) Berechnen Sie die jährlichen Stromkosten. b) Im Rahmen einer Green-IT-Massnahme werden die Geräte durch Modelle mit nur 65 W ersetzt. Berechnen Sie die neuen jährlichen Stromkosten und die jährliche Ersparnis.",
+    "solutionSteps": [
+      "Gesamtleistung alt: 25 x 120 W = 3000 W = 3 kW",
+      "Betriebsstunden pro Jahr: 220 Tage x 8 h/Tag = 1760 h",
+      "Energie alt: 3 kW x 1760 h = 5280 kWh",
+      "Kosten alt: 5280 kWh x 0,30 EUR/kWh = 1584,00 EUR",
+      "Gesamtleistung neu: 25 x 65 W = 1625 W = 1,625 kW",
+      "Energie neu: 1,625 kW x 1760 h = 2860 kWh",
+      "Kosten neu: 2860 kWh x 0,30 EUR/kWh = 858,00 EUR",
+      "Ersparnis: 1584,00 EUR - 858,00 EUR = 726,00 EUR pro Jahr (entspricht 2420 kWh)"
+    ],
+    "answer": "a) 1584,00 EUR pro Jahr; b) 858,00 EUR pro Jahr, Ersparnis 726,00 EUR pro Jahr (2420 kWh)",
+    "unit": "ausbau-hardware",
+    "rubric": [
+      {
+        "criterion": "Gesamtleistung korrekt ermittelt und von W in kW umgerechnet (3 kW bzw. 1,625 kW)",
+        "points": 1
+      },
+      {
+        "criterion": "Betriebsstunden pro Jahr korrekt berechnet (220 x 8 = 1760 h)",
+        "points": 1
+      },
+      {
+        "criterion": "Energiemenge alt korrekt (5280 kWh)",
+        "points": 1
+      },
+      {
+        "criterion": "Kosten alt korrekt (1584,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Energie und Kosten neu korrekt (2860 kWh bzw. 858,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Ersparnis korrekt ausgewiesen (726,00 EUR pro Jahr)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Umrechnung von Watt in Kilowatt vergessen (Faktor 1000) - Ergebnis um Faktor 1000 zu hoch",
+      "Nur einen Rechner statt aller 25 Geräte gerechnet",
+      "Mit 365 Tagen statt mit 220 Arbeitstagen gerechnet",
+      "Bei b) nur die neuen Kosten angegeben, aber die geforderte Ersparnis nicht gebildet"
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--eine-ssd-ist-ueber-sata-iii-mit-einer-bruttodatenrate",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Eine SSD ist über SATA III mit einer Bruttodatenrate von 6 Gbit/s angebunden. SATA verwendet die Leitungscodierung 8b/10b. a) Berechnen Sie die theoretisch maximale Netto-Datenrate in MByte/s. b) Wie lange dauert es rechnerisch mindestens, ein Image von 60 GByte zu übertragen? Rechnen Sie dezimal (1 GByte = 1000 MByte).",
+    "solutionSteps": [
+      "8b/10b bedeutet: für 8 Nutzbits werden 10 Bits übertragen, also sind nur 8/10 = 80 % der Bruttorate Nutzdaten",
+      "Netto-Bitrate: 6 Gbit/s x 0,8 = 4,8 Gbit/s",
+      "Umrechnung Bit in Byte: 4,8 Gbit/s : 8 = 0,6 GByte/s = 600 MByte/s",
+      "Datenmenge: 60 GByte = 60 000 MByte",
+      "Übertragungszeit: 60 000 MByte : 600 MByte/s = 100 s"
+    ],
+    "answer": "a) 4,8 Gbit/s netto = 600 MByte/s; b) 100 s (1 min 40 s)",
+    "unit": "ausbau-hardware",
+    "rubric": [
+      {
+        "criterion": "Overhead der 8b/10b-Codierung erkannt und angewendet (Faktor 0,8)",
+        "points": 2
+      },
+      {
+        "criterion": "Netto-Bitrate korrekt (4,8 Gbit/s)",
+        "points": 1
+      },
+      {
+        "criterion": "Umrechnung Bit in Byte korrekt durchgeführt (: 8 = 600 MByte/s)",
+        "points": 1
+      },
+      {
+        "criterion": "Datenmenge korrekt in dieselbe Einheit umgerechnet (60 GByte = 60 000 MByte)",
+        "points": 1
+      },
+      {
+        "criterion": "Übertragungszeit korrekt berechnet (100 s)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Bit und Byte verwechselt - 6 Gbit/s sind nicht 6 GByte/s",
+      "Den 8b/10b-Overhead von 20 % ignoriert und mit 750 MByte/s gerechnet",
+      "Statt mit 0,8 zu multiplizieren fälschlich durch 8 und zusätzlich durch 10 geteilt",
+      "Dezimal- und Binärpräfixe gemischt (GByte vs. GiB), dadurch abweichende Zeit"
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--eine-firma-erhaelt-das-netz-192-168-50-0",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 10,
+    "prompt": "Eine Firma erhält das Netz 192.168.50.0/24 und soll es mit variabler Subnetzmaske (VLSM) möglichst sparsam aufteilen. Benötigt werden: Verwaltung 60 Hosts, Produktion 28 Hosts, Gäste-WLAN 12 Hosts und eine Punkt-zu-Punkt-Verbindung zum Router mit 2 Hosts. Bestimmen Sie für jedes Teilnetz Präfixlänge, Subnetzmaske, Netzadresse und Broadcastadresse (Vergabe beginnend bei 192.168.50.0, größter Bedarf zuerst) und geben Sie an, wie viele Adressen danach noch frei sind.",
+    "solutionSteps": [
+      "Regel: nutzbare Hosts = 2^h - 2 (Netz- und Broadcastadresse entfallen). Bei VLSM wird mit dem größten Bedarf begonnen, damit keine Lücken entstehen.",
+      "Verwaltung, 60 Hosts: 2^6 - 2 = 62 >= 60, also 6 Hostbits -> Präfix /26, Maske 255.255.255.192, Blockgrösse 64. Netz 192.168.50.0/26, nutzbar .1 bis .62, Broadcast 192.168.50.63.",
+      "Produktion, 28 Hosts: 2^5 - 2 = 30 >= 28, also 5 Hostbits -> Präfix /27, Maske 255.255.255.224, Blockgrösse 32. Start hinter .63: Netz 192.168.50.64/27, nutzbar .65 bis .94, Broadcast 192.168.50.95.",
+      "Gäste-WLAN, 12 Hosts: 2^4 - 2 = 14 >= 12, also 4 Hostbits -> Präfix /28, Maske 255.255.255.240, Blockgrösse 16. Start hinter .95: Netz 192.168.50.96/28, nutzbar .97 bis .110, Broadcast 192.168.50.111.",
+      "Punkt-zu-Punkt, 2 Hosts: 2^2 - 2 = 2, also 2 Hostbits -> Präfix /30, Maske 255.255.255.252, Blockgrösse 4. Start hinter .111: Netz 192.168.50.112/30, nutzbar .113 und .114, Broadcast 192.168.50.115.",
+      "Verbrauchte Adressen: 64 + 32 + 16 + 4 = 116. Ein /24 hat 256 Adressen, frei bleiben 256 - 116 = 140 Adressen (Bereich 192.168.50.116 bis 192.168.50.255)."
+    ],
+    "answer": "Verwaltung 192.168.50.0/26 (255.255.255.192), Broadcast .63; Produktion 192.168.50.64/27 (255.255.255.224), Broadcast .95; Gäste-WLAN 192.168.50.96/28 (255.255.255.240), Broadcast .111; Punkt-zu-Punkt 192.168.50.112/30 (255.255.255.252), Broadcast .115. Es bleiben 140 Adressen (192.168.50.116 - 192.168.50.255) frei.",
+    "unit": "ausbau-netzwerke",
+    "rubric": [
+      {
+        "criterion": "Verwaltung korrekt: /26, Maske 255.255.255.192, Netz 192.168.50.0, Broadcast 192.168.50.63",
+        "points": 3
+      },
+      {
+        "criterion": "Produktion korrekt: /27, Maske 255.255.255.224, Netz 192.168.50.64, Broadcast 192.168.50.95",
+        "points": 3
+      },
+      {
+        "criterion": "Gäste-WLAN korrekt: /28, Maske 255.255.255.240, Netz 192.168.50.96, Broadcast 192.168.50.111",
+        "points": 2
+      },
+      {
+        "criterion": "Punkt-zu-Punkt korrekt (/30, Netz 192.168.50.112, Broadcast .115) und 140 freie Adressen ermittelt",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Netz- und Broadcastadresse nicht abziehen: ein /26 bietet 64 Adressen, aber nur 62 nutzbare Hosts. Für 60 Hosts reicht es gerade; ab 63 Hosts wäre /26 zu klein und man müsste auf /25 gehen.",
+      "Bei VLSM nicht mit dem größten Bedarf beginnen - dann liegen die Netzgrenzen nicht mehr auf gültigen Blockgrenzen und es entstehen Überschneidungen.",
+      "Ein Teilnetz nicht auf einem Vielfachen seiner eigenen Blockgrösse beginnen lassen (z. B. /27 ab .60 statt ab .64).",
+      "Für die Punkt-zu-Punkt-Strecke ein /29 verschwenden oder ein /31 bzw. /32 wählen: in der Prüfung ist /30 die erwartete Lösung, da dort genau zwei nutzbare Adressen entstehen."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--in-einem-besprechungsraum-wird-ein-access-point-nach-wi",
+    "topicId": "netzwerke",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "In einem Besprechungsraum wird ein Access Point nach Wi-Fi 5 (802.11ac) mit einer Bruttodatenrate von 867 Mbit/s eingesetzt. Durch Protokoll-Overhead und den Halbduplex-Betrieb stehen erfahrungsgemäß nur etwa 50 % als Nettodatenrate zur Verfügung. 15 Teilnehmer sollen gleichzeitig eine Videokonferenz mit je 25 Mbit/s nutzen. Berechnen Sie die Nettodatenrate, den Gesamtbedarf und die Auslastung und beurteilen Sie, ob der Access Point ausreicht.",
+    "solutionSteps": [
+      "Nettodatenrate: 867 Mbit/s * 0,5 = 433,5 Mbit/s.",
+      "Gesamtbedarf: 15 Teilnehmer * 25 Mbit/s = 375 Mbit/s.",
+      "Reserve: 433,5 Mbit/s - 375 Mbit/s = 58,5 Mbit/s.",
+      "Auslastung: 375 / 433,5 = 0,8650... = ca. 86,5 %.",
+      "Bewertung: Der Access Point reicht rechnerisch aus, ist mit rund 86,5 % aber sehr hoch ausgelastet; es bleibt kaum Reserve für weitere Geräte oder schlechtere Funkbedingungen (geringere Modulation bei großer Entfernung). Empfehlung: zweiten Access Point auf einem anderen Kanal einsetzen oder auf Wi-Fi 6/6E mit breiteren Kanälen aufrüsten."
+    ],
+    "answer": "Nettodatenrate 433,5 Mbit/s, Bedarf 375 Mbit/s, Reserve 58,5 Mbit/s, Auslastung ca. 86,5 % - der Access Point reicht knapp aus, sollte aber wegen fehlender Reserve ergänzt bzw. aufgerüstet werden.",
+    "unit": "ausbau-netzwerke",
+    "rubric": [
+      {
+        "criterion": "Nettodatenrate korrekt berechnet (867 Mbit/s * 0,5 = 433,5 Mbit/s)",
+        "points": 2
+      },
+      {
+        "criterion": "Gesamtbedarf korrekt berechnet (15 * 25 Mbit/s = 375 Mbit/s)",
+        "points": 2
+      },
+      {
+        "criterion": "Reserve bzw. Auslastung korrekt ermittelt (58,5 Mbit/s bzw. ca. 86,5 %)",
+        "points": 2
+      },
+      {
+        "criterion": "Nachvollziehbare Beurteilung: reicht knapp, aber zu geringe Reserve, mit sinnvoller Massnahme (zweiter AP / neuerer Standard)",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Mit der Bruttodatenrate von 867 Mbit/s rechnen und den Overhead ignorieren - im WLAN ist die Nettorate rund die Hälfte.",
+      "Annehmen, jeder Client bekomme die volle Datenrate: alle Teilnehmer einer Funkzelle teilen sich das Medium (CSMA/CA, Halbduplex).",
+      "Verwechslung von Mbit/s und MByte/s (Faktor 8) beim Umrechnen.",
+      "Fehlende Bewertung: die Rechnung allein genügt in der Prüfung nicht, es wird eine Aussage zur Reserve bzw. eine Massnahme erwartet."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--fuer-die-beschaffung-von-20-monitoren-liegen-zwei-angebote",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Für die Beschaffung von 20 Monitoren liegen zwei Angebote vor (alle Preise netto). Angebot A: Listenpreis 250,00 EUR je Stück, 10 % Mengenrabatt, 2 % Skonto bei Zahlung innerhalb von 10 Tagen, Versandkosten 120,00 EUR pauschal. Angebot B: Listenpreis 240,00 EUR je Stück, 5 % Mengenrabatt, 3 % Skonto, Lieferung frei Haus. Berechnen Sie für beide Angebote den Bezugspreis (Einstandspreis) für die gesamte Lieferung sowie je Stück unter Ausnutzung des Skontos und entscheiden Sie begründet, welches Angebot günstiger ist.",
+    "solutionSteps": [
+      "Angebot A - Listeneinkaufspreis: 250,00 EUR x 20 Stück = 5.000,00 EUR",
+      "Angebot A - Rabatt 10 %: 5.000,00 EUR x 0,10 = 500,00 EUR; Zieleinkaufspreis = 5.000,00 - 500,00 = 4.500,00 EUR",
+      "Angebot A - Skonto 2 %: 4.500,00 EUR x 0,02 = 90,00 EUR; Bareinkaufspreis = 4.500,00 - 90,00 = 4.410,00 EUR",
+      "Angebot A - Bezugskosten addieren: 4.410,00 + 120,00 = 4.530,00 EUR Bezugspreis gesamt",
+      "Angebot A - je Stück: 4.530,00 EUR / 20 = 226,50 EUR",
+      "Angebot B - Listeneinkaufspreis: 240,00 EUR x 20 Stück = 4.800,00 EUR",
+      "Angebot B - Rabatt 5 %: 4.800,00 EUR x 0,05 = 240,00 EUR; Zieleinkaufspreis = 4.800,00 - 240,00 = 4.560,00 EUR",
+      "Angebot B - Skonto 3 %: 4.560,00 EUR x 0,03 = 136,80 EUR; Bareinkaufspreis = 4.560,00 - 136,80 = 4.423,20 EUR",
+      "Angebot B - keine Bezugskosten (frei Haus): Bezugspreis gesamt = 4.423,20 EUR",
+      "Angebot B - je Stück: 4.423,20 EUR / 20 = 221,16 EUR",
+      "Vergleich: 4.530,00 - 4.423,20 = 106,80 EUR Differenz gesamt, entspricht 5,34 EUR je Stück zugunsten von Angebot B"
+    ],
+    "answer": "Angebot A: 4.530,00 EUR gesamt bzw. 226,50 EUR je Stück. Angebot B: 4.423,20 EUR gesamt bzw. 221,16 EUR je Stück. Angebot B ist um 106,80 EUR (5,34 EUR je Stück) günstiger und daher zu wählen.",
+    "unit": "ausbau-wirtschaftlichkeit",
+    "rubric": [
+      {
+        "criterion": "Angebot A: Listeneinkaufspreis und Rabattabzug korrekt (Zieleinkaufspreis 4.500,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Angebot A: Skonto korrekt vom Zieleinkaufspreis abgezogen (Bareinkaufspreis 4.410,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Angebot A: Bezugskosten korrekt addiert (Bezugspreis 4.530,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Angebot B: Rabatt und Skonto in richtiger Reihenfolge berechnet (4.423,20 EUR)",
+        "points": 2
+      },
+      {
+        "criterion": "Stückpreise beider Angebote korrekt ermittelt (226,50 EUR bzw. 221,16 EUR)",
+        "points": 2
+      },
+      {
+        "criterion": "Begründete Entscheidung für Angebot B unter Angabe der Differenz",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Skonto wird vom Listenpreis statt vom bereits rabattierten Zieleinkaufspreis berechnet - die Reihenfolge Rabatt vor Skonto ist zwingend.",
+      "Rabatt und Skonto werden addiert (z. B. 12 %) und in einem Schritt abgezogen; das ergibt einen zu niedrigen Wert, da Skonto nur auf den verminderten Betrag wirkt.",
+      "Bezugskosten werden fälschlich vor dem Skontoabzug addiert - auf Fracht- und Versandkosten wird kein Skonto gewährt.",
+      "Nur die Gesamtsummen werden verglichen, obwohl auch der Stückpreis gefordert ist.",
+      "Umsatzsteuer wird aufgeschlagen, obwohl die Angebote netto vorliegen und das Unternehmen vorsteuerabzugsberechtigt ist."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-unternehmen-benoetigt-zehn-notebooks-fuer-vier-jahre-und",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Ein Unternehmen benötigt zehn Notebooks für vier Jahre und vergleicht zwei Beschaffungsformen (alle Beträge netto). Kauf: Anschaffung 24.000,00 EUR, Wartungsvertrag 600,00 EUR pro Jahr, Verkaufserlös nach vier Jahren 2.000,00 EUR. Leasing: einmalige Sonderzahlung 2.000,00 EUR, monatliche Leasingrate 480,00 EUR über 48 Monate, Wartung im Vertrag enthalten, Rückgabe der Geräte am Laufzeitende. Ermitteln Sie die Gesamtkosten beider Varianten über vier Jahre und geben Sie eine begründete Empfehlung.",
+    "solutionSteps": [
+      "Kauf - Wartung über die Laufzeit: 600,00 EUR/Jahr x 4 Jahre = 2.400,00 EUR",
+      "Kauf - Ausgaben gesamt: 24.000,00 + 2.400,00 = 26.400,00 EUR",
+      "Kauf - Verkaufserlös am Laufzeitende gegenrechnen: 26.400,00 - 2.000,00 = 24.400,00 EUR Gesamtkosten",
+      "Leasing - Summe der Raten: 480,00 EUR x 48 Monate = 23.040,00 EUR",
+      "Leasing - Sonderzahlung addieren: 23.040,00 + 2.000,00 = 25.040,00 EUR Gesamtkosten (Wartung bereits enthalten, kein Restwert, da Rückgabe)",
+      "Vergleich: 25.040,00 - 24.400,00 = 640,00 EUR; der Kauf ist über vier Jahre um 640,00 EUR günstiger"
+    ],
+    "answer": "Kauf: 24.400,00 EUR, Leasing: 25.040,00 EUR über vier Jahre. Der Kauf ist um 640,00 EUR günstiger und wird rein rechnerisch empfohlen; für Leasing sprechen dagegen die geringere Kapitalbindung, die gleichmäßige Liquiditätsbelastung, die planbaren Kosten inklusive Wartung und der einfache Technologiewechsel am Laufzeitende.",
+    "unit": "ausbau-wirtschaftlichkeit",
+    "rubric": [
+      {
+        "criterion": "Kauf: Anschaffung und Wartungskosten über vier Jahre korrekt summiert (26.400,00 EUR)",
+        "points": 2
+      },
+      {
+        "criterion": "Kauf: Verkaufserlös korrekt abgezogen (24.400,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Leasing: Summe der 48 Monatsraten korrekt berechnet (23.040,00 EUR)",
+        "points": 2
+      },
+      {
+        "criterion": "Leasing: Sonderzahlung addiert, keine zusätzliche Wartung und kein Restwert angesetzt (25.040,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Kostendifferenz korrekt ermittelt (640,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Begründete Empfehlung mit mindestens einem qualitativen Argument (Kapitalbindung, Liquidität, Planbarkeit, Technologiewechsel)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die Leasingraten werden mit 4 statt mit 48 multipliziert - die Rate ist monatlich, die Laufzeit beträgt 48 Monate.",
+      "Die Sonderzahlung wird vergessen oder wie eine Kaution behandelt, obwohl sie eine echte Ausgabe ist.",
+      "Beim Leasing wird zusätzlich Wartung angesetzt, obwohl sie laut Angabe im Vertrag enthalten ist.",
+      "Beim Kauf wird der Verkaufserlös nicht gegengerechnet oder fälschlich hinzuaddiert statt abgezogen.",
+      "Beim Leasing wird ein Restwert angesetzt, obwohl die Geräte zurückgegeben werden und kein Eigentum entsteht.",
+      "Nur der Anschaffungspreis wird verglichen, ohne die laufenden Kosten über die gesamte Betrachtungsdauer (TCO-Sicht)."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--fuer-ein-softwareprojekt-ist-ein-gesamtaufwand-von-180-personentagen",
+    "topicId": "projektmanagement",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Für ein Softwareprojekt ist ein Gesamtaufwand von 180 Personentagen (PT) geschätzt. Das Projektteam besteht aus 5 Entwicklerinnen und Entwicklern, die jeweils nur zu 80 % ihrer Arbeitszeit für das Projekt zur Verfügung stehen (der Rest entfällt auf Support und Linienaufgaben). Gearbeitet wird an 5 Arbeitstagen pro Woche. Berechnen Sie die voraussichtliche Projektdauer in Arbeitstagen und in Kalenderwochen.",
+    "solutionSteps": [
+      "Verfügbare Kapazität pro Arbeitstag ermitteln: 5 Personen * 0,80 = 4 PT pro Arbeitstag.",
+      "Projektdauer in Arbeitstagen: 180 PT / 4 PT pro Arbeitstag = 45 Arbeitstage.",
+      "Umrechnung in Kalenderwochen: 45 Arbeitstage / 5 Arbeitstage pro Woche = 9 Wochen.",
+      "Ergebnis: Das Projekt dauert 45 Arbeitstage, das entspricht 9 Kalenderwochen (bei durchgehender Verfügbarkeit ohne Urlaub, Krankheit oder Feiertage)."
+    ],
+    "answer": "45 Arbeitstage bzw. 9 Kalenderwochen",
+    "unit": "ausbau-projektmanagement",
+    "rubric": [
+      {
+        "criterion": "Verfügbare Tageskapazität korrekt berechnet (5 * 0,8 = 4 PT/Arbeitstag)",
+        "points": 2
+      },
+      {
+        "criterion": "Projektdauer in Arbeitstagen korrekt ermittelt (180 / 4 = 45)",
+        "points": 2
+      },
+      {
+        "criterion": "Korrekte Umrechnung in Kalenderwochen (45 / 5 = 9)",
+        "points": 1
+      },
+      {
+        "criterion": "Nachvollziehbarer Rechenweg mit korrekten Einheiten (PT, Arbeitstage, Wochen)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die 80 % Verfügbarkeit vergessen und 180 / 5 = 36 Arbeitstage rechnen.",
+      "Personentage mit Kalendertagen gleichsetzen: 1 PT ist die Arbeitsleistung EINER Person an einem Tag, nicht ein Kalendertag des Projekts.",
+      "Arbeitstage direkt durch 7 statt durch 5 teilen und so die Kalenderwochen falsch bestimmen.",
+      "Übersehen, dass Urlaub, Feiertage und Krankheit die reale Kalenderdauer zusätzlich verlängern (Annahme angeben)."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--sie-schaetzen-den-aufwand-fuer-ein-neues-projekt-per",
+    "topicId": "projektmanagement",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Sie schätzen den Aufwand für ein neues Projekt per Analogieschätzung. Ein vergleichbares Vorprojekt umfasste 8 Eingabemasken und benötigte 320 Arbeitsstunden. Das neue Projekt umfasst 12 Eingabemasken; wegen höherer fachlicher Komplexität wird ein Faktor von 1,25 angesetzt. Auf den so ermittelten Aufwand wird ein Risikozuschlag von 10 % aufgeschlagen. Der interne Stundensatz beträgt 85,00 EUR. Berechnen Sie den geplanten Aufwand in Stunden und die geplanten Projektkosten.",
+    "solutionSteps": [
+      "Kennzahl aus dem Referenzprojekt bilden: 320 h / 8 Masken = 40 h je Maske.",
+      "Hochrechnung auf den neuen Umfang: 12 Masken * 40 h = 480 h.",
+      "Komplexitätsfaktor berücksichtigen: 480 h * 1,25 = 600 h.",
+      "Risikozuschlag von 10 % addieren: 600 h * 1,10 = 660 h.",
+      "Kosten berechnen: 660 h * 85,00 EUR/h = 56.100,00 EUR.",
+      "Ergebnis: geplanter Aufwand 660 Stunden, geplante Kosten 56.100,00 EUR."
+    ],
+    "answer": "660 Stunden Aufwand; 56.100,00 EUR Projektkosten",
+    "unit": "ausbau-projektmanagement",
+    "rubric": [
+      {
+        "criterion": "Aufwand je Maske aus dem Referenzprojekt korrekt ermittelt (320 / 8 = 40 h)",
+        "points": 2
+      },
+      {
+        "criterion": "Hochrechnung auf 12 Masken korrekt (12 * 40 = 480 h)",
+        "points": 1
+      },
+      {
+        "criterion": "Komplexitätsfaktor korrekt angewendet (480 * 1,25 = 600 h)",
+        "points": 2
+      },
+      {
+        "criterion": "Risikozuschlag korrekt aufgeschlagen (600 * 1,10 = 660 h)",
+        "points": 1
+      },
+      {
+        "criterion": "Projektkosten korrekt berechnet und mit Einheit angegeben (660 * 85 EUR = 56.100,00 EUR)",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Den Komplexitätsfaktor 1,25 auf die Maskenzahl statt auf den Aufwand anwenden.",
+      "Den Risikozuschlag als Abschlag oder mit Faktor 0,10 statt 1,10 rechnen (600 * 0,10 = 60 h statt 660 h Gesamtaufwand).",
+      "Faktor und Zuschlag addieren (1,25 + 0,10 = 1,35) statt nacheinander zu multiplizieren.",
+      "Stunden mit Personentagen verwechseln und zusätzlich durch 8 teilen.",
+      "Die Einheit (Stunden bzw. EUR) im Ergebnis weglassen."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-unternehmen-sichert-seinen-dateiserver-per-snapshot-alle-6",
+    "topicId": "it-sicherheit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.75,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Ein Unternehmen sichert seinen Dateiserver per Snapshot alle 6 Stunden, jeweils um 00:00, 06:00, 12:00 und 18:00 Uhr. Am Dienstag um 16:45 Uhr fällt der Server durch einen Hardwaredefekt komplett aus.\nFür die Wiederherstellung gilt: Bereitstellung der Ersatzhardware 90 Minuten, anschliessend Rückspielen von 720 GB Daten mit durchschnittlich 200 MB/s, danach 30 Minuten Funktionstest.\na) Wie groß ist der maximale Datenverlust (RPO-Ist)?\nb) Wie lange dauert das reine Zurückspielen der Daten?\nc) Wann ist der Server wieder verfügbar und wie groß ist die Wiederanlaufzeit (RTO-Ist)?\nd) Das SLA fordert RPO <= 4 h und RTO <= 4 h. Bewerte das Ergebnis und nenne eine Massnahme.\n(1 GB = 1.000 MB)",
+    "solutionSteps": [
+      "a) Letzter verwertbarer Snapshot vor dem Ausfall: Dienstag 12:00 Uhr. Ausfall: 16:45 Uhr.",
+      "Maximaler Datenverlust = 16:45 - 12:00 = 4 h 45 min (= 4,75 h). Alle Änderungen seit 12:00 Uhr sind verloren.",
+      "b) Datenmenge in MB: 720 GB * 1.000 MB/GB = 720.000 MB.",
+      "Restore-Dauer = 720.000 MB / 200 MB/s = 3.600 s = 60 min = 1 h.",
+      "c) Gesamtdauer = 90 min (Hardware) + 60 min (Restore) + 30 min (Test) = 180 min = 3 h.",
+      "Wieder verfügbar: 16:45 Uhr + 3 h = 19:45 Uhr. Die Wiederanlaufzeit (RTO-Ist) beträgt 3 h.",
+      "d) RTO-Ist = 3 h <= 4 h -> Vorgabe eingehalten. RPO-Ist = 4,75 h > 4 h -> Vorgabe verletzt.",
+      "Massnahme: Sicherungsintervall verkürzen (z. B. Snapshots alle 4 oder 3 Stunden) bzw. zusätzliche Transaktionslog-Sicherung oder kontinuierliche Replikation einrichten."
+    ],
+    "answer": "a) 4 h 45 min Datenverlust; b) 60 min Restore; c) wieder verfügbar um 19:45 Uhr, RTO-Ist = 3 h; d) RTO eingehalten, RPO mit 4,75 h überschritten - Sicherungsintervall auf max. 4 h (besser 3 h) verkürzen bzw. Log-Sicherung/Replikation ergänzen.",
+    "unit": "ausbau-it-sicherheit",
+    "rubric": [
+      {
+        "criterion": "Letzten Snapshot (12:00 Uhr) korrekt identifiziert und Datenverlust 4 h 45 min berechnet",
+        "points": 2
+      },
+      {
+        "criterion": "Datenmenge korrekt umgerechnet und Restore-Dauer 720.000 MB / 200 MB/s = 3.600 s = 60 min ermittelt",
+        "points": 3
+      },
+      {
+        "criterion": "Gesamtdauer 3 h und Wiederverfügbarkeit 19:45 Uhr korrekt bestimmt",
+        "points": 2
+      },
+      {
+        "criterion": "Abgleich mit SLA (RTO eingehalten, RPO verletzt) und passende Massnahme genannt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Den Snapshot um 18:00 Uhr als letzte Sicherung ansetzen - er liegt nach dem Ausfall um 16:45 Uhr und existiert nicht.",
+      "Hardwarebereitstellung und Funktionstest vergessen: Die RTO umfasst die gesamte Zeit bis zum produktiven Wiederanlauf, nicht nur den Restore.",
+      "RPO und RTO vertauschen: RPO ist der Datenverlust rückwärts, RTO die Ausfalldauer vorwärts.",
+      "Falsche Einheitenumrechnung (720 GB als 720.000 MB gemäß Aufgabenangabe, nicht 737.280 MB)."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-betrieb-sichert-nach-dem-generationenprinzip-grossvater-vater-sohn",
+    "topicId": "it-sicherheit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.75,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Ein Betrieb sichert nach dem Generationenprinzip (Grossvater-Vater-Sohn) auf getrennten Medien:\n- Sohn: Montag bis Donnerstag je eine differenzielle Sicherung mit durchschnittlich 45 GB\n- Vater: freitags eine Vollsicherung mit 600 GB, es werden 5 Wochenmedien vorgehalten\n- Grossvater: die letzte Vollsicherung eines Monats (600 GB) wird als Monatsmedium ausgesondert, 12 Monatsmedien werden aufbewahrt\na) Wie viele Medien umfasst der Medienpool insgesamt?\nb) Wie viel Speicherkapazität wird insgesamt belegt (in GB und TB, 1 TB = 1.000 GB)?",
+    "solutionSteps": [
+      "a) Sohn: 4 Tagesmedien (Mo, Di, Mi, Do). Vater: 5 Wochenmedien. Grossvater: 12 Monatsmedien.",
+      "Medienpool gesamt = 4 + 5 + 12 = 21 Medien.",
+      "b) Tagesmedien: 4 * 45 GB = 180 GB.",
+      "Wochenmedien: 5 * 600 GB = 3.000 GB.",
+      "Monatsmedien: 12 * 600 GB = 7.200 GB.",
+      "Gesamt = 180 GB + 3.000 GB + 7.200 GB = 10.380 GB.",
+      "Umrechnung: 10.380 GB / 1.000 = 10,38 TB."
+    ],
+    "answer": "a) 21 Medien (4 Tages- + 5 Wochen- + 12 Monatsmedien); b) 10.380 GB, also 10,38 TB.",
+    "unit": "ausbau-it-sicherheit",
+    "rubric": [
+      {
+        "criterion": "Medienanzahl korrekt als 4 + 5 + 12 = 21 ermittelt",
+        "points": 2
+      },
+      {
+        "criterion": "Kapazität der Tagesmedien 4 * 45 GB = 180 GB berechnet",
+        "points": 1
+      },
+      {
+        "criterion": "Kapazität der Wochenmedien 5 * 600 GB = 3.000 GB berechnet",
+        "points": 1
+      },
+      {
+        "criterion": "Kapazität der Monatsmedien 12 * 600 GB = 7.200 GB berechnet",
+        "points": 1
+      },
+      {
+        "criterion": "Gesamtsumme 10.380 GB gebildet und korrekt in 10,38 TB umgerechnet",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Fünf statt vier Tagesmedien ansetzen - der Freitag wird bereits durch die Wochen-Vollsicherung abgedeckt.",
+      "Die Monatssicherung mit der Größe einer differenziellen Sicherung rechnen; sie ist eine Vollsicherung mit 600 GB.",
+      "Bei der Umrechnung GB/TB mit 1.024 statt der vorgegebenen 1.000 rechnen.",
+      "Vergessen, dass die ausgesonderten Monatsmedien zusätzlichen Platz belegen und nicht überschrieben werden."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--am-freitag-dem-13-03-2026-stellt-die-systemadministratorin",
+    "topicId": "datenschutz",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.5,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Am Freitag, dem 13.03.2026, stellt die Systemadministratorin eines Onlineshops um 16:40 Uhr fest, dass durch eine Fehlkonfiguration des Webservers eine Datei mit 2.400 Kundendatensätzen (Name, Anschrift, E-Mail-Adresse) drei Tage lang öffentlich im Internet abrufbar war. Sie informiert die Geschäftsführung noch am selben Nachmittag. Bis zu welchem Zeitpunkt muss die Meldung spätestens bei der zuständigen Aufsichtsbehörde eingehen? Begründen Sie die Fristberechnung.",
+    "solutionSteps": [
+      "Rechtsgrundlage bestimmen: Art. 33 Abs. 1 DSGVO - der Verantwortliche meldet eine Verletzung des Schutzes personenbezogener Daten unverzüglich und möglichst binnen 72 Stunden, nachdem ihm die Verletzung bekannt wurde.",
+      "Fristbeginn festlegen: maßgeblich ist die Kenntniserlangung, nicht der Zeitpunkt des Vorfalls. Die Kenntnis der Administratorin wird dem Verantwortlichen zugerechnet, die Geschäftsführung wurde zudem sofort informiert. Fristbeginn = Freitag, 13.03.2026, 16:40 Uhr.",
+      "Fristart klären: Es handelt sich um eine kalendarisch durchlaufende Stundenfrist. Wochenenden und Feiertage hemmen sie nicht, es sind keine Arbeitstage.",
+      "Frist abzählen: 13.03.2026 16:40 Uhr + 24 h = Samstag, 14.03.2026, 16:40 Uhr; + 48 h = Sonntag, 15.03.2026, 16:40 Uhr; + 72 h = Montag, 16.03.2026, 16:40 Uhr.",
+      "Ergebnis formulieren: Die Meldung muss spätestens am Montag, dem 16.03.2026, um 16:40 Uhr bei der Aufsichtsbehörde vorliegen. Erfolgt sie später, ist der Meldung nach Art. 33 Abs. 1 Satz 2 eine Begründung für die Verzögerung beizufügen; unvollständige Informationen dürfen nach Art. 33 Abs. 4 schrittweise nachgereicht werden."
+    ],
+    "answer": "Montag, 16.03.2026, 16:40 Uhr",
+    "unit": "ausbau-datenschutz",
+    "rubric": [
+      {
+        "criterion": "Rechtsgrundlage Art. 33 DSGVO und Frist von 72 Stunden genannt",
+        "points": 2
+      },
+      {
+        "criterion": "Fristbeginn korrekt auf die Kenntniserlangung am 13.03.2026, 16:40 Uhr gelegt (nicht auf den Eintritt des Vorfalls)",
+        "points": 2
+      },
+      {
+        "criterion": "Erkannt, dass die Frist kalendarisch durchläuft und das Wochenende mitzählt",
+        "points": 1
+      },
+      {
+        "criterion": "Korrektes Endergebnis Montag, 16.03.2026, 16:40 Uhr",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "72 Stunden sind keine drei Arbeitstage - Samstag und Sonntag zählen voll mit, das Ergebnis ist nicht Mittwoch.",
+      "Fristbeginn ist die Kenntnis von der Verletzung, nicht deren Eintritt; die drei Tage öffentlicher Abrufbarkeit verlängern oder verkürzen die Meldefrist nicht.",
+      "Die Uhrzeit gehört zum Ergebnis: die Frist endet um 16:40 Uhr und nicht erst um 24:00 Uhr des dritten Tages.",
+      "Die Meldung an die Aufsichtsbehörde (Art. 33) nicht mit der Benachrichtigung der Betroffenen (Art. 34) verwechseln - letztere ist nur bei hohem Risiko und ohne 72-Stunden-Frist, aber unverzüglich fällig."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-onlinehaendler-hat-ueber-jahre-kundendaten-ohne-rechtsgrundlage-zu",
+    "topicId": "datenschutz",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.5,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 5,
+    "prompt": "Ein Onlinehändler hat über Jahre Kundendaten ohne Rechtsgrundlage zu Werbezwecken verarbeitet und damit gegen Art. 5 und Art. 6 DSGVO verstossen. Der weltweite Jahresumsatz des Unternehmens betrug im vorangegangenen Geschäftsjahr 380 Mio. EUR. Berechnen Sie die maximal mögliche Geldbusse nach Art. 83 Abs. 5 DSGVO und begründen Sie das Ergebnis.",
+    "solutionSteps": [
+      "einschlägigen Bussgeldrahmen bestimmen: Verstöße gegen die Grundsätze der Verarbeitung (Art. 5), gegen die Rechtmäßigkeit (Art. 6) und gegen die Betroffenenrechte fallen unter Art. 83 Abs. 5 DSGVO - bis zu 20.000.000 EUR oder bis zu 4 % des gesamten weltweit erzielten Jahresumsatzes des vorangegangenen Geschäftsjahres, je nachdem, welcher Betrag höher ist.",
+      "umsatzabhängige Obergrenze berechnen: 380.000.000 EUR x 0,04 = 15.200.000 EUR.",
+      "Beide Werte vergleichen: 15.200.000 EUR (4 % vom Umsatz) gegen 20.000.000 EUR (fester Betrag). Der feste Betrag ist höher.",
+      "Massgeblichen Wert wählen: Da der jeweils höhere Betrag gilt, beträgt die Obergrenze 20.000.000 EUR.",
+      "Kontrolle/Interpretation: Die 4-%-Grenze übersteigt die 20 Mio. EUR erst ab einem Jahresumsatz von 20.000.000 / 0,04 = 500.000.000 EUR. Mit 380 Mio. EUR liegt das Unternehmen darunter, also greift der feste Höchstbetrag. Es handelt sich um eine Obergrenze; die tatsächliche Höhe bemisst sich nach den Kriterien des Art. 83 Abs. 2 (Schwere, Dauer, Vorsatz, Kooperation, getroffene Massnahmen)."
+    ],
+    "answer": "20.000.000 EUR",
+    "unit": "ausbau-datenschutz",
+    "rubric": [
+      {
+        "criterion": "Richtigen Bussgeldrahmen des Art. 83 Abs. 5 genannt (20 Mio. EUR oder 4 % des weltweiten Jahresumsatzes)",
+        "points": 1
+      },
+      {
+        "criterion": "Erkannt, dass der höhere der beiden Beträge maßgeblich ist",
+        "points": 1
+      },
+      {
+        "criterion": "4 % des Jahresumsatzes korrekt berechnet: 15.200.000 EUR",
+        "points": 2
+      },
+      {
+        "criterion": "Korrektes Endergebnis 20.000.000 EUR mit Begründung des Vergleichs",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Nicht den niedrigeren Wert nehmen - die DSGVO stellt ausdrücklich auf den höheren der beiden Beträge ab.",
+      "Nicht den Rahmen des Art. 83 Abs. 4 (10 Mio. EUR bzw. 2 %) anwenden; dieser gilt nur für formale Pflichtverstöße wie Art. 25, 28, 30, 32, 33.",
+      "Bezugsgrösse ist der weltweite Jahresumsatz des Vorjahres, nicht der Gewinn, nicht der Inlandsumsatz und nicht der Umsatz des laufenden Jahres.",
+      "Das Ergebnis ist nur die gesetzliche Obergrenze, nicht das tatsächlich zu verhängende Bussgeld."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--eine-festplatte-soll-mit-dem-mbr-schema-partitioniert-werden",
+    "topicId": "betriebssysteme",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.63,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Eine Festplatte soll mit dem MBR-Schema partitioniert werden. MBR adressiert Sektoren mit einer 32-Bit-Adresse (LBA), die Sektorgrösse beträgt 512 Byte. Berechnen Sie die daraus folgende maximale Größe einer MBR-Partition in Byte und in TiB. Zeigen Sie den Rechenweg.",
+    "solutionSteps": [
+      "Anzahl adressierbarer Sektoren aus der Adressbreite bestimmen: 2^32 = 4.294.967.296 Sektoren.",
+      "Maximale Kapazität = Anzahl Sektoren * Sektorgrösse = 4.294.967.296 * 512 Byte = 2.199.023.255.552 Byte.",
+      "Umrechnung in TiB: 2.199.023.255.552 Byte / 1024 = 2.147.483.648 KiB; / 1024 = 2.097.152 MiB; / 1024 = 2.048 GiB; / 1024 = 2 TiB.",
+      "Ergebnis: MBR begrenzt die Partition auf 2.199.023.255.552 Byte, also genau 2 TiB. größere Datenträger erfordern GPT (64-Bit-LBA)."
+    ],
+    "answer": "2.199.023.255.552 Byte = 2 TiB",
+    "unit": "ausbau-betriebssysteme",
+    "rubric": [
+      {
+        "criterion": "Ansatz erkannt: 32-Bit-Adressierung ergibt 2^32 = 4.294.967.296 adressierbare Sektoren",
+        "points": 2
+      },
+      {
+        "criterion": "Multiplikation mit der Sektorgrösse 512 Byte korrekt ausgeführt: 2.199.023.255.552 Byte",
+        "points": 2
+      },
+      {
+        "criterion": "Korrekte Umrechnung in 2 TiB (vier Divisionen durch 1024)",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "2^32 falsch beziffert (z. B. 4.294.967 statt 4.294.967.296) - Zehnerpotenzen nicht verwechseln.",
+      "TiB und TB verwechseln: geteilt wird durch 1024, nicht durch 1000 (dezimal wären es rund 2,2 TB).",
+      "Die Sektorgrösse 512 Byte vergessen und nur die Sektorzahl als Ergebnis angeben.",
+      "Fälschlich auf 4 TiB kommen: 512 Byte sind 2^9, nicht 2^10; 2^32 * 2^9 = 2^41 Byte = 2 TiB.",
+      "Byte und Bit verwechseln - gefragt ist die Kapazität in Byte."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-virtualisierungshost-besitzt-64-gib-arbeitsspeicher-fuer-den-hypervisor",
+    "topicId": "betriebssysteme",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.63,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Ein Virtualisierungshost besitzt 64 GiB Arbeitsspeicher. Für den Hypervisor und das Host-Betriebssystem sind 8 GiB fest zu reservieren. Jede virtuelle Maschine soll fest 6 GiB RAM erhalten (ohne Überbuchung). Wie viele VMs können betrieben werden und wie viel Arbeitsspeicher bleibt frei?",
+    "solutionSteps": [
+      "Verfügbarer Speicher für VMs = Gesamtspeicher - Reservierung = 64 GiB - 8 GiB = 56 GiB.",
+      "Anzahl VMs = 56 GiB / 6 GiB = 9,33.",
+      "Da nur vollständig ausgestattete VMs betrieben werden können, wird abgerundet: 9 VMs.",
+      "Belegter Speicher der VMs = 9 * 6 GiB = 54 GiB.",
+      "Freier Speicher = 56 GiB - 54 GiB = 2 GiB (zusätzlich zu den 8 GiB des Hosts)."
+    ],
+    "answer": "9 VMs; es bleiben 2 GiB des VM-Speichers frei",
+    "unit": "ausbau-betriebssysteme",
+    "rubric": [
+      {
+        "criterion": "Reservierung des Hosts korrekt abgezogen: 64 GiB - 8 GiB = 56 GiB verfügbar",
+        "points": 2
+      },
+      {
+        "criterion": "Division 56 GiB / 6 GiB = 9,33 richtig durchgeführt und auf 9 vollständige VMs abgerundet",
+        "points": 2
+      },
+      {
+        "criterion": "Restspeicher korrekt ermittelt: 9 * 6 GiB = 54 GiB, also 2 GiB frei",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Die Host-Reservierung vergessen und 64 / 6 = 10,67 -> 10 VMs rechnen.",
+      "Auf 10 VMs aufrunden - der Speicher reicht ohne Überbuchung nicht aus.",
+      "Die 8 GiB des Hosts fälschlich als 'frei' mitzählen; frei für weitere VMs sind nur 2 GiB.",
+      "GiB und GB vermischen; hier wird durchgängig binär gerechnet."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-programm-erhaelt-eine-zeitdauer-von-3-725-sekunden",
+    "topicId": "softwareentwicklung",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Ein Programm erhält eine Zeitdauer von 3 725 Sekunden und soll sie mit den Operatoren Ganzzahldivision (DIV) und Modulo (MOD) in Stunden, Minuten und Sekunden zerlegen. Berechnen Sie die drei Werte und geben Sie die verwendeten Rechenschritte an.",
+    "solutionSteps": [
+      "Stunden bestimmen: 1 h = 3 600 s. stunden = 3725 DIV 3600 = 1",
+      "Verbleibende Sekunden bestimmen: rest = 3725 MOD 3600 = 3725 - (1 * 3600) = 125",
+      "Minuten bestimmen: 1 min = 60 s. minuten = 125 DIV 60 = 2",
+      "Verbleibende Sekunden bestimmen: sekunden = 125 MOD 60 = 125 - (2 * 60) = 5",
+      "Probe: 1 * 3600 + 2 * 60 + 5 = 3600 + 120 + 5 = 3725 s"
+    ],
+    "answer": "1 Stunde, 2 Minuten und 5 Sekunden (01:02:05)",
+    "unit": "ausbau-softwareentwicklung",
+    "rubric": [
+      {
+        "criterion": "Stunden korrekt mit Ganzzahldivision 3725 DIV 3600 = 1 ermittelt",
+        "points": 2
+      },
+      {
+        "criterion": "Restsekunden korrekt mit Modulo 3725 MOD 3600 = 125 ermittelt",
+        "points": 2
+      },
+      {
+        "criterion": "Minuten und Sekunden korrekt aus dem Rest bestimmt (125 DIV 60 = 2, 125 MOD 60 = 5)",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Normale Division statt Ganzzahldivision verwenden: 3725 / 3600 = 1,035 - der Nachkommaanteil ist keine Minutenangabe.",
+      "Den Rest nach der Stundenberechnung vergessen und die ursprünglichen 3 725 s erneut durch 60 teilen.",
+      "Das Ergebnis der Ganzzahldivision runden statt abzuschneiden: 125 / 60 = 2,08 - DIV schneidet den Nachkommaanteil immer ab und liefert 2, während kaufmännisches Runden z. B. bei 2,6 fälschlich 3 ergäbe.",
+      "Verwechslung von DIV und MOD: 3725 MOD 3600 ist der Rest 125, nicht die Anzahl der Stunden."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--in-einem-programm-wird-ein-zaehler-als-vorzeichenbehaftete-16",
+    "topicId": "softwareentwicklung",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "In einem Programm wird ein Zähler als vorzeichenbehaftete 16-Bit-Ganzzahl (Integer) gespeichert. a) Wie viele verschiedene Werte kann diese Variable annehmen? b) Welchen Wertebereich deckt sie ab? c) Welchen Wert enthält die Variable nach der Anweisung zähler = zähler + 1, wenn zähler vorher den größten darstellbaren Wert hatte, und wie heisst dieser Effekt?",
+    "solutionSteps": [
+      "a) Mit n Bit lassen sich 2^n verschiedene Bitmuster bilden: 2^16 = 65 536 verschiedene Werte.",
+      "b) Bei Vorzeichenbehaftung wird der Bereich auf negative und positive Zahlen aufgeteilt, die Null zählt zu den nicht negativen Werten: von -2^15 = -32 768 bis 2^15 - 1 = 32 767.",
+      "Kontrolle des Bereichs: 32 767 - (-32 768) + 1 = 65 536 Werte.",
+      "c) 32 767 + 1 ist nicht mehr darstellbar; der Wert läuft an den Anfang des Bereichs zurück und ergibt -32 768. Dieser Effekt heisst Überlauf (Overflow)."
+    ],
+    "answer": "a) 65 536 Werte  b) -32 768 bis 32 767  c) -32 768, verursacht durch einen Überlauf (Overflow)",
+    "unit": "ausbau-softwareentwicklung",
+    "rubric": [
+      {
+        "criterion": "Anzahl der darstellbaren Werte korrekt als 2^16 = 65 536 berechnet",
+        "points": 2
+      },
+      {
+        "criterion": "Wertebereich -32 768 bis 32 767 korrekt angegeben (Aufteilung 2^15, Null im nicht negativen Teil)",
+        "points": 2
+      },
+      {
+        "criterion": "Ergebnis -32 768 genannt und als Überlauf (Overflow) benannt",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Wertebereich symmetrisch als -32 768 bis 32 768 angeben - die Null belegt einen Wert des nicht negativen Teils, daher endet er bei 32 767.",
+      "2^16 - 1 = 65 535 als Anzahl der Werte nennen; 65 535 ist der größte Wert einer vorzeichenlosen 16-Bit-Zahl, nicht die Anzahl.",
+      "Den vorzeichenlosen Bereich 0 bis 65 535 mit dem vorzeichenbehafteten verwechseln.",
+      "Annehmen, das Programm bricht bei 32 767 + 1 mit einem Fehler ab - typischerweise läuft der Wert stillschweigend um, der Fehler fällt erst später als Logikfehler auf."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--fuer-eine-warenwirtschaft-wurde-ein-sla-mit-einer-servicezeit",
+    "topicId": "qs-vertraege",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.55,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Für eine Warenwirtschaft wurde ein SLA mit einer Servicezeit von Montag bis Freitag, 07:00 bis 19:00 Uhr, und einer garantierten Verfügbarkeit von 99,5 % vereinbart. Der Abrechnungsmonat hat 21 Arbeitstage. Im Berichtsmonat fiel das System innerhalb der Servicezeit insgesamt 3 Stunden aus.\na) Berechnen Sie die vereinbarte Servicezeit des Monats in Stunden.\nb) Berechnen Sie die maximal zulässige Ausfallzeit in Minuten.\nc) Berechnen Sie die tatsächlich erreichte Verfügbarkeit in Prozent (zwei Nachkommastellen).\nd) Beurteilen Sie, ob das SLA eingehalten wurde.",
+    "solutionSteps": [
+      "a) Servicezeit pro Tag: 19:00 Uhr - 07:00 Uhr = 12 h",
+      "a) Servicezeit pro Monat: 12 h/Tag * 21 Tage = 252 h",
+      "b) Zulässige Ausfallquote: 100 % - 99,5 % = 0,5 % = 0,005",
+      "b) Zulässige Ausfallzeit: 252 h * 0,005 = 1,26 h",
+      "b) Umrechnung in Minuten: 1,26 h * 60 min/h = 75,6 min",
+      "c) Verfügbare Zeit: 252 h - 3 h = 249 h",
+      "c) Verfügbarkeit: 249 h / 252 h = 0,988095... = 98,81 %",
+      "d) Vergleich: 98,81 % < 99,5 % bzw. 3 h (180 min) tatsächlicher Ausfall > 1,26 h (75,6 min) zulässiger Ausfall",
+      "d) Überschreitung: 3 h - 1,26 h = 1,74 h = 104,4 min"
+    ],
+    "answer": "a) 252 h Servicezeit; b) 75,6 min (= 1,26 h) zulässige Ausfallzeit; c) 98,81 % erreichte Verfügbarkeit; d) Das SLA wurde NICHT eingehalten, die zulässige Ausfallzeit wurde um 1,74 h (104,4 min) überschritten.",
+    "unit": "ausbau-qs-vertraege",
+    "rubric": [
+      {
+        "criterion": "Monatliche Servicezeit korrekt aus 12 h/Tag und 21 Arbeitstagen berechnet (252 h)",
+        "points": 2
+      },
+      {
+        "criterion": "Zulässige Ausfallzeit aus 0,5 % der Servicezeit korrekt berechnet und in Minuten umgerechnet (1,26 h = 75,6 min)",
+        "points": 2
+      },
+      {
+        "criterion": "Tatsächliche Verfügbarkeit korrekt als (252 h - 3 h) / 252 h = 98,81 % berechnet",
+        "points": 3
+      },
+      {
+        "criterion": "Begründete Beurteilung, dass das SLA verfehlt wurde",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Es wird mit 24/7 (8760 h bzw. 720 h) statt mit der vereinbarten Servicezeit gerechnet; außerhalb der Servicezeit zählen Ausfälle nicht.",
+      "0,5 % wird als 0,5 statt als 0,005 in die Rechnung eingesetzt.",
+      "Die Ausfallquote wird mit der Verfügbarkeit verwechselt: 252 h * 0,995 ergibt die zulässige Betriebszeit, nicht die zulässige Ausfallzeit.",
+      "Beim Umrechnen von 1,26 h wird fälschlich 1 h 26 min notiert statt 1 h 15,6 min (75,6 min)."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-server-wurde-ueber-ein-volles-jahr-365-tage",
+    "topicId": "qs-vertraege",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.55,
+    "ap1Status": "supporting",
+    "peripheral": true,
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Ein Server wurde über ein volles Jahr (365 Tage, 24-Stunden-Betrieb) betrachtet. In diesem Zeitraum kam es zu 4 Ausfällen mit einer Gesamtausfallzeit von 20 Stunden. Vertraglich sind 99,9 % Verfügbarkeit zugesichert.\na) Berechnen Sie MTTR (mittlere Reparaturzeit) und MTBF (mittlere Betriebsdauer zwischen zwei Ausfällen).\nb) Berechnen Sie die erreichte Verfügbarkeit in Prozent (zwei Nachkommastellen).\nc) Beurteilen Sie die Einhaltung der Zusage.",
+    "solutionSteps": [
+      "Gesamtzeit: 365 Tage * 24 h/Tag = 8760 h",
+      "a) MTTR = Gesamtausfallzeit / Anzahl Ausfälle = 20 h / 4 = 5 h",
+      "a) Betriebszeit = 8760 h - 20 h = 8740 h",
+      "a) MTBF = Betriebszeit / Anzahl Ausfälle = 8740 h / 4 = 2185 h",
+      "b) Verfügbarkeit = MTBF / (MTBF + MTTR) = 2185 h / (2185 h + 5 h) = 2185 / 2190 = 0,997717...",
+      "b) In Prozent: 0,997717 * 100 = 99,77 % (Kontrolle über 8740 h / 8760 h = 99,77 %)",
+      "c) Zulässige Ausfallzeit bei 99,9 %: 8760 h * 0,001 = 8,76 h",
+      "c) Vergleich: 20 h tatsächlicher Ausfall > 8,76 h zulässig bzw. 99,77 % < 99,9 %"
+    ],
+    "answer": "a) MTTR = 5 h, MTBF = 2185 h; b) Verfügbarkeit = 99,77 %; c) Die Zusage von 99,9 % wurde nicht erreicht, zulässig wären nur 8,76 h Ausfall gewesen, tatsächlich waren es 20 h.",
+    "unit": "ausbau-qs-vertraege",
+    "rubric": [
+      {
+        "criterion": "MTTR korrekt als Gesamtausfallzeit geteilt durch Ausfallanzahl (5 h) bestimmt",
+        "points": 1
+      },
+      {
+        "criterion": "Betriebszeit (8740 h) und MTBF (2185 h) korrekt berechnet",
+        "points": 2
+      },
+      {
+        "criterion": "Verfügbarkeit korrekt als MTBF / (MTBF + MTTR) = 99,77 % berechnet",
+        "points": 2
+      },
+      {
+        "criterion": "Begründete Beurteilung mit Vergleich zur zulässigen Ausfallzeit von 8,76 h",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "MTBF wird aus der Gesamtzeit statt aus der reinen Betriebszeit berechnet (8760 h / 4 = 2190 h) und dadurch zu hoch angesetzt.",
+      "MTBF und MTTR werden vertauscht, die Verfügbarkeit wird dadurch winzig statt nahe 100 %.",
+      "Bei 99,9 % wird die zulässige Ausfallzeit mit 0,9 % statt 0,1 % der Gesamtzeit gerechnet.",
+      "Es wird mit 360 Tagen oder 8000 h gerechnet statt mit 365 Tagen = 8760 h."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--fuer-ein-standard-softwarepaket-eines-it-systemhauses-gelten-die",
+    "topicId": "kommunikation",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.75,
+    "ap1Status": "supporting",
+    "peripheral": true,
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Für ein Standard-Softwarepaket eines IT-Systemhauses gelten die Marktfunktionen: Nachfrage N(p) = 1000 - 20p und Angebot A(p) = 200 + 30p (p = Preis in EUR, Menge in Stück). Berechnen Sie den Gleichgewichtspreis und die Gleichgewichtsmenge. Geben Sie ausserdem an, welche Marktsituation bei einem staatlich festgelegten Höchstpreis von 12 EUR entsteht und wie groß der Überhang ist.",
+    "solutionSteps": [
+      "Im Marktgleichgewicht gilt: Nachfrage = Angebot, also N(p) = A(p).",
+      "1000 - 20p = 200 + 30p",
+      "1000 - 200 = 30p + 20p  ->  800 = 50p",
+      "p = 800 / 50 = 16 EUR  (Gleichgewichtspreis)",
+      "Gleichgewichtsmenge über die Nachfragefunktion: N(16) = 1000 - 20 * 16 = 1000 - 320 = 680 Stück",
+      "Probe über die Angebotsfunktion: A(16) = 200 + 30 * 16 = 200 + 480 = 680 Stück - stimmt überein.",
+      "Höchstpreis 12 EUR (liegt unter dem Gleichgewichtspreis): N(12) = 1000 - 240 = 760 Stück, A(12) = 200 + 360 = 560 Stück.",
+      "Nachfrageüberhang = 760 - 560 = 200 Stück; es entsteht Knappheit (Warteliste, Lieferzeiten)."
+    ],
+    "answer": "Gleichgewichtspreis p = 16 EUR, Gleichgewichtsmenge = 680 Stück. Beim Höchstpreis von 12 EUR entsteht ein Nachfrageüberhang von 200 Stück.",
+    "unit": "ausbau-kommunikation",
+    "rubric": [
+      {
+        "criterion": "Gleichgewichtsbedingung Angebot = Nachfrage korrekt aufgestellt (1000 - 20p = 200 + 30p)",
+        "points": 2
+      },
+      {
+        "criterion": "Gleichung korrekt nach p aufgelöst: p = 16 EUR",
+        "points": 2
+      },
+      {
+        "criterion": "Gleichgewichtsmenge korrekt berechnet: 680 Stück (mit Einheit)",
+        "points": 2
+      },
+      {
+        "criterion": "Mengen beim Höchstpreis 12 EUR berechnet (760 bzw. 560 Stück)",
+        "points": 1
+      },
+      {
+        "criterion": "Nachfrageüberhang von 200 Stück benannt und als Knappheit/Angebotslücke interpretiert",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Angebots- und Nachfragefunktion vertauschen: die Nachfrage fällt mit steigendem Preis (negative Steigung), das Angebot steigt.",
+      "Beim Zusammenfassen Vorzeichenfehler: -20p muss auf die rechte Seite als +20p gebracht werden.",
+      "Nur den Preis angeben und die Gleichgewichtsmenge vergessen bzw. Einheiten (EUR/Stück) weglassen.",
+      "Ein Höchstpreis unter dem Gleichgewichtspreis führt zu einem Nachfrageüberhang (nicht zu einem Angebotsüberhang) - ein Mindestpreis oberhalb des Gleichgewichts erzeugt den Angebotsüberhang."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-unternehmen-richtet-12-remote-arbeitsplaetze-ein-jeder-arbeitsplatz",
+    "topicId": "neu-2025",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.9,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Ein Unternehmen richtet 12 Remote-Arbeitsplätze ein. Jeder Arbeitsplatz benötigt für die Videokonferenz 2,5 Mbit/s im Download und 1,5 Mbit/s im Upload. Alle 12 Mitarbeitenden nehmen gleichzeitig an einer Konferenz teil.\n\na) Berechnen Sie den gesamten Bandbreitenbedarf im Download und im Upload.\nb) Der Firmenanschluss liefert 100 Mbit/s Download und 20 Mbit/s Upload. Beurteilen Sie, ob der Anschluss ausreicht.\nc) Während der Konferenz soll zusätzlich eine Datei von 900 MB über die verbleibende Upload-Bandbreite in die Cloud gesichert werden. Berechnen Sie die Übertragungsdauer.\n\n(1 MB = 1.000.000 Byte, 1 Byte = 8 Bit; Protokoll-Overhead wird vernachlässigt.)",
+    "solutionSteps": [
+      "a) Downloadbedarf: 12 x 2,5 Mbit/s = 30 Mbit/s",
+      "a) Uploadbedarf: 12 x 1,5 Mbit/s = 18 Mbit/s",
+      "b) Download: 30 Mbit/s von 100 Mbit/s -> 70 Mbit/s Reserve, völlig ausreichend.",
+      "b) Upload: 18 Mbit/s von 20 Mbit/s -> nur 2 Mbit/s Reserve (10 %). Der Anschluss reicht rechnerisch gerade aus, ist aber kritisch, weil weiterer Datenverkehr (Cloud, E-Mail, VPN, Protokoll-Overhead) den Upload sofort überlastet und dann Aussetzer und Jitter auftreten.",
+      "c) Datenmenge in Bit: 900 MB = 900 x 1.000.000 Byte = 900.000.000 Byte; 900.000.000 Byte x 8 = 7.200.000.000 Bit = 7.200 Mbit",
+      "c) Verfügbare Upload-Bandbreite: 20 Mbit/s - 18 Mbit/s = 2 Mbit/s",
+      "c) Übertragungsdauer: 7.200 Mbit / 2 Mbit/s = 3.600 s = 60 Minuten"
+    ],
+    "answer": "a) 30 Mbit/s Download, 18 Mbit/s Upload; b) Download unkritisch (70 Mbit/s Reserve), Upload mit nur 2 Mbit/s Reserve grenzwertig; c) 3.600 s = 60 Minuten",
+    "unit": "ausbau-neu-2025",
+    "rubric": [
+      {
+        "criterion": "Downloadbedarf korrekt berechnet (12 x 2,5 = 30 Mbit/s)",
+        "points": 1
+      },
+      {
+        "criterion": "Uploadbedarf korrekt berechnet (12 x 1,5 = 18 Mbit/s)",
+        "points": 1
+      },
+      {
+        "criterion": "Beurteilung des Anschlusses mit Angabe der Reserven (70 Mbit/s Download, 2 Mbit/s Upload) und begründetem Hinweis auf den kritischen Upload",
+        "points": 2
+      },
+      {
+        "criterion": "Restbandbreite im Upload korrekt ermittelt (20 - 18 = 2 Mbit/s)",
+        "points": 1
+      },
+      {
+        "criterion": "Umrechnung 900 MB in 7.200 Mbit korrekt (Byte x 8)",
+        "points": 2
+      },
+      {
+        "criterion": "Übertragungsdauer korrekt: 3.600 s = 60 Minuten",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Byte und Bit verwechselt: 900 MB nicht mit 8 multipliziert -> Ergebnis um Faktor 8 zu klein.",
+      "Die Übertragung mit der vollen Upload-Bandbreite (20 Mbit/s) statt mit der Restbandbreite (2 Mbit/s) gerechnet.",
+      "Download- und Upload-Bedarf zusammengezählt, obwohl beide Richtungen getrennt zu betrachten sind.",
+      "Bei b) nur 'reicht aus' geantwortet, ohne die knappe Upload-Reserve zu begründen."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--im-rahmen-einer-green-it-massnahme-werden-40-alte",
+    "topicId": "neu-2025",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.9,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Im Rahmen einer Green-IT-Massnahme werden 40 alte Desktop-PCs mit je 120 W Leistungsaufnahme durch 40 Mini-PCs mit je 30 W ersetzt. Die Geräte laufen an 220 Arbeitstagen im Jahr jeweils 8 Stunden. Der Strompreis beträgt 0,35 EUR/kWh.\n\na) Berechnen Sie den Jahresstromverbrauch vor und nach dem Austausch in kWh.\nb) Berechnen Sie die jährliche Einsparung in kWh und in Euro.\nc) Der Strommix verursacht 0,38 kg CO2 je kWh. Berechnen Sie die jährliche CO2-Einsparung in kg.",
+    "solutionSteps": [
+      "Betriebsstunden pro Jahr: 220 Tage x 8 h = 1.760 h",
+      "a) Alte Geräte: 40 x 120 W = 4.800 W = 4,8 kW; 4,8 kW x 1.760 h = 8.448 kWh",
+      "a) Neue Geräte: 40 x 30 W = 1.200 W = 1,2 kW; 1,2 kW x 1.760 h = 2.112 kWh",
+      "b) Einsparung Energie: 8.448 kWh - 2.112 kWh = 6.336 kWh",
+      "b) Einsparung Kosten: 6.336 kWh x 0,35 EUR/kWh = 2.217,60 EUR (alt 2.956,80 EUR, neu 739,20 EUR)",
+      "c) CO2-Einsparung: 6.336 kWh x 0,38 kg/kWh = 2.407,68 kg (rund 2,4 t)"
+    ],
+    "answer": "a) 8.448 kWh vorher, 2.112 kWh nachher; b) 6.336 kWh bzw. 2.217,60 EUR Einsparung pro Jahr; c) 2.407,68 kg CO2 (rund 2,4 t)",
+    "unit": "ausbau-neu-2025",
+    "rubric": [
+      {
+        "criterion": "Jährliche Betriebsstunden korrekt (220 x 8 = 1.760 h)",
+        "points": 1
+      },
+      {
+        "criterion": "Verbrauch der alten Geräte korrekt (4,8 kW x 1.760 h = 8.448 kWh)",
+        "points": 2
+      },
+      {
+        "criterion": "Verbrauch der neuen Geräte korrekt (1,2 kW x 1.760 h = 2.112 kWh)",
+        "points": 2
+      },
+      {
+        "criterion": "Energieeinsparung korrekt (6.336 kWh)",
+        "points": 1
+      },
+      {
+        "criterion": "Kosteneinsparung korrekt (2.217,60 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "CO2-Einsparung korrekt (2.407,68 kg bzw. rund 2,4 t)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Watt nicht in Kilowatt umgerechnet -> Ergebnis um Faktor 1.000 zu groß.",
+      "Mit 365 Kalendertagen statt mit 220 Arbeitstagen gerechnet.",
+      "Die Stückzahl 40 vergessen und nur ein einzelnes Gerät berechnet.",
+      "Einsparung aus den Kosten der alten Geräte allein statt aus der Differenz alt minus neu gebildet."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-unkomprimierter-videoclip-hat-eine-aufloesung-von-1280-x",
+    "topicId": "multimedia",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.38,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Ein unkomprimierter Videoclip hat eine Auflösung von 1280 x 720 Pixeln, eine Farbtiefe von 24 Bit, 25 Bilder pro Sekunde und eine Laufzeit von 90 Sekunden. Berechnen Sie den Speicherbedarf des Videos (ohne Tonspur) und geben Sie das Ergebnis in GB an (1 KB = 1024 Byte usw.). Runden Sie auf zwei Nachkommastellen.",
+    "solutionSteps": [
+      "Pixel pro Einzelbild: 1280 * 720 = 921.600 Pixel",
+      "Farbtiefe umrechnen: 24 Bit = 24 / 8 = 3 Byte pro Pixel",
+      "Speicher pro Einzelbild: 921.600 Pixel * 3 Byte = 2.764.800 Byte",
+      "Datenrate pro Sekunde: 2.764.800 Byte * 25 fps = 69.120.000 Byte/s",
+      "Gesamtgrösse: 69.120.000 Byte/s * 90 s = 6.220.800.000 Byte",
+      "Umrechnung in KB: 6.220.800.000 / 1024 = 6.075.000 KB",
+      "Umrechnung in MB: 6.075.000 / 1024 = 5.932,62 MB",
+      "Umrechnung in GB: 5.932,62 / 1024 = 5,79 GB"
+    ],
+    "answer": "6.220.800.000 Byte, das entspricht rund 5,79 GB (Datenrate rund 69,1 MByte/s)",
+    "unit": "ausbau-multimedia",
+    "rubric": [
+      {
+        "criterion": "Pixelanzahl pro Einzelbild korrekt berechnet (1280 * 720 = 921.600)",
+        "points": 1
+      },
+      {
+        "criterion": "Farbtiefe korrekt in Byte umgerechnet und Speicher pro Einzelbild ermittelt (3 Byte, 2.764.800 Byte)",
+        "points": 2
+      },
+      {
+        "criterion": "Multiplikation mit Bildwiederholrate und Laufzeit korrekt (69.120.000 Byte/s, 6.220.800.000 Byte)",
+        "points": 2
+      },
+      {
+        "criterion": "Korrekte Umrechnung in GB mit dem Faktor 1024 und sinnvolle Rundung (5,79 GB)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Bit und Byte verwechseln: 24 Bit sind 3 Byte, nicht 24 Byte.",
+      "Die Bildwiederholrate vergessen und nur ein Einzelbild oder nur eine Sekunde berechnen.",
+      "Mit dem Faktor 1000 statt 1024 umrechnen - das ergäbe 6,22 GB (dezimal) statt 5,79 GB (binär).",
+      "Die Farbtiefe fälschlich pro Farbkanal statt pro Pixel ansetzen."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-digitalfoto-hat-eine-aufloesung-von-3000-x-2000",
+    "topicId": "multimedia",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.38,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 4,
+    "prompt": "Ein Digitalfoto hat eine Auflösung von 3000 x 2000 Pixeln. Es soll mit einer Druckauflösung von 300 dpi ausgegeben werden. Berechnen Sie die maximale Druckgrösse in Zentimetern (1 Zoll = 2,54 cm). Runden Sie auf eine Nachkommastelle.",
+    "solutionSteps": [
+      "Breite in Zoll: 3000 Pixel / 300 dpi = 10 Zoll",
+      "Höhe in Zoll: 2000 Pixel / 300 dpi = 6,667 Zoll (2000/300 = 6,6667)",
+      "Breite in cm: 10 Zoll * 2,54 cm = 25,4 cm",
+      "Höhe in cm: 6,6667 Zoll * 2,54 cm = 16,93 cm, gerundet 16,9 cm"
+    ],
+    "answer": "rund 25,4 cm x 16,9 cm",
+    "unit": "ausbau-multimedia",
+    "rubric": [
+      {
+        "criterion": "Pixelanzahl korrekt durch die dpi-Zahl geteilt und damit die Kantenlängen in Zoll ermittelt (10 Zoll und 6,667 Zoll)",
+        "points": 2
+      },
+      {
+        "criterion": "Umrechnung von Zoll in Zentimeter mit dem Faktor 2,54 korrekt durchgeführt",
+        "points": 1
+      },
+      {
+        "criterion": "Beide Kantenlängen korrekt und sinnvoll gerundet angegeben (25,4 cm x 16,9 cm)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Pixel mit dpi multiplizieren statt zu dividieren.",
+      "Nur eine Kantenlänge berechnen; gefragt ist die vollständige Druckgrösse.",
+      "Den Faktor 2,54 falsch anwenden (durch 2,54 teilen statt zu multiplizieren).",
+      "Annehmen, eine höhere dpi-Zahl erzeuge zusätzliche Pixel - die Pixelanzahl bleibt konstant, nur die Ausgabegrösse ändert sich."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--der-online-shop-eines-kunden-verzeichnet-45-000-seitenaufrufe",
+    "topicId": "internet",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.45,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Der Online-Shop eines Kunden verzeichnet 45.000 Seitenaufrufe pro Monat. Eine Seite ist im Durchschnitt 1,8 MB groß. Der gebuchte Hosting-Tarif enthält 75 GB Datentransfer pro Monat; jedes weitere angefangene GB wird mit 0,25 EUR berechnet. Ermitteln Sie das monatliche Transfervolumen und die anfallenden Mehrkosten. Rechnen Sie mit 1 GB = 1.000 MB.",
+    "solutionSteps": [
+      "Monatliches Datenvolumen berechnen: 45.000 Seitenaufrufe x 1,8 MB = 81.000 MB",
+      "Umrechnung in Gigabyte: 81.000 MB / 1.000 = 81 GB",
+      "Vergleich mit dem Inklusivvolumen: 81 GB - 75 GB = 6 GB Überschreitung",
+      "Mehrkosten berechnen: 6 GB x 0,25 EUR/GB = 1,50 EUR"
+    ],
+    "answer": "Transfervolumen 81 GB pro Monat, davon 6 GB über dem Inklusivvolumen; Mehrkosten 1,50 EUR pro Monat.",
+    "unit": "ausbau-internet",
+    "rubric": [
+      {
+        "criterion": "Gesamtvolumen korrekt berechnet (45.000 x 1,8 MB = 81.000 MB)",
+        "points": 2
+      },
+      {
+        "criterion": "Korrekte Umrechnung in GB (81 GB)",
+        "points": 1
+      },
+      {
+        "criterion": "Überschreitung des Inklusivvolumens ermittelt (6 GB)",
+        "points": 1
+      },
+      {
+        "criterion": "Mehrkosten korrekt berechnet (6 x 0,25 EUR = 1,50 EUR)",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "MB und GB verwechseln oder mit 1.024 statt 1.000 rechnen - die Aufgabe gibt 1 GB = 1.000 MB ausdrücklich vor.",
+      "Das gesamte Volumen abrechnen statt nur die Überschreitung über das Inklusivvolumen.",
+      "Bei abweichenden Werten das angefangene GB nicht aufrunden.",
+      "Seitenaufrufe (Page Impressions) mit Besuchern (Visits) verwechseln - ein Besucher ruft mehrere Seiten auf."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-hosting-anbieter-sichert-im-sla-eine-verfuegbarkeit-von",
+    "topicId": "internet",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.45,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 6,
+    "prompt": "Ein Hosting-Anbieter sichert im SLA eine Verfügbarkeit von 99,5 % pro Jahr zu. Ein höherwertiger Tarif garantiert 99,9 %. Berechnen Sie für beide Tarife die maximal zulässige Ausfallzeit pro Jahr in Stunden und geben Sie die Differenz an. Rechnen Sie mit 365 Tagen zu je 24 Stunden.",
+    "solutionSteps": [
+      "Gesamtstunden pro Jahr: 365 Tage x 24 h = 8.760 h",
+      "Ausfallanteil bei 99,5 %: 100 % - 99,5 % = 0,5 %",
+      "Maximale Ausfallzeit Tarif 1: 8.760 h x 0,005 = 43,8 h (entspricht 1 Tag und 19,8 h)",
+      "Ausfallanteil bei 99,9 %: 100 % - 99,9 % = 0,1 %",
+      "Maximale Ausfallzeit Tarif 2: 8.760 h x 0,001 = 8,76 h",
+      "Differenz: 43,8 h - 8,76 h = 35,04 h",
+      "Der teurere Tarif erlaubt also rund 35 Stunden weniger Ausfall pro Jahr."
+    ],
+    "answer": "Bei 99,5 % maximal 43,8 Stunden Ausfall pro Jahr, bei 99,9 % maximal 8,76 Stunden; Differenz 35,04 Stunden.",
+    "unit": "ausbau-internet",
+    "rubric": [
+      {
+        "criterion": "Gesamtstunden pro Jahr korrekt ermittelt (365 x 24 = 8.760 h)",
+        "points": 1
+      },
+      {
+        "criterion": "Ausfallanteil aus der Verfügbarkeit korrekt abgeleitet (0,5 % bzw. 0,1 %)",
+        "points": 1
+      },
+      {
+        "criterion": "Ausfallzeit bei 99,5 % korrekt berechnet (43,8 h)",
+        "points": 2
+      },
+      {
+        "criterion": "Ausfallzeit bei 99,9 % korrekt berechnet (8,76 h)",
+        "points": 1
+      },
+      {
+        "criterion": "Differenz korrekt angegeben (35,04 h)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Mit der Verfügbarkeit statt mit dem Ausfallanteil rechnen (8.760 h x 0,995 ergibt die Betriebszeit, nicht die Ausfallzeit).",
+      "Prozentwerte falsch umrechnen: 0,5 % = 0,005, nicht 0,05.",
+      "Monats- und Jahreswerte vermischen (99,5 % pro Monat wären nur rund 3,65 h Ausfall).",
+      "Ergebnis in Tagen statt Stunden angeben oder unsauber runden."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-betrieb-benoetigt-eine-fachanwendung-fuer-25-arbeitsplaetze-und",
+    "topicId": "software-lizenzen",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.45,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 10,
+    "prompt": "Ein Betrieb benötigt eine Fachanwendung für 25 Arbeitsplätze und plant eine Nutzungsdauer von 5 Jahren.\nVariante A (Kauf): Einzelplatzlizenz 480,00 EUR einmalig je Arbeitsplatz. Ab dem 2. Jahr fällt ein jährlicher Wartungsvertrag von 18 % des gesamten Kaufpreises an (also in den Jahren 2 bis 5).\nVariante B (SaaS-Abo): 12,00 EUR je Named User und Monat, 25 Named User, 5 Jahre laufend.\nBerechne die Gesamtkosten beider Varianten über 5 Jahre und gib an, welche Variante günstiger ist und um wie viel.",
+    "solutionSteps": [
+      "Variante A - Kaufpreis: 25 Lizenzen x 480,00 EUR = 12.000,00 EUR",
+      "Variante A - Wartung pro Jahr: 18 % von 12.000,00 EUR = 0,18 x 12.000,00 EUR = 2.160,00 EUR",
+      "Variante A - Wartung fällt in den Jahren 2 bis 5 an, also 4 Jahre: 4 x 2.160,00 EUR = 8.640,00 EUR",
+      "Variante A - Gesamtkosten: 12.000,00 EUR + 8.640,00 EUR = 20.640,00 EUR",
+      "Variante B - Kosten pro Monat: 25 Named User x 12,00 EUR = 300,00 EUR",
+      "Variante B - Kosten pro Jahr: 300,00 EUR x 12 Monate = 3.600,00 EUR",
+      "Variante B - Gesamtkosten: 3.600,00 EUR x 5 Jahre = 18.000,00 EUR",
+      "Vergleich: 20.640,00 EUR - 18.000,00 EUR = 2.640,00 EUR"
+    ],
+    "answer": "Variante A (Kauf) kostet 20.640,00 EUR, Variante B (SaaS-Abo) kostet 18.000,00 EUR. Das SaaS-Abo ist über 5 Jahre um 2.640,00 EUR günstiger.",
+    "unit": "ausbau-software-lizenzen",
+    "rubric": [
+      {
+        "criterion": "Kaufpreis der Lizenzen korrekt berechnet (25 x 480,00 EUR = 12.000,00 EUR)",
+        "points": 2
+      },
+      {
+        "criterion": "Wartungskosten korrekt: 2.160,00 EUR pro Jahr für 4 Jahre (Jahre 2 bis 5) = 8.640,00 EUR",
+        "points": 3
+      },
+      {
+        "criterion": "Gesamtkosten Variante A korrekt (20.640,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Gesamtkosten Variante B korrekt (25 x 12,00 EUR x 12 x 5 = 18.000,00 EUR)",
+        "points": 2
+      },
+      {
+        "criterion": "Vergleich mit korrekter Differenz (2.640,00 EUR) und Aussage, welche Variante günstiger ist",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Wartung fälschlich für alle 5 Jahre ansetzen (10.800,00 EUR) statt nur für die Jahre 2 bis 5.",
+      "Die 18 % nur auf eine Einzellizenz statt auf den gesamten Kaufpreis beziehen.",
+      "Beim Abo die Monatsrate mit 5 statt mit 60 Monaten multiplizieren.",
+      "Vergessen, dass beim Abo nach 5 Jahren kein Nutzungsrecht verbleibt - der reine Kostenvergleich ist nur ein Teil der Entscheidung."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--ein-konstruktionsbuero-setzt-eine-cad-software-ein-60-mitarbeiter",
+    "topicId": "software-lizenzen",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.45,
+    "ap1Status": "supporting",
+    "operator": "berechnen",
+    "afb": "I–II",
+    "points": 8,
+    "prompt": "Ein Konstruktionsbüro setzt eine CAD-Software ein. 60 Mitarbeiter müssen grundsätzlich Zugriff haben, laut Messung arbeiten aber höchstens 22 Personen gleichzeitig damit. Es soll eine Sicherheitsreserve von 15 % auf die Spitzenlast eingeplant werden; angefangene Lizenzen sind aufzurunden.\nNamed-User-Lizenz: 900,00 EUR je Lizenz.\nConcurrent-User-Lizenz: 1.500,00 EUR je Lizenz.\nErmittle die Kosten beider Modelle und sprich eine begründete Empfehlung aus.",
+    "solutionSteps": [
+      "Named User: Jede zugriffsberechtigte Person braucht eine eigene Lizenz -> 60 Lizenzen",
+      "Kosten Named User: 60 x 900,00 EUR = 54.000,00 EUR",
+      "Concurrent User: Basis ist die Spitzenlast von 22 gleichzeitigen Nutzungen",
+      "Reserve einrechnen: 22 x 1,15 = 25,3 Lizenzen",
+      "Aufrunden auf ganze Lizenzen: 26 Lizenzen",
+      "Kosten Concurrent User: 26 x 1.500,00 EUR = 39.000,00 EUR",
+      "Differenz: 54.000,00 EUR - 39.000,00 EUR = 15.000,00 EUR"
+    ],
+    "answer": "Named-User-Modell: 60 Lizenzen x 900,00 EUR = 54.000,00 EUR. Concurrent-User-Modell: 26 Lizenzen x 1.500,00 EUR = 39.000,00 EUR. Das Concurrent-User-Modell ist um 15.000,00 EUR günstiger und daher zu empfehlen, weil viele der 60 Berechtigten die Software nur gelegentlich nutzen.",
+    "unit": "ausbau-software-lizenzen",
+    "rubric": [
+      {
+        "criterion": "Named-User-Kosten korrekt (60 x 900,00 EUR = 54.000,00 EUR)",
+        "points": 2
+      },
+      {
+        "criterion": "Lizenzbedarf Concurrent korrekt aus Spitzenlast plus 15 % Reserve ermittelt (22 x 1,15 = 25,3) und auf 26 aufgerundet",
+        "points": 3
+      },
+      {
+        "criterion": "Concurrent-Kosten korrekt (26 x 1.500,00 EUR = 39.000,00 EUR)",
+        "points": 1
+      },
+      {
+        "criterion": "Differenz 15.000,00 EUR genannt und Empfehlung mit Bezug auf die Gleichzeitigkeit begründet",
+        "points": 2
+      }
+    ],
+    "pitfalls": [
+      "Die 15 % Reserve auf die 60 Berechtigten statt auf die Spitzenlast von 22 beziehen.",
+      "25,3 kaufmännisch auf 25 abrunden - Lizenzen müssen immer aufgerundet werden, sonst entsteht Unterlizenzierung.",
+      "Den höheren Stückpreis der Concurrent-Lizenz übersehen und allein nach der Lizenzanzahl entscheiden.",
+      "Übersehen, dass Concurrent-Lizenzen einen Lizenzserver voraussetzen und dass bei steigender Gleichzeitigkeit nachlizenziert werden muss."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
   }
 ]
