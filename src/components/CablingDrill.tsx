@@ -3,6 +3,7 @@ import { useAppState } from '../state/AppState'
 import { randomCabling, MEDIA, MAX_CHANNEL, MAX_PERMANENT_LINK, type CablingTask, type Medium } from '../lib/cabling'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { Confetti } from './Confetti'
 import { useGuide } from './DrillGuide'
 
 // Verkabelungs-Drill in zwei Teilen:
@@ -107,6 +108,7 @@ export function CablingDrill({ onExit }: { onExit: () => void }) {
         <button className="btn primary wide" disabled={!pl || !ch || !medium} onClick={check}>Prüfen</button>
       ) : (
         <>
+          {allOk && <Confetti />}
           <div className={`feedback ${allOk ? 'ok' : 'bad'}`} aria-live="polite">
             <Icon name={allOk ? 'check' : 'x'} size={16} className="fb-ico" />
             <span>

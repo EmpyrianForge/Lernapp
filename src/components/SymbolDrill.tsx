@@ -3,6 +3,7 @@ import { useAppState } from '../state/AppState'
 import { shuffle } from '../lib/scheduler'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { Confetti } from './Confetti'
 import { useGuide } from './DrillGuide'
 
 // UML/BPMN-Symbol-Zuordnung: gezeichnetes Symbol ↔ Bedeutung, Tap-to-Pair.
@@ -100,6 +101,7 @@ function Game({ deck, onExit }: { deck: SymDeck; onExit: () => void }) {
     const acc = Math.round((deck.pairs.length / (deck.pairs.length + mistakes)) * 100)
     return (
       <section className="panel center">
+        {acc >= 70 && <Confetti />}
         <h2><Icon name="check" size={20} className="done-ico" /> Geschafft</h2>
         <p className="big">{deck.pairs.length} Symbole · {mistakes} Fehlversuche</p>
         <p className="muted">Trefferquote {acc} %</p>

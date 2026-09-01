@@ -1,4 +1,5 @@
 import type { Grade } from '../types'
+import { useCountUp, useMounted } from '../lib/motion'
 
 // Kleine, wiederverwendbare UI-Bausteine.
 
@@ -9,6 +10,8 @@ export function MultilineText({ text }: { text: string }) {
 
 export function ProgressBar({ value, label }: { value: number; label?: string }) {
   const pct = Math.round(Math.max(0, Math.min(1, value)) * 100)
+  // Beim ersten Frame noch 0 — dadurch wächst der Balken sichtbar auf seinen Wert.
+  const mounted = useMounted()
   return (
     <div
       className="progress"
@@ -18,7 +21,7 @@ export function ProgressBar({ value, label }: { value: number; label?: string })
       aria-valuemax={100}
       aria-label={label}
     >
-      <div className="progress-fill" style={{ width: `${pct}%` }} />
+      <div className="progress-fill" style={{ width: `${mounted ? pct : 0}%` }} />
     </div>
   )
 }
@@ -27,7 +30,10 @@ export function ScoreRing({ value, caption }: { value: number; caption?: string 
   const r = 52
   const c = 2 * Math.PI * r
   const clamped = Math.max(0, Math.min(100, value))
-  const offset = c - (clamped / 100) * c
+  // Ring zeichnet sich beim Öffnen einmal auf, die Zahl zählt parallel hoch.
+  const mounted = useMounted()
+  const shown = useCountUp(clamped)
+  const offset = c - ((mounted ? clamped : 0) / 100) * c
   const tone = clamped >= 75 ? 'var(--good)' : clamped >= 50 ? 'var(--warn)' : 'var(--bad)'
   return (
     <div className="ring">
@@ -42,7 +48,7 @@ export function ScoreRing({ value, caption }: { value: number; caption?: string 
         />
       </svg>
       <div className="ring-center">
-        <strong>{clamped}</strong>
+        <strong>{shown}</strong>
         <span>{caption ?? '%'}</span>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useAppState } from '../state/AppState'
 import { randomVlsm, type VlsmTask } from '../lib/vlsm'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { Confetti } from './Confetti'
 import { useGuide } from './DrillGuide'
 
 // VLSM-Drill: einen /24-Block bedarfsgerecht aufteilen. Für jeden Bereich sind
@@ -150,6 +151,7 @@ export function VlsmDrill({ onExit }: { onExit: () => void }) {
         <button className="btn primary wide" onClick={check}>Prüfen</button>
       ) : (
         <>
+          {allCorrect && <Confetti />}
           <div className={`feedback ${allCorrect ? 'ok' : 'bad'}`} aria-live="polite">
             <Icon name={allCorrect ? 'check' : 'x'} size={16} className="fb-ico" />
             <span>

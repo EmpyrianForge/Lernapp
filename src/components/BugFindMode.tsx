@@ -4,6 +4,7 @@ import { BUG_QUIZ, type ErrorType } from '../data/bug-quiz'
 import { shuffle } from '../lib/scheduler'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { Confetti } from './Confetti'
 import { Code } from './Code'
 import { useGuide } from './DrillGuide'
 
@@ -42,6 +43,7 @@ export function BugFindMode({ onExit }: { onExit: () => void }) {
   if (done) {
     return (
       <section className="panel center">
+        {score.total > 0 && score.correct / score.total >= 0.7 && <Confetti />}
         <h2><Icon name="check" size={20} className="done-ico" /> Geschafft</h2>
         <p className="big">{score.correct}/{score.total} richtig</p>
         <button className="btn primary" onClick={onExit}>Zurück zum Dashboard</button>

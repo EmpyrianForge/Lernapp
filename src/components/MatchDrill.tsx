@@ -5,6 +5,7 @@ import { useAppState } from '../state/AppState'
 import { shuffle } from '../lib/scheduler'
 import { Pill } from './ui'
 import { Icon } from './Icon'
+import { Confetti } from './Confetti'
 import { useGuide } from './DrillGuide'
 
 // Zuordnungs-Drill: erst einen Begriff links wählen, dann den passenden Wert rechts.
@@ -44,6 +45,7 @@ function Game({ deck, onExit }: { deck: MatchDeck; onExit: () => void }) {
     const acc = Math.round((deck.pairs.length / (deck.pairs.length + mistakes)) * 100)
     return (
       <section className="panel center">
+        {acc >= 70 && <Confetti />}
         <h2><Icon name="check" size={20} className="done-ico" /> Geschafft</h2>
         <p className="big">{deck.pairs.length} Paare · {mistakes} Fehlversuche</p>
         <p className="muted">Trefferquote {acc} %</p>

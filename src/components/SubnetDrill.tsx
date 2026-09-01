@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAppState } from '../state/AppState'
 import { maskBits, randomDrill, type SubnetDrill as Drill } from '../lib/net'
 import { Icon } from './Icon'
+import { Confetti } from './Confetti'
 import { useGuide } from './DrillGuide'
 
 // Generativer Subnetting-Drill mit visueller Bit-Leiste der Netzmaske.
@@ -111,6 +112,7 @@ export function SubnetDrill({ onExit }: { onExit: () => void }) {
         <button className="btn primary wide" onClick={check}>Prüfen</button>
       ) : (
         <>
+          {allCorrect && <Confetti />}
           <div className={`feedback ${allCorrect ? 'ok' : 'bad'}`} aria-live="polite">
             <Icon name={allCorrect ? 'check' : 'x'} size={16} className="fb-ico" />
             <span>{allCorrect ? 'Alles korrekt!' : 'Fast — korrigierte Werte stehen rechts neben den Feldern.'}</span>

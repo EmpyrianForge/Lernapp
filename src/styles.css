@@ -714,6 +714,75 @@ h3.sec { margin: 1.4rem 0 0.6rem; font-size: 1rem; }
 
 /* (frühere .code-lines/.code-line-Regeln → jetzt .code-numbered in <Code lines />) */
 
+/* ---- Aktivitätsstreifen (letzte 14 Tage) ---- */
+.daystrip {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 0.8rem 1rem; box-shadow: var(--shadow);
+}
+.ds-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.8rem; margin-bottom: 0.55rem; }
+.ds-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.ds-bars { display: flex; align-items: flex-end; gap: 4px; height: 42px; }
+.ds-bar {
+  flex: 1; height: var(--h); min-height: 6px; border-radius: 3px;
+  background: var(--muted-bg);
+  animation: ds-grow 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  transition: background 0.15s ease;
+}
+.ds-bar.on { background: var(--accent-solid); }
+.ds-bar.heute { outline: 2px solid var(--accent); outline-offset: 1px; }
+.ds-bar:hover { background: var(--accent); }
+@keyframes ds-grow { from { transform: scaleY(0); transform-origin: bottom; opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---- Bewegung: Einblenden, Zahlen, Konfetti ---- */
+
+/* Kacheln erscheinen leicht versetzt statt alle auf einmal */
+.modes .mode-card {
+  animation: card-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Kennzahlen: tabellarische Ziffern, damit beim Hochzählen nichts springt */
+.stat-num { font-variant-numeric: tabular-nums; }
+
+/* Streak-Flamme lebt, sobald eine Serie läuft */
+.streak-num.hot .streak-ico { animation: flicker 2.4s ease-in-out infinite; transform-origin: 50% 85%; }
+@keyframes flicker {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  35% { transform: scale(1.12) rotate(-4deg); opacity: 0.92; }
+  70% { transform: scale(0.97) rotate(3deg); opacity: 1; }
+}
+
+/* Ring und Balken wachsen auf ihren Wert */
+.ring-value { transition: stroke-dashoffset 1s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Aufgedeckte Antwort gleitet herein */
+.card .a { animation: reveal 0.28s cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Konfetti — läuft einmal ab, fängt keine Klicks ab */
+.confetti {
+  position: absolute; inset: 0; overflow: hidden;
+  pointer-events: none; z-index: 5;
+}
+.panel { position: relative; }
+.confetti-bit {
+  position: absolute; top: -14px; width: 8px; height: 13px; border-radius: 2px;
+  opacity: 0; animation-name: confetti-fall; animation-timing-function: cubic-bezier(0.25, 0.6, 0.4, 1);
+  animation-fill-mode: forwards;
+}
+.confetti-bit.round { width: 8px; height: 8px; border-radius: 50%; }
+@keyframes confetti-fall {
+  0% { opacity: 0; transform: translate(0, -10px) rotate(0deg); }
+  12% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--drift), 300px) rotate(var(--spin)); }
+}
+
 /* ---- VLSM-Drill ---- */
 .vlsm-table-wrap { overflow-x: auto; margin-top: 0.7rem; }
 .vlsm-table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
@@ -736,7 +805,15 @@ h3.sec { margin: 1.4rem 0 0.6rem; font-size: 1rem; }
 .vlsm-fix { display: block; margin-top: 0.2rem; font-size: 0.78rem; color: var(--good); font-family: ui-monospace, monospace; }
 
 .vlsm-bar { display: flex; height: 30px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin: 0.3rem 0 0.5rem; }
-.vlsm-seg { display: flex; align-items: center; justify-content: center; min-width: 0; overflow: hidden; }
+.vlsm-seg {
+  display: flex; align-items: center; justify-content: center; min-width: 0; overflow: hidden;
+  animation: seg-grow 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+.vlsm-seg:nth-child(2) { animation-delay: 0.07s; }
+.vlsm-seg:nth-child(3) { animation-delay: 0.14s; }
+.vlsm-seg:nth-child(4) { animation-delay: 0.21s; }
+.vlsm-seg:nth-child(5) { animation-delay: 0.28s; }
+@keyframes seg-grow { from { transform: scaleX(0); transform-origin: left; } to { transform: none; } }
 .vlsm-seg-label { font-size: 0.7rem; font-weight: 700; white-space: nowrap; color: var(--accent-fg); }
 .vlsm-seg.s0 { background: var(--tone-blue); }
 .vlsm-seg.s1 { background: var(--tone-teal); }

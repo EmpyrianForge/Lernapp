@@ -1,10 +1,13 @@
+import { useMemo } from 'react'
 import type { View } from '../nav'
+import type { UserState } from '../types'
 import { useAppState } from '../state/AppState'
 import { allTopicMastery, examReadiness, overview } from '../lib/mastery'
 import { ALL_ITEMS } from '../data/content'
-import { daysBetween, daysUntilExam, EXAM_DATE, formatDE } from '../lib/date'
+import { addDays, daysBetween, daysUntilExam, EXAM_DATE, formatDE } from '../lib/date'
 import { TARGET_POINTS } from '../lib/grade'
 import { ProgressBar, ScoreRing } from './ui'
+import { useCountUp } from '../lib/motion'
 import { Icon } from './Icon'
 
 interface ModeDef {
@@ -59,6 +62,50 @@ const TOPIC_TONE: Record<string, string> = {
   'neu-2025': 'green', multimedia: 'rose', internet: 'blue', 'software-lizenzen': 'amber',
 }
 
+/**
+ * Aktivitätsstreifen der letzten 14 Tage: je Tag ein Balken, dessen Höhe für die
+ * Anzahl bewerteter Karten steht. Macht Kontinuität sichtbar — der eigentliche
+ * Hebel beim Spaced-Repetition-Lernen.
+ */
+function DayStrip({ states, today }: { states: Map<string, UserState>; today: string }) {
+  const tage = useMemo(() => {
+    const zaehler = new Map<string, number>()
+    for (const st of states.values()) {
+      for (const h of st.history) zaehler.set(h.date, (zaehler.get(h.date) ?? 0) + 1)
+    }
+    const liste = Array.from({ length: 14 }, (_, i) => {
+      const iso = addDays(today, i - 13)
+      return { iso, anzahl: zaehler.get(iso) ?? 0 }
+    })
+    const max = Math.max(1, ...liste.map((d) => d.anzahl))
+    return liste.map((d) => ({ ...d, anteil: d.anzahl / max }))
+  }, [states, today])
+
+  const aktiveTage = tage.filter((d) => d.anzahl > 0).length
+  const gesamt = tage.reduce((a, d) => a + d.anzahl, 0)
+
+  return (
+    <section className="daystrip" aria-label="Aktivität der letzten 14 Tage">
+      <div className="ds-head">
+        <span className="ds-title">Letzte 14 Tage</span>
+        <span className="muted small">
+          {gesamt > 0 ? `${gesamt} Bewertungen an ${aktiveTage} Tagen` : 'Noch keine Wiederholungen'}
+        </span>
+      </div>
+      <div className="ds-bars">
+        {tage.map((d, i) => (
+          <span
+            key={d.iso}
+            className={`ds-bar ${d.anzahl > 0 ? 'on' : ''} ${d.iso === today ? 'heute' : ''}`}
+            style={{ '--h': `${Math.max(6, d.anteil * 100)}%`, animationDelay: `${i * 26}ms` } as React.CSSProperties}
+            title={`${formatDE(d.iso)}: ${d.anzahl} ${d.anzahl === 1 ? 'Bewertung' : 'Bewertungen'}`}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
 export function Dashboard({ go }: { go: (v: View) => void }) {
   const { states, dueTotal, streak, coreOnly, setCoreOnly, lastExport, today } = useAppState()
   const readiness = examReadiness(states)
@@ -79,6 +126,12 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
   // Backup-Erinnerung: es gibt Fortschritt, aber lange (oder nie) kein Export.
   const daysSinceExport = lastExport ? daysBetween(lastExport, today) : Infinity
   const showBackupReminder = ov.seen >= 10 && daysSinceExport >= 14
+
+  // Kennzahlen zählen beim Öffnen hoch — macht den Fortschritt spürbar.
+  const daysUp = useCountUp(days)
+  const dueUp = useCountUp(dueTotal)
+  const masteredUp = useCountUp(ov.mastered)
+  const streakUp = useCountUp(streak, 600)
 
   return (
     <div className="dashboard">
@@ -103,24 +156,26 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
         </div>
         <div className="hero-stats">
           <div className="stat">
-            <span className="stat-num">{days}</span>
+            <span className="stat-num">{daysUp}</span>
             <span className="stat-label">Tage bis AP1</span>
             <span className="muted small">{formatDE(EXAM_DATE)}</span>
           </div>
           <div className="stat">
-            <span className="stat-num accent">{dueTotal}</span>
+            <span className="stat-num accent">{dueUp}</span>
             <span className="stat-label">fällig heute</span>
           </div>
           <div className="stat">
-            <span className="stat-num">{ov.mastered}</span>
+            <span className="stat-num">{masteredUp}</span>
             <span className="stat-label">gemeistert / {ov.totalItems}</span>
           </div>
           <div className="stat">
-            <span className="stat-num streak-num">{streak}<Icon name="flame" size={18} className="streak-ico" /></span>
+            <span className={`stat-num streak-num ${streak > 0 ? 'hot' : ''}`}>{streakUp}<Icon name="flame" size={18} className="streak-ico" /></span>
             <span className="stat-label">Tage-Streak</span>
           </div>
         </div>
       </section>
+
+      <DayStrip states={states} today={today} />
 
       {dueTotal > 0 && (
         <button className="cta" onClick={() => go('flashcards')}>
@@ -148,8 +203,8 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
       </label>
 
       <section className="modes">
-        {MODES.map((m) => (
-          <button key={m.view} className={`mode-card tone-${m.tone}`} onClick={() => go(m.view)}>
+        {MODES.map((m, i) => (
+          <button key={m.view} className={`mode-card tone-${m.tone}`} style={{ animationDelay: `${i * 28}ms` }} onClick={() => go(m.view)}>
             <span className="mode-icon" aria-hidden="true"><Icon name={m.icon} size={22} /></span>
             <span className="mode-title">{m.title}</span>
             <span className="mode-desc">{m.desc}</span>
@@ -159,8 +214,8 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
 
       <h2 className="section-title"><Icon name="grid" size={17} /> Interaktive Übungen</h2>
       <section className="modes">
-        {INTERACTIVE.map((m) => (
-          <button key={m.view} className={`mode-card interactive tone-${m.tone}`} onClick={() => go(m.view)}>
+        {INTERACTIVE.map((m, i) => (
+          <button key={m.view} className={`mode-card interactive tone-${m.tone}`} style={{ animationDelay: `${i * 28}ms` }} onClick={() => go(m.view)}>
             <span className="mode-icon" aria-hidden="true"><Icon name={m.icon} size={22} /></span>
             <span className="mode-title">{m.title}</span>
             <span className="mode-desc">{m.desc}</span>
@@ -170,8 +225,8 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
 
       <h2 className="section-title"><Icon name="wrench" size={17} /> Werkzeuge</h2>
       <section className="modes">
-        {TOOLS.map((m) => (
-          <button key={m.view} className={`mode-card tone-${m.tone}`} onClick={() => go(m.view)}>
+        {TOOLS.map((m, i) => (
+          <button key={m.view} className={`mode-card tone-${m.tone}`} style={{ animationDelay: `${i * 28}ms` }} onClick={() => go(m.view)}>
             <span className="mode-icon" aria-hidden="true"><Icon name={m.icon} size={22} /></span>
             <span className="mode-title">{m.title}</span>
             <span className="mode-desc">{m.desc}</span>
