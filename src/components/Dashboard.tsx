@@ -46,6 +46,8 @@ const INTERACTIVE: ModeDef[] = [
   { view: 'codequiz', icon: 'code', title: 'Was gibt der Code aus?', desc: 'Ausgabe vorhersagen (Pseudo/Java/Python)', tone: 'blue' },
   { view: 'bugfind', icon: 'alert', title: 'Fehler finden', desc: 'Syntax-, Laufzeit- oder Logikfehler erkennen', tone: 'orange' },
   { view: 'ipv6', icon: 'network', title: 'IPv6 kürzen', desc: 'Volle Adresse → gekürzte Form (::)', tone: 'cyan' },
+  { view: 'vlsm', icon: 'git-graph', title: 'VLSM', desc: 'Block bedarfsgerecht aufteilen', tone: 'teal' },
+  { view: 'cabling', icon: 'link', title: 'Verkabelung', desc: 'Strecke rechnen, Medium wählen', tone: 'orange' },
   { view: 'logic', icon: 'help', title: 'Bedingungen / Logik', desc: 'UND/ODER/NICHT auswerten: wahr oder falsch?', tone: 'purple' },
 ]
 

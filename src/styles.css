@@ -714,6 +714,82 @@ h3.sec { margin: 1.4rem 0 0.6rem; font-size: 1rem; }
 
 /* (frühere .code-lines/.code-line-Regeln → jetzt .code-numbered in <Code lines />) */
 
+/* ---- VLSM-Drill ---- */
+.vlsm-table-wrap { overflow-x: auto; margin-top: 0.7rem; }
+.vlsm-table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+.vlsm-table th {
+  text-align: left; padding: 0.4rem 0.5rem; background: var(--muted-bg);
+  color: var(--muted); font-size: 0.76rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap;
+}
+.vlsm-table td { border-bottom: 1px solid var(--border); padding: 0.35rem 0.4rem; vertical-align: top; }
+.vlsm-table .vlsm-name { font-weight: 600; white-space: nowrap; }
+.vlsm-table .vlsm-need { font-variant-numeric: tabular-nums; color: var(--muted); text-align: right; }
+.vlsm-table input {
+  font: inherit; font-family: ui-monospace, monospace; font-size: 0.86rem; width: 100%; min-width: 8.5rem;
+  background: var(--bg-2); color: var(--text); border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.35rem 0.5rem;
+}
+.vlsm-table input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.vlsm-table td.ok input { border-color: var(--good); background: color-mix(in srgb, var(--good) 12%, transparent); }
+.vlsm-table td.bad input { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, transparent); }
+.vlsm-fix { display: block; margin-top: 0.2rem; font-size: 0.78rem; color: var(--good); font-family: ui-monospace, monospace; }
+
+.vlsm-bar { display: flex; height: 30px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin: 0.3rem 0 0.5rem; }
+.vlsm-seg { display: flex; align-items: center; justify-content: center; min-width: 0; overflow: hidden; }
+.vlsm-seg-label { font-size: 0.7rem; font-weight: 700; white-space: nowrap; color: var(--accent-fg); }
+.vlsm-seg.s0 { background: var(--tone-blue); }
+.vlsm-seg.s1 { background: var(--tone-teal); }
+.vlsm-seg.s2 { background: var(--tone-purple); }
+.vlsm-seg.s3 { background: var(--tone-amber); }
+.vlsm-seg.frei { background: var(--muted-bg); }
+.vlsm-seg.frei .vlsm-seg-label { color: var(--muted); }
+
+/* ---- Verkabelungs-Drill ---- */
+.cab-segments { list-style: none; margin: 0.5rem 0 0.6rem; padding: 0; display: grid; gap: 0.15rem; font-size: 0.9rem; }
+.cab-segments li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.25rem 0.5rem; border-radius: 6px; }
+.cab-segments li:nth-child(odd) { background: var(--bg-2); }
+.cab-segments li span { color: var(--muted); }
+.cab-segments li strong { font-variant-numeric: tabular-nums; }
+.cab-segments li.sum { border-top: 1px solid var(--border); background: none; margin-top: 0.2rem; padding-top: 0.4rem; }
+.cab-segments li.sum span { color: var(--text); font-weight: 600; }
+
+.cab-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 0.8rem; }
+.cf { display: grid; gap: 0.25rem; }
+.cf-label { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+.cf input {
+  font: inherit; font-family: ui-monospace, monospace; width: 100%;
+  background: var(--bg-2); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.5rem 0.7rem;
+}
+.cf input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cf.ok input { border-color: var(--good); background: color-mix(in srgb, var(--good) 12%, transparent); }
+.cf.bad input { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, transparent); }
+.cf-fix { font-size: 0.8rem; color: var(--good); font-family: ui-monospace, monospace; }
+
+.cab-case { margin: 0.4rem 0 0.8rem; }
+.cab-media { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.6rem; }
+.cab-med {
+  font: inherit; cursor: pointer; text-align: left; display: grid; gap: 0.2rem;
+  background: var(--panel-2); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.6rem 0.7rem;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+.cab-med span { color: var(--muted); font-size: 0.78rem; }
+.cab-med:hover:not(:disabled) { border-color: var(--muted); }
+.cab-med.sel { border-color: var(--accent); background: var(--accent-dim); }
+.cab-med.right { border-color: var(--good); background: color-mix(in srgb, var(--good) 16%, transparent); }
+.cab-med.wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, transparent); }
+.cab-med:disabled { cursor: default; }
+
+.cab-why {
+  margin-top: 0.6rem; padding: 0.7rem 0.9rem; border-radius: 8px;
+  background: var(--bg-2); border: 1px solid var(--border); font-size: 0.92rem;
+}
+.cab-why strong { color: var(--accent); }
+
+@media (max-width: 560px) { .cab-fields { grid-template-columns: 1fr; } }
+
 /* ---- „So löst du das": Erklär-Panel je interaktiver Übung ---- */
 .guide-btn { display: inline-flex; align-items: center; gap: 0.35rem; white-space: nowrap; }
 .guide-btn.on { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }

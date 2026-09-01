@@ -23,6 +23,8 @@ import { NetzplanDrill } from './components/NetzplanDrill'
 import { CodeQuizMode } from './components/CodeQuizMode'
 import { BugFindMode } from './components/BugFindMode'
 import { IPv6Drill } from './components/IPv6Drill'
+import { VlsmDrill } from './components/VlsmDrill'
+import { CablingDrill } from './components/CablingDrill'
 import { LogicDrill } from './components/LogicDrill'
 import { WeakTraining } from './components/WeakTraining'
 import { OopMode } from './components/OopMode'
@@ -137,6 +139,8 @@ export function App() {
         {view === 'codequiz' && <CodeQuizMode onExit={exit} />}
         {view === 'bugfind' && <BugFindMode onExit={exit} />}
         {view === 'ipv6' && <IPv6Drill onExit={exit} />}
+        {view === 'vlsm' && <VlsmDrill onExit={exit} />}
+        {view === 'cabling' && <CablingDrill onExit={exit} />}
         {view === 'logic' && <LogicDrill onExit={exit} />}
         {view === 'weak' && <WeakTraining onExit={exit} />}
         {view === 'oop' && <OopMode onExit={exit} />}

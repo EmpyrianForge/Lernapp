@@ -18,6 +18,8 @@ export type View =
   | 'codequiz'
   | 'bugfind'
   | 'ipv6'
+  | 'vlsm'
+  | 'cabling'
   | 'logic'
   | 'weak'
   | 'oop'
