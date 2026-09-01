@@ -500,5 +500,505 @@
         ]
       }
     ]
+  },
+  {
+    "id": "task-serverumzug-der-firmenwebsite",
+    "title": "Serverumzug der Firmenwebsite",
+    "topicId": "internet",
+    "scenario": "Sie absolvieren Ihre Ausbildung in der IT-Abteilung der Metallbau Wagner GmbH. Die Firmenwebsite www.metallbau-wagner.de wird von einem alten Server bei einem regionalen Anbieter zu einem neuen Webhosting-Paket umgezogen. Dabei erhält der Webserver eine neue öffentliche IP-Adresse; der A-Record der Domain wird entsprechend geändert.\n\nAm Tag nach der Umstellung meldet der Vertrieb, dass ein Teil der Kolleginnen und Kollegen bereits die neue Website sieht, während andere weiterhin die alte Fassung angezeigt bekommen. Ihr Ausbilder bittet Sie außerdem zu prüfen, ob der gebuchte Hosting-Tarif vom Datenvolumen her ausreicht.\n\nFolgende Kennzahlen liegen vor:\n- durchschnittliche Größe eines Seitenaufrufs (HTML, Bilder, CSS, JavaScript): 2,5 MB\n- erwartete Seitenaufrufe pro Monat: 12.000\n- im Tarif enthaltenes Übertragungsvolumen: 50 GB pro Monat (1 GB = 1.000 MB)",
+    "parts": [
+      {
+        "label": "a",
+        "operator": "beschreiben",
+        "points": 4,
+        "prompt": "Beschreiben Sie das Client-Server-Prinzip am Beispiel des Aufrufs der Firmenwebsite durch einen Kunden. Gehen Sie dabei auf die Rollenverteilung, den Ablauf einer Anfrage und einen sich daraus ergebenden Nachteil ein.",
+        "modelAnswer": "Beim Client-Server-Prinzip sind die Aufgaben auf zwei Rollen verteilt. Der Server (hier der Webserver mit der Firmenwebsite) stellt einen Dienst bereit, läuft dauerhaft und wartet passiv auf eingehende Anfragen an einem bekannten Port (HTTPS: Port 443, HTTP: Port 80). Der Client (hier der Browser des Kunden) fordert den Dienst aktiv an; er ist derjenige, der die Kommunikation eröffnet.\n\nAblauf: Der Kunde gibt die Adresse www.metallbau-wagner.de im Browser ein. Der Browser ermittelt zunächst über DNS die IP-Adresse des Servers, baut anschließend eine TCP-Verbindung (bei HTTPS zusätzlich eine TLS-Verbindung) auf und sendet einen HTTP-Request (z. B. GET /index.html). Der Webserver verarbeitet die Anfrage, sucht bzw. erzeugt die angeforderte Ressource und schickt eine HTTP-Response mit Statuszeile (z. B. 200 OK), Header und dem Inhalt zurück. Der Browser stellt den Inhalt dar und fordert die eingebetteten Ressourcen (Bilder, CSS, JavaScript) mit weiteren Requests nach.\n\nNachteil dieser Rollenverteilung ist die Abhängigkeit vom Server: Fällt der Webserver aus oder ist er überlastet, ist die Website für alle Clients gleichzeitig nicht mehr erreichbar (Single Point of Failure). Außerdem verursacht der Serverbetrieb laufende Kosten, und bei vielen gleichzeitigen Zugriffen muss die Serverleistung mitwachsen.",
+        "rubric": [
+          "Rollenverteilung korrekt: Server stellt Dienst bereit und wartet passiv, Client fordert aktiv an (1 P)",
+          "Ablauf Request/Response beschrieben: Anfrage des Browsers, Verarbeitung, Antwort mit Inhalt/Statuscode (1 P)",
+          "Konkreter Bezug zum Beispiel (Browser des Kunden, Webserver, HTTP/HTTPS bzw. Port 80/443) (1 P)",
+          "Nachvollziehbarer Nachteil genannt, z. B. Serverausfall/Überlastung legt den Dienst für alle lahm, Single Point of Failure, laufende Kosten (1 P)"
+        ]
+      },
+      {
+        "label": "b",
+        "operator": "erklären",
+        "points": 5,
+        "prompt": "Erklären Sie, warum ein Teil der Mitarbeitenden nach der Umstellung des A-Records noch die alte Website erreicht, obwohl der DNS-Eintrag bereits geändert wurde. Erklären Sie außerdem, welche Maßnahme man vor einem geplanten Serverumzug ergreift, um diesen Effekt möglichst kurz zu halten.",
+        "modelAnswer": "Ursache ist das Zwischenspeichern (Caching) von DNS-Antworten. Jeder DNS-Ressourcendatensatz besitzt eine TTL (Time To Live), die angibt, wie lange die Antwort gespeichert werden darf. Solange die TTL nicht abgelaufen ist, fragen der Browser-Cache, der DNS-Cache des Betriebssystems und vor allem der rekursive Resolver des Internetanbieters bzw. der Firma nicht erneut beim autoritativen Nameserver nach, sondern liefern die alte, noch gespeicherte IP-Adresse aus. Diese Clients verbinden sich deshalb weiterhin mit dem alten Server, während Clients, deren Cache-Eintrag bereits abgelaufen ist, die neue IP-Adresse erhalten. War die TTL beispielsweise auf 86.400 Sekunden (24 Stunden) gesetzt, kann dieser gemischte Zustand bis zu einen Tag andauern. Man spricht von der DNS-Propagierung.\n\nMaßnahme: Bereits einige Tage vor dem geplanten Umzug wird die TTL des betroffenen A-Records deutlich herabgesetzt (z. B. von 86.400 s auf 300 s). Dadurch laufen die alten Cache-Einträge zum Umstellungszeitpunkt schnell ab und die neue IP-Adresse wird binnen weniger Minuten verwendet. Nach erfolgreichem Umzug wird die TTL wieder erhöht, um die Nameserver zu entlasten. Zusätzlich lässt man den alten Server während der Übergangszeit weiterlaufen (oder richtet dort eine Weiterleitung ein), damit auch Clients mit altem Cache-Eintrag eine gültige Seite erhalten. Ein lokales Leeren des Caches (z. B. ipconfig /flushdns) hilft nur auf dem jeweiligen Rechner und nicht beim Resolver des Providers.",
+        "rubric": [
+          "DNS-Caching als Ursache benannt (Browser-, Betriebssystem- und/oder Resolver-Cache) (1 P)",
+          "TTL korrekt als Gültigkeitsdauer des Eintrags erklärt; solange sie läuft, wird nicht neu aufgelöst (1 P)",
+          "Folge korrekt hergeleitet: Clients mit altem Cache-Eintrag erreichen weiterhin den alten Server, andere schon den neuen (1 P)",
+          "Maßnahme: TTL rechtzeitig vor dem Umzug absenken (Beispielwert genannt) und danach wieder erhöhen (1 P)",
+          "Ergänzende sinnvolle Maßnahme: alten Server in der Übergangszeit weiterbetreiben bzw. Weiterleitung; lokales Cache-Leeren hilft nur lokal (1 P)"
+        ]
+      },
+      {
+        "label": "c",
+        "operator": "berechnen",
+        "points": 5,
+        "prompt": "Berechnen Sie das monatlich zu erwartende Übertragungsvolumen der Website und geben Sie an, ob der gebuchte Tarif ausreicht. Berechnen Sie außerdem, ab welcher Anzahl monatlicher Seitenaufrufe das im Tarif enthaltene Volumen überschritten wird. Geben Sie den Rechenweg an.",
+        "modelAnswer": "Monatliches Übertragungsvolumen:\n2,5 MB/Seitenaufruf × 12.000 Seitenaufrufe = 30.000 MB\n30.000 MB ÷ 1.000 MB/GB = 30 GB pro Monat\n\nVergleich mit dem Tarif:\nIm Tarif sind 50 GB enthalten, benötigt werden 30 GB. Der Tarif reicht damit aus; es verbleibt eine Reserve von 50 GB − 30 GB = 20 GB, das entspricht 40 % des enthaltenen Volumens.\n\nMaximale Anzahl Seitenaufrufe:\n50 GB = 50.000 MB\n50.000 MB ÷ 2,5 MB je Seitenaufruf = 20.000 Seitenaufrufe pro Monat\n\nDas Volumen wird also ab dem 20.001. Seitenaufruf im Monat überschritten. Gegenüber den erwarteten 12.000 Aufrufen besteht ein Puffer von 8.000 Aufrufen, das entspricht einer möglichen Steigerung um rund 67 %.\n\nHinweis: Die Rechnung berücksichtigt nur die Seitenaufrufe. Downloads (z. B. Prospekte), E-Mail-Verkehr oder Backups über dasselbe Paket sowie Zugriffe von Suchmaschinen-Crawlern erhöhen das tatsächliche Volumen zusätzlich, sodass der Puffer in der Praxis kleiner ausfällt.",
+        "rubric": [
+          "Rechenweg für das Volumen: 2,5 MB × 12.000 = 30.000 MB (1 P)",
+          "Korrekte Umrechnung in 30 GB (1 P)",
+          "Aussage: Tarif (50 GB) reicht aus, Reserve 20 GB (1 P)",
+          "Rechenweg Grenzwert: 50.000 MB ÷ 2,5 MB = 20.000 Seitenaufrufe (1 P)",
+          "Korrekte Schlussfolgerung inkl. Einheiten; Puffer von 8.000 Aufrufen bzw. Hinweis auf zusätzlichen Traffic (1 P)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-anmeldeportal-der-volkshochschule",
+    "title": "Anmeldeportal der Volkshochschule",
+    "topicId": "internet",
+    "scenario": "Sie arbeiten als Auszubildende bzw. Auszubildender beim IT-Dienstleister NetCon GmbH. Ihr Team entwickelt für die kommunale Volkshochschule ein Webportal, über das sich Bürgerinnen und Bürger mit Benutzerkonto anmelden und Kurse buchen können. Das Portal ersetzt eine bisher nur intern genutzte Desktopanwendung.\n\nBeim Aufruf des Testsystems unter https://test.vhs-portal.de zeigt der Browser eine Warnseite mit dem Hinweis \"Die Verbindung ist nicht privat\" und dem Fehlercode NET::ERR_CERT_AUTHORITY_INVALID an. Ein Kollege hat das Zertifikat des Testservers selbst erstellt.\n\nDie Auftraggeberin weist zudem darauf hin, dass es sich um das Angebot einer öffentlichen Stelle handelt und das Portal barrierefrei nutzbar sein muss. Aus dem aktuellen Entwurf liegen Ihnen drei Gestaltungsentscheidungen zur Prüfung vor:\n(1) Pflichtfelder im Anmeldeformular werden ausschließlich durch eine hellgraue Umrandung auf weißem Hintergrund gekennzeichnet.\n(2) Das Kursbild auf jeder Kursseite wird als <img>-Element ohne alt-Attribut eingebunden.\n(3) Die Schaltfläche \"Kurs buchen\" ist als <div> mit einem onclick-Handler umgesetzt und wird bei der Navigation mit der Tabulatortaste übersprungen.",
+    "parts": [
+      {
+        "label": "a",
+        "operator": "erklären",
+        "points": 5,
+        "prompt": "Erklären Sie die technische Ursache der Zertifikatswarnung. Erklären Sie außerdem, warum ein selbst erstelltes (selbstsigniertes) Zertifikat für den späteren Produktivbetrieb des Portals ungeeignet ist.",
+        "modelAnswer": "Ursache der Warnung: Beim Aufbau einer HTTPS-Verbindung übergibt der Server im TLS-Handshake sein Zertifikat. Der Browser prüft dieses Zertifikat unter anderem darauf, ob der Domainname übereinstimmt, ob die Gültigkeitsdauer eingehalten ist und ob die Zertifikatskette bis zu einem Wurzelzertifikat führt, das im Vertrauensspeicher (Truststore) des Browsers bzw. des Betriebssystems hinterlegt ist. Ein selbstsigniertes Zertifikat hat sich selbst als Aussteller; es existiert keine Kette zu einer anerkannten Zertifizierungsstelle (CA). Der Browser findet daher keinen Vertrauensanker und meldet ERR_CERT_AUTHORITY_INVALID – der Aussteller ist unbekannt bzw. nicht vertrauenswürdig.\n\nWarum für den Produktivbetrieb ungeeignet:\n1. Die Verschlüsselung selbst funktioniert zwar, aber die Authentizität ist ungesichert: Niemand hat unabhängig geprüft, dass der Server tatsächlich zur Volkshochschule gehört. Ein Angreifer könnte sich mit einem ebenso selbstsignierten Zertifikat dazwischenschalten (Man-in-the-Middle), ohne dass es auffällt.\n2. Jede Besucherin und jeder Besucher bekäme die Warnseite und müsste sie wegklicken. Das kostet Vertrauen bei einem öffentlichen Angebot, viele Nutzer brechen ab, und Nutzer gewöhnen sich daran, Sicherheitswarnungen zu ignorieren.\n3. Das Zertifikat müsste auf jedem Endgerät manuell in den Vertrauensspeicher importiert werden – bei einem öffentlich zugänglichen Portal ist das nicht praktikabel.\n\nLösung für das Produktivsystem: ein Zertifikat einer allgemein anerkannten Zertifizierungsstelle, deren Wurzelzertifikat in den Browsern bereits enthalten ist (z. B. ein kostenloses domainvalidiertes Zertifikat von Let's Encrypt mit automatischer Erneuerung). Für ein rein internes Testsystem ist ein selbstsigniertes Zertifikat dagegen vertretbar.",
+        "rubric": [
+          "Erklärt, dass der Browser die Zertifikatskette gegen den eigenen Vertrauensspeicher prüft (1 P)",
+          "Benennt als Ursache: selbstsigniert / Aussteller keine anerkannte CA, daher kein Vertrauensanker (1 P)",
+          "Unterscheidet Verschlüsselung und Authentizität; Identität des Servers ist nicht bestätigt, Man-in-the-Middle möglich (1 P)",
+          "Nennt praktische Folge: Warnseite für alle Nutzer, Vertrauens-/Abbruchproblem, Gewöhnung an Warnungen bzw. manueller Import nicht praktikabel (1 P)",
+          "Nennt die Lösung: Zertifikat einer anerkannten CA (Beispiel wie Let's Encrypt oder DV-/OV-Zertifikat) (1 P)"
+        ]
+      },
+      {
+        "label": "b",
+        "operator": "erläutern",
+        "points": 5,
+        "prompt": "HTTP arbeitet zustandslos. Erläutern Sie am Beispiel des Kursportals, wie der Anmeldestatus einer Nutzerin dennoch über mehrere Seitenaufrufe hinweg erhalten bleibt. Erläutern Sie dabei auch zwei technische Maßnahmen, mit denen die verwendete Kennung geschützt wird.",
+        "modelAnswer": "Zustandslosigkeit bedeutet, dass der Webserver jede HTTP-Anfrage für sich betrachtet und sich von sich aus nicht merkt, dass eine frühere Anfrage von derselben Nutzerin kam. Ohne zusätzliche Technik müsste sich die Nutzerin also bei jedem Klick neu anmelden.\n\nLösung über Session und Cookie:\n1. Die Nutzerin sendet Benutzername und Passwort per POST über HTTPS an den Server.\n2. Nach erfolgreicher Prüfung legt der Server eine Sitzung (Session) an: Er erzeugt eine lange, zufällige Session-ID und speichert die zugehörigen Daten (Benutzer-ID, Rolle, gewählte Kurse) serverseitig.\n3. Der Server sendet die Session-ID in der Antwort im Header Set-Cookie an den Browser.\n4. Der Browser speichert das Cookie und sendet es bei jedem weiteren Request an dieselbe Domain automatisch im Header Cookie mit.\n5. Der Server erkennt an der Session-ID die zugehörige Sitzung, lädt den Zustand und behandelt die Anfrage als angemeldet. Beim Abmelden oder nach Ablauf der Gültigkeit wird die Sitzung serverseitig verworfen.\n\nSchutzmaßnahmen (zwei genügen):\n- Attribut Secure: Das Cookie wird nur über verschlüsselte HTTPS-Verbindungen übertragen, kann also nicht im Klartext aus dem Netzverkehr mitgelesen werden.\n- Attribut HttpOnly: Das Cookie ist für JavaScript im Browser nicht auslesbar; ein eingeschleustes Skript kann die Session-ID damit nicht stehlen.\n- Weitere sinnvolle Maßnahmen: Attribut SameSite, ausreichend lange und zufällige Session-IDs, Erneuerung der Session-ID unmittelbar nach dem Login, automatischer Timeout bei Inaktivität.\n\nWichtig ist, dass im Cookie nur die Kennung steht und die eigentlichen Sitzungsdaten (insbesondere niemals das Passwort) auf dem Server verbleiben.",
+        "rubric": [
+          "Zustandslosigkeit korrekt erklärt: Server verknüpft Anfragen von sich aus nicht miteinander (1 P)",
+          "Server erzeugt nach dem Login eine Session mit zufälliger Session-ID und speichert die Daten serverseitig (1 P)",
+          "Übertragung beschrieben: Set-Cookie in der Antwort, Browser sendet das Cookie bei jedem weiteren Request automatisch mit (1 P)",
+          "Erste Schutzmaßnahme korrekt erläutert (z. B. Secure – nur über HTTPS) (1 P)",
+          "Zweite Schutzmaßnahme korrekt erläutert (z. B. HttpOnly – kein JavaScript-Zugriff; alternativ SameSite, Timeout, Erneuerung der Session-ID) (1 P)"
+        ]
+      },
+      {
+        "label": "c",
+        "operator": "beurteilen",
+        "points": 5,
+        "prompt": "Beurteilen Sie die drei im Entwurf genannten Gestaltungsentscheidungen (1) bis (3) aus Sicht der Barrierefreiheit. Geben Sie zu jeder Entscheidung an, welches Problem für welche Nutzergruppe entsteht und wie es behoben wird. Begründen Sie abschließend kurz, warum die Volkshochschule zur Barrierefreiheit verpflichtet ist.",
+        "modelAnswer": "Entscheidung (1) – Pflichtfelder nur über eine hellgraue Umrandung: Der Kontrast zwischen Hellgrau und Weiß ist zu gering; nach WCAG sind für Bedienelemente und Text mindestens 3:1 bzw. 4,5:1 gefordert. Menschen mit Sehbeeinträchtigung oder bei ungünstigen Lichtverhältnissen erkennen die Markierung nicht. Zusätzlich darf eine Information nicht allein über ein visuelles Merkmal wie Farbe vermittelt werden. Abhilfe: kontrastreiche Darstellung und zusätzlich eine Textkennzeichnung (z. B. \"Pflichtfeld\" bzw. * mit Legende) sowie required im Markup, damit auch ein Screenreader das Feld als Pflichtfeld ansagt.\n\nEntscheidung (2) – <img> ohne alt-Attribut: Ein Screenreader kann den Bildinhalt nicht wiedergeben und liest im schlechtesten Fall nur den Dateinamen vor. Blinde und stark sehbehinderte Nutzerinnen und Nutzer verlieren die Information. Abhilfe: aussagekräftiges alt-Attribut, das den Inhalt bzw. die Funktion des Bildes beschreibt; rein dekorative Bilder erhalten ein leeres alt-Attribut (alt=\"\"), damit sie übersprungen werden.\n\nEntscheidung (3) – Schaltfläche als <div> mit onclick: Ein <div> ist kein interaktives Element, erhält keinen Tastaturfokus und wird beim Navigieren mit der Tabulatortaste übersprungen. Wer keine Maus bedienen kann (motorische Einschränkung, reine Tastatur- oder Screenreader-Bedienung), kann den Kurs nicht buchen. Abhilfe: ein echtes <button>-Element verwenden. Es ist automatisch fokussierbar, wird mit Enter und Leertaste ausgelöst und als Schaltfläche angesagt; zusätzlich ist eine deutlich sichtbare Fokusmarkierung vorzusehen.\n\nBegründung der Verpflichtung: Die Volkshochschule ist eine öffentliche Stelle. Für deren Websites und Anwendungen gilt in Deutschland die Barrierefreie-Informationstechnik-Verordnung (BITV 2.0) in Verbindung mit dem Behindertengleichstellungsgesetz (BGG), die auf der EU-Richtlinie 2016/2102 beruhen; technischer Maßstab sind die WCAG-Kriterien der Stufe AA. Zusätzlich ist eine Erklärung zur Barrierefreiheit zu veröffentlichen. Unabhängig von der Rechtspflicht erweitert Barrierefreiheit den Nutzerkreis und verbessert die Bedienbarkeit für alle.",
+        "rubric": [
+          "Entscheidung (1) beurteilt: zu geringer Kontrast bzw. Information allein über Farbe/Optik; Abhilfe kontrastreiche und zusätzliche textliche Kennzeichnung (1 P)",
+          "Entscheidung (2) beurteilt: fehlendes alt-Attribut, Screenreader kann Bildinhalt nicht wiedergeben; Abhilfe aussagekräftiges alt bzw. alt=\"\" bei Dekoration (1 P)",
+          "Entscheidung (3) beurteilt: <div> ist nicht fokussierbar, keine Tastaturbedienung; Abhilfe echtes <button>-Element mit sichtbarem Fokus (1 P)",
+          "Betroffene Nutzergruppen bzw. Hilfsmittel korrekt benannt (Screenreader, Tastaturnutzung, Sehbeeinträchtigung) (1 P)",
+          "Begründung der Pflicht: öffentliche Stelle, daher BITV 2.0 / BGG bzw. EU-Richtlinie, Maßstab WCAG AA (1 P)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-produktfotos-und-logo-fuer-den-onlineshop-relaunch",
+    "title": "Produktfotos und Logo für den Onlineshop-Relaunch",
+    "topicId": "multimedia",
+    "scenario": "Sie absolvieren Ihre Ausbildung zum Fachinformatiker für Anwendungsentwicklung bei der Nordlicht Wohnwelt GmbH, einem Möbelhändler mit eigenem Onlineshop. Für den Relaunch des Shops liefert die beauftragte Fotografin die Produktfotos als unkomprimierte Bilddateien mit 6000 x 4000 Pixeln und einer Farbtiefe von 24 Bit. Dieselben Fotos sollen zusätzlich im gedruckten Katalog erscheinen, der in der Druckerei mit 300 dpi ausgegeben wird. Ihre Teamleiterin bittet Sie, vor dem Import in das Shopsystem den Speicherbedarf abzuschätzen, die maximale Druckgröße zu ermitteln und einen Vorschlag für die einzusetzenden Dateiformate zu machen. Neben den Fotos muss auch das Firmenlogo eingebunden werden, das im Shop in der Kopfzeile klein, auf der Startseite aber als großes Banner erscheint.",
+    "parts": [
+      {
+        "label": "a",
+        "operator": "berechnen",
+        "points": 4,
+        "prompt": "Berechnen Sie den unkomprimierten Speicherbedarf eines einzelnen Produktfotos (6000 x 4000 Pixel, Farbtiefe 24 Bit). Geben Sie das Ergebnis in Byte und in MB an (1 MB = 1024 KB, 1 KB = 1024 Byte). Der Rechenweg muss erkennbar sein.",
+        "modelAnswer": "Zunächst wird die Anzahl der Pixel bestimmt:\n6000 Px x 4000 Px = 24.000.000 Pixel\n\nEine Farbtiefe von 24 Bit entspricht 24 Bit / 8 = 3 Byte je Pixel (je 8 Bit für Rot, Grün und Blau).\n\nSpeicherbedarf = 24.000.000 Pixel x 3 Byte = 72.000.000 Byte\n\nUmrechnung:\n72.000.000 Byte / 1024 = 70.312,5 KB\n70.312,5 KB / 1024 = 68,66 MB\n\nEin unkomprimiertes Produktfoto belegt also rund 72.000.000 Byte bzw. etwa 68,66 MB (binäre Umrechnung). Rechnet man dezimal mit 1 MB = 1.000.000 Byte, ergeben sich genau 72 MB.",
+        "rubric": [
+          "Pixelanzahl korrekt berechnet: 6000 x 4000 = 24.000.000 Pixel (1 P)",
+          "Farbtiefe korrekt umgerechnet: 24 Bit = 3 Byte pro Pixel (1 P)",
+          "Speicherbedarf in Byte korrekt: 72.000.000 Byte (1 P)",
+          "Korrekte Umrechnung in MB mit 1024er-Schritten: ca. 68,66 MB (bzw. 72 MB dezimal, wenn der Umrechnungsweg angegeben ist) (1 P)"
+        ]
+      },
+      {
+        "label": "b",
+        "operator": "ermitteln",
+        "points": 4,
+        "prompt": "Ermitteln Sie, wie groß das Foto (6000 x 4000 Pixel) im Katalog maximal gedruckt werden kann, wenn die Druckerei mit 300 dpi arbeitet. Geben Sie Breite und Höhe in Zentimetern an (1 Zoll = 2,54 cm).",
+        "modelAnswer": "dpi (dots per inch) gibt an, wie viele Bildpunkte je Zoll gedruckt werden. Die Druckgröße ergibt sich daher aus Pixelanzahl geteilt durch die Auflösung:\n\nBreite: 6000 Px / 300 dpi = 20 Zoll\n20 Zoll x 2,54 cm = 50,8 cm\n\nHöhe: 4000 Px / 300 dpi = 13,3333 Zoll (13 1/3 Zoll)\n13,3333 Zoll x 2,54 cm = 33,87 cm\n\nDas Foto kann also maximal etwa 50,8 cm x 33,87 cm groß gedruckt werden, ohne dass die geforderte Druckauflösung von 300 dpi unterschritten wird. Wird größer gedruckt, sinkt die effektive Auflösung und das Bild wirkt unscharf bzw. pixelig, weil keine zusätzlichen Bildinformationen vorhanden sind.",
+        "rubric": [
+          "Zusammenhang Pixel / dpi = Druckgröße in Zoll erkannt (1 P)",
+          "Breite korrekt: 6000 / 300 = 20 Zoll = 50,8 cm (1 P)",
+          "Höhe korrekt: 4000 / 300 = 13,33 Zoll = ca. 33,87 cm (Rundung auf 33,86 cm ebenfalls anerkennen) (1 P)",
+          "Korrekte Umrechnung Zoll in cm mit Faktor 2,54 bzw. Hinweis, dass bei größerem Druck die Auflösung sinkt (1 P)"
+        ]
+      },
+      {
+        "label": "c",
+        "operator": "begründen",
+        "points": 5,
+        "prompt": "Für den Onlineshop schlagen Sie vor, die Produktfotos als JPEG und das Firmenlogo als SVG zu speichern. Begründen Sie Ihre Formatwahl jeweils fachlich und gehen Sie dabei auf die Kompressionsart sowie auf den Unterschied zwischen Raster- und Vektorgrafik ein.",
+        "modelAnswer": "Produktfotos als JPEG:\nJPEG ist ein Rastergrafikformat mit verlustbehafteter Kompression. Bei Fotos mit weichen Farbverläufen fallen die Kompressionsverluste für das menschliche Auge kaum auf, die Dateigröße sinkt aber gegenüber der unkomprimierten Datei um ein Vielfaches. Das verkürzt die Ladezeit des Shops und spart Speicherplatz und Übertragungsvolumen. Ein verlustfreies Format wie PNG oder TIFF würde bei Fotos deutlich größere Dateien erzeugen, ohne einen sichtbaren Qualitätsvorteil zu bringen. PNG wäre nur dann die bessere Wahl, wenn Transparenz benötigt wird oder harte Kanten und Text im Bild verlustfrei erhalten bleiben müssen.\n\nFirmenlogo als SVG:\nSVG ist ein Vektorformat. Das Bild wird nicht als Pixelraster, sondern als mathematische Beschreibung von Linien, Kurven und Flächen gespeichert. Dadurch lässt sich das Logo beliebig skalieren - klein in der Kopfzeile und groß als Startseiten-Banner - und bleibt in jeder Größe scharf; es entstehen keine Treppenstufen oder Unschärfen wie bei einer vergrößerten Rastergrafik. Zusätzlich ist die Datei bei einfachen Formen und wenigen Farben sehr klein, und es wird nur eine einzige Datei für alle Anzeigegrößen benötigt. Für Fotos ist SVG dagegen ungeeignet, weil sich reale Bildinhalte nicht sinnvoll durch geometrische Objekte beschreiben lassen.",
+        "rubric": [
+          "JPEG als verlustbehaftetes Rasterformat benannt (1 P)",
+          "Begründung JPEG: geringe Dateigröße / kurze Ladezeiten, Verluste bei Fotos kaum sichtbar (1 P)",
+          "SVG als Vektorformat benannt: Beschreibung durch geometrische Objekte statt Pixelraster (1 P)",
+          "Begründung SVG: verlustfrei skalierbar, in jeder Anzeigegröße scharf, eine Datei für alle Größen (1 P)",
+          "Sinnvolle Abgrenzung: Vektorformat für Fotos ungeeignet bzw. PNG nur bei Transparenz/harten Kanten (1 P)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-digitalisierung-der-schulungsmitschnitte",
+    "title": "Digitalisierung der Schulungsmitschnitte",
+    "topicId": "multimedia",
+    "scenario": "Die Weiterbildungsabteilung der Sanetta Medizintechnik GmbH nimmt ihre internen Schulungen künftig als Audiodateien auf und stellt sie im Intranet bereit. Die Aufnahme erfolgt mit einem digitalen Audiorecorder in Studioqualität: Abtastrate 48 kHz, Samplingtiefe 24 Bit, Stereo (2 Kanäle), zunächst unkomprimiert als WAV-Datei. Ein Mitschnitt dauert 45 Minuten. Da der Speicherplatz auf dem Intranet-Server begrenzt ist, sollen die Dateien vor der Veröffentlichung in MP3 mit einer konstanten Bitrate von 192 kbit/s umgewandelt werden. Zu jedem Mitschnitt gehört außerdem eine Untertiteldatei mit dem gesprochenen Text. Ein Kollege meldet, dass in seiner Anzeige statt \"Übung\" der Text \"Ãœbung\" erscheint. Sie sollen den Speicherbedarf berechnen, die Kompression bewerten und das Anzeigeproblem klären.",
+    "parts": [
+      {
+        "label": "a",
+        "operator": "berechnen",
+        "points": 5,
+        "prompt": "Berechnen Sie die Datenrate in Byte pro Sekunde und den unkomprimierten Speicherbedarf eines 45-minütigen Mitschnitts (48 kHz, 24 Bit, Stereo). Geben Sie das Ergebnis in Byte und in MB an (1 MB = 1024 KB, 1 KB = 1024 Byte).",
+        "modelAnswer": "Datenrate:\nDatenrate = Abtastrate x Samplingtiefe x Anzahl der Kanäle\nDatenrate = 48.000 Hz x 24 Bit x 2 = 2.304.000 Bit/s\n2.304.000 Bit/s / 8 = 288.000 Byte/s\n\nDauer:\n45 Minuten x 60 s = 2.700 s\n\nSpeicherbedarf:\n288.000 Byte/s x 2.700 s = 777.600.000 Byte\n\nUmrechnung:\n777.600.000 Byte / 1024 = 759.375 KB\n759.375 KB / 1024 = 741,58 MB\n\nEin unkomprimierter Mitschnitt belegt also rund 777.600.000 Byte bzw. etwa 741,58 MB (ca. 0,72 GB).",
+        "rubric": [
+          "Formel korrekt aufgestellt: Abtastrate x Samplingtiefe x Kanalzahl (1 P)",
+          "Datenrate korrekt: 2.304.000 Bit/s bzw. 288.000 Byte/s (1 P)",
+          "Dauer korrekt in Sekunden umgerechnet: 45 min = 2.700 s (1 P)",
+          "Speicherbedarf in Byte korrekt: 777.600.000 Byte (1 P)",
+          "Korrekte Umrechnung in MB: ca. 741,58 MB (bzw. 777,6 MB dezimal mit angegebenem Weg) (1 P)"
+        ]
+      },
+      {
+        "label": "b",
+        "operator": "berechnen",
+        "points": 5,
+        "prompt": "Berechnen Sie die Dateigröße desselben Mitschnitts nach der Umwandlung in MP3 mit 192 kbit/s sowie den Kompressionsfaktor und die prozentuale Speicherersparnis gegenüber der unkomprimierten WAV-Datei.",
+        "modelAnswer": "MP3-Dateigröße:\n192 kbit/s = 192.000 Bit/s (entspricht 192.000 / 8 = 24.000 Byte/s)\n192.000 Bit/s x 2.700 s = 518.400.000 Bit\n518.400.000 Bit / 8 = 64.800.000 Byte\n64.800.000 Byte / 1024 / 1024 = 61,80 MB\n\nKompressionsfaktor:\nFaktor = Größe unkomprimiert / Größe komprimiert\nFaktor = 777.600.000 Byte / 64.800.000 Byte = 12\nDie MP3-Datei ist also zwölfmal kleiner (Kompressionsverhältnis 12:1). Dasselbe Ergebnis erhält man über die Datenraten: 2.304.000 Bit/s / 192.000 Bit/s = 12.\n\nSpeicherersparnis:\nErsparnis = (777.600.000 - 64.800.000) / 777.600.000 = 712.800.000 / 777.600.000 = 0,9167\nDas entspricht rund 91,67 % Speicherersparnis; es verbleiben etwa 8,33 % der ursprünglichen Größe.",
+        "rubric": [
+          "Bitrate korrekt umgerechnet: 192 kbit/s = 192.000 Bit/s bzw. 24.000 Byte/s (1 P)",
+          "MP3-Größe korrekt: 64.800.000 Byte bzw. ca. 61,8 MB (1 P)",
+          "Kompressionsfaktor korrekt berechnet: 12 bzw. 12:1 (1 P)",
+          "Rechenweg für die Ersparnis korrekt aufgestellt (Differenz bezogen auf die Ausgangsgröße) (1 P)",
+          "Prozentuale Ersparnis korrekt: ca. 91,67 % (verbleibend ca. 8,33 %) (1 P)"
+        ]
+      },
+      {
+        "label": "c",
+        "operator": "erläutern",
+        "points": 4,
+        "prompt": "Erläutern Sie, wodurch die fehlerhafte Anzeige \"Ãœbung\" statt \"Übung\" entsteht und wie das Problem behoben werden kann. Geben Sie außerdem an, wie viele Byte das Wort \"Übung\" in UTF-8 belegt.",
+        "modelAnswer": "Ursache:\nDie Untertiteldatei ist in UTF-8 codiert, wird von der Anzeigesoftware des Kollegen aber als 1-Byte-Zeichensatz interpretiert (ISO 8859-1 / Latin-1 bzw. dessen Windows-Variante Windows-1252). In UTF-8 werden alle Zeichen außerhalb des ASCII-Bereichs - also auch die deutschen Umlaute - durch mehrere Byte dargestellt; \"Ü\" belegt die beiden Byte C3 9C. Ein Programm, das jedes einzelne Byte als ein eigenes Zeichen deutet, zeigt diese zwei Byte als zwei getrennte Zeichen an: C3 wird zu \"Ã\", 9C in Windows-1252 zu \"œ\" - zusammen also \"Ãœ\". Es liegt somit kein defekter Text vor, sondern eine falsche Zeichensatz-Annahme beim Lesen (sogenanntes Mojibake). Die Datei selbst ist unverändert korrekt.\n\nBehebung:\nDie Datei muss beim Öffnen bzw. Ausliefern mit derselben Codierung gelesen werden, mit der sie geschrieben wurde. Konkret: im Anzeigeprogramm bzw. Editor die Codierung auf UTF-8 stellen, bei einer Auslieferung über das Intranet den Zeichensatz explizit angeben (z. B. HTTP-Header bzw. Meta-Angabe charset=UTF-8) und unternehmensweit einheitlich UTF-8 verwenden.\n\nSpeicherbedarf von \"Übung\" in UTF-8:\nDas Wort besteht aus 5 Zeichen. Die vier Zeichen b, u, n, g liegen im ASCII-Bereich und belegen je 1 Byte, das \"Ü\" belegt 2 Byte.\n4 x 1 Byte + 1 x 2 Byte = 6 Byte",
+        "rubric": [
+          "Ursache korrekt: Datei ist UTF-8-codiert, wird aber als 1-Byte-Zeichensatz (ISO 8859-1/Latin-1 bzw. Windows-1252) gelesen (1 P)",
+          "Erklärung: Umlaute belegen in UTF-8 mehrere Byte (\"Ü\" = C3 9C), die einzeln als je ein Zeichen fehlinterpretiert werden (1 P)",
+          "Sinnvolle Lösung genannt: Codierung beim Lesen/Ausliefern auf UTF-8 setzen bzw. Zeichensatz explizit deklarieren (1 P)",
+          "Byteanzahl korrekt berechnet: 4 x 1 Byte + 1 x 2 Byte = 6 Byte (1 P)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-cad-software-kauflizenz-oder-saas-abonnement",
+    "title": "CAD-Software: Kauflizenz oder SaaS-Abonnement",
+    "topicId": "software-lizenzen",
+    "scenario": "Sie sind Anwendungsentwickler bei der Medtec Feinwerktechnik GmbH. Die Konstruktionsabteilung soll eine neue CAD-Software erhalten; acht Konstrukteure benötigen einen Zugang. Die Geschäftsführung lässt zwei Angebote prüfen und legt einen Betrachtungszeitraum von vier Jahren fest.\n\nVariante A (Kauflizenz, Installation auf den Arbeitsplatzrechnern): 2.400,00 EUR einmalig je Einzelplatzlizenz. Zusätzlich ist ab dem ersten Jahr ein Wartungsvertrag abzuschließen, der jährlich 18 % des Lizenzkaufpreises je Lizenz kostet und Updates sowie Support enthält.\n\nVariante B (SaaS-Abonnement, Named User): 79,00 EUR je Nutzer und Monat, alle Updates und der Support sind enthalten.\n\nIn der Abteilung arbeiten zwar acht Personen mit dem Programm, wegen Schicht- und Projektplanung sind jedoch nie mehr als fünf gleichzeitig damit tätig.",
+    "parts": [
+      {
+        "label": "a",
+        "operator": "berechnen",
+        "points": 5,
+        "prompt": "Berechnen Sie die Gesamtkosten beider Varianten für den Betrachtungszeitraum von vier Jahren und ermitteln Sie, welche Variante rein rechnerisch günstiger ist. Geben Sie auch die Kostendifferenz an. Der Rechenweg muss nachvollziehbar sein.",
+        "modelAnswer": "Variante A (Kauflizenz):\nAnschaffung: 8 Lizenzen x 2.400,00 EUR = 19.200,00 EUR\nWartung je Lizenz und Jahr: 18 % von 2.400,00 EUR = 432,00 EUR\nWartung je Jahr gesamt: 8 x 432,00 EUR = 3.456,00 EUR\nWartung über 4 Jahre: 4 x 3.456,00 EUR = 13.824,00 EUR\nGesamtkosten A: 19.200,00 EUR + 13.824,00 EUR = 33.024,00 EUR\n\nVariante B (SaaS-Abonnement):\nJe Nutzer und Jahr: 79,00 EUR x 12 = 948,00 EUR\nJe Jahr gesamt: 8 x 948,00 EUR = 7.584,00 EUR\nGesamtkosten B über 4 Jahre: 4 x 7.584,00 EUR = 30.336,00 EUR\n\nVergleich: 33.024,00 EUR - 30.336,00 EUR = 2.688,00 EUR\nDas SaaS-Abonnement (Variante B) ist über vier Jahre um 2.688,00 EUR günstiger.",
+        "rubric": [
+          "Anschaffungskosten Variante A korrekt: 8 x 2.400,00 EUR = 19.200,00 EUR (1 P)",
+          "Wartungskosten korrekt: 18 % von 2.400,00 EUR = 432,00 EUR je Lizenz/Jahr, 8 x 432,00 EUR x 4 Jahre = 13.824,00 EUR (1 P)",
+          "Gesamtkosten Variante A: 33.024,00 EUR (1 P)",
+          "Gesamtkosten Variante B: 79,00 EUR x 12 x 8 x 4 = 30.336,00 EUR (1 P)",
+          "Ergebnisaussage: Variante B ist günstiger, Differenz 2.688,00 EUR (1 P)",
+          "Folgefehler werden bei korrektem Rechenweg nicht doppelt bewertet"
+        ]
+      },
+      {
+        "label": "b",
+        "operator": "erläutern",
+        "points": 4,
+        "prompt": "Der Hersteller bietet die Kauflizenz wahlweise als Named-User-Lizenz oder als Concurrent-User-Lizenz an. Erläutern Sie beide Lizenzzählweisen und leiten Sie aus der beschriebenen Arbeitssituation ab, welche Zählweise für die Konstruktionsabteilung wirtschaftlich vorteilhafter wäre.",
+        "modelAnswer": "Bei einer Named-User-Lizenz wird die Lizenz einer namentlich benannten Person fest zugeordnet. Jeder Anwender, der die Software nutzen darf, benötigt eine eigene Lizenz - unabhängig davon, wie oft und wie lange er sie tatsächlich nutzt. Die Zahl der Lizenzen richtet sich also nach der Zahl der berechtigten Personen.\n\nBei einer Concurrent-User-Lizenz (Floating-Lizenz) wird dagegen die Zahl der gleichzeitigen Zugriffe lizenziert. Die Lizenzen werden von einem Lizenzserver verwaltet und beim Programmstart aus einem Pool entnommen sowie beim Beenden wieder freigegeben. Es dürfen beliebig viele Personen berechtigt sein, aber nie mehr als die lizenzierte Anzahl zur selben Zeit arbeiten.\n\nIn der Konstruktionsabteilung sind acht Personen berechtigt, es arbeiten aber wegen der Schicht- und Projektplanung nie mehr als fünf gleichzeitig mit der Software. Bei Named User wären acht Lizenzen nötig, bei Concurrent User nur fünf. Die Concurrent-User-Zählweise ist deshalb wirtschaftlich vorteilhafter, solange der Aufpreis je Concurrent-Lizenz die Ersparnis von drei Lizenzen nicht aufzehrt. Zu berücksichtigen ist außerdem, dass bei Lastspitzen ein Anwender warten muss, bis eine Lizenz frei wird.",
+        "rubric": [
+          "Named User: Lizenz ist einer benannten Person fest zugeordnet, je berechtigter Person eine Lizenz (1 P)",
+          "Concurrent User/Floating: Lizenzierung der gleichzeitigen Zugriffe, Vergabe aus einem Pool über Lizenzserver, Rückgabe beim Beenden (1 P)",
+          "Anwendung auf die Situation: 8 berechtigte Personen, aber maximal 5 gleichzeitig, daher 8 Named-User- gegenüber 5 Concurrent-User-Lizenzen (1 P)",
+          "Begründete Empfehlung Concurrent User, mit Einschränkung (Aufpreis je Lizenz bzw. Wartezeit bei Lastspitzen) (1 P)"
+        ]
+      },
+      {
+        "label": "c",
+        "operator": "beurteilen",
+        "points": 4,
+        "prompt": "Beurteilen Sie, ob die Entscheidung zwischen Variante A und Variante B allein anhand des in Teilaufgabe a) ermittelten Kostenvergleichs getroffen werden sollte. Beziehen Sie mindestens drei nicht monetäre Gesichtspunkte ein.",
+        "modelAnswer": "Der reine Kostenvergleich reicht als Entscheidungsgrundlage nicht aus. Die Differenz von 2.688,00 EUR beträgt bezogen auf Variante A nur rund 8 % und ist damit gering; sie hängt zudem stark vom gewählten Betrachtungszeitraum ab. Verlängert sich die Nutzungsdauer über vier Jahre hinaus, verschiebt sich der Vorteil zur Kauflizenz, weil dort nur noch die Wartung anfällt, während die Abogebühr unverändert weiterläuft. Außerdem kann der Anbieter die Abopreise anheben.\n\nNicht monetäre Gesichtspunkte:\n1. Nutzungsrecht und Ausstieg: Bei der Kauflizenz besteht ein zeitlich unbefristetes Nutzungsrecht; die Software bleibt auch nach Ende der Wartung lauffähig. Beim Abo endet das Nutzungsrecht mit der Kündigung, die Software ist dann nicht mehr nutzbar (Abhängigkeit vom Anbieter, Lock-in).\n2. Datenhaltung und Datenschutz: Bei SaaS liegen Konstruktionsdaten häufig beim Anbieter in der Cloud. Das ist bei schutzwürdigem Know-how kritisch und erfordert vertragliche Regelungen sowie eine Prüfung des Serverstandorts.\n3. Verfügbarkeit und Infrastruktur: SaaS setzt eine leistungsfähige, ausfallsichere Internetanbindung voraus; bei einer Störung steht die Konstruktion still. Die lokale Installation arbeitet auch offline weiter, erfordert aber eigene Hardware, Administration und Datensicherung.\n4. Aktualität und Aufwand: Beim Abo sind Updates und Support enthalten und werden zentral eingespielt; bei der Kauflizenz entsteht interner Administrationsaufwand, dafür ist der Zeitpunkt von Versionswechseln selbst bestimmbar.\n\nFazit: Da die Kostendifferenz klein ist, sollten Datenhaltung, Ausfallsicherheit und die geplante Nutzungsdauer den Ausschlag geben. Eine reine Kostenentscheidung wäre nicht sachgerecht.",
+        "rubric": [
+          "Aussage, dass der Kostenvergleich allein nicht ausreicht, mit Bezug auf die geringe Differenz bzw. die Abhängigkeit vom Betrachtungszeitraum (1 P)",
+          "Nutzungsrecht/Vertragsende: unbefristetes Nutzungsrecht bei Kauf gegenüber Ende der Nutzbarkeit bei Kündigung des Abos, Anbieterabhängigkeit (1 P)",
+          "Datenhaltung/Datenschutz bei Cloud-Speicherung der Konstruktionsdaten oder Verfügbarkeit/Abhängigkeit von der Internetanbindung (1 P)",
+          "Weiterer sachgerechter Gesichtspunkt (Updateversorgung, Administrationsaufwand, Skalierbarkeit bei schwankender Nutzerzahl, Planbarkeit der Ausgaben) und begründetes Fazit (1 P)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-internes-lizenzaudit-bei-einem-logistikdienstleister",
+    "title": "Internes Lizenzaudit bei einem Logistikdienstleister",
+    "topicId": "software-lizenzen",
+    "scenario": "Sie unterstützen die IT-Abteilung der Nordfracht Logistik GmbH bei einem internen Lizenzaudit. Eine automatische Inventarisierung der 60 Arbeitsplatzrechner liefert folgende Ergebnisse:\n\n1. Bildbearbeitung \"PixPro\": 31 Installationen. In der Ablage finden sich Rechnungen und Lizenzurkunden über 25 Einzelplatzlizenzen. Eine Nachlizenzierung kostet 189,00 EUR je Einzelplatzlizenz.\n2. Freeware \"PDF-Merge\": 12 Installationen. In den Lizenzbedingungen des Herstellers steht, die Nutzung sei ausschließlich für private, nicht kommerzielle Zwecke kostenfrei; für den gewerblichen Einsatz sei eine kostenpflichtige Lizenz erforderlich.\n3. Grafikprogramm \"OpenPaint\" unter der GPLv3: 40 Installationen. Die Software wird nur intern genutzt und nicht verändert oder weitergegeben.\n\nDie Geschäftsführung möchte wissen, wo Handlungsbedarf besteht.",
+    "parts": [
+      {
+        "label": "a",
+        "operator": "ermitteln",
+        "points": 4,
+        "prompt": "Ermitteln Sie für \"PixPro\" die Lizenzbilanz und die Kosten einer erforderlichen Nachlizenzierung. Benennen Sie den Fachbegriff für den festgestellten Zustand.",
+        "modelAnswer": "Die Lizenzbilanz stellt den Lizenzbestand (Soll) den tatsächlich festgestellten Installationen bzw. Nutzungen (Ist) gegenüber.\n\nVorhandene Lizenzen: 25\nFestgestellte Installationen: 31\nDeckungslücke: 31 - 25 = 6 fehlende Lizenzen\n\nKosten der Nachlizenzierung: 6 x 189,00 EUR = 1.134,00 EUR\n\nDer Zustand heißt Unterlizenzierung: Es werden mehr Installationen genutzt, als Nutzungsrechte erworben wurden. Das ist ein Verstoß gegen den Lizenzvertrag und gegen das Urheberrecht. Alternativ zur Nachlizenzierung könnten sechs nicht benötigte Installationen nachweislich deinstalliert werden; die Nutzung in der Vergangenheit bleibt davon jedoch unberührt.",
+        "rubric": [
+          "Lizenzbilanz als Gegenüberstellung von Lizenzbestand (Soll) und Installationen/Nutzungen (Ist) beschrieben (1 P)",
+          "Deckungslücke korrekt ermittelt: 31 - 25 = 6 fehlende Lizenzen (1 P)",
+          "Nachlizenzierungskosten korrekt: 6 x 189,00 EUR = 1.134,00 EUR (1 P)",
+          "Fachbegriff Unterlizenzierung genannt (1 P)",
+          "Zusatz ohne Punktabzug bei Fehlen: Alternative Deinstallation der überzähligen Installationen"
+        ]
+      },
+      {
+        "label": "b",
+        "operator": "beurteilen",
+        "points": 5,
+        "prompt": "Beurteilen Sie die Positionen 2 und 3 rechtlich und geben Sie an, ob jeweils Handlungsbedarf besteht. Gehen Sie dabei auch auf die Frage ein, welche Risiken dem Unternehmen aus einer festgestellten Unterlizenzierung (Position 1) drohen.",
+        "modelAnswer": "Position 2 - Freeware \"PDF-Merge\": Freeware bedeutet lediglich, dass die Software kostenlos überlassen wird; sie ist weder quelloffen noch frei von Nutzungsbedingungen. Der Hersteller hat das Nutzungsrecht ausdrücklich auf die private, nicht kommerzielle Nutzung beschränkt. Der Einsatz auf zwölf betrieblichen Arbeitsplätzen ist damit nicht vom eingeräumten Nutzungsrecht gedeckt und stellt eine unzulässige Nutzung dar. Es besteht Handlungsbedarf: Entweder werden zwölf kommerzielle Lizenzen beschafft oder die Software wird deinstalliert und durch ein für den gewerblichen Einsatz zugelassenes Produkt ersetzt.\n\nPosition 3 - \"OpenPaint\" unter GPLv3: Die GPL räumt jedermann das Recht ein, die Software unbegrenzt auszuführen, zu kopieren und zu installieren. Eine Begrenzung der Installationszahl gibt es nicht, Lizenzkosten fallen nicht an. Die Copyleft-Pflichten der GPL (Offenlegung des Quelltextes, Weitergabe unter derselben Lizenz) werden erst durch die Weitergabe bzw. Verbreitung an Dritte ausgelöst. Da die Software nur intern genutzt und weder verändert noch weitergegeben wird, besteht kein Handlungsbedarf; die 40 Installationen sind zulässig.\n\nRisiken aus der Unterlizenzierung bei Position 1: Der Rechteinhaber kann Unterlassung, Auskunft und Schadensersatz verlangen; üblich ist eine Nachlizenzierung, häufig zu Listenpreisen und mit Aufschlag. Hinzu kommen Kosten für Anwälte und für ein vom Hersteller veranlasstes Audit sowie mögliche Vertragsstrafen. Die unerlaubte Vervielfältigung von Software ist zudem strafbewehrt. Neben den finanziellen Folgen droht ein Reputationsschaden; die Geschäftsführung trägt die Verantwortung für die Einhaltung der Lizenzbestimmungen im Unternehmen.",
+        "rubric": [
+          "Freeware korrekt eingeordnet: kostenlos, aber Nutzungsbedingungen des Herstellers gelten; kein Quelltext, keine freie Verwendung (1 P)",
+          "Feststellung, dass die gewerbliche Nutzung nicht vom Nutzungsrecht gedeckt ist, mit Handlungsempfehlung (Lizenzen kaufen oder deinstallieren/ersetzen) (1 P)",
+          "GPLv3: unbegrenzte Installation und Nutzung zulässig, keine Lizenzkosten, daher kein Handlungsbedarf (1 P)",
+          "Hinweis, dass die Copyleft-Pflichten (Quelltextoffenlegung, gleiche Lizenz) erst bei Weitergabe an Dritte greifen, hier also nicht (1 P)",
+          "Mindestens zwei Risiken der Unterlizenzierung: Nachlizenzierung/Schadensersatz, Unterlassungsanspruch, Vertragsstrafe, Auditkosten, strafrechtliche Folgen, Reputationsschaden (1 P)"
+        ]
+      },
+      {
+        "label": "c",
+        "operator": "beschreiben",
+        "points": 4,
+        "prompt": "Beschreiben Sie zwei organisatorische oder technische Maßnahmen, mit denen das Unternehmen künftige Unterlizenzierungen und unzulässige Installationen vermeiden kann. Erläutern Sie jeweils die Wirkung der Maßnahme.",
+        "modelAnswer": "Maßnahme 1 - Verbindlicher Beschaffungs- und Freigabeprozess mit zentraler Softwareverteilung: Software darf nicht mehr von Anwendern selbst installiert werden. Die lokalen Administratorrechte werden entzogen, und Programme werden ausschließlich über eine zentrale Softwareverteilung ausgerollt. Wirkung: Jede Installation ist genehmigt und dokumentiert; unlizenzierte oder für den gewerblichen Einsatz unzulässige Programme gelangen gar nicht erst auf die Rechner, und der Ist-Bestand bleibt kontrollierbar.\n\nMaßnahme 2 - Software Asset Management mit regelmäßiger Lizenzbilanz: Ein SAM-Werkzeug inventarisiert die installierte Software automatisch und gleicht sie in festen Abständen mit einer zentralen Lizenzdatenbank ab, in der alle Kaufnachweise, Lizenzurkunden und Vertragsbedingungen hinterlegt sind. Wirkung: Abweichungen zwischen Soll und Ist werden frühzeitig erkannt und können durch Nachkauf oder Deinstallation bereinigt werden, bevor der Hersteller ein Audit durchführt. Gleichzeitig wird Überlizenzierung sichtbar, sodass unnötige Kosten gesenkt werden können.\n\nWeitere sinnvolle Maßnahmen wären eine schriftliche Regelung zum Umgang mit Freeware und Open Source, die Schulung der Mitarbeitenden sowie die revisionssichere Archivierung aller Lizenznachweise.",
+        "rubric": [
+          "Erste Maßnahme konkret benannt (z. B. Entzug lokaler Administratorrechte, zentrale Softwareverteilung, verbindlicher Freigabe-/Beschaffungsprozess) (1 P)",
+          "Wirkung der ersten Maßnahme erläutert: nur genehmigte und dokumentierte Installationen, Kontrolle über den Ist-Bestand (1 P)",
+          "Zweite Maßnahme konkret benannt (z. B. SAM-Werkzeug, zentrale Lizenzdatenbank mit Nachweisen, regelmäßige Lizenzbilanz, Mitarbeiterrichtlinie und Schulung) (1 P)",
+          "Wirkung der zweiten Maßnahme erläutert: frühzeitiges Erkennen von Unter- oder Überlizenzierung, Nachweisfähigkeit bei einem Herstelleraudit, Kostensenkung (1 P)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-beschwerdeanruf-nach-fehlgeschlagenem-update",
+    "title": "Beschwerdeanruf nach fehlgeschlagenem Update",
+    "topicId": "kommunikation",
+    "scenario": "Sie sind Fachinformatiker/in für Anwendungsentwicklung bei einem IT-Systemhaus und arbeiten im Anwendersupport. Kundin ist die Spedition Nolte GmbH, die Ihre Lagerverwaltungssoftware einsetzt. Am Montagmorgen ruft Frau Berger, die Lagerleiterin, an. Nach einem Software-Update in der vergangenen Nacht lassen sich keine Versandetiketten mehr drucken; der Warenausgang steht seit zwei Stunden still. Frau Berger spricht sehr laut und vorwurfsvoll: Sie habe bereits am Freitag auf ein anderes Problem hingewiesen und nie einen Rückruf erhalten. Frau Berger ist ausgesprochene IT-Laiin. Ihr Kollege Herr Sander hätte den Rückruf am Freitag übernehmen sollen, hat ihn aber vergessen.",
+    "parts": [
+      {
+        "label": "a",
+        "operator": "beschreiben",
+        "points": 5,
+        "prompt": "Beschreiben Sie fünf Schritte, in denen Sie das Beschwerdegespräch mit Frau Berger führen, von der Gesprächsannahme bis zum Gesprächsabschluss. Gehen Sie dabei jeweils kurz auf Ihr konkretes Verhalten ein.",
+        "modelAnswer": "1. Zuhören und ausreden lassen: Ich lasse Frau Berger ihren Ärger vollständig schildern und unterbreche sie nicht. Durch aktives Zuhören (Bestätigungssignale, gelegentliches Nachfragen) signalisiere ich Aufmerksamkeit und nehme Druck aus dem Gespräch.\n2. Verständnis zeigen und sich für die Unannehmlichkeiten entschuldigen: Ich bedanke mich für die Rückmeldung und entschuldige mich für den entstandenen Stillstand und den ausgebliebenen Rückruf. Wichtig ist, Verständnis für die Situation zu zeigen, ohne vorschnell eine Schuldfrage zu klären oder Kollegen zu belasten.\n3. Sachverhalt strukturiert aufnehmen: Mit offenen und gezielten Fragen kläre ich die Fakten (Seit wann? Welche Fehlermeldung? Welche Arbeitsplätze und Drucker sind betroffen? Wurde etwas verändert?) und fasse das Verstandene zusammen, damit Frau Berger die korrekte Aufnahme bestätigen kann. Alles wird im Ticketsystem dokumentiert.\n4. Lösung bzw. nächste Schritte verbindlich vereinbaren: Ich nenne eine konkrete Sofortmaßnahme (z. B. Prüfung des Etikettendrucks über eine Fernwartungssitzung, notfalls Rücknahme des Updates) sowie einen verbindlichen Termin für Rückmeldung und Behebung. Ich sage nur zu, was ich auch einhalten kann.\n5. Gespräch positiv abschließen und nachfassen: Ich fasse die Vereinbarung zusammen, bedanke mich erneut für den Hinweis und melde mich anschließend wie zugesagt zurück. Nach der Lösung erfolgt eine kurze Rückmeldung, ob das Problem aus Kundensicht erledigt ist; intern werden Ursache und Beschwerde ausgewertet, damit sich der Fehler nicht wiederholt.",
+        "rubric": [
+          "Schritt 1: Zuhören/ausreden lassen, aktives Zuhören, nicht unterbrechen (1 P)",
+          "Schritt 2: Verständnis zeigen und sich entschuldigen, keine Schuldzuweisung (1 P)",
+          "Schritt 3: Sachverhalt mit gezielten Fragen aufnehmen, zusammenfassen und dokumentieren (1 P)",
+          "Schritt 4: Konkrete Lösung/nächste Schritte mit verbindlichem Termin vereinbaren, nur realistische Zusagen (1 P)",
+          "Schritt 5: Gespräch positiv abschließen, wie zugesagt nachfassen bzw. Beschwerde intern auswerten (1 P)",
+          "Je Schritt nur volle Punktzahl bei erkennbarem Bezug zum eigenen Verhalten, nicht bei bloßem Stichwort"
+        ]
+      },
+      {
+        "label": "b",
+        "operator": "erklären",
+        "points": 4,
+        "prompt": "Sie schlagen Frau Berger vor, das Update zurückzunehmen. Sie fragt: \"Was heißt denn hier Rollback?\" Erklären Sie den Begriff \"Rollback\" so, wie Sie ihn Frau Berger am Telefon erklären würden, und erklären Sie an Ihrem Beispiel zwei allgemeine Regeln für das adressatengerechte Erklären von Fachbegriffen.",
+        "modelAnswer": "Erklärung für Frau Berger: \"Rollback bedeutet, dass wir Ihre Software wieder auf den Stand vor dem Update zurücksetzen - also auf die Version, mit der Sie am Freitag gearbeitet haben und mit der der Etikettendruck noch funktioniert hat. Wir spielen dazu die gesicherte alte Version zurück. Ihre Daten, also Aufträge und Lagerbestände, sichern wir vorher und übernehmen sie, damit nichts verloren geht. Sie können danach voraussichtlich in etwa 30 Minuten wieder drucken; das Update holen wir nach, sobald wir den Fehler behoben haben.\"\n\nRegel 1 - Sprachniveau an die Zielgruppe anpassen und Fachjargon vermeiden bzw. übersetzen: Frau Berger ist IT-Laiin, deshalb verwende ich Alltagssprache (\"zurücksetzen auf den Stand von Freitag\") statt Begriffen wie \"Versionsstand zurückspielen\" oder \"Snapshot einspielen\". Ein Vergleich aus der Erfahrungswelt der Kundin (\"wie die Rückgängig-Funktion in einem Textprogramm, nur für die ganze Anwendung\") erhöht das Verständnis zusätzlich.\n\nRegel 2 - Den Nutzen und die Auswirkung für den Adressaten in den Mittelpunkt stellen: Für die Lagerleiterin ist entscheidend, ob Daten verloren gehen und wann wieder gedruckt werden kann. Deshalb nenne ich Folgen und Zeitrahmen konkret, statt die technische Vorgehensweise zu beschreiben.\n\n(Ebenfalls zulässig: Verständnis absichern durch Rückfragen bzw. Zusammenfassen lassen; kurze, einfache Sätze statt Schachtelsätze; keine Abkürzungen ohne Erläuterung.)",
+        "rubric": [
+          "Fachlich korrekte Erklärung des Rollbacks: Zurücksetzen auf einen früheren, funktionierenden Software-/Versionsstand (1 P)",
+          "Erklärung ist adressatengerecht formuliert: Alltagssprache, kein Fachjargon, ggf. Analogie oder Beispiel (1 P)",
+          "Regel 1 genannt und am Beispiel erklärt, z. B. Sprachniveau/Fachjargon vermeiden bzw. Analogie nutzen (1 P)",
+          "Regel 2 genannt und am Beispiel erklärt, z. B. Nutzen/Auswirkung für den Adressaten betonen oder Verständnis durch Rückfragen absichern (1 P)",
+          "Nur nennen ohne Bezug zum Beispiel: höchstens halbe Punktzahl je Regel"
+        ]
+      },
+      {
+        "label": "c",
+        "operator": "begründen",
+        "points": 4,
+        "prompt": "Nach dem Gespräch sprechen Sie Ihren Kollegen Herrn Sander auf den vergessenen Rückruf an. Formulieren Sie eine geeignete Ich-Botschaft und begründen Sie, warum diese im Feedbackgespräch einer Du-Botschaft wie \"Du hast schon wieder den Rückruf vergessen!\" vorzuziehen ist.",
+        "modelAnswer": "Mögliche Ich-Botschaft: \"Frau Berger hat mich heute Morgen sehr aufgebracht angerufen, weil sie seit Freitag auf einen Rückruf wartet. Ich stand dadurch unter Druck, weil ich das Gespräch ohne Vorinformation führen musste, und ich mache mir Sorgen um unser Verhältnis zu diesem Kunden. Ich wünsche mir, dass wir offene Rückrufe künftig direkt im Ticketsystem mit Termin hinterlegen. Wie siehst du das?\"\n\nDie Ich-Botschaft ist aus drei Gründen vorzuziehen:\n1. Sie beschreibt eine konkrete, beobachtbare Situation und deren Wirkung auf mich, statt den anderen zu bewerten. Eine Du-Botschaft mit \"schon wieder\" ist eine Verallgemeinerung und ein Vorwurf; sie greift die Person an statt das Verhalten.\n2. Vorwürfe lösen beim Empfänger typischerweise Abwehr und Rechtfertigung aus. Der Sachinhalt der Rückmeldung geht dann verloren, weil auf der Beziehungsebene ein Konflikt entsteht (die gestörte Beziehungsebene überlagert die Sachebene).\n3. Die Ich-Botschaft ist überprüfbar und lässt dem Kollegen die Möglichkeit, seine Sicht zu schildern und selbst eine Lösung anzubieten. Sie enthält einen konkreten Wunsch für die Zukunft statt einer Kritik an der Vergangenheit; damit bleibt das Feedback konstruktiv und die Zusammenarbeit wird nicht belastet.\n\nErgänzend gelten die üblichen Feedbackregeln: unter vier Augen, zeitnah, sachlich und konkret auf das Verhalten bezogen.",
+        "rubric": [
+          "Vollständige, sachgerechte Ich-Botschaft formuliert: Beobachtung/Situation, eigene Wirkung bzw. Gefühl, konkreter Wunsch (2 P; je Bestandteil anteilig)",
+          "Begründung 1: beschreibt Verhalten statt zu bewerten, kein Angriff auf die Person, keine Verallgemeinerung (1 P)",
+          "Begründung 2: vermeidet Abwehr/Rechtfertigung, Sachebene bleibt erhalten bzw. Beziehungsebene wird nicht belastet, konstruktiver Zukunftsbezug (1 P)",
+          "Formulierung mit Du-Botschaft-Charakter (\"Du machst immer...\") gibt keine Punkte für die Ich-Botschaft"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-beratungsgespraech-handwerkersoftware-bedarf-kosten-entscheidung",
+    "title": "Beratungsgespräch Handwerkersoftware: Bedarf, Kosten, Entscheidung",
+    "topicId": "kommunikation",
+    "scenario": "Sie arbeiten als Fachinformatiker/in für Anwendungsentwicklung bei der Software-Manufaktur Weinert GmbH. Kunde ist der Malerbetrieb Kluge e. K. mit acht Beschäftigten, der bisher Angebote und Rechnungen in einer Tabellenkalkulation schreibt. Inhaber Herr Kluge hat um ein Beratungsgespräch zu einer Handwerkersoftware gebeten; er hat keine IT-Vorkenntnisse. Sie können ihm zwei Varianten anbieten:\n\nVariante A (Kaufversion, Betrieb auf einem Server im Haus): einmaliger Kaufpreis 4.800,00 EUR; jährlicher Wartungs- und Supportvertrag 15 % des Kaufpreises.\nVariante B (Mietmodell aus dem Rechenzentrum): 29,00 EUR je Nutzer und Monat, alle acht Beschäftigten benötigen einen Zugang; Wartung, Support und Updates sind enthalten.\n\nHerr Kluge möchte die Kosten über einen Betrachtungszeitraum von drei Jahren vergleichen. Alle Beträge sind Nettobeträge.",
+    "parts": [
+      {
+        "label": "a",
+        "operator": "begründen",
+        "points": 4,
+        "prompt": "Zu Beginn des Beratungsgesprächs führen Sie eine Bedarfsanalyse durch. Nennen Sie drei offene Fragen, die Sie Herrn Kluge stellen, und begründen Sie, warum offene Fragen in dieser Gesprächsphase besser geeignet sind als geschlossene Fragen.",
+        "modelAnswer": "Mögliche offene Fragen an Herrn Kluge:\n1. \"Wie läuft bei Ihnen heute der Weg von der Baustellenaufnahme bis zur fertigen Rechnung ab?\"\n2. \"Welche Arbeitsschritte kosten Sie und Ihre Mitarbeiter derzeit die meiste Zeit oder verursachen die meisten Fehler?\"\n3. \"Was soll die neue Software in einem Jahr für Sie leisten - woran würden Sie merken, dass sich die Anschaffung gelohnt hat?\"\n(Weitere zulässige Beispiele: \"Wer soll künftig mit dem Programm arbeiten und von wo aus?\", \"Welche Daten aus Ihrer bisherigen Tabellenkalkulation müssen übernommen werden?\", \"Welche Vorgaben macht Ihnen Ihr Steuerberater?\")\n\nBegründung: Offene Fragen beginnen mit einem Fragewort (W-Fragen) und lassen sich nicht mit Ja oder Nein beantworten. Sie bringen den Kunden zum Erzählen, sodass ich einen hohen Redeanteil beim Kunden erreiche und Informationen erhalte, nach denen ich gar nicht gefragt hätte - zum Beispiel versteckte Anforderungen, Arbeitsabläufe oder Befürchtungen. Dadurch erkenne ich den tatsächlichen Bedarf hinter dem geäußerten Wunsch und kann später eine passgenaue, nutzenorientierte Lösung vorschlagen. Geschlossene Fragen engen dagegen früh auf meine eigenen Vermutungen ein, liefern nur wenig Information und wirken wie ein Verhör; sie sind erst in der Abschlussphase sinnvoll, um Ergebnisse zu bestätigen und Verbindlichkeit herzustellen.",
+        "rubric": [
+          "Drei tatsächlich offene Fragen (W-Fragen, nicht mit Ja/Nein beantwortbar) mit erkennbarem Bezug zur Situation des Malerbetriebs (je 0,5 P, insgesamt 1,5 P)",
+          "Begründung: offene Fragen erzeugen hohen Redeanteil des Kunden und liefern mehr bzw. unerwartete Informationen (1 P)",
+          "Begründung: dadurch wird der tatsächliche Bedarf/das Ziel hinter dem Wunsch erkennbar, Grundlage für ein passgenaues Angebot (1 P)",
+          "Abgrenzung zur geschlossenen Frage: engt ein, wenig Information, wirkt wie Verhör, sinnvoll erst zur Bestätigung/zum Abschluss (0,5 P)",
+          "Genannte geschlossene Fragen (mit Ja/Nein beantwortbar) werden nicht als offene Frage gewertet"
+        ]
+      },
+      {
+        "label": "b",
+        "operator": "berechnen",
+        "points": 5,
+        "prompt": "Berechnen Sie für beide Varianten die Gesamtkosten über den Betrachtungszeitraum von drei Jahren sowie die Kostendifferenz. Geben Sie den Rechenweg an und nennen Sie die kostengünstigere Variante.",
+        "modelAnswer": "Variante A (Kaufversion):\nKaufpreis: 4.800,00 EUR\nWartung je Jahr: 4.800,00 EUR x 15 % = 720,00 EUR\nWartung für 3 Jahre: 720,00 EUR x 3 = 2.160,00 EUR\nGesamtkosten A: 4.800,00 EUR + 2.160,00 EUR = 6.960,00 EUR\n\nVariante B (Mietmodell):\nKosten je Monat: 29,00 EUR x 8 Nutzer = 232,00 EUR\nKosten je Jahr: 232,00 EUR x 12 Monate = 2.784,00 EUR\nGesamtkosten B: 2.784,00 EUR x 3 Jahre = 8.352,00 EUR\n(alternativ: 232,00 EUR x 36 Monate = 8.352,00 EUR)\n\nDifferenz: 8.352,00 EUR - 6.960,00 EUR = 1.392,00 EUR\n\nErgebnis: Über drei Jahre ist Variante A (Kaufversion) um 1.392,00 EUR günstiger als Variante B.",
+        "rubric": [
+          "Wartungskosten Variante A korrekt: 15 % von 4.800,00 EUR = 720,00 EUR pro Jahr, für 3 Jahre 2.160,00 EUR (1 P)",
+          "Gesamtkosten Variante A: 6.960,00 EUR (1 P)",
+          "Monats- bzw. Jahreskosten Variante B korrekt: 29,00 EUR x 8 = 232,00 EUR/Monat bzw. 2.784,00 EUR/Jahr (1 P)",
+          "Gesamtkosten Variante B: 8.352,00 EUR (1 P)",
+          "Differenz 1.392,00 EUR und Aussage, dass Variante A günstiger ist (1 P)",
+          "Folgefehler werden nicht doppelt bewertet, wenn der Rechenweg schlüssig ist"
+        ]
+      },
+      {
+        "label": "c",
+        "operator": "beurteilen",
+        "points": 4,
+        "prompt": "Herr Kluge sagt daraufhin: \"Dann nehmen wir einfach die billigere Variante A, damit ist die Sache entschieden.\" Beurteilen Sie diese Aussage aus Sicht der Kundenberatung und stützen Sie Ihre Beurteilung auf mindestens drei Kriterien, die über den reinen Preisvergleich hinausgehen.",
+        "modelAnswer": "Beurteilung: Die Aussage greift zu kurz. Der Kostenvergleich über drei Jahre ist nur eine von mehreren Entscheidungsgrundlagen; eine seriöse Beratung darf den Kunden nicht allein auf den niedrigsten Rechnungsbetrag festlegen, weil dabei Folgekosten und Risiken unberücksichtigt bleiben. Als Berater lasse ich die Entscheidung beim Kunden, ergänze aber die fehlenden Kriterien, damit er sie bewusst treffen kann.\n\nKriterien, die zusätzlich zu berücksichtigen sind:\n1. Nicht erfasste Folgekosten der Variante A: Die Kaufversion läuft auf einem Server im Haus. Anschaffung und Ersatz der Hardware, Strom, Datensicherung, Betriebssystem-Lizenzen und die Betreuung des Servers sind in den 6.960,00 EUR nicht enthalten. Werden diese Kosten eingerechnet, kann sich das Ergebnis umkehren.\n2. Liquidität und Investitionsrisiko: Variante A verlangt sofort 4.800,00 EUR auf einmal, Variante B verteilt die Kosten gleichmäßig und ist monatlich planbar sowie in der Regel kurzfristiger kündbar. Für einen kleinen Betrieb kann die Liquiditätsbelastung wichtiger sein als die Gesamtsumme.\n3. Leistungsumfang und Verfügbarkeit: Bei Variante B sind Updates, Support und der Betrieb im Rechenzentrum enthalten, häufig auch Datensicherung und mobiler Zugriff von der Baustelle. Bei Variante A muss der Betrieb selbst für Verfügbarkeit, Sicherung und Ausfallsicherheit sorgen - dafür fehlt im Malerbetrieb das Personal.\n4. Betrachtungszeitraum und Skalierung: Bei längerer Nutzungsdauer verschiebt sich das Ergebnis zugunsten der Kaufversion, bei wachsender oder schwankender Mitarbeiterzahl zugunsten des Mietmodells, da dort pro Nutzer abgerechnet wird.\n5. Weiche Kriterien: Bedienbarkeit für die Mitarbeiter, Datenschutz und Speicherort der Daten, Abhängigkeit vom Anbieter, Zukunftssicherheit und Datenübernahme aus der Tabellenkalkulation.\n\nEmpfehlung: Ich fasse die Kriterien verständlich zusammen, gewichte sie gemeinsam mit Herrn Kluge anhand seines in der Bedarfsanalyse geäußerten Ziels und gebe erst dann eine Empfehlung ab. Der Kunde entscheidet, ich sorge für eine vollständige Entscheidungsgrundlage.",
+        "rubric": [
+          "Beurteilung formuliert: Aussage greift zu kurz, Preis allein ist keine ausreichende Entscheidungsgrundlage (1 P)",
+          "Kriterium 1: nicht berücksichtigte Folge-/Betriebskosten der Inhouse-Lösung, z. B. Server, Hardware, Datensicherung, Administration (1 P)",
+          "Kriterium 2: Liquidität, einmalige Investition gegenüber planbarer monatlicher Zahlung, Vertragsbindung/Kündbarkeit (0,5 P)",
+          "Kriterium 3: enthaltener Leistungsumfang, Verfügbarkeit, Support, Updates, fehlendes eigenes IT-Personal (0,5 P)",
+          "Weiteres Kriterium, z. B. Nutzungsdauer/Skalierung bei wechselnder Mitarbeiterzahl, Datenschutz/Speicherort, Bedienbarkeit, Anbieterabhängigkeit (0,5 P)",
+          "Beraterhaltung: Kriterien verständlich darstellen und gewichten, Entscheidung beim Kunden belassen (0,5 P)",
+          "Bloße Aufzählung ohne Bezug zur Aussage des Kunden: höchstens halbe Punktzahl"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-portal-release-qualitaetsmerkmale-pdca-und-abnahmetest",
+    "title": "Portal-Release: Qualitätsmerkmale, PDCA und Abnahmetest",
+    "topicId": "qs-vertraege",
+    "scenario": "Sie sind Auszubildende bzw. Auszubildender bei der Rehberg Software GmbH. Für die Kundin Nordwind Spedition GmbH entwickelt Ihr Team ein Web-Portal zur Urlaubsverwaltung. Im Lastenheft der Kundin stehen unter anderem diese Anforderungen:\n\n(1) \"Die Anmeldung am Portal darf auch bei 200 gleichzeitig angemeldeten Beschäftigten höchstens 2 Sekunden dauern.\"\n(2) \"Das Portal muss auch von sehbehinderten Beschäftigten mit einem Screenreader vollständig bedienbar sein.\"\n(3) \"Die Daten eines Urlaubsantrags dürfen ausschließlich von der antragstellenden Person und deren direkter Führungskraft eingesehen werden.\"\n(4) \"Das Portal soll im Folgejahr um ein Modul zur Zeiterfassung erweitert werden können.\"\n\nVier Wochen vor der geplanten Auslieferung häufen sich die Fehlermeldungen aus dem Testteam. Die Teamleitung will deshalb sowohl die Qualitätsziele schärfen als auch das Vorgehen im Team dauerhaft verbessern. Der Projektleiter schlägt außerdem vor, aus Termingründen den Systemtest ersatzlos zu streichen und stattdessen die Kundin direkt \"alles zusammen\" im Rahmen der Abnahme testen zu lassen.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "ermitteln",
+        "points": 4,
+        "prompt": "Ermitteln Sie zu jeder der vier Anforderungen (1) bis (4) das passende Qualitätsmerkmal für Softwareprodukte nach ISO/IEC 25010 und begründen Sie Ihre Zuordnung jeweils mit einem kurzen Satz.",
+        "modelAnswer": "(1) Anmeldung höchstens 2 Sekunden bei 200 gleichzeitigen Nutzern: Leistungseffizienz (Performanz), Teilmerkmal Zeitverhalten. Begründung: Es wird eine messbare Antwortzeit unter definierter Last gefordert, also das Verhältnis von Leistung zu eingesetzten Betriebsmitteln.\n\n(2) Vollständige Bedienbarkeit mit einem Screenreader: Benutzbarkeit (Gebrauchstauglichkeit), Teilmerkmal Zugänglichkeit/Barrierefreiheit. Begründung: Die Anforderung betrifft die Frage, ob das Portal von Menschen mit einer Einschränkung tatsächlich genutzt werden kann.\n\n(3) Einsicht nur durch Antragsteller und Führungskraft: Sicherheit, Teilmerkmal Vertraulichkeit. Begründung: Daten dürfen nur berechtigten Personen zugänglich sein, das wird über ein Rollen- und Berechtigungskonzept sichergestellt.\n\n(4) Spätere Erweiterung um ein Zeiterfassungsmodul: Wartbarkeit, Teilmerkmal Modifizierbarkeit bzw. Erweiterbarkeit. Begründung: Gefordert ist, dass die Software mit vertretbarem Aufwand und ohne Fehlerrisiko um neue Funktionen ergänzt werden kann.",
+        "rubric": [
+          "(1) Leistungseffizienz/Performanz (Zeitverhalten) korrekt zugeordnet und begründet - 1 P",
+          "(2) Benutzbarkeit/Gebrauchstauglichkeit (Barrierefreiheit, Zugänglichkeit) korrekt zugeordnet und begründet - 1 P",
+          "(3) Sicherheit (Vertraulichkeit, Berechtigungen) korrekt zugeordnet und begründet - 1 P",
+          "(4) Wartbarkeit (Modifizierbarkeit/Erweiterbarkeit) korrekt zugeordnet und begründet - 1 P",
+          "Je Teilzuordnung nur der halbe Punkt, wenn das Merkmal stimmt, die Begründung aber fehlt oder inhaltsleer ist",
+          "Abweichende Zuordnungen nur anerkennen, wenn die Begründung sie trägt; bei (3) ist \"Zuverlässigkeit\" nicht zu akzeptieren, weil kein Ausfall- oder Verfügbarkeitsbezug vorliegt"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "erläutern",
+        "points": 5,
+        "prompt": "Die Teamleitung will die Fehlerhäufung nicht nur einmalig abstellen, sondern das Vorgehen dauerhaft verbessern, und schlägt dafür den PDCA-Zyklus (Deming-Kreis) vor. Erläutern Sie die vier Phasen des PDCA-Zyklus und wenden Sie jede Phase mit einem konkreten Beispiel auf die geschilderte Fehlerhäufung an.",
+        "modelAnswer": "Der PDCA-Zyklus ist das Grundmuster des kontinuierlichen Verbesserungsprozesses (KVP). Verbessert wird nicht in einem großen Schritt, sondern in kleinen, überprüfbaren Schleifen, die immer wieder durchlaufen werden.\n\nPlan (Planen): Ist-Zustand analysieren, Ursachen ermitteln, messbares Ziel und Maßnahmen festlegen. Beispiel: Die gemeldeten Fehler werden nach Modul und Fehlerart ausgewertet; dabei zeigt sich, dass die meisten Fehler im Modul \"Urlaubsantrag\" liegen und logische Fehler sind. Ziel: Anzahl der im Abnahmetest gefundenen Fehler um 50 Prozent senken. Maßnahme: verbindliche Code-Reviews vor jedem Merge und automatisierte Komponententests im Build.\n\nDo (Umsetzen): Die geplante Maßnahme wird zunächst begrenzt und beobachtet eingeführt, nicht sofort im ganzen Unternehmen. Beispiel: Reviews und Unit-Tests werden vier Wochen lang nur im Modul \"Urlaubsantrag\" verbindlich angewandt und die Ergebnisse dokumentiert.\n\nCheck (Überprüfen): Die Wirkung wird anhand der vorher festgelegten Kennzahlen überprüft, also ein Soll-Ist-Vergleich durchgeführt. Beispiel: Vergleich der Fehleranzahl pro Modul vor und nach der Einführung sowie der Zahl der Fehlermeldungen aus dem Testteam; ergänzend die erreichte Testabdeckung.\n\nAct (Handeln/Standardisieren): Bei Erfolg wird die Maßnahme zum verbindlichen Standard erklärt, bei Misserfolg wird nachgesteuert und ein neuer Zyklus begonnen. Beispiel: Die Reviewpflicht und die Unit-Test-Vorgabe werden in die Entwicklungsrichtlinie aufgenommen und für alle Module verbindlich; anschließend startet der Zyklus mit dem nächsten Verbesserungsthema erneut.",
+        "rubric": [
+          "Grundidee benannt: PDCA als Kreislauf des kontinuierlichen Verbesserungsprozesses, Verbesserung in kleinen, wiederholten Schritten - 1 P",
+          "Plan korrekt erläutert (Ursachenanalyse, messbares Ziel, Maßnahmenplanung) mit passendem Beispiel aus der Situation - 1 P",
+          "Do korrekt erläutert (begrenzte, beobachtete Umsetzung/Pilot) mit passendem Beispiel - 1 P",
+          "Check korrekt erläutert (Wirkungskontrolle anhand von Kennzahlen, Soll-Ist-Vergleich) mit passendem Beispiel - 1 P",
+          "Act korrekt erläutert (Standardisierung bei Erfolg bzw. Nachsteuern und neuer Zyklus) mit passendem Beispiel - 1 P",
+          "Reine Auflistung der vier Begriffe ohne Erläuterung und ohne Anwendung: maximal 1 P insgesamt"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "beurteilen",
+        "points": 4,
+        "prompt": "Beurteilen Sie den Vorschlag des Projektleiters, den Systemtest zu streichen und die Kundin stattdessen alles im Rahmen der Abnahme testen zu lassen. Gehen Sie dabei auf die Unterschiede zwischen Systemtest und Abnahmetest ein und nennen Sie eine bessere Alternative zur Terminentlastung.",
+        "modelAnswer": "Der Vorschlag ist abzulehnen, weil Systemtest und Abnahmetest unterschiedliche Aufgaben haben und einander nicht ersetzen können.\n\nUnterschiede: Der Systemtest wird vom Auftragnehmer bzw. dessen Testteam durchgeführt. Getestet wird das vollständig integrierte System gegen die Spezifikation (Pflichtenheft) auf einer produktionsnahen Testumgebung, einschließlich nicht-funktionaler Anforderungen wie Performanz und Sicherheit. Der Abnahmetest wird dagegen vom Auftraggeber bzw. dessen Fachanwendern durchgeführt, und zwar gegen die eigenen Anforderungen aus dem Lastenheft, möglichst in der späteren Einsatzumgebung. Er beantwortet die Frage, ob die Software für den vorgesehenen Einsatzzweck taugt.\n\nFolgen des Vorschlags: Fehler, die das eigene Testteam finden müsste, würden erst bei der Kundin auffallen. Das schadet dem Vertrauensverhältnis und ist teuer, denn die Kosten der Fehlerbehebung steigen mit jeder Phase, in der ein Fehler unentdeckt bleibt. Die Kundin verfügt zudem weder über die technischen Testfälle noch über die Testumgebung und die Testdaten für einen Systemtest; für Lasttests fehlen ihr die Voraussetzungen. Hinzu kommt, dass die Abnahme beim Werkvertrag rechtliche Wirkung hat, sodass die Kundin eine Abnahme mit erkennbar unfertiger Software zu Recht verweigern würde.\n\nAlternative: Statt eine Teststufe zu streichen, sollte der Testaufwand gesenkt werden, etwa durch Automatisierung der Komponenten- und Regressionstests im Build sowie durch risikobasiertes Testen, bei dem kritische und häufig genutzte Funktionen zuerst und am intensivsten geprüft werden. Notfalls wird der Liefertermin verschoben oder es wird ein reduzierter Funktionsumfang vereinbart.",
+        "rubric": [
+          "Klares Urteil: Vorschlag ist abzulehnen bzw. nicht vertretbar - 1 P",
+          "Unterschied Systemtest/Abnahmetest sachlich richtig herausgearbeitet (wer testet, wogegen wird getestet: Pflichtenheft vs. Lastenheft/Einsatzzweck, welche Umgebung) - 1 P",
+          "Mindestens zwei tragfähige Nachteile genannt (späte und damit teurere Fehlerbehebung, Imageschaden, fehlende Testfälle/Testumgebung/Testdaten beim Kunden, Abnahme wird verweigert) - 1 P",
+          "Tragfähige Alternative zur Terminentlastung genannt (Testautomatisierung, risikobasiertes Testen, Terminverschiebung, reduzierter Funktionsumfang) - 1 P",
+          "Bloße Behauptung \"geht nicht\" ohne fachliche Begründung: 0 P"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "task-tourenplanungssoftware-abnahme-sla-verfuegbarkeit-und-wartungsvertrag",
+    "title": "Tourenplanungssoftware: Abnahme, SLA-Verfügbarkeit und Wartungsvertrag",
+    "topicId": "qs-vertraege",
+    "scenario": "Die Berger Logistik GmbH hat das Systemhaus IT-Kontor GmbH beauftragt, eine individuelle Tourenplanungssoftware nach einem gemeinsam abgestimmten Pflichtenheft zu erstellen. Der Vertrag ist als Werkvertrag geschlossen; als Vergütung sind 48.000 Euro netto vereinbart.\n\nNach der Fertigstellung installiert das Systemhaus die Software auf dem Server der Berger Logistik GmbH und stellt die Schlussrechnung. Bei der gemeinsamen Prüfung stellt die Fachabteilung fest, dass zwei im Pflichtenheft ausdrücklich vereinbarte Auswertungen (Auslastung je Fahrzeug und Leerkilometer je Tour) vollständig fehlen. Die Berger Logistik GmbH verweigert daraufhin die Abnahme. Das Systemhaus vertritt die Auffassung, mit der Installation auf dem Kundenserver sei der Auftrag erfüllt.\n\nFür den späteren Betrieb hat das Systemhaus ein Service Level Agreement (SLA) angeboten, das eine Verfügbarkeit der Anwendung von 99,5 Prozent bezogen auf einen Rund-um-die-Uhr-Betrieb (24 Stunden an 7 Tagen) zusichert. Im ersten Probemonat mit 30 Tagen war die Anwendung an drei Tagen gestört, und zwar 45 Minuten, 90 Minuten und 130 Minuten.",
+    "parts": [
+      {
+        "label": "a)",
+        "operator": "berechnen",
+        "points": 4,
+        "prompt": "Berechnen Sie die im SLA höchstens zulässige Ausfallzeit in Minuten für den Probemonat mit 30 Tagen sowie die tatsächlich erreichte Verfügbarkeit in Prozent (auf zwei Nachkommastellen gerundet). Geben Sie an, ob das SLA eingehalten wurde. Der Rechenweg muss erkennbar sein.",
+        "modelAnswer": "1. Gesamtzeit des Monats:\n30 Tage x 24 Stunden x 60 Minuten = 43.200 Minuten\n\n2. Zulässige Ausfallzeit bei 99,5 Prozent Verfügbarkeit:\nZulässiger Ausfall = 0,5 Prozent von 43.200 Minuten\n43.200 Minuten x 0,005 = 216 Minuten (= 3 Stunden 36 Minuten)\n\n3. Tatsächliche Ausfallzeit:\n45 Minuten + 90 Minuten + 130 Minuten = 265 Minuten\n\n4. Tatsächlich erreichte Verfügbarkeit:\n(43.200 Minuten - 265 Minuten) / 43.200 Minuten = 42.935 / 43.200 = 0,993866\nx 100 = 99,3866 Prozent, gerundet 99,39 Prozent\n\n5. Ergebnis:\nDie zulässige Ausfallzeit von 216 Minuten wurde um 265 - 216 = 49 Minuten überschritten. Mit 99,39 Prozent liegt die erreichte Verfügbarkeit unter der zugesicherten Verfügbarkeit von 99,50 Prozent. Das SLA wurde somit nicht eingehalten; je nach Vertrag greifen die vereinbarten Folgen, etwa eine Gutschrift oder eine Vertragsstrafe (Malus).",
+        "rubric": [
+          "Gesamtzeit korrekt ermittelt: 30 x 24 x 60 = 43.200 Minuten - 1 P",
+          "Zulässige Ausfallzeit korrekt berechnet: 0,5 Prozent von 43.200 = 216 Minuten - 1 P",
+          "Tatsächlicher Gesamtausfall 265 Minuten und Verfügbarkeit korrekt berechnet: 42.935 / 43.200 = 99,39 Prozent - 1 P",
+          "Klare Feststellung: SLA nicht eingehalten (Unterschreitung der 99,5 Prozent bzw. Überschreitung der zulässigen Ausfallzeit um 49 Minuten) - 1 P",
+          "Folgefehler werden nicht doppelt bestraft: bei richtigem Rechenweg mit falschem Zwischenwert werden die weiteren Punkte anerkannt",
+          "Ergebnis ohne erkennbaren Rechenweg: maximal 2 P"
+        ]
+      },
+      {
+        "label": "b)",
+        "operator": "begründen",
+        "points": 4,
+        "prompt": "Begründen Sie anhand der Merkmale des Werkvertrags, ob die Berger Logistik GmbH die Abnahme zu Recht verweigert, und geben Sie an, welche Wirkungen eine erklärte Abnahme für das Systemhaus hätte.",
+        "modelAnswer": "Beim Werkvertrag (Paragraf 631 BGB) schuldet der Auftragnehmer nicht bloßes Tätigwerden, sondern einen Erfolg, nämlich die Herstellung des vereinbarten, mangelfreien Werkes. Maßstab dafür ist die vereinbarte Beschaffenheit, hier also das gemeinsam abgestimmte Pflichtenheft. Da zwei ausdrücklich vereinbarte Auswertungen vollständig fehlen, weicht die Ist-Beschaffenheit von der Soll-Beschaffenheit ab; es liegt ein Sachmangel vor. Die reine Installation auf dem Kundenserver ist lediglich eine Handlung, kein geschuldeter Erfolg, und erfüllt den Vertrag deshalb nicht. Die Berger Logistik GmbH verweigert die Abnahme somit zu Recht, weil ein wesentlicher Mangel vorliegt (Paragraf 640 BGB). Sie kann Nacherfüllung verlangen, also die Ergänzung der fehlenden Auswertungen innerhalb einer angemessenen Frist.\n\nWürde die Abnahme dagegen erklärt, hätte das für das Systemhaus folgende Wirkungen:\n- Die Vergütung wird fällig, die Schlussrechnung ist also zu bezahlen (Paragraf 641 BGB).\n- Die Gewährleistungsfrist beginnt zu laufen (im Regelfall zwei Jahre, bei Bauwerken abweichend).\n- Die Beweislast kehrt sich um: Ab der Abnahme muss der Auftraggeber beweisen, dass ein Mangel bereits vorlag, und nicht mehr der Auftragnehmer die Mangelfreiheit.\n- Die Gefahr geht auf den Auftraggeber über.\n- Mängel, die bei der Abnahme bekannt sind und nicht ausdrücklich vorbehalten werden, kann der Auftraggeber später weitgehend nicht mehr geltend machen. Deshalb ist ein Abnahmeprotokoll mit Mängelliste und Vorbehalt so wichtig.",
+        "rubric": [
+          "Werkvertrag korrekt charakterisiert: geschuldet ist der Erfolg bzw. das mangelfreie Werk, nicht die Tätigkeit; Maßstab ist die vereinbarte Beschaffenheit (Pflichtenheft) - 1 P",
+          "Schlussfolgerung mit Begründung: fehlende Pflichtenheft-Funktionen sind ein Sachmangel, die Abnahme wird zu Recht verweigert, Anspruch auf Nacherfüllung - 1 P",
+          "Mindestens zwei Wirkungen der Abnahme korrekt genannt (Fälligkeit der Vergütung, Beginn der Gewährleistungsfrist, Beweislastumkehr, Gefahrübergang) - 1 P",
+          "Eine weitere Wirkung oder der Hinweis auf den Mängelvorbehalt im Abnahmeprotokoll bei bekannten Mängeln - 1 P",
+          "Reine Behauptung ohne Bezug auf den geschuldeten Erfolg: maximal 1 P"
+        ]
+      },
+      {
+        "label": "c)",
+        "operator": "beurteilen",
+        "points": 4,
+        "prompt": "Das Systemhaus schlägt vor, die spätere Betreuung der Software nicht über einzelne Werkverträge, sondern über einen laufenden Dienstvertrag mit SLA abzuwickeln. Beurteilen Sie diesen Vorschlag aus Sicht der Berger Logistik GmbH und nennen Sie mindestens zwei Kennzahlen, die in einem solchen SLA vereinbart werden sollten.",
+        "modelAnswer": "Beurteilung: Für den laufenden Betrieb und den Support ist der Vorschlag grundsätzlich sinnvoll, er hat aber eine wesentliche Schwachstelle, die vertraglich abgesichert werden muss.\n\nVorteile für die Berger Logistik GmbH:\n- Planbare, gleichbleibende Kosten pro Monat statt schwer kalkulierbarer Einzelbeauftragungen.\n- Im Störungsfall muss nicht erst ein neuer Vertrag verhandelt werden, das Systemhaus ist zur Reaktion verpflichtet; das verkürzt die Ausfallzeiten.\n- Das Know-how über die Individualsoftware bleibt dauerhaft verfügbar.\n- Das SLA macht die Leistung messbar und ermöglicht einen regelmäßigen Soll-Ist-Vergleich sowie Sanktionen bei Unterschreitung.\n\nNachteil und Risiko:\n- Beim Dienstvertrag (Paragraf 611 BGB) ist nur das fachgerechte Tätigwerden geschuldet, kein Erfolg. Die Vergütung ist also auch dann zu zahlen, wenn eine Störung nicht behoben wurde, und es gibt kein Mängelgewährleistungsrecht wie beim Werkvertrag. Dieses Defizit muss das SLA ausgleichen, indem es messbare Zielwerte und Rechtsfolgen bei deren Verfehlung (Gutschrift, Malus, Sonderkündigungsrecht) festschreibt.\n- Klar abgrenzbare Weiterentwicklungen, etwa ein neues Auswertungsmodul, sollten weiterhin als Werkvertrag beauftragt werden, weil dort ein konkretes Ergebnis mit Abnahme und Gewährleistung geschuldet sein soll.\n\nFazit: Eine Kombination ist am günstigsten: Dienstvertrag mit belastbarem SLA für Betrieb und Support, Werkverträge für Neuentwicklungen.\n\nKennzahlen im SLA (mindestens zwei zu nennen): zugesicherte Verfügbarkeit in Prozent, Servicezeiten (etwa Montag bis Freitag von 8 bis 18 Uhr), maximale Reaktionszeit je Störungsklasse, maximale Wiederherstellungszeit bzw. Entstörzeit, Erstlösungsquote, Wartungsfenster, Eskalationsstufen sowie die Höhe der Vertragsstrafe bzw. Gutschrift.",
+        "rubric": [
+          "Abgewogenes Urteil erkennbar (nicht nur pauschal gut oder schlecht), mit klarem Fazit - 1 P",
+          "Mindestens zwei Vorteile aus Kundensicht genannt (planbare Kosten, garantierte Reaktion ohne Neubeauftragung, dauerhaft verfügbares Know-how, messbare Leistung) - 1 P",
+          "Zentraler Nachteil korrekt erkannt: Dienstvertrag schuldet nur das Tätigwerden, keinen Erfolg, daher keine werkvertragliche Gewährleistung; Absicherung über messbare SLA-Ziele und Malus nötig - 1 P",
+          "Mindestens zwei sinnvolle SLA-Kennzahlen genannt (Verfügbarkeit, Servicezeiten, Reaktionszeit, Wiederherstellungs-/Entstörzeit, Eskalationsstufen, Vertragsstrafe) - 1 P",
+          "Nicht punktrelevant, aber positiv zu vermerken: Hinweis, dass Neuentwicklungen weiterhin als Werkvertrag beauftragt werden sollten"
+        ]
+      }
+    ]
   }
 ]

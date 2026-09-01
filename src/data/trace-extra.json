@@ -660,5 +660,1566 @@
       "Nicht erhoehte Zaehler behalten ihren Wert"
     ],
     "source": "Lernapp — generiert & geprueft (2026-07)"
+  },
+  {
+    "id": "trace--schreibtischtest-fussgesteuerte-schleife-ein-lager-startet-mit-bestand-200",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Schreibtischtest (fußgesteuerte Schleife). Ein Lager startet mit bestand = 200 Stück eines Verbrauchsmaterials. Täglich werden 35 Stück entnommen. Sobald der Bestand unter 50 Stück fällt, wird nachbestellt. Eingabewerte: bestand = 200, tage = 0, Tagesverbrauch = 35, Meldegrenze = 50. Spielen Sie den Pseudocode Zeile für Zeile durch, füllen Sie die Wertetabelle aus und geben Sie das Endergebnis an.",
+    "pseudocode": [
+      "bestand = 200",
+      "tage = 0",
+      "WIEDERHOLE",
+      "    bestand = bestand - 35",
+      "    tage = tage + 1",
+      "BIS bestand < 50",
+      "AUSGABE tage"
+    ],
+    "columns": [
+      "Durchlauf",
+      "bestand",
+      "tage",
+      "Prüfung bestand < 50"
+    ],
+    "rows": [
+      [
+        "Start",
+        "200",
+        "0",
+        "–"
+      ],
+      [
+        "1",
+        "165",
+        "1",
+        "165 < 50 → falsch"
+      ],
+      [
+        "2",
+        "130",
+        "2",
+        "130 < 50 → falsch"
+      ],
+      [
+        "3",
+        "95",
+        "3",
+        "95 < 50 → falsch"
+      ],
+      [
+        "4",
+        "60",
+        "4",
+        "60 < 50 → falsch"
+      ],
+      [
+        "5",
+        "25",
+        "5",
+        "25 < 50 → wahr → Schleife endet"
+      ]
+    ],
+    "output": "tage = 5 – nach 5 Tagen ist der Bestand mit 25 Stück unter die Meldegrenze gefallen. Ausgegeben wird 5.",
+    "rubric": [
+      {
+        "criterion": "Wertetabelle enthält alle 5 Durchläufe mit korrekten Beständen (165, 130, 95, 60, 25)",
+        "points": 2
+      },
+      {
+        "criterion": "Abbruchbedingung wird korrekt erst NACH dem Schleifenrumpf geprüft (fußgesteuerte Schleife, mindestens ein Durchlauf)",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis tage = 5 korrekt angegeben",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die Bedingung wie bei einer kopfgesteuerten Schleife vorab prüfen – WIEDERHOLE-BIS führt den Rumpf immer mindestens einmal aus.",
+      "BIS als Weiterlauf-Bedingung missverstehen: Die Schleife endet, wenn die Bedingung WAHR wird, nicht wenn sie falsch wird.",
+      "Einen Durchlauf zu früh abbrechen (bei 60 statt bei 25) und tage = 4 ausgeben.",
+      "tage und bestand vertauschen und den Restbestand statt der Tage ausgeben."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--schreibtischtest-eine-messreihe-der-raumtemperatur-eines-serverraums-liegt-als",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Schreibtischtest. Eine Messreihe der Raumtemperatur eines Serverraums liegt als Liste vor: messwerte = [23, 19, 27, 15, 22, 18]. Gesucht ist der kleinste Messwert UND seine Position (Index) in der Liste. Startwerte: minimum = messwerte[0] = 23, position = 0. Füllen Sie die Wertetabelle aus und geben Sie das Endergebnis an.",
+    "pseudocode": [
+      "minimum = messwerte[0]",
+      "position = 0",
+      "FÜR i VON 1 BIS 5",
+      "    WENN messwerte[i] < minimum DANN",
+      "        minimum = messwerte[i]",
+      "        position = i",
+      "    ENDE WENN",
+      "ENDE FÜR",
+      "AUSGABE minimum, position"
+    ],
+    "columns": [
+      "i",
+      "messwerte[i]",
+      "Bedingung messwerte[i] < minimum",
+      "minimum",
+      "position"
+    ],
+    "rows": [
+      [
+        "Start",
+        "–",
+        "–",
+        "23",
+        "0"
+      ],
+      [
+        "1",
+        "19",
+        "19 < 23 → wahr",
+        "19",
+        "1"
+      ],
+      [
+        "2",
+        "27",
+        "27 < 19 → falsch",
+        "19",
+        "1"
+      ],
+      [
+        "3",
+        "15",
+        "15 < 19 → wahr",
+        "15",
+        "3"
+      ],
+      [
+        "4",
+        "22",
+        "22 < 15 → falsch",
+        "15",
+        "3"
+      ],
+      [
+        "5",
+        "18",
+        "18 < 15 → falsch",
+        "15",
+        "3"
+      ]
+    ],
+    "output": "minimum = 15, position = 3 – der kleinste Messwert 15 steht an Indexposition 3 (also im 4. Listenelement). Ausgegeben wird 15 3.",
+    "rubric": [
+      {
+        "criterion": "Startbelegung minimum = 23 und position = 0 korrekt aus messwerte[0] übernommen, Schleife beginnt bei i = 1",
+        "points": 1
+      },
+      {
+        "criterion": "Alle fünf Vergleiche mit korrektem Wahrheitswert eingetragen",
+        "points": 1
+      },
+      {
+        "criterion": "minimum und position werden nur bei wahrer Bedingung gemeinsam aktualisiert",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis minimum = 15 und position = 3 korrekt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "minimum mit 0 statt mit messwerte[0] initialisieren – dann bleibt das Ergebnis 0.",
+      "Die Schleife bei i = 0 starten und den ersten Wert doppelt vergleichen.",
+      "position nur mitzählen statt auf i zu setzen, dadurch die Anzahl der Verbesserungen (2) statt des Index (3) ausgeben.",
+      "Index und Wert verwechseln und 3 als Messwert bzw. 15 als Position angeben."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--schreibtischtest-fuer-eine-interne-artikelnummer-wird-eine-pruefziffer-berechnet",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 5,
+    "prompt": "Schreibtischtest. Für eine interne Artikelnummer wird eine Prüfziffer berechnet. Die Ziffern liegen als Liste vor: ziffern = [4, 7, 1, 3, 8]. Ziffern an geraden Indexpositionen werden mit dem Gewicht 1 multipliziert, Ziffern an ungeraden Indexpositionen mit dem Gewicht 3. Aus der gewichteten Summe wird die Prüfziffer bestimmt. Startwert: summe = 0. Füllen Sie die Wertetabelle aus und geben Sie die Prüfziffer an.",
+    "pseudocode": [
+      "summe = 0",
+      "FÜR i VON 0 BIS 4",
+      "    WENN i MOD 2 == 0 DANN",
+      "        gewicht = 1",
+      "    SONST",
+      "        gewicht = 3",
+      "    ENDE WENN",
+      "    summe = summe + ziffern[i] * gewicht",
+      "ENDE FÜR",
+      "pruefziffer = (10 - (summe MOD 10)) MOD 10",
+      "AUSGABE pruefziffer"
+    ],
+    "columns": [
+      "i",
+      "ziffern[i]",
+      "i MOD 2",
+      "gewicht",
+      "Produkt ziffern[i] * gewicht",
+      "summe"
+    ],
+    "rows": [
+      [
+        "Start",
+        "–",
+        "–",
+        "–",
+        "–",
+        "0"
+      ],
+      [
+        "0",
+        "4",
+        "0",
+        "1",
+        "4",
+        "4"
+      ],
+      [
+        "1",
+        "7",
+        "1",
+        "3",
+        "21",
+        "25"
+      ],
+      [
+        "2",
+        "1",
+        "0",
+        "1",
+        "1",
+        "26"
+      ],
+      [
+        "3",
+        "3",
+        "1",
+        "3",
+        "9",
+        "35"
+      ],
+      [
+        "4",
+        "8",
+        "0",
+        "1",
+        "8",
+        "43"
+      ],
+      [
+        "nach der Schleife",
+        "–",
+        "–",
+        "–",
+        "–",
+        "43 → summe MOD 10 = 3, pruefziffer = (10 - 3) MOD 10 = 7"
+      ]
+    ],
+    "output": "summe = 43, pruefziffer = 7 – die gewichtete Summe beträgt 43, 43 MOD 10 = 3, daraus folgt (10 - 3) MOD 10 = 7. Ausgegeben wird 7.",
+    "rubric": [
+      {
+        "criterion": "Gewichte korrekt zugeordnet: Index 0, 2, 4 → 1 und Index 1, 3 → 3",
+        "points": 1
+      },
+      {
+        "criterion": "Alle fünf Produkte korrekt berechnet (4, 21, 1, 9, 8)",
+        "points": 1
+      },
+      {
+        "criterion": "Zwischenwerte der Akkumulatorspalte summe korrekt (4, 25, 26, 35, 43)",
+        "points": 1
+      },
+      {
+        "criterion": "summe MOD 10 = 3 korrekt bestimmt",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis pruefziffer = 7 korrekt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Gewichte vertauschen (ungerade Indizes mit 1, gerade mit 3) und dadurch eine andere Summe erhalten.",
+      "Index und Position verwechseln: Der erste Eintrag hat Index 0, ist also ein gerader Index.",
+      "MOD mit DIV verwechseln – 43 DIV 10 = 4 statt 43 MOD 10 = 3.",
+      "Die äußere Modulo-Rechnung vergessen: Wäre summe MOD 10 = 0, ergäbe 10 - 0 = 10 eine ungültige Prüfziffer; korrekt sind nur Werte von 0 bis 9."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--schreibtischtest-zaehlschleife-mit-abbruch-auf-einem-sicherungsdatentraeger-sind-noch",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Schreibtischtest (Zählschleife mit Abbruch). Auf einem Sicherungsdatenträger sind noch frei = 700 MB verfügbar. Die zu sichernden Dateien werden der Reihe nach kopiert: groessen = [120, 340, 80, 260, 150] (Angaben in MB). Sobald die nächste Datei nicht mehr vollständig passt, wird der Vorgang abgebrochen. Startwerte: belegt = 0, anzahl = 0. Füllen Sie die Wertetabelle aus und geben Sie an, wie viele Dateien gesichert wurden.",
+    "pseudocode": [
+      "frei = 700",
+      "belegt = 0",
+      "anzahl = 0",
+      "FÜR i VON 0 BIS 4",
+      "    WENN belegt + groessen[i] > frei DANN",
+      "        VERLASSE SCHLEIFE",
+      "    ENDE WENN",
+      "    belegt = belegt + groessen[i]",
+      "    anzahl = anzahl + 1",
+      "ENDE FÜR",
+      "AUSGABE anzahl"
+    ],
+    "columns": [
+      "i",
+      "groessen[i]",
+      "belegt + groessen[i]",
+      "Bedingung > 700",
+      "belegt",
+      "anzahl"
+    ],
+    "rows": [
+      [
+        "Start",
+        "–",
+        "–",
+        "–",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "120",
+        "120",
+        "falsch",
+        "120",
+        "1"
+      ],
+      [
+        "1",
+        "340",
+        "460",
+        "falsch",
+        "460",
+        "2"
+      ],
+      [
+        "2",
+        "80",
+        "540",
+        "falsch",
+        "540",
+        "3"
+      ],
+      [
+        "3",
+        "260",
+        "800",
+        "wahr → VERLASSE SCHLEIFE",
+        "540",
+        "3"
+      ],
+      [
+        "4",
+        "150",
+        "–",
+        "nicht mehr erreicht",
+        "540",
+        "3"
+      ]
+    ],
+    "output": "anzahl = 3 – es werden 3 Dateien gesichert (120 + 340 + 80 = 540 MB belegt). Die vierte Datei würde 800 MB ergeben und passt nicht mehr; die Schleife wird abgebrochen, die fünfte Datei wird gar nicht mehr geprüft. Ausgegeben wird 3.",
+    "rubric": [
+      {
+        "criterion": "Spalte belegt korrekt fortgeschrieben (120, 460, 540)",
+        "points": 1
+      },
+      {
+        "criterion": "Probesumme belegt + groessen[i] je Durchlauf korrekt berechnet",
+        "points": 1
+      },
+      {
+        "criterion": "Abbruch beim Durchlauf i = 3 korrekt erkannt; belegt bleibt bei 540 (keine Addition mehr)",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis anzahl = 3 korrekt und erkannt, dass i = 4 nicht mehr ausgeführt wird",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Nach dem Abbruch mit i = 4 weiterrechnen – VERLASSE SCHLEIFE beendet die Schleife komplett, nicht nur den aktuellen Durchlauf.",
+      "Die Datei mit 260 MB trotz Abbruch noch zu belegt addieren (800 statt 540).",
+      "Die kleinere Datei mit 150 MB gedanklich noch unterbringen – die Schleife bricht ab und prüft sie nicht mehr.",
+      "anzahl und belegt verwechseln und 540 statt 3 ausgeben."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--schreibtischtest-verschachtelte-zaehlschleife-ueber-eine-tabelle-fuer-drei-webserver",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 5,
+    "prompt": "Schreibtischtest (verschachtelte Zählschleife über eine Tabelle). Für drei Webserver wurden die Zugriffe an drei Tagen erfasst. Die Werte stehen in einer zweidimensionalen Tabelle zugriffe mit den Zeilen z (Server) und den Spalten s (Tag):\nZeile 0: 120, 90, 150\nZeile 1: 80, 200, 60\nZeile 2: 110, 70, 140\nBerechnet werden die Gesamtzahl aller Zugriffe sowie die Anzahl der Werte über 100 (Lastspitzen). Startwerte: gesamt = 0, spitzen = 0. Füllen Sie die Wertetabelle aus und geben Sie das Endergebnis an.",
+    "pseudocode": [
+      "gesamt = 0",
+      "spitzen = 0",
+      "FÜR z VON 0 BIS 2",
+      "    FÜR s VON 0 BIS 2",
+      "        gesamt = gesamt + zugriffe[z][s]",
+      "        WENN zugriffe[z][s] > 100 DANN",
+      "            spitzen = spitzen + 1",
+      "        ENDE WENN",
+      "    ENDE FÜR",
+      "ENDE FÜR",
+      "AUSGABE gesamt, spitzen"
+    ],
+    "columns": [
+      "z",
+      "s",
+      "zugriffe[z][s]",
+      "gesamt",
+      "Bedingung > 100",
+      "spitzen"
+    ],
+    "rows": [
+      [
+        "Start",
+        "–",
+        "–",
+        "0",
+        "–",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "120",
+        "120",
+        "wahr",
+        "1"
+      ],
+      [
+        "0",
+        "1",
+        "90",
+        "210",
+        "falsch",
+        "1"
+      ],
+      [
+        "0",
+        "2",
+        "150",
+        "360",
+        "wahr",
+        "2"
+      ],
+      [
+        "1",
+        "0",
+        "80",
+        "440",
+        "falsch",
+        "2"
+      ],
+      [
+        "1",
+        "1",
+        "200",
+        "640",
+        "wahr",
+        "3"
+      ],
+      [
+        "1",
+        "2",
+        "60",
+        "700",
+        "falsch",
+        "3"
+      ],
+      [
+        "2",
+        "0",
+        "110",
+        "810",
+        "wahr",
+        "4"
+      ],
+      [
+        "2",
+        "1",
+        "70",
+        "880",
+        "falsch",
+        "4"
+      ],
+      [
+        "2",
+        "2",
+        "140",
+        "1020",
+        "wahr",
+        "5"
+      ]
+    ],
+    "output": "gesamt = 1020, spitzen = 5 – insgesamt 1020 Zugriffe, davon 5 Einzelwerte über 100. Ausgegeben wird 1020 5.",
+    "rubric": [
+      {
+        "criterion": "Alle 9 Durchläufe in der richtigen Reihenfolge (zeilenweise: z bleibt stehen, s läuft komplett durch)",
+        "points": 2
+      },
+      {
+        "criterion": "Spalte gesamt korrekt fortgeschrieben bis 1020",
+        "points": 1
+      },
+      {
+        "criterion": "Alle neun Vergleiche > 100 korrekt bewertet (Grenzwert 100 selbst zählt nicht)",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis gesamt = 1020 und spitzen = 5 korrekt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die Durchlaufreihenfolge vertauschen und spaltenweise statt zeilenweise durchgehen – die Summe stimmt zwar, die Wertetabelle aber nicht.",
+      "gesamt oder spitzen versehentlich in der inneren Schleife zurücksetzen; beide Zähler werden nur einmal vor der äußeren Schleife initialisiert.",
+      "Bei > 100 den Grenzwert 100 mitzählen – gefordert ist echt größer.",
+      "Nur 3 statt 9 Durchläufe eintragen und je Zeile nur eine Zeilensumme bilden."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--schreibtischtest-akkumulator-mit-div-und-mod-ein-mitarbeiter-der",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Schreibtischtest (Akkumulator mit DIV und MOD). Ein Mitarbeiter der IT-Abteilung erfasst seine Arbeitszeit an vier Tagen in Minuten: minuten = [95, 140, 75, 210]. Die Gesamtzeit soll anschließend in volle Stunden und Restminuten umgerechnet werden. Startwert: summe = 0. Füllen Sie die Wertetabelle aus und geben Sie das Endergebnis an.",
+    "pseudocode": [
+      "summe = 0",
+      "FÜR i VON 0 BIS 3",
+      "    summe = summe + minuten[i]",
+      "ENDE FÜR",
+      "stunden = summe DIV 60",
+      "rest = summe MOD 60",
+      "AUSGABE stunden, rest"
+    ],
+    "columns": [
+      "Durchlauf i",
+      "minuten[i]",
+      "summe"
+    ],
+    "rows": [
+      [
+        "Start",
+        "–",
+        "0"
+      ],
+      [
+        "0",
+        "95",
+        "95"
+      ],
+      [
+        "1",
+        "140",
+        "235"
+      ],
+      [
+        "2",
+        "75",
+        "310"
+      ],
+      [
+        "3",
+        "210",
+        "520"
+      ],
+      [
+        "nach der Schleife",
+        "–",
+        "520 → stunden = 520 DIV 60 = 8, rest = 520 MOD 60 = 40"
+      ]
+    ],
+    "output": "summe = 520 Minuten, stunden = 8, rest = 40 – die Gesamtarbeitszeit beträgt 8 Stunden und 40 Minuten. Ausgegeben wird 8 40.",
+    "rubric": [
+      {
+        "criterion": "Alle vier Zwischensummen korrekt (95, 235, 310, 520)",
+        "points": 1
+      },
+      {
+        "criterion": "stunden = 520 DIV 60 = 8 als ganzzahlige Division korrekt (kein Runden auf 9)",
+        "points": 1
+      },
+      {
+        "criterion": "rest = 520 MOD 60 = 40 korrekt und Endergebnis 8 Stunden 40 Minuten angegeben",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "DIV mit der normalen Division verwechseln: 520 / 60 = 8,67 wird nicht auf 9 gerundet, DIV schneidet ab.",
+      "Den Nachkommaanteil 0,67 als Minuten deuten und 8 Stunden 67 Minuten angeben.",
+      "MOD und DIV vertauschen und 40 Stunden / 8 Minuten ausgeben.",
+      "Die Umrechnung schon innerhalb der Schleife vornehmen – sie steht erst nach ENDE FÜR."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--schreibtischtest-kopfgesteuerte-schleife-mit-string-aufbau-eine-konfigurationsnummer-soll",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 5,
+    "prompt": "Schreibtischtest (kopfgesteuerte Schleife mit String-Aufbau). Eine Konfigurationsnummer soll als Bitmuster protokolliert werden. Eingabewerte: zahl = 13, text = \"\" (leerer String). In jedem Durchlauf wird der Rest der Division durch 2 VORNE an den bisherigen Text angefügt. Füllen Sie die Wertetabelle aus und geben Sie den entstehenden Text an.",
+    "pseudocode": [
+      "zahl = 13",
+      "text = \"\"",
+      "SOLANGE zahl > 0",
+      "    rest = zahl MOD 2",
+      "    text = rest + text",
+      "    zahl = zahl DIV 2",
+      "ENDE SOLANGE",
+      "AUSGABE text"
+    ],
+    "columns": [
+      "Durchlauf",
+      "zahl (zu Beginn)",
+      "rest = zahl MOD 2",
+      "text (nach dem Anfügen)",
+      "zahl (nach DIV 2)"
+    ],
+    "rows": [
+      [
+        "Start",
+        "–",
+        "–",
+        "\"\"",
+        "13"
+      ],
+      [
+        "1",
+        "13",
+        "1",
+        "\"1\"",
+        "6"
+      ],
+      [
+        "2",
+        "6",
+        "0",
+        "\"01\"",
+        "3"
+      ],
+      [
+        "3",
+        "3",
+        "1",
+        "\"101\"",
+        "1"
+      ],
+      [
+        "4",
+        "1",
+        "1",
+        "\"1101\"",
+        "0"
+      ],
+      [
+        "Prüfung",
+        "0",
+        "–",
+        "0 > 0 → falsch, Schleife endet",
+        "0"
+      ]
+    ],
+    "output": "text = \"1101\" – die Zahl 13 ergibt das Bitmuster 1101. Ausgegeben wird 1101.",
+    "rubric": [
+      {
+        "criterion": "Alle vier Reste in der richtigen Reihenfolge ermittelt (1, 0, 1, 1)",
+        "points": 1
+      },
+      {
+        "criterion": "Spalte zahl korrekt durch ganzzahlige Division fortgeschrieben (13 → 6 → 3 → 1 → 0)",
+        "points": 1
+      },
+      {
+        "criterion": "rest wird VORNE angefügt (text = rest + text), nicht hinten angehängt",
+        "points": 1
+      },
+      {
+        "criterion": "Schleifenende korrekt bei zahl = 0 erkannt, kein fünfter Durchlauf",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis text = \"1101\" korrekt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "text = text + rest schreiben und dadurch das gespiegelte Ergebnis \"1011\" erhalten.",
+      "Bei zahl = 1 abbrechen statt bei zahl = 0 und so das erste Bit verlieren (\"101\").",
+      "DIV mit MOD verwechseln: 13 DIV 2 = 6, 13 MOD 2 = 1.",
+      "Den leeren Start-String vergessen und mit einer führenden 0 beginnen (\"01101\")."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--schreibtischtest-schleife-mit-verschachtelter-mehrfachauswahl-ein-onlineshop-verarbeitet-vier",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 5,
+    "prompt": "Schreibtischtest (Schleife mit verschachtelter Mehrfachauswahl). Ein Onlineshop verarbeitet vier Bestellungen desselben Artikels zum Einzelpreis von 20,00 €. Bestellmengen: menge = [3, 12, 25, 8]. Mengenrabatt: ab 20 Stück 15 %, ab 10 Stück 10 %, darunter kein Rabatt. Startwert: gesamt = 0. Füllen Sie die Wertetabelle aus und geben Sie den Gesamtbetrag an.",
+    "pseudocode": [
+      "gesamt = 0",
+      "FÜR i VON 0 BIS 3",
+      "    wert = menge[i] * 20",
+      "    WENN menge[i] >= 20 DANN",
+      "        wert = wert * 0.85",
+      "    SONST WENN menge[i] >= 10 DANN",
+      "        wert = wert * 0.90",
+      "    ENDE WENN",
+      "    gesamt = gesamt + wert",
+      "ENDE FÜR",
+      "AUSGABE gesamt"
+    ],
+    "columns": [
+      "i",
+      "menge[i]",
+      "wert vor Rabatt",
+      "Rabattstufe",
+      "wert nach Rabatt",
+      "gesamt"
+    ],
+    "rows": [
+      [
+        "Start",
+        "–",
+        "–",
+        "–",
+        "–",
+        "0,00"
+      ],
+      [
+        "0",
+        "3",
+        "60,00",
+        "0 %",
+        "60,00",
+        "60,00"
+      ],
+      [
+        "1",
+        "12",
+        "240,00",
+        "10 %",
+        "216,00",
+        "276,00"
+      ],
+      [
+        "2",
+        "25",
+        "500,00",
+        "15 %",
+        "425,00",
+        "701,00"
+      ],
+      [
+        "3",
+        "8",
+        "160,00",
+        "0 %",
+        "160,00",
+        "861,00"
+      ]
+    ],
+    "output": "gesamt = 861,00 € – die vier Bestellungen ergeben zusammen 861,00 €. Ausgegeben wird 861.00.",
+    "rubric": [
+      {
+        "criterion": "Bruttowerte je Bestellung korrekt (60, 240, 500, 160)",
+        "points": 1
+      },
+      {
+        "criterion": "Rabattstufen korrekt zugeordnet (0 %, 10 %, 15 %, 0 %)",
+        "points": 1
+      },
+      {
+        "criterion": "Rabattierte Werte korrekt berechnet (216,00 und 425,00)",
+        "points": 1
+      },
+      {
+        "criterion": "Akkumulator gesamt schrittweise korrekt fortgeschrieben (60,00 / 276,00 / 701,00)",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis gesamt = 861,00 € korrekt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die Bedingungen in falscher Reihenfolge prüfen: Bei 25 Stück greift zuerst >= 20; wird >= 10 zuerst geprüft, ergäbe sich fälschlich nur 10 % Rabatt.",
+      "Die Faktoren 0,85 und 0,90 als Rabattbetrag statt als verbleibenden Restbetrag deuten und 75,00 € statt 425,00 € notieren.",
+      "Nach dem Zutreffen eines Zweigs weitere Zweige mitprüfen und den Rabatt doppelt abziehen – SONST WENN schließt die übrigen Zweige aus.",
+      "wert nicht in jedem Durchlauf neu berechnen, sondern den Wert des Vordurchlaufs weiterverwenden."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--fuehre-einen-schreibtischtest-durch-fussgesteuerte-schleife-ein-lager-startet",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 3,
+    "prompt": "Führe einen Schreibtischtest durch (fußgesteuerte Schleife). Ein Lager startet mit einem Bestand von 500 Stück. Jeden Tag werden 60 Stück entnommen. Sobald der Bestand unter 100 Stück fällt, wird nachbestellt. Trage bestand und tage Schritt für Schritt in die Wertetabelle ein und gib an, nach wie vielen Tagen nachbestellt wird.",
+    "pseudocode": [
+      "bestand = 500",
+      "tage = 0",
+      "WIEDERHOLE",
+      "    bestand = bestand - 60",
+      "    tage = tage + 1",
+      "BIS bestand < 100",
+      "AUSGABE tage"
+    ],
+    "columns": [
+      "Durchlauf",
+      "bestand",
+      "tage",
+      "bestand < 100?"
+    ],
+    "rows": [
+      [
+        "1",
+        "440",
+        "1",
+        "nein"
+      ],
+      [
+        "2",
+        "380",
+        "2",
+        "nein"
+      ],
+      [
+        "3",
+        "320",
+        "3",
+        "nein"
+      ],
+      [
+        "4",
+        "260",
+        "4",
+        "nein"
+      ],
+      [
+        "5",
+        "200",
+        "5",
+        "nein"
+      ],
+      [
+        "6",
+        "140",
+        "6",
+        "nein"
+      ],
+      [
+        "7",
+        "80",
+        "7",
+        "ja -> Abbruch"
+      ]
+    ],
+    "output": "tage = 7 (nach 7 Tagen liegt der Bestand bei 80 Stück und es wird nachbestellt)",
+    "rubric": [
+      {
+        "criterion": "Wertetabelle mit allen 7 Durchläufen korrekt (bestand jeweils um 60 verringert)",
+        "points": 2
+      },
+      {
+        "criterion": "Endergebnis tage = 7 korrekt angegeben",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die fußgesteuerte Schleife wird immer mindestens einmal durchlaufen; die Bedingung wird erst am Ende geprüft.",
+      "Abbruch bereits bei bestand = 100 angenommen - die Bedingung lautet 'kleiner als 100', 100 würde die Schleife noch fortsetzen.",
+      "Den Zähler tage vor der Entnahme erhöht und dadurch um eins verschoben."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--fuehre-einen-schreibtischtest-durch-fuer-vier-bestellungen-bestellwerte-80",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 5,
+    "prompt": "Führe einen Schreibtischtest durch. Für vier Bestellungen bestellwerte = [80, 250, 600, 1200] (Angaben in Euro) wird je Bestellung ein Rabatt gewährt: ab 1000 Euro 10 Prozent, ab 500 Euro 5 Prozent, sonst kein Rabatt. Aufsummiert wird der rabattierte Betrag. Trage rabatt, netto und summe für jeden Durchlauf ein.",
+    "pseudocode": [
+      "summe = 0",
+      "FÜR i VON 0 BIS 3",
+      "    wert = bestellwerte[i]",
+      "    WENN wert >= 1000 DANN",
+      "        rabatt = 10",
+      "    SONST WENN wert >= 500 DANN",
+      "        rabatt = 5",
+      "    SONST",
+      "        rabatt = 0",
+      "    ENDE WENN",
+      "    netto = wert - wert * rabatt DIV 100",
+      "    summe = summe + netto",
+      "ENDE FÜR",
+      "AUSGABE summe"
+    ],
+    "columns": [
+      "i",
+      "wert",
+      "rabatt in %",
+      "netto",
+      "summe"
+    ],
+    "rows": [
+      [
+        "0",
+        "80",
+        "0",
+        "80",
+        "80"
+      ],
+      [
+        "1",
+        "250",
+        "0",
+        "250",
+        "330"
+      ],
+      [
+        "2",
+        "600",
+        "5",
+        "570",
+        "900"
+      ],
+      [
+        "3",
+        "1200",
+        "10",
+        "1080",
+        "1980"
+      ]
+    ],
+    "output": "summe = 1980 (Gesamtwert aller vier Bestellungen nach Rabatt in Euro)",
+    "rubric": [
+      {
+        "criterion": "Rabattstufe für jede der vier Bestellungen korrekt bestimmt (0, 0, 5, 10 Prozent)",
+        "points": 2
+      },
+      {
+        "criterion": "Nettobeträge korrekt berechnet (80, 250, 570, 1080)",
+        "points": 2
+      },
+      {
+        "criterion": "Endergebnis summe = 1980 korrekt angegeben",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die Mehrfachauswahl als unabhängige WENN-Blöcke gelesen und einer Bestellung mehrere Rabatte gegeben - bei SONST WENN gilt immer nur der erste zutreffende Zweig.",
+      "Den Rabattbetrag statt des Nettobetrags aufsummiert.",
+      "Grenzwerte falsch geprüft: 600 liegt über 500, aber unter 1000, erhält also 5 Prozent.",
+      "summe nicht vor der Schleife auf 0 gesetzt."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--fuehre-einen-schreibtischtest-durch-fuer-die-artikelnummer-ziffern-4",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 5,
+    "prompt": "Führe einen Schreibtischtest durch. Für die Artikelnummer ziffern = [4, 0, 1, 2, 7, 3] wird eine Prüfziffer gebildet. Ziffern an geraden Indizes zählen einfach, Ziffern an ungeraden Indizes dreifach. Die Prüfziffer ergänzt die Gesamtsumme auf das nächste Vielfache von 10. Trage Gewicht und summe für jeden Durchlauf ein und gib die Prüfziffer an.",
+    "pseudocode": [
+      "summe = 0",
+      "FÜR i VON 0 BIS 5",
+      "    WENN i MOD 2 == 0 DANN",
+      "        summe = summe + ziffern[i] * 1",
+      "    SONST",
+      "        summe = summe + ziffern[i] * 3",
+      "    ENDE WENN",
+      "ENDE FÜR",
+      "pruefziffer = (10 - summe MOD 10) MOD 10",
+      "AUSGABE pruefziffer"
+    ],
+    "columns": [
+      "i",
+      "ziffern[i]",
+      "i MOD 2",
+      "Gewicht",
+      "Beitrag",
+      "summe"
+    ],
+    "rows": [
+      [
+        "0",
+        "4",
+        "0",
+        "1",
+        "4",
+        "4"
+      ],
+      [
+        "1",
+        "0",
+        "1",
+        "3",
+        "0",
+        "4"
+      ],
+      [
+        "2",
+        "1",
+        "0",
+        "1",
+        "1",
+        "5"
+      ],
+      [
+        "3",
+        "2",
+        "1",
+        "3",
+        "6",
+        "11"
+      ],
+      [
+        "4",
+        "7",
+        "0",
+        "1",
+        "7",
+        "18"
+      ],
+      [
+        "5",
+        "3",
+        "1",
+        "3",
+        "9",
+        "27"
+      ]
+    ],
+    "output": "summe = 27, pruefziffer = (10 - 7) MOD 10 = 3",
+    "rubric": [
+      {
+        "criterion": "Gewichte korrekt zugeordnet (Index gerade -> 1, Index ungerade -> 3)",
+        "points": 2
+      },
+      {
+        "criterion": "Zwischensummen in allen sechs Durchläufen korrekt (4, 4, 5, 11, 18, 27)",
+        "points": 2
+      },
+      {
+        "criterion": "Prüfziffer 3 korrekt aus summe MOD 10 berechnet",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Das Gewicht an der Ziffer statt am Index festgemacht - entscheidend ist i MOD 2, nicht der Wert der Ziffer.",
+      "Bei der Zählung ab 1 statt ab 0 gestartet, wodurch alle Gewichte vertauscht werden.",
+      "Die äußere MOD-10-Operation vergessen: bei einer Summe, die bereits auf 0 endet, wäre die Prüfziffer 0 und nicht 10.",
+      "summe MOD 10 mit summe DIV 10 verwechselt."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--fuehre-einen-schreibtischtest-durch-verschachtelte-zaehlschleife-ueber-eine-tabelle",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Führe einen Schreibtischtest durch (verschachtelte Zählschleife über eine Tabelle). Die Zugriffszahlen zweier Server an drei Tagen stehen in der Matrix zugriffe = [[120, 80, 200], [150, 90, 60]] (Zeile = Server, Spalte = Tag). Aufsummiert werden nur Werte über 100. Trage jeden Zellenbesuch in die Wertetabelle ein.",
+    "pseudocode": [
+      "summe = 0",
+      "FÜR z VON 0 BIS 1",
+      "    FÜR s VON 0 BIS 2",
+      "        WENN zugriffe[z][s] > 100 DANN",
+      "            summe = summe + zugriffe[z][s]",
+      "        ENDE WENN",
+      "    ENDE FÜR",
+      "ENDE FÜR",
+      "AUSGABE summe"
+    ],
+    "columns": [
+      "z",
+      "s",
+      "zugriffe[z][s]",
+      "Bedingung > 100",
+      "summe"
+    ],
+    "rows": [
+      [
+        "0",
+        "0",
+        "120",
+        "wahr",
+        "120"
+      ],
+      [
+        "0",
+        "1",
+        "80",
+        "falsch",
+        "120"
+      ],
+      [
+        "0",
+        "2",
+        "200",
+        "wahr",
+        "320"
+      ],
+      [
+        "1",
+        "0",
+        "150",
+        "wahr",
+        "470"
+      ],
+      [
+        "1",
+        "1",
+        "90",
+        "falsch",
+        "470"
+      ],
+      [
+        "1",
+        "2",
+        "60",
+        "falsch",
+        "470"
+      ]
+    ],
+    "output": "summe = 470 (Summe der Zugriffe über 100: 120 + 200 + 150)",
+    "rubric": [
+      {
+        "criterion": "Alle sechs Zellen in der richtigen Reihenfolge durchlaufen (innere Schleife läuft vollständig, bevor z weiterzählt)",
+        "points": 2
+      },
+      {
+        "criterion": "Bedingung > 100 für jede Zelle korrekt ausgewertet",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis summe = 470 korrekt angegeben",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Reihenfolge der Indizes vertauscht (spaltenweise statt zeilenweise durchlaufen).",
+      "summe innerhalb der äußeren Schleife zurückgesetzt - dann bliebe nur die zweite Zeile übrig.",
+      "Werte genau gleich 100 mitgezählt; die Bedingung lautet echt größer als 100.",
+      "Alle sechs Werte aufsummiert und die Bedingung ignoriert (Ergebnis wäre 700)."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--fuehre-einen-schreibtischtest-durch-string-aufbau-mit-mod-eine",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Führe einen Schreibtischtest durch (String-Aufbau mit MOD). Eine Baustellenampel wechselt zyklisch die Phasen. Für die Schritte 1 bis 6 wird aus schritt MOD 3 die Farbe bestimmt (Rest 1 = R für Rot, Rest 2 = G für Grün, Rest 0 = Y für Gelb) und an die Zeichenkette protokoll angehängt. protokoll startet leer. Trage rest, farbe und protokoll für jeden Schritt ein.",
+    "pseudocode": [
+      "protokoll = \"\"",
+      "FÜR schritt VON 1 BIS 6",
+      "    rest = schritt MOD 3",
+      "    WENN rest == 1 DANN",
+      "        farbe = \"R\"",
+      "    SONST WENN rest == 2 DANN",
+      "        farbe = \"G\"",
+      "    SONST",
+      "        farbe = \"Y\"",
+      "    ENDE WENN",
+      "    protokoll = protokoll + farbe",
+      "ENDE FÜR",
+      "AUSGABE protokoll"
+    ],
+    "columns": [
+      "schritt",
+      "rest = schritt MOD 3",
+      "farbe",
+      "protokoll"
+    ],
+    "rows": [
+      [
+        "1",
+        "1",
+        "R",
+        "R"
+      ],
+      [
+        "2",
+        "2",
+        "G",
+        "RG"
+      ],
+      [
+        "3",
+        "0",
+        "Y",
+        "RGY"
+      ],
+      [
+        "4",
+        "1",
+        "R",
+        "RGYR"
+      ],
+      [
+        "5",
+        "2",
+        "G",
+        "RGYRG"
+      ],
+      [
+        "6",
+        "0",
+        "Y",
+        "RGYRGY"
+      ]
+    ],
+    "output": "protokoll = \"RGYRGY\"",
+    "rubric": [
+      {
+        "criterion": "Restwerte schritt MOD 3 für alle sechs Schritte korrekt (1, 2, 0, 1, 2, 0)",
+        "points": 2
+      },
+      {
+        "criterion": "Farbzuordnung über die Mehrfachauswahl korrekt",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis protokoll = \"RGYRGY\" korrekt zusammengesetzt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "3 MOD 3 fälschlich als 3 oder 1 statt als 0 gerechnet.",
+      "Die Zeichen in umgekehrter Reihenfolge angehängt - protokoll + farbe hängt hinten an.",
+      "protokoll in jedem Durchlauf neu gesetzt statt erweitert.",
+      "Bei schritt = 3 in den Rot-Zweig gegangen, weil die Mehrfachauswahl nicht bis zum SONST verfolgt wurde."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--fuehre-einen-schreibtischtest-durch-die-arbeitszeiten-einer-woche-stehen",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Führe einen Schreibtischtest durch. Die Arbeitszeiten einer Woche stehen in Minuten in minuten = [510, 480, 545, 460, 500]. Die tägliche Sollzeit beträgt 480 Minuten. Aufsummiert werden nur die Mehrarbeitsminuten (Minderzeiten bleiben unberücksichtigt). Anschließend wird die Summe in Stunden und Restminuten umgerechnet. Trage ueber für jeden Durchlauf ein.",
+    "pseudocode": [
+      "ueber = 0",
+      "FÜR i VON 0 BIS 4",
+      "    WENN minuten[i] > 480 DANN",
+      "        ueber = ueber + (minuten[i] - 480)",
+      "    ENDE WENN",
+      "ENDE FÜR",
+      "stunden = ueber DIV 60",
+      "rest = ueber MOD 60",
+      "AUSGABE stunden, rest"
+    ],
+    "columns": [
+      "i",
+      "minuten[i]",
+      "Bedingung > 480",
+      "Mehrarbeit",
+      "ueber"
+    ],
+    "rows": [
+      [
+        "0",
+        "510",
+        "wahr",
+        "30",
+        "30"
+      ],
+      [
+        "1",
+        "480",
+        "falsch",
+        "0",
+        "30"
+      ],
+      [
+        "2",
+        "545",
+        "wahr",
+        "65",
+        "95"
+      ],
+      [
+        "3",
+        "460",
+        "falsch",
+        "0",
+        "95"
+      ],
+      [
+        "4",
+        "500",
+        "wahr",
+        "20",
+        "115"
+      ]
+    ],
+    "output": "ueber = 115 Minuten, stunden = 1, rest = 55 (also 1 Stunde und 55 Minuten Mehrarbeit)",
+    "rubric": [
+      {
+        "criterion": "Mehrarbeitsminuten je Tag korrekt bestimmt (30, 0, 65, 0, 20)",
+        "points": 2
+      },
+      {
+        "criterion": "Zwischensummen ueber korrekt fortgeschrieben bis 115",
+        "points": 1
+      },
+      {
+        "criterion": "Umrechnung mit DIV und MOD korrekt: stunden = 1, rest = 55",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Minderzeiten abgezogen - die Bedingung filtert Tage unter der Sollzeit vollständig heraus.",
+      "Bei genau 480 Minuten Mehrarbeit gezählt; die Bedingung lautet echt größer als 480.",
+      "DIV und MOD vertauscht (Ergebnis 55 Stunden und 1 Minute).",
+      "Die Differenz zur Sollzeit vergessen und die vollen Tagesminuten aufsummiert."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "trace--fuehre-einen-schreibtischtest-durch-kopfgesteuerte-schleife-mit-zusammengesetzter-bedingung",
+    "topicId": "softwareentwicklung",
+    "type": "trace",
+    "tags": [
+      "ap1",
+      "softwareentwicklung",
+      "pseudocode",
+      "schreibtischtest"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "entwickeln",
+    "afb": "II",
+    "points": 4,
+    "prompt": "Führe einen Schreibtischtest durch (kopfgesteuerte Schleife mit zusammengesetzter Bedingung). Auf einen USB-Stick mit 1000 MB freiem Speicher werden die Dateien dateien = [300, 450, 200, 600, 150] (Angaben in MB) der Reihe nach kopiert. Der Vorgang bricht ab, sobald die nächste Datei nicht mehr passt. Trage frei, anzahl und i Schritt für Schritt ein und gib an, wie viele Dateien kopiert wurden.",
+    "pseudocode": [
+      "frei = 1000",
+      "anzahl = 0",
+      "i = 0",
+      "SOLANGE i <= 4 UND dateien[i] <= frei",
+      "    frei = frei - dateien[i]",
+      "    anzahl = anzahl + 1",
+      "    i = i + 1",
+      "ENDE SOLANGE",
+      "AUSGABE anzahl"
+    ],
+    "columns": [
+      "Prüfung i / dateien[i] <= frei",
+      "frei nach Kopie",
+      "anzahl",
+      "i"
+    ],
+    "rows": [
+      [
+        "Start",
+        "1000",
+        "0",
+        "0"
+      ],
+      [
+        "0: 300 <= 1000 -> wahr",
+        "700",
+        "1",
+        "1"
+      ],
+      [
+        "1: 450 <= 700 -> wahr",
+        "250",
+        "2",
+        "2"
+      ],
+      [
+        "2: 200 <= 250 -> wahr",
+        "50",
+        "3",
+        "3"
+      ],
+      [
+        "3: 600 <= 50 -> falsch -> Abbruch",
+        "50",
+        "3",
+        "3"
+      ]
+    ],
+    "output": "anzahl = 3 (drei Dateien passen, danach bricht der Vorgang bei der 600-MB-Datei ab; 50 MB bleiben frei)",
+    "rubric": [
+      {
+        "criterion": "Schleifenbedingung vor jedem Durchlauf geprüft und der Abbruch bei i = 3 korrekt erkannt",
+        "points": 2
+      },
+      {
+        "criterion": "frei in allen Durchläufen korrekt fortgeschrieben (700, 250, 50)",
+        "points": 1
+      },
+      {
+        "criterion": "Endergebnis anzahl = 3 korrekt angegeben",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Nach dem Abbruch weitergemacht und die 150-MB-Datei noch mitgezählt - die kopfgesteuerte Schleife endet endgültig, sie überspringt nicht.",
+      "Die Bedingung erst am Schleifenende geprüft und dadurch eine Datei zu viel kopiert.",
+      "Den freien Speicher nicht verringert, sodass alle Dateien zu passen scheinen.",
+      "Die UND-Verknüpfung übersehen: auch das Listenende (i > 4) beendet die Schleife."
+    ],
+    "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
   }
 ]

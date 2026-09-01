@@ -54,5 +54,61 @@
     "errorType": "logik",
     "buggyLine": 3,
     "explanation": "Zeile 3 startet die Schleife bei i=1 und ueberspringt dadurch das erste Dateielement (120 MB). Eine Vollsicherung muss alle Dateien ab i=0 summieren. Das Programm liefert 920 statt 1040 MB (Logikfehler)."
+  },
+  {
+    "id": "bug-nutzbare-hosts-im-subnetz",
+    "title": "Nutzbare Hosts im Subnetz",
+    "code": "int praefix = 26;\nint hostBits = 32 - praefix;\nint nutzbareHosts = (int) Math.pow(2, hostBits) - 1;\nSystem.out.println(\"Nutzbare Hosts: \" + nutzbareHosts);",
+    "errorType": "logik",
+    "buggyLine": 3,
+    "explanation": "Fehler: In Zeile 3 wird von der Zahl der möglichen Adressen nur 1 abgezogen. Bei einem /26-Netz gibt es 32 - 26 = 6 Hostbits, also 2^6 = 64 Adressen. Davon sind aber ZWEI nicht an Endgeräte vergebbar: die Netzadresse (alle Hostbits 0) und die Broadcastadresse (alle Hostbits 1). Folge: Das Programm läuft fehlerfrei durch, meldet aber 63 statt der korrekten 62 nutzbaren Hosts - ein klassischer Off-by-One, der bei der Netzplanung zu einer zu knapp bemessenen IP-Vergabe führt. Korrektur: Zeile 3 ändern in int nutzbareHosts = (int) Math.pow(2, hostBits) - 2;"
+  },
+  {
+    "id": "bug-uebertragungsdauer-eines-downloads",
+    "title": "Übertragungsdauer eines Downloads",
+    "code": "double dateigroesseMB = 750.0;\ndouble bandbreiteMbitProS = 50.0;\ndouble dauerSekunden = dateigroesseMB / bandbreiteMbitProS;\nSystem.out.println(\"Dauer in Sekunden: \" + dauerSekunden);",
+    "errorType": "logik",
+    "buggyLine": 3,
+    "explanation": "Fehler: In Zeile 3 wird eine Größe in Megabyte direkt durch eine Datenrate in Megabit pro Sekunde geteilt - zwei unterschiedliche Einheiten. 1 Byte = 8 Bit, die Dateigröße muss vor der Division mit 8 in Megabit umgerechnet werden. Folge: Das Programm kompiliert und läuft, liefert aber 15 Sekunden statt der korrekten 120 Sekunden (750 MB * 8 = 6000 Mbit; 6000 Mbit / 50 Mbit/s = 120 s). Die Dauer wird um den Faktor 8 zu klein geschätzt. Korrektur: Zeile 3 ändern in double dauerSekunden = dateigroesseMB * 8 / bandbreiteMbitProS;"
+  },
+  {
+    "id": "bug-benutzername-pruefen",
+    "title": "Benutzername prüfen",
+    "code": "String benutzername = \"adm\";\nString eingabe = benutzername + \"in\";\nString hinterlegt = \"admin\";\nif (eingabe == hinterlegt) {\n    System.out.println(\"Zugang gewährt\");\n} else {\n    System.out.println(\"Zugang verweigert\");\n}",
+    "errorType": "logik",
+    "buggyLine": 4,
+    "explanation": "Fehler: In Zeile 4 werden zwei Zeichenketten mit == verglichen. Bei Objekten prüft == nur, ob beide Variablen auf dasselbe Objekt im Speicher zeigen, nicht ob der Inhalt gleich ist. Da \"eingabe\" erst zur Laufzeit durch Verkettung entsteht, liegt es nicht im String-Pool und ist ein anderes Objekt als das Literal in \"hinterlegt\". Folge: Das Programm läuft ohne Absturz, der Vergleich ergibt aber false und es wird \"Zugang verweigert\" ausgegeben, obwohl beide Zeichenketten \"admin\" lauten. Korrektur: Zeile 4 ändern in if (eingabe.equals(hinterlegt)) {"
+  },
+  {
+    "id": "bug-hexadezimalwert-auswerten",
+    "title": "Hexadezimalwert auswerten",
+    "code": "String hexWert = \"2F\";\nint dezimal = Integer.parseInt(hexWert, 16);\nif (dezimal > 15 {\n    System.out.println(\"Wert über 15: \" + dezimal);\n}",
+    "errorType": "syntax",
+    "buggyLine": 3,
+    "explanation": "Fehler: In Zeile 3 fehlt die schließende runde Klammer der if-Bedingung. Die Sprachregel verlangt, dass die Bedingung einer if-Anweisung vollständig in ( ) eingeschlossen ist. Folge: Der Compiler bricht mit einer Meldung wie \")\" expected ab, es entsteht keine ausführbare Klassendatei - das Programm startet gar nicht. Korrektur: Zeile 3 ändern in if (dezimal > 15) {  (die Umrechnung selbst ist korrekt: 2F hexadezimal = 2*16 + 15 = 47)."
+  },
+  {
+    "id": "bug-bruttopreis-mit-mehrwertsteuer",
+    "title": "Bruttopreis mit Mehrwertsteuer",
+    "code": "final double MWST_SATZ = 0.19;\ndouble nettoPreis = 1250.0;\nMWST_SATZ = 0.07;\ndouble bruttoPreis = nettoPreis * (1 + MWST_SATZ);\nSystem.out.println(\"Bruttopreis: \" + bruttoPreis);",
+    "errorType": "syntax",
+    "buggyLine": 3,
+    "explanation": "Fehler: In Zeile 3 wird der Konstanten MWST_SATZ ein neuer Wert zugewiesen. Eine mit final deklarierte Variable darf nach ihrer Initialisierung nicht mehr verändert werden. Folge: Der Compiler meldet \"cannot assign a value to final variable MWST_SATZ\" und erzeugt keine ausführbare Klasse - es handelt sich also um einen Fehler, der schon vor dem Start auffällt. Korrektur: Zeile 3 ersatzlos streichen (dann ergibt sich der korrekte Bruttopreis 1250,00 EUR * 1,19 = 1487,50 EUR); ist der ermäßigte Satz gewünscht, muss stattdessen die Deklaration in Zeile 1 auf 0.07 geändert werden."
+  },
+  {
+    "id": "bug-ip-adresse-aus-oktetten-zusammensetzen",
+    "title": "IP-Adresse aus Oktetten zusammensetzen",
+    "code": "int[] oktette = {192, 168, 30, 15};\nString ipAdresse = String.valueOf(oktette[0]);\nfor (int i = 1; i <= oktette.length; i++) {\n    ipAdresse = ipAdresse + \".\" + oktette[i];\n}\nSystem.out.println(ipAdresse);",
+    "errorType": "laufzeit",
+    "buggyLine": 3,
+    "explanation": "Fehler: In Zeile 3 lautet die Abbruchbedingung i <= oktette.length. Die gültigen Indizes eines Arrays der Länge 4 sind aber nur 0 bis 3, die Schleife läuft dadurch einen Durchlauf zu weit (bis i = 4). Folge: Das Programm kompiliert fehlerfrei, bricht dann aber im letzten Durchlauf in Zeile 4 mit einer ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4 ab. Da die Ausgabe erst nach der Schleife in Zeile 6 steht, wird überhaupt nichts ausgegeben. Korrektur: Zeile 3 ändern in for (int i = 1; i < oktette.length; i++) {"
+  },
+  {
+    "id": "bug-laenge-aller-servernamen",
+    "title": "Länge aller Servernamen",
+    "code": "String[] hostnamen = {\"srv-web\", null, \"srv-db\"};\nint gesamtLaenge = 0;\nfor (int i = 0; i < hostnamen.length; i++) {\n    gesamtLaenge = gesamtLaenge + hostnamen[i].length();\n}\nSystem.out.println(\"Gesamtlänge: \" + gesamtLaenge);",
+    "errorType": "laufzeit",
+    "buggyLine": 4,
+    "explanation": "Fehler: In Zeile 4 wird auf jedem Array-Element die Methode length() aufgerufen, ohne zu prüfen, ob das Element überhaupt auf ein Objekt verweist. Das zweite Element ist null, also ein Verweis ins Leere. Folge: Der erste Durchlauf funktioniert, beim zweiten (i = 1) bricht das Programm mit einer NullPointerException ab; die Ausgabe in Zeile 6 wird nie erreicht. Korrektur: Vor dem Zugriff auf null prüfen, z. B. Zeile 4 ersetzen durch: if (hostnamen[i] != null) { gesamtLaenge = gesamtLaenge + hostnamen[i].length(); }"
   }
 ]
