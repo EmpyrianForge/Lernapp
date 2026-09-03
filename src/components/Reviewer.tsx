@@ -5,6 +5,7 @@ import { TOPIC_BY_ID } from '../data/topics'
 import { GradeButtons, Pill, ProgressBar } from './ui'
 import { MarkdownText } from './markdown'
 import { Icon } from './Icon'
+import { Confetti } from './Confetti'
 
 // Wiederverwendbarer Active-Recall-Loop: erst Frage, Antwort erst nach Eigenversuch
 // (Testing-Effekt). Selbstbewertung 1–4 speist SM-2. Volle Tastaturbedienung.
@@ -71,6 +72,7 @@ export function Reviewer({ items, title, onExit }: Props) {
     const good = grades.filter((g) => g >= 3).length
     return (
       <section className="panel center">
+        {grades.length >= 5 && good / grades.length >= 0.8 && <Confetti />}
         <h2><Icon name="check" size={20} className="done-ico" /> Session abgeschlossen</h2>
         <p className="big">{good}/{grades.length} sicher gewusst</p>
         <div className="grade-dist">

@@ -1,9 +1,29 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useReducer, useRef, useState } from 'react'
 
-// Kleine Animations-Helfer. Alles respektiert prefers-reduced-motion:
-// wer Bewegung reduziert, sieht sofort den Endwert statt einer Animation.
+// Kleine Animations-Helfer. Alles respektiert prefers-reduced-motion — ABER der Nutzer
+// kann das in den Einstellungen überstimmen („Erfolgs-Effekte": Auto / An / Aus).
+// Grund: wer im System „Bewegung reduzieren" aktiv hat, sah bisher keinerlei
+// Belohnung (Konfetti, Hochzählen) — ohne Notausgang. 'on' zeigt die Effekte trotzdem,
+// 'off' unterdrückt sie auch dann, wenn das System Bewegung erlaubt.
 
-export function usePrefersReducedMotion(): boolean {
+export type Effects = 'auto' | 'on' | 'off'
+
+let effectsMode: Effects = 'auto'
+const subscribers = new Set<() => void>()
+
+/** Wird vom AppState gesetzt, sobald die Einstellung geladen ist oder sich ändert. */
+export function setEffectsMode(m: Effects): void {
+  if (m === effectsMode) return
+  effectsMode = m
+  subscribers.forEach((fn) => fn())
+}
+
+export function getEffectsMode(): Effects {
+  return effectsMode
+}
+
+/** Rohe OS-Präferenz „Bewegung reduzieren" (ohne App-Schalter) — für den Hinweis in den Einstellungen. */
+export function useOsReducedMotion(): boolean {
   const [reduced, setReduced] = useState(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return false
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -16,6 +36,21 @@ export function usePrefersReducedMotion(): boolean {
     return () => mq.removeEventListener('change', on)
   }, [])
   return reduced
+}
+
+/** Effektiv reduziert? App-Schalter überstimmt die OS-Präferenz. */
+export function usePrefersReducedMotion(): boolean {
+  const os = useOsReducedMotion()
+  const [, bump] = useReducer((x: number) => x + 1, 0)
+  useEffect(() => {
+    subscribers.add(bump)
+    return () => {
+      subscribers.delete(bump)
+    }
+  }, [])
+  if (effectsMode === 'on') return false
+  if (effectsMode === 'off') return true
+  return os
 }
 
 /** Weiches Auslaufen — schnell starten, sanft ankommen. */

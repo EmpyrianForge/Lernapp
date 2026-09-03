@@ -1,9 +1,11 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { EXAM_TASKS, type ExamTask } from '../data/exam-tasks'
 import { TOPIC_BY_ID } from '../data/topics'
 import { gradeForPoints } from '../lib/grade'
+import { useAppState } from '../state/AppState'
 import { MarkdownText } from './markdown'
 import { Pill } from './ui'
+import { Confetti } from './Confetti'
 
 // Authentische, mehrteilige Prüfungsaufgaben mit Selbstbewertung nach Teilpunkten.
 
@@ -18,6 +20,15 @@ function TaskView({ task, onExit }: { task: ExamTask; onExit: () => void }) {
   const scored = Object.values(awarded).reduce((s, p) => s + p, 0)
   const allScored = task.parts.every((_, i) => awarded[i] !== undefined)
   const grade = gradeForPoints(scored, total)
+  const { recordExam } = useAppState()
+  const recorded = useRef(false)
+
+  // Sobald alle Teile bewertet sind: einmalig ins Aktivitäts-Log.
+  useEffect(() => {
+    if (!allScored || recorded.current) return
+    recorded.current = true
+    recordExam('Prüfungsaufgabe', scored, total, task.topicId)
+  }, [allScored, scored, total, task.topicId, recordExam])
 
   return (
     <section className="panel">
@@ -25,6 +36,7 @@ function TaskView({ task, onExit }: { task: ExamTask; onExit: () => void }) {
         <button className="btn ghost" onClick={onExit}>← Zurück</button>
         <h2>{task.title}</h2>
       </header>
+      {allScored && grade.note === 1 && <Confetti />}
 
       <div className="scenario"><MarkdownText text={task.scenario} /></div>
 

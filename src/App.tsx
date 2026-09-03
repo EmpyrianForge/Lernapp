@@ -33,6 +33,7 @@ import { ReferenceMode } from './components/ReferenceMode'
 import { MyCardsMode } from './components/MyCardsMode'
 import { SettingsMode } from './components/SettingsMode'
 import { ShortcutOverlay } from './components/ShortcutOverlay'
+import { Toast } from './components/Toast'
 import { Icon } from './components/Icon'
 
 function BackupControls() {
@@ -155,6 +156,7 @@ export function App() {
         <button className="link-btn" onClick={() => setView('settings')}>Einstellungen</button> ·
         <span> „?" für Tastatur-Kürzel</span>
       </footer>
+      <Toast />
       <ShortcutOverlay />
     </div>
   )

@@ -4,6 +4,7 @@ import { useAppState } from '../state/AppState'
 import { ITEM_BY_ID } from '../data/content'
 import { addDays, formatDE } from '../lib/date'
 import { allTopicMastery } from '../lib/mastery'
+import { MILESTONES, perDayAnswers, totalAnswers } from '../lib/activity'
 import { ProgressBar } from './ui'
 import { Icon } from './Icon'
 
@@ -47,18 +48,16 @@ function ReadinessChart({ points }: { points: { date: string; value: number }[] 
 }
 
 export function StatsMode({ onExit }: { onExit: () => void }) {
-  const { states, today, streak, drillStats, readinessHistory } = useAppState()
+  const { states, today, streak, drillStats, readinessHistory, activity, milestones } = useAppState()
 
   const stats = useMemo(() => {
-    const perDay = new Map<string, number>()
+    // Antworten/Aktivität aus ALLEN Modi (Aktivitäts-Log); Noten-Verteilung nur aus
+    // Karteikarten-Selbstbewertungen.
+    const perDay = perDayAnswers(activity)
+    const total = totalAnswers(activity)
     const gradeDist: Record<Grade, number> = { 1: 0, 2: 0, 3: 0, 4: 0 }
-    let total = 0
     for (const st of states.values()) {
-      for (const h of st.history) {
-        perDay.set(h.date, (perDay.get(h.date) ?? 0) + 1)
-        gradeDist[h.grade]++
-        total++
-      }
+      for (const h of st.history) gradeDist[h.grade]++
     }
     // Heatmap-Tage: älteste zuerst, so ausgerichtet, dass „heute" die letzte Zelle ist.
     const days: { date: string; count: number }[] = []
@@ -68,7 +67,13 @@ export function StatsMode({ onExit }: { onExit: () => void }) {
     }
     const activeDays = [...perDay.keys()].length
     return { perDay, gradeDist, total, days, todayCount: perDay.get(today) ?? 0, activeDays }
-  }, [states, today])
+  }, [states, activity, today])
+
+  // Letzte Prüfungssimulationen (neueste zuerst).
+  const examRuns = useMemo(
+    () => activity.filter((e) => e.mode === 'Prüfungssimulation' && e.total > 0).slice(-6).reverse(),
+    [activity],
+  )
 
   const masteries = allTopicMastery(states)
   const maxGrade = Math.max(1, ...(Object.values(stats.gradeDist) as number[]))
@@ -188,6 +193,39 @@ export function StatsMode({ onExit }: { onExit: () => void }) {
           </ul>
         </>
       )}
+
+      {examRuns.length > 0 && (
+        <>
+          <h3 className="sec">Prüfungssimulationen</h3>
+          <ul className="exam-history">
+            {examRuns.map((ev) => {
+              const norm = Math.round((ev.correct / ev.total) * 100)
+              return (
+                <li key={ev.ts}>
+                  <span>{formatDE(ev.date)}</span>
+                  <span className={`exam-pts ${norm >= 92 ? 'top' : norm >= 50 ? 'pass' : 'fail'}`}>{norm} / 100 P</span>
+                </li>
+              )
+            })}
+          </ul>
+        </>
+      )}
+
+      <h3 className="sec">Meilensteine</h3>
+      <ul className="milestone-list">
+        {MILESTONES.map((m) => {
+          const date = milestones[m.id]
+          return (
+            <li key={m.id} className={`milestone ${date ? 'done' : 'locked'}`}>
+              <span className="ms-ico" aria-hidden="true"><Icon name={date ? 'check' : 'lock'} size={14} /></span>
+              <span className="ms-text">
+                <strong>{m.title}</strong>
+                <span className="muted small">{m.desc}{date ? ` · ${formatDE(date)}` : ''}</span>
+              </span>
+            </li>
+          )
+        })}
+      </ul>
     </section>
   )
 }

@@ -3,9 +3,12 @@ import type { Theme } from '../state/AppState'
 import { useAppState } from '../state/AppState'
 import { exportJSON, importJSON } from '../db/db'
 import { formatDE } from '../lib/date'
+import type { Effects } from '../lib/motion'
 
 const THEMES: [Theme, string][] = [['system', 'System'], ['light', 'Hell'], ['dark', 'Dunkel']]
 const FONTS: [number, string][] = [[0.9, 'Klein'], [1, 'Normal'], [1.15, 'Groß'], [1.3, 'XL']]
+const EFFECTS: [Effects, string][] = [['auto', 'Auto'], ['on', 'An'], ['off', 'Aus']]
+const GOALS = [15, 30, 50, 80]
 
 const SHORTCUTS: [string, string][] = [
   ['1 – 4', 'Karte bewerten (nicht gewusst … perfekt)'],
@@ -19,6 +22,7 @@ export function SettingsMode({ onExit }: { onExit: () => void }) {
     theme, setTheme, fontScale, setFontScale, lastExport, markExported, reloadStates,
     cloudUrl, cloudKey, cloudAuto, lastCloudBackup, setCloudConfig, setCloudAuto,
     cloudTest, cloudBackup, cloudRestore,
+    effects, setEffects, osReducedMotion, dailyGoal, setDailyGoal,
   } = useAppState()
   const fileRef = useRef<HTMLInputElement>(null)
 
@@ -95,6 +99,31 @@ export function SettingsMode({ onExit }: { onExit: () => void }) {
           ))}
         </div>
       </div>
+      <div className="setting-row">
+        <span>Erfolgs-Effekte</span>
+        <div className="seg-group">
+          {EFFECTS.map(([v, label]) => (
+            <button key={v} className={`seg-btn ${effects === v ? 'on' : ''}`} onClick={() => setEffects(v)}>{label}</button>
+          ))}
+        </div>
+      </div>
+      <p className="muted small">
+        Konfetti, Hochzählen, Einblenden.
+        {osReducedMotion
+          ? ' Dein System hat „Bewegung reduzieren" aktiv — mit „An" siehst du die Effekte trotzdem, „Auto" blendet sie aus.'
+          : ' „Auto" folgt der Systemeinstellung.'}
+      </p>
+
+      <h3 className="sec">Lernen</h3>
+      <div className="setting-row">
+        <span>Tagesziel</span>
+        <div className="seg-group">
+          {GOALS.map((g) => (
+            <button key={g} className={`seg-btn ${dailyGoal === g ? 'on' : ''}`} onClick={() => setDailyGoal(g)}>{g}</button>
+          ))}
+        </div>
+      </div>
+      <p className="muted small">Antworten pro Tag aus allen Modi — Karteikarten, Rechnen, Drills und Prüfungen zählen.</p>
 
       <h3 className="sec">Backup</h3>
       <p className="muted small">

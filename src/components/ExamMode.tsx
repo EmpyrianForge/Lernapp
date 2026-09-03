@@ -5,6 +5,8 @@ import { gradeForPoints, PASS_THRESHOLD, TARGET_POINTS } from '../lib/grade'
 import { Pill } from './ui'
 import { MarkdownText } from './markdown'
 import { Icon } from './Icon'
+import { Confetti } from './Confetti'
+import { useAppState } from '../state/AppState'
 
 // Prüfungssimulation: 90 Min, 4 unabhängige Aufgabenbereiche, nur offene Aufgaben.
 // Selbstbewertung pro Frage nach Teilpunkten → Auswertung gegen 100 P + Blockschlüssel
@@ -69,6 +71,17 @@ export function ExamMode({ onExit }: { onExit: () => void }) {
   const [revealed, setRevealed] = useState<Record<number, boolean>>({})
   const [awarded, setAwarded] = useState<Record<number, number>>({})
   const timerRef = useRef<number | null>(null)
+  const { recordExam } = useAppState()
+  const recorded = useRef(false)
+  const scored = Object.values(awarded).reduce((s, p) => s + p, 0)
+  const total = exam.totalPoints
+
+  // Ergebnis einmalig ins Aktivitäts-Log (Streak, Meilensteine, Statistik).
+  useEffect(() => {
+    if (phase !== 'finished' || recorded.current) return
+    recorded.current = true
+    recordExam('Prüfungssimulation', scored, total)
+  }, [phase, scored, total, recordExam])
 
   useEffect(() => {
     if (phase !== 'running') return
@@ -93,8 +106,6 @@ export function ExamMode({ onExit }: { onExit: () => void }) {
   const lowTime = secondsLeft <= 300
 
   if (phase === 'finished') {
-    const scored = Object.values(awarded).reduce((s, p) => s + p, 0)
-    const total = exam.totalPoints
     const norm = Math.round((scored / total) * 100)
     const grade = gradeForPoints(scored, total)
     const perArea = exam.areas.map((a, ai) => {
@@ -108,6 +119,7 @@ export function ExamMode({ onExit }: { onExit: () => void }) {
         <header className="panel-head">
           <h2>Auswertung</h2>
         </header>
+        {norm >= TARGET_POINTS && <Confetti count={48} />}
         <div className="exam-result">
           <div className={`big-score note-${grade.note}`}>
             <strong>{norm}</strong><span>/ 100 P</span>

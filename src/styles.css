@@ -454,13 +454,14 @@ h3.sec { margin: 1.4rem 0 0.6rem; font-size: 1rem; }
 }
 @keyframes nudge { 20% { transform: translateX(-4px); } 60% { transform: translateX(4px); } 100% { transform: none; } }
 
-/* Bewegung respektieren: wer Animationen reduziert, bekommt nur Einblenden. */
+/* Bewegung respektieren: wer Animationen reduziert, bekommt nur Einblenden —
+   außer er hat in den Einstellungen „Erfolgs-Effekte: An" gewählt (data-effects). */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  :root:not([data-effects="on"]) *, :root:not([data-effects="on"]) *::before, :root:not([data-effects="on"]) *::after {
     animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important; scroll-behavior: auto !important;
   }
-  .mode-card:hover { transform: none; }
+  :root:not([data-effects="on"]) .mode-card:hover { transform: none; }
 }
 
 /* chmod-Grid */
@@ -929,5 +930,49 @@ h3.sec { margin: 1.4rem 0 0.6rem; font-size: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
+  :root:not([data-effects="on"]) *, :root:not([data-effects="on"]) *::before, :root:not([data-effects="on"]) *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---- Erfolgs-Effekte „Aus": Ruhe erzwingen, auch wenn das System Bewegung erlaubt ---- */
+:root[data-effects="off"] *, :root[data-effects="off"] *::before, :root[data-effects="off"] *::after { animation: none !important; transition: none !important; }
+
+/* ---- Heute & Tagesziel (Dashboard) ---- */
+.today-tile {
+  display: flex; flex-direction: column; gap: 0.45rem;
+  background: var(--panel-2); border: 1px solid var(--border); border-radius: 14px;
+  padding: 0.8rem 1rem; margin: 0.9rem 0;
+}
+.today-tile.done { border-color: var(--good); background: color-mix(in srgb, var(--good) 9%, var(--panel-2)); }
+.tt-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
+.tt-title { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700; }
+.tt-nums { font-variant-numeric: tabular-nums; }
+.tt-nums strong { font-size: 1.1rem; }
+.today-tile.done .tt-nums strong { color: var(--good); }
+
+/* ---- Erfolgs-Toast (Meilenstein / Tagesziel) ---- */
+.toast-wrap { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
+.toast {
+  position: absolute; left: 50%; bottom: 1.4rem; transform: translateX(-50%);
+  pointer-events: auto; display: flex; align-items: center; gap: 0.7rem;
+  max-width: min(92vw, 30rem); padding: 0.7rem 0.9rem;
+  background: var(--panel-2); color: var(--text); border: 1px solid var(--good); border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  animation: pop 0.34s cubic-bezier(0.22, 1.4, 0.4, 1);
+}
+.toast-ico { display: inline-flex; width: 2rem; height: 2rem; border-radius: 50%; align-items: center; justify-content: center; background: var(--good); color: #fff; flex: none; }
+.toast-text { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+
+/* ---- Meilensteine & Prüfungsverlauf (Statistik) ---- */
+.milestone-list { list-style: none; padding: 0; margin: 0.4rem 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0.5rem; }
+.milestone { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.7rem; border: 1px solid var(--border); border-radius: 12px; background: var(--panel-2); }
+.milestone.locked { opacity: 0.5; }
+.milestone.done { border-color: var(--good); }
+.ms-ico { display: inline-flex; width: 1.7rem; height: 1.7rem; border-radius: 50%; align-items: center; justify-content: center; background: var(--muted-bg); color: var(--muted); flex: none; }
+.milestone.done .ms-ico { background: var(--good); color: #fff; }
+.ms-text { display: flex; flex-direction: column; gap: 0.05rem; min-width: 0; }
+.exam-history { list-style: none; padding: 0; margin: 0.4rem 0 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.exam-history li { display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.7rem; border: 1px solid var(--border); border-radius: 10px; background: var(--panel-2); }
+.exam-pts { font-weight: 700; font-variant-numeric: tabular-nums; }
+.exam-pts.top { color: var(--good); }
+.exam-pts.pass { color: var(--accent); }
+.exam-pts.fail { color: var(--bad); }

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import type { View } from '../nav'
-import type { UserState } from '../types'
+import { perDayAnswers, statsForDate } from '../lib/activity'
 import { useAppState } from '../state/AppState'
 import { allTopicMastery, examReadiness, overview } from '../lib/mastery'
 import { ALL_ITEMS } from '../data/content'
@@ -63,23 +63,19 @@ const TOPIC_TONE: Record<string, string> = {
 }
 
 /**
- * Aktivitätsstreifen der letzten 14 Tage: je Tag ein Balken, dessen Höhe für die
- * Anzahl bewerteter Karten steht. Macht Kontinuität sichtbar — der eigentliche
- * Hebel beim Spaced-Repetition-Lernen.
+ * Aktivitätsstreifen der letzten 14 Tage: je Tag ein Balken für die Antworten aus
+ * ALLEN Modi (Aktivitäts-Log) — Drills und Prüfungen zählen mit, nicht nur Karteikarten.
+ * Macht Kontinuität sichtbar — der eigentliche Hebel beim Spaced-Repetition-Lernen.
  */
-function DayStrip({ states, today }: { states: Map<string, UserState>; today: string }) {
+function DayStrip({ perDay, today }: { perDay: Map<string, number>; today: string }) {
   const tage = useMemo(() => {
-    const zaehler = new Map<string, number>()
-    for (const st of states.values()) {
-      for (const h of st.history) zaehler.set(h.date, (zaehler.get(h.date) ?? 0) + 1)
-    }
     const liste = Array.from({ length: 14 }, (_, i) => {
       const iso = addDays(today, i - 13)
-      return { iso, anzahl: zaehler.get(iso) ?? 0 }
+      return { iso, anzahl: perDay.get(iso) ?? 0 }
     })
     const max = Math.max(1, ...liste.map((d) => d.anzahl))
     return liste.map((d) => ({ ...d, anteil: d.anzahl / max }))
-  }, [states, today])
+  }, [perDay, today])
 
   const aktiveTage = tage.filter((d) => d.anzahl > 0).length
   const gesamt = tage.reduce((a, d) => a + d.anzahl, 0)
@@ -89,7 +85,7 @@ function DayStrip({ states, today }: { states: Map<string, UserState>; today: st
       <div className="ds-head">
         <span className="ds-title">Letzte 14 Tage</span>
         <span className="muted small">
-          {gesamt > 0 ? `${gesamt} Bewertungen an ${aktiveTage} Tagen` : 'Noch keine Wiederholungen'}
+          {gesamt > 0 ? `${gesamt} Antworten an ${aktiveTage} Tagen` : 'Noch keine Antworten'}
         </span>
       </div>
       <div className="ds-bars">
@@ -98,7 +94,7 @@ function DayStrip({ states, today }: { states: Map<string, UserState>; today: st
             key={d.iso}
             className={`ds-bar ${d.anzahl > 0 ? 'on' : ''} ${d.iso === today ? 'heute' : ''}`}
             style={{ '--h': `${Math.max(6, d.anteil * 100)}%`, animationDelay: `${i * 26}ms` } as React.CSSProperties}
-            title={`${formatDE(d.iso)}: ${d.anzahl} ${d.anzahl === 1 ? 'Bewertung' : 'Bewertungen'}`}
+            title={`${formatDE(d.iso)}: ${d.anzahl} ${d.anzahl === 1 ? 'Antwort' : 'Antworten'}`}
           />
         ))}
       </div>
@@ -107,12 +103,17 @@ function DayStrip({ states, today }: { states: Map<string, UserState>; today: st
 }
 
 export function Dashboard({ go }: { go: (v: View) => void }) {
-  const { states, dueTotal, streak, coreOnly, setCoreOnly, lastExport, today } = useAppState()
+  const { states, dueTotal, streak, coreOnly, setCoreOnly, lastExport, today, activity, dailyGoal } = useAppState()
   const readiness = examReadiness(states)
   const masteries = allTopicMastery(states)
   const ov = overview(states, dueTotal)
   const days = daysUntilExam()
   const cram = days <= 14 && days >= 0
+
+  // Heute + Tagesziel aus dem Aktivitäts-Log (alle Modi).
+  const perDayLog = useMemo(() => perDayAnswers(activity), [activity])
+  const heute = statsForDate(activity, today)
+  const goalHit = heute.answers >= dailyGoal
 
   // „Auf Kurs?": wie viele neue Karten/Tag, um bis zur Prüfung alles einmal zu sehen.
   const unseen = ALL_ITEMS.filter((i) => {
@@ -175,7 +176,21 @@ export function Dashboard({ go }: { go: (v: View) => void }) {
         </div>
       </section>
 
-      <DayStrip states={states} today={today} />
+      <section className={`today-tile ${goalHit ? 'done' : ''}`} aria-label="Heute">
+        <div className="tt-head">
+          <span className="tt-title"><Icon name="activity" size={15} /> Heute</span>
+          <span className="tt-nums">
+            <strong>{heute.answers}</strong> Antworten · <strong>{heute.correct}</strong> richtig
+            {heute.answers > 0 && <span className="muted"> ({Math.round((heute.correct / heute.answers) * 100)} %)</span>}
+          </span>
+        </div>
+        <ProgressBar value={Math.min(1, heute.answers / dailyGoal)} label="Tagesziel" />
+        <span className="muted small">
+          {goalHit ? `Tagesziel ${dailyGoal} geschafft ✓` : `Tagesziel ${dailyGoal} Antworten — noch ${dailyGoal - heute.answers}`}
+        </span>
+      </section>
+
+      <DayStrip perDay={perDayLog} today={today} />
 
       {dueTotal > 0 && (
         <button className="cta" onClick={() => go('flashcards')}>

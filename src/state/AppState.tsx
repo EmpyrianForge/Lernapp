@@ -23,17 +23,33 @@ import {
 import { initialState, review as reviewSm2 } from '../lib/sm2'
 import { addDays, todayISO } from '../lib/date'
 import { dueCount } from '../lib/scheduler'
-import { registerUserCards, setActiveTrack, USER_CARD_PREFIX } from '../data/content'
-import { examReadiness } from '../lib/mastery'
+import { ITEM_BY_ID, registerUserCards, setActiveTrack, USER_CARD_PREFIX } from '../data/content'
+import { allTopicMastery, examReadiness } from '../lib/mastery'
+import {
+  ACTIVITY_CAP,
+  achievedMilestones,
+  backfillFromStates,
+  MILESTONE_BY_ID,
+  statsForDate,
+  type ActivityEvent,
+} from '../lib/activity'
+import { setEffectsMode, useOsReducedMotion, type Effects } from '../lib/motion'
 
 export type Theme = 'system' | 'light' | 'dark'
 export interface ReadinessPoint {
   date: string
   value: number
 }
+export interface ToastMsg {
+  title: string
+  desc: string
+}
+export type ExamKind = 'Prüfungssimulation' | 'Prüfungsaufgabe'
 
 // Zentraler App-Zustand: hält den geladenen Lernfortschritt (UserState-Map) im
 // Speicher, persistiert Änderungen nach IndexedDB und stellt abgeleitete Werte bereit.
+// Neu: ein Aktivitäts-Log über ALLE Modi (lib/activity.ts) speist Streak, „heute",
+// Tagesziel und Meilensteine — jede Antwort zählt, nicht nur Karteikarten.
 
 interface AppStateValue {
   ready: boolean
@@ -49,6 +65,16 @@ interface AppStateValue {
   setCoreOnly: (v: boolean) => void
   drillStats: DrillStats
   recordDrill: (type: string, correct: number, total: number) => void
+  recordExam: (kind: ExamKind, points: number, max: number, topicId?: string) => void
+  activity: ActivityEvent[]
+  dailyGoal: number
+  setDailyGoal: (n: number) => void
+  milestones: Record<string, string> // id -> Datum (YYYY-MM-DD) des Erreichens
+  toast: ToastMsg | null
+  dismissToast: () => void
+  effects: Effects
+  setEffects: (e: Effects) => void
+  osReducedMotion: boolean
   bookmarks: Set<string>
   toggleBookmark: (id: string) => void
   userCards: FlashcardItem[]
@@ -89,9 +115,22 @@ const CLOUD_URL_KEY = 'cloudUrl'
 const CLOUD_KEY_KEY = 'cloudKey'
 const CLOUD_AUTO_KEY = 'cloudAuto'
 const LAST_CLOUD_KEY = 'lastCloudBackup'
+const ACTIVITY_KEY = 'activityLog'
+const GOAL_KEY = 'dailyGoal'
+const GOAL_DONE_KEY = 'goalCelebrated'
+const MILESTONES_KEY = 'milestones'
+const EFFECTS_KEY = 'effects'
+const DEFAULT_GOAL = 30
+
 interface StreakData {
   count: number
   lastStudy: string | null
+}
+
+function modeOfItem(itemId: string): { mode: string; topicId?: string } {
+  const it = ITEM_BY_ID.get(itemId)
+  const mode = it?.type === 'calc' ? 'Rechnen' : it?.type === 'trace' ? 'Schreibtischtest' : 'Karteikarten'
+  return { mode, topicId: it?.topicId }
 }
 
 export function AppStateProvider({ children }: { children: ReactNode }) {
@@ -102,6 +141,13 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const [streak, setStreak] = useState(0)
   const [coreOnly, setCoreOnlyState] = useState(false)
   const [drillStats, setDrillStats] = useState<DrillStats>({})
+  const [activity, setActivity] = useState<ActivityEvent[]>([])
+  const [dailyGoal, setDailyGoalState] = useState(DEFAULT_GOAL)
+  const [goalDone, setGoalDone] = useState<string | null>(null)
+  const [milestones, setMilestones] = useState<Record<string, string>>({})
+  const [toast, setToast] = useState<ToastMsg | null>(null)
+  const [effects, setEffectsState] = useState<Effects>('auto')
+  const osReducedMotion = useOsReducedMotion()
   const [bookmarks, setBookmarks] = useState<Set<string>>(new Set())
   const [userCards, setUserCards] = useState<FlashcardItem[]>([])
   const [theme, setThemeState] = useState<Theme>('system')
@@ -113,6 +159,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const [cloudAuto, setCloudAutoState] = useState(false)
   const [lastCloudBackup, setLastCloudBackup] = useState<string | null>(null)
   const autoTimer = useRef<number | null>(null)
+  const firstMilestoneEval = useRef(true)
 
   const reloadStates = useCallback(async () => {
     const map = await loadAllStates()
@@ -135,12 +182,28 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       const cKey = (await getKV<string>(CLOUD_KEY_KEY)) ?? ''
       const cAuto = (await getKV<boolean>(CLOUD_AUTO_KEY)) ?? false
       const cLast = (await getKV<string>(LAST_CLOUD_KEY)) ?? null
+      const goal = (await getKV<number>(GOAL_KEY)) ?? DEFAULT_GOAL
+      const gDone = (await getKV<string>(GOAL_DONE_KEY)) ?? null
+      const ms = (await getKV<Record<string, string>>(MILESTONES_KEY)) ?? {}
+      const ef = (await getKV<Effects>(EFFECTS_KEY)) ?? 'auto'
+      // Aktivitäts-Log: beim ersten Start aus der Karteikarten-Historie rückfüllen,
+      // damit Streifen/Heatmap beim Umstieg nichts verlieren.
+      let al = await getKV<ActivityEvent[]>(ACTIVITY_KEY)
+      if (!al) {
+        al = backfillFromStates(map)
+        await setKV(ACTIVITY_KEY, al)
+      }
       const cards = await loadUserCards()
       registerUserCards(cards)
       if (!active) return
       setStates(map)
       setCoreOnlyState(core)
       setDrillStats(ds)
+      setActivity(al)
+      setDailyGoalState(goal)
+      setGoalDone(gDone)
+      setMilestones(ms)
+      setEffectsState(ef)
       setBookmarks(new Set(bm))
       setThemeState(th)
       setFontScaleState(fs)
@@ -179,6 +242,20 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     setStreak(count)
   }, [today])
 
+  // Jede Antwort/Runde aus jedem Modus landet hier — und zählt für den Streak.
+  const logActivity = useCallback(
+    (ev: Omit<ActivityEvent, 'ts' | 'date'>) => {
+      const full: ActivityEvent = { ...ev, ts: new Date().toISOString(), date: today }
+      setActivity((prev) => {
+        const next = [...prev, full].slice(-ACTIVITY_CAP)
+        void setKV(ACTIVITY_KEY, next)
+        return next
+      })
+      void bumpStreak()
+    },
+    [today, bumpStreak],
+  )
+
   const review = useCallback(
     async (itemId: string, grade: Grade) => {
       const prev = states.get(itemId) ?? initialState(itemId, today)
@@ -189,9 +266,10 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         m.set(itemId, next)
         return m
       })
-      await bumpStreak()
+      const { mode, topicId } = modeOfItem(itemId)
+      logActivity({ mode, correct: grade >= 3 ? 1 : 0, total: 1, topicId })
     },
-    [states, today, bumpStreak],
+    [states, today, logActivity],
   )
 
   const stateOf = useCallback((itemId: string) => states.get(itemId), [states])
@@ -209,14 +287,78 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     setTrackState(t)
   }, [])
 
-  const recordDrill = useCallback((type: string, correct: number, total: number) => {
-    setDrillStats((prev) => {
-      const cur = prev[type] ?? { correct: 0, total: 0 }
-      const next = { ...prev, [type]: { correct: cur.correct + correct, total: cur.total + total } }
-      void setKV(DRILL_STATS_KEY, next)
-      return next
-    })
+  const recordDrill = useCallback(
+    (type: string, correct: number, total: number) => {
+      setDrillStats((prev) => {
+        const cur = prev[type] ?? { correct: 0, total: 0 }
+        const next = { ...prev, [type]: { correct: cur.correct + correct, total: cur.total + total } }
+        void setKV(DRILL_STATS_KEY, next)
+        return next
+      })
+      logActivity({ mode: type, correct, total })
+    },
+    [logActivity],
+  )
+
+  // Prüfungssimulation / Prüfungsaufgabe: Punkte gegen erreichbare Punkte.
+  const recordExam = useCallback(
+    (kind: ExamKind, points: number, max: number, topicId?: string) => {
+      logActivity({ mode: kind, correct: points, total: max, topicId })
+    },
+    [logActivity],
+  )
+
+  const setDailyGoal = useCallback((n: number) => {
+    setDailyGoalState(n)
+    void setKV(GOAL_KEY, n)
   }, [])
+
+  const dismissToast = useCallback(() => setToast(null), [])
+
+  const setEffects = useCallback((e: Effects) => {
+    setEffectsState(e)
+    void setKV(EFFECTS_KEY, e)
+  }, [])
+
+  // Effekte-Schalter an die Animations-Helfer und ans CSS (data-effects) durchreichen.
+  useEffect(() => {
+    setEffectsMode(effects)
+    document.documentElement.dataset.effects = effects
+  }, [effects])
+
+  // Meilensteine: neu erreichte werden gespeichert und (außer beim ersten Durchlauf
+  // nach dem Laden) mit einem Toast gefeiert.
+  useEffect(() => {
+    if (!ready) return
+    const topicMastered80 = allTopicMastery(states).some((m) => m.total >= 5 && m.fraction >= 0.8)
+    const achieved = achievedMilestones({ log: activity, streak, topicMastered80 })
+    const fresh = achieved.filter((id) => !(id in milestones))
+    if (fresh.length === 0) {
+      firstMilestoneEval.current = false
+      return
+    }
+    const next = { ...milestones }
+    for (const id of fresh) next[id] = today
+    setMilestones(next)
+    void setKV(MILESTONES_KEY, next)
+    if (firstMilestoneEval.current) {
+      firstMilestoneEval.current = false // bereits Erreichtes still übernehmen
+      return
+    }
+    const m = MILESTONE_BY_ID[fresh[0]]
+    if (m) setToast({ title: `Meilenstein: ${m.title}`, desc: m.desc })
+  }, [ready, activity, streak, states, milestones, today])
+
+  // Tagesziel: einmal pro Tag feiern, sobald erreicht.
+  useEffect(() => {
+    if (!ready) return
+    const s = statsForDate(activity, today)
+    if (s.answers >= dailyGoal && goalDone !== today) {
+      setGoalDone(today)
+      void setKV(GOAL_DONE_KEY, today)
+      setToast({ title: 'Tagesziel geschafft!', desc: `${s.answers} Antworten heute — weiter so.` })
+    }
+  }, [ready, activity, dailyGoal, goalDone, today])
 
   const toggleBookmark = useCallback((id: string) => {
     setBookmarks((prev) => {
@@ -331,7 +473,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     return () => {
       if (autoTimer.current) window.clearTimeout(autoTimer.current)
     }
-  }, [states, drillStats, bookmarks, userCards, cloudAuto, cloudUrl, cloudKey, ready, cloudBackup])
+  }, [states, drillStats, activity, bookmarks, userCards, cloudAuto, cloudUrl, cloudKey, ready, cloudBackup])
 
   // Theme + Schriftgröße auf das Wurzelelement anwenden.
   useEffect(() => {
@@ -346,7 +488,9 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const value = useMemo<AppStateValue>(
     () => ({
       ready, today, track, setTrack, states, stateOf, review, streak, dueTotal,
-      coreOnly, setCoreOnly, drillStats, recordDrill,
+      coreOnly, setCoreOnly, drillStats, recordDrill, recordExam,
+      activity, dailyGoal, setDailyGoal, milestones, toast, dismissToast,
+      effects, setEffects, osReducedMotion,
       bookmarks, toggleBookmark, userCards, addUserCard, deleteUserCard,
       theme, setTheme, fontScale, setFontScale, readinessHistory, lastExport, markExported,
       cloudUrl, cloudKey, cloudAuto, lastCloudBackup, setCloudConfig, setCloudAuto,
@@ -355,7 +499,9 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     }),
     [
       ready, today, track, setTrack, states, stateOf, review, streak, dueTotal,
-      coreOnly, setCoreOnly, drillStats, recordDrill,
+      coreOnly, setCoreOnly, drillStats, recordDrill, recordExam,
+      activity, dailyGoal, setDailyGoal, milestones, toast, dismissToast,
+      effects, setEffects, osReducedMotion,
       bookmarks, toggleBookmark, userCards, addUserCard, deleteUserCard,
       theme, setTheme, fontScale, setFontScale, readinessHistory, lastExport, markExported,
       cloudUrl, cloudKey, cloudAuto, lastCloudBackup, setCloudConfig, setCloudAuto,
