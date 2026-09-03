@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/styles.css"
+        ],
+        "createdAt": "2026-09-03T11:10:03.647Z",
+        "reason": "user confirmed: Tone-System bleibt wie es ist (Kevin, 2026-09-03)"
+      }
+    ]
+  }
+}
