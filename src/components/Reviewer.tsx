@@ -2,13 +2,18 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { FlashcardItem, Grade } from '../types'
 import { useAppState } from '../state/AppState'
 import { TOPIC_BY_ID } from '../data/topics'
+import { keyTerms, matchTerms } from '../lib/keywords'
 import { GradeButtons, Pill, ProgressBar } from './ui'
 import { MarkdownText } from './markdown'
 import { Icon } from './Icon'
 import { Confetti } from './Confetti'
 
 // Wiederverwendbarer Active-Recall-Loop: erst Frage, Antwort erst nach Eigenversuch
-// (Testing-Effekt). Selbstbewertung 1–4 speist SM-2. Volle Tastaturbedienung.
+// (Testing-Effekt). Mit „Antwort eintippen" (Einstellungen, Standard an) wird die eigene
+// Antwort erst GESCHRIEBEN und dann neben der Musterlösung verglichen — strenger als
+// „hätte ich gewusst". Ein Schlüsselbegriff-Abgleich hilft beim Vergleichen, bewertet aber
+// nicht: die Note 1–4 vergibst du selbst (wie in der IHK-Prüfung gegen die Musterlösung).
+// Selbstbewertung speist SM-2. Volle Tastaturbedienung.
 
 interface Props {
   items: FlashcardItem[]
@@ -16,10 +21,16 @@ interface Props {
   onExit: () => void
 }
 
+function inField(e: KeyboardEvent): boolean {
+  const t = e.target as HTMLElement | null
+  return !!t && (t.tagName === 'TEXTAREA' || t.tagName === 'INPUT')
+}
+
 export function Reviewer({ items, title, onExit }: Props) {
-  const { review, bookmarks, toggleBookmark } = useAppState()
+  const { review, bookmarks, toggleBookmark, typeAnswers } = useAppState()
   const [idx, setIdx] = useState(0)
   const [revealed, setRevealed] = useState(false)
+  const [typed, setTyped] = useState('')
   const [grades, setGrades] = useState<Grade[]>([])
   const liveRef = useRef<HTMLDivElement>(null)
 
@@ -31,12 +42,13 @@ export function Reviewer({ items, title, onExit }: Props) {
   const grade = useCallback(
     (g: Grade) => {
       if (!item || !revealed) return
-      void review(item.id, g)
+      void review(item.id, g, { typed: typed.trim().length > 0 })
       setGrades((prev) => [...prev, g])
       setRevealed(false)
+      setTyped('')
       setIdx((i) => i + 1)
     },
-    [item, revealed, review],
+    [item, revealed, review, typed],
   )
 
   useEffect(() => {
@@ -46,10 +58,20 @@ export function Reviewer({ items, title, onExit }: Props) {
         onExit()
         return
       }
-      if ((e.key === ' ' || e.key === 'Enter') && !revealed) {
-        e.preventDefault()
-        reveal()
-      } else if (revealed && ['1', '2', '3', '4'].includes(e.key)) {
+      if (!revealed) {
+        if (inField(e)) {
+          // Im Eingabefeld: Enter = vergleichen, Shift+Enter = neue Zeile, Leertaste tippt.
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault()
+            reveal()
+          }
+          return
+        }
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault()
+          reveal()
+        }
+      } else if (['1', '2', '3', '4'].includes(e.key)) {
         e.preventDefault()
         grade(Number(e.key) as Grade)
       }
@@ -86,6 +108,9 @@ export function Reviewer({ items, title, onExit }: Props) {
   }
 
   const topic = TOPIC_BY_ID[item.topicId]
+  const hasTyped = typed.trim().length >= 3
+  const terms = revealed && hasTyped ? keyTerms(item.back) : []
+  const { hit, miss } = terms.length > 0 ? matchTerms(terms, typed) : { hit: [], miss: [] }
 
   return (
     <section className="panel study">
@@ -111,13 +136,41 @@ export function Reviewer({ items, title, onExit }: Props) {
 
       <div className="card" aria-live="polite" ref={liveRef}>
         <p className="q"><MarkdownText text={item.front} /></p>
-        {revealed ? (
+
+        {!revealed && typeAnswers && (
+          <textarea
+            key={item.id}
+            className="calc-input"
+            rows={3}
+            autoFocus
+            value={typed}
+            onChange={(e) => setTyped(e.target.value)}
+            placeholder="Deine Antwort … (Enter = vergleichen, Shift+Enter = neue Zeile)"
+            aria-label="Deine Antwort"
+          />
+        )}
+        {!revealed && !typeAnswers && (
+          <p className="hint muted">Antwort mental formulieren, dann aufdecken.</p>
+        )}
+
+        {revealed && (
           <div className="a">
+            {hasTyped && (
+              <div className="typed-answer">
+                <span className="ta-label">Deine Antwort</span>
+                <p>{typed}</p>
+              </div>
+            )}
             <hr />
             <p><MarkdownText text={item.back} /></p>
+            {terms.length > 0 && (
+              <div className="kw-hint" aria-label="Schlüsselbegriff-Abgleich">
+                <span className="muted small">Schlüsselbegriffe (Hinweis, keine Bewertung):</span>
+                {hit.map((t) => <span key={`h-${t}`} className="kw kw-hit" title="in deiner Antwort">{t}</span>)}
+                {miss.map((t) => <span key={`m-${t}`} className="kw kw-miss" title="nicht erwähnt">{t}</span>)}
+              </div>
+            )}
           </div>
-        ) : (
-          <p className="hint muted">Antwort mental formulieren, dann aufdecken.</p>
         )}
       </div>
 
@@ -125,7 +178,7 @@ export function Reviewer({ items, title, onExit }: Props) {
         <GradeButtons onGrade={grade} />
       ) : (
         <button className="btn primary wide" onClick={reveal}>
-          Antwort aufdecken <kbd>Leertaste</kbd>
+          {typeAnswers ? <>Vergleichen <kbd>Enter</kbd></> : <>Antwort aufdecken <kbd>Leertaste</kbd></>}
         </button>
       )}
     </section>

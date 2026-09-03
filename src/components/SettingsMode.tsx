@@ -22,7 +22,7 @@ export function SettingsMode({ onExit }: { onExit: () => void }) {
     theme, setTheme, fontScale, setFontScale, lastExport, markExported, reloadStates,
     cloudUrl, cloudKey, cloudAuto, lastCloudBackup, setCloudConfig, setCloudAuto,
     cloudTest, cloudBackup, cloudRestore,
-    effects, setEffects, osReducedMotion, dailyGoal, setDailyGoal,
+    effects, setEffects, osReducedMotion, dailyGoal, setDailyGoal, typeAnswers, setTypeAnswers,
   } = useAppState()
   const fileRef = useRef<HTMLInputElement>(null)
 
@@ -124,6 +124,11 @@ export function SettingsMode({ onExit }: { onExit: () => void }) {
         </div>
       </div>
       <p className="muted small">Antworten pro Tag aus allen Modi — Karteikarten, Rechnen, Drills und Prüfungen zählen.</p>
+      <label className="core-toggle" style={{ marginTop: '0.4rem' }}>
+        <input type="checkbox" checked={typeAnswers} onChange={(e) => setTypeAnswers(e.target.checked)} />
+        <span>Antwort eintippen</span>
+        <span className="muted small">— vor dem Aufdecken die eigene Antwort schreiben und neben der Musterlösung vergleichen (Karteikarten, Quiz, Schwachstellen)</span>
+      </label>
 
       <h3 className="sec">Backup</h3>
       <p className="muted small">

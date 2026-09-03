@@ -13,6 +13,7 @@ export interface ActivityEvent {
   correct: number // richtige Antworten bzw. erreichte Punkte
   total: number // Antworten bzw. erreichbare Punkte
   topicId?: string
+  typed?: boolean // Antwort wurde eingetippt (strengere Selbstprüfung als nur aufdecken)
 }
 
 export const ACTIVITY_CAP = 4000

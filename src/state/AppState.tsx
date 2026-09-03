@@ -58,7 +58,7 @@ interface AppStateValue {
   setTrack: (t: Track) => void
   states: Map<string, UserState>
   stateOf: (itemId: string) => UserState | undefined
-  review: (itemId: string, grade: Grade) => Promise<void>
+  review: (itemId: string, grade: Grade, opts?: { typed?: boolean }) => Promise<void>
   streak: number
   dueTotal: number
   coreOnly: boolean
@@ -69,6 +69,8 @@ interface AppStateValue {
   activity: ActivityEvent[]
   dailyGoal: number
   setDailyGoal: (n: number) => void
+  typeAnswers: boolean
+  setTypeAnswers: (v: boolean) => void
   milestones: Record<string, string> // id -> Datum (YYYY-MM-DD) des Erreichens
   toast: ToastMsg | null
   dismissToast: () => void
@@ -120,6 +122,7 @@ const GOAL_KEY = 'dailyGoal'
 const GOAL_DONE_KEY = 'goalCelebrated'
 const MILESTONES_KEY = 'milestones'
 const EFFECTS_KEY = 'effects'
+const TYPE_ANSWERS_KEY = 'typeAnswers'
 const DEFAULT_GOAL = 30
 
 interface StreakData {
@@ -147,6 +150,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const [milestones, setMilestones] = useState<Record<string, string>>({})
   const [toast, setToast] = useState<ToastMsg | null>(null)
   const [effects, setEffectsState] = useState<Effects>('auto')
+  const [typeAnswers, setTypeAnswersState] = useState(true)
   const osReducedMotion = useOsReducedMotion()
   const [bookmarks, setBookmarks] = useState<Set<string>>(new Set())
   const [userCards, setUserCards] = useState<FlashcardItem[]>([])
@@ -186,6 +190,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       const gDone = (await getKV<string>(GOAL_DONE_KEY)) ?? null
       const ms = (await getKV<Record<string, string>>(MILESTONES_KEY)) ?? {}
       const ef = (await getKV<Effects>(EFFECTS_KEY)) ?? 'auto'
+      const ta = (await getKV<boolean>(TYPE_ANSWERS_KEY)) ?? true
       // Aktivitäts-Log: beim ersten Start aus der Karteikarten-Historie rückfüllen,
       // damit Streifen/Heatmap beim Umstieg nichts verlieren.
       let al = await getKV<ActivityEvent[]>(ACTIVITY_KEY)
@@ -204,6 +209,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       setGoalDone(gDone)
       setMilestones(ms)
       setEffectsState(ef)
+      setTypeAnswersState(ta)
       setBookmarks(new Set(bm))
       setThemeState(th)
       setFontScaleState(fs)
@@ -257,7 +263,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   )
 
   const review = useCallback(
-    async (itemId: string, grade: Grade) => {
+    async (itemId: string, grade: Grade, opts?: { typed?: boolean }) => {
       const prev = states.get(itemId) ?? initialState(itemId, today)
       const next = reviewSm2(prev, grade, today)
       await saveState(next)
@@ -267,7 +273,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         return m
       })
       const { mode, topicId } = modeOfItem(itemId)
-      logActivity({ mode, correct: grade >= 3 ? 1 : 0, total: 1, topicId })
+      logActivity({ mode, correct: grade >= 3 ? 1 : 0, total: 1, topicId, ...(opts?.typed ? { typed: true } : {}) })
     },
     [states, today, logActivity],
   )
@@ -318,6 +324,11 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const setEffects = useCallback((e: Effects) => {
     setEffectsState(e)
     void setKV(EFFECTS_KEY, e)
+  }, [])
+
+  const setTypeAnswers = useCallback((v: boolean) => {
+    setTypeAnswersState(v)
+    void setKV(TYPE_ANSWERS_KEY, v)
   }, [])
 
   // Effekte-Schalter an die Animations-Helfer und ans CSS (data-effects) durchreichen.
@@ -490,7 +501,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       ready, today, track, setTrack, states, stateOf, review, streak, dueTotal,
       coreOnly, setCoreOnly, drillStats, recordDrill, recordExam,
       activity, dailyGoal, setDailyGoal, milestones, toast, dismissToast,
-      effects, setEffects, osReducedMotion,
+      effects, setEffects, osReducedMotion, typeAnswers, setTypeAnswers,
       bookmarks, toggleBookmark, userCards, addUserCard, deleteUserCard,
       theme, setTheme, fontScale, setFontScale, readinessHistory, lastExport, markExported,
       cloudUrl, cloudKey, cloudAuto, lastCloudBackup, setCloudConfig, setCloudAuto,
@@ -501,7 +512,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       ready, today, track, setTrack, states, stateOf, review, streak, dueTotal,
       coreOnly, setCoreOnly, drillStats, recordDrill, recordExam,
       activity, dailyGoal, setDailyGoal, milestones, toast, dismissToast,
-      effects, setEffects, osReducedMotion,
+      effects, setEffects, osReducedMotion, typeAnswers, setTypeAnswers,
       bookmarks, toggleBookmark, userCards, addUserCard, deleteUserCard,
       theme, setTheme, fontScale, setFontScale, readinessHistory, lastExport, markExported,
       cloudUrl, cloudKey, cloudAuto, lastCloudBackup, setCloudConfig, setCloudAuto,

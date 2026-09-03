@@ -74,6 +74,8 @@ export function StatsMode({ onExit }: { onExit: () => void }) {
     () => activity.filter((e) => e.mode === 'Prüfungssimulation' && e.total > 0).slice(-6).reverse(),
     [activity],
   )
+  // Eingetippte Antworten = strengere Selbstprüfung als nur aufdecken.
+  const typedCount = useMemo(() => activity.filter((e) => e.typed).length, [activity])
 
   const masteries = allTopicMastery(states)
   const maxGrade = Math.max(1, ...(Object.values(stats.gradeDist) as number[]))
@@ -108,6 +110,9 @@ export function StatsMode({ onExit }: { onExit: () => void }) {
         <div className="mini-stat"><strong>{stats.activeDays}</strong><span>aktive Tage</span></div>
         <div className="mini-stat"><strong className="streak-num">{streak}<Icon name="flame" size={16} className="streak-ico" /></strong><span>Streak</span></div>
       </div>
+      {typedCount > 0 && (
+        <p className="muted small">Davon {typedCount} {typedCount === 1 ? 'Antwort' : 'Antworten'} eingetippt — die strengere Selbstprüfung.</p>
+      )}
 
       {readinessHistory.length >= 2 && (
         <>

@@ -976,3 +976,18 @@ h3.sec { margin: 1.4rem 0 0.6rem; font-size: 1rem; }
 .exam-pts.top { color: var(--good); }
 .exam-pts.pass { color: var(--accent); }
 .exam-pts.fail { color: var(--bad); }
+
+/* ---- Antwort eintippen (Reviewer): eigene Antwort + Schlüsselbegriff-Hinweis ---- */
+.typed-answer {
+  background: var(--muted-bg); border: 1px dashed var(--border); border-radius: 10px;
+  padding: 0.55rem 0.75rem; margin: 0.4rem 0 0.2rem;
+}
+.typed-answer .ta-label {
+  display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.04em; color: var(--muted); margin-bottom: 0.15rem;
+}
+.typed-answer p { margin: 0; white-space: pre-wrap; }
+.kw-hint { display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; margin-top: 0.55rem; }
+.kw { font-size: 0.8rem; padding: 0.12rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); }
+.kw-hit { border-color: var(--good); color: var(--good); background: color-mix(in srgb, var(--good) 12%, transparent); }
+.kw-miss { border-style: dashed; color: var(--muted); }
