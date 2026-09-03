@@ -17,6 +17,13 @@ export const TOPICS: Topic[] = [
   { id: 'internet', label: 'Internet & Web', examFrequency: 0.45, ap1Status: 'supporting' },
   { id: 'software-lizenzen', label: 'Software & Lizenzen', examFrequency: 0.45, ap1Status: 'supporting' },
   { id: 'multimedia', label: 'Multimedia', examFrequency: 0.38, ap1Status: 'supporting' },
+  // AP2-Erweiterung (Prüfungsbereich „Entwicklung und Umsetzung von Algorithmen").
+  // ap1Status 'ap2-grundlagen' + track 'ap2' (im Ingest) → nur im AP2-Track sichtbar,
+  // nicht im AP1-Pool. Labels dienen Anzeige/Mastery im AP2-Track.
+  { id: 'algo-grundlagen', label: 'Algorithmen-Grundlagen', examFrequency: 0.85, ap1Status: 'ap2-grundlagen' },
+  { id: 'algo-sortier-suche', label: 'Sortier- & Suchverfahren', examFrequency: 0.85, ap1Status: 'ap2-grundlagen' },
+  { id: 'algo-sql', label: 'SQL & Datenbank', examFrequency: 0.85, ap1Status: 'ap2-grundlagen' },
+  { id: 'algo-testing-oop', label: 'Testing, OOP & UML', examFrequency: 0.85, ap1Status: 'ap2-grundlagen' },
 ]
 
 export const TOPIC_BY_ID: Record<string, Topic> = Object.fromEntries(

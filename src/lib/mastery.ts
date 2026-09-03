@@ -41,7 +41,9 @@ export function topicMastery(topic: Topic, states: Map<string, UserState>): Topi
 }
 
 export function allTopicMastery(states: Map<string, UserState>): TopicMastery[] {
-  return TOPICS.map((t) => topicMastery(t, states))
+  // Nur Themen mit Karten im aktiven Track — track-fremde Themen (0 Karten) würden sonst
+  // die Prüfungsreife verwässern und leere Mastery-Zeilen erzeugen.
+  return TOPICS.map((t) => topicMastery(t, states)).filter((m) => m.total > 0)
 }
 
 /**

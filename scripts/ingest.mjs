@@ -7,6 +7,7 @@
 // bestehen — die App startet also nie leer (Anforderung aus 06-App-Datenmodell.md).
 //
 // Quelle überschreibbar per Env: CONTENT_SRC="D:/pfad/zu/Karteikarten"
+// AP2-Algorithmen-Quelle überschreibbar per Env: CONTENT_SRC_AP2="…"
 
 import matter from 'gray-matter'
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs'
@@ -39,11 +40,31 @@ const TOPIC_BY_DECK = {
   '14': { topicId: 'software-lizenzen', label: 'Software & Lizenzen', examFrequency: 0.45, ap1Status: 'supporting' },
 }
 
+// AP2-Erweiterung: eigener Prüfungsbereich „Entwicklung und Umsetzung von Algorithmen".
+// Eigene Quelle (Ordner AP2-Algorithmen/Karteikarten), track='ap2', ap1Status='ap2-grundlagen'
+// → erscheinen NUR im AP2-Track (Topbar-Umschalter), nicht im AP1-Pool. examFrequency = Lern-
+// Heuristik innerhalb AP2. Pfad aus CONTENT_SRC abgeleitet (Geschwisterordner) oder CONTENT_SRC_AP2.
+const AP2_SRC =
+  process.env.CONTENT_SRC_AP2 || join(dirname(CONTENT_SRC), 'AP2-Algorithmen', 'Karteikarten')
+
+const TOPIC_BY_DECK_AP2 = {
+  '01': { topicId: 'algo-grundlagen', label: 'Algorithmen-Grundlagen', examFrequency: 0.85, ap1Status: 'ap2-grundlagen' },
+  '02': { topicId: 'algo-sortier-suche', label: 'Sortier- & Suchverfahren', examFrequency: 0.85, ap1Status: 'ap2-grundlagen' },
+  '03': { topicId: 'algo-sql', label: 'SQL & Datenbank', examFrequency: 0.85, ap1Status: 'ap2-grundlagen' },
+  '04': { topicId: 'algo-testing-oop', label: 'Testing, OOP & UML', examFrequency: 0.85, ap1Status: 'ap2-grundlagen' },
+}
+
+// Quellen in Ingest-Reihenfolge. track=null → AP1-Bestand (Standard-Track).
+const SOURCES = [
+  { dir: CONTENT_SRC, map: TOPIC_BY_DECK, track: null, srcLabel: 'Lernapp/Karteikarten' },
+  { dir: AP2_SRC, map: TOPIC_BY_DECK_AP2, track: 'ap2', srcLabel: 'Lernapp/AP2-Algorithmen/Karteikarten' },
+]
+
 function slugify(text) {
   return text
     .toLowerCase()
     .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
-    .normalize('NFKD').replace(/[̀-ͯ]/g, '')
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .split('-').slice(0, 9).join('-')
@@ -72,10 +93,11 @@ function parseCards(body) {
 function main() {
   mkdirSync(dirname(OUT_FILE), { recursive: true })
 
+  // Primärquelle (AP1) fehlt → bestehenden Seed behalten, nie leer überschreiben.
   if (!existsSync(CONTENT_SRC)) {
     if (existsSync(OUT_FILE)) {
       console.warn(
-        `[ingest] Quelle nicht gefunden (${CONTENT_SRC}) — behalte bestehende ${OUT_FILE}.`,
+        `[ingest] Primärquelle nicht gefunden (${CONTENT_SRC}) — behalte bestehende ${OUT_FILE}.`,
       )
       return
     }
@@ -86,66 +108,73 @@ function main() {
     return
   }
 
-  const files = readdirSync(CONTENT_SRC)
-    .filter((f) => /^\d{2}-.*\.md$/.test(f))
-    .sort()
-
   const items = []
   const usedIds = new Set()
 
-  for (const file of files) {
-    const deckNo = file.slice(0, 2)
-    const meta = TOPIC_BY_DECK[deckNo]
-    if (!meta) {
-      console.warn(`[ingest] Kein Themen-Mapping für Deck ${file} — übersprungen.`)
+  for (const src of SOURCES) {
+    if (!existsSync(src.dir)) {
+      console.warn(`[ingest] Quelle nicht gefunden (${src.dir}) — übersprungen.`)
       continue
     }
-    const raw = readFileSync(join(CONTENT_SRC, file), 'utf8')
-    const parsed = matter(raw)
-    const tags = Array.isArray(parsed.data.tags) ? parsed.data.tags : []
-    const cards = parseCards(parsed.content)
+    const files = readdirSync(src.dir)
+      .filter((f) => /^\d{2}-.*\.md$/.test(f))
+      .sort()
 
-    for (const card of cards) {
-      // Per-Karten-Marker [AP2] am Anfang der Frage → als Vertiefung/AP2-Grundlagen
-      // kennzeichnen (über AP1 hinaus). Marker wird aus der Anzeige entfernt.
-      let front = card.front
-      let ap1Status = meta.ap1Status
-      const marker = front.match(/^\[AP2\]\s*/)
-      if (marker) {
-        ap1Status = 'ap2-grundlagen'
-        front = front.slice(marker[0].length)
+    for (const file of files) {
+      const deckNo = file.slice(0, 2)
+      const meta = src.map[deckNo]
+      if (!meta) {
+        console.warn(`[ingest] Kein Themen-Mapping für Deck ${file} (${src.srcLabel}) — übersprungen.`)
+        continue
       }
-      // Per-Karten-Marker [RAND] am Anfang → Prüfungs-Randstoff (peripher, aber AP1).
-      // Bleibt sichtbar/lernbar (kein Ausblenden), nur als „Randstoff" markiert.
-      let peripheral = false
-      const randMarker = front.match(/^\[RAND\]\s*/)
-      if (randMarker) {
-        peripheral = true
-        front = front.slice(randMarker[0].length)
+      const raw = readFileSync(join(src.dir, file), 'utf8')
+      const parsed = matter(raw)
+      const tags = Array.isArray(parsed.data.tags) ? parsed.data.tags : []
+      const cards = parseCards(parsed.content)
+
+      for (const card of cards) {
+        // Per-Karten-Marker [AP2] am Anfang der Frage → als Vertiefung/AP2-Grundlagen
+        // kennzeichnen (über AP1 hinaus). Marker wird aus der Anzeige entfernt.
+        let front = card.front
+        let ap1Status = meta.ap1Status
+        const marker = front.match(/^\[AP2\]\s*/)
+        if (marker) {
+          ap1Status = 'ap2-grundlagen'
+          front = front.slice(marker[0].length)
+        }
+        // Per-Karten-Marker [RAND] am Anfang → Prüfungs-Randstoff (peripher, aber AP1).
+        // Bleibt sichtbar/lernbar (kein Ausblenden), nur als „Randstoff" markiert.
+        let peripheral = false
+        const randMarker = front.match(/^\[RAND\]\s*/)
+        if (randMarker) {
+          peripheral = true
+          front = front.slice(randMarker[0].length)
+        }
+
+        let id = `${meta.topicId}--${slugify(front)}`
+        let n = 2
+        while (usedIds.has(id)) id = `${meta.topicId}--${slugify(front)}-${n++}`
+        usedIds.add(id)
+
+        items.push({
+          id,
+          topicId: meta.topicId,
+          type: 'flashcard',
+          tags,
+          examFrequency: meta.examFrequency,
+          ap1Status,
+          ...(src.track ? { track: src.track } : {}),
+          ...(peripheral ? { peripheral: true } : {}),
+          operator: null,
+          afb: null,
+          points: null,
+          front,
+          back: card.back,
+          source: `${src.srcLabel}/${file}`,
+        })
       }
-
-      let id = `${meta.topicId}--${slugify(front)}`
-      let n = 2
-      while (usedIds.has(id)) id = `${meta.topicId}--${slugify(front)}-${n++}`
-      usedIds.add(id)
-
-      items.push({
-        id,
-        topicId: meta.topicId,
-        type: 'flashcard',
-        tags,
-        examFrequency: meta.examFrequency,
-        ap1Status,
-        ...(peripheral ? { peripheral: true } : {}),
-        operator: null,
-        afb: null,
-        points: null,
-        front,
-        back: card.back,
-        source: `Lernapp/Karteikarten/${file}`,
-      })
+      console.log(`[ingest] ${src.srcLabel}/${file}: ${cards.length} Karten`)
     }
-    console.log(`[ingest] ${file}: ${cards.length} Karten`)
   }
 
   const seed = { generatedAt: new Date().toISOString(), count: items.length, items }

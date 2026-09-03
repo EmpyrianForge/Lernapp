@@ -43,7 +43,7 @@ const trackOf = (i: Item): Track => ('track' in i && i.track ? i.track : 'ap1')
 function matchesTrack(i: Item, track: Track): boolean {
   if (track === 'hydra') return trackOf(i) === 'hydra'
   if (track === 'ap2') return trackOf(i) !== 'hydra' && i.ap1Status === 'ap2-grundlagen'
-  return trackOf(i) !== 'hydra' // 'ap1' = gesamter FIAE-Bestand
+  return trackOf(i) === 'ap1' // 'ap1' = FIAE-Standard-Bestand; dedizierter 'ap2'-Track bleibt separat
 }
 
 let activeTrack: Track = 'ap1'
