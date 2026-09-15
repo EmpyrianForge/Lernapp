@@ -115,7 +115,7 @@ interface SymDeck {
   id: string
   title: string
   pairs: { sym: string; meaning: string }[]
-  beyond?: boolean // über den AP1-Katalog hinaus (AP2-Grundlagen) — sichtbar markiert, nicht ausgeblendet
+  scope?: string // Einordnung außerhalb des AP1-Kerns (Randstoff/AP2) — sichtbar markiert, nicht ausgeblendet
 }
 
 const DECKS: SymDeck[] = [
@@ -159,7 +159,9 @@ const DECKS: SymDeck[] = [
   {
     id: 'uml-klasse',
     title: 'UML-Klassenbeziehungen',
-    beyond: true,
+    // Scope-Abgleich 15.09. (PV1 Tag 1 Nachtrag): Assoziation/Aggregation/Komposition = Randstoff,
+    // Vererbung/Realisierung = AP2 (Vererbung laut Katalog 2025 aus der AP1 gestrichen).
+    scope: 'Randstoff · Vererbung AP2',
     pairs: [
       { sym: 'line', meaning: 'Assoziation' },
       { sym: 'directedAssoc', meaning: 'gerichtete Assoziation (Navigierbarkeit)' },
@@ -271,7 +273,7 @@ export function SymbolDrill({ onExit }: { onExit: () => void }) {
             <span className="deck-title">{d.title}</span>
             <span className="deck-meta">
               <Pill>{d.pairs.length} Symbole</Pill>
-              {d.beyond && <Pill tone="var(--muted-bg)">AP2-Grundlagen</Pill>}
+              {d.scope && <Pill tone="var(--muted-bg)">{d.scope}</Pill>}
             </span>
           </button>
         ))}

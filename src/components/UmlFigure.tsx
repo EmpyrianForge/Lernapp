@@ -1,4 +1,4 @@
-// Musterlösungs-Diagramme für die UML-Prüfungsaufgaben (data/exam-uml.ts) als inline-SVG.
+// Musterlösungs-Diagramme für die UML-Prüfungsaufgaben (data/exam-uml.ts, data/exam-pv1.ts) als inline-SVG.
 // Alle Linien/Texte nutzen currentColor → funktionieren im hellen und dunklen Theme.
 // Aufruf über die ID aus ExamPart.figure; unbekannte IDs rendern nichts.
 
@@ -17,6 +17,13 @@ function Markers({ p }: { p: string }) {
       </marker>
       <marker id={`${p}-tri`} viewBox="0 0 12 12" refX="11.5" refY="6" markerWidth="13" markerHeight="13" markerUnits="userSpaceOnUse" orient="auto">
         <path d="M0,0.5 L12,6 L0,11.5 Z" stroke="currentColor" strokeWidth="1.2" style={{ fill: 'var(--panel-2)' }} />
+      </marker>
+      {/* Rauten für Aggregation (hohl) und Komposition (gefüllt): als markerStart am Ganzen, Spitze liegt auf dem Linienanfang */}
+      <marker id={`${p}-dia`} viewBox="0 0 18 12" refX="0.5" refY="6" markerWidth="18" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+        <path d="M0.5,6 L9,0.8 L17.5,6 L9,11.2 Z" stroke="currentColor" strokeWidth="1.2" style={{ fill: 'var(--panel-2)' }} />
+      </marker>
+      <marker id={`${p}-dia-fill`} viewBox="0 0 18 12" refX="0.5" refY="6" markerWidth="18" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+        <path d="M0.5,6 L9,0.8 L17.5,6 L9,11.2 Z" stroke="currentColor" strokeWidth="1.2" fill="currentColor" />
       </marker>
     </defs>
   )
@@ -200,10 +207,117 @@ function KlasseTicket() {
   )
 }
 
+/** Klassen-Member: normaler Text oder abstrakte Operation (kursiv, mit {abstract}). */
+type Member = string | { text: string; abstract: true }
+
+const ROW = 15
+const sectionHeight = (n: number) => n * ROW + 13
+
+/** Klassenbox mit drei Bereichen; Höhe = Kopf (34, abstrakt 46) + je Bereich n·15+13. */
+function ClassBox({ x, y, w, name, abstract, attrs, ops }: { x: number; y: number; w: number; name: string; abstract?: boolean; attrs: Member[]; ops: Member[] }) {
+  const head = abstract ? 46 : 34
+  const d1 = y + head
+  const d2 = d1 + sectionHeight(attrs.length)
+  const h = head + sectionHeight(attrs.length) + sectionHeight(ops.length)
+  const member = (m: Member, cy: number) => (
+    <text key={cy} x={x + 10} y={cy} fontSize={11} fontFamily={MONO} fill="currentColor" dominantBaseline="middle" fontStyle={typeof m === 'string' ? undefined : 'italic'}>
+      {typeof m === 'string' ? m : `${m.text} {abstract}`}
+    </text>
+  )
+  return (
+    <g>
+      <rect x={x} y={y} width={w} height={h} {...LINE} />
+      <text x={x + w / 2} y={y + 17} {...T} fontSize={12} fontWeight={700} fontStyle={abstract ? 'italic' : undefined}>{name}</text>
+      {abstract && <text x={x + w / 2} y={y + 33} {...SMALL}>{'{abstract}'}</text>}
+      <line x1={x} y1={d1} x2={x + w} y2={d1} {...LINE} />
+      {attrs.map((m, i) => member(m, d1 + 14 + ROW * i))}
+      <line x1={x} y1={d2} x2={x + w} y2={d2} {...LINE} />
+      {ops.map((m, i) => member(m, d2 + 14 + ROW * i))}
+    </g>
+  )
+}
+
+function KlasseUnterrichtsvertrag() {
+  // Höhe: 34 + (6·15+13) + (1·15+13) = 165 → Box y 8…173
+  return (
+    <svg viewBox="0 0 340 181" style={{ maxWidth: 460 }} role="img" aria-label="Musterlösung: Klassendiagramm Unterrichtsvertrag">
+      <ClassBox
+        x={20} y={8} w={300} name="Unterrichtsvertrag"
+        attrs={['- instrument : String', '- preisProStunde : double', '- stundenProMonat : int', '- rabattProzent : double', '- leihinstrument : boolean', '- leihgebuehr : double']}
+        ops={['+ berechneMonatsbeitrag() : double']}
+      />
+    </svg>
+  )
+}
+
+function KlasseMietobjektHierarchie() {
+  const p = 'inh'
+  // Oberklasse y 10…157 (46 + 58 + 43), Unterklassen ab y 220: Lastenrad …310, Elektroauto …340
+  return (
+    <svg viewBox="0 0 640 350" style={{ maxWidth: 660 }} role="img" aria-label="Musterlösung: Klassenhierarchie Mietobjekt mit Lastenrad und Elektroauto">
+      <Markers p={p} />
+      <ClassBox
+        x={135} y={10} w={370} name="Mietobjekt" abstract
+        attrs={['inventarNr : String', 'tagespreis : double', 'kaufjahr : int']}
+        ops={['reservieren() : void', { text: 'mietpreisBerechnen(tage : int) : double', abstract: true }]}
+      />
+      <ClassBox
+        x={20} y={220} w={290} name="Lastenrad"
+        attrs={['zuladungKg : int']}
+        ops={['mietpreisBerechnen(tage : int) : double']}
+      />
+      <ClassBox
+        x={330} y={220} w={290} name="Elektroauto"
+        attrs={['kennzeichen : String', 'reichweiteKm : int']}
+        ops={['mietpreisBerechnen(tage : int) : double', 'ladestandAbfragen() : int']}
+      />
+      {/* Generalisierung: beide Unterklassen münden in ein gemeinsames hohles Dreieck an der Oberklasse */}
+      <path d="M165,220 V190 H475 V220" {...LINE} />
+      <line x1={320} y1={190} x2={320} y2={157} {...LINE} markerEnd={`url(#${p}-tri)`} />
+    </svg>
+  )
+}
+
+function NameBox({ x, y, label }: { x: number; y: number; label: string }) {
+  return (
+    <g>
+      <rect x={x} y={y} width={140} height={36} {...LINE} />
+      <text x={x + 70} y={y + 18} {...T} fontWeight={700}>{label}</text>
+    </g>
+  )
+}
+
+function KlasseStationBeziehungen() {
+  const p = 'rel'
+  return (
+    <svg viewBox="0 0 560 180" style={{ maxWidth: 600 }} role="img" aria-label="Musterlösung: Aggregation Station–Mietobjekt und Komposition Mietvertrag–Mietposition">
+      <Markers p={p} />
+      {/* Aggregation: hohle Raute am Ganzen (Station) */}
+      <NameBox x={20} y={27} label="Station" />
+      <NameBox x={400} y={27} label="Mietobjekt" />
+      <line x1={160} y1={45} x2={400} y2={45} {...LINE} markerStart={`url(#${p}-dia)`} />
+      <text x={184} y={34} {...SMALL} textAnchor="start">0..1</text>
+      <text x={392} y={34} {...SMALL} textAnchor="end">*</text>
+      <text x={280} y={80} {...SMALL}>Aggregation: Mietobjekt besteht ohne Station weiter</text>
+
+      {/* Komposition: gefüllte Raute am Ganzen (Mietvertrag) */}
+      <NameBox x={20} y={112} label="Mietvertrag" />
+      <NameBox x={400} y={112} label="Mietposition" />
+      <line x1={160} y1={130} x2={400} y2={130} {...LINE} markerStart={`url(#${p}-dia-fill)`} />
+      <text x={184} y={119} {...SMALL} textAnchor="start">1</text>
+      <text x={392} y={119} {...SMALL} textAnchor="end">1..*</text>
+      <text x={280} y={165} {...SMALL}>Komposition: Positionen werden mit dem Vertrag gelöscht</text>
+    </svg>
+  )
+}
+
 const FIGURES: Record<string, () => JSX.Element> = {
   'uc-bibliothek': UseCaseBibliothek,
   'act-stoerungsticket': AktivitaetStoerungsticket,
   'class-ticket': KlasseTicket,
+  'class-unterrichtsvertrag': KlasseUnterrichtsvertrag,
+  'class-mietobjekt-hierarchie': KlasseMietobjektHierarchie,
+  'class-station-beziehungen': KlasseStationBeziehungen,
 }
 
 export function UmlFigure({ id }: { id: string }) {

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-15T07:04:29.538Z",
-  "count": 563,
+  "generatedAt": "2026-09-15T10:19:35.244Z",
+  "count": 576,
   "items": [
     {
       "id": "hardware--von-neumann-architektur-nenne-die-funktionalen-komponenten-und-ihr",
@@ -5034,7 +5034,8 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "ap2-grundlagen",
+      "ap1Status": "core",
+      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
@@ -5077,7 +5078,7 @@
       "afb": null,
       "points": null,
       "front": "Was wird in einem UML-Klassendiagramm dargestellt?",
-      "back": "Die statische Struktur eines Systems: Klassen mit Attributen und Methoden, ihre Sichtbarkeiten (+ public, - private, # protected) sowie die Beziehungen (Assoziation, Vererbung, Aggregation, Komposition) inkl. Multiplizitaeten.",
+      "back": "Die statische Struktur eines Systems: Klassen mit Attributen und Methoden, ihre Sichtbarkeiten (+ public, - private, # protected) sowie die Beziehungen (Assoziation, Aggregation, Komposition inkl. Multiplizitaeten = Randstoff; Vererbung = AP2).",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
@@ -5610,7 +5611,7 @@
       "afb": null,
       "points": null,
       "front": "Was bedeutet eine Generalisierung zwischen Akteuren im Anwendungsfalldiagramm? Nenne Notation und ein Beispiel.",
-      "back": "Der spezielle Akteur erbt alle Assoziationen des allgemeinen Akteurs und kann zusätzlich eigene Anwendungsfälle haben.\nNotation: durchgezogene Linie mit HOHLEM (nicht ausgefülltem) Dreieck; die Spitze zeigt auf den allgemeinen Akteur.\nBeispiel: Administrator —▷ Mitarbeiter. Der Administrator kann alles, was der Mitarbeiter kann (z. B. „Fahrzeug einfahren lassen\"), und zusätzlich „Berechtigungen verwalten\".\nSignalsatz in Aufgaben: „X kann alles, was Y kann, und zusätzlich …\".",
+      "back": "Der spezielle Akteur erbt alle Assoziationen des allgemeinen Akteurs und kann zusätzlich eigene Anwendungsfälle haben.\nNotation: durchgezogene Linie mit HOHLEM (nicht ausgefülltem) Dreieck; die Spitze zeigt auf den allgemeinen Akteur.\nBeispiel: Schichtleitung —▷ Kassierer. Die Schichtleitung kann alles, was ein Kassierer kann (z. B. „Artikel kassieren\"), und zusätzlich „Storno freigeben\".\nSignalsatz in Aufgaben: „X kann alles, was Y kann, und zusätzlich …\".",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
@@ -5740,12 +5741,13 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "ap2-grundlagen",
+      "ap1Status": "core",
+      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
       "front": "Welche Beziehungen zwischen Klassen gibt es im UML-Klassendiagramm, und wie werden sie gezeichnet?",
-      "back": "- Assoziation: durchgezogene Linie; optional mit offener Pfeilspitze (Navigierbarkeit) und Multiplizitäten an den Enden.\n- Aggregation: Linie mit HOHLER Raute am Ganzen („hat\", „besteht aus\"); Teile können unabhängig vom Ganzen existieren.\n- Komposition: Linie mit GEFÜLLTER Raute am Ganzen; Teile sind existenzabhängig vom Ganzen.\n- Vererbung (Generalisierung): durchgezogene Linie, hohles Dreieck zeigt auf die Oberklasse („ist ein\").\n- Realisierung (Interface implementieren): gestrichelte Linie, hohles Dreieck zeigt auf das Interface («interface»).\n- Abhängigkeit: gestrichelter Pfeil mit offener Spitze, oft mit Stereotyp wie «create».\nHinweis: Laut Katalog 2025 reicht OOP in AP1 nur bis zu den Sichtbarkeiten; Beziehungen, Vererbung und Interfaces sind AP2-Stoff.",
+      "back": "- Assoziation: durchgezogene Linie; optional mit offener Pfeilspitze (Navigierbarkeit) und Multiplizitäten an den Enden.\n- Aggregation: Linie mit HOHLER Raute am Ganzen („hat\", „besteht aus\"); Teile können unabhängig vom Ganzen existieren.\n- Komposition: Linie mit GEFÜLLTER Raute am Ganzen; Teile sind existenzabhängig vom Ganzen.\n- Vererbung (Generalisierung): durchgezogene Linie, hohles Dreieck zeigt auf die Oberklasse („ist ein\"). AP2-Stoff.\n- Realisierung (Interface implementieren): gestrichelte Linie, hohles Dreieck zeigt auf das Interface («interface»). AP2-Stoff.\n- Abhängigkeit: gestrichelter Pfeil mit offener Spitze, oft mit Stereotyp wie «create».\nHinweis zum Umfang (Abgleich 15.09.2026): Laut Katalog 2025 ist die Vererbung aus AP1 gestrichen; Vererbung und Interfaces bleiben AP2-Stoff. Assoziation, Aggregation, Komposition und Multiplizitäten sind nicht gestrichen, kamen in AP1 seit 2025 aber noch nicht vor (Randstoff). Die AP1-Klassendiagrammaufgabe Frühjahr 2026 verlangte nur eine einzelne Klasse mit Attributen, Datentypen und Sichtbarkeiten.",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
@@ -5759,7 +5761,8 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "ap2-grundlagen",
+      "ap1Status": "core",
+      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
@@ -5778,11 +5781,12 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "ap2-grundlagen",
+      "ap1Status": "core",
+      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
-      "front": "Was bedeuten die Multiplizitäten 1, 0..1, *, 1..* und 2..5 an einer Assoziation, und wie liest man sie?",
+      "front": "Was bedeuten die Multiplizitäten `1`, `0..1`, `*`, `1..*` und `2..5` an einer Assoziation, und wie liest man sie?",
       "back": "`1` = genau eins · `0..1` = keins oder eins (optional) · `*` bzw. `0..*` = beliebig viele, auch keins · `1..*` = mindestens eins · `2..5` = mindestens zwei, höchstens fünf.\nGelesen wird am gegenüberliegenden Ende: Steht an der Klasse Konto `*` und an der Klasse Kunde `1`, dann hat ein Kunde beliebig viele Konten, und jedes Konto gehört zu genau einem Kunden.\nIn Datenbankmodellen heißt das Gegenstück Kardinalität.",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
@@ -5803,6 +5807,257 @@
       "points": null,
       "front": "Wofür werden Sequenzdiagramm und Zustandsdiagramm verwendet?",
       "back": "Sequenzdiagramm: zeigt den zeitlichen Nachrichtenaustausch zwischen Objekten. Lebenslinien laufen senkrecht nach unten, Methodenaufrufe sind durchgezogene Pfeile, Antworten gestrichelte Pfeile – „wer ruft wann wen auf\".\nZustandsdiagramm: zeigt die Zustände eines Objekts und die Übergänge zwischen ihnen, ausgelöst durch Ereignisse, ggf. mit Bedingung [Guard], z. B. Ticket: offen → in Bearbeitung → geschlossen.\nBeide kommen vor allem in AP2 vor; in AP1 stehen Anwendungsfall-, Aktivitätsdiagramm und die Klasse mit Sichtbarkeiten im Vordergrund.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wie-leitest-du-aus-einer-fachlichen-beschreibung-eine-klasse",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie leitest du aus einer fachlichen Beschreibung eine Klasse im UML-Klassendiagramm ab? Nenne die Schritte und zeige sie an einem kleinen Beispiel.",
+      "back": "1. Klassenname: das zentrale Fachobjekt als Substantiv im Singular, großer Anfangsbuchstabe, ohne Leerzeichen (z. B. `Kurs`).\n2. Attribute: Eigenschaften, die sich das Objekt merken muss – im Text meist Substantive oder Merkmale („Titel\", „Gebühr\", „höchstens 12 Plätze\"). Namen in lowerCamelCase.\n3. Datentyp je Attribut aus der Bedeutung ableiten: Text → `String`, Anzahl → `int`, Betrag oder Prozent → `double`, Ja/Nein → `boolean`. Sind Typen vorgegeben, genau diese übernehmen.\n4. Methoden: Tätigkeiten, die das Objekt ausführt oder berechnet – im Text meist Verben („anmelden\", „freie Plätze ermitteln\"). Parameter nur für Werte, die von außen hereinkommen; der Rückgabetyp richtet sich nach dem Ergebnis, `void`, wenn nichts zurückgegeben wird.\n5. Sichtbarkeit: Attribute `-` private, Methoden, die andere Klassen aufrufen sollen, `+` public.\nBeispiel Volkshochschule (ein Kurs hat Titel, Gebühr, Höchstzahl an Plätzen und die Angabe, ob er online stattfindet; er nimmt Anmeldungen an und nennt die freien Plätze):\n`Kurs`\n`- titel : String`\n`- gebuehr : double`\n`- maxPlaetze : int`\n`- onlineKurs : boolean`\n`+ anmelden(teilnehmer : String) : boolean`\n`+ freiePlaetze() : int`\nIst eine Methode in der Aufgabe schon eingetragen, bleibt sie unverändert stehen; ergänzt wird nur, was fehlt.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--welchen-datentyp-waehlst-du-fuer-einen-namen-ein-ja",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welchen Datentyp wählst du für einen Namen, ein Ja/Nein-Merkmal, eine Anzahl, einen Geldbetrag, einen Prozentsatz und eine Zählvariable? Begründe jeweils kurz.",
+      "back": "- Name, Bezeichnung, E-Mail-Adresse → `String`: Text beliebiger Länge (Zeichenkette).\n- Ja/Nein-Merkmal (z. B. `bezahlt`, `istAktiv`, `loginErfolgreich`) → `boolean`: kennt nur `true` und `false`. Namen mit „ist\", „hat\" oder „…Ok\" deuten darauf hin.\n- Anzahl, Menge, Stückzahl → `int`: ganze, zählbare Werte ohne Nachkommastellen.\n- Geldbetrag → `double`: Kommazahl, weil Cent-Beträge vorkommen (in der Praxis wegen Rundungsfehlern eher `BigDecimal`/`decimal`, in AP1 ist `double` üblich).\n- Prozentsatz, Messwert (Temperatur, Gewicht) → `double`: Nachkommastellen möglich. Erlaubt die Anforderung nur ganze Prozent, ist auch `int` vertretbar – dann begründen.\n- Zählvariable einer Schleife (`i`) → `int`: zählt in ganzen Schritten und dient oft als Index.\nFaustregel: „Rechnet man damit?\" – nein → meist `String`. „Nur zwei Zustände?\" → `boolean`. „Nachkommastellen möglich?\" – ja → `double`, nein → `int`.\nIst keine Programmiersprache vorgegeben, sind auch sprachneutrale Angaben richtig: Text, Wahrheitswert, Ganzzahl, Dezimalzahl.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--welche-fallen-gibt-es-bei-der-wahl-des-datentyps",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Fallen gibt es bei der Wahl des Datentyps? Erkläre sie an Postleitzahl, Telefonnummer, Geldbetrag und einem einzelnen Zeichen.",
+      "back": "- Postleitzahl, Telefonnummer, Nummern mit führender Null → `String`, nicht `int`: Man rechnet nicht damit, führende Nullen gingen verloren (aus der PLZ 01067 würde 1067), und Zeichen wie `+`, `/` oder Leerzeichen wären nicht speicherbar.\n- Geldbetrag: `double` und `float` speichern Kommazahlen binär und damit oft nur näherungsweise (`0.1 + 0.2` ergibt `0.30000000000000004`). Für exakte Beträge nimmt man in der Praxis `BigDecimal` (Java) bzw. `decimal` (C#, SQL) oder rechnet in ganzen Cent mit `long`. In AP1-Lösungen wird `double` für Beträge üblicherweise akzeptiert; `int` in Euro wäre falsch, weil die Cent fehlen.\n- Einzelnes Zeichen (z. B. ein Kennbuchstabe `'B'`) → `char` in einfachen Hochkommas; Text aus mehreren Zeichen → `String` in doppelten Anführungszeichen.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--welche-primitiven-datentypen-gibt-es-in-java-wofuer-steht",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche primitiven Datentypen gibt es in Java, wofür steht jeder, und ist String ein primitiver Datentyp?",
+      "back": "- Ganzzahlen: `byte`, `short`, `int`, `long` – Standard für ganze Zahlen ist `int`, für sehr große Werte `long`.\n- Gleitkommazahlen: `float`, `double` – Standard für Kommazahlen ist `double`.\n- `char`: genau ein Zeichen in einfachen Hochkommas, z. B. `'x'`.\n- `boolean`: nur `true` oder `false`.\n`String` ist KEIN primitiver Typ, sondern eine Klasse (Referenztyp): Die Variable speichert einen Verweis auf ein Objekt, das die Zeichenkette enthält. Deshalb vergleicht man Strings in Java mit `equals()` und nicht mit `==`.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--nenne-die-primitiven-datentypen-in-java-mit-speichergroesse-und",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne die primitiven Datentypen in Java mit Speichergröße und ungefährem Wertebereich. Was passiert bei einem Überlauf?",
+      "back": "Ganzzahlen:\n- `byte`: 8 Bit, -128 bis 127\n- `short`: 16 Bit, -32.768 bis 32.767\n- `int`: 32 Bit, ca. ±2,1 Milliarden (-2.147.483.648 bis 2.147.483.647)\n- `long`: 64 Bit, ca. ±9,2 Trillionen (9,2 · 10^18)\nGleitkommazahlen:\n- `float`: 32 Bit, ca. 6–7 signifikante Stellen\n- `double`: 64 Bit, ca. 15–16 signifikante Stellen (Standard für Kommazahlen)\nSonstige:\n- `char`: 16 Bit, genau ein Unicode-Zeichen, z. B. `'x'`\n- `boolean`: nur `true` oder `false`\nMerkhilfe in Byte: byte 1, short 2, int 4, long 8 · float 4, double 8 · char 2.\nÜberlauf: Überschreitet ein Wert den Bereich seines Typs, springt er in Java ohne Fehlermeldung um – ein `int` geht über seinen größten Wert hinaus auf den kleinsten negativen Wert. Für große Werte (z. B. Dateigrößen in Byte) deshalb `long` wählen.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--welche-notationsfehler-kosten-beim-ergaenzen-einer-klasse-im-uml",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Notationsfehler kosten beim Ergänzen einer Klasse im UML-Klassendiagramm am häufigsten Punkte?",
+      "back": "- Schreibweise wie im Java-Code (`double preis`) statt UML-Schreibweise `- preis : double`.\n- Sichtbarkeit vergessen oder falsches Symbol (`#` ist protected, private ist `-`).\n- Klammern bei Methoden vergessen: auch ohne Parameter `freiePlaetze()`; der Rückgabetyp steht nach der Klammer hinter dem Doppelpunkt.\n- Datentyp fehlt oder passt nicht zur Bedeutung (Anzahl als `double`, Betrag als `int`).\n- Klassenname im Plural, kleingeschrieben oder mit Leerzeichen (`kurse`, `Online Kurs`) statt `Kurs` bzw. `OnlineKurs`.\n- Attributnamen großgeschrieben (`Preis`) statt lowerCamelCase (`preis`).\n- Attribute und Methoden im falschen Bereich (Reihenfolge von oben: Name, Attribute, Methoden).\n- Konstruktor mit Rückgabetyp versehen – er hat keinen.\n- Vorgegebene Elemente verändert oder gestrichen.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--nenne-vorteile-der-objektorientierten-gegenueber-der-prozeduralen-programmierung-und",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nenne Vorteile der objektorientierten gegenüber der prozeduralen Programmierung und einen Nachteil.",
+      "back": "Grundunterschied: Prozedural sind Daten und die Funktionen, die sie bearbeiten, getrennt; in der OOP sind sie in Klassen zusammengefasst.\nVorteile:\n- Kapselung: Attribute sind private und nur über Methoden änderbar. Ungültige Zustände und unbeabsichtigte Seiteneffekte werden verhindert.\n- Wiederverwendbarkeit: Eine Klasse lässt sich beliebig oft instanziieren und in anderen Programmen nutzen.\n- Wartbarkeit und Übersichtlichkeit: Große Programme sind in überschaubare Einheiten gegliedert; Änderungen bleiben meist auf eine Klasse beschränkt.\n- Nähe zur Fachwelt: Klassen entsprechen realen Dingen (Kunde, Rechnung, Kurs). Das erleichtert die Abstimmung mit dem Auftraggeber und die Modellierung mit UML.\n- Teamarbeit und Testbarkeit: Klassen mit klar definierten öffentlichen Methoden können parallel entwickelt und einzeln getestet werden.\nNachteil: höherer Entwurfsaufwand und mehr Code (Klassen, Getter/Setter); für kleine Skripte und einfache Abläufe ist prozedurale Programmierung oft schneller umgesetzt.\nTipp: Bei „Nennen\" reichen Stichworte, bei „Erläutern\" gehört zu jedem Vorteil ein Satz mit Begründung oder Beispiel.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--uebersetze-anforderungssaetze-in-klassenbeziehungen-1-eine-rechnung-besteht-aus",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Übersetze Anforderungssätze in Klassenbeziehungen: (1) „Eine Rechnung besteht aus Positionen, die beim Löschen der Rechnung mit entfernt werden.\" (2) „Ein Projektteam setzt sich aus Mitarbeitern zusammen, die nach Projektende im Unternehmen bleiben.\" (3) „Ein Kunde kann beliebig viele Bestellungen aufgeben, jede Bestellung gehört zu genau einem Kunden.\" (4) „Ein Girokonto ist ein Konto.\"",
+      "back": "(1) Komposition: gefüllte Raute an Rechnung; Multiplizität an Rechnung `1`, an Position `1..*`. Signal: Teil existiert nur innerhalb des Ganzen, wird mitgelöscht, gehört exklusiv zu einem Ganzen.\n(2) Aggregation: hohle Raute an Projektteam; an Mitarbeiter z. B. `1..*`, an Projektteam `*` (ein Mitarbeiter kann mehreren Teams angehören). Signal: Teile bestehen ohne das Ganze weiter, können mehreren Ganzen gehören.\n(3) Assoziation: einfache durchgezogene Linie; an Bestellung `*`, an Kunde `1`. Signal: „kennt\", „gibt auf\", „betreut\" – ohne Teil-Ganzes-Charakter.\n(4) Keine Raute, sondern Vererbung: Girokonto —▷ Konto (hohles Dreieck an Konto). Signal: „ist ein\". Vererbung ist laut Katalog 2025 AP2-Stoff.\nEntscheidungsweg: Ist jedes B ein A? Ja → Vererbung (hohles Dreieck an A, [AP2]). Nein → Ist B ein Teil von A? Nein → Assoziation. Ja → Wird B mit A gelöscht bzw. gehört B exklusiv zu A? Ja → Komposition, nein → Aggregation.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--ein-klassendiagramm-verbindet-reise-und-reiseabschnitt-ueber-eine-aggregation",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ein Klassendiagramm verbindet Reise und Reiseabschnitt über eine Aggregation. Laut Anforderung gibt es Reiseabschnitte nur innerhalb einer Reise, und sie werden mit ihr gelöscht. Wie begründest du den Fehler, und wie sieht die Korrektur aus?",
+      "back": "Begründung: Die Anforderung beschreibt eine Existenzabhängigkeit – ein Reiseabschnitt gehört genau zu einer Reise und lebt nicht länger als sie. Eine Aggregation (hohle Raute) steht nur für eine lose Teil-Ganzes-Beziehung, bei der die Teile unabhängig weiterbestehen und auch mehreren Ganzen gehören dürfen. Die Löschregel ist damit nicht abgebildet.\nKorrektur: Komposition, also gefüllte Raute am Ganzen (Reise). Am Teil z. B. `1..*`, am Ganzen `1` (bei einer Komposition dort höchstens `0..1` bzw. `1`).\nWirkung: Wird eine Reise gelöscht, verschwinden alle ihre Abschnitte. Umgekehrt nicht: Ein einzelner Abschnitt kann entfernt werden, die Reise bleibt bestehen.\nIm Code: Die Reise erzeugt ihre Abschnitte selbst (z. B. in `abschnittHinzufuegen(...)`) und gibt keine Referenzen nach außen, über die andere Objekte sie dauerhaft festhalten.\nAufbau einer vollständigen Antwort: Anforderung nennen → Bedeutung der gezeichneten Beziehung → Widerspruch → richtige Beziehung mit Notation.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wie-modellierst-du-eine-assoziation-zwischen-zwei-klassen-vollstaendig",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie modellierst du eine Assoziation zwischen zwei Klassen vollständig, und was ist unsauber, wenn dieselbe Beziehung zusätzlich als Attribut in einer der Klassen steht?",
+      "back": "- Linie: durchgezogen zwischen den Klassen, optional mit einem Assoziationsnamen in der Mitte (z. B. „arbeitet in\").\n- Multiplizitäten an beiden Enden, gelesen am gegenüberliegenden Ende: an Abteilung `1`, an Mitarbeiter `*` heißt „eine Abteilung hat beliebig viele Mitarbeiter, jeder Mitarbeiter gehört zu genau einer Abteilung\".\n- Rollenname: steht am Linienende bei der Klasse, deren Rolle er beschreibt (z. B. `mitarbeiter` am Ende bei Mitarbeiter). Im Code wird daraus das Attribut der gegenüberliegenden Klasse.\n- Navigierbarkeit: offene Pfeilspitze an einem Ende = die andere Klasse kennt die Objekte dieser Klasse; ein Kreuz `x` = ausdrücklich nicht navigierbar; ohne Angabe = nicht festgelegt.\nDoppelte Modellierung: Steht in Abteilung ein Attribut `- mitarbeiter : Mitarbeiter[*]` UND führt zusätzlich eine Linie zu Mitarbeiter, ist dieselbe Beziehung zweimal dargestellt. Sauber ist entweder das Attribut ODER die Linie mit Rollennamen – bei Klassen aus dem eigenen Modell bevorzugt die Linie.\nParallele zur Datenbank: Multiplizitäten entsprechen den Kardinalitäten im ERM (z. B. 1:n).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-bedeutet-vererbung-wie-pruefst-du-mit-dem-ist",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet Vererbung, wie prüfst du mit dem „ist-ein\"-Test, ob sie passt, und wie baust du eine mehrstufige Vererbungshierarchie auf?",
+      "back": "Vererbung (Generalisierung/Spezialisierung): Eine Unterklasse übernimmt Attribute und Methoden ihrer Oberklasse, ergänzt eigene und kann geerbte Methoden überschreiben. Notation: durchgezogene Linie mit hohlem Dreieck an der Oberklasse.\nVorteile: Gemeinsames steht nur einmal (weniger Redundanz), Erweiterung ohne Änderung der Oberklasse, Grundlage für Polymorphie. Risiko: enge Kopplung – Änderungen an der Oberklasse wirken auf alle Unterklassen; tiefe Hierarchien werden unübersichtlich.\n„ist-ein\"-Test: Nur wenn „Jedes B ist ein A\" fachlich immer stimmt, darf B von A erben. „B hat ein A\" oder „B besteht aus A\" ist keine Vererbung, sondern Assoziation, Aggregation oder Komposition (ein Auto hat einen Motor – es erbt nicht von ihm).\nMehrstufig aufbauen:\n1. Den allgemeinsten Begriff an die Spitze (oft abstrakt), z. B. Fahrzeug.\n2. Zwischenebenen bilden, wenn mehrere Klassen ein gemeinsames Merkmal teilen: Landfahrzeug, Wasserfahrzeug.\n3. Jede Klasse an ihre DIREKTE Oberklasse hängen, keine Ebene überspringen: PKW und LKW —▷ Landfahrzeug; Segelboot und Motorboot —▷ Wasserfahrzeug; Cabrio und Kombi —▷ PKW.\n4. Von unten nach oben kontrollieren: Ein Cabrio ist ein PKW, ist ein Landfahrzeug, ist ein Fahrzeug.\nMehrere Unterklassen dürfen in einem gemeinsamen Dreieck zusammenlaufen. Klassennamen ohne Leerzeichen schreiben (z. B. `Wasserfahrzeug`, `Motorboot` statt `Motor Boot`).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wie-bildest-du-aus-zwei-klassen-mit-teilweise-gleichen",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie bildest du aus zwei Klassen mit teilweise gleichen Attributen und Methoden eine gemeinsame Oberklasse, und was geschieht mit einer Methode, die in beiden Klassen unterschiedlich rechnet?",
+      "back": "Beispiel: Festangestellter (name, personalnummer, monatsgehalt, `gehaltBerechnen()`, `urlaubBeantragen()`) und Aushilfe (name, personalnummer, stundenlohn, stunden, `gehaltBerechnen()`).\n1. Gemeinsame Attribute (name, personalnummer) in die neue Oberklasse `Beschaeftigter` – nur dort, in den Unterklassen nicht wiederholen.\n2. Methoden, die überall gleich funktionieren, ebenfalls nach oben.\n3. Spezielles bleibt unten: monatsgehalt und `urlaubBeantragen()` in Festangestellter, stundenlohn und stunden in Aushilfe.\n4. Methode mit gleichem Namen, aber unterschiedlicher Berechnung (`gehaltBerechnen() : double`): in der Oberklasse deklarieren – meist abstrakt, weil sie dort nicht sinnvoll rechnen kann – und in JEDER Unterklasse erneut eintragen (überschreiben) mit eigener Logik.\n5. Beziehungen zeichnen: Festangestellter —▷ Beschaeftigter und Aushilfe —▷ Beschaeftigter (hohles Dreieck an der Oberklasse).\nNutzen von Schritt 4 (Polymorphie): Ein Programm ruft für alle Beschäftigten einfach `gehaltBerechnen()` auf; zur Laufzeit wird automatisch die Variante des konkreten Objekts ausgeführt.\nSichtbarkeit: Sollen Unterklassen direkt auf geerbte Attribute zugreifen, erhalten diese `#` protected; sonst bleiben sie private und werden über Getter gelesen.\nHäufige Fehler: gemeinsame Attribute unten wiederholt; unterschiedlich rechnende Methode nur oben eingetragen; Dreieck an der Unterklasse; Raute oder offene Pfeilspitze statt Dreieck.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wann-ist-eine-klasse-oder-methode-abstrakt-und-wie",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wann ist eine Klasse oder Methode abstrakt, und wie kennzeichnet man das im UML-Klassendiagramm?",
+      "back": "Abstrakte Klasse: allgemeiner Oberbegriff, von dem es keine eigenen Objekte geben soll (nicht instanziierbar), z. B. `Beschaeftigter` – real gibt es nur Festangestellte oder Aushilfen. Sie darf Attribute, fertig implementierte und abstrakte Methoden enthalten.\nAbstrakte Methode: nur die Signatur ohne Methodenrumpf, weil die Umsetzung erst in der Unterklasse feststeht, z. B. `gehaltBerechnen() : double`. Jede konkrete Unterklasse MUSS sie überschreiben, sonst ist sie selbst abstrakt. Enthält eine Klasse eine abstrakte Methode, muss auch die Klasse abstrakt sein.\nUML-Notation: Klassenname bzw. Methode *kursiv* oder mit dem Zusatz `{abstract}` (bei der Klasse hinter oder unter dem Namen). Weil Kursivschrift von Hand kaum erkennbar ist, auf Papier besser `{abstract}` schreiben.\nIn Java: `public abstract class Beschaeftigter` und `public abstract double gehaltBerechnen();`\nAbgrenzung Interface: gibt im Kern nur Methoden vor (keine Instanzattribute), wird mit «interface» über dem Namen gekennzeichnet und über eine gestrichelte Linie mit hohlem Dreieck realisiert; eine Java-Klasse kann mehrere Interfaces implementieren, aber nur von einer Klasse erben.",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
@@ -7652,7 +7907,7 @@
       "afb": null,
       "points": null,
       "front": "Welche Start- und Endknoten gibt es im Aktivitätsdiagramm, und was ist der Unterschied zwischen Aktivitätsende und Ablaufende?",
-      "back": "Startknoten: ausgefüllter Kreis, von dem der erste Kontrollfluss ausgeht.\nAktivitätsende (Endknoten): ausgefüllter Kreis mit Ring. Er beendet die GESAMTE Aktivität, auch alle noch laufenden parallelen Stränge.\nAblaufende (Flow Final): Kreis mit Kreuz (X). Es beendet nur den einen Pfad, der dort ankommt; andere parallele Stränge laufen weiter.\nEin Diagramm darf mehrere Endknoten haben, z. B. einen für „Bestellung storniert\" und einen für „Bestellung abgeschlossen\".",
+      "back": "Startknoten: ausgefüllter Kreis, von dem der erste Kontrollfluss ausgeht.\nAktivitätsende (Endknoten): ausgefüllter Kreis mit Ring. Er beendet die GESAMTE Aktivität, auch alle noch laufenden parallelen Stränge.\nAblaufende (Flow Final): Kreis mit Kreuz (X). Es beendet nur den einen Pfad, der dort ankommt; andere parallele Stränge laufen weiter.\nEin Diagramm darf mehrere Endknoten haben, z. B. einen für „Antrag abgelehnt\" und einen für „Antrag genehmigt\".",
       "source": "Lernapp/Karteikarten/11-Neu-2025.md"
     },
     {
@@ -7690,7 +7945,7 @@
       "afb": null,
       "points": null,
       "front": "Wie modelliert man eine Verzweigung (Entscheidung) im Aktivitätsdiagramm? Was ist ein Guard, und welche Regeln gelten?",
-      "back": "Verzweigung: Raute mit einem eingehenden und mehreren ausgehenden Kontrollflüssen.\nJeder ausgehende Fluss trägt eine Bedingung (Guard) in eckigen Klammern, z. B. [Bestellwert >= 1000 €] und [sonst] bzw. [else].\nRegeln: Die Guards müssen sich gegenseitig ausschließen und zusammen alle Fälle abdecken, damit genau EIN Zweig durchlaufen wird. Ein [sonst]-Zweig verhindert Lücken.\nAnders als beim PAP steht in der Raute normalerweise kein Text. Die Bedingungen stehen als Guards in eckigen Klammern an den ausgehenden Flüssen ([ja]/[nein] ist zulässig), nicht als lose „ja/nein\"-Beschriftung; eine Erläuterung höchstens als Notiz.",
+      "back": "Verzweigung: Raute mit einem eingehenden und mehreren ausgehenden Kontrollflüssen.\nJeder ausgehende Fluss trägt eine Bedingung (Guard) in eckigen Klammern, z. B. [Reisekosten > 300 €] und [sonst] bzw. [else].\nRegeln: Die Guards müssen sich gegenseitig ausschließen und zusammen alle Fälle abdecken, damit genau EIN Zweig durchlaufen wird. Ein [sonst]-Zweig verhindert Lücken.\nAnders als beim PAP steht in der Raute normalerweise kein Text. Die Bedingungen stehen als Guards in eckigen Klammern an den ausgehenden Flüssen ([ja]/[nein] ist zulässig), nicht als lose „ja/nein\"-Beschriftung; eine Erläuterung höchstens als Notiz.",
       "source": "Lernapp/Karteikarten/11-Neu-2025.md"
     },
     {

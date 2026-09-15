@@ -4,6 +4,7 @@
 
 import extra from './exam-extra.json'
 import { EXAM_UML } from './exam-uml'
+import { EXAM_PV1 } from './exam-pv1'
 
 export interface ExamPart {
   label: string
@@ -313,4 +314,4 @@ const EXAM_BASE: ExamTask[] = [
 ]
 
 // Zusätzliche, per Workflow generierte & gegengeprüfte Prüfungsaufgaben.
-export const EXAM_TASKS: ExamTask[] = [...EXAM_BASE, ...(extra as ExamTask[]), ...EXAM_UML]
+export const EXAM_TASKS: ExamTask[] = [...EXAM_BASE, ...(extra as ExamTask[]), ...EXAM_UML, ...EXAM_PV1]

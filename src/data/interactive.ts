@@ -134,7 +134,7 @@ const MATCH_BASE: MatchDeck[] = [
     topicId: 'softwareentwicklung',
     instruction: 'Ordne jeden Anforderungssatz der passenden Modellierung im Anwendungsfalldiagramm zu.',
     pairs: [
-      { left: '„Dabei findet immer eine Berechtigungsprüfung statt."', right: '«include» – Pfeil zum eingebundenen Fall' },
+      { left: '„Bei jeder Kartenzahlung wird zwingend die PIN geprüft."', right: '«include» – Pfeil zum eingebundenen Fall' },
       { left: '„Nur bei überschrittener Frist wird eine Gebühr berechnet."', right: '«extend» – Pfeil zum Basisfall, mit Erweiterungspunkt' },
       { left: '„Der Admin kann alles, was ein Mitarbeiter kann, und zusätzlich …"', right: 'Generalisierung: hohles Dreieck zeigt auf den Mitarbeiter' },
       { left: '„Bezahlt wird über den externen Zahlungsdienst."', right: 'Akteur außerhalb der Systemgrenze' },
@@ -147,8 +147,8 @@ const MATCH_BASE: MatchDeck[] = [
     topicId: 'neu-2025',
     instruction: 'Ordne jede Formulierung aus einer Aufgabenbeschreibung dem UML-Element zu, das du dafür zeichnest.',
     pairs: [
-      { left: '„Liegt der Bestellwert über 1.000 €, …, sonst …"', right: 'Verzweigung (Raute) mit Guards [ ]' },
-      { left: '„Gleichzeitig werden Zahlung und Versand angestoßen."', right: 'Gabelung (Synchronisationsbalken)' },
+      { left: '„Beträgt die Reisekostenabrechnung mehr als 300 €, …, sonst …"', right: 'Verzweigung (Raute) mit Guards [ ]' },
+      { left: '„Gleichzeitig werden der Dienstwagen gebucht und das Hotel reserviert."', right: 'Gabelung (Synchronisationsbalken)' },
       { left: '„Erst wenn beides erledigt ist, geht es weiter."', right: 'Vereinigung (Balken wartet auf alle Stränge)' },
       { left: '„Sind die Daten fehlerhaft, gibt der Kunde sie erneut ein."', right: 'Schleife: Verzweigung mit Rücksprung über eine Zusammenführungsraute' },
       { left: '„Beteiligt sind Kunde, Lager und Buchhaltung."', right: 'Partitionen (Swimlanes)' },
