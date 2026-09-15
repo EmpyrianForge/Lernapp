@@ -324,6 +324,8 @@ kbd {
 .solution { background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; }
 .solution h3 { margin: 1rem 0 0.4rem; font-size: 0.95rem; color: var(--accent); }
 .solution h3:first-child { margin-top: 0; }
+.uml-figure { margin: 0.8rem 0 0; padding: 0.6rem; overflow-x: auto; color: var(--text); border: 1px solid var(--border); border-radius: 8px; }
+.uml-figure svg { display: block; width: 100%; min-width: 420px; max-width: 660px; height: auto; margin: 0 auto; }
 .h3-ico { display: flex; align-items: center; gap: 0.35rem; }
 .h3-ico svg { color: var(--warn); }
 .center h2 { display: inline-flex; align-items: center; gap: 0.4rem; }

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-03T11:39:28.973Z",
-  "count": 534,
+  "generatedAt": "2026-09-15T07:04:29.538Z",
+  "count": 563,
   "items": [
     {
       "id": "hardware--von-neumann-architektur-nenne-die-funktionalen-komponenten-und-ihr",
@@ -5461,6 +5461,351 @@
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
+      "id": "softwareentwicklung--wofuer-steht-uml-und-in-welche-zwei-hauptgruppen-teilt",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofür steht UML, und in welche zwei Hauptgruppen teilt man ihre Diagramme ein? Nenne je zwei Beispiele.",
+      "back": "UML = Unified Modeling Language, eine standardisierte grafische Sprache zur Modellierung von Softwaresystemen (herausgegeben von der OMG).\nStrukturdiagramme (statische Sicht): Klassendiagramm, Objektdiagramm, Paketdiagramm, Komponentendiagramm, Verteilungsdiagramm.\nVerhaltensdiagramme (dynamische Sicht): Anwendungsfalldiagramm, Aktivitätsdiagramm, Zustandsdiagramm sowie die Interaktionsdiagramme (z. B. Sequenzdiagramm).\nFür AP1 im Vordergrund: Anwendungsfalldiagramm, Aktivitätsdiagramm und die Klasse mit Attributen, Methoden und Sichtbarkeiten.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-ist-ein-akteur-im-uml-anwendungsfalldiagramm-wie-wird",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Akteur im UML-Anwendungsfalldiagramm, wie wird er dargestellt und wo steht er?",
+      "back": "Ein Akteur ist eine Rolle, die von außen mit dem System interagiert, keine konkrete Person. Das kann ein Mensch sein (z. B. „Kunde\", „Administrator\") oder ein externes System (z. B. „Zahlungsdienst\", „Buchhaltungssystem\").\nDarstellung: Strichmännchen mit dem Rollennamen darunter (für Systeme alternativ ein Rechteck mit «actor»).\nAkteure stehen immer AUSSERHALB der Systemgrenze.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wie-werden-anwendungsfall-und-systemgrenze-im-anwendungsfalldiagramm-dargestellt-und",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie werden Anwendungsfall und Systemgrenze im Anwendungsfalldiagramm dargestellt, und wie benennt man einen Anwendungsfall gut?",
+      "back": "Anwendungsfall (Use Case): Ellipse mit dem Namen darin.\nSystemgrenze: Rechteck um alle Anwendungsfälle, oben mit dem Namen des Systems beschriftet.\nBenennung aus Sicht des Akteurs als Tätigkeit (Objekt + Verb): „Medium ausleihen\", „Rechnung erstellen\", „Passwort zurücksetzen\".\nEin Anwendungsfall beschreibt eine Funktion mit erkennbarem Nutzen für den Akteur, keinen einzelnen Klick und keine technische Umsetzung.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-bedeutet-eine-assoziation-zwischen-akteur-und-anwendungsfall-und",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet eine Assoziation zwischen Akteur und Anwendungsfall, und was gilt, wenn zwei Akteure mit demselben Anwendungsfall verbunden sind?",
+      "back": "Assoziation: durchgezogene Linie (normalerweise ohne Pfeilspitze, optional mit Multiplizitäten). Sie sagt: Dieser Akteur ist am Anwendungsfall beteiligt bzw. kann ihn auslösen.\nSind zwei Akteure mit demselben Anwendungsfall verbunden, wirken beide daran mit (z. B. Kunde und Mitarbeiter bei „Zimmer telefonisch buchen\").\nSoll dagegen ausgedrückt werden, dass ein Akteur alles darf, was ein anderer darf, modelliert man eine Generalisierung zwischen den Akteuren.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-bedeutet-include-im-anwendungsfalldiagramm-nenne-notation-und-pfeilrichtung",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet «include» im Anwendungsfalldiagramm? Nenne Notation und Pfeilrichtung.",
+      "back": "Der Basis-Anwendungsfall bindet einen anderen Anwendungsfall IMMER (unbedingt) ein. Beispiel: „Geld abheben\" «include» „PIN prüfen\" – ohne PIN-Prüfung gibt es keine Abhebung.\nNotation: gestrichelter Pfeil mit offener Spitze, beschriftet mit «include».\nPfeilrichtung: vom Basisfall ZUM eingebundenen Fall.\nTypisch, um Verhalten auszulagern, das mehrere Anwendungsfälle gemeinsam nutzen. Signalwörter im Aufgabentext: „dabei immer\", „jedes Mal\", „zwingend\". Achtung: Eine reine Reihenfolge („vorher anmelden\") zeigt das Anwendungsfalldiagramm nicht.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-bedeutet-extend-im-anwendungsfalldiagramm-nenne-notation-pfeilrichtung-und",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet «extend» im Anwendungsfalldiagramm? Nenne Notation, Pfeilrichtung und die Rolle des Erweiterungspunkts.",
+      "back": "Ein erweiternder Anwendungsfall ergänzt den Basisfall nur UNTER EINER BEDINGUNG (optional). Beispiel: „Mahngebühr berechnen\" erweitert „Medium zurückgeben\", aber nur bei überschrittener Frist.\nNotation: gestrichelter Pfeil mit offener Spitze, beschriftet mit «extend».\nPfeilrichtung: vom erweiternden Fall ZUM Basisfall – also umgekehrt wie bei «include».\nErweiterungspunkt (extension point): die Stelle im Basisfall, an der erweitert werden darf; wird in der Ellipse des Basisfalls unter einem Trennstrich notiert. Die Bedingung kann zusätzlich als Notiz (condition) am Pfeil stehen.\nSignalwörter: „nur wenn\", „falls\", „optional\", „bei Bedarf\".",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wie-merkt-man-sich-die-pfeilrichtungen-von-include-und",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie merkt man sich die Pfeilrichtungen von «include» und «extend», und welche Fehler kosten im Anwendungsfalldiagramm am häufigsten Punkte?",
+      "back": "Merkhilfe: Der Pfeil zeigt immer auf den Fall, der auch ohne den anderen gedacht werden kann.\n- «include»: Basisfall → eingebundener Fall („Ich brauche dich jedes Mal.\")\n- «extend»: Erweiterung → Basisfall („Ich hänge mich bei dir an, wenn die Bedingung eintritt.\")\nHäufige Fehler: Pfeilrichtung vertauscht; include und extend verwechselt; durchgezogene statt gestrichelte Linie; Schlüsselwort «include»/«extend» vergessen oder ohne Guillemets; Akteur innerhalb der Systemgrenze; Abläufe mit Reihenfolge ins Anwendungsfalldiagramm gezeichnet.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-bedeutet-eine-generalisierung-zwischen-akteuren-im-anwendungsfalldiagramm-nenne",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet eine Generalisierung zwischen Akteuren im Anwendungsfalldiagramm? Nenne Notation und ein Beispiel.",
+      "back": "Der spezielle Akteur erbt alle Assoziationen des allgemeinen Akteurs und kann zusätzlich eigene Anwendungsfälle haben.\nNotation: durchgezogene Linie mit HOHLEM (nicht ausgefülltem) Dreieck; die Spitze zeigt auf den allgemeinen Akteur.\nBeispiel: Administrator —▷ Mitarbeiter. Der Administrator kann alles, was der Mitarbeiter kann (z. B. „Fahrzeug einfahren lassen\"), und zusätzlich „Berechtigungen verwalten\".\nSignalsatz in Aufgaben: „X kann alles, was Y kann, und zusätzlich …\".",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--koennen-auch-anwendungsfaelle-generalisiert-werden-nenne-ein-beispiel",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Können auch Anwendungsfälle generalisiert werden? Nenne ein Beispiel.",
+      "back": "Ja. Ein spezieller Anwendungsfall erbt Verhalten und Assoziationen des allgemeinen Anwendungsfalls; das hohle Dreieck zeigt auf den allgemeinen Fall.\nBeispiel: „Ticket buchen\" ist der allgemeine Fall, „Ticket reservieren\" und „Ticket kaufen\" sind Spezialisierungen. Ein Akteur, der mit „Ticket buchen\" verbunden ist, kann damit auch reservieren und kaufen.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-zeigt-ein-anwendungsfalldiagramm-nicht-und-womit-beschreibt-man",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was zeigt ein Anwendungsfalldiagramm NICHT, und womit beschreibt man diese Informationen stattdessen?",
+      "back": "Es zeigt keine Reihenfolge, keine Abläufe, keine detaillierten Bedingungen und keine Oberfläche oder Technik – nur, WER mit dem System WAS tun kann (Außensicht).\nDen Ablauf eines einzelnen Anwendungsfalls beschreibt man mit einem Aktivitätsdiagramm oder textuell in einer Anwendungsfallbeschreibung (Vorbedingung, Ablauf, Alternativen, Nachbedingung).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--uebersetze-typische-anforderungssaetze-in-use-case-notation-1-beim",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Übersetze typische Anforderungssätze in Use-Case-Notation: (1) „Beim Buchen wird immer die Zahlung geprüft.\" (2) „Nur bei überschrittener Frist wird eine Gebühr berechnet.\" (3) „Der Teamleiter kann alles, was ein Mitarbeiter kann, und genehmigt zusätzlich Anträge.\" (4) „Die Abrechnung erfolgt über das externe Buchhaltungssystem.\"",
+      "back": "(1) «include»: Pfeil von „Buchen\" zu „Zahlung prüfen\".\n(2) «extend»: Pfeil von „Gebühr berechnen\" zum Basisfall (z. B. „Medium zurückgeben\"); im Basisfall ein Erweiterungspunkt (z. B. „Fristprüfung\"), die Bedingung {Frist überschritten} als Notiz am Pfeil.\n(3) Generalisierung: Teamleiter —▷ Mitarbeiter (hohles Dreieck am Mitarbeiter), zusätzlich Assoziation Teamleiter – „Antrag genehmigen\".\n(4) Das Buchhaltungssystem ist ein Akteur außerhalb der Systemgrenze und mit „Abrechnen\" assoziiert.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wie-ist-eine-klasse-im-uml-klassendiagramm-aufgebaut-und",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie ist eine Klasse im UML-Klassendiagramm aufgebaut, und wie notiert man Attribute, Methoden und den Konstruktor?",
+      "back": "Rechteck mit drei Bereichen: 1. Klassenname (fett, Substantiv im Singular, großer Anfangsbuchstabe, z. B. `Ticket`), 2. Attribute, 3. Methoden (Operationen).\nAttribut: `Sichtbarkeit name : Typ`, optional mit Startwert, z. B. `- status : String`\nMethode: `Sichtbarkeit name(parameter : Typ) : Rückgabetyp`, z. B. `+ schliessen() : void` oder `+ setPrioritaet(p : int) : void`\nKonstruktor: trägt den Klassennamen und hat keinen Rückgabetyp, z. B. `+ Ticket(titel : String, prioritaet : int)`",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--welche-sichtbarkeitssymbole-gibt-es-im-uml-klassendiagramm-und-wie",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Sichtbarkeitssymbole gibt es im UML-Klassendiagramm, und wie setzt man sie nach dem Prinzip der Kapselung ein?",
+      "back": "`+` public: von überall zugreifbar\n`-` private: nur innerhalb der eigenen Klasse\n`#` protected: eigene Klasse und Unterklassen\n`~` package: innerhalb desselben Pakets\nKapselung (Geheimnisprinzip): Attribute sind in der Regel private (`-`), der Zugriff erfolgt über öffentliche Methoden (`+`, z. B. Getter/Setter), interne Hilfsmethoden bleiben private. So kontrolliert das Objekt selbst, welche Werte gültig sind.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wie-werden-statische-attribute-und-methoden-im-uml-klassendiagramm",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie werden statische Attribute und Methoden im UML-Klassendiagramm gekennzeichnet, und was bedeutet „statisch\"?",
+      "back": "Statische Member werden UNTERSTRICHEN dargestellt, z. B. ein unterstrichenes `- anzahlTickets : int`.\nStatisch bedeutet: Das Attribut bzw. die Methode gehört zur Klasse selbst, nicht zu einem einzelnen Objekt. Ein statisches Attribut existiert nur einmal und wird von allen Objekten geteilt (z. B. ein Zähler aller erzeugten Tickets); eine statische Methode wird über die Klasse aufgerufen (`Ticket.getAnzahl()`).",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--welche-beziehungen-zwischen-klassen-gibt-es-im-uml-klassendiagramm",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Beziehungen zwischen Klassen gibt es im UML-Klassendiagramm, und wie werden sie gezeichnet?",
+      "back": "- Assoziation: durchgezogene Linie; optional mit offener Pfeilspitze (Navigierbarkeit) und Multiplizitäten an den Enden.\n- Aggregation: Linie mit HOHLER Raute am Ganzen („hat\", „besteht aus\"); Teile können unabhängig vom Ganzen existieren.\n- Komposition: Linie mit GEFÜLLTER Raute am Ganzen; Teile sind existenzabhängig vom Ganzen.\n- Vererbung (Generalisierung): durchgezogene Linie, hohles Dreieck zeigt auf die Oberklasse („ist ein\").\n- Realisierung (Interface implementieren): gestrichelte Linie, hohles Dreieck zeigt auf das Interface («interface»).\n- Abhängigkeit: gestrichelter Pfeil mit offener Spitze, oft mit Stereotyp wie «create».\nHinweis: Laut Katalog 2025 reicht OOP in AP1 nur bis zu den Sichtbarkeiten; Beziehungen, Vererbung und Interfaces sind AP2-Stoff.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--worin-unterscheiden-sich-aggregation-und-komposition-im-uml-klassendiagramm",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheiden sich Aggregation und Komposition im UML-Klassendiagramm?",
+      "back": "Beides sind Teil-Ganzes-Beziehungen.\nAggregation (hohle Raute am Ganzen): schwache Bindung. Ein Teil kann ohne das Ganze existieren und auch zu mehreren Ganzen gehören (am Ganzen darf `*` stehen), z. B. Mannschaft – Spieler.\nKomposition (gefüllte Raute am Ganzen): starke, existenzielle Bindung. Ein Teil gehört zu höchstens einem Ganzen (am Ganzen steht `1` oder `0..1`) und wird mit ihm gelöscht, z. B. Gebäude – Raum.\nAchtung (verbreiteter Fehler, auch im PV1-Handout): Die Abhängigkeit gilt nur in Richtung Ganzes → Teile. Löscht man die Teile, bleibt das Ganze bestehen.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--was-bedeuten-die-multiplizitaeten-1-0-1-1-und",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeuten die Multiplizitäten 1, 0..1, *, 1..* und 2..5 an einer Assoziation, und wie liest man sie?",
+      "back": "`1` = genau eins · `0..1` = keins oder eins (optional) · `*` bzw. `0..*` = beliebig viele, auch keins · `1..*` = mindestens eins · `2..5` = mindestens zwei, höchstens fünf.\nGelesen wird am gegenüberliegenden Ende: Steht an der Klasse Konto `*` und an der Klasse Kunde `1`, dann hat ein Kunde beliebig viele Konten, und jedes Konto gehört zu genau einem Kunden.\nIn Datenbankmodellen heißt das Gegenstück Kardinalität.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
+      "id": "softwareentwicklung--wofuer-werden-sequenzdiagramm-und-zustandsdiagramm-verwendet",
+      "topicId": "softwareentwicklung",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "softwareentwicklung",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofür werden Sequenzdiagramm und Zustandsdiagramm verwendet?",
+      "back": "Sequenzdiagramm: zeigt den zeitlichen Nachrichtenaustausch zwischen Objekten. Lebenslinien laufen senkrecht nach unten, Methodenaufrufe sind durchgezogene Pfeile, Antworten gestrichelte Pfeile – „wer ruft wann wen auf\".\nZustandsdiagramm: zeigt die Zustände eines Objekts und die Übergänge zwischen ihnen, ausgelöst durch Ereignisse, ggf. mit Bedingung [Guard], z. B. Ticket: offen → in Bearbeitung → geschlossen.\nBeide kommen vor allem in AP2 vor; in AP1 stehen Anwendungsfall-, Aktivitätsdiagramm und die Klasse mit Sichtbarkeiten im Vordergrund.",
+      "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
+    },
+    {
       "id": "qs-vertraege--grenze-werkvertrag-und-dienstvertrag-ab",
       "topicId": "qs-vertraege",
       "type": "flashcard",
@@ -6885,7 +7230,6 @@
       ],
       "examFrequency": 0.9,
       "ap1Status": "core",
-      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
@@ -7271,6 +7615,216 @@
       "points": null,
       "front": "Unterscheide synchrone und asynchrone digitale Zusammenarbeit und nenne je zwei Werkzeuge sowie einen typischen Einsatzfall.",
       "back": "Synchrone Zusammenarbeit: alle Beteiligten arbeiten gleichzeitig zusammen, Kommunikation in Echtzeit.\n- Werkzeuge: Videokonferenz- und Meetingsysteme, Telefonie/VoIP, Chat mit sofortiger Antwort, Screensharing, digitales Whiteboard.\n- Einsatzfall: tägliche Kurzbesprechung, Workshop, Störungsbehebung im Team.\n- Vorteile: schnelle Klärung, direkte Rückfragen, sozialer Zusammenhalt. Nachteile: Terminabstimmung nötig, Unterbrechungen, schwierig über Zeitzonen hinweg.\n\nAsynchrone Zusammenarbeit: die Beteiligten arbeiten zeitversetzt am selben Gegenstand.\n- Werkzeuge: E-Mail, Ticket- bzw. Aufgabensystem (Issue-Tracker), Wiki bzw. Dokumentenmanagement, gemeinsame Cloud-Ablage mit Versionierung, Versionsverwaltung wie Git, aufgezeichnete Videos.\n- Einsatzfall: Dokumentation, Code-Review, Statusmeldungen über Zeitzonen hinweg.\n- Vorteile: konzentriertes Arbeiten, schriftliche Nachvollziehbarkeit, ortsunabhängig. Nachteile: längere Reaktionszeiten, Missverständnisse ohne direkte Rückfrage.\n\nGute Praxis: den Standardfall asynchron dokumentieren, synchrone Termine gezielt für Abstimmung und Entscheidungen einsetzen; einheitliche Werkzeuge, klare Ablagestruktur und Datenschutz- bzw. Compliance-Prüfung des eingesetzten Dienstes.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--wofuer-wird-ein-uml-aktivitaetsdiagramm-eingesetzt-und-wie-haengt",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofür wird ein UML-Aktivitätsdiagramm eingesetzt, und wie hängt es mit dem Anwendungsfalldiagramm zusammen?",
+      "back": "Das Aktivitätsdiagramm ist ein Verhaltensdiagramm. Es zeigt einen Ablauf (Geschäftsprozess, Programmablauf, Ablauf eines Anwendungsfalls) als Folge von Aktionen mit Verzweigungen, Schleifen und parallelen Strängen.\nZusammenhang: Das Anwendungsfalldiagramm zeigt nur, WAS ein Akteur mit dem System tun kann. Das Aktivitätsdiagramm verfeinert oft genau einen dieser Anwendungsfälle und zeigt, WIE er abläuft (z. B. „Medium ausleihen\" Schritt für Schritt).\nSeit dem Prüfungskatalog 2025 sind Struktogramm und Programmablaufplan (PAP) aus AP1 gestrichen; das Aktivitätsdiagramm ist die UML-Darstellung für Abläufe.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--welche-start-und-endknoten-gibt-es-im-aktivitaetsdiagramm-und",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Start- und Endknoten gibt es im Aktivitätsdiagramm, und was ist der Unterschied zwischen Aktivitätsende und Ablaufende?",
+      "back": "Startknoten: ausgefüllter Kreis, von dem der erste Kontrollfluss ausgeht.\nAktivitätsende (Endknoten): ausgefüllter Kreis mit Ring. Er beendet die GESAMTE Aktivität, auch alle noch laufenden parallelen Stränge.\nAblaufende (Flow Final): Kreis mit Kreuz (X). Es beendet nur den einen Pfad, der dort ankommt; andere parallele Stränge laufen weiter.\nEin Diagramm darf mehrere Endknoten haben, z. B. einen für „Bestellung storniert\" und einen für „Bestellung abgeschlossen\".",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--wie-werden-aktionen-und-kontrollfluesse-im-aktivitaetsdiagramm-dargestellt-und",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie werden Aktionen und Kontrollflüsse im Aktivitätsdiagramm dargestellt, und wie formuliert man Aktionen?",
+      "back": "Aktion: Rechteck mit abgerundeten Ecken. Kontrollfluss: durchgezogener Pfeil mit offener Spitze zur nächsten Aktion.\nAktionen kurz als Tätigkeit formulieren (Objekt + Verb): „Bestellung prüfen\", „Rechnung versenden\", „Ticket schließen\".\nEine Aktion hat normalerweise genau einen eingehenden und einen ausgehenden Fluss. Verzweigen und Zusammenführen übernehmen Raute bzw. Synchronisationsbalken, nicht die Aktion selbst.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--wie-modelliert-man-eine-verzweigung-entscheidung-im-aktivitaetsdiagramm-was",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie modelliert man eine Verzweigung (Entscheidung) im Aktivitätsdiagramm? Was ist ein Guard, und welche Regeln gelten?",
+      "back": "Verzweigung: Raute mit einem eingehenden und mehreren ausgehenden Kontrollflüssen.\nJeder ausgehende Fluss trägt eine Bedingung (Guard) in eckigen Klammern, z. B. [Bestellwert >= 1000 €] und [sonst] bzw. [else].\nRegeln: Die Guards müssen sich gegenseitig ausschließen und zusammen alle Fälle abdecken, damit genau EIN Zweig durchlaufen wird. Ein [sonst]-Zweig verhindert Lücken.\nAnders als beim PAP steht in der Raute normalerweise kein Text. Die Bedingungen stehen als Guards in eckigen Klammern an den ausgehenden Flüssen ([ja]/[nein] ist zulässig), nicht als lose „ja/nein\"-Beschriftung; eine Erläuterung höchstens als Notiz.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--was-ist-eine-zusammenfuehrung-merge-im-aktivitaetsdiagramm-und-wie",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine Zusammenführung (Merge) im Aktivitätsdiagramm, und wie modelliert man damit eine Schleife?",
+      "back": "Die Zusammenführung ist ebenfalls eine Raute, aber mit mehreren eingehenden und genau einem ausgehenden Fluss. Alternative Zweige laufen wieder zusammen, ohne aufeinander zu warten (es kommt ja nur einer an).\nSchleife: Der Rücksprung (z. B. [Daten fehlerhaft] → „Daten erneut eingeben\") mündet in eine Zusammenführungsraute, die VOR der zu wiederholenden Aktion liegt.\nTypischer Fehler: den Rücksprung direkt in eine Aktion zeichnen. Zwei eingehende Flüsse an einer Aktion bedeuten in UML, dass die Aktion auf BEIDE wartet; der Ablauf bliebe hängen. Deshalb immer eine Merge-Raute davor setzen.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--wie-stellt-man-parallele-ablaeufe-im-aktivitaetsdiagramm-dar-unterschied",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie stellt man parallele Abläufe im Aktivitätsdiagramm dar? Unterschied zwischen Gabelung (Fork) und Vereinigung (Join)?",
+      "back": "Beides wird mit einem Synchronisationsbalken (dicker, ausgefüllter Strich) dargestellt.\nGabelung/Parallelisierung: ein eingehender, mehrere ausgehende Flüsse. Alle Stränge werden gestartet und laufen unabhängig voneinander (gleichzeitig oder in beliebiger Reihenfolge).\nVereinigung/Synchronisation: mehrere eingehende, ein ausgehender Fluss. Es geht erst weiter, wenn ALLE eingehenden Stränge fertig sind.\nSignalwörter im Aufgabentext: „gleichzeitig\", „parallel\", „zeitgleich\", „währenddessen\".\nMerke den Unterschied zur Raute: Raute = genau EIN Weg wird genommen, Balken = ALLE Wege werden genommen. Einen Fork nie mit einer Merge-Raute schließen, sonst läuft der nachfolgende Ablauf mehrfach an.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--was-sind-partitionen-swimlanes-im-aktivitaetsdiagramm-und-wann-setzt",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was sind Partitionen (Swimlanes) im Aktivitätsdiagramm, und wann setzt man sie ein?",
+      "back": "Partitionen („Schwimmbahnen\") teilen das Diagramm in senkrechte oder waagerechte Bahnen. Jede Bahn ist mit einem Verantwortlichen beschriftet, z. B. einer Rolle, Abteilung oder einem System („Kunde\" | „Service-Desk\" | „Lager\").\nJede Aktion wird in die Bahn dessen gesetzt, der sie ausführt. Kontrollflüsse dürfen Bahngrenzen überqueren; genau dort liegen die Übergaben zwischen den Beteiligten.\nEinsetzen, wenn mehrere Beteiligte am Ablauf mitwirken oder die Aufgabe ausdrücklich zeigen will, wer was tut.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--was-sind-objektknoten-und-notizen-im-aktivitaetsdiagramm",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was sind Objektknoten und Notizen im Aktivitätsdiagramm?",
+      "back": "Objektknoten: eckiges Rechteck mit dem Objektnamen, optional mit Zustand in eckigen Klammern, z. B. „Rechnung [erstellt]\". Er zeigt, welche Daten oder Dokumente zwischen Aktionen weitergegeben werden (Objektfluss).\nNotiz: Rechteck mit umgeknickter Ecke, über eine gestrichelte Linie an ein Element angehängt. Sie enthält Erläuterungen, z. B. die Auswahlmöglichkeiten vor einer Verzweigung.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--in-welchen-schritten-erstellt-man-in-der-pruefung-ein",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "In welchen Schritten erstellt man in der Prüfung ein Aktivitätsdiagramm aus einem Beschreibungstext?",
+      "back": "1. Text Satz für Satz lesen und alle Tätigkeiten (Verben) als Aktionen markieren.\n2. Signalwörter markieren: „falls/wenn/sonst\" → Verzweigung mit Guards; „gleichzeitig/parallel\" → Gabelung + Vereinigung; „erneut/zurück/wiederholen\" → Rücksprung über eine Zusammenführung; „ist beendet\" → Endknoten; mehrere Beteiligte → ggf. Partitionen.\n3. Startknoten setzen und den Hauptpfad von oben nach unten zeichnen.\n4. Jeden Zweig bis zu einer Zusammenführung, einer Vereinigung oder einem Endknoten führen; kein Pfad darf ins Leere laufen.\n5. Kontrolle vor der Abgabe: jeder Ausgang einer Raute mit Guard beschriftet (inkl. [sonst]), jede Gabelung wird durch eine Vereinigung zusammengeführt oder jeder ihrer Stränge endet in einem Ablaufende, alle Pfeilspitzen vorhanden, Aktionen mit abgerundeten Ecken, Start- und Endknoten vorhanden.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--worin-unterscheidet-sich-ein-uml-aktivitaetsdiagramm-von-einem-programmablaufplan",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheidet sich ein UML-Aktivitätsdiagramm von einem Programmablaufplan (PAP)?",
+      "back": "PAP (DIN 66001): Start/Ende als Oval mit Text, Verarbeitung als eckiges Rechteck, Ein-/Ausgabe als Parallelogramm, die Frage steht in der Raute, Ausgänge mit „ja/nein\"; Parallelität ist im PAP kaum vorgesehen und in der Praxis unüblich.\nUML-Aktivitätsdiagramm: Start = ausgefüllter Kreis, Ende = Kreis mit Ring (bzw. Kreis mit X für Ablaufende), Aktionen mit abgerundeten Ecken, Bedingungen als Guards [ ] an den ausgehenden Flüssen, Parallelität über Gabelung/Vereinigung, Verantwortliche über Partitionen.\nPrüfungsrelevanz: Der PAP ist seit dem Katalog 2025 aus AP1 gestrichen. Wird ein Aktivitätsdiagramm verlangt, UML-Notation verwenden; eine PAP-Zeichnung kostet Punkte.",
+      "source": "Lernapp/Karteikarten/11-Neu-2025.md"
+    },
+    {
+      "id": "neu-2025--welche-fehler-im-uml-aktivitaetsdiagramm-kosten-in-der-pruefung",
+      "topicId": "neu-2025",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "neu-2025",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.9,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Fehler im UML-Aktivitätsdiagramm kosten in der Prüfung typischerweise Punkte?",
+      "back": "- Startknoten oder Endknoten fehlt.\n- Verzweigung ohne Guards, mit sich überschneidenden Guards oder ohne [sonst]-Fall.\n- Parallele Stränge weder vereinigt noch mit einem Ablaufende abgeschlossen, oder mit einer Raute statt eines Balkens zusammengeführt.\n- Schleife ohne Zusammenführungsraute (Rücksprung direkt in eine Aktion).\n- PAP-Stil: eckige Rechtecke, Frage in der Raute, „ja/nein\" statt Guards.\n- Zweige, die ins Leere laufen, oder fehlende Pfeilspitzen.\n- Beschriebene Schritte vergessen (jede Aktion aus dem Text gibt meist einen Teilpunkt).",
       "source": "Lernapp/Karteikarten/11-Neu-2025.md"
     },
     {

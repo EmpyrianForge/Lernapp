@@ -6,6 +6,7 @@ import { useAppState } from '../state/AppState'
 import { MarkdownText } from './markdown'
 import { Pill } from './ui'
 import { Confetti } from './Confetti'
+import { UmlFigure } from './UmlFigure'
 
 // Authentische, mehrteilige Prüfungsaufgaben mit Selbstbewertung nach Teilpunkten.
 
@@ -56,6 +57,7 @@ function TaskView({ task, onExit }: { task: ExamTask; onExit: () => void }) {
             <div className="solution" aria-live="polite">
               <h3>Musterlösung</h3>
               <p><MarkdownText text={part.modelAnswer} /></p>
+              {part.figure && <UmlFigure id={part.figure} />}
               <h3>Bewertungskriterien</h3>
               <ul className="rubric">
                 {part.rubric.map((r, k) => (

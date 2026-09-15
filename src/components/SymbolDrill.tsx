@@ -8,9 +8,11 @@ import { useGuide } from './DrillGuide'
 
 // UML/BPMN-Symbol-Zuordnung: gezeichnetes Symbol ↔ Bedeutung, Tap-to-Pair.
 // BPMN & UML-Aktivitätsdiagramm sind neu/verstärkt im Katalog 2025 (11-Neu-2025).
+// Anwendungsfall-Satz und Klassenbeziehungen ergänzt nach PV1 Tag 1 (UML, 15.09.2026).
 
 const S = 40
 const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: 2 }
+const dashed = { ...stroke, strokeDasharray: '4 3' }
 
 const SYMBOLS: Record<string, ReactNode> = {
   circleThin: <circle cx={20} cy={20} r={13} {...stroke} />,
@@ -30,6 +32,75 @@ const SYMBOLS: Record<string, ReactNode> = {
     </>
   ),
   bar: <rect x={6} y={17} width={28} height={6} fill="currentColor" />,
+  flowFinal: (
+    <>
+      <circle cx={20} cy={20} r={14} {...stroke} />
+      <line x1={10.1} y1={10.1} x2={29.9} y2={29.9} {...stroke} />
+      <line x1={29.9} y1={10.1} x2={10.1} y2={29.9} {...stroke} />
+    </>
+  ),
+  objectNode: <rect x={4} y={12} width={32} height={16} {...stroke} />,
+  partition: (
+    <>
+      <rect x={4} y={4} width={32} height={32} {...stroke} />
+      <line x1={20} y1={4} x2={20} y2={36} {...stroke} />
+      <line x1={4} y1={12} x2={36} y2={12} {...stroke} />
+    </>
+  ),
+  note: <path d="M6,5 H26 L34,13 V35 H6 Z M26,5 V13 H34" {...stroke} />,
+  actor: (
+    <>
+      <circle cx={20} cy={8} r={4.5} {...stroke} />
+      <line x1={20} y1={12.5} x2={20} y2={26} {...stroke} />
+      <line x1={11} y1={18} x2={29} y2={18} {...stroke} />
+      <line x1={20} y1={26} x2={13} y2={37} {...stroke} />
+      <line x1={20} y1={26} x2={27} y2={37} {...stroke} />
+    </>
+  ),
+  ellipse: <ellipse cx={20} cy={20} rx={17} ry={10} {...stroke} />,
+  boundary: (
+    <>
+      <rect x={3} y={4} width={34} height={32} {...stroke} />
+      <line x1={11} y1={10} x2={29} y2={10} {...stroke} />
+    </>
+  ),
+  line: <line x1={4} y1={20} x2={36} y2={20} {...stroke} />,
+  generalization: (
+    <>
+      <line x1={4} y1={20} x2={25} y2={20} {...stroke} />
+      <polygon points="25,13 36,20 25,27" {...stroke} />
+    </>
+  ),
+  dashedArrow: (
+    <>
+      <line x1={4} y1={20} x2={34} y2={20} {...dashed} />
+      <polyline points="27,14 35,20 27,26" {...stroke} />
+    </>
+  ),
+  directedAssoc: (
+    <>
+      <line x1={4} y1={20} x2={34} y2={20} {...stroke} />
+      <polyline points="27,14 35,20 27,26" {...stroke} />
+    </>
+  ),
+  aggregation: (
+    <>
+      <polygon points="3,20 10,15 17,20 10,25" {...stroke} />
+      <line x1={17} y1={20} x2={37} y2={20} {...stroke} />
+    </>
+  ),
+  composition: (
+    <>
+      <polygon points="3,20 10,15 17,20 10,25" fill="currentColor" stroke="currentColor" strokeWidth={2} />
+      <line x1={17} y1={20} x2={37} y2={20} {...stroke} />
+    </>
+  ),
+  realization: (
+    <>
+      <line x1={4} y1={20} x2={25} y2={20} {...dashed} />
+      <polygon points="25,13 36,20 25,27" {...stroke} />
+    </>
+  ),
 }
 
 function Sym({ id }: { id: string }) {
@@ -44,6 +115,7 @@ interface SymDeck {
   id: string
   title: string
   pairs: { sym: string; meaning: string }[]
+  beyond?: boolean // über den AP1-Katalog hinaus (AP2-Grundlagen) — sichtbar markiert, nicht ausgeblendet
 }
 
 const DECKS: SymDeck[] = [
@@ -62,10 +134,40 @@ const DECKS: SymDeck[] = [
     title: 'UML-Aktivitätsdiagramm',
     pairs: [
       { sym: 'dotFilled', meaning: 'Startknoten' },
-      { sym: 'dotRing', meaning: 'Endknoten' },
+      { sym: 'dotRing', meaning: 'Aktivitätsende (beendet die ganze Aktivität)' },
+      { sym: 'flowFinal', meaning: 'Ablaufende (beendet nur diesen Pfad)' },
       { sym: 'roundRect', meaning: 'Aktion' },
-      { sym: 'diamond', meaning: 'Entscheidung / Zusammenführung' },
-      { sym: 'bar', meaning: 'Fork / Join (Parallelisierung)' },
+      { sym: 'diamond', meaning: 'Verzweigung / Zusammenführung' },
+      { sym: 'bar', meaning: 'Gabelung / Vereinigung (parallel)' },
+      { sym: 'objectNode', meaning: 'Objektknoten (z. B. Rechnung [erstellt])' },
+      { sym: 'partition', meaning: 'Partitionen (Swimlanes)' },
+      { sym: 'note', meaning: 'Notiz' },
+    ],
+  },
+  {
+    id: 'uml-usecase',
+    title: 'UML-Anwendungsfalldiagramm',
+    pairs: [
+      { sym: 'actor', meaning: 'Akteur (Rolle außerhalb des Systems)' },
+      { sym: 'ellipse', meaning: 'Anwendungsfall' },
+      { sym: 'boundary', meaning: 'Systemgrenze (mit Systemname)' },
+      { sym: 'line', meaning: 'Assoziation Akteur – Anwendungsfall' },
+      { sym: 'generalization', meaning: 'Generalisierung (Dreieck zeigt auf das Allgemeine)' },
+      { sym: 'dashedArrow', meaning: '«include»- oder «extend»-Beziehung' },
+    ],
+  },
+  {
+    id: 'uml-klasse',
+    title: 'UML-Klassenbeziehungen',
+    beyond: true,
+    pairs: [
+      { sym: 'line', meaning: 'Assoziation' },
+      { sym: 'directedAssoc', meaning: 'gerichtete Assoziation (Navigierbarkeit)' },
+      { sym: 'aggregation', meaning: 'Aggregation (Teile auch allein existenzfähig)' },
+      { sym: 'composition', meaning: 'Komposition (Teile existenzabhängig)' },
+      { sym: 'generalization', meaning: 'Vererbung / Generalisierung' },
+      { sym: 'realization', meaning: 'Realisierung (Interface implementieren)' },
+      { sym: 'dashedArrow', meaning: 'Abhängigkeit (z. B. «create»)' },
     ],
   },
 ]
@@ -169,6 +271,7 @@ export function SymbolDrill({ onExit }: { onExit: () => void }) {
             <span className="deck-title">{d.title}</span>
             <span className="deck-meta">
               <Pill>{d.pairs.length} Symbole</Pill>
+              {d.beyond && <Pill tone="var(--muted-bg)">AP2-Grundlagen</Pill>}
             </span>
           </button>
         ))}

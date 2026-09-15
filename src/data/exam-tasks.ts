@@ -3,6 +3,7 @@
 // AP1-Blueprint Frühjahr 2025 (02-Aufgabentypen-Operatoren.md).
 
 import extra from './exam-extra.json'
+import { EXAM_UML } from './exam-uml'
 
 export interface ExamPart {
   label: string
@@ -11,6 +12,7 @@ export interface ExamPart {
   prompt: string
   modelAnswer: string
   rubric: string[]
+  figure?: string // ID eines Musterlösungs-Diagramms (components/UmlFigure.tsx)
 }
 
 export interface ExamTask {
@@ -311,4 +313,4 @@ const EXAM_BASE: ExamTask[] = [
 ]
 
 // Zusätzliche, per Workflow generierte & gegengeprüfte Prüfungsaufgaben.
-export const EXAM_TASKS: ExamTask[] = [...EXAM_BASE, ...(extra as ExamTask[])]
+export const EXAM_TASKS: ExamTask[] = [...EXAM_BASE, ...(extra as ExamTask[]), ...EXAM_UML]
