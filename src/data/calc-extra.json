@@ -2861,5 +2861,228 @@
       "Übersehen, dass Concurrent-Lizenzen einen Lizenzserver voraussetzen und dass bei steigender Gleichzeitigkeit nachlizenziert werden muss."
     ],
     "source": "Lernapp — Ausbau 08/2026 (generiert & geprueft)"
+  },
+  {
+    "id": "calc--usv-scheinleistung-und-modellauswahl",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 5,
+    "prompt": "Für den Serverschrank eines Steuerbüros wird eine USV beschafft. Angeschlossen werden zwei Server mit je 350 W, ein NAS mit 60 W, ein Switch mit 45 W und eine Firewall mit 25 W. Der Leistungsfaktor der Last beträgt cos φ = 0,7. Auf die Last soll eine Reserve von 25 % aufgeschlagen werden. Zur Auswahl stehen die Modelle A (1000 VA / 600 W), B (1500 VA / 960 W), C (2200 VA / 1980 W) und D (3000 VA / 2400 W). Berechnen Sie die benötigte Wirk- und Scheinleistung und wählen Sie das kleinste geeignete Modell.",
+    "solutionSteps": [
+      "Wirkleistung der Last: P = 2 × 350 W + 60 W + 45 W + 25 W = 830 W",
+      "Reserve als Aufschlag auf die Last: 830 W × 1,25 = 1.037,5 W",
+      "Scheinleistung: S = P / cos φ = 1.037,5 W / 0,7 = 1.482,14 VA",
+      "Modell A: 1000 VA < 1.482,14 VA → scheidet aus",
+      "Modell B: 1500 VA ≥ 1.482,14 VA ✓, aber 960 W < 1.037,5 W ✗ → scheidet an der Wirkleistung aus",
+      "Modell C: 2200 VA ≥ 1.482,14 VA ✓ und 1980 W ≥ 1.037,5 W ✓ → geeignet",
+      "Modell D wäre auch geeignet, ist aber größer und teurer als nötig → Modell C ist das kleinste geeignete Modell"
+    ],
+    "answer": "P = 1.037,5 W mit Reserve, S ≈ 1.482,14 VA → Modell C (2200 VA / 1980 W). Modell B hält nur den VA-Wert ein, nicht den Watt-Wert.",
+    "unit": "VA / W",
+    "rubric": [
+      {
+        "criterion": "Wirkleistung der Last 830 W",
+        "points": 1
+      },
+      {
+        "criterion": "Reserve als Aufschlag: 830 W × 1,25 = 1.037,5 W",
+        "points": 1
+      },
+      {
+        "criterion": "Scheinleistung über S = P / cos φ: 1.482,14 VA",
+        "points": 1
+      },
+      {
+        "criterion": "beide Nennwerte (VA und W) geprüft: B scheitert an 960 W < 1.037,5 W",
+        "points": 1
+      },
+      {
+        "criterion": "Modell C ausdrücklich als kleinstes geeignetes Modell gewählt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Nur den VA-Wert prüfen: Dann wirkt Modell B passend, obwohl es die Wirkleistung nicht schafft. Eine USV hat zwei Grenzwerte, beide müssen reichen.",
+      "Mit cos φ multiplizieren statt dadurch teilen: 1.037,5 W × 0,7 = 726,25 VA wäre kleiner als die Wirkleistung – die Scheinleistung ist aber nie kleiner als P.",
+      "Reserve vergessen: 830 W / 0,7 = 1.185,71 VA und 830 W ≤ 960 W – dann fiele die Wahl fälschlich auf B.",
+      "Wortlaut beachten: „USV höchstens zu 75 % auslasten“ hieße 830 W / 0,75 = 1.106,67 W und 1.106,67 W / 0,7 = 1.580,95 VA. Dann scheitert B schon am VA-Wert, das Ergebnis bleibt C."
+    ],
+    "source": "PV1 Tag 2 · eigene Aufgabe"
+  },
+  {
+    "id": "calc--usv-reserve-aufschlag-oder-auslastungsgrenze",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 5,
+    "prompt": "Eine Abteilung möchte ihre vorhandene USV (1200 VA / 840 W) weiter nutzen. Die angeschlossenen Geräte nehmen zusammen 640 W auf. Rechnen Sie mit dem vorgegebenen Faustfaktor: Scheinleistung = Wirkleistung × 1,55. a) Laut Vorgabe sind 20 % Reserve auf die Last aufzuschlagen. Reicht die USV? b) Die Vorgabe lautet stattdessen: Die USV darf höchstens zu 80 % ausgelastet werden. Reicht die USV? c) Welchem Leistungsfaktor cos φ entspricht der Faktor 1,55, und welche Scheinleistung ergäbe sich in a) bei modernen Netzteilen mit cos φ = 0,9?",
+    "solutionSteps": [
+      "a) Aufschlag auf die Last: 640 W × 1,2 = 768 W",
+      "a) Scheinleistung: 768 W × 1,55 = 1.190,4 VA",
+      "a) Prüfung: 1.190,4 VA ≤ 1200 VA ✓ und 768 W ≤ 840 W ✓ → die USV reicht (knapp, rund 99 % des VA-Werts)",
+      "b) Auslastungsgrenze: 640 W / 0,8 = 800 W",
+      "b) Scheinleistung: 800 W × 1,55 = 1.240 VA",
+      "b) Prüfung: 1.240 VA > 1200 VA ✗ (800 W ≤ 840 W wäre erfüllt) → die USV reicht nicht",
+      "b) Gegenprobe über die freigegebene USV-Leistung: 1200 VA × 0,8 = 960 VA < 640 W × 1,55 = 992 VA",
+      "c) cos φ = 1 / 1,55 ≈ 0,645",
+      "c) mit cos φ = 0,9: S = 768 W / 0,9 = 853,33 VA (entspricht einem Faktor von 1 / 0,9 ≈ 1,11)"
+    ],
+    "answer": "a) 768 W → 1.190,4 VA: die USV reicht knapp; b) 800 W → 1.240 VA: die USV reicht nicht; c) 1,55 ≙ cos φ ≈ 0,645, mit cos φ = 0,9 wären es nur 853,33 VA",
+    "unit": "VA",
+    "rubric": [
+      {
+        "criterion": "a) 768 W und 1.190,4 VA",
+        "points": 1
+      },
+      {
+        "criterion": "a) Aussage „reicht“, beide Nennwerte geprüft",
+        "points": 1
+      },
+      {
+        "criterion": "b) 800 W über ÷ 0,8 (nicht × 1,2)",
+        "points": 1
+      },
+      {
+        "criterion": "b) 1.240 VA und Aussage „reicht nicht“",
+        "points": 1
+      },
+      {
+        "criterion": "c) cos φ ≈ 0,645 und 853,33 VA",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Beide Vorgaben gleich rechnen: „20 % Aufschlag auf die Last“ heißt × 1,2, „höchstens 80 % Auslastung“ heißt ÷ 0,8. Hier entscheidet der Unterschied (1.190,4 VA gegenüber 1.240 VA) über Ja oder Nein.",
+      "1,55 ist kein Aufschlag von 55 %, sondern steht für S = P / cos φ mit cos φ ≈ 0,645 – eine alte Faustregel aus der Zeit von Netzteilen ohne Leistungsfaktorkorrektur.",
+      "Den Faktor 1,55 nur verwenden, wenn die Aufgabe ihn vorgibt; sonst den genannten Leistungsfaktor einsetzen.",
+      "Rechenweg hinschreiben: Ohne Weg ist nicht erkennbar, welche Reserve-Konvention gerechnet wurde."
+    ],
+    "source": "PV1 Tag 2 · eigene Aufgabe"
+  },
+  {
+    "id": "calc--usv-ueberbrueckungszeit-aus-akkudaten",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 5,
+    "prompt": "Eine USV enthält zwei Akkus mit je 12 V / 9 Ah, die in Reihe geschaltet sind. Nutzbar sind 80 % der Kapazität, der Wechselrichter arbeitet mit 90 % Wirkungsgrad. Angeschlossen ist eine Last von 180 W. Rechnen Sie vereinfacht mit konstanter Last und ohne Akkualterung. a) Berechnen Sie die Überbrückungszeit in Minuten und Sekunden. b) Wie hoch darf die Last höchstens sein, wenn die USV mindestens 20 Minuten überbrücken soll?",
+    "solutionSteps": [
+      "Reihenschaltung: Die Spannungen addieren sich, die Kapazität bleibt gleich → 24 V, 9 Ah",
+      "Gespeicherte Energie: E = U × Q = 24 V × 9 Ah = 216 Wh",
+      "Nutzbare Energie: 216 Wh × 0,8 × 0,9 = 155,52 Wh",
+      "a) t = E / P = 155,52 Wh / 180 W = 0,864 h",
+      "a) 0,864 h × 60 = 51,84 min; 0,84 min × 60 = 50,4 s → ≈ 51 min 50 s",
+      "b) 20 min = 20/60 h = 1/3 h → P = 155,52 Wh / (1/3 h) = 466,56 W"
+    ],
+    "answer": "a) 51,84 min ≈ 51 min 50 s; b) höchstens 466,56 W",
+    "unit": "min / W",
+    "rubric": [
+      {
+        "criterion": "Reihenschaltung richtig (24 V / 9 Ah) und E = 216 Wh",
+        "points": 1
+      },
+      {
+        "criterion": "nutzbare Energie 155,52 Wh (Anteil und Wirkungsgrad multipliziert)",
+        "points": 1
+      },
+      {
+        "criterion": "t = 0,864 h",
+        "points": 1
+      },
+      {
+        "criterion": "Umrechnung 51,84 min ≈ 51 min 50 s",
+        "points": 1
+      },
+      {
+        "criterion": "b) Höchstlast 466,56 W",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Bei Reihenschaltung die Ah verdoppeln (24 V × 18 Ah = 432 Wh) → falsch 103,68 min. In Reihe addieren sich die Spannungen, parallel die Kapazitäten.",
+      "Durch den Wirkungsgrad teilen statt damit multiplizieren: 172,8 Wh / 0,9 = 192 Wh → falsch 64 min. Verluste verringern die nutzbare Energie.",
+      "Stunden nicht in Minuten umrechnen: 0,864 ist ein Wert in Stunden.",
+      "Das Modell ist idealisiert: Laut Herstellerangaben sinkt die Laufzeit bei hoher Last überproportional, und alternde Akkus liefern weniger."
+    ],
+    "source": "PV1 Tag 2 · eigene Aufgabe"
+  },
+  {
+    "id": "calc--usv-wirkungsgrad-und-verlustkosten",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II–III",
+    "points": 5,
+    "prompt": "Ein Serverraum wird dauerhaft mit 2.000 W Last betrieben (8.760 h pro Jahr, Strompreis 0,30 €/kWh). Zur Wahl stehen eine VFI-USV mit 94 % und eine VI-USV mit 98 % Wirkungsgrad im Normalbetrieb. Berechnen Sie für beide Geräte die Verlustleistung sowie die jährlichen Mehrkosten der VFI-USV und beurteilen Sie das Ergebnis kurz.",
+    "solutionSteps": [
+      "Wirkungsgrad η = P_ab / P_zu → zugeführte Leistung P_zu = P_ab / η",
+      "VFI: 2.000 W / 0,94 = 2.127,66 W → Verlust 127,66 W",
+      "VI: 2.000 W / 0,98 = 2.040,82 W → Verlust 40,82 W",
+      "Differenz der Verluste: 127,66 W − 40,82 W = 86,84 W",
+      "Mehrverbrauch pro Jahr: 86,84 W × 8.760 h ≈ 760,75 kWh (mit dem ungerundeten Zwischenwert 86,843 W gerechnet)",
+      "Kontrolle einzeln: VFI 1.118,30 kWh, VI 357,55 kWh → Differenz 760,75 kWh",
+      "Mehrkosten: 760,75 kWh × 0,30 €/kWh ≈ 228,22 € pro Jahr (VFI 335,49 € gegenüber VI 107,27 €)",
+      "Beurteilung: Die VFI-USV kostet im Betrieb rund 228 € pro Jahr mehr und erzeugt mehr Abwärme. Dafür gibt es keine Umschaltzeit und Schutz auch vor Frequenzschwankungen und Oberschwingungen. Für kritische Server lohnt sich das meist; bei stabilem Netz und weniger kritischer Last kann VI genügen."
+    ],
+    "answer": "Verluste: VFI 127,66 W, VI 40,82 W → Mehrverbrauch ≈ 760,75 kWh pro Jahr → die VFI-USV kostet ≈ 228,22 € pro Jahr mehr; begründetes Fazit (Schutzgewinn gegen Mehrkosten)",
+    "unit": "€",
+    "rubric": [
+      {
+        "criterion": "zugeführte Leistung über P_ab / η (2.127,66 W bzw. 2.040,82 W)",
+        "points": 1
+      },
+      {
+        "criterion": "Verlustleistungen 127,66 W und 40,82 W",
+        "points": 1
+      },
+      {
+        "criterion": "Mehrverbrauch ≈ 760,75 kWh pro Jahr",
+        "points": 1
+      },
+      {
+        "criterion": "Mehrkosten ≈ 228,22 € pro Jahr",
+        "points": 1
+      },
+      {
+        "criterion": "Beurteilung: Mehrkosten gegen Schutzgewinn abgewogen, Fazit genannt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Verlust als P × (1 − η) rechnen: 120 W − 40 W = 80 W → falsch 700,8 kWh und 210,24 €. Der Wirkungsgrad bezieht sich auf die zugeführte Leistung.",
+      "W × h ergibt Wh – für den Strompreis durch 1.000 teilen (kWh).",
+      "Nur die Kosten nennen und kein Fazit ziehen: Beim Operator „beurteilen“ fehlt dann die Entscheidung.",
+      "Die Werte gelten für den Normalbetrieb. Viele Online-USVs haben einen ECO-Modus mit bis zu etwa 99 %, versorgen die Last darin aber über den Bypass und schützen weniger."
+    ],
+    "source": "PV1 Tag 2 · eigene Aufgabe",
+    "peripheral": true
   }
 ]

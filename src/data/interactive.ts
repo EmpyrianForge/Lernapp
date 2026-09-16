@@ -155,6 +155,36 @@ const MATCH_BASE: MatchDeck[] = [
       { left: '„Danach ist der gesamte Prozess beendet."', right: 'Aktivitätsende (Kreis mit Ring)' },
     ],
   },
+  // PV1 Tag 2 (Kommandozeile): Windows-Befehle zur Netzwerkdiagnose und Systemabfrage.
+  // Eigene Formulierungen; Fallen (nslookup ohne Cache, Prozess-ID nur mit -o) laut Abgleich 16.09.2026.
+  {
+    id: 'match-windows-befehl-zweck',
+    title: 'Windows-Befehl → Zweck',
+    topicId: 'netzwerke',
+    instruction: 'Ordne jeden Befehl der Windows-Eingabeaufforderung seinem Zweck zu. [RAND] = Randstoff.',
+    pairs: [
+      { left: 'ping', right: 'prüft per ICMP-Echo, ob ein Host antwortet und wie schnell' },
+      { left: 'tracert', right: 'zeigt die Router (Hops) auf dem Weg zum Ziel' },
+      { left: 'nslookup', right: 'fragt einen DNS-Server direkt nach der Adresse zu einem Namen' },
+      { left: '[RAND] netstat -ano', right: 'listet Verbindungen und lauschende Ports mit Prozess-ID auf' },
+      { left: 'whoami', right: 'zeigt das angemeldete Benutzerkonto (Domäne bzw. Rechner\\Benutzer)' },
+      { left: 'systeminfo', right: 'zeigt Windows-Version, Arbeitsspeicher, Installationsdatum und Updates' },
+    ],
+  },
+  {
+    id: 'match-netzproblem-befehl',
+    title: 'Netzwerkproblem → passender Befehl',
+    topicId: 'netzwerke',
+    instruction: 'Ordne jeder Situation den Windows-Befehl zu, mit dem du sie prüfst oder behebst. [RAND] = Randstoff.',
+    pairs: [
+      { left: 'Welche MAC-Adresse und welche DNS-Server hat der eigene Rechner?', right: 'ipconfig /all' },
+      { left: 'Der PC hat 169.254.x.x, das Kabel steckt jetzt richtig – neue Adresse ohne Neustart holen', right: 'ipconfig /renew' },
+      { left: 'Nach einer DNS-Umstellung löst der PC den Namen noch zur alten IP auf – lokalen Zwischenspeicher leeren', right: 'ipconfig /flushdns' },
+      { left: 'Der Server antwortet auf seine IP-Adresse, nicht auf seinen Namen – was liefert der DNS-Server direkt?', right: 'nslookup' },
+      { left: '[RAND] Welche MAC-Adresse hat das gerade angepingte Standardgateway?', right: 'arp -a' },
+      { left: '[RAND] Welcher Prozess belegt Port 8080?', right: 'netstat -ano' },
+    ],
+  },
 ]
 
 const ORDER_BASE: OrderTask[] = [
@@ -244,6 +274,23 @@ const ORDER_BASE: OrderTask[] = [
     topicId: 'wirtschaftlichkeit',
     prompt: 'Bringe die Stationen der Bezugskalkulation in die richtige Reihenfolge.',
     correct: ['Listen-Einkaufspreis', 'Zieleinkaufspreis (− Rabatt)', 'Bareinkaufspreis (− Skonto)', 'Bezugspreis (+ Bezugskosten)'],
+  },
+  // PV1 Tag 2 (Kommandozeile): Die Reihenfolge ist durch die Vorgabe eindeutig — erst die eigene
+  // Konfiguration ablesen (liefert die Ziele für die Pings), dann von innen nach außen, zuletzt DNS.
+  {
+    id: 'order-netzwerkstoerung-eingrenzen',
+    title: 'Netzwerkstörung von innen nach außen eingrenzen',
+    topicId: 'netzwerke',
+    prompt:
+      'Ein PC öffnet keine Webseiten. Bringe die Prüfschritte in die richtige Reihenfolge: erst die eigene Konfiguration ablesen, dann von innen nach außen testen, zum Schluss die Namensauflösung prüfen.',
+    correct: [
+      'ipconfig /all – eigene IP, Standardgateway und DNS-Server ablesen',
+      'ping 127.0.0.1 – TCP/IP-Stack des eigenen PCs',
+      'ping auf die eigene IP-Adresse – Adresse ist am Adapter eingerichtet',
+      'ping auf das Standardgateway – lokales Netz bis zum Router',
+      'ping auf eine externe IP-Adresse – Weg ins Internet',
+      'nslookup mit dem Namen der Webseite – Antwort des DNS-Servers',
+    ],
   },
 ]
 

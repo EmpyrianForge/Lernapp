@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-15T10:19:35.244Z",
-  "count": 576,
+  "generatedAt": "2026-09-16T08:59:56.747Z",
+  "count": 608,
   "items": [
     {
       "id": "hardware--von-neumann-architektur-nenne-die-funktionalen-komponenten-und-ihr",
@@ -394,7 +394,6 @@
       ],
       "examFrequency": 1,
       "ap1Status": "core",
-      "peripheral": true,
       "operator": null,
       "afb": null,
       "points": null,
@@ -628,6 +627,336 @@
       "points": null,
       "front": "Nenne konkrete Green-IT-Massnahmen entlang des Lebenszyklus eines Arbeitsplatzrechners.",
       "back": "Beschaffung: energieeffiziente Geräte nach Umweltzeichen (Energy Star, Blauer Engel, EPEAT, TCO Certified), Netzteil mit 80-PLUS-Zertifizierung und passender Dimensionierung (nicht überdimensionieren), langlebige, reparierbare und aufrüstbare Hardware, wo möglich Thin Clients statt vollwertiger PCs. Betrieb: Energiesparpläne, Standby und automatisches Herunterfahren nach Feierabend, Server-Virtualisierung und Konsolidierung statt vieler kaum ausgelasteter Server, effiziente Klimatisierung im Rechenzentrum (Kalt-/Warmgang-Trennung, höhere Zulufttemperatur, Abwärmenutzung), Duplex- und Sammeldruck, Bezug von Ökostrom. Nutzungsende: Nutzungsdauer verlängern, Weiterverwendung/Refurbishing, nach sicherer Datenlöschung fachgerechte Rücknahme und Recycling nach ElektroG. Wichtige Kennzahl im Rechenzentrum: PUE (Power Usage Effectiveness).",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--wofuer-steht-die-abkuerzung-usv-welche-zwei-aufgaben-erfuellt",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wofür steht die Abkürzung USV, welche zwei Aufgaben erfüllt eine USV und vor welchen Netzstörungen schützt sie?",
+      "back": "USV = **Unterbrechungsfreie Stromversorgung**, englisch UPS = *Uninterruptible Power Supply*.\n\nZwei Aufgaben:\n- **Ausfall überbrücken:** Fällt das Netz aus, versorgt die USV die angeschlossenen Geräte aus ihrem Akku weiter. Das reicht, um kurze Ausfälle zu überstehen oder die Systeme geordnet herunterzufahren (kein Datenverlust, keine beschädigten Dateisysteme oder Datenbanken).\n- **Netzqualität sichern:** Je nach Klasse hält sie Störungen von den Geräten fern.\n\nFünf typische Netzstörungen: Netzausfall, Spannungseinbruch, Überspannung/Spannungsspitze, dauerhafte Unter- oder Überspannung, Frequenzschwankung (dazu Oberschwingungen, Transienten).\n\nEinordnung: technische Maßnahme für das Schutzziel **Verfügbarkeit**. Die USV überbrückt nur Minuten; für lange Ausfälle braucht man zusätzlich eine Netzersatzanlage (z. B. Dieselaggregat), die USV hält dann bis zu deren Start durch.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--welche-zehn-netzstoerungen-unterscheidet-die-gaengige-uebersicht-zu-iec",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche zehn Netzstörungen unterscheidet die gängige Übersicht zu IEC 62040-3, und welche USV-Klasse deckt welche ab?",
+      "back": "Übersicht (ZVEI-Einteilung zur IEC 62040-3):\n1. Netzausfall (länger als 10 ms)\n2. Spannungseinbruch (kürzer als 16 ms)\n3. kurzzeitige Überspannung (kürzer als 16 ms)\n4. dauerhafte Unterspannung\n5. dauerhafte Überspannung\n6. Blitzeinwirkung (Stoßspannung, sporadisch)\n7. Transienten, also sehr kurze Schaltspitzen (kürzer als 4 ms)\n8. Frequenzschwankung\n9. Burst (schnelle, periodisch wiederkehrende Störimpulse)\n10. Oberschwingungen (verzerrte Sinusform, dauerhaft)\n\nZuordnung:\n- **VFD** schützt vor 1–3.\n- **VI** schützt vor 1–5, weil sie dauerhafte Abweichungen ausregelt.\n- **VFI** schützt vor 1–10; gegen Blitz aber nur zusammen mit einem Blitz- und Überspannungsschutz der Gebäudeinstallation.\n\nMerkhilfe: 3 – 5 – 10.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--beschreibe-den-energiefluss-einer-vfd-vi-und-vfi-usv",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Beschreibe den Energiefluss einer VFD-, VI- und VFI-USV im Normalbetrieb und bei Netzausfall.",
+      "back": "**VFD** (Offline-/Standby-USV, „passiver Mitlauf“):\n- Normalbetrieb: Netz → Filter → Umschalter → Last. Die Spannung wird nicht gewandelt; ein Ladegerät hält den Akku voll.\n- Netzausfall: Der Umschalter legt die Last auf den Wechselrichter, der aus dem Akku speist. Dabei entsteht eine kurze Versorgungslücke.\n\n**VI** (Line-Interactive, netzinteraktive USV):\n- Normalbetrieb: Netz → Filter → Spannungsregler (AVR, Stufentransformator hebt oder senkt die Spannung) → Last. Ein kombinierter Gleich-/Wechselrichter lädt nebenbei den Akku.\n- Netzausfall oder Abweichung außerhalb des Regelbereichs: Derselbe Umrichter speist die Last aus dem Akku. Die Frequenz folgt im Normalbetrieb dem Netz.\n\n**VFI** (Online-USV, Doppelwandler, Dauerwandler):\n- Immer: Netz → Gleichrichter → Gleichspannungs-Zwischenkreis mit Akku → Wechselrichter → Last. Die Ausgangsspannung wird also ständig neu erzeugt.\n- Netzausfall: Der Akku speist den Zwischenkreis weiter, **ohne Umschaltung**.\n- Überlast oder Defekt: Der Bypass legt die Last direkt ans Netz.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--welche-umschaltzeiten-sind-fuer-vfd-vi-und-vfi-usvs",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Umschaltzeiten sind für VFD-, VI- und VFI-USVs typisch, und warum ist die Umschaltzeit wichtig?",
+      "back": "Richtwerte:\n- **VFD:** ca. 4–10 ms\n- **VI:** ca. 2–4 ms\n- **VFI:** 0 ms, weil der Wechselrichter ohnehin ständig arbeitet und nichts umgeschaltet wird\n\nDie Werte sind herstellerabhängig. Es gibt auch Line-Interactive-Geräte mit bis zu 10 ms, deshalb im Datenblatt nachsehen.\n\nBedeutung: Während der Umschaltung bekommt die Last keine Energie aus der USV. Netzteile überbrücken nur eine kurze Lücke aus ihren Kondensatoren. Ist die Lücke zu lang oder das Gerät empfindlich (Server, Speichersysteme, Mess- und Medizintechnik), startet es neu oder stürzt ab. Außerdem erkennt eine umschaltende USV Störungen, die kürzer als ihre Umschaltzeit sind, oft gar nicht.\n\nMerksatz: **Nur VFI kennt keine Umschaltung zwischen Netz- und Akkubetrieb.**",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--welche-vor-und-nachteile-haben-die-usv-klassen-vfd",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Vor- und Nachteile haben die USV-Klassen VFD, VI und VFI, und wie begründest du damit die Wahl der Klasse?",
+      "back": "**VFD**\n- Vorteile: günstig; im Normalbetrieb am effizientesten, weil das Netz nur durchgeleitet wird; bei stabilem Netz wird der Akku selten beansprucht (bei schwankender Spannung dagegen häufig, weil sie nicht regelt).\n- Nachteile: Umschaltlücke; regelt die Spannung nicht aus; liefert im Akkubetrieb oft nur eine Treppen- oder Rechteckspannung.\n- Passt für: Einzelplatz-PC, Homeoffice, unkritische Geräte.\n\n**VI**\n- Vorteile: gutes Preis-Leistungs-Verhältnis; regelt dauerhafte Unter- und Überspannung per AVR ohne Akku aus und schont ihn damit (im Vergleich zu VFD); kurze Umschaltzeit.\n- Nachteile: Die Frequenz bleibt netzabhängig. Nur Abweichungen außerhalb des AVR-Regelbereichs und Frequenzabweichungen führen zum Akkubetrieb; bei sehr schlechtem Netz kommt das trotzdem oft vor, dann ist VFI die bessere Wahl.\n- Passt für: wichtige Arbeitsplatzrechner, kleine Einzel- oder Abteilungsserver, Netzwerktechnik bei stabilem Netz.\n\n**VFI**\n- Vorteile: entkoppelt Spannung und Frequenz vollständig; keine Umschaltzeit; immer sauberer Sinus.\n- Nachteile: teuer; die ständige Doppelwandlung erzeugt Verluste und Abwärme (Kühlung, Lüftergeräusch).\n- Passt für: geschäftskritische Server, Rechenzentrum, empfindliche Mess- und Medizintechnik, Standorte mit schlechter Netzqualität.\n\nBegründen nach drei Fragen: Wie kritisch ist die Last? Wie gut ist das Netz? Wie groß ist das Budget? Für geschäftskritische Server ist VFI die Standardempfehlung. VI ist für einen kleinen Server bei stabilem Netz mit Kostenargument ebenfalls vertretbar, wenn die Begründung stimmt.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--welche-aufgaben-haben-gleichrichter-akku-wechselrichter-und-umschalter-in",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Aufgaben haben Gleichrichter, Akku, Wechselrichter und Umschalter in einer USV?",
+      "back": "- **Gleichrichter** (AC → DC): wandelt die Netzwechselspannung in Gleichspannung. Er lädt den Akku und versorgt bei VFI dauerhaft den Zwischenkreis.\n- **Akku/Batterie:** speichert die Energie als Gleichspannung. Meist sind es verschlossene Blei-Akkus (Gel/AGM), in neueren Geräten zunehmend Lithium-Ionen. Mehrere Blöcke werden zu höherer Spannung in Reihe geschaltet.\n- **Wechselrichter** (DC → AC): erzeugt aus der Gleichspannung wieder eine Wechselspannung (230 V, 50 Hz) für die Geräte.\n- **Umschalter** (Relais oder elektronischer Schalter): wechselt bei VFD und VI zwischen Netzpfad und Akkupfad.\n- Dazu kommen **Filter**, die Störspitzen dämpfen, und bei VI der **Spannungsregler (AVR)**, der die Spannung ohne Akku anhebt oder absenkt.\n\nMerkhilfe: Der **Gleich**richter macht **Gleich**spannung, der **Wechsel**richter macht **Wechsel**spannung.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--wozu-dient-der-bypass-einer-online-usv-und-worin",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wozu dient der Bypass einer Online-USV, und worin unterscheiden sich statischer Bypass und Wartungsbypass?",
+      "back": "Der Bypass ist ein Pfad, über den die Last am Wechselrichter vorbei direkt aus dem Netz versorgt wird.\n\n- **Statischer (automatischer) Bypass:** elektronischer Schalter. Bei Überlast (z. B. hohem Einschaltstrom), Übertemperatur oder Defekt des Wechselrichters schaltet die USV die Last praktisch unterbrechungsfrei aufs Netz, weil der Wechselrichter netzsynchron läuft. Die Geräte laufen weiter, sind in dieser Zeit aber **ungeschützt**.\n- **Wartungsbypass (manueller Bypass):** Handschalter oder externe Umgehung. Er legt die Last am USV-Gerät vorbei ans Netz, damit Techniker die USV spannungsfrei warten oder tauschen können, ohne die Server abzuschalten.\n\nVerwandt ist der **ECO-Modus**: Die Last läuft im Normalbetrieb über den Bypass, das bringt einen Wirkungsgrad bis ca. 99 %. Der Wechselrichter übernimmt erst bei einer Störung, dann mit kurzer Umschaltzeit. In dieser Betriebsart fehlt also der volle VFI-Schutz.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--wie-ist-der-vollstaendige-klassifizierungscode-einer-usv-nach-iec",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie ist der vollständige Klassifizierungscode einer USV nach IEC 62040-3 aufgebaut (z. B. VFI-SS-111), und warum ist die Kurvenform ein Auswahlkriterium?",
+      "back": "IEC = *International Electrotechnical Commission*. In Deutschland gilt die Norm als DIN EN IEC 62040-3 (VDE 0558-530); die frühere europäische Vornorm ENV 50091-3 ist abgelöst.\n\nAufbau in drei Stufen:\n1. **VFD / VI / VFI:** wie stark der Ausgang von Netzspannung und Netzfrequenz abhängt.\n2. **Zwei Buchstaben für die Kurvenform** der Ausgangsspannung. Der erste gilt im Normalbetrieb, der zweite im Batteriebetrieb.\n→ Buchstabe S = Sinus mit geringer Verzerrung, auch bei nichtlinearer Last (z. B. Schaltnetzteile)\n→ Buchstabe X = Sinus nur bei linearer Last\n→ Buchstabe Y = kein Sinus (z. B. Rechteck- oder Trapezform)\n3. **Drei Ziffern für das dynamische Verhalten:** beim Wechsel der Betriebsart, bei einem Lastsprung mit linearer Last und bei einem Lastsprung mit nichtlinearer Last.\n→ Ziffer 1 = keine Unterbrechung (engste Toleranz)\n→ Ziffer 2 = Lücke bis ca. 1 ms\n→ Ziffer 3 = Lücke bis ca. 10 ms\n\n**VFI-SS-111** ist die beste Einstufung; sie erreichen nur Online-USVs.\n\nAchtung Begriffe: Lehrbücher und Kursunterlagen setzen oft „Klasse 1 / 2 / 3“ mit VFI / VI / VFD gleich. Das ist eine verbreitete Faustregel. In der Norm bezeichnen die Ziffern 1–3 die dynamische Toleranz. Für die Prüfung beide Lesarten kennen.\n\nKurvenform in der Praxis: Günstige VFD- und manche VI-Geräte geben im Batteriebetrieb nur eine Treppen- oder Rechteckspannung aus („modifizierter Sinus“). Netzteile mit aktiver PFC, Motoren oder Transformatoren können daran Probleme bekommen, etwa Abschalten, Brummen oder Erwärmung. Für Server deshalb auf reinen Sinus achten.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--grenze-wirkleistung-blindleistung-und-scheinleistung-ab-und-nenne-ihren",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze Wirkleistung, Blindleistung und Scheinleistung ab und nenne ihren Zusammenhang über den Leistungsfaktor.",
+      "back": "- **Wirkleistung P** in **W** (Watt): wird tatsächlich in Arbeit bzw. Wärme umgesetzt. Nach ihr richten sich Stromkosten und Abwärme.\n- **Blindleistung Q** in **var** (Volt-Ampere reaktiv): pendelt zwischen Netz und Gerät hin und her, z. B. durch Kondensatoren, Spulen oder Netzteile ohne Leistungsfaktorkorrektur (PFC). Sie verrichtet keine Arbeit, belastet aber Leitungen und USV.\n- **Scheinleistung S** in **VA** (Volt-Ampere): die Leistung, die die Quelle insgesamt bereitstellen muss; S = U · I.\n\nZusammenhang:\n- Leistungsfaktor (in Aufgaben meist cos φ) = P / S\n- also **S = P / cos φ** und **P = S · cos φ**\n- bei sinusförmigen Größen gilt außerdem S² = P² + Q²\n- Folge: S ist nie kleiner als P, der VA-Wert ist immer mindestens so groß wie der W-Wert.\n\nBeispiel: 600 W bei cos φ = 0,75 → S = 600 / 0,75 = **800 VA**; Q = √(800² − 600²) ≈ 529 var.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--warum-hat-eine-usv-zwei-leistungsangaben-va-und-w",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Warum hat eine USV zwei Leistungsangaben (VA und W), und wie prüfst du, ob sie für eine Last ausreicht?",
+      "back": "Warum zwei Angaben: Die USV ist doppelt begrenzt. Der VA-Wert begrenzt den Strom, den Wechselrichter und Bauteile führen dürfen. Der W-Wert begrenzt die Wirkleistung, die Wechselrichter, Akku und Kühlung verkraften. Der Quotient W / VA ist der Leistungsfaktor, für den die USV ausgelegt ist.\n\nPrüfen: Die Last muss **beide** Grenzen einhalten, jeweils nach Einrechnen der Reserve:\n- Last in W ≤ USV-Wert in W\n- Last in VA ≤ USV-Wert in VA\n\nBeispiel: Last 800 W bei cos φ = 0,9 → 800 / 0,9 = 888,89 VA.\n- USV A (1.200 VA / 720 W): VA reichen, aber 720 W < 800 W → **ungeeignet**.\n- USV B (1.500 VA / 1.050 W): beide Werte reichen → **geeignet**.\n\nFalle: nur die VA vergleichen. Moderne Netzteile mit aktiver PFC haben einen hohen Leistungsfaktor, deshalb ist oft die **W-Grenze** der Engpass.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--wie-dimensionierst-du-eine-usv-mit-reserve-und-was",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie dimensionierst du eine USV mit Reserve, und was ist bei der Formulierung der Reserve und beim Faktor 1,55 zu beachten?",
+      "back": "Rechenweg (immer hinschreiben):\n1. Leistungsaufnahme aller angeschlossenen Geräte in W addieren. Gemeint ist die Leistung, nicht der Energieverbrauch in kWh.\n2. Reserve so einrechnen, wie die Aufgabe sie formuliert:\n→ Aufschlag („x % Reserve bzw. Aufschlag auf die Last“): P · (1 + x)\n→ Auslastungsgrenze („USV höchstens zu y % auslasten“ oder „x % der USV-Leistung sollen frei bleiben“): P / y bzw. P / (1 − x)\n3. Scheinleistung berechnen: S = P / cos φ. Gibt die Aufgabe stattdessen einen Faktor vor, gilt S = P · Faktor.\n4. Ein Modell wählen, das **VA und W** einhält.\n\nBeispiel: 500 W Last, 20 % Reserve, cos φ = 0,8.\n- als Aufschlag: 500 · 1,2 = 600 W → 600 / 0,8 = **750 VA**\n- als Auslastungsgrenze 80 %: 500 / 0,8 = 625 W → 625 / 0,8 = **781,25 VA**\n\n**Faktor 1,55:** alte Faustregel aus der Zeit von Netzteilen ohne PFC. Sie entspricht cos φ ≈ 1 / 1,55 ≈ 0,645; mit einer Reserve hat sie nichts zu tun. Heutige Netzteile mit aktiver PFC liegen meist bei 0,9 oder höher. Den Faktor nur verwenden, wenn die Aufgabe ihn vorgibt. Im Beispiel ergäbe er 600 · 1,55 = 930 VA bzw. 625 · 1,55 = 968,75 VA.\n\nZusätzlich ggf. eine Erweiterungsreserve für künftige Geräte einplanen.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--wie-berechnest-du-die-ueberbrueckungszeit-einer-usv-aus-den",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie berechnest du die Überbrückungszeit einer USV aus den Akkudaten, und wovon hängt sie in der Praxis ab?",
+      "back": "Formeln:\n- Akkuenergie: **E = U · Q** (V · Ah = Wh)\n- Reihenschaltung: Die Spannungen addieren sich, die Ah bleiben gleich.\n- Parallelschaltung: Die Ah addieren sich, die Spannung bleibt gleich.\n- **t = E · nutzbarer Anteil · η / P(Last)**. Das Ergebnis ist in h, mal 60 ergibt min.\n\nBeispiel: 4 Akkus mit je 12 V / 7 Ah in Reihe; nutzbar 80 %, Wirkungsgrad des Wechselrichters 90 %, Last 400 W.\n- 48 V · 7 Ah = 336 Wh\n- 336 · 0,8 · 0,9 = 241,92 Wh\n- 241,92 / 400 = 0,6048 h ≈ **36 min 17 s**\n\nFallen: bei Reihenschaltung die Ah addieren; durch η teilen statt multiplizieren; die Umrechnung h → min vergessen.\n\nIn der Praxis hängt die Laufzeit ab von:\n- der Höhe der Last; bei hoher Last sinkt sie überproportional, deshalb die Laufzeittabelle des Herstellers nutzen\n- Anzahl und Kapazität der Akkus (Erweiterungs-Batteriepacks)\n- Alter und Zustand der Akkus\n- der Umgebungstemperatur\n- dem Wirkungsgrad\n\nPlanung: Die Laufzeit muss für das geordnete Herunterfahren plus eine Sicherheitsreserve reichen.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--nach-welchen-kriterien-waehlst-du-eine-usv-fuer-ein",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nach welchen Kriterien wählst du eine USV für ein Unternehmen aus?",
+      "back": "- **USV-Klasse** (VFD/VI/VFI), passend zu Kritikalität der Last und Netzqualität\n- **Leistung in VA und in W**, jeweils mit Reserve\n- **Überbrückungszeit** bei der tatsächlichen Last; Erweiterbarkeit mit zusätzlichen Batteriepacks\n- **Bauform und Standort**: Steckdosenleiste/Desktop, Tower, 19-Zoll-Rack (Höheneinheiten), modulare Anlage\n- **Kurvenform** im Batteriebetrieb (reiner Sinus oder Treppenform)\n- **Ausgänge**: Anzahl und Art (Schutzkontakt, Kaltgerätebuchsen), ggf. getrennt schaltbare Gruppen\n- **Schnittstellen und Management**: USB oder seriell, Netzwerkkarte mit Weboberfläche und SNMP, Shutdown-Software\n- **Wirkungsgrad**, Abwärme und Geräusch\n- **Kosten**: Anschaffung, Strom, Akkutausch (Gesamtkosten); Akkus im laufenden Betrieb tauschbar?; Garantie und Service\n\nMehrere Angebote vergleicht man z. B. mit einer Nutzwertanalyse.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--welche-bauformen-von-usvs-gibt-es-und-was-ist",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Bauformen von USVs gibt es, und was ist bei ihrer Aufstellung zu beachten?",
+      "back": "Bauformen:\n- **Steckdosenleisten- oder Desktop-USV:** kleine Leistung, für Einzelplatz und Homeoffice.\n- **Tower (Standgerät):** für Arbeitsplätze, Einzelserver und kleine Büros.\n- **19-Zoll-Rack-USV:** belegt Höheneinheiten (oft 1–3 HE, dazu ggf. Batterieerweiterungen) und sitzt im Server- oder Netzwerkschrank. Wegen des hohen Akkugewichts gehört sie **unten** in den Schrank (Schwerpunkt, Kippgefahr).\n- **Modulare Schrank- und Großanlagen:** Leistungs- und Batteriemodule lassen sich nachrüsten und im laufenden Betrieb tauschen; mit einem zusätzlichen Modul (N+1) sind sie redundant. Einsatz: Serverraum, Rechenzentrum.\n\nAufstellung:\n- kühl und gut belüftet, denn Wärme verkürzt die Akkulebensdauer\n- für Wartung und Akkutausch zugänglich\n- bei großen Anlagen die Tragfähigkeit des Bodens prüfen, ggf. einen eigenen Raum vorsehen",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--wie-sorgt-eine-usv-bei-laengerem-stromausfall-dafuer-dass",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie sorgt eine USV bei längerem Stromausfall dafür, dass Server geordnet herunterfahren?",
+      "back": "Kommunikation:\n- **USB oder serielle Schnittstelle** zu einem einzelnen Rechner\n- **Netzwerkmanagementkarte** mit Weboberfläche, **SNMP** und E-Mail; darüber lassen sich mehrere Server und Hypervisoren erreichen\n\nAuf den Systemen läuft ein **Shutdown-Agent** (Herstellersoftware oder ein freies Werkzeug). Er erhält Meldungen wie „Batteriebetrieb“ oder „Akku schwach“.\n\nRegeln:\n- Herunterfahren nach x Minuten Batteriebetrieb oder sobald die Restlaufzeit unter y Minuten fällt\n- Reihenfolge: zuerst VMs, Anwendungen und Datenbanken, dann die Hosts, zuletzt Speichersysteme (z. B. NAS)\n- Danach kann sich die USV selbst abschalten und bei Netzrückkehr wieder starten; der Wiederanlauf braucht die umgekehrte Reihenfolge.\n\nBenachrichtigung: E-Mail oder SNMP-Trap an das Monitoring.\n\nZeitbudget: Restlaufzeit abzüglich Sicherheitsreserve (Akkualterung) muss länger sein als die Dauer des Herunterfahrens. Das Ganze regelmäßig testen.",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--welche-wartung-braucht-eine-usv-und-wann-werden-ihre",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Wartung braucht eine USV, und wann werden ihre Akkus getauscht?",
+      "back": "Wartung:\n- regelmäßiger **Selbsttest** (automatisch oder manuell) und gelegentlich ein Laufzeittest\n- Ereignisprotokoll und Warnmeldungen auswerten\n- Lüfter und Belüftung prüfen\n\nAkkus:\n- Die üblichen verschlossenen Blei-Akkus heißen „wartungsfrei“, weil man kein Wasser nachfüllt. Sie verschleißen trotzdem.\n- Tausch **vor Ende der Designlebensdauer**. Faustregel: 5-Jahres-Akkus nach spätestens etwa 4 Jahren, 10-Jahres-Akkus nach spätestens etwa 8 Jahren.\n- Ebenfalls tauschen, wenn der Selbsttest anschlägt oder die Laufzeit deutlich sinkt.\n\nWas die Lebensdauer verkürzt:\n- Wärme; Faustregel: rund 8–10 K über ca. 20–25 °C halbieren sie ungefähr\n- viele Tiefentladungen\n- häufiger Akkubetrieb bei unruhigem Netz. Am stärksten betroffen ist die VFD-USV, weil sie jede größere Spannungsabweichung nur durch Umschalten auf den Akku abfangen kann. Die VI-USV regelt dauerhafte Unter- und Überspannung per AVR ohne Akku aus und schont ihn dadurch. Bei stabilem Netz wird der Akku einer VFD-USV dagegen kaum beansprucht.\n\nTausch:\n- bei tauschfähigen Geräten im laufenden Betrieb (Hot-Swap), sonst im Wartungsfenster oder über den Wartungsbypass\n- alle Blöcke eines Strangs gemeinsam tauschen, alte und neue nicht mischen\n- Tauschdatum dokumentieren\n\nEntsorgung: Altakkus gehören nicht in den Restmüll, sondern zurück an Händler oder Sammelstelle (siehe Karte zu WEEE/ElektroG im Deck „Neu 2025“).",
+      "source": "Lernapp/Karteikarten/01-Hardware.md"
+    },
+    {
+      "id": "hardware--wie-berechnest-du-verlustleistung-und-zusaetzliche-stromkosten-einer-usv",
+      "topicId": "hardware",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "hardware",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie berechnest du Verlustleistung und zusätzliche Stromkosten einer USV aus ihrem Wirkungsgrad?",
+      "back": "Formeln:\n- Wirkungsgrad **η = P(aus) / P(ein)**, also P(ein) = P(aus) / η\n- Verlustleistung = P(ein) − P(aus) = P(aus) · (1/η − 1)\n- Kosten = Verlustleistung · Betriebsstunden · Strompreis\n\nBeispiel: Dauerlast 1.500 W, η = 0,95, Betrieb rund um die Uhr (8.760 h/Jahr), 0,32 €/kWh.\n- P(ein) = 1.500 / 0,95 = 1.578,95 W\n- Verlust = 78,95 W\n- 78,95 W · 8.760 h = 691,58 kWh\n- 691,58 kWh · 0,32 € = **221,31 € pro Jahr**\n\nFalle: Verlust als P(aus) · (1 − η) rechnen. Das ergibt 75 W und 210,24 € und ist zu niedrig, weil sich η auf die Eingangsleistung bezieht.\n\nGrößenordnungen heute:\n- Doppelwandler (VFI) ca. 94–97 %, im ECO-Modus bis ca. 99 %, dann aber mit Umschaltzeit\n- VFD ist im Normalbetrieb am effizientesten.\n\nDie Abwärme muss zusätzlich weggekühlt werden (Klimatisierung, Green IT, PUE).",
       "source": "Lernapp/Karteikarten/01-Hardware.md"
     },
     {
@@ -1870,6 +2199,258 @@
       "points": null,
       "front": "Grenzen Sie PAN, LAN, MAN und WAN voneinander ab und ordnen Sie Intranet, Extranet und Internet ein.",
       "back": "PAN (Personal Area Network): wenige Meter im unmittelbaren Umfeld einer Person, z. B. Kopplung von Smartphone, Headset und Drucker per Bluetooth oder USB.\nLAN (Local Area Network): räumlich begrenzt auf ein Gebäude oder Gelände, im Eigentum des Betreibers, hohe Datenraten (1/10 Gbit/s), Technik Ethernet und WLAN.\nMAN (Metropolitan Area Network): stadtweite Kopplung mehrerer LANs, meist über LWL-Strecken eines Providers.\nWAN (Wide Area Network): landes- oder weltweite Kopplung, über angemietete Providerleitungen (DSL, Kabel, LWL-Standleitung, Mobilfunk, MPLS); geringere Datenraten und höhere Latenz als im LAN. Das Internet ist das größte WAN.\nEinordnung: Intranet = nur intern erreichbares, mit Internettechnik (IP, HTTP) betriebenes Firmennetz. Extranet = kontrollierte Erweiterung des Intranets für definierte externe Partner, Lieferanten oder Kunden, üblicherweise per VPN oder authentifiziertem Portal. Internet = öffentliches, weltweites Netz aus zusammengeschalteten autonomen Netzen.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--wie-arbeitet-ping-und-welche-optionen-unterscheiden-sich-zwischen",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie arbeitet `ping`, und welche Optionen unterscheiden sich zwischen Windows und Linux?",
+      "back": "Prinzip: `ping` (Windows, Linux, macOS) schickt ICMP-Pakete vom Typ Echo Request (Typ 8) an das Ziel und wartet auf Echo Reply (Typ 0). Geprüft werden die Erreichbarkeit auf Schicht 3 und die Laufzeit in ms. Ports spielen dabei keine Rolle, ICMP kennt keine.\nWindows (CMD/PowerShell) sendet standardmäßig 4 Pakete mit je 32 Byte Nutzdaten:\n- `-n 10` = Anzahl der Pakete\n- `-t` = Dauerping bis Strg+C\n- `-l 1000` = Größe der Nutzdaten in Byte\n- `-4` / `-6` = IPv4 bzw. IPv6 erzwingen\n- `-i 5` = TTL-Startwert (unter Windows **nicht** das Intervall)\nLinux/macOS senden ohne Option endlos bis Strg+C (Standard 56 Byte Nutzdaten):\n- `-c 10` = Anzahl der Pakete\n- `-s 1000` = Größe der Nutzdaten\n- `-i 2` = Intervall in Sekunden\nWichtig: Viele Firewalls und Server filtern ICMP. Kommt keine Antwort, kann der Host trotzdem laufen und z. B. eine Website ausliefern. Ein fehlgeschlagener `ping` ist ein Hinweis, kein Beweis.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--was-bedeuten-die-typischen-meldungen-von-ping-unter-windows",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeuten die typischen Meldungen von `ping` unter Windows, und welche Falle steckt in der Ping-Statistik?",
+      "back": "- „Antwort von 192.168.1.1: Bytes=32 Zeit=2ms TTL=64\" → das Ziel antwortet. Zeit = Hin- und Rückweg, TTL = Restlebensdauer des Antwortpakets (Startwert meist 64 bei Linux, 128 bei Windows).\n- „Zeitüberschreitung der Anforderung.\" → innerhalb der Wartezeit kam nichts zurück: Host aus, ICMP gefiltert oder Weg gestört.\n- „Antwort von …: Zielhost nicht erreichbar.\" → das Gerät hinter „Antwort von\" (eigener PC oder ein Router) kann das Paket nicht zustellen, z. B. weil im Zielnetz niemand auf ARP antwortet oder keine Route existiert.\n- „Ping-Anforderung konnte Host … nicht finden.\" → der Name ließ sich nicht auflösen. Das ist ein DNS-Problem, kein Leitungsproblem → weiter mit `nslookup`.\n- „Die Gültigkeitsdauer wurde bei der Übertragung überschritten.\" → die TTL ist unterwegs auf 0 gefallen (Routing-Schleife oder zu kleiner TTL-Wert).\nFalle: Windows zählt auch solche Fehlermeldungen eines Routers als „Empfangen\" und zeigt dann „0% Verlust\", obwohl das Ziel nie geantwortet hat. Deshalb immer lesen, welche Adresse hinter „Antwort von\" steht und ob Bytes und Zeit angegeben sind.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--welche-schalter-von-ipconfig-windows-sollten-sie-kennen-und",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Schalter von `ipconfig` (Windows) sollten Sie kennen, und welche Angaben zeigt erst `ipconfig /all`?",
+      "back": "Schalter (Windows, CMD/PowerShell):\n- ohne Schalter: je Adapter IPv4-/IPv6-Adresse, Subnetzmaske, Standardgateway, Medienstatus\n- `/all`: vollständige Konfiguration (siehe unten)\n- `/release`: gibt die per DHCP bezogene Adresse (Lease) zurück\n- `/renew`: fordert beim DHCP-Server eine neue Lease an, meist kommt dieselbe Adresse zurück. `/release` und `/renew` sind zwei getrennte Befehle und wirken nur bei Adaptern mit DHCP.\n- `/flushdns`: leert den lokalen DNS-Cache des Rechners (nicht den Browser-Cache und nicht den DNS-Server)\n- `/displaydns`: zeigt den Inhalt dieses Caches\n- `/registerdns`: erneuert die DHCP-Leases und meldet den Rechnernamen neu beim DNS an\nNur mit `/all` sichtbar: Hostname, Adapterbeschreibung, „Physische Adresse\" (MAC), „DHCP aktiviert\", DHCP-Server, „Lease erhalten\"/„Lease läuft ab\" und die DNS-Server.\nLesehilfe:\n- „IPv4-Adresse (Auto. Konfiguration)\" mit 169.254.x.x = APIPA, es wurde kein DHCP-Server erreicht.\n- „Medienstatus: Medium getrennt\" = kein Kabel bzw. keine WLAN-Verbindung.\n- Ein Standardgateway außerhalb des eigenen Subnetzes oder fehlende DNS-Server deuten auf eine Fehlkonfiguration.\nLinux-Pendant: `ip addr` (Adressen), `ip route` (Gateway); die DNS-Server stehen z. B. in `/etc/resolv.conf` oder in `resolvectl status`.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--wie-ermitteln-tracert-windows-und-traceroute-linux-macos-den",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie ermitteln `tracert` (Windows) und `traceroute` (Linux/macOS) den Weg zum Ziel, und wie lesen Sie die Ausgabe?",
+      "back": "Prinzip: Das Werkzeug sendet Pakete mit steigender TTL (1, 2, 3 …). Jeder Router verringert die TTL um 1. Erreicht sie 0, verwirft er das Paket und schickt die ICMP-Meldung „Time Exceeded\" zurück. So meldet sich Router für Router (Hop), bis das Ziel selbst antwortet.\nAusgabe: je Hop eine Zeile mit drei Laufzeiten und der Adresse. Ein `*` heißt: Von diesem Hop kam innerhalb der Wartezeit keine Antwort (Windows ergänzt „Zeitüberschreitung der Anforderung.\"). Einzelne stumme Hops mitten im Pfad sind oft nur Router, die keine Antworten senden. Hören die Antworten ab einem Hop ganz auf, liegt die Störung hinter dem letzten antwortenden Router.\nUnterschiede:\n- Windows `tracert` arbeitet mit ICMP-Echo. `-d` = ohne Namensauflösung (schneller), `-h 15` = höchstens 15 Hops (Standard 30), `-w 500` = Wartezeit in ms.\n- Linux/macOS `traceroute` arbeitet standardmäßig mit UDP. `-I` = ICMP verwenden (unter Linux je nach System Root-Rechte nötig), `-n` = ohne Namensauflösung, `-m 15` = höchstens 15 Hops. Alternative unter Linux: `tracepath`.\nFaustregel: Ein Zeitsprung, der bei allen folgenden Hops bestehen bleibt, zeigt eine lange oder langsame Strecke. Ein einzelner hoher Wert ohne Folgewirkung ist meist nur ein Router, der ICMP-Antworten nachrangig bearbeitet.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--wie-fragen-sie-mit-nslookup-gezielt-einen-dns-eintrag",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie fragen Sie mit `nslookup` gezielt einen DNS-Eintrag ab, und warum kann `nslookup` etwas anderes liefern als `ping` oder der Browser?",
+      "back": "`nslookup` gibt es unter Windows, Linux und macOS:\n- `nslookup www.example.com` → fragt den eingestellten DNS-Server nach der Adresse (A/AAAA).\n- `nslookup www.example.com 9.9.9.9` → fragt gezielt einen anderen DNS-Server. So erkennt man, ob der eigene Resolver das Problem ist.\n- `nslookup -type=mx example.com` → bestimmter Record-Typ als Einzeiler (ebenso `-type=ns`, `-type=txt`).\n- Interaktiv: erst `nslookup`, dann `set type=mx`, dann `example.com`, beenden mit `exit`. Der Einzeiler `nslookup set type=mx example.com` ist falsch und gibt nur die Syntaxhilfe aus.\n- `nslookup 192.0.2.10` → Reverse-Lookup über den PTR-Eintrag.\nAusgabe lesen: Oben stehen Name und Adresse des befragten Servers. „Nicht autorisierende Antwort\" heißt: Die Antwort stammt von einem Resolver bzw. aus dessen Cache und nicht vom zuständigen Nameserver der Domain. Sie ist trotzdem gültig.\nFalle: `nslookup` fragt den DNS-Server direkt und übergeht die hosts-Datei und den lokalen DNS-Cache, `ping` und Browser nutzen beides. Ob `ipconfig /flushdns` gewirkt hat, zeigt deshalb `ipconfig /displaydns` oder ein `ping` auf den Namen, nicht `nslookup`.\nPendants: `dig` unter Linux/macOS (z. B. `dig example.com MX`), `Resolve-DnsName` in der PowerShell. Die Record-Typen selbst stehen auf der Karte zu den DNS-Resource-Records.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--ein-windows-pc-kommt-nicht-ins-internet-in-welcher",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Ein Windows-PC kommt nicht ins Internet. In welcher Reihenfolge grenzen Sie den Fehler mit Befehlen ein, und was schließen Sie aus jedem Schritt?",
+      "back": "Grundidee: von innen nach außen, Schicht für Schicht. Der erste Schritt, der scheitert, grenzt den Fehler ein.\n1. Kabel bzw. WLAN prüfen, dann `ipconfig /all`: Medium verbunden? Gültige Adresse im richtigen Netz oder 169.254.x.x (APIPA → DHCP-Problem)? Standardgateway und DNS-Server eingetragen, liegt das Gateway im eigenen Subnetz?\n2. `ping 127.0.0.1`: prüft den eigenen TCP/IP-Stack. Scheitert das, liegt der Fehler im Betriebssystem.\n3. `ping` auf die eigene IP-Adresse: prüft Adapter und Adresskonfiguration.\n4. `ping` auf das Standardgateway: prüft die Verbindung ins lokale Netz (Kabel, Switch, VLAN, Subnetzmaske).\n5. `ping` auf eine bekannte öffentliche IP-Adresse, z. B. einen öffentlichen DNS-Server: prüft Routing und Internetzugang ohne Namensauflösung.\n6. `nslookup` bzw. `ping` auf einen Namen: Klappt Schritt 5, aber nicht der Name, liegt ein DNS-Problem vor (DNS-Server-Eintrag prüfen, ggf. `ipconfig /flushdns`).\n7. `tracert` zum Ziel: Wo bricht der Weg ab? Geht es um einen bestimmten Dienst, zusätzlich dessen Port testen (`Test-NetConnection` mit `-Port`).\nBeachten: Ein Ziel, das ICMP filtert, wirkt unerreichbar, obwohl es läuft. Dann mit einem anderen Ziel oder einem Porttest gegenprüfen.\nUnter Linux dieselbe Reihenfolge mit `ip addr`, `ip route`, `ping -c 4 …`, `dig` bzw. `nslookup` und `traceroute`.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--welchen-befehl-nutzt-du-unter-windows-wenn-a-der",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welchen Befehl nutzt du unter Windows, wenn a) der PC eine Adresse 169.254.x.x hat, b) IP-Adressen erreichbar sind, Namen aber nicht, c) nach einer DNS-Umstellung noch die alte Adresse verwendet wird, d) die Verbindung irgendwo unterwegs abbricht?",
+      "back": "a) Zuerst `ipconfig /all` (APIPA = kein DHCP-Server erreicht). Ursache beheben (Kabel, VLAN, DHCP-Dienst), dann `ipconfig /release` und `ipconfig /renew`, anschließend `ping` auf das Standardgateway.\nb) `nslookup name`: Antwortet der eingestellte DNS-Server? Zum Vergleich einen anderen DNS-Server mitgeben und in `ipconfig /all` die eingetragenen DNS-Server kontrollieren.\nc) `ipconfig /flushdns` leert den lokalen DNS-Cache, `ipconfig /displaydns` zeigt ihn an. Hilft das nicht, halten Browser oder Resolver den alten Eintrag noch bis zum Ablauf der TTL.\nd) `tracert ziel`: Der letzte antwortende Hop grenzt die Störungsstelle ein, mit `-d` geht es schneller.\nWeiterführend: Ob ein Dienst selbst antwortet, zeigt ein Porttest (`Test-NetConnection ziel -Port 443`). Welcher Prozess einen lokalen Port belegt, zeigt `netstat -ano` zusammen mit `tasklist`.\nLinux-Pendants: `ip addr`, `dig` bzw. `nslookup`, `resolvectl flush-caches` (bei systemd-resolved), `traceroute`.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--vergleichen-sie-telnet-und-ssh-fuer-den-fernzugriff-auf",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Vergleichen Sie Telnet und SSH für den Fernzugriff auf die Kommandozeile eines Servers.",
+      "back": "Telnet: TCP-Port 23. Alles läuft im Klartext, auch Benutzername und Passwort. Wer den Verkehr mitschneidet, kann alles mitlesen, und die Identität des Servers wird nicht geprüft. Heute nur noch als Testwerkzeug oder in abgeschotteten Altumgebungen.\nSSH (Secure Shell): TCP-Port 22. Die gesamte Sitzung ist verschlüsselt und gegen Manipulation gesichert. Der Client prüft den Server anhand seines Host-Schlüssels und warnt, wenn sich dessen Fingerabdruck ändert. Anmeldung per Passwort oder, sicherer, per Schlüsselpaar: Der private Schlüssel bleibt beim Client, der öffentliche liegt auf dem Server. Über SSH laufen außerdem sichere Dateiübertragung (SFTP/SCP) und Tunnel.\nFazit: Für Fernwartung nur SSH einsetzen, Telnet-Dienste abschalten und Port 23 in der Firewall sperren.\nAufruf: `ssh benutzer@server` (Linux, macOS und Windows 10/11, dort ist der OpenSSH-Client mitgeliefert).",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--welche-optionen-von-netstat-brauchen-sie-um-herauszufinden-welcher",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Optionen von `netstat` brauchen Sie, um herauszufinden, welcher Prozess einen Port belegt, und was ist unter Linux anders?",
+      "back": "Windows (`netstat`, CMD/PowerShell):\n- ohne Option: bestehende Verbindungen\n- `-a`: zusätzlich alle lauschenden Ports\n- `-n`: Adressen und Ports numerisch, ohne Namensauflösung (schneller)\n- `-o`: Prozess-ID (PID) je Verbindung; den Programmnamen dazu liefert `tasklist /fi \"PID eq 1234\"`\n- `-b`: Programmname direkt, funktioniert nur als Administrator\n- `-r`: Routingtabelle (wie `route print`)\n- `-p tcp`: nur ein Protokoll anzeigen (unter Windows ist `-p` **keine** PID-Option)\nTypischer Aufruf in CMD: `netstat -ano | findstr :8080` (trifft auch Zeilen, in denen 8080 der Port der Gegenstelle ist, z. B. Verbindungen zu einem Proxy; den belegenden Prozess zeigt die Zeile, in der :8080 unter „Lokale Adresse\" steht, bei TCP mit dem Status ABHÖREN).\nStatus auf deutschem Windows: ABHÖREN (= LISTENING, der Dienst wartet auf Verbindungen), HERGESTELLT (= ESTABLISHED), WARTEND (= TIME_WAIT). Ein Filter auf „LISTEN\" findet hier deshalb nichts.\nLinux: `netstat` gehört zu den veralteten net-tools, Nachfolger ist `ss`. `ss -tulpn` zeigt lauschende TCP- und UDP-Ports numerisch samt Prozess; `-p` ist hier die Prozessoption und braucht für fremde Prozesse Root-Rechte. Gefiltert wird mit `grep`.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--wie-loest-arp-eine-ipv4-adresse-in-eine-mac",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie löst ARP eine IPv4-Adresse in eine MAC-Adresse auf, und wie zeigen Sie den ARP-Cache an?",
+      "back": "Ablauf (nur im eigenen Subnetz): Der Rechner sieht zuerst in seinem ARP-Cache nach. Fehlt der Eintrag, sendet er eine ARP-Anfrage als Broadcast an alle („Wer hat 192.168.1.20?\"). Nur der Inhaber dieser Adresse antwortet per Unicast mit seiner MAC. Das Ergebnis bleibt eine Weile im Cache.\nLiegt das Ziel in einem fremden Netz, löst der Rechner nicht die MAC des Ziels auf, sondern die des Standardgateways; der Router leitet weiter. IPv6 nutzt statt ARP das Neighbor Discovery Protocol (NDP).\nBefehle:\n- `arp -a` (Windows, ebenso macOS): zeigt den Cache mit Internetadresse, Physischer Adresse und Typ (dynamisch/statisch). Ein Nachbar erscheint erst nach einem Kontakt, z. B. nach einem `ping` auf das Gateway.\n- `arp -d 192.168.1.20` löscht einen Eintrag, `arp -s 192.168.1.20 00-11-22-33-44-55` legt einen statischen an. Beides geht unter Windows nur als Administrator.\n- Linux: `ip neigh` ersetzt das veraltete `arp`.\nSicherheitsbezug: ARP-Antworten werden nicht geprüft. Ein Angreifer kann gefälschte Antworten senden (ARP-Spoofing) und sich so als Man-in-the-Middle zwischen Client und Gateway schalten.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--wie-lesen-sie-unter-windows-mit-route-print-das",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie lesen Sie unter Windows mit `route print` das Standardgateway ab, und wie legen Sie eine zusätzliche Route an?",
+      "back": "`route print` (Windows, gleichwertig `netstat -r`) zeigt die Schnittstellenliste und die Routentabellen für IPv4 und IPv6 mit den Spalten Netzwerkziel, Netzwerkmaske, Gateway, Schnittstelle und Metrik.\n- Die Standardroute hat Netzwerkziel 0.0.0.0 und Netzwerkmaske 0.0.0.0. In ihrer Spalte Gateway steht das Standardgateway.\n- „Auf Verbindung\" in der Gateway-Spalte heißt: Das Netz ist direkt angeschlossen, es wird kein Router gebraucht.\n- Passen mehrere Einträge, gewinnt das längste Präfix, bei Gleichstand die kleinere Metrik.\nRoute anlegen: `route add 10.20.0.0 mask 255.255.0.0 192.168.1.254` (Ziel, Maske, Gateway). Dafür sind Administratorrechte nötig, und ohne `-p` ist die Route nach dem Neustart wieder weg. Mit `-p` bleibt sie dauerhaft und erscheint unter „Ständige Routen\". Entfernen mit `route delete 10.20.0.0`.\nLinux: `ip route` zeigt die Tabelle, die Standardroute steht in der Zeile `default via 192.168.1.1 dev eth0`. Neue Route: `sudo ip route add 10.20.0.0/16 via 192.168.1.254` (gilt bis zum Neustart). macOS: `netstat -rn`.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--wie-pruefen-sie-ob-ein-dienst-auf-einem-bestimmten",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie prüfen Sie, ob ein Dienst auf einem bestimmten TCP-Port antwortet, und wie testen Sie eine Webseite mit `curl`?",
+      "back": "Warum ein Porttest? `ping` prüft nur ICMP. Ob ein Dienst läuft und die Firewall seinen Port durchlässt, zeigt erst ein Verbindungsversuch auf genau diesen Port.\n- Windows PowerShell: `Test-NetConnection server.example.com -Port 443` → Ergebnis `TcpTestSucceeded : True` bzw. `False`.\n- `telnet server.example.com 25`: Bei Erfolg bleibt das Fenster leer (z. B. HTTPS) oder der Dienst meldet sich mit einer Begrüßungszeile, bei SMTP mit Code 220. Der Telnet-Client ist unter Windows 10/11 nicht vorinstalliert (optionales Feature) und fehlt unter macOS seit Version 10.13.\n- Linux/macOS: `nc -zv server.example.com 443` (`-z` = nur Verbindungsaufbau ohne Daten, `-v` = ausführliche Meldung, `-u` = UDP).\nWebseite testen mit `curl` (Windows 10/11, Linux, macOS):\n- `curl -I https://www.example.com` schickt eine HEAD-Anfrage und zeigt nur die Antwort-Header samt Statuscode (z. B. 200, 301, 404).\n- `-L` folgt Weiterleitungen, `-O` bzw. `-o datei` speichert die Antwort, `-v` zeigt den Ablauf einschließlich TLS-Handshake.\n- `-X` setzt die HTTP-Methode, `-H` einen Header, `-d` sendet Daten (dann automatisch als POST).\n- `-k` schaltet nur die Zertifikatsprüfung ab. Die Verbindung bleibt verschlüsselt, ein Man-in-the-Middle fällt aber nicht mehr auf, also nur zum Testen.\nFalle: In Windows PowerShell 5.1 ist `curl` ein Alias für `Invoke-WebRequest`, dort `curl.exe` schreiben.",
+      "source": "Lernapp/Karteikarten/02-Netzwerke.md"
+    },
+    {
+      "id": "netzwerke--welche-aufgaben-erledigen-sie-unter-windows-mit-netsh-und",
+      "topicId": "netzwerke",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "netzwerke",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Aufgaben erledigen Sie unter Windows mit `netsh`, und welche PowerShell-Cmdlets entsprechen den klassischen Netzwerkbefehlen?",
+      "back": "`netsh` (Windows, CMD/PowerShell) liest und ändert Netzwerkeinstellungen:\n- `netsh interface show interface` → Adapter mit Status (verbunden/getrennt, aktiviert/deaktiviert)\n- `netsh interface ipv4 show config` → IP-Konfiguration je Adapter\n- `netsh wlan show profiles` → gespeicherte WLAN-Profile\n- `netsh advfirewall show allprofiles` → Zustand der Firewall-Profile Domäne, Privat und Öffentlich\nSicherheitsbezug: `netsh wlan show profile name=\"Büro\" key=clear` zeigt den gespeicherten WLAN-Schlüssel im Klartext (in der Regel mit Administratorrechten). Deshalb Bildschirm sperren, im Alltag mit Standardkonten arbeiten und im Firmennetz besser WPA2/WPA3-Enterprise statt eines gemeinsamen Schlüssels nutzen.\nPowerShell-Gegenstücke:\n- `Get-NetIPConfiguration` ≈ `ipconfig`, mit `-Detailed` ≈ `ipconfig /all`; `Get-NetIPAddress` listet nur die Adressen\n- `Test-NetConnection` ≈ `ping`, mit `-Port` als Porttest, mit `-TraceRoute` ≈ `tracert`\n- `Resolve-DnsName` ≈ `nslookup`\n- `Get-NetTCPConnection` ≈ `netstat` (z. B. `-State Listen`)\n- `Get-NetRoute` ≈ `route print`, `Get-NetNeighbor` ≈ `arp -a`\n- `Clear-DnsClientCache` ≈ `ipconfig /flushdns`",
       "source": "Lernapp/Karteikarten/02-Netzwerke.md"
     },
     {
@@ -4871,6 +5452,45 @@
       "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
     },
     {
+      "id": "betriebssysteme--welchen-windows-befehl-nutzt-du-um-computernamen-angemeldetes-konto",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welchen Windows-Befehl nutzt du, um Computernamen, angemeldetes Konto, Systemdaten und laufende Prozesse zu ermitteln, und wie heißen die Linux-Pendants?",
+      "back": "- `hostname` (Windows, Linux, macOS): gibt den Computernamen aus.\n- `whoami` (Windows, Linux, macOS): zeigt das angemeldete Konto, unter Windows im Format `domäne\\benutzer` bzw. `rechner\\benutzer`. `whoami /groups` listet zusätzlich die Gruppen.\n- `systeminfo` (Windows): Betriebssystem mit Version und Build, Installationsdatum, Systemstartzeit, Prozessor, Arbeitsspeicher, Domäne und installierte Updates (Hotfixes). Linux: `uname -a` (Kernel), `hostnamectl` bzw. `/etc/os-release` (Distribution), `free -h` (RAM), `lscpu` (CPU).\n- `tasklist` (Windows): laufende Prozesse mit PID und Speicherbedarf. Beenden mit `taskkill /PID 1234` oder `taskkill /IM name.exe`, erzwingen mit `/F`. Linux: `ps aux` bzw. `top`, beenden mit `kill 1234`, erzwingen mit `kill -9 1234`.\n- `dir` (Windows): Verzeichnisinhalt anzeigen. Linux: `ls -l`.\n- `cd` (Windows und Linux): Verzeichnis wechseln, `cd ..` geht eine Ebene höher. Falle in CMD: `cd D:\\Daten` ändert von C: aus nur das aktuelle Verzeichnis auf D:, die Eingabeaufforderung bleibt auf C:. Erst `cd /d D:\\Daten` wechselt Laufwerk und Ordner zugleich (in der PowerShell wechselt `cd` direkt).\nWeitere Paare Windows ↔ Linux: `copy` ↔ `cp`, `move` ↔ `mv`, `del` ↔ `rm`, `type` ↔ `cat`, `cls` ↔ `clear`, `findstr` ↔ `grep`.\nPipe: `|` reicht die Ausgabe an den nächsten Befehl weiter, z. B. `tasklist | findstr chrome` in CMD oder `ps aux | grep firefox` unter Linux.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
+      "id": "betriebssysteme--welche-linux-befehle-ersetzen-die-veralteten-net-tools-und",
+      "topicId": "betriebssysteme",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "betriebssysteme",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.63,
+      "ap1Status": "supporting",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Linux-Befehle ersetzen die veralteten net-tools, und welche Windows-Befehle entsprechen ihnen?",
+      "back": "Die net-tools (`ifconfig`, `route`, `arp`, `netstat`) gelten unter Linux seit Jahren als veraltet und fehlen auf vielen aktuellen Distributionen. Nachfolger ist das Paket iproute2 mit den Befehlen `ip` und `ss`.\n- Adressen: Windows `ipconfig` ↔ Linux `ip addr` (kurz `ip a`, früher `ifconfig`)\n- Schnittstellenstatus: `netsh interface show interface` ↔ `ip link`\n- Routingtabelle: `route print` ↔ `ip route` (früher `route -n`)\n- Nachbar-/ARP-Tabelle: `arp -a` ↔ `ip neigh` (früher `arp -n`)\n- Verbindungen und offene Ports: `netstat -ano` ↔ `ss -tulpn` (früher `netstat -tulpn`)\n- Weg zum Ziel: `tracert` ↔ `traceroute` bzw. `tracepath`\n- DNS-Abfrage: `nslookup` ↔ `dig` (`nslookup` gibt es auf beiden Systemen)\n- Erreichbarkeit: `ping` gibt es auf beiden, Linux sendet aber ohne `-c` endlos.\nÄnderungen wie `ip addr add 192.168.1.50/24 dev eth0` oder `ip route add …` brauchen Root-Rechte (`sudo`) und gelten nur bis zum Neustart. Dauerhaft stellt man das über die Netzwerkkonfiguration der Distribution ein, z. B. NetworkManager oder netplan.\nmacOS kennt kein `ip`, dort bleiben `ifconfig`, `netstat -rn` und `arp -a` Standard.",
+      "source": "Lernapp/Karteikarten/07-Betriebssysteme.md"
+    },
+    {
       "id": "softwareentwicklung--nenne-die-vier-wichtigsten-programmierparadigmen-und-je-ein-kennzeichen",
       "topicId": "softwareentwicklung",
       "type": "flashcard",
@@ -5921,7 +6541,7 @@
       "afb": null,
       "points": null,
       "front": "Welche Notationsfehler kosten beim Ergänzen einer Klasse im UML-Klassendiagramm am häufigsten Punkte?",
-      "back": "- Schreibweise wie im Java-Code (`double preis`) statt UML-Schreibweise `- preis : double`.\n- Sichtbarkeit vergessen oder falsches Symbol (`#` ist protected, private ist `-`).\n- Klammern bei Methoden vergessen: auch ohne Parameter `freiePlaetze()`; der Rückgabetyp steht nach der Klammer hinter dem Doppelpunkt.\n- Datentyp fehlt oder passt nicht zur Bedeutung (Anzahl als `double`, Betrag als `int`).\n- Klassenname im Plural, kleingeschrieben oder mit Leerzeichen (`kurse`, `Online Kurs`) statt `Kurs` bzw. `OnlineKurs`.\n- Attributnamen großgeschrieben (`Preis`) statt lowerCamelCase (`preis`).\n- Attribute und Methoden im falschen Bereich (Reihenfolge von oben: Name, Attribute, Methoden).\n- Konstruktor mit Rückgabetyp versehen – er hat keinen.\n- Vorgegebene Elemente verändert oder gestrichen.",
+      "back": "- Schreibweise wie im Java-Code (`double preis`) statt UML-Schreibweise `- preis : double`.\n- Sichtbarkeit vergessen oder falsches Symbol (`#` ist protected, private ist `-`).\n- Klammern bei Methoden vergessen: auch ohne Parameter `freiePlaetze()`; der Rückgabetyp steht nach der Klammer hinter dem Doppelpunkt.\n- Datentyp fehlt oder passt nicht zur Bedeutung (Anzahl als `double`, Betrag als `int`).\n- Klassenname im Plural, kleingeschrieben oder mit Leerzeichen (`kurse`, `Online Kurs`) statt `Kurs` bzw. `OnlineKurs`.\n- Attributnamen großgeschrieben (`Preis`) statt lowerCamelCase (`preis`).\n- Umlaute, ß oder Sonderzeichen in Bezeichnern (`gewichtKg` statt `Gewicht in kg`, `groesse` statt `größe`) – in der Prüfung auf ae/oe/ue/ss ausweichen.\n- Attribute und Methoden im falschen Bereich (Reihenfolge von oben: Name, Attribute, Methoden).\n- Konstruktor mit Rückgabetyp versehen – er hat keinen.\n- Vorgegebene Elemente verändert oder gestrichen.",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
@@ -6038,7 +6658,7 @@
       "afb": null,
       "points": null,
       "front": "Wie bildest du aus zwei Klassen mit teilweise gleichen Attributen und Methoden eine gemeinsame Oberklasse, und was geschieht mit einer Methode, die in beiden Klassen unterschiedlich rechnet?",
-      "back": "Beispiel: Festangestellter (name, personalnummer, monatsgehalt, `gehaltBerechnen()`, `urlaubBeantragen()`) und Aushilfe (name, personalnummer, stundenlohn, stunden, `gehaltBerechnen()`).\n1. Gemeinsame Attribute (name, personalnummer) in die neue Oberklasse `Beschaeftigter` – nur dort, in den Unterklassen nicht wiederholen.\n2. Methoden, die überall gleich funktionieren, ebenfalls nach oben.\n3. Spezielles bleibt unten: monatsgehalt und `urlaubBeantragen()` in Festangestellter, stundenlohn und stunden in Aushilfe.\n4. Methode mit gleichem Namen, aber unterschiedlicher Berechnung (`gehaltBerechnen() : double`): in der Oberklasse deklarieren – meist abstrakt, weil sie dort nicht sinnvoll rechnen kann – und in JEDER Unterklasse erneut eintragen (überschreiben) mit eigener Logik.\n5. Beziehungen zeichnen: Festangestellter —▷ Beschaeftigter und Aushilfe —▷ Beschaeftigter (hohles Dreieck an der Oberklasse).\nNutzen von Schritt 4 (Polymorphie): Ein Programm ruft für alle Beschäftigten einfach `gehaltBerechnen()` auf; zur Laufzeit wird automatisch die Variante des konkreten Objekts ausgeführt.\nSichtbarkeit: Sollen Unterklassen direkt auf geerbte Attribute zugreifen, erhalten diese `#` protected; sonst bleiben sie private und werden über Getter gelesen.\nHäufige Fehler: gemeinsame Attribute unten wiederholt; unterschiedlich rechnende Methode nur oben eingetragen; Dreieck an der Unterklasse; Raute oder offene Pfeilspitze statt Dreieck.",
+      "back": "Beispiel: Festangestellter (name, personalnummer, monatsgehalt, `gehaltBerechnen()`, `urlaubBeantragen()`) und Aushilfe (name, personalnummer, stundenlohn, stunden, `gehaltBerechnen()`).\n1. Gemeinsame Attribute (name, personalnummer) in die neue Oberklasse `Beschaeftigter` – nur dort, in den Unterklassen nicht wiederholen.\n2. Methoden, die überall gleich funktionieren, ebenfalls nach oben.\n3. Spezielles bleibt unten: monatsgehalt und `urlaubBeantragen()` in Festangestellter, stundenlohn und stunden in Aushilfe.\n4. Methode mit gleichem Namen, aber unterschiedlicher Berechnung (`gehaltBerechnen() : double`): in der Oberklasse deklarieren – meist abstrakt, weil sie dort nicht sinnvoll rechnen kann – und in JEDER Unterklasse erneut eintragen (überschreiben) mit eigener Logik.\n5. Beziehungen zeichnen: Festangestellter —▷ Beschaeftigter und Aushilfe —▷ Beschaeftigter (hohles Dreieck an der Oberklasse).\nNutzen von Schritt 4 (Polymorphie): Ein Programm ruft für alle Beschäftigten einfach `gehaltBerechnen()` auf; zur Laufzeit wird automatisch die Variante des konkreten Objekts ausgeführt.\nSichtbarkeit: Sollen Unterklassen direkt auf geerbte Attribute zugreifen, erhalten diese `#` protected; sonst bleiben sie private und werden über Getter gelesen.\nHäufige Fehler: gemeinsame Attribute unten wiederholt; unterschiedlich rechnende Methode nur oben eingetragen oder nur in einer der Unterklassen überschrieben; Dreieck an der Unterklasse; Raute oder offene Pfeilspitze statt Dreieck.",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {

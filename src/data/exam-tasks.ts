@@ -208,7 +208,7 @@ const EXAM_BASE: ExamTask[] = [
     title: 'Bildschirmarbeitsplatz einrichten',
     topicId: 'hardware',
     scenario:
-      'Für einen neuen Sachbearbeiter soll ein ergonomischer, ausfallsicherer Bildschirmarbeitsplatz eingerichtet werden. Der Rechner darf bei Stromausfall nicht sofort abstürzen.',
+      'Für einen neuen Sachbearbeiter soll ein ergonomischer, ausfallsicherer Bildschirmarbeitsplatz eingerichtet werden. Der Rechner darf bei Stromausfall nicht sofort abstürzen. Im Zuge dessen soll auch der Abteilungsserver im Nebenraum, auf dem der Sachbearbeiter arbeitet, gegen Netzstörungen abgesichert werden.',
     parts: [
       {
         label: 'a)',
