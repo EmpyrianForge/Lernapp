@@ -614,6 +614,10 @@ h3.sec { margin: 1.4rem 0 0.6rem; font-size: 1rem; }
 
 /* Prüfungsaufgaben */
 .scenario { background: var(--panel-2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 0.8rem 1rem; margin-bottom: 1rem; }
+.md-table-wrap { overflow-x: auto; margin: 0.4rem 0; }
+.md-table { border-collapse: collapse; font-size: 0.85rem; white-space: nowrap; }
+.md-table th, .md-table td { border: 1px solid var(--border); padding: 0.25rem 0.55rem; text-align: left; }
+.md-table th { background: var(--panel); font-weight: 600; }
 .exam-part { border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
 .part-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem; }
 .part-label { font-weight: 800; font-size: 1.05rem; }

@@ -1,0 +1,156 @@
+{
+  "match": [
+    {
+      "id": "match-erm-satz-kardinalitaet",
+      "title": "Satz → Kardinalität",
+      "topicId": "datenbanken",
+      "instruction": "Lies beide Richtungen und ordne jedem Satz die Kardinalität zu (1:n steht auch für n:1). „kann“ oder „muss“ ändert nichts an 1, n oder m. [RAND] = Randstoff.",
+      "pairs": [
+        {
+          "left": "In der Wohnanlage gehört zu jeder Wohnung genau ein Kellerabteil, und jedes Kellerabteil gehört zu genau einer Wohnung.",
+          "right": "1:1"
+        },
+        {
+          "left": "Im Schulungszentrum ist jeder Beamer fest in genau einem Raum montiert, und jeder Raum hat genau einen Beamer.",
+          "right": "1:1"
+        },
+        {
+          "left": "Ein Lagerregal enthält viele Artikel, und jeder Artikel liegt in genau einem Regal.",
+          "right": "1:n"
+        },
+        {
+          "left": "Ein Hund hat genau einen Halter, und ein Halter kann mehrere Hunde haben.",
+          "right": "1:n"
+        },
+        {
+          "left": "Ein Parkhaus hat viele Stellplätze, und jeder Stellplatz liegt in genau einem Parkhaus.",
+          "right": "1:n"
+        },
+        {
+          "left": "Ein Rezept verwendet mehrere Zutaten, und jede Zutat kommt in mehreren Rezepten vor.",
+          "right": "n:m"
+        },
+        {
+          "left": "Eine Band tritt auf mehreren Festivals auf, und auf jedem Festival spielen mehrere Bands.",
+          "right": "n:m"
+        },
+        {
+          "left": "Ein Mitarbeiter arbeitet in mehreren Projekten mit, und in jedem Projekt arbeiten mehrere Mitarbeiter.",
+          "right": "n:m"
+        },
+        {
+          "left": "[RAND] Ein Kunde kann höchstens eine Kundenkarte haben, manche haben gar keine. Jede Kundenkarte gehört genau einem Kunden.",
+          "right": "1:1"
+        },
+        {
+          "left": "[RAND] Ein Kurs kann mehrere andere Kurse voraussetzen, und ein Kurs kann Voraussetzung für mehrere andere Kurse sein.",
+          "right": "n:m"
+        }
+      ]
+    },
+    {
+      "id": "match-erm-beziehung-tabellenmodell",
+      "title": "Beziehung → Umsetzung im Tabellenmodell",
+      "topicId": "datenbanken",
+      "instruction": "Ordne jeder Beziehung zu, wie sie im Tabellenmodell umgesetzt wird. PK = Primärschlüssel, FK = Fremdschlüssel.",
+      "pairs": [
+        {
+          "left": "1:1",
+          "right": "FK in eine der beiden Tabellen; jeder FK-Wert darf dort nur einmal vorkommen"
+        },
+        {
+          "left": "1:n",
+          "right": "FK in die Tabelle der n-Seite, er verweist auf den PK der 1-Seite"
+        },
+        {
+          "left": "n:m",
+          "right": "neue Zwischentabelle, deren zwei FK zusammen den PK bilden"
+        },
+        {
+          "left": "Attribut der n:m-Beziehung (z. B. Menge)",
+          "right": "zusätzliche Spalte in der Zwischentabelle"
+        }
+      ]
+    },
+    {
+      "id": "match-erm-begriffe",
+      "title": "ERM- und Datenbankbegriffe ↔ Bedeutung",
+      "topicId": "datenbanken",
+      "instruction": "Ordne jedem Begriff seine Bedeutung zu.",
+      "pairs": [
+        {
+          "left": "Entitätstyp",
+          "right": "Zusammenfassung gleichartiger Objekte, z. B. Kunde"
+        },
+        {
+          "left": "Attribut",
+          "right": "Eigenschaft, die ein Objekt näher beschreibt, z. B. Geburtsdatum"
+        },
+        {
+          "left": "Primärschlüssel",
+          "right": "identifiziert jeden Datensatz eindeutig, im ERM unterstrichen"
+        },
+        {
+          "left": "Fremdschlüssel",
+          "right": "verweist auf den Primärschlüssel einer (meist anderen) Tabelle, steht erst im Tabellenmodell"
+        },
+        {
+          "left": "Redundanz",
+          "right": "dieselbe Information ist unnötig mehrfach gespeichert"
+        },
+        {
+          "left": "DBMS",
+          "right": "Software, die Datenbanken verwaltet: speichern, Mehrbenutzerzugriff, Rechte, Integrität"
+        }
+      ]
+    },
+    {
+      "id": "match-erm-anomalie-beispiel",
+      "title": "Anomalie ↔ Beispiel",
+      "topicId": "datenbanken",
+      "instruction": "Ein Fahrradverleih speichert alles in einer einzigen Tabelle: Jede Ausleihzeile enthält auch Name und Telefonnummer des Kunden sowie Nummer und Modell des Rads. Ordne jede Anomalie ihrem Beispiel zu. [RAND] = Randstoff.",
+      "pairs": [
+        {
+          "left": "Änderungsanomalie",
+          "right": "Eine Kundin hat eine neue Telefonnummer. Sie wird nur in einer ihrer vier Ausleihzeilen geändert, jetzt widersprechen sich die Daten."
+        },
+        {
+          "left": "[RAND] Einfügeanomalie",
+          "right": "Ein neues Rad soll erfasst werden, bevor es jemand ausleiht. Ohne Ausleihe gibt es aber keine Zeile, in der es stehen kann."
+        },
+        {
+          "left": "[RAND] Löschanomalie",
+          "right": "Die einzige Ausleihe eines Kunden wird gelöscht. Damit sind auch sein Name und seine Telefonnummer verloren."
+        }
+      ]
+    }
+  ],
+  "order": [
+    {
+      "id": "order-erm-text-zu-tabellenmodell",
+      "title": "Vom Anforderungstext zum Tabellenmodell",
+      "topicId": "datenbanken",
+      "prompt": "Aus einem Anforderungstext entsteht erst das ERM, daraus das Tabellenmodell. Bringe die Schritte in die richtige Reihenfolge. Jeder Schritt baut auf dem Ergebnis des vorigen auf.",
+      "correct": [
+        "Alle Substantive im Anforderungstext markieren",
+        "Markierte Substantive sortieren: eigenständige Objekte werden Entitätstypen, beschreibende werden Attribute; Primärschlüssel unterstreichen",
+        "Verben, die zwei Entitätstypen verbinden, als Beziehungen (Rauten) einzeichnen; Attribute, die zu keinem der beiden Entitätstypen allein gehören (z. B. Menge), an die Raute hängen",
+        "Für jede Beziehung beide Richtungen prüfen und 1, n oder m an die Linien schreiben",
+        "Das fertige ERM überführen: Jeder Entitätstyp wird eine Tabelle, seine Attribute werden Spalten, sein Schlüsselattribut wird Primärschlüssel",
+        "Nach den Kardinalitäten Fremdschlüssel setzen (bei 1:n in die n-Tabelle, bei 1:1 in eine der beiden); für n:m eine Zwischentabelle anlegen, deren zwei Fremdschlüssel zusammen den Primärschlüssel bilden; Beziehungsattribute in die Tabelle mit dem Fremdschlüssel eintragen, bei n:m also in die Zwischentabelle"
+      ]
+    },
+    {
+      "id": "order-erm-redundanz-aufteilen",
+      "title": "Redundante Tabelle aufteilen (Randstoff)",
+      "topicId": "datenbanken",
+      "prompt": "Ein Fahrradverleih speichert Name und Telefonnummer des Kunden in jeder Ausleihzeile erneut. Bringe die Schritte in die Reihenfolge, mit der du diese Redundanz beseitigst.",
+      "correct": [
+        "Spalten finden, deren Werte sich in vielen Zeilen wiederholen (Kundenname, Telefonnummer)",
+        "Diese Spalten in eine neue Tabelle Kunde auslagern, jeden Kunden dort nur einmal eintragen und ihm eine Kundennummer als Primärschlüssel geben",
+        "In der Ausleihtabelle die ausgelagerten Spalten durch die Kundennummer als Fremdschlüssel ersetzen",
+        "Die Beziehungslinie vom Fremdschlüssel zum Primärschlüssel ziehen und beschriften: 1 an Kunde, n an Ausleihe"
+      ]
+    }
+  ]
+}

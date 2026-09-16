@@ -5,6 +5,7 @@
 import extra from './exam-extra.json'
 import { EXAM_UML } from './exam-uml'
 import { EXAM_PV1 } from './exam-pv1'
+import { EXAM_ERM } from './exam-erm'
 
 export interface ExamPart {
   label: string
@@ -13,7 +14,7 @@ export interface ExamPart {
   prompt: string
   modelAnswer: string
   rubric: string[]
-  figure?: string // ID eines Musterlösungs-Diagramms (components/UmlFigure.tsx)
+  figure?: string // ID eines Musterlösungs-Diagramms (components/UmlFigure.tsx, ERM: components/ErmFigure.tsx)
 }
 
 export interface ExamTask {
@@ -314,4 +315,4 @@ const EXAM_BASE: ExamTask[] = [
 ]
 
 // Zusätzliche, per Workflow generierte & gegengeprüfte Prüfungsaufgaben.
-export const EXAM_TASKS: ExamTask[] = [...EXAM_BASE, ...(extra as ExamTask[]), ...EXAM_UML, ...EXAM_PV1]
+export const EXAM_TASKS: ExamTask[] = [...EXAM_BASE, ...(extra as ExamTask[]), ...EXAM_UML, ...EXAM_PV1, ...EXAM_ERM]

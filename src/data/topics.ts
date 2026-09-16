@@ -10,6 +10,7 @@ export const TOPICS: Topic[] = [
   { id: 'projektmanagement', label: 'Projektmanagement', examFrequency: 0.88, ap1Status: 'core' },
   { id: 'softwareentwicklung', label: 'Softwareentwicklung', examFrequency: 0.88, ap1Status: 'core' },
   { id: 'it-sicherheit', label: 'IT-Sicherheit', examFrequency: 0.75, ap1Status: 'core' },
+  { id: 'datenbanken', label: 'Datenbanken (ERM)', examFrequency: 0.6, ap1Status: 'core' },
   { id: 'kommunikation', label: 'Kommunikation & Markt', examFrequency: 0.75, ap1Status: 'supporting' },
   { id: 'betriebssysteme', label: 'Betriebssysteme', examFrequency: 0.63, ap1Status: 'supporting' },
   { id: 'qs-vertraege', label: 'QS, Verträge & Leistung', examFrequency: 0.55, ap1Status: 'supporting' },

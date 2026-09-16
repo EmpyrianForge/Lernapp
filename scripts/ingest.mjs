@@ -38,6 +38,8 @@ const TOPIC_BY_DECK = {
   '12': { topicId: 'multimedia', label: 'Multimedia', examFrequency: 0.38, ap1Status: 'supporting' },
   '13': { topicId: 'internet', label: 'Internet & Web', examFrequency: 0.45, ap1Status: 'supporting' },
   '14': { topicId: 'software-lizenzen', label: 'Software & Lizenzen', examFrequency: 0.45, ap1Status: 'supporting' },
+  // Neu 16.09.2026 (Lückencheck, 17-Lueckencheck-AP1-2026-09.md): Datenbanken kamen in 6 von 10 AP1 dran.
+  '15': { topicId: 'datenbanken', label: 'Datenbanken (ERM)', examFrequency: 0.6, ap1Status: 'core' },
 }
 
 // AP2-Erweiterung: eigener Prüfungsbereich „Entwicklung und Umsetzung von Algorithmen".

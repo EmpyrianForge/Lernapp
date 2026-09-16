@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-16T08:59:56.747Z",
-  "count": 608,
+  "generatedAt": "2026-09-16T11:49:52.048Z",
+  "count": 644,
   "items": [
     {
       "id": "hardware--von-neumann-architektur-nenne-die-funktionalen-komponenten-und-ihr",
@@ -5788,12 +5788,12 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "ap2-grundlagen",
+      "ap1Status": "core",
       "operator": null,
       "afb": null,
       "points": null,
       "front": "Was ist der Unterschied zwischen einem Primaerschluessel und einem Fremdschluessel?",
-      "back": "Der Primaerschluessel identifiziert jeden Datensatz einer Tabelle eindeutig (nicht NULL, einmalig). Der Fremdschluessel verweist auf den Primaerschluessel einer anderen Tabelle und stellt so die Beziehung/referenzielle Integritaet her.",
+      "back": "Der Primärschlüssel identifiziert jeden Datensatz einer Tabelle eindeutig (nicht NULL, einmalig). Der Fremdschlüssel verweist auf den Primärschlüssel einer anderen Tabelle und stellt so die Beziehung und die referenzielle Integrität her.",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
@@ -5807,12 +5807,12 @@
         "lernapp"
       ],
       "examFrequency": 0.88,
-      "ap1Status": "ap2-grundlagen",
+      "ap1Status": "core",
       "operator": null,
       "afb": null,
       "points": null,
       "front": "Was versteht man unter Redundanz und welche Folge kann sie in einer Datenbank haben?",
-      "back": "Redundanz ist das mehrfache, ueberfluessige Speichern derselben Information. Folge sind Anomalien (Einfuege-, Aenderungs-, Loeschanomalie), also Inkonsistenzen. Vermeidung durch Normalisierung.",
+      "back": "Redundanz ist das mehrfache, überflüssige Speichern derselben Information. Folge sind Anomalien (Einfüge-, Änderungs-, Löschanomalie), also Inkonsistenzen. Vermeidung durch Aufteilen in mehrere Tabellen (Normalisierung).",
       "source": "Lernapp/Karteikarten/08-Softwareentwicklung.md"
     },
     {
@@ -10325,6 +10325,738 @@
       "front": "Was besagt der Erschöpfungsgrundsatz beim Weiterverkauf gebrauchter Softwarelizenzen?",
       "back": "Hat der Rechteinhaber eine Programmkopie mit seiner Zustimmung im Europäischen Wirtschaftsraum erstmals in Verkehr gebracht, ist sein Verbreitungsrecht an dieser Kopie erschöpft: Der Erwerber darf sie weiterverkaufen, auch wenn die EULA das untersagt. Voraussetzungen sind insbesondere ein zeitlich unbefristetes Nutzungsrecht gegen einmaliges Entgelt (Kauflizenz), die vollständige und dauerhafte Unbrauchbarmachung der Kopie beim Verkäufer und die Weitergabe der gesamten Lizenz (Volumenlizenzen dürfen nicht beliebig aufgespalten werden, soweit sie als Einheit gewährt wurden). Nicht erfasst sind Miet- und Abomodelle wie SaaS, da dort kein dauerhaftes Nutzungsrecht übertragen wird.",
       "source": "Lernapp/Karteikarten/14-Software-Lizenzen.md"
+    },
+    {
+      "id": "datenbanken--welche-fachbegriffe-verwendet-das-relationale-modell-fuer-tabelle-zeile",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Fachbegriffe verwendet das relationale Modell für Tabelle, Zeile, Spalte und den erlaubten Wertevorrat?",
+      "back": "- **Relation** = Tabelle, z. B. `Kunde`.\n- **Tupel** = Datensatz, also eine Zeile, z. B. Kunde 1007 mit allen seinen Werten.\n- **Attribut** = Spalte bzw. Eigenschaft, z. B. `Ort`.\n- **Wertebereich (Domäne)** = Menge der zulässigen Werte eines Attributs, z. B. `Menge` nur ganze Zahlen ab 0, `PLZ` genau fünf Ziffern, `Lieferdatum` ein gültiges Datum.\nEine relationale Datenbank besteht aus mehreren solchen Tabellen, die über Schlüssel miteinander verknüpft sind.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-ist-ein-datenbankmanagementsystem-dbms-welche-aufgaben-uebernimmt-es",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Datenbankmanagementsystem (DBMS), welche Aufgaben übernimmt es, und welche Produkte gibt es?",
+      "back": "**DBMS** = Standardsoftware, die Datenbanken verwaltet. **Datenbank** = die gespeicherten Daten. **Datenbanksystem (DBS)** = Datenbank + DBMS.\nAufgaben:\n- Daten dauerhaft speichern, suchen, ändern und löschen (über eine Abfragesprache)\n- Integrität sichern: Datentypen, Pflichtfelder, Schlüssel und Verweise prüfen\n- Mehrbenutzerbetrieb koordinieren, damit gleichzeitige Änderungen sich nicht überschreiben\n- Zugriffsrechte je Benutzer oder Rolle verwalten\n- Datensicherung und Wiederherstellung nach Fehlern\n- Datenunabhängigkeit: Anwendungen müssen nicht wissen, wie die Daten physisch abgelegt sind\nBeispiele: MySQL bzw. MariaDB, PostgreSQL, Microsoft SQL Server, Oracle Database, SQLite; Microsoft Access als Desktop-Lösung.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--warum-fuehrt-ein-getraenkehaendler-seine-kunden-und-bestellungen-besser",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Warum führt ein Getränkehändler seine Kunden und Bestellungen besser in einer Datenbank als in einer Tabellenkalkulation?",
+      "back": "- **Weniger Redundanz:** Kundendaten stehen nur einmal, Bestellungen verweisen per Schlüssel darauf.\n- **Integrität:** Das DBMS prüft Datentypen, Pflichtfelder und Verweise.\n- **Mehrbenutzerbetrieb:** Mehrere Mitarbeiter arbeiten gleichzeitig, ohne sich Änderungen zu überschreiben.\n- **Zugriffsrechte** je Benutzer oder Rolle (z. B. Lager sieht keine Zahlungsdaten).\n- **Große Datenmengen**, schnelle Abfragen, Datensicherung und Wiederherstellung.\nEine Tabellenkalkulation reicht für kleine Einzelplatzlisten. Bei wachsenden, gemeinsam genutzten Daten entstehen dort schnell doppelte und widersprüchliche Einträge.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--wozu-dient-ein-entity-relationship-modell-und-in-welcher",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wozu dient ein Entity-Relationship-Modell, und in welcher Reihenfolge steht es zum Tabellenmodell?",
+      "back": "Das **ERM** beschreibt einen Ausschnitt der realen Welt **fachlich** (konzeptionell): Welche Objekte gibt es, welche Eigenschaften haben sie, wie hängen sie zusammen? Es ist unabhängig vom späteren DBMS und dient zur Abstimmung mit dem Auftraggeber.\nReihenfolge: **Anforderung bzw. Fachtext → ERM → Tabellenmodell (Relationenschema) → Umsetzung im DBMS**.\nErst im Tabellenmodell kommen Fremdschlüssel und Zwischentabellen dazu.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--welche-phasen-durchlaeuft-die-entwicklung-einer-datenbank-vom-anwenderwunsch",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Phasen durchläuft die Entwicklung einer Datenbank vom Anwenderwunsch bis zur Umsetzung?",
+      "back": "1. **Externe Phase** (Anforderungsanalyse): Welche Daten und Sichten brauchen die Anwender?\n2. **Konzeptionelle Phase:** fachliches Modell, meist das **ERM**.\n3. **Logische Phase:** Überführung ins **Tabellenmodell** (Tabellen, PK, FK), ggf. Normalisierung.\n4. **Physische Phase:** Umsetzung im konkreten DBMS (Tabellen anlegen, Datentypen, Speicherung).\nMerkhilfe: vom „Was“ (extern, konzeptionell) zum „Wie“ (logisch, physisch).",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--mit-welchen-symbolen-zeichnet-man-entitaetstyp-attribut-und-beziehung",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Mit welchen Symbolen zeichnet man Entitätstyp, Attribut und Beziehung in der Chen-Notation?",
+      "back": "- **Entitätstyp:** Rechteck, Name im Singular, z. B. `Fahrrad`.\n- **Attribut:** Ellipse, per Linie am Rechteck, z. B. `Rahmennummer`, `Farbe`.\n- **Beziehung:** Raute mit einem Verb, z. B. `leiht`, Linien zu den beteiligten Rechtecken.\n- **Kardinalität:** `1`, `n` bzw. `m` an den Linien zwischen Raute und Rechteck.\n- **Primärschlüssel:** Attributname **unterstrichen**.\nEine verbindliche Notation ist für die Prüfung nicht festgelegt; Chen ist hier die Referenz. Entscheidend ist, dass Entitäten, Schlüssel, Beziehungen und Kardinalitäten eindeutig erkennbar sind.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--worin-unterscheidet-sich-eine-entitaet-von-einem-entitaetstyp",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Worin unterscheidet sich eine Entität von einem Entitätstyp?",
+      "back": "- **Entität:** ein einzelnes, eindeutig unterscheidbares Objekt, z. B. das Fahrrad mit der Rahmennummer WX-4471.\n- **Entitätstyp:** die Zusammenfassung gleichartiger Entitäten mit denselben Attributen, z. B. `Fahrrad`.\nIm ERM zeichnet man Entitätstypen, keine einzelnen Objekte. Im Tabellenmodell wird der Entitätstyp zur Tabelle und die Entität zur Zeile (Parallele in der OOP: Klasse und Objekt).",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-ist-ein-attribut-im-erm-und-welche-rolle",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Attribut im ERM, und welche Rolle spielt das Schlüsselattribut?",
+      "back": "Ein **Attribut** beschreibt eine Eigenschaft eines Entitätstyps (oder einer Beziehung), z. B. bei `Mitglied`: Mitgliedsnummer, Vorname, Nachname, Eintrittsdatum.\nDas **Schlüsselattribut** (Primärschlüssel) identifiziert jede Entität eindeutig, z. B. die Mitgliedsnummer. In der Chen-Notation wird es **unterstrichen**. Nennt der Text kein eindeutiges Merkmal, ergänzt man eine Nummer (ID).\nSubstantive, die etwas anderes nur beschreiben (Farbe, Preis, Datum), werden Attribute und keine eigenen Entitätstypen.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--wie-benennt-man-eine-beziehung-im-erm-und-wie",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie benennt man eine Beziehung im ERM, und wie liest man sie?",
+      "back": "Die Beziehung steht in einer **Raute** und trägt ein **Verb**, das beide Entitätstypen zu einem Satz verbindet: `Fahrlehrer` – **betreut** – `Fahrschüler`.\nGelesen wird in Richtung des Verbs: „Ein Fahrlehrer betreut n Fahrschüler.“ Ein allgemeines „hat“ ist nicht falsch, ein fachliches Verb (bestellt, belegt, gehört zu, leiht) macht das Modell aber verständlicher.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--welche-kardinalitaeten-unterscheidet-man-im-erm-und-an-welcher",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Kardinalitäten unterscheidet man im ERM, und an welcher Seite steht das n?",
+      "back": "- **1:1** – Ein Mitarbeiter nutzt genau einen Dienstwagen, ein Dienstwagen ist genau einem Mitarbeiter zugeordnet.\n- **1:n** – Ein Kunde gibt n Bestellungen auf, eine Bestellung gehört zu genau einem Kunden.\n- **n:m** – Ein Teilnehmer belegt m Kurse, ein Kurs wird von n Teilnehmern belegt.\nLesart (Chen): Die Angabe steht **bei der Entität, von der es so viele gibt**. „1 Kunde – n Bestellungen“ → die `1` steht am Kunden, das `n` an der Bestellung.\nn und m bedeuten „mehrere“, ohne feste Obergrenze. Ob auch keins erlaubt ist, unterscheidet erst die erweiterte Notation mit c (siehe Karte zur Optionalität). Bei n:m nimmt man zwei Buchstaben, weil die beiden Anzahlen unabhängig voneinander sind.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--wie-bestimmt-man-die-kardinalitaet-einer-beziehung-sicher-aus",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie bestimmt man die Kardinalität einer Beziehung sicher aus einem Aufgabentext?",
+      "back": "**Beide Richtungen getrennt prüfen**, jeweils mit einem Satz, der mit „ein“ bzw. „eine“ beginnt:\n1. „Ein Kunde gibt wie viele Bestellungen auf?“ → viele → `n` an Bestellung.\n2. „Eine Bestellung gehört zu wie vielen Kunden?“ → genau einem → `1` an Kunde.\nErgebnis: **1:n**.\nFaustregel: zweimal „viele“ → n:m · einmal „viele“ → 1:n · zweimal „genau einer“ → 1:1.\nAchtung: Aufgabentexte nennen oft nur eine Richtung. Die andere leitet man aus dem Sachverhalt ab (Kann eine Bestellung zwei Kunden gehören? Nein).",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--fahrradverleih-uebung-bestimme-jeweils-die-kardinalitaet-a-ein-kunde",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Fahrradverleih-Übung: Bestimme jeweils die Kardinalität.\n(a) Ein Kunde leiht im Lauf der Zeit viele Fahrräder, und jedes Fahrrad wird von vielen Kunden geliehen.\n(b) Eine Station hat viele Fahrräder, jedes Fahrrad ist fest genau einer Station zugeordnet.\n(c) Jedes Fahrrad trägt genau einen GPS-Tracker, jeder Tracker steckt in genau einem Fahrrad.",
+      "back": "(a) **n:m** – in beide Richtungen „viele“. Im ERM bleibt die Raute `leiht` mit `n` und `m` stehen; Ausleih- und Rückgabedatum sind Attribute dieser Beziehung. Im Tabellenmodell wird daraus eine Zwischentabelle `Ausleihe`. Weil derselbe Kunde dasselbe Rad mehrmals leihen kann, bekommt sie besser eine eigene `AusleihNr` (oder das Datum wird Teil des Schlüssels).\n(b) **1:n** – `1` an Station, `n` an Fahrrad. Im Tabellenmodell erhält `Fahrrad` den FK `StationNr`.\n(c) **1:1** – in beide Richtungen „genau einer“. Der FK darf in eine der beiden Tabellen.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--in-welchen-schritten-entwickelt-man-aus-einer-szenariobeschreibung-ein",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "In welchen Schritten entwickelt man aus einer Szenariobeschreibung ein ERM?",
+      "back": "1. **Substantive markieren:** eigenständige Objekte mit eigenen Eigenschaften → Entitätstypen; beschreibende Substantive → Attribute.\n2. **Konkrete Werte abstrahieren:** „Mountainbike, Lastenrad“ → Entitätstyp `Fahrrad` mit Attribut `Typ`.\n3. **Attribute zuordnen** und je Entitätstyp einen **Primärschlüssel** festlegen (unterstreichen, ggf. ID ergänzen).\n4. **Verben suchen** → Beziehungen (Rauten) zwischen den Entitätstypen.\n5. **Kardinalitäten** in beide Richtungen bestimmen und an die Linien schreiben.\n6. **Beziehungsattribute** ergänzen (z. B. Datum, Menge).\n7. **Kontrolle:** Ist jede Aussage des Textes abgebildet? Keine Fremdschlüssel und keine Zwischentabellen im ERM.\nDie Schritte 3 und 4 sind austauschbar. Fest ist nur die Kette Entitätstypen → Beziehungen → Kardinalitäten → Kontrolle.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--wann-gehoert-ein-attribut-an-die-beziehung-statt-an",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wann gehört ein Attribut an die Beziehung statt an einen Entitätstyp? Nenne ein Beispiel.",
+      "back": "Wenn der Wert erst durch das **Zusammentreffen beider Entitäten** entsteht und zu keiner allein gehört.\nBeispiel Volkshochschule: `Teilnehmer` – **belegt** (n:m) – `Kurs`. Das **Anmeldedatum** und der **Zahlungsstatus** gehören weder nur zum Teilnehmer (er hat mehrere Kurse) noch nur zum Kurs (er hat mehrere Teilnehmer), sondern an die Raute `belegt`.\nIm Tabellenmodell werden solche Attribute zu Spalten der **Zwischentabelle**; bei 1:n wandern sie in die Tabelle der n-Seite.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--welche-inhalte-gehoeren-ins-erm-und-welche-erst-ins",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Inhalte gehören ins ERM und welche erst ins Tabellenmodell?",
+      "back": "**ERM (konzeptionell):** Entitätstypen, Attribute, Beziehungen mit Verb, Kardinalitäten (1, n, m), Primärschlüssel unterstrichen. **Keine** Fremdschlüssel; n:m-Beziehungen **bleiben** als Raute stehen.\n**Tabellenmodell (logisch):** Tabellen mit Name und allen Spalten, Primärschlüssel **und Fremdschlüssel** gekennzeichnet, n:m über eine **Zwischentabelle** aufgelöst, Verbindungslinien mit 1 und n, ggf. Datentypen.\nHäufigster Fehler: FK oder Zwischentabellen schon ins ERM zeichnen – oder umgekehrt im Tabellenmodell FK und Zwischentabelle vergessen.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--wie-ueberfuehrt-man-eine-1-n-und-eine-1",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie überführt man eine 1:n- und eine 1:1-Beziehung ins Tabellenmodell?",
+      "back": "Jeder Entitätstyp wird eine Tabelle mit seinem Primärschlüssel.\n- **1:n:** Der Primärschlüssel der **1-Seite** kommt als **Fremdschlüssel in die n-Tabelle**. Beispiel: `Bestellung(BestellNr (PK), Datum, KundenNr (FK))` – jede Bestellung verweist auf ihren einen Kunden. Umgekehrt geht es nicht, sonst bräuchte ein Kunde viele Bestellnummern in einer Zelle.\n- **1:1:** Der Fremdschlüssel darf in **eine der beiden** Tabellen, z. B. `Dienstwagen(FahrzeugNr (PK), Kennzeichen, Modell, PersonalNr (FK))`. Wichtig: Der FK muss hier zusätzlich **eindeutig** sein (jede PersonalNr höchstens einmal), sonst wäre es 1:n. Am besten kommt der FK in die Tabelle, in der er nie leer bleibt: Hat nicht jeder Mitarbeiter einen Dienstwagen (1:c, siehe Optionalität), gehört er in `Dienstwagen`. Alternativ lassen sich beide Tabellen zusammenlegen.\nEine eigene Tabelle für die Beziehung braucht man bei 1:n und 1:1 nicht.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--wie-loest-man-eine-n-m-beziehung-im-tabellenmodell",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie löst man eine n:m-Beziehung im Tabellenmodell auf?",
+      "back": "Über eine **Zwischentabelle** (Verknüpfungstabelle):\n- Sie enthält die **Primärschlüssel beider Tabellen als Fremdschlüssel**.\n- Beide FK zusammen bilden ihren **zusammengesetzten Primärschlüssel**.\n- **Beziehungsattribute** werden ihre weiteren Spalten.\n- Aus einer n:m-Beziehung werden so **zwei 1:n-Beziehungen** (`1` an den Ausgangstabellen, `n` an der Zwischentabelle).\nBeispiel Volkshochschule:\n`Teilnehmer(TeilnehmerNr (PK), Vorname, Nachname)`\n`Kurs(KursNr (PK), Bezeichnung, Wochentag)`\n`Belegung(TeilnehmerNr (PK, FK), KursNr (PK, FK), Anmeldedatum, bezahlt)`",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-ist-ein-zusammengesetzter-primaerschluessel-und-wann-setzt-man",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein zusammengesetzter Primärschlüssel, und wann setzt man stattdessen eine eigene ID ein?",
+      "back": "Ein Primärschlüssel aus **mehreren Attributen**, die nur **gemeinsam** eindeutig sind. Typisch in der Zwischentabelle: `Belegung(TeilnehmerNr, KursNr)` – jeder Teilnehmer und jeder Kurs kommt mehrfach vor, jede Kombination aber nur einmal.\nKennzeichnung: **alle** beteiligten Attribute unterstreichen bzw. mit PK markieren.\nEine eigene laufende Nummer ist besser, wenn dieselbe Kombination mehrfach vorkommen darf (derselbe Kunde leiht dasselbe Fahrrad mehrmals → `AusleihNr` in `Ausleihe`) oder wenn der Schlüssel aus mehr als zwei Attributen bestehen würde.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--welche-anforderungen-muss-ein-primaerschluessel-erfuellen",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Anforderungen muss ein Primärschlüssel erfüllen?",
+      "back": "- **Eindeutig:** Kein Wert kommt in der Tabelle zweimal vor.\n- **Nie leer** (nicht NULL): Jeder Datensatz hat einen Wert.\n- **Stabil:** Der Wert ändert sich möglichst nie.\n- **Minimal:** nur so viele Attribute wie nötig.\n- Pro Tabelle gibt es **genau einen** Primärschlüssel (er kann aus mehreren Attributen bestehen).\nBeispiel: `KundenNr` statt `Nachname` – zwei Kunden können gleich heißen, und Nachnamen oder E-Mail-Adressen ändern sich.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--grenze-natuerlichen-und-kuenstlichen-schluessel-surrogatschluessel-voneinander-ab",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Grenze natürlichen und künstlichen Schlüssel (Surrogatschlüssel) voneinander ab.",
+      "back": "- **Natürlicher Schlüssel:** stammt aus den Fachdaten selbst, z. B. ISBN eines Buches oder Fahrgestellnummer. Vorteil: aussagekräftig. Nachteil: kann lang sein oder sich doch ändern.\n- **Künstlicher Schlüssel (Surrogat, ID):** fortlaufende Nummer ohne fachliche Bedeutung, z. B. `KundenNr` 1, 2, 3, meist vom DBMS vergeben. Vorteil: kurz, eindeutig, unveränderlich. Nachteil: sagt fachlich nichts aus.\nIn Tabellenmodellen und Musterlösungen sind künstliche IDs der Normalfall.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-ist-ein-fremdschluessel-und-woran-erkennt-man-ihn",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Fremdschlüssel, und woran erkennt man ihn im Tabellenmodell?",
+      "back": "Ein **Fremdschlüssel (FK)** ist eine Spalte, deren Werte auf den **Primärschlüssel einer anderen** (oder derselben) **Tabelle** verweisen. Er bildet die Beziehung im Tabellenmodell ab.\nBeispiel: `Bestellung.KundenNr` verweist auf `Kunde.KundenNr`. Der Wert 1007 in einer Bestellung heißt: Diese Bestellung gehört zu Kunde 1007.\n- Ein FK-Wert darf mehrfach vorkommen (ein Kunde, viele Bestellungen); ein FK allein ist also **nicht** eindeutig.\n- Kennzeichnung: „FK“ hinter dem Namen, optional ↑ davor.\n- Ins ERM gehört er **nicht**, dort zeigt die Beziehungslinie den Zusammenhang.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-bedeutet-referenzielle-integritaet-und-was-verhindert-sie",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet referenzielle Integrität, und was verhindert sie?",
+      "back": "Jeder Fremdschlüsselwert muss auf einen **existierenden** Primärschlüssel der Bezugstabelle zeigen (oder leer sein, wenn das erlaubt ist). Das DBMS prüft das.\nVerhindert werden **verwaiste Verweise**, z. B.:\n- eine Bestellung für die KundenNr 9999, die es nicht gibt,\n- Bestellungen, die nach dem Löschen ihres Kunden noch auf ihn verweisen. Je nach eingestellter Regel lehnt das DBMS das Löschen ab oder behandelt die abhängigen Bestellungen mit (löscht sie ebenfalls oder leert den Verweis).\nVertiefung `[AP2]`: die Namen dieser Regeln (Löschweitergabe CASCADE, RESTRICT, SET NULL).",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--wie-schreibt-man-ein-tabellenmodell-in-der-pruefung-eindeutig",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie schreibt man ein Tabellenmodell in der Prüfung eindeutig auf?",
+      "back": "**Textform (Relationenschema):** Tabellenname, dahinter in Klammern alle Spalten.\n`Kunde(KundenNr (PK), Name, Straße, PLZ, Ort)`\n`Bestellung(BestellNr (PK), Datum, KundenNr (FK))`\n- **PK:** unterstreichen **und** „PK“ dazuschreiben. Die Unterstreichung macht man auf Papier; in den Beispielen dieser Karte ist nur „(PK)“ darstellbar.\n- **FK:** „FK“ dazuschreiben, optional ↑ vor den Namen (↑KundenNr).\n- In der Zwischentabelle: „(PK, FK)“.\n**Grafische Form:** je Tabelle ein Kasten mit Name und Spaltenliste (PK/FK markiert), Verbindungslinie zwischen FK und PK; `1` an der Tabelle mit dem PK, `n` an der Tabelle mit dem FK (z. B. Kunde `1` – `n` Bestellung).\nIm Zweifel alles eintragen: Tabellenname, alle Spalten, Schlüssel, Kardinalitäten. Jede eindeutige Kennzeichnung ist fachlich richtig.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--welche-datentypen-traegt-man-im-tabellenmodell-typischerweise-ein",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Datentypen trägt man im Tabellenmodell typischerweise ein?",
+      "back": "Wenige Grundtypen reichen:\n- **Ganzzahl** (INT): Nummern, Mengen – `KundenNr INT`\n- **Text** (VARCHAR mit Länge): Namen, Bezeichnungen – `Name VARCHAR(50)`\n- **Datum** (DATE): `Bestelldatum DATE`\n- **Dezimalzahl** (DECIMAL): Beträge – `Preis DECIMAL(8,2)`\nTipp: **PLZ und Telefonnummer als Text**, weil führende Nullen erhalten bleiben müssen und damit nicht gerechnet wird. Ein FK hat denselben Datentyp wie der PK, auf den er verweist.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--sportverein-ein-trainer-leitet-mehrere-trainingsgruppen-jede-gruppe-hat",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Sportverein: Ein Trainer leitet mehrere Trainingsgruppen, jede Gruppe hat genau einen Trainer. Ein Mitglied kann mehreren Gruppen angehören, eine Gruppe hat viele Mitglieder; festgehalten wird, seit wann ein Mitglied in einer Gruppe ist. Erstelle das Tabellenmodell.",
+      "back": "Kardinalitäten: Trainer–Gruppe **1:n**, Mitglied–Gruppe **n:m** mit dem Beziehungsattribut Beitrittsdatum.\n`Trainer(TrainerNr (PK), Vorname, Nachname, Lizenzstufe)`\n`Gruppe(GruppenNr (PK), Bezeichnung, Wochentag, TrainerNr (FK))`\n`Mitglied(MitgliedNr (PK), Vorname, Nachname, Geburtsdatum)`\n`Teilnahme(MitgliedNr (PK, FK), GruppenNr (PK, FK), Beitrittsdatum)`\nLinien: Trainer `1` – `n` Gruppe · Mitglied `1` – `n` Teilnahme · Gruppe `1` – `n` Teilnahme.\nSelbstkontrolle: FK auf der n-Seite (Gruppe), Zwischentabelle mit beiden FK als gemeinsamem PK, Beitrittsdatum in der Zwischentabelle.\nNicht im Text genannte Attribute (Namen, Lizenzstufe, Wochentag, Geburtsdatum) sind sinnvolle Ergänzungen. Pflicht sind die vier Tabellen mit ihren Schlüsseln, die FK und das Beitrittsdatum.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-versteht-man-unter-redundanz-in-einer-datenbank-und",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was versteht man unter Redundanz in einer Datenbank, und welches Problem kann sie verursachen?",
+      "back": "**Redundanz** = dieselbe Information ist **mehrfach** gespeichert, obwohl eine Stelle genügen würde. Beispiel: In einer Bestellliste stehen bei jeder Bestellung erneut Name und Anschrift des Kunden.\n**Folge: Inkonsistenz.** Wird eine Änderung nur an einer Kopie durchgeführt (neue Anschrift nur in einer Zeile), widersprechen sich die Daten – das ist die **Änderungsanomalie**. Zusätzlich wird Speicher verschwendet, als Antwort allein aber zu schwach.\n**Vermeidung:** Daten auf mehrere Tabellen aufteilen und nur über Schlüssel verweisen.\nAbgrenzung: Für Ausfallsicherheit (gespiegelte Festplatten bei RAID, zweites Netzteil, zweite Netzwerkleitung) ist Redundanz **gewollt**; in den Datenbeständen einer Datenbank ist sie **unerwünscht**.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--welche-drei-anomalien-koennen-in-einer-redundanten-tabelle-auftreten",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche drei Anomalien können in einer redundanten Tabelle auftreten? Erläutere sie an einem Beispiel.",
+      "back": "Beispieltabelle `Kursliste(TeilnehmerNr (PK), TeilnehmerName, KursNr (PK), Kursname, Raum)`: Die Kursdaten stehen bei jedem Teilnehmer erneut.\n- **Änderungsanomalie** (Kern): Kurs K3 zieht in einen anderen Raum. Wird nur ein Teil der Zeilen geändert, hat K3 plötzlich zwei Räume.\n- **Einfügeanomalie:** Ein neuer Kurs ohne Teilnehmer lässt sich nicht erfassen, weil TeilnehmerNr zum Primärschlüssel gehört und nicht leer bleiben darf.\n- **Löschanomalie:** Meldet sich der letzte Teilnehmer von K3 ab und wird seine Zeile gelöscht, sind auch Kursname und Raum von K3 verloren.\nLösung: getrennte Tabellen `Teilnehmer`, `Kurs` und `Belegung`.\nEinstufung: Macke hält Einfüge- und Löschanomalie für die AP1 nicht für nötig; die Inkonsistenz nach einer Änderung dagegen schon.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-ist-das-ziel-der-normalisierung-und-was-bedeutet",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist das Ziel der Normalisierung, und was bedeutet „atomare Attribute“?",
+      "back": "**Normalisierung** = schrittweises Aufteilen von Tabellen nach festen Regeln, um **Redundanz** und damit **Anomalien** zu vermeiden. Ergebnis: mehrere kleinere Tabellen, verbunden über Schlüssel.\n**Atomar** heißt: Ein Attribut enthält nur **einen unteilbaren Wert**. Statt `Anschrift` = „Hauptstr. 5, 12345 Musterstadt“ besser `Straße`, `Hausnr`, `PLZ`, `Ort`; statt `Name` besser `Vorname` und `Nachname`. Das erleichtert Suchen und Sortieren, z. B. nach Ort.\nDie einzelnen Normalformen sind Teil-2-Stoff; für die AP1 genügt das Ziel.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-fordern-die-erste-zweite-und-dritte-normalform",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was fordern die erste, zweite und dritte Normalform?",
+      "back": "- **1. NF:** Alle Attribute sind atomar, keine Wiederholungsgruppen (keine Listen in einer Zelle).\n- **2. NF:** 1. NF, und jedes Nichtschlüsselattribut hängt vom **gesamten** Primärschlüssel ab (wichtig bei zusammengesetztem Schlüssel). Verstoß: In `Belegung(TeilnehmerNr (PK), KursNr (PK), Kursname)` hängt `Kursname` nur von `KursNr` ab.\n- **3. NF:** 2. NF, und keine **transitiven** Abhängigkeiten: Kein Nichtschlüsselattribut hängt von einem anderen Nichtschlüsselattribut ab. Verstoß: In `Mitarbeiter(PersonalNr (PK), Name, AbteilungsNr, Abteilungsname)` hängt `Abteilungsname` von `AbteilungsNr` ab.\nEinstufung: laut Macke AP2-Stoff. Die BIBB-Umsetzungshilfe nennt Normalisierung nur allgemein.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--welche-typischen-fehler-kosten-beim-zeichnen-oder-ergaenzen-eines",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche typischen Fehler kosten beim Zeichnen oder Ergänzen eines ERM Punkte?",
+      "back": "- Fremdschlüssel ins ERM zeichnen oder n:m schon im ERM auflösen.\n- Kardinalität nur aus einer Richtung überlegen oder an die falsche Seite schreiben.\n- Konkrete Werte als Entitätstyp modellieren (`Lastenrad` statt `Fahrrad` mit Attribut `Typ`).\n- Primärschlüssel nicht unterstreichen bzw. keine ID ergänzen.\n- Beziehungsattribute (Datum, Menge) vergessen oder bei n:m an eine der beiden Entitäten hängen.\n- Methoden, Sichtbarkeiten oder `1..*` aus dem UML-Klassendiagramm ins ERM mischen.\n- Bei **Ergänzungsaufgaben** die Notation wechseln: Darstellung und Leserichtung der vorgegebenen Beziehungen übernehmen.\n- Langen Aufgabentext nur überfliegen und Entitäten vertauschen; die ERM-Aufgabe am Ende aus Zeitnot liegen lassen. Vorher alle Aufgaben überblicken und Zeit einplanen.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--welche-parallelen-und-unterschiede-gibt-es-zwischen-uml-klassendiagramm",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Parallelen und Unterschiede gibt es zwischen UML-Klassendiagramm und ERM?",
+      "back": "- **Klasse ↔ Entitätstyp**, Objekt ↔ Entität, Attribut ↔ Attribut, Assoziation ↔ Beziehung.\n- **Multiplizität ↔ Kardinalität:** `1` im UML entspricht `1` im ERM, `*` bzw. `1..*` entsprechen grob dem `n`. Beide stehen bei der Klasse bzw. Entität, deren Anzahl sie angeben: An `Kunde` steht `1`, an `Bestellung` steht `*` bzw. `n`.\n- **Genauer (erweiterte Chen-Form):** `*` = `0..*` entspricht nc, `1..*` entspricht n, `0..1` entspricht c.\n- **Unterschiede:** Das ERM kennt **keine Methoden** und keine Sichtbarkeiten, es beschreibt nur Daten. Feste Grenzen wie `2..5` lassen sich mit 1/n/m nicht ausdrücken.\n- **Nicht mischen:** im ERM Rauten und 1/n/m, im Klassendiagramm Linien mit Multiplizitäten.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--wie-liest-man-die-kraehenfuss-notation-martin-notation",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie liest man die Krähenfuß-Notation (Martin-Notation)?",
+      "back": "Entitätstypen sind Kästen (oft mit Attributliste), Beziehungen einfache Linien **ohne Raute**. Die Symbole stehen am Linienende bei der Entität, deren Anzahl sie angeben; das äußere Zeichen nennt das Maximum, das innere das Minimum.\n- **Krähenfuß** (dreizackige Gabel) = viele\n- **Strich** = eins\n- **Kreis** = null, also optional\nKombinationen: zwei Striche = genau eins · Kreis + Strich = null oder eins · Strich + Krähenfuß = eins bis viele · Kreis + Krähenfuß = null bis viele.\nIn Textform (z. B. Mermaid) steht `{` für den Krähenfuß: `Kunde ||--o{ Bestellung` = ein Kunde hat null bis viele Bestellungen, jede Bestellung gehört zu genau einem Kunden.\nLesen können reicht; bei Ergänzungsaufgaben in genau dieser Notation weiterzeichnen.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-bedeutet-optionalitaet-c-in-der-erweiterten-chen-notation",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was bedeutet Optionalität (c) in der erweiterten Chen-Notation, und woran erkennt man sie im Text?",
+      "back": "Die erweiterte Form unterscheidet „kann“ und „muss“:\n- **1** = genau eins · **c** = keins oder eins · **n** bzw. **m** = eins oder mehr · **nc** bzw. **mc** = keins, eins oder mehr\nBeispiel: Ein Mitarbeiter **kann** einen Dienstwagen nutzen, jeder Dienstwagen **muss** genau einem Mitarbeiter zugeordnet sein → Mitarbeiter–Dienstwagen **1:c** (`1` am Mitarbeiter, `c` am Dienstwagen).\nSignalwörter: „kann, darf, höchstens ein“ → optional; „muss, jeder, genau ein, mindestens ein“ → verpflichtend.\nDie einfache Notation (1/n/m) unterscheidet kann und muss nicht.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--warum-ist-die-min-max-notation-beim-lesen-eines",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Warum ist die (min,max)-Notation beim Lesen eines ERM eine Falle?",
+      "back": "In der (min,max)-Notation steht an jeder Linie ein Zahlenpaar, das angibt, **wie oft die Entität auf dieser Seite an der Beziehung teilnimmt**. Die Angabe steht also bei der **eigenen** Entität – genau umgekehrt zur Chen-Kardinalität.\nBeispiel „ein Kunde hat beliebig viele (auch keine) Bestellungen, jede Bestellung gehört zu genau einem Kunden“:\n- Chen: `Kunde` **1** —◇— **n** `Bestellung`\n- (min,max): `Kunde` **(0,n)** —◇— **(1,1)** `Bestellung`\nWer beide Schreibweisen verwechselt, dreht die Beziehung um. In AP1-Quellen nicht belegt, eher Hochschulstoff. In Ergänzungsaufgaben immer die Leserichtung der Vorgabe prüfen.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--was-ist-eine-rekursive-beziehung-und-wie-stellt-man",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist eine rekursive Beziehung, und wie stellt man sie dar?",
+      "back": "Eine Beziehung eines Entitätstyps **mit sich selbst**. Beispiel: Ein Mitarbeiter **ist Vorgesetzter von** mehreren Mitarbeitern, jeder Mitarbeiter hat höchstens einen Vorgesetzten → 1:n.\n- **ERM (Chen):** ein Rechteck `Mitarbeiter`, beide Linien der Raute führen zu diesem Rechteck; an die Linien `1` und `n`, ggf. Rollennamen (Vorgesetzter, Unterstellter).\n- **Tabellenmodell:** Fremdschlüssel in derselben Tabelle: `Mitarbeiter(PersonalNr (PK), Name, VorgesetzterNr (FK))`, wobei `VorgesetzterNr` auf `PersonalNr` verweist. Bei der Geschäftsführerin bleibt der Wert leer.\nBei n:m (z. B. ein Bauteil besteht aus anderen Bauteilen) entsteht eine Zwischentabelle mit zwei FK auf dieselbe Tabelle.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
+    },
+    {
+      "id": "datenbanken--welche-datenbankthemen-gehoeren-nicht-zur-ap1-und-welche-wurden",
+      "topicId": "datenbanken",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "datenbanken",
+        "erm",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.6,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Datenbankthemen gehören nicht zur AP1, und welche wurden mit dem Katalog ab 2025 gestrichen?",
+      "back": "**Gestrichen (seit Katalog Okt. 2024):**\n- **SQL**, auch einfache SELECT-Abfragen: offiziell nur noch Teil 2 (IHK-Hinweis 09/2024); vor 2025 wurde es in der AP1 gefragt.\n- **Nicht-relationale Datenbanken** (NoSQL): laut Macke gestrichen.\n**Über die AP1 hinaus, laut Mackes AP2-Liste Teil-2-Stoff:** **Normalformen** im Detail, Löschweitergabe (CASCADE), **Transaktionen und ACID**, **Indizes**.\n**Über „einfache ER-Modelle“ hinaus (eigene Einstufung, in keiner Macke-Liste):** schwache Entitäten, Generalisierung und Spezialisierung (is-a).\nIn der AP1 bleiben: einfache ER-Modelle (ERM und Tabellenmodell), Primär- und Fremdschlüssel, Redundanz und ihre Folgen, Aufgaben eines DBMS.\nVorsicht bei Übungsmaterial: AP1-Prüfungen vor 2025 und die eigenen Prüfungen aus Baden-Württemberg (mit SQL) sind kein Maßstab für die AP1 nach dem AkA-Prüfungskatalog.",
+      "source": "Lernapp/Karteikarten/15-Datenbanken.md"
     },
     {
       "id": "algo-grundlagen--was-versteht-man-unter-einem-algorithmus",

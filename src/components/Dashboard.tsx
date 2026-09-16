@@ -44,7 +44,7 @@ const INTERACTIVE: ModeDef[] = [
   { view: 'nutzwert', icon: 'scale', title: 'Nutzwertanalyse', desc: 'Bewertungsmatrix rechnen, Sieger finden', tone: 'green' },
   { view: 'netzplan', icon: 'git-graph', title: 'Netzplan', desc: 'FAZ/FEZ/SAZ/SEZ + kritischer Pfad', tone: 'teal' },
   { view: 'match', icon: 'link', title: 'Zuordnung', desc: 'Ports, Cloud, Backup, Krypto, IPv6', tone: 'purple' },
-  { view: 'symbols', icon: 'shapes', title: 'UML/PAP-Symbole', desc: 'Gezeichnetes Symbol → Bedeutung', tone: 'rose' },
+  { view: 'symbols', icon: 'shapes', title: 'Diagramm-Symbole', desc: 'UML, BPMN, ERM: Symbol → Bedeutung', tone: 'rose' },
   { view: 'order', icon: 'list', title: 'Reihenfolge', desc: 'OSI, DORA, Handshake, Phasen sortieren', tone: 'indigo' },
   { view: 'codequiz', icon: 'code', title: 'Was gibt der Code aus?', desc: 'Ausgabe vorhersagen (Pseudo/Java/Python)', tone: 'blue' },
   { view: 'bugfind', icon: 'alert', title: 'Fehler finden', desc: 'Syntax-, Laufzeit- oder Logikfehler erkennen', tone: 'orange' },
@@ -60,6 +60,7 @@ const TOPIC_TONE: Record<string, string> = {
   'it-sicherheit': 'rose', datenschutz: 'purple', betriebssysteme: 'orange',
   softwareentwicklung: 'indigo', 'qs-vertraege': 'cyan', kommunikation: 'purple',
   'neu-2025': 'green', multimedia: 'rose', internet: 'blue', 'software-lizenzen': 'amber',
+  datenbanken: 'orange',
 }
 
 /**

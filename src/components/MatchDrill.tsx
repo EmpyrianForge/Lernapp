@@ -20,16 +20,20 @@ function Game({ deck, onExit }: { deck: MatchDeck; onExit: () => void }) {
   )
   const [selLeft, setSelLeft] = useState<number | null>(null)
   const [matched, setMatched] = useState<Set<number>>(new Set())
+  // Rechts zählt der angeklickte Knopf, nicht der Index des linken Partners:
+  // Decks dürfen gleiche Werte mehrfach haben (z. B. „1:n“ für mehrere Sätze).
+  const [usedRight, setUsedRight] = useState<Set<number>>(new Set())
   const [wrong, setWrong] = useState<{ li: number } | null>(null)
   const [mistakes, setMistakes] = useState(0)
 
   const done = matched.size === deck.pairs.length
 
   const clickRight = (li: number, right: string) => {
-    if (selLeft === null || matched.has(li)) return
+    if (selLeft === null || usedRight.has(li)) return
     if (deck.pairs[selLeft].right === right) {
       const newSize = matched.size + 1
       setMatched((m) => new Set(m).add(selLeft))
+      setUsedRight((u) => new Set(u).add(li))
       setSelLeft(null)
       if (newSize === deck.pairs.length) {
         recordDrill('Zuordnung', deck.pairs.length, deck.pairs.length + mistakes)
@@ -82,8 +86,8 @@ function Game({ deck, onExit }: { deck: MatchDeck; onExit: () => void }) {
           {rights.map(({ right, li }) => (
             <button
               key={li}
-              className={`match-item ${matched.has(li) ? 'done' : ''} ${wrong?.li === li ? 'wrong' : ''}`}
-              disabled={matched.has(li)}
+              className={`match-item ${usedRight.has(li) ? 'done' : ''} ${wrong?.li === li ? 'wrong' : ''}`}
+              disabled={usedRight.has(li)}
               onClick={() => clickRight(li, right)}
             >
               {right}

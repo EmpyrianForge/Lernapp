@@ -2,6 +2,8 @@
 // Fachlich aus der Wissensbasis (01-Themenkatalog / Karteikarten).
 
 import extra from './interactive-extra.json'
+// ERM und relationale Grundlagen (16.09.2026, Lückencheck AP1 Nr. 1), topicId 'datenbanken'.
+import erm from './interactive-erm.json'
 
 export interface MatchDeck {
   id: string
@@ -295,5 +297,5 @@ const ORDER_BASE: OrderTask[] = [
 ]
 
 // Zusätzliche, per Workflow generierte & gegengeprüfte Zuordnungs-/Reihenfolge-Aufgaben.
-export const MATCH_DECKS: MatchDeck[] = [...MATCH_BASE, ...(extra.match as MatchDeck[])]
-export const ORDER_TASKS: OrderTask[] = [...ORDER_BASE, ...(extra.order as OrderTask[])]
+export const MATCH_DECKS: MatchDeck[] = [...MATCH_BASE, ...(extra.match as MatchDeck[]), ...(erm.match as MatchDeck[])]
+export const ORDER_TASKS: OrderTask[] = [...ORDER_BASE, ...(extra.order as OrderTask[]), ...(erm.order as OrderTask[])]

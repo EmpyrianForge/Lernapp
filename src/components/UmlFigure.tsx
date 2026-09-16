@@ -1,6 +1,9 @@
 // Musterlösungs-Diagramme für die UML-Prüfungsaufgaben (data/exam-uml.ts, data/exam-pv1.ts) als inline-SVG.
 // Alle Linien/Texte nutzen currentColor → funktionieren im hellen und dunklen Theme.
 // Aufruf über die ID aus ExamPart.figure; unbekannte IDs rendern nichts.
+// ERM-Diagramme (IDs „erm-…“) liegen in ErmFigure.tsx und werden hier mit nachgeschlagen.
+
+import { ERM_FIGURES } from './ErmFigure'
 
 const T = { fontSize: 11, fill: 'currentColor', textAnchor: 'middle' as const, dominantBaseline: 'middle' as const }
 const SMALL = { ...T, fontSize: 9.5 }
@@ -321,7 +324,7 @@ const FIGURES: Record<string, () => JSX.Element> = {
 }
 
 export function UmlFigure({ id }: { id: string }) {
-  const Figure = FIGURES[id]
+  const Figure = FIGURES[id] ?? ERM_FIGURES[id]
   if (!Figure) return null
   return (
     <figure className="uml-figure">

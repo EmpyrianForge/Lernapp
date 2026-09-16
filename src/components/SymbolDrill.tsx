@@ -9,6 +9,7 @@ import { useGuide } from './DrillGuide'
 // UML/BPMN-Symbol-Zuordnung: gezeichnetes Symbol ↔ Bedeutung, Tap-to-Pair.
 // BPMN & UML-Aktivitätsdiagramm sind neu/verstärkt im Katalog 2025 (11-Neu-2025).
 // Anwendungsfall-Satz und Klassenbeziehungen ergänzt nach PV1 Tag 1 (UML, 15.09.2026).
+// ERM-Sätze (Chen, Krähenfuß) ergänzt nach dem Lückencheck AP1 (16.09.2026).
 
 const S = 40
 const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: 2 }
@@ -101,6 +102,15 @@ const SYMBOLS: Record<string, ReactNode> = {
       <polygon points="25,13 36,20 25,27" {...stroke} />
     </>
   ),
+  // ERM (16.09.2026): Chen-Notation und Krähenfuß zum Lesen
+  ermKeyAttr: <><ellipse cx={20} cy={20} rx={17} ry={10} {...stroke} /><text x={20} y={24} textAnchor="middle" fontSize={11} fontWeight={700} fill="currentColor">ID</text><line x1={12} y1={26.5} x2={28} y2={26.5} stroke="currentColor" strokeWidth={1.5} /></>,
+  ermCardinality: <><line x1={4} y1={27} x2={36} y2={27} {...stroke} /><text x={8} y={21} textAnchor="middle" fontSize={13} fontWeight={700} fill="currentColor">1</text><text x={32} y={21} textAnchor="middle" fontSize={13} fontWeight={700} fill="currentColor">n</text></>,
+  ermRelAttr: <><polygon points="5,28 14,20 23,28 14,36" {...stroke} /><line x1={1} y1={28} x2={5} y2={28} {...stroke} /><line x1={23} y1={28} x2={39} y2={28} {...stroke} /><line x1={14} y1={20} x2={22} y2={14.8} {...stroke} /><ellipse cx={28} cy={10} rx={10} ry={6} {...stroke} /></>,
+  ermCfEntity: <><rect x={6} y={4} width={28} height={32} {...stroke} /><line x1={6} y1={13} x2={34} y2={13} {...stroke} /><line x1={10} y1={19} x2={27} y2={19} stroke="currentColor" strokeWidth={1.5} /><line x1={10} y1={25} x2={24} y2={25} stroke="currentColor" strokeWidth={1.5} /><line x1={10} y1={31} x2={28} y2={31} stroke="currentColor" strokeWidth={1.5} /></>,
+  ermCfOne: <><line x1={2} y1={20} x2={35} y2={20} {...stroke} /><line x1={22} y1={12} x2={22} y2={28} {...stroke} /><line x1={28} y1={12} x2={28} y2={28} {...stroke} /><path d="M40,5 H35 V35 H40" {...stroke} /></>,
+  ermCfZeroOne: <><line x1={2} y1={20} x2={11} y2={20} {...stroke} /><circle cx={16} cy={20} r={5} {...stroke} /><line x1={21} y1={20} x2={35} y2={20} {...stroke} /><line x1={28} y1={12} x2={28} y2={28} {...stroke} /><path d="M40,5 H35 V35 H40" {...stroke} /></>,
+  ermCfOneMany: <><line x1={2} y1={20} x2={35} y2={20} {...stroke} /><line x1={18} y1={12} x2={18} y2={28} {...stroke} /><path d="M25,20 L35,12 M25,20 L35,28" {...stroke} /><path d="M40,5 H35 V35 H40" {...stroke} /></>,
+  ermCfZeroMany: <><line x1={2} y1={20} x2={9} y2={20} {...stroke} /><circle cx={14} cy={20} r={5} {...stroke} /><line x1={19} y1={20} x2={35} y2={20} {...stroke} /><path d="M25,20 L35,12 M25,20 L35,28" {...stroke} /><path d="M40,5 H35 V35 H40" {...stroke} /></>,
 }
 
 function Sym({ id }: { id: string }) {
@@ -172,6 +182,33 @@ const DECKS: SymDeck[] = [
       { sym: 'dashedArrow', meaning: 'Abhängigkeit (z. B. «create»)' },
     ],
   },
+  {
+    id: "erm-chen",
+    title: "ERM – Chen-Notation",
+    pairs: [
+      { sym: "objectNode", meaning: "Entitätstyp (z. B. Kunde)" },
+      { sym: "ellipse", meaning: "Attribut" },
+      { sym: "ermKeyAttr", meaning: "Schlüsselattribut (Primärschlüssel)" },
+      { sym: "diamond", meaning: "Beziehung (mit einem Verb beschriftet)" },
+      { sym: "line", meaning: "Verbindungslinie (Rechteck zu Raute oder Ellipse)" },
+      { sym: "ermCardinality", meaning: "Kardinalität an den Linienenden (hier 1:n)" },
+      { sym: "ermRelAttr", meaning: "Beziehungsattribut (z. B. Menge)" },
+    ],
+  },
+  {
+    id: "erm-kraehenfuss",
+    title: "ERM – Krähenfuß-Notation (lesen)",
+    // Scope 16.09.: Chen = Kern, Krähenfuß nur lesen können = Randstoff (17-Lueckencheck, Workflow-Scope).
+    scope: "Randstoff",
+    pairs: [
+      { sym: "ermCfEntity", meaning: "Entitätstyp als Kasten (Name oben, Attribute darunter)" },
+      { sym: "line", meaning: "Beziehung (einfache Linie ohne Raute)" },
+      { sym: "ermCfOne", meaning: "am Kasten: genau eins" },
+      { sym: "ermCfZeroOne", meaning: "am Kasten: keins oder eins (optional)" },
+      { sym: "ermCfOneMany", meaning: "am Kasten: eins oder viele (mindestens eins); gezählt wird der Kasten, an dem das Zeichen steht" },
+      { sym: "ermCfZeroMany", meaning: "am Kasten: keins oder viele (beliebig viele)" },
+    ],
+  },
 ]
 
 function Game({ deck, onExit }: { deck: SymDeck; onExit: () => void }) {
@@ -192,7 +229,8 @@ function Game({ deck, onExit }: { deck: SymDeck; onExit: () => void }) {
       setMatched((m) => new Set(m).add(selLeft))
       setSelLeft(null)
       if (newSize === deck.pairs.length) {
-        recordDrill('UML/BPMN-Symbole', deck.pairs.length, deck.pairs.length + mistakes)
+        // ERM-Sätze getrennt zählen, damit die bestehende UML/BPMN-Statistik unverändert bleibt.
+        recordDrill(deck.id.startsWith('erm-') ? 'ERM-Symbole' : 'UML/BPMN-Symbole', deck.pairs.length, deck.pairs.length + mistakes)
       }
     } else {
       setMistakes((n) => n + 1)
@@ -264,7 +302,7 @@ export function SymbolDrill({ onExit }: { onExit: () => void }) {
     <section className="panel">
       <header className="panel-head">
         <button className="btn ghost" onClick={onExit}>← Zurück</button>
-        <h2>UML / BPMN-Symbole</h2>
+        <h2>Diagramm-Symbole (UML, BPMN, ERM)</h2>
       </header>
       <p className="muted small">Wähle einen Satz. Ordne jedes gezeichnete Symbol seiner Bedeutung zu.</p>
       <div className="deck-list">
