@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-16T11:49:52.048Z",
-  "count": 644,
+  "generatedAt": "2026-09-17T11:05:07.335Z",
+  "count": 668,
   "items": [
     {
       "id": "hardware--von-neumann-architektur-nenne-die-funktionalen-komponenten-und-ihr",
@@ -2830,7 +2830,7 @@
       "afb": null,
       "points": null,
       "front": "Erklaere den Ablauf einer Nutzwertanalyse und wozu sie beim Angebotsvergleich dient.",
-      "back": "Sie bewertet Angebote nach nicht-monetaeren (qualitativen) Kriterien. Schritte: 1) Kriterien festlegen (z. B. Service, Qualitaet, Lieferzeit), 2) Kriterien gewichten (Summe der Gewichte = 100 %), 3) je Angebot Punkte pro Kriterium vergeben, 4) Teilnutzen = Punkte x Gewicht, 5) Gesamtnutzwert = Summe der Teilnutzen. Das Angebot mit dem hoechsten Nutzwert gewinnt. Sinnvoll, wenn nicht allein der Preis entscheidet.",
+      "back": "Sie bewertet Angebote nach nicht-monetaeren (qualitativen) Kriterien. Schritte: 1) Kriterien festlegen (z. B. Service, Qualitaet, Lieferzeit), 2) Kriterien gewichten (Summe der Gewichte = 100 %), 3) je Angebot Punkte pro Kriterium vergeben, 4) Teilnutzen = Punkte x Gewicht, 5) Gesamtnutzwert = Summe der Teilnutzen. Das Angebot mit dem hoechsten Nutzwert gewinnt. Sinnvoll, wenn nicht allein der Preis entscheidet.\n\nVermerk 17.09.2026 (PV1 Tag 3): Genauer bezieht die Nutzwertanalyse **auch** nicht-monetäre Kriterien ein; der Preis ist oft selbst ein Kriterium (niedriger Preis = mehr Punkte, Skala angeben). Die Entscheidung am Ende ausdrücklich hinschreiben. Randstoff: Eine Sensitivitätsanalyse prüft danach, ob das Ergebnis bei geänderten Gewichten stabil bleibt (eigene Karte weiter unten).",
       "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
     },
     {
@@ -3042,6 +3042,26 @@
       "points": null,
       "front": "Welche drei Stufen hat die Kosten- und Leistungsrechnung und welche Frage beantwortet jede Stufe?",
       "back": "1. Kostenartenrechnung - Welche Kosten sind angefallen? Erfassung und Gliederung nach Arten (Personal-, Material-, Energie-, Raum-, Abschreibungs- und Fremdleistungskosten) sowie Einteilung in fixe und variable bzw. Einzel- und Gemeinkosten. 2. Kostenstellenrechnung - Wo sind die Kosten angefallen? Verteilung der Gemeinkosten auf die verursachenden Bereiche (z. B. Rechenzentrum, IT-Support, Entwicklung, Verwaltung); sie liefert die Grundlage für Zuschlagssätze und Stundenverrechnungssätze. 3. Kostenträgerrechnung - Wofür sind die Kosten angefallen? Zurechnung auf Produkte, Projekte oder Services; sie ist Basis für die Angebotskalkulation (Vorkalkulation) und den Soll-Ist-Vergleich nach Projektende (Nachkalkulation).",
+      "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
+    },
+    {
+      "id": "wirtschaftlichkeit--was-leistet-eine-sensitivitaetsanalyse-im-anschluss-an-eine-nutzwertanalyse",
+      "topicId": "wirtschaftlichkeit",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "wirtschaftlichkeit",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 1,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was leistet eine Sensitivitätsanalyse im Anschluss an eine Nutzwertanalyse, und wann gilt ein Ergebnis als nicht robust?",
+      "back": "Die Sensitivitätsanalyse ist ein optionaler Schlussschritt der Nutzwertanalyse: Gewichte (oder Punktwerte) werden gezielt verändert, und man prüft, ob die Rangfolge der Alternativen gleich bleibt.\n- Bleibt der Sieger auch bei anderen plausiblen Gewichtungen vorn, ist die Entscheidung robust.\n- Kippt die Rangfolge schon bei kleinen Änderungen oder liegen die Nutzwerte eng beieinander, ist das Ergebnis nicht robust. Dann die Gewichtung verbindlich mit dem Auftraggeber abstimmen, Kriterien schärfen oder weitere Informationen einholen.\n\nBeispiel Auswahl eines Ticketsystems, Punkte 1–10 für Funktionsumfang / Kosten / Support / Bedienbarkeit: X = 8 / 5 / 7 / 6, Y = 6 / 8 / 6 / 7.\n- Gewichte 35 / 30 / 20 / 15 %: X = 6,60, Y = 6,75 → Y gewinnt.\n- Gewichte 45 / 20 / 20 / 15 %: X = 6,90, Y = 6,55 → X gewinnt.\nRechnet man mit Funktionsumfang = w und Kosten = 65 % − w, gilt X = 3 × w + 5,55 und Y = 7,45 − 2 × w, also X − Y = 5 × w − 1,9 (w als Dezimalzahl, z. B. 0,35). Ab w = 38 % liegt X vorn; schon 3 Prozentpunkte Verschiebung kippen die Entscheidung, das Ergebnis ist also nicht robust.\n\nFür jede Nutzwertanalyse gilt: Die Gewichte ergeben zusammen 100 %, die Punkteskala wird angegeben, bei Kostenkriterien bekommt der günstigere Wert mehr Punkte, und die Entscheidung wird ausdrücklich hingeschrieben.\n\nEinordnung: Die Nutzwertanalyse gehört zum Themencluster Wirtschaftlichkeit/Angebotsvergleich. Der WBS-Kurs (PV1 Tag 3) behandelt die Sensitivitätsanalyse im Projektmanagement-Teil als letzten Schritt der Nutzwertanalyse.",
       "source": "Lernapp/Karteikarten/03-Wirtschaftlichkeit.md"
     },
     {
@@ -3288,7 +3308,7 @@
       "afb": null,
       "points": null,
       "front": "Nennen und erklaeren Sie die drei Rollen (Verantwortlichkeiten) in Scrum.",
-      "back": "Product Owner: verantwortet Product Backlog und Produktwert. Scrum Master: sorgt fuer Einhaltung von Scrum, beseitigt Hindernisse. Entwickler/Entwicklungsteam: selbstorganisiert, setzen das Sprint-Ziel um.",
+      "back": "Product Owner: verantwortet Product Backlog und Produktwert. Scrum Master: sorgt fuer Einhaltung von Scrum, beseitigt Hindernisse. Entwickler/Entwicklungsteam: selbstorganisiert, setzen das Sprint-Ziel um.\nVermerk 17.09.2026 (Stand Scrum Guide 2020): Die Entwickler heißen dort „Developers“, ein Entwicklungsteam als Untergruppe gibt es nicht mehr. Das Scrum Team umfasst Product Owner, Scrum Master und Developers und ist selbstmanagend (früher: selbstorganisiert). Ausführlich: Karte „Wer ist in Scrum wofür zuständig?“.",
       "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
     },
     {
@@ -3307,7 +3327,7 @@
       "afb": null,
       "points": null,
       "front": "Nennen Sie die vier Scrum-Events innerhalb eines Sprints.",
-      "back": "Sprint Planning (Planung), Daily Scrum (taegliche Abstimmung), Sprint Review (Ergebnispraesentation), Sprint Retrospective (Prozessverbesserung). Der Sprint selbst ist der uebergeordnete Rahmen (Container).",
+      "back": "Sprint Planning (Planung), Daily Scrum (taegliche Abstimmung), Sprint Review (Ergebnispraesentation), Sprint Retrospective (Prozessverbesserung). Der Sprint selbst ist der uebergeordnete Rahmen (Container).\nVermerk 17.09.2026 (Stand Scrum Guide 2020): Das Sprint Review ist keine reine Ergebnispräsentation, sondern eine Arbeitssitzung von Scrum Team und Stakeholdern; dabei wird auch das Product Backlog angepasst. Timeboxen und Teilnehmer: Karte „Welche Timebox, welche Teilnehmer und welchen Zweck haben die Scrum-Events …?“.",
       "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
     },
     {
@@ -3345,7 +3365,7 @@
       "afb": null,
       "points": null,
       "front": "Was ist ein Increment in Scrum?",
-      "back": "Das am Ende eines Sprints entstandene, potenziell auslieferbare (fertige) Produktinkrement, das die \"Definition of Done\" erfuellt und zum bisherigen Produkt hinzukommt.",
+      "back": "Das am Ende eines Sprints entstandene, potenziell auslieferbare (fertige) Produktinkrement, das die \"Definition of Done\" erfuellt und zum bisherigen Produkt hinzukommt.\nVermerk 17.09.2026 (Stand Scrum Guide 2020): „potenziell auslieferbar“ ist die Formulierung älterer Fassungen. Heute gilt: Das Increment muss nutzbar sein, die Definition of Done erfüllen und auf allen bisherigen Increments aufbauen. In einem Sprint können mehrere Increments entstehen, nicht nur eines am Sprintende.",
       "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
     },
     {
@@ -3517,7 +3537,7 @@
       "afb": null,
       "points": null,
       "front": "Was ist ein Projekt? Nennen Sie die wesentlichen Projektmerkmale (u. a. nach DIN 69901) und grenzen Sie ein Projekt von einer Routineaufgabe ab.",
-      "back": "Ein Projekt ist ein Vorhaben, das im Wesentlichen durch die Einmaligkeit seiner Bedingungen gekennzeichnet ist.\n\nMerkmale:\n- Einmaligkeit/Neuartigkeit (kein Tagesgeschäft)\n- klare Zielvorgabe (Sach-, Termin-, Kostenziel)\n- zeitliche Begrenzung (definierter Anfang und definiertes Ende)\n- begrenzte Ressourcen (Personal, Geld, Sachmittel)\n- Abgrenzung gegenüber anderen Vorhaben\n- eigene Projektorganisation (Projektleitung, Team)\n- Komplexität und Risiko, meist interdisziplinäre Teamarbeit\n\nAbgrenzung: Routineaufgaben (z. B. täglicher Anwendersupport, monatliche Datensicherung) sind wiederkehrend, standardisiert, ohne eigene temporäre Organisation und ohne definiertes Projektende. Fehlen die Merkmale Einmaligkeit, Befristung und Zielvorgabe, liegt kein Projekt vor.",
+      "back": "Ein Projekt ist ein einmaliges Vorhaben: Ziel, Rahmenbedingungen, Zeitrahmen und Organisation kommen in dieser Zusammenstellung nur dieses eine Mal vor (sinngemäß nach DIN 69901-5).\n\nMerkmale:\n- Einmaligkeit/Neuartigkeit (kein Tagesgeschäft)\n- klare Zielvorgabe (Sach-, Termin-, Kostenziel)\n- zeitliche Begrenzung (definierter Anfang und definiertes Ende)\n- begrenzte Ressourcen (Personal, Geld, Sachmittel)\n- Abgrenzung gegenüber anderen Vorhaben\n- eigene Projektorganisation (Projektleitung, Team)\n- Komplexität und Risiko, meist interdisziplinäre Teamarbeit\n\nAbgrenzung: Routineaufgaben (z. B. täglicher Anwendersupport, monatliche Datensicherung) sind wiederkehrend, standardisiert, ohne eigene temporäre Organisation und ohne definiertes Projektende. Fehlen die Merkmale Einmaligkeit, Befristung und Zielvorgabe, liegt kein Projekt vor.\n\nVermerk 17.09.2026 (PV1 Tag 3): Maßgeblich ist heute DIN 69901-5 (Ausgabe 2009); Kursfolien zitieren oft noch die alte DIN 69901 von 1987. Das Merkmal „Abgrenzung gegenüber anderen Vorhaben“ stammt aus der alten Fassung und fehlt laut Sekundärquelle in der Ausgabe 2009, ist in Lehrbüchern aber weiter üblich. Meilensteine sind ein Planungsmittel, kein Projektmerkmal.",
       "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
     },
     {
@@ -3672,6 +3692,426 @@
       "points": null,
       "front": "Grenzen Sie Werkvertrag und Dienstvertrag bei der Vergabe von IT-Projekten voneinander ab.",
       "back": "Werkvertrag (Paragraf 631 ff. BGB):\n- geschuldet ist ein konkreter ERFOLG, also das fertige, funktionsfähige Werk (z. B. eine nach Pflichtenheft erstellte Software)\n- die Vergütung wird in der Regel erst mit der Abnahme fällig; meist Festpreis\n- der Auftragnehmer trägt das Aufwandsrisiko\n- es besteht Gewährleistung/Mängelhaftung (Nacherfüllung, Minderung, Rücktritt, Schadensersatz)\n\nDienstvertrag (Paragraf 611 ff. BGB):\n- geschuldet ist nur die TAETIGKEIT bzw. das fachgerechte Tätigwerden, kein Erfolg (z. B. Beratung, Schulung, Bereitstellung eines Entwicklers nach Aufwand)\n- Vergütung nach geleisteter Zeit (Stunden-/Tagessatz), unabhängig vom Ergebnis\n- der Auftraggeber trägt das Aufwandsrisiko\n- keine Mängelgewährleistung für ein Werk\n\nEin Kaufvertrag (Paragraf 433 BGB) liegt dagegen bei Standardsoftware oder Hardware \"von der Stange\" vor. Praxisfolge: Individualentwicklung mit Pflichtenheft wird als Werkvertrag vereinbart, Wartung/Support und Personalgestellung als Dienstvertrag.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--welche-vorteile-bringt-es-ein-projekt-in-phasen-zu",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Vorteile bringt es, ein Projekt in Phasen zu gliedern, und welche Phasen unterscheidet die Norm DIN 69901-2?",
+      "back": "Vorteile eines Phasenmodells:\n- Das Vorhaben wird in überschaubare Abschnitte zerlegt, das erleichtert Planung und Schätzung.\n- Jede Phase endet mit einem definierten Ergebnis (z. B. Projektauftrag, Projektplan, abgenommenes Produkt), der Fortschritt wird messbar.\n- Phasenübergänge sind Kontrollpunkte: Auftraggeber bzw. Lenkungsausschuss geben die nächste Phase bewusst frei oder stoppen das Projekt.\n- Alle Beteiligten wissen, wo das Projekt gerade steht.\n- Abweichungen fallen früher auf, weil am Phasenende geprüft wird.\n\nLehrmodell mit vier Phasen (so auch in Kursfolien und im Reihenfolge-Drill): Initialisierung, Planung, Durchführung, Abschluss.\n\nDIN 69901-2 (Prozessmodell) trennt dagegen fünf Projektmanagementphasen: Initialisierung, Definition, Planung, Steuerung, Abschluss. Die Kontrolle (Soll-Ist-Vergleich) gehört dort zur Steuerung. Die Begriffe selbst (Projekt, Projektphase usw.) definiert DIN 69901-5.\n\nBezeichnungen, die in Aufgaben wechseln: Start/Initialisierung/Definition · Durchführung/Realisierung/Steuerung · Abschluss/Abnahme. Die Zahl der Phasen schwankt je nach Branche und Unternehmen; maßgeblich ist das Modell, das die Aufgabe vorgibt.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--welche-dokumente-und-plaene-entstehen-typischerweise-in-welcher-projektphase",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Dokumente und Pläne entstehen typischerweise in welcher Projektphase, und wie unterscheiden sich Projektantrag und Projektauftrag?",
+      "back": "Initialisierung/Definition:\n- Projektantrag\n- Machbarkeitsstudie bzw. Vorstudie, erste Wirtschaftlichkeitsbetrachtung\n- Lastenheft (Auftraggeber)\n- Projektauftrag\n\nPlanung:\n- Pflichtenheft (Auftragnehmer; je nach Modell am Ende der Definition oder zu Beginn der Planung)\n- Projektstrukturplan, Vorgangsliste, Ablauf- und Terminplan (Netzplan, Gantt-Diagramm) mit Meilensteinen\n- Ressourcen- bzw. Kapazitätsplan: Wer oder was wird wann gebraucht, wo drohen Engpässe (Urlaub, Teilzeit, Parallelprojekte)?\n- Kostenplan: Kosten je Arbeitspaket (Personal = Aufwand × Stundensatz, dazu Sachkosten), Summe = Budget\n- Qualitätsplan: Qualitätsziele, Abnahmekriterien, Prüf- und Testmaßnahmen, Zuständigkeiten\n- bei Bedarf Risiko- und Kommunikationsplan\n\nDurchführung/Steuerung:\n- Statusberichte, Sonderberichte (Randstoff), Besprechungsprotokolle, Änderungsanträge, Soll-Ist-Vergleiche an Stichtagen\n\nAbschluss:\n- Abnahmeprotokoll, Projektabschlussbericht mit Nachkalkulation, Lessons Learned, Übergabe- und Einweisungsunterlagen\n\nProjektantrag: schlägt ein Projekt vor und begründet es (Ausgangslage, Nutzen, grober Aufwand). Er ist Entscheidungsgrundlage, aber noch keine Zusage.\nProjektauftrag: verbindliche, unterschriebene Freigabe durch den Auftraggeber bzw. den Lenkungsausschuss. Er legt Ziele und Nichtziele, Umfang, Termine und Meilensteine, Budget, Projektleitung mit ihren Befugnissen sowie Rahmenbedingungen fest und markiert den offiziellen Projektstart.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--nennen-sie-vor-und-nachteile-des-wasserfallmodells-und-erklaeren",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Nennen Sie Vor- und Nachteile des Wasserfallmodells und erklären Sie, was das erweiterte Wasserfallmodell ändert.",
+      "back": "Vorteile:\n- klare, nacheinander ablaufende Phasen mit festen Ergebnissen und Meilensteinen\n- gut plan- und steuerbar, Termine und Kosten lassen sich früh schätzen (passt zu Festpreis und Werkvertrag)\n- vollständige Dokumentation, klare Zuständigkeiten\n- geeignet, wenn die Anforderungen stabil und von Anfang an vollständig bekannt sind (z. B. gesetzlich vorgegeben)\n\nNachteile:\n- unflexibel: Anforderungen müssen am Anfang feststehen, späte Änderungen sind teuer\n- der Auftraggeber sieht ein nutzbares Ergebnis erst spät; Fehler aus der Analyse fallen oft erst im Test auf\n- hoher Dokumentationsaufwand\n\nErweitertes Wasserfallmodell (Randstoff): Es erlaubt Rücksprünge in die jeweils vorige Phase, wenn dort Fehler entdeckt werden. Schon die Ursprungsbeschreibung von Royce (1970) sah solche Rückkopplungen vor; die strikte Form ganz ohne Wiederholung ist eine Lehrbuchvereinfachung.\n\nZwei Lesarten: Kursfolien zeigen den Wasserfall mit den Projektphasen (Initialisierung bis Abschluss). In der Softwareentwicklung laufen die Phasen Anforderungsanalyse, Entwurf, Implementierung, Test, Betrieb/Wartung. In der Prüfung gilt die Lesart, die die Aufgabe vorgibt.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wie-gehen-sie-bei-einer-stakeholderanalyse-vor-und-wie",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie gehen Sie bei einer Stakeholderanalyse vor, und wie unterscheiden sich interne und externe Stakeholder?",
+      "back": "Vorgehen:\n1. Identifizieren: Wer ist beteiligt, wer ist betroffen, wer hat Einfluss?\n2. Einordnen: intern oder extern.\n3. Bewerten: Einfluss (Macht) auf das Projekt, Interesse bzw. Betroffenheit, Einstellung (Befürworter, neutral, Gegner) und Erwartungen.\n4. Maßnahmen ableiten: früh einbinden, regelmäßig informieren, Bedenken klären oder beobachten.\n5. Laufend aktualisieren, weil sich Einstellungen im Projektverlauf ändern.\n\nIntern (gehören zur eigenen Organisation): Geschäftsführung, Projektteam, Fachabteilungen und Anwender, IT-Betrieb, Betriebsrat.\nExtern (außerhalb der Organisation): Kunden, Lieferanten und Dienstleister, Behörden, Kapitalgeber, Verbände, Öffentlichkeit bzw. Anwohner.\n\nBeispiel: Ein Handwerksbetrieb führt eine elektronische Zeiterfassung ein. Der Betriebsrat ist ein interner Stakeholder mit hohem Einfluss, weil er bei technischen Einrichtungen zur Leistungs- und Verhaltenskontrolle mitbestimmt (§ 87 Abs. 1 Nr. 6 BetrVG) → früh einbinden. Die Beschäftigten sind stark betroffen → über Nutzen und Datenschutz informieren und schulen.\n\nRandstoff Einfluss-Interesse-Matrix (vier Felder):\n- hoher Einfluss, hohes Interesse: eng einbinden (Schlüsselpersonen)\n- hoher Einfluss, geringes Interesse: zufriedenstellen, gezielt informieren\n- geringer Einfluss, hohes Interesse: regelmäßig informieren\n- geringer Einfluss, geringes Interesse: beobachten",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--woran-erkennen-sie-ob-ein-anforderungssatz-ins-lastenheft-oder",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Woran erkennen Sie, ob ein Anforderungssatz ins Lastenheft oder ins Pflichtenheft gehört? Ordnen Sie Beispielsätze zu.",
+      "back": "Prüffragen:\n- Beschreibt der Satz, WAS der Anwender fachlich braucht, ohne Technik oder Produkt vorzugeben? → Lastenheft (Auftraggeber, lösungsneutral, Sprache des Anwenders)\n- Legt der Satz fest, WIE und WOMIT umgesetzt wird (Plattform, Datenbank, Schnittstelle, Architektur)? → Pflichtenheft (Auftragnehmer)\n- Zusätzlich: funktional (was das System tun soll) oder nicht-funktional (wie gut: Leistung, Bedienbarkeit, Sicherheit)?\n\nBeispiele (Bestell-App eines Getränkehändlers):\n- „Kunden sollen eine Bestellung bis 18 Uhr am Vortag ändern können.\" → Lastenheft, funktional\n- „Die Änderungssperre setzt ein zeitgesteuerter Job um 18:00 Uhr in der MariaDB-Datenbank.\" → Pflichtenheft, funktional\n- „Die App soll auch ohne Schulung bedienbar sein.\" → Lastenheft, nicht-funktional\n- „Unterstützt werden die beiden aktuellen Hauptversionen von Android und iOS; Seitenaufrufe antworten dank serverseitigem Caching in unter einer Sekunde.\" → Pflichtenheft, nicht-funktional\n\nReihenfolge und Verbindlichkeit: erst das Lastenheft, dann das Pflichtenheft als Antwort darauf. Das vom Auftraggeber abgenommene Pflichtenheft wird Vertragsgrundlage.\n\nRandstoff: Manche Ablaufschemata (z. B. WBS-Kursfolien) unterscheiden ein vorläufiges Pflichtenheft (Entwurf in der Planung) von einem endgültigen, mit dem Auftraggeber abgestimmten Pflichtenheft.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wie-pruefen-sie-ein-vorgegebenes-projektziel-mit-der-smart",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie prüfen Sie ein vorgegebenes Projektziel mit der SMART-Regel und formulieren es lösungsneutral um? Zeigen Sie es an einem Beispiel.",
+      "back": "Vorgehen: das Ziel Kriterium für Kriterium prüfen, jede Verletzung mit Bezug auf den Wortlaut begründen, dann neu formulieren.\n- S, spezifisch: Was genau, für wen, wo?\n- M, messbar: Woran erkennt man, dass das Ziel erreicht ist (Kennzahl, Menge)?\n- A, attraktiv bzw. akzeptiert (je nach Quelle auch ausführbar oder angemessen): Tragen die Beteiligten das Ziel mit?\n- R, realistisch: Ist es mit den verfügbaren Mitteln erreichbar?\n- T, terminiert: Bis wann?\n\nZusätzlich gilt: Ein Projektziel beschreibt den angestrebten Zustand (WAS), nicht den Lösungsweg (WIE). Hersteller, Produkte oder Techniken gehören nicht ins Ziel, sonst wird die Lösungssuche unnötig eingeschränkt.\n\nBeispiel Steuerbüro: „Unsere Datensicherung soll schneller und moderner werden.\"\n- nicht spezifisch: Welche Systeme und Daten sind gemeint?\n- nicht messbar: „schneller\" und „moderner\" haben keine Kennzahl\n- nicht terminiert: kein Datum\n\nUmformuliert: „Bis 31.01.2027 werden alle Mandantendaten täglich gesichert, und der Dateiserver lässt sich innerhalb von 4 Stunden wiederherstellen; die Gesamtkosten betragen höchstens 5.000 € netto.\"\nDas neue Ziel nennt weder Produkt noch Technik.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--welche-folgen-hat-es-nach-dem-magischen-dreieck-wenn",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Folgen hat es nach dem magischen Dreieck, wenn sich Termin, Budget oder Leistungsumfang ändern, und wie reagieren klassisches und agiles Vorgehen darauf?",
+      "back": "Zielgrößen: Sachziel (Leistung und Qualität), Terminziel (Zeit), Kostenziel (Budget). Ändert sich eine Größe, muss mindestens eine andere nachgeben.\n\nTypische Ursache-Folge-Paare:\n- Termin wird vorgezogen → mehr Personal oder Überstunden (höhere Kosten) oder weniger Umfang bzw. geringere Testtiefe (Qualität sinkt)\n- Projekt dauert länger → meist höhere Kosten, weil Personal und Sachmittel länger gebunden sind\n- Budget wird gekürzt → weniger Leistung bzw. Qualität oder längere Dauer (weniger Personal)\n- Zusatzwunsch beim Leistungsumfang → mehr Zeit und/oder mehr Kosten\n\nZuordnung von Zielaussagen: „Das Portal bedient 500 gleichzeitige Nutzer\" = Sachziel · „Go-live am 01.03.\" = Terminziel · „höchstens 40.000 €\" = Kostenziel.\n\nKlassisch (planorientiert): Der Leistungsumfang steht im Vertrag bzw. Pflichtenheft fest; Zeit und Kosten werden daraus geschätzt und sind die variablen Größen. Eine Änderung läuft über einen Änderungsantrag mit neuer Termin- und Kostenschätzung.\n\nAgil (wertorientiert, z. B. Scrum): Zeit (feste Sprintlänge, Releasetermin) und Kosten (festes Team) stehen fest; der Umfang ist variabel. Der Product Owner ordnet das Product Backlog neu, Einträge mit geringem Wert rücken nach hinten oder entfallen.\n\nMerkbild: Agiles Vorgehen stellt das klassische Dreieck auf den Kopf.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wie-ist-ein-projektstrukturplan-aufgebaut-was-kennzeichnet-ein-arbeitspaket",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie ist ein Projektstrukturplan aufgebaut, was kennzeichnet ein Arbeitspaket, und nach welchen Prinzipien kann ein PSP gegliedert werden?",
+      "back": "Aufbau als Baumstruktur:\n- oberste Ebene: das Projekt\n- darunter: Teilprojekte bzw. Teilaufgaben, bei Bedarf über mehrere Ebenen weiter zerlegt\n- unterste Ebene: Arbeitspakete\nNummerierung (PSP-Code) z. B. 1 / 1.1 / 1.1.1, damit jedes Element eindeutig ansprechbar ist.\n\nArbeitspaket = kleinste, nicht weiter zerlegte Einheit des PSP:\n- klar abgegrenzt, mit überprüfbarem Ergebnis\n- genau eine verantwortliche Person\n- Dauer, Aufwand und Kosten sind schätzbar\nDer PSP ist damit Grundlage für Aufwands- und Kostenschätzung, Terminplanung und Zuständigkeiten. Abhängigkeiten und Termine enthält er selbst nicht.\n\nGliederungsprinzipien mit Leitfrage:\n- objektorientiert: Woran wird gearbeitet? (Bauteile, Module, Standorte, z. B. Filiale Nord, Filiale Süd)\n- funktionsorientiert (tätigkeitsorientiert): Was ist zu tun? (z. B. verkabeln, installieren, schulen)\n- phasenorientiert (ablauforientiert): In welcher Phase? (z. B. Planung, Umsetzung, Abschluss)\n- gemischt: z. B. oben nach Phasen, darunter nach Objekten\n\nBeispiel phasenorientiert (Kassensystem für ein Café): 1 Planung (1.1 Anforderungen aufnehmen, 1.2 Angebote vergleichen) · 2 Umsetzung (2.1 Hardware installieren, 2.2 Artikel und Preise einpflegen) · 3 Abschluss (3.1 Testbetrieb, 3.2 Personal einweisen)\n\nVom PSP zum Ablaufplan: Für jedes Arbeitspaket werden Dauer und Vorgänger ermittelt (Vorgangsliste); daraus entsteht der Projektablaufplan als Netzplan oder Gantt-Diagramm. „Projektablaufplan\" ausschreiben: Das Kürzel PAP steht in AP1-Material meist für den gestrichenen Programmablaufplan.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--in-welchen-schritten-erstellen-sie-einen-netzplan-welche-strukturregeln",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "In welchen Schritten erstellen Sie einen Netzplan, welche Strukturregeln gelten, und warum lesen Sie zuerst die Knotenlegende?",
+      "back": "Schritte:\n1. Knotenlegende der Aufgabe lesen: Welcher Wert steht in welchem Feld?\n2. Strukturanalyse: Vorgangsliste auswerten, Knoten und Pfeile nach den Vorgängerangaben zeichnen.\n3. Vorwärtsrechnung: FAZ = größter FEZ aller Vorgänger, FEZ = FAZ + Dauer.\n4. Rückwärtsrechnung: SEZ = kleinster SAZ aller Nachfolger, SAZ = SEZ − Dauer.\n5. Puffer und kritischen Pfad bestimmen: GP = SAZ − FAZ, FP = kleinster FAZ der Nachfolger − FEZ.\n\nStrukturregeln:\n- keine Schleifen: Kein Vorgang darf über seine Nachfolger wieder bei sich selbst ankommen.\n- Jeder Vorgang liegt auf einem durchgehenden Weg vom Start- zum Endvorgang, nichts hängt lose.\n- Ein Vorgang darf mehrere Vorgänger und mehrere Nachfolger haben.\n- Die Nummern müssen nicht der Ablaufreihenfolge entsprechen; maßgeblich ist die Vorgänger-Spalte.\n\nKnotenschemata unterscheiden sich je nach Quelle, zum Beispiel:\n- oben FAZ | Dauer | FEZ, in der Mitte Nr. und Bezeichnung, unten SAZ | GP | SEZ (so im Netzplan-Drill der App)\n- oben FAZ | FEZ, darunter Nr. | Bezeichnung, darunter Dauer | GP | FP, unten SAZ | SEZ (so in den WBS-Kursfolien)\nWer die Felder aus dem Gedächtnis belegt, trägt Werte leicht ins falsche Feld ein. Maßgeblich ist immer die Legende der Aufgabe.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--welche-typischen-fehler-stecken-in-falsch-berechneten-netzplaenen-und",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche typischen Fehler stecken in falsch berechneten Netzplänen, und woran erkennen Sie sie?",
+      "back": "- Gesamtpuffer mit falschem Vorzeichen: FAZ − SAZ gerechnet statt GP = SAZ − FAZ (= SEZ − FEZ). Ohne vorgegebenen Endtermin ist kein GP negativ.\n- FAZ bei mehreren Vorgängern vom kleinsten statt vom größten FEZ übernommen. Erkennbar: Der Vorgang beginnt, bevor alle Vorgänger fertig sind.\n- SEZ bei mehreren Nachfolgern vom größten statt vom kleinsten SAZ übernommen. Erkennbar: Ein Nachfolger müsste starten, bevor sein Vorgänger spätestens fertig ist.\n- Freier Puffer mit irgendeinem statt mit dem kleinsten FAZ der Nachfolger berechnet. Erkennbar: FP größer als GP ist immer falsch, es gilt 0 ≤ FP ≤ GP.\n- Kritischer Pfad unvollständig oder unterbrochen. Probe: Alle Vorgänge darauf haben GP 0, und die Summe ihrer Dauern ergibt die Projektdauer.\n- Puffer mehrerer Vorgänge addiert: Vorgänge auf demselben Weg teilen sich ihren Puffer.\n- Zählweise vermischt: Bei Zählung ab 0 gilt FAZ(Nachfolger) = FEZ(Vorgänger). Zählt die Aufgabe Tage ab Tag 1 einschließlich, gilt FEZ = FAZ + Dauer − 1, und der Nachfolger beginnt am Folgetag.\n- Faustregel zu weit ausgelegt: „Der FEZ eines Vorgangs ist der FAZ seines Nachfolgers\" stimmt nur, wenn er der späteste Vorgänger dieses Nachfolgers ist.\n\nVorgehen beim Fehlersuchen: jeden Knoten mit FEZ = FAZ + Dauer und SAZ = SEZ − Dauer gegenprüfen, dann an jeder Verzweigung die Max-Regel (vorwärts) und die Min-Regel (rückwärts) kontrollieren.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wie-wirkt-sich-die-verzoegerung-eines-vorgangs-auf-seine",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie wirkt sich die Verzögerung eines Vorgangs auf seine Nachfolger und auf das Projektende aus? Erklären Sie es mit freiem Puffer und Gesamtpuffer.",
+      "back": "Verzögerung um v Zeiteinheiten:\n- v ≤ FP: Kein Nachfolger verschiebt sich, das Projektende bleibt.\n- FP < v ≤ GP: Mindestens ein Nachfolger verschiebt sich (der mit dem kleinsten FAZ um v − FP); das Projektende bleibt, der Puffer der folgenden Vorgänge auf diesem Weg wird aufgezehrt.\n- v > GP: Das Projektende verschiebt sich um v − GP, wenn nicht gegengesteuert wird.\n- Vorgang auf dem kritischen Pfad (GP = 0): Das Projektende verschiebt sich um die volle Verzögerung.\n\nBeispiel: Vorgang K hat FEZ 7, GP 5 und FP 2.\n- 2 Tage Verzögerung: keine Auswirkung\n- 4 Tage: Der direkte Nachfolger beginnt 2 Tage später, das Projektende bleibt.\n- 7 Tage: Das Projektende verschiebt sich um 2 Tage.\n\nNach einer Verzögerung kann sich der kritische Pfad ändern. Gegenmaßnahmen: zusätzliche Ressourcen, Vorgänge parallelisieren, Umfang reduzieren (magisches Dreieck).",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wie-erstellen-sie-aus-einer-vorgangsliste-ein-gantt-diagramm",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie erstellen Sie aus einer Vorgangsliste ein Gantt-Diagramm, und was müssen Sie bei Arbeitszeiten, Wochenenden und Meilensteinen beachten?",
+      "back": "Vorgehen:\n1. Zeitachse im Raster der Aufgabe anlegen (Stunden, Arbeitstage, Wochen); arbeitsfreie Zeiten wie Wochenende und Feiertage kennzeichnen.\n2. Vorgänge untereinander auflisten, meist in Ablaufreihenfolge.\n3. Jeden Vorgang als Balken in frühester Lage zeichnen: Er beginnt, wenn der späteste Vorgänger fertig ist (Werte aus der Vorwärtsrechnung).\n4. Bei Bedarf Pufferbalken bis zur spätesten Lage und Abhängigkeitspfeile ergänzen; kritische Vorgänge farbig hervorheben.\n5. Meilensteine als Raute mit Dauer 0 eintragen (z. B. Abnahme).\n\nArbeitsfreie Zeit zählt nicht mit: Der Balken wird unterbrochen und läuft am nächsten Arbeitstag weiter.\nBeispiel (Arbeitszeit Mo–Fr 08–16 Uhr = 8 h pro Tag): Ein Vorgang mit 12 h beginnt Do 08:00 und läuft Do 08–16 Uhr (8 h) und Fr 08–12 Uhr (4 h), Ende Fr 12:00. Sein Nachfolger mit 10 h läuft Fr 12–16 Uhr (4 h) und Mo 08–14 Uhr (6 h), Ende Mo 14:00.\n\nVorteil gegenüber dem Netzplan: Termine und Kalenderbezug auf einen Blick, gut für die Fortschrittskontrolle. Nachteil: Abhängigkeiten und Puffer sind schlechter zu erkennen.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wie-unterscheiden-sich-vorkalkulation-und-nachkalkulation-eines-projekts-und",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie unterscheiden sich Vorkalkulation und Nachkalkulation eines Projekts, und wie berechnen Sie eine Soll-Ist-Abweichung?",
+      "back": "Vorkalkulation:\n- Zeitpunkt: vor Projektbeginn bzw. vor der Angebotsabgabe\n- Grundlage: geschätzter Aufwand (PSP, Schätzverfahren), Stundensätze, Lieferantenangebote\n- Zweck: Budget und Angebotspreis festlegen, Wirtschaftlichkeit prüfen, über den Projektstart entscheiden\n\nNachkalkulation:\n- Zeitpunkt: nach Projektabschluss (Zwischenkalkulationen auch an Stichtagen)\n- Grundlage: tatsächlich angefallene Stunden und Kosten (Zeiterfassung, Eingangsrechnungen)\n- Zweck: Soll-Ist-Vergleich, Abweichungen begründen, Gewinn oder Verlust des Projekts ermitteln, Erfahrungswerte für künftige Schätzungen und Angebote sichern\n\nAbweichung:\n- absolut = Ist − Soll\n- relativ in % = (Ist − Soll) ÷ Soll × 100\nBeispiel: geplant 40 h zu 70 €/h = 2.800 €; tatsächlich 46 h = 3.220 € → Abweichung +420 € = +15 %.\n\nFalle: Die Kosten richten sich nach dem Aufwand (Personenstunden), nicht nach der Durchlaufzeit. Arbeiten zwei Personen gleichzeitig je 8 h, dauert das 8 h, der Aufwand beträgt aber 16 h.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--welche-inhalte-hat-ein-projektstatusbericht-und-wann-wird-stattdessen",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Inhalte hat ein Projektstatusbericht, und wann wird stattdessen ein Sonderbericht erstellt?",
+      "back": "Statusbericht: regelmäßig (z. B. alle zwei Wochen oder zu Meilensteinen) an Auftraggeber bzw. Lenkungsausschuss.\n- Berichtszeitraum und Gesamtstatus, oft als Ampel (grün, gelb, rot)\n- Fortschritt: erledigte und nächste Arbeitspakete, erreichte Meilensteine\n- Soll-Ist-Vergleich für Termine, Kosten und Leistung\n- Probleme, Abweichungen und eingeleitete Maßnahmen\n- Risiken und offene Entscheidungen des Auftraggebers\n- Prognose, z. B. voraussichtlicher Endtermin und voraussichtliche Endkosten\n\nRandstoff Sonderbericht (Ad-hoc-Bericht): anlassbezogen und sofort, außerhalb des Berichtsrhythmus, wenn gravierende Abweichungen, neue hohe Risiken oder Ereignisse eine schnelle Entscheidung verlangen (z. B. Ausfall eines Lieferanten, deutliche Budgetüberschreitung).\n\nRandstoff Beispiel lineare Kostenhochrechnung: Budget 20.000 €; am Stichtag sind 25 % erledigt und 6.000 € verbraucht (geplant 5.000 €). Prognose 6.000 € ÷ 0,25 = 24.000 € → voraussichtlich 4.000 € (20 %) über Budget; die Kostenampel steht je nach vereinbarter Toleranz auf Gelb oder Rot.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--was-unterscheidet-prozessdokumentation-und-produktdokumentation-in-einem-projekt-ordnen",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was unterscheidet Prozessdokumentation und Produktdokumentation in einem Projekt? Ordnen Sie typische Dokumente zu.",
+      "back": "Prozessdokumentation: hält den Projektverlauf fest (Wie ist das Projekt gelaufen?). Sie dient Steuerung, Nachweis und Lessons Learned.\nBeispiele: Projektauftrag, Projektpläne, Statusberichte, Sonderberichte (Randstoff), Besprechungsprotokolle, Änderungsanträge, Abnahmeprotokoll, Abschlussbericht.\n\nProduktdokumentation: beschreibt das Ergebnis für seine späteren Nutzer und Betreuer (Was wurde geliefert, wie wird es genutzt und betrieben?).\nBeispiele: Benutzerhandbuch, System- bzw. Entwicklerdokumentation, Betriebs- und Administrationsdokumentation, Netzwerk- und Installationspläne, Einweisungs- und Schulungsunterlagen.\n\nBeides wird zentral und versioniert abgelegt (Projektinformationssystem bzw. gemeinsame Projektablage), damit alle Beteiligten auf denselben Stand zugreifen. Die Aufteilung der Produktdokumentation nach Zielgruppen (Benutzer, Entwicklung, Betrieb) vertieft das Deck QS, Verträge & Leistung.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--was-ist-ein-kick-off-meeting-wann-findet-es",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist ein Kick-off-Meeting, wann findet es statt, wer nimmt teil, und was steht auf der Tagesordnung?",
+      "back": "Kick-off-Meeting = offizielle Auftaktsitzung eines Projekts.\n\nZeitpunkt: Nach DIN 69901-5 (sinngemäß, laut Sekundärquellen) nach abgeschlossener Planung und vor Beginn der Durchführung. In der Praxis gibt es oft zusätzlich einen Start-Workshop direkt nach dem Projektauftrag, in dem die Planung gemeinsam erarbeitet wird.\n\nTeilnehmer: Projektleitung und Projektteam, meist auch Auftraggeber bzw. Fachabteilung und wichtige Stakeholder (z. B. IT-Betrieb, Betriebsrat, externe Dienstleister).\n\nTypische Tagesordnung:\n- Ausgangslage und Anlass\n- Ziele, Nichtziele und Nutzen des Projekts\n- Projektorganisation, Rollen und Zuständigkeiten\n- Termin- und Meilensteinplan, nächste Schritte\n- Spielregeln für Kommunikation und Berichte (Besprechungsrhythmus, Ablage, Eskalationswege)\n- offene Fragen\n\nZweck: gemeinsames Verständnis herstellen, Verbindlichkeit schaffen, das Team motivieren und den Start für alle sichtbar machen.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--beschreiben-sie-den-ablauf-eines-sprints-in-scrum-von",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Beschreiben Sie den Ablauf eines Sprints in Scrum von der Planung bis zur Retrospektive, einschließlich der Artefakte.",
+      "back": "1. Product Backlog: geordnete Liste aller Anforderungen an das Produkt, verantwortet vom Product Owner; zugehöriges Commitment ist das Produktziel.\n2. Sprint Planning: Das ganze Scrum Team klärt drei Fragen. Warum ist dieser Sprint wertvoll (Sprintziel)? Was kann im Sprint fertig werden (Auswahl von Product-Backlog-Einträgen)? Wie wird die Arbeit erledigt (Plan, oft in Aufgaben von höchstens einem Tag)?\n3. Ergebnis ist das Sprint Backlog: Sprintziel, ausgewählte Einträge und Umsetzungsplan der Developers.\n4. Sprint: Die Developers arbeiten auf das Sprintziel hin; jeden Tag findet der Daily Scrum statt.\n5. Increment: nutzbares Ergebnis, das die Definition of Done erfüllt und auf allen bisherigen Increments aufbaut. In einem Sprint können mehrere Increments entstehen.\n6. Sprint Review: Scrum Team und Stakeholder prüfen das Ergebnis und passen das Product Backlog an.\n7. Sprint Retrospective: Das Scrum Team verbessert Zusammenarbeit und Vorgehen.\nDanach beginnt sofort der nächste Sprint.\n\nRandstoff Product Backlog Refinement: laufende Tätigkeit, kein eigenes Event. Einträge werden zerlegt, präzisiert, geschätzt und geordnet. Der Product Owner verantwortet Inhalt und Reihenfolge, die Developers schätzen den Umfang.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--welche-timebox-welche-teilnehmer-und-welchen-zweck-haben-die",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Timebox, welche Teilnehmer und welchen Zweck haben die Scrum-Events, und wie grenzen Sie Sprint Review und Sprint Retrospective ab?",
+      "back": "- Sprint: feste Länge von höchstens einem Monat, in der Praxis oft zwei Wochen. Ein Monat ist die Obergrenze und keine Empfehlung; längere Sprints sind nicht Scrum-konform. Der Sprint umschließt alle anderen Events.\n- Sprint Planning: ganzes Scrum Team; legt Sprintziel und Sprint Backlog fest. Randstoff: höchstens 8 h bei einem Monats-Sprint.\n- Daily Scrum: täglich, höchstens 15 Minuten, Event der Developers (PO und SM nehmen teil, wenn sie selbst an Einträgen arbeiten). Zweck: Fortschritt zum Sprintziel prüfen und den Plan für den nächsten Arbeitstag anpassen. Im Stehen zu tagen und die drei Fragen (gestern, heute, Hindernisse) sind verbreitete Praxis bzw. stammen aus älteren Fassungen des Scrum Guide, sie sind keine Pflicht.\n- Sprint Review: Scrum Team und Stakeholder; Arbeitssitzung zum Ergebnis, keine reine Vorführung und kein Abnahmetor. Randstoff: höchstens 4 h.\n- Sprint Retrospective: nur das Scrum Team (PO, SM, Developers). Randstoff: höchstens 3 h.\nBei kürzeren Sprints fallen die Events meist entsprechend kürzer aus.\n\nAbgrenzung:\n- Review = Blick auf das PRODUKT: Was wurde erreicht, was ändert sich im Product Backlog? Mit Stakeholdern, findet zuerst statt.\n- Retrospective = Blick auf den PROZESS: Wie lief die Zusammenarbeit (Personen, Abläufe, Werkzeuge, Definition of Done), was verbessern wir? Ohne Stakeholder, schließt den Sprint ab.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wer-ist-in-scrum-wofuer-zustaendig-ordnen-sie-schaetzen",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wer ist in Scrum wofür zuständig? Ordnen Sie Schätzen, Backlog-Pflege, Sprint Backlog und Hindernisbeseitigung den Verantwortlichkeiten zu.",
+      "back": "Product Owner (eine Person, kein Gremium):\n- verantwortet den Produktwert und das Produktziel\n- pflegt und ordnet (priorisiert) das Product Backlog und formuliert die Einträge verständlich\n- ist keine Projektleitung, schätzt nicht den Aufwand und führt nicht das Sprint Backlog\n\nDevelopers:\n- schätzen den Umfang der Einträge (z. B. per Planning Poker)\n- wählen im Sprint Planning mit dem PO die Einträge aus und entscheiden selbst, wie viel sie übernehmen und wie sie es umsetzen\n- erstellen und aktualisieren das Sprint Backlog als ihren eigenen Plan\n- sichern die Qualität über die Definition of Done\n\nScrum Master:\n- verantwortet die Wirksamkeit des Scrum Teams und die Anwendung von Scrum\n- sorgt dafür, dass Hindernisse beseitigt werden und die Events stattfinden, produktiv sind und ihre Timebox einhalten; moderiert bei Bedarf\n- ist keine Projektleitung und hat keine Weisungsbefugnis gegenüber dem Team\n\nBegriffe: Seit dem Scrum Guide 2020 heißt es Developers statt Entwicklungsteam. Das Scrum Team umfasst PO, SM und Developers und ist selbstmanagend (früher: selbstorganisiert). Die älteren Begriffe und das Wort „Rollen\" sind in Prüfungen weiter üblich.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--auf-welchen-drei-saeulen-beruht-scrum-und-warum-gehoert",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Auf welchen drei Säulen beruht Scrum, und warum gehört der PDCA-Zyklus nicht zu den Grundlagen von Scrum?",
+      "back": "Scrum beruht auf Empirie (Entscheidungen auf Grundlage von Erfahrung und Beobachtung) und schlankem Denken. Die drei Säulen:\n- Transparenz: Arbeit, Fortschritt und Artefakte sind für alle Beteiligten sichtbar.\n- Überprüfung: Artefakte und Fortschritt werden regelmäßig geprüft, vor allem in den Events.\n- Anpassung: Weicht etwas ab, werden Vorgehen oder Produkt so früh wie möglich angepasst.\n\nZu jedem Artefakt gehört ein Commitment: Product Backlog → Produktziel · Sprint Backlog → Sprintziel · Increment → Definition of Done.\n\nPDCA (Plan, Do, Check, Act) ist der Deming-Zyklus aus dem Qualitätsmanagement bzw. dem KVP. Er ähnelt dem iterativen Vorgehen, ist aber kein Bestandteil von Scrum. Manche Kursfolien stellen ihn als Scrum-Grundidee dar; in Prüfungsantworten die drei Säulen nennen.",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--wie-fuehren-sie-eine-risikoanalyse-im-projekt-durch-und",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "core",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Wie führen Sie eine Risikoanalyse im Projekt durch, und wie lesen Sie eine Risikomatrix?",
+      "back": "Schritte:\n1. Risiken identifizieren (Brainstorming, Checklisten, Erfahrungen aus früheren Projekten), z. B. Lieferverzug, Ausfall von Schlüsselpersonal, unklare Anforderungen, Datenverlust bei der Migration.\n2. Risiken bewerten: Eintrittswahrscheinlichkeit und Schadenshöhe (Auswirkung) einschätzen, oft in Stufen wie gering/mittel/hoch. Risikowert = Eintrittswahrscheinlichkeit × Schadenshöhe.\n3. Maßnahmen planen: vermeiden (Ursache ausschalten), vermindern (Wahrscheinlichkeit oder Schaden senken, z. B. Tests, Backup, Vertretungsregelung), übertragen (Versicherung, vertragliche Regelung mit Dienstleistern) oder bewusst akzeptieren (mit Reserve oder Notfallplan).\n4. Risiken laufend überwachen und im Statusbericht melden.\n\nRisikomatrix: Eintrittswahrscheinlichkeit auf der einen Achse, Schadenshöhe auf der anderen; jedes Risiko landet in einem Feld.\n- rote Felder (z. B. hoch/hoch): sofort handeln, Maßnahme zwingend\n- gelbe Felder: Maßnahmen planen und beobachten\n- grüne Felder (gering/gering): meist akzeptieren und beobachten\n\nBeispiel: Wahrscheinlichkeit 30 % und Schaden 10.000 € ergeben einen Risikowert von 3.000 €; 5 % und 100.000 € ergeben 5.000 €. Das seltenere Risiko hat damit Vorrang.\n\nDie Risikomatrix wird auch in der Informationssicherheit verwendet (Gefährdungen bewerten).",
+      "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
+    },
+    {
+      "id": "projektmanagement--was-ist-extreme-programming-xp-und-welche-typischen-praktiken",
+      "topicId": "projektmanagement",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "projektmanagement",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.88,
+      "ap1Status": "ap2-grundlagen",
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Was ist Extreme Programming (XP), und welche typischen Praktiken gehören dazu?",
+      "back": "Extreme Programming ist ein agiles Vorgehensmodell der Softwareentwicklung (Kent Beck, Ende der 1990er-Jahre), das bewährte Entwicklungspraktiken konsequent anwendet. Werte: Kommunikation, Einfachheit, Feedback, Mut, Respekt.\n\nTypische Praktiken:\n- Pair Programming: zwei Personen an einem Rechner, eine schreibt, die andere prüft mit\n- testgetriebene Entwicklung (erst der Test, dann der Code)\n- fortlaufende Integration und kurze Releasezyklen\n- Refactoring und möglichst einfaches Design\n- gemeinsame Verantwortung für den Code und einheitliche Programmierrichtlinien\n- enge Zusammenarbeit mit dem Kunden (Kunde vor Ort)\n- nachhaltiges Arbeitstempo\n\nEinordnung: Laut Sekundärquellen zum Prüfungskatalog 2025 kennt AP1 als Vorgehensmodelle nur Wasserfall und Scrum; XP und Kanban gelten deshalb als AP2-Stoff. Pair Programming steht als Einzelthema weiter im Themencluster Teamarbeit.",
       "source": "Lernapp/Karteikarten/04-Projektmanagement.md"
     },
     {
@@ -7899,7 +8339,27 @@
       "afb": null,
       "points": null,
       "front": "Erkläre die Begriffe verbale, nonverbale und paraverbale Kommunikation und nenne je zwei Beispiele für ihre Bedeutung im Beratungsgespräch.",
-      "back": "Verbale Kommunikation: der gesprochene oder geschriebene Inhalt, also die Worte selbst - z. B. verständliche Wortwahl ohne unnötigen Fachjargon, klare Zusammenfassung der Vereinbarung. Nonverbale Kommunikation: Körpersprache ohne Worte - Mimik, Gestik, Blickkontakt, Körperhaltung, Abstand, Äusseres - z. B. zugewandte offene Haltung und Blickkontakt signalisieren Interesse, verschränkte Arme oder Blick auf das Handy wirken abweisend. Paraverbale Kommunikation: das Wie des Sprechens - Stimmlage, Lautstärke, Sprechtempo, Betonung, Pausen - z. B. ruhiges Tempo und Pausen geben dem Kunden Zeit zum Verstehen, eine laute oder gehetzte Stimme erzeugt Druck. Wichtig: Nonverbale und paraverbale Signale wirken stark mit; widersprechen sie dem Inhalt (inkongrünte Botschaft), glaubt der Empfänger eher dem Körper und der Stimme als den Worten.",
+      "back": "Verbale Kommunikation: der gesprochene oder geschriebene Inhalt, also die Worte selbst - z. B. verständliche Wortwahl ohne unnötigen Fachjargon, klare Zusammenfassung der Vereinbarung. Nonverbale Kommunikation: Körpersprache ohne Worte - Mimik, Gestik, Blickkontakt, Körperhaltung, Abstand, Äußeres - z. B. zugewandte offene Haltung und Blickkontakt signalisieren Interesse, verschränkte Arme oder Blick auf das Handy wirken abweisend. Paraverbale Kommunikation: das Wie des Sprechens - Stimmlage, Lautstärke, Sprechtempo, Betonung, Pausen - z. B. ruhiges Tempo und Pausen geben dem Kunden Zeit zum Verstehen, eine laute oder gehetzte Stimme erzeugt Druck. Wichtig: Nonverbale und paraverbale Signale wirken stark mit; widersprechen sie dem Inhalt (inkongruente Botschaft), glaubt der Empfänger eher dem Körper und der Stimme als den Worten.",
+      "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
+    },
+    {
+      "id": "kommunikation--welche-arten-von-besprechungsprotokollen-gibt-es-und-welche-angaben",
+      "topicId": "kommunikation",
+      "type": "flashcard",
+      "tags": [
+        "ap1",
+        "kommunikation",
+        "flashcard",
+        "lernapp"
+      ],
+      "examFrequency": 0.75,
+      "ap1Status": "supporting",
+      "peripheral": true,
+      "operator": null,
+      "afb": null,
+      "points": null,
+      "front": "Welche Arten von Besprechungsprotokollen gibt es, und welche Angaben gehören in jedes Protokoll?",
+      "back": "Ergebnisprotokoll: hält nur Beschlüsse, Ergebnisse und vereinbarte Aufgaben fest. Kurz und übersichtlich, im Projektalltag der Normalfall.\nVerlaufsprotokoll: gibt zusätzlich den Gesprächsverlauf mit den wichtigsten Beiträgen wieder. Aufwendiger, sinnvoll bei strittigen oder rechtlich bedeutsamen Besprechungen.\nWortprotokoll: wörtliche Mitschrift (z. B. Parlament, Gericht), im Projekt selten.\n\nAngaben in jedem Protokoll:\n- Anlass bzw. Thema, Datum, Uhrzeit und Ort\n- Teilnehmende und entschuldigt Fehlende, Sitzungsleitung, Protokollführung\n- Tagesordnung\n- Ergebnisse und Beschlüsse je Tagesordnungspunkt\n- Aufgabenliste: Was, wer, bis wann?\n- Verteiler, Erstellungsdatum und Freigabe bzw. Unterschrift\n\nNutzen: schafft Verbindlichkeit, vermeidet Missverständnisse, informiert Abwesende und belegt den Projektverlauf. Das Protokoll gehört zur Prozessdokumentation; es wird zeitnah verteilt und in der nächsten Sitzung bestätigt.",
       "source": "Lernapp/Karteikarten/10-Kommunikation-Markt.md"
     },
     {

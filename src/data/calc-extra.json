@@ -3084,5 +3084,187 @@
     ],
     "source": "PV1 Tag 2 · eigene Aufgabe",
     "peripheral": true
+  },
+  {
+    "id": "calc--netzplan-freier-puffer-verzoegerung",
+    "topicId": "projektmanagement",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II–III",
+    "points": 8,
+    "prompt": "Ein Systemhaus richtet für eine Tierarztpraxis ein neues Praxisnetz ein. Vorgangsliste (Dauer in Arbeitstagen, AT): A Bestandsaufnahme – 2 AT, kein Vorgänger; B Hardware bestellen und liefern lassen – 5 AT, nach A; C Verkabelung planen – 3 AT, nach A; D Verkabelung verlegen – 4 AT, nach C; E Clients vorkonfigurieren – 3 AT, nach B; F Server einrichten – 6 AT, nach B; G Installation vor Ort – 2 AT, nach D, E und F; H Test und Einweisung – 1 AT, nach G. a) Berechnen Sie die Projektdauer und bestimmen Sie den kritischen Pfad. b) Geben Sie Gesamtpuffer (GP) und freien Puffer (FP) der Vorgänge C, D und E an. c) Die Planung der Verkabelung (C) dauert 3 AT länger. Welche Folgen hat das für D und für das Projektende? d) Stattdessen verzögert sich E um 4 AT. Welche Folge hat das für das Projektende?",
+    "solutionSteps": [
+      "Vorwärtsrechnung (FEZ = FAZ + Dauer; FAZ = größter FEZ aller direkten Vorgänger): A 0–2, B 2–7, C 2–5, D 5–9, E 7–10, F 7–13",
+      "G: FAZ = max(FEZ D 9, FEZ E 10, FEZ F 13) = 13 → FEZ 15; H: FAZ 15, FEZ 16 → Projektdauer 16 AT",
+      "Rückwärtsrechnung (SAZ = SEZ − Dauer; SEZ = kleinster SAZ aller direkten Nachfolger): H 15–16, G 13–15, D 9–13, E 10–13, F 7–13; C: SEZ = SAZ D = 9 → SAZ 6",
+      "B: SEZ = min(SAZ E 10, SAZ F 7) = 7 → SAZ 2; A: SEZ = min(SAZ B 2, SAZ C 6) = 2 → SAZ 0 (Kontrolle erfüllt)",
+      "GP = SAZ − FAZ: A 0, B 0, C 6 − 2 = 4, D 9 − 5 = 4, E 10 − 7 = 3, F 0, G 0, H 0",
+      "a) Kritischer Pfad (alle Vorgänge mit GP = 0): A – B – F – G – H; Kontrolle 2 + 5 + 6 + 2 + 1 = 16 AT",
+      "b) FP = kleinster FAZ der direkten Nachfolger − eigener FEZ: C = FAZ D 5 − 5 = 0; D = FAZ G 13 − 9 = 4; E = FAZ G 13 − 10 = 3",
+      "c) C endet erst nach Tag 8 statt 5. Weil FP(C) = 0 ist, verschiebt sich D sofort: 8–12 statt 5–9. Die 3 AT liegen im GP von 4 AT, den sich C und D teilen → G kann weiter bei 13 beginnen, das Projektende bleibt bei 16 AT. D hat danach nur noch 1 AT Puffer.",
+      "d) E endet nach Tag 14 statt 10. Die Verzögerung übersteigt den GP von 3 AT um 1 AT → G 14–16, H 16–17 → Projektende 17 AT. E wird kritisch, neuer kritischer Pfad A – B – E – G – H; F hat jetzt 1 AT Puffer."
+    ],
+    "answer": "Projektdauer 16 AT, kritischer Pfad A–B–F–G–H; C: GP 4 / FP 0, D: GP 4 / FP 4, E: GP 3 / FP 3; c) D verschiebt sich auf 8–12, das Projektende bleibt bei 16 AT; d) Projektende 17 AT",
+    "unit": "AT",
+    "rubric": [
+      {
+        "criterion": "Projektdauer 16 AT (G: FAZ = größter FEZ der Vorgänger = 13)",
+        "points": 1
+      },
+      {
+        "criterion": "Kritischer Pfad A–B–F–G–H, begründet über GP = 0",
+        "points": 1
+      },
+      {
+        "criterion": "GP: C = 4, D = 4, E = 3",
+        "points": 2
+      },
+      {
+        "criterion": "FP: C = 0, D = 4, E = 3",
+        "points": 2
+      },
+      {
+        "criterion": "c) D verschiebt sich um 3 AT (FP von C = 0), das Projektende bleibt bei 16 AT (3 ≤ GP 4)",
+        "points": 1
+      },
+      {
+        "criterion": "d) Projektende verschiebt sich auf 17 AT (4 − GP 3 = 1)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "GP und FP verwechseln: C hat zwar 4 AT Gesamtpuffer, aber keinen freien Puffer – jede Verzögerung von C schiebt D sofort nach hinten, auch wenn das Projektende hält.",
+      "Puffer addieren sich nicht: C und D teilen sich dieselben 4 AT. Verzögern sich beide um je 3 AT, endet das Projekt nach 18 AT (A–C–D–G–H = 2 + 6 + 7 + 2 + 1).",
+      "GP = SAZ − FAZ (= SEZ − FEZ), nicht FAZ − SAZ. Ein negativer Puffer ohne vorgegebenen späteren Endtermin zeigt einen Rechenfehler.",
+      "Bei mehreren Vorgängern zählt für den FAZ der größte FEZ. Bei mehreren Nachfolgern zählt für den SEZ der kleinste SAZ und für den FP der kleinste FAZ der Nachfolger.",
+      "Die Summe aller Dauern (26 AT) ist nicht die Projektdauer – parallele Vorgänge laufen gleichzeitig."
+    ],
+    "source": "PV1 Tag 3 · eigene Aufgabe"
+  },
+  {
+    "id": "calc--nachkalkulation-soll-ist-vergleich",
+    "topicId": "projektmanagement",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.88,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 6,
+    "prompt": "Ein Systemhaus hat in einem Autohaus zwölf Arbeitsplätze erneuert. Geplant waren 2 Techniker, die an allen 4 Arbeitstagen der Projektlaufzeit je 8 Stunden arbeiten, dazu 6 Stunden Projektleitung. Tatsächlich angefallen sind 70 Technikerstunden und 9 Stunden Projektleitung. Interne Stundensätze: Techniker 68 €, Projektleitung 85 €. Hardware: geplant 10.200 €, tatsächlich 9.840 €. a) Berechnen Sie die Plankosten (Soll) und die Istkosten. b) Ermitteln Sie die Abweichung je Kostenposition und insgesamt in € und in Prozent. c) Nennen Sie zwei Zwecke der Nachkalkulation.",
+    "solutionSteps": [
+      "Planaufwand Techniker = Personen × Arbeitstage × Stunden pro Tag = 2 × 4 × 8 = 64 h (die Laufzeit von 4 AT ist nicht der Aufwand)",
+      "a) Soll: Techniker 64 h × 68 € = 4.352 €; Projektleitung 6 h × 85 € = 510 €; Hardware 10.200 € → Summe 15.062 €",
+      "a) Ist: Techniker 70 h × 68 € = 4.760 €; Projektleitung 9 h × 85 € = 765 €; Hardware 9.840 € → Summe 15.365 €",
+      "b) Abweichung = Ist − Soll; Prozent immer bezogen auf den Sollwert",
+      "b) Techniker: 4.760 € − 4.352 € = +408 € → 408 / 4.352 = +9,375 % (≈ +9,4 %)",
+      "b) Projektleitung: 765 € − 510 € = +255 € → 255 / 510 = +50 %",
+      "b) Hardware: 9.840 € − 10.200 € = −360 € → −360 / 10.200 ≈ −3,53 %",
+      "b) Gesamt: 15.365 € − 15.062 € = +303 € → 303 / 15.062 ≈ +2,01 %. Die Einsparung bei der Hardware gleicht die Mehrstunden nur teilweise aus (Personal zusammen: 5.525 € − 4.862 € = +663 € ≈ +13,64 %).",
+      "c) Zwei Zwecke genügen: Wirtschaftlichkeit des Projekts nachträglich prüfen; Ursachen der Abweichungen erkennen (hier: Stundenschätzung zu knapp); Erfahrungswerte für künftige Angebote und Analogieschätzungen gewinnen; Ergebnisse im Abschlussbericht festhalten (Lessons Learned)."
+    ],
+    "answer": "Soll 15.062 €, Ist 15.365 € → +303 € (≈ +2,01 %); Techniker +408 € (+9,375 %), Projektleitung +255 € (+50 %), Hardware −360 € (≈ −3,53 %); dazu zwei Zwecke der Nachkalkulation",
+    "unit": "€ / %",
+    "rubric": [
+      {
+        "criterion": "Planaufwand 64 h über Personen × Tage × Stunden",
+        "points": 1
+      },
+      {
+        "criterion": "Sollkosten 15.062 €",
+        "points": 1
+      },
+      {
+        "criterion": "Istkosten 15.365 €",
+        "points": 1
+      },
+      {
+        "criterion": "Abweichung je Position in € und % mit dem Soll als Basis",
+        "points": 1
+      },
+      {
+        "criterion": "Gesamtabweichung +303 € ≈ +2,01 %",
+        "points": 1
+      },
+      {
+        "criterion": "zwei passende Zwecke der Nachkalkulation",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Laufzeit mit Aufwand verwechseln: 4 AT × 8 h = 32 h gilt nur für einen Techniker. Der Planaufwand ist Personen × Tage × Stunden = 64 h.",
+      "Prozent auf den falschen Grundwert beziehen: 408 / 4.760 ≈ 8,57 % ist falsch – die Abweichung wird auf den Planwert (Soll) bezogen.",
+      "Vorzeichen beachten: Ist − Soll > 0 heißt Überschreitung, < 0 heißt Einsparung.",
+      "Eine kleine Gesamtabweichung kann große Einzelabweichungen verdecken: Die Projektleitung liegt 50 % über Plan.",
+      "Vorkalkulation (vor dem Projekt, mit Schätzwerten) und Nachkalkulation (nach dem Projekt, mit Istwerten) nicht verwechseln."
+    ],
+    "source": "PV1 Tag 3 · eigene Aufgabe"
+  },
+  {
+    "id": "calc--nutzwertanalyse-sensitivitaet",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II–III",
+    "points": 5,
+    "prompt": "Ein Kita-Träger wählt ein Videokonferenzsystem aus. K.-o.-Kriterium ist ein Serverstandort in der EU; beide Angebote erfüllen es. Bewertet wird mit 1 bis 10 Punkten (10 = am besten; beim Kriterium Kosten erhält das günstigere Angebot mehr Punkte). Gewichte: Datenschutz 40 %, Bedienbarkeit 30 %, Kosten 20 %, Support 10 %. Angebot A: 9 / 6 / 5 / 7 Punkte, Angebot B: 6 / 9 / 8 / 6 Punkte. a) Berechnen Sie die Nutzwerte und treffen Sie eine Entscheidung. b) [RAND] Sensitivitätsanalyse: Der Elternbeirat verlangt Datenschutz 50 % und Bedienbarkeit 20 %, die übrigen Gewichte bleiben. Berechnen Sie erneut. c) [RAND] Ab welchem Gewicht für den Datenschutz kippt die Entscheidung, wenn Datenschutz und Bedienbarkeit zusammen bei 70 % bleiben? Beurteilen Sie die Robustheit des Ergebnisses.",
+    "solutionSteps": [
+      "Gewichte prüfen: 40 % + 30 % + 20 % + 10 % = 100 % ✓",
+      "a) A = 9 × 0,4 + 6 × 0,3 + 5 × 0,2 + 7 × 0,1 = 3,6 + 1,8 + 1,0 + 0,7 = 7,1",
+      "a) B = 6 × 0,4 + 9 × 0,3 + 8 × 0,2 + 6 × 0,1 = 2,4 + 2,7 + 1,6 + 0,6 = 7,3 → Entscheidung: Angebot B",
+      "b) A = 9 × 0,5 + 6 × 0,2 + 1,0 + 0,7 = 4,5 + 1,2 + 1,7 = 7,4",
+      "b) B = 6 × 0,5 + 9 × 0,2 + 1,6 + 0,6 = 3,0 + 1,8 + 2,2 = 7,0 → die Entscheidung kippt zu Angebot A",
+      "c) Datenschutz-Gewicht w, Bedienbarkeit 0,7 − w: A = 9w + 6 × (0,7 − w) + 1,7 = 3w + 5,9; B = 6w + 9 × (0,7 − w) + 2,2 = 8,5 − 3w",
+      "c) Gleichstand: 3w + 5,9 = 8,5 − 3w → 6w = 2,6 → w ≈ 0,433 = 43,3 %. Darüber gewinnt A, darunter B.",
+      "c) Beurteilung: Schon eine Verschiebung um gut 3 Prozentpunkte (40 % → 43,3 %) ändert das Ergebnis – die Entscheidung ist nicht robust. Die Gewichtung vorab verbindlich mit Träger und Elternbeirat festlegen und die Entscheidung dokumentieren."
+    ],
+    "answer": "a) A = 7,1, B = 7,3 → Angebot B; b) A = 7,4, B = 7,0 → Angebot A; c) Kipppunkt bei ≈ 43,3 % Datenschutz → das Ergebnis ist nicht robust",
+    "unit": "Nutzwertpunkte",
+    "rubric": [
+      {
+        "criterion": "a) Nutzwerte A = 7,1 und B = 7,3",
+        "points": 1
+      },
+      {
+        "criterion": "a) Entscheidung für B ausdrücklich benannt",
+        "points": 1
+      },
+      {
+        "criterion": "b) A = 7,4 und B = 7,0, Wechsel zu A erkannt",
+        "points": 1
+      },
+      {
+        "criterion": "c) Kipppunkt bei ≈ 43,3 % Datenschutz",
+        "points": 1
+      },
+      {
+        "criterion": "c) Beurteilung „nicht robust“ mit Konsequenz (Gewichtung vorab festlegen)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Beim Kostenkriterium die Skala umdrehen: Das günstigere Angebot bekommt mehr Punkte.",
+      "Die Gewichte müssen 100 % ergeben – in der Sensitivitätsanalyse nur so verschieben, dass die Summe gleich bleibt.",
+      "Die Entscheidung ausdrücklich hinschreiben (häufigster Punktverlust).",
+      "K.-o.-Kriterien vor der Punktbewertung prüfen: Wer sie verfehlt, scheidet aus, egal wie viele Punkte er sonst hätte.",
+      "Die Sensitivitätsanalyse ist Randstoff: Im WBS-Kurs ist sie der 5. Schritt der Nutzwertanalyse, in AP1-Aufgaben kommt sie selten vor."
+    ],
+    "source": "PV1 Tag 3 · eigene Aufgabe",
+    "peripheral": true
   }
 ]

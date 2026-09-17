@@ -345,6 +345,7 @@
    "Projektdauer = FEZ des letzten Vorgangs = Länge des längsten Weges durch den Netzplan",
    "Gibt die Aufgabe einen späteren Wunsch-Endtermin vor, hat kein Vorgang mehr GP = 0; kritisch ist dann der Weg mit dem kleinsten Gesamtpuffer",
    "Knotenschema (Vorgangsknoten): oben `FAZ | D | FEZ`, Mitte Nummer/Vorgangsname, unten `SAZ | GP | SEZ`",
+   "Es gibt mehrere Knotenschemata, z. B. oben `FAZ | FEZ`, Mitte Nummer/Name, darunter `D | GP | FP`, unten `SAZ | SEZ` — in der Prüfung gilt immer die Legende der Aufgabe",
    "Standard-Anordnungsbeziehung in AP1 ist die Normalfolge (Ende-Anfang) mit Zeitabstand 0: Der Nachfolger startet frühestens, wenn der Vorgänger fertig ist"
   ],
   "intro": "Beim **Vorgangsknoten-Netzplan** berechnest du für jeden Vorgang vier Termine (FAZ, FEZ, SAZ, SEZ), daraus die Puffer und daraus den **kritischen Pfad** — die Kette von Vorgängen, bei der jede Verzögerung das ganze Projekt verzögert. Das ist reine Rechenmechanik in zwei Durchläufen: einmal vorwärts durch den Plan, einmal rückwärts. In der AP1 kommt das im Handlungsfeld Projektmanagement regelmäßig als Rechen- und Zeichenaufgabe mit hoher Punktzahl vor, und du kannst hier volle Punkte holen, weil das Verfahren völlig schematisch ist. Grundidee: vorwärts nimmst du **immer das Maximum**, rückwärts **immer das Minimum**.",

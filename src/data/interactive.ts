@@ -187,6 +187,120 @@ const MATCH_BASE: MatchDeck[] = [
       { left: '[RAND] Welcher Prozess belegt Port 8080?', right: 'netstat -ano' },
     ],
   },
+  // PV1 Tag 3 (Projektmanagement, 17.09.2026): eigene Formulierungen und Beispiele, nicht die WBS-Folien.
+  // Scrum nach dem Scrum Guide 2020 (die Kursfolien nutzen ältere Begriffe und lassen den PO schätzen – falsch).
+  // Netzplan-Regeln mit freiem Puffer, weil match-netzplan-zeitwerte-bedeutung (interactive-extra.json) kein FP hat.
+  {
+    id: 'match-lastenheft-pflichtenheft',
+    title: 'Lastenheft oder Pflichtenheft?',
+    topicId: 'projektmanagement',
+    instruction:
+      'Ordne jede Aussage dem passenden Dokument zu. Die beiden Beispielsätze stammen aus einem Projekt für die Online-Verlängerung einer Stadtbücherei.',
+    pairs: [
+      { left: 'wird vom Auftraggeber erstellt', right: 'Lastenheft' },
+      { left: 'wird vom Auftragnehmer auf Grundlage des anderen Dokuments erstellt', right: 'Pflichtenheft' },
+      { left: 'beschreibt lösungsneutral, WAS erreicht werden soll und WOFÜR', right: 'Lastenheft' },
+      { left: 'beschreibt, WIE und WOMIT die Anforderungen umgesetzt werden', right: 'Pflichtenheft' },
+      { left: 'dient als Grundlage für Ausschreibung und Angebote', right: 'Lastenheft' },
+      { left: 'wird nach Freigabe durch den Auftraggeber Grundlage für Umsetzung und Abnahme', right: 'Pflichtenheft' },
+      { left: '„Leserinnen und Leser sollen ausgeliehene Medien online verlängern können.“', right: 'Lastenheft' },
+      { left: '„Die Verlängerung wird als PHP-Webanwendung mit einer MariaDB-Datenbank umgesetzt.“', right: 'Pflichtenheft' },
+    ],
+  },
+  {
+    id: 'match-smart-prueffrage',
+    title: 'SMART: Kriterium → Prüffrage',
+    topicId: 'projektmanagement',
+    instruction:
+      'Ordne jedem Kriterium die Frage zu, mit der du ein Projektziel prüfst. Für das A sind mehrere Wörter üblich (attraktiv, akzeptiert, angemessen). Die letzte Zeile ist keine SMART-Regel, sondern eine Zusatzregel für Projektziele.',
+    pairs: [
+      { left: 'S – spezifisch', right: 'Ist eindeutig beschrieben, was genau erreicht werden soll?' },
+      { left: 'M – messbar', right: 'Lässt sich an einer Größe oder Kennzahl prüfen, ob das Ziel erreicht ist?' },
+      { left: 'A – attraktiv bzw. akzeptiert', right: 'Tragen Auftraggeber und Beteiligte das Ziel mit?' },
+      { left: 'R – realistisch', right: 'Ist das Ziel mit den verfügbaren Mitteln (Budget, Personal, Know-how) erreichbar?' },
+      { left: 'T – terminiert', right: 'Steht fest, bis wann das Ziel erreicht sein muss?' },
+      { left: 'lösungsneutral (Zusatzregel)', right: 'Beschreibt das Ziel nur das WAS und nimmt keinen Lösungsweg vorweg?' },
+    ],
+  },
+  {
+    id: 'match-projektdokument-phase',
+    title: 'Projektdokument → Projektphase',
+    topicId: 'projektmanagement',
+    instruction:
+      'Ordne jedes Dokument der Phase zu, in der es entsteht (Vier-Phasen-Lehrmodell; die Phasennamen schwanken je nach Quelle). [RAND] = Randstoff.',
+    pairs: [
+      { left: 'Projektauftrag', right: 'Initialisierung / Definition' },
+      { left: 'Lastenheft', right: 'Initialisierung / Definition' },
+      { left: 'Projektstrukturplan', right: 'Planung' },
+      { left: 'Netzplan und Gantt-Diagramm', right: 'Planung' },
+      { left: 'Kostenplan', right: 'Planung' },
+      { left: 'Statusbericht mit Soll-Ist-Vergleich', right: 'Durchführung / Steuerung' },
+      { left: '[RAND] Sonderbericht bei einer gravierenden Abweichung', right: 'Durchführung / Steuerung' },
+      { left: 'Abnahmeprotokoll', right: 'Abschluss' },
+      { left: 'Abschlussbericht mit Lessons Learned', right: 'Abschluss' },
+    ],
+  },
+  {
+    id: 'match-psp-gliederungsart',
+    title: 'PSP: Element → Gliederungsart',
+    topicId: 'projektmanagement',
+    instruction:
+      'Eine Fahrschule mit zwei Filialen führt eine Online-Terminbuchung ein. Ordne jedes PSP-Element seiner Gliederungsart zu. Leitfragen: Woran wird gearbeitet? (objektorientiert) · Was ist zu tun? (funktionsorientiert) · Wann? (phasenorientiert)',
+    pairs: [
+      { left: 'Filiale Nord', right: 'objektorientiert' },
+      { left: 'Buchungsmodul der Website', right: 'objektorientiert' },
+      { left: 'Kalenderschnittstelle programmieren', right: 'funktionsorientiert' },
+      { left: 'Fahrlehrerinnen und Fahrlehrer schulen', right: 'funktionsorientiert' },
+      { left: 'Konzeptphase', right: 'phasenorientiert' },
+      { left: 'Testphase', right: 'phasenorientiert' },
+    ],
+  },
+  {
+    id: 'match-netzplan-rechenregel',
+    title: 'Netzplan: Größe → Rechenregel',
+    topicId: 'projektmanagement',
+    instruction:
+      'Ordne jeder Größe ihre Rechenregel zu (Vorgangsknoten-Netzplan ohne vorgegebenen Endtermin). Achtung: Wie die Felder im Knoten angeordnet sind, legt die Legende der Aufgabe fest.',
+    pairs: [
+      { left: 'FEZ', right: 'FAZ + Dauer' },
+      { left: 'FAZ eines Vorgangs mit mehreren Vorgängern', right: 'größter FEZ aller direkten Vorgänger' },
+      { left: 'SAZ', right: 'SEZ − Dauer' },
+      { left: 'SEZ eines Vorgangs mit mehreren Nachfolgern', right: 'kleinster SAZ aller direkten Nachfolger' },
+      { left: 'GP (Gesamtpuffer)', right: 'SAZ − FAZ (= SEZ − FEZ)' },
+      { left: 'FP (freier Puffer)', right: 'kleinster FAZ der direkten Nachfolger − eigener FEZ' },
+      { left: 'kritischer Pfad', right: 'durchgehende Kette der Vorgänge mit GP = 0' },
+    ],
+  },
+  {
+    id: 'match-scrum-verantwortlichkeit',
+    title: 'Scrum: Aufgabe → Verantwortlichkeit',
+    topicId: 'projektmanagement',
+    instruction:
+      'Ordne jede Aufgabe der Verantwortlichkeit zu, die sie nach dem Scrum Guide 2020 trägt. Ältere Quellen sagen statt Developers „Entwicklungsteam“.',
+    pairs: [
+      { left: 'schätzt den Umfang der Product-Backlog-Einträge', right: 'Developers' },
+      { left: 'ordnet (priorisiert) das Product Backlog', right: 'Product Owner' },
+      { left: 'erstellt das Sprint Backlog und passt es während des Sprints an', right: 'Developers' },
+      { left: 'verantwortet, dass der Wert des Produkts maximiert wird', right: 'Product Owner' },
+      { left: 'sorgt dafür, dass Hindernisse beseitigt werden', right: 'Scrum Master' },
+      { left: 'sorgt dafür, dass die Events stattfinden und ihre Timebox einhalten', right: 'Scrum Master' },
+      { left: 'halten den Daily Scrum ab', right: 'Developers' },
+    ],
+  },
+  {
+    id: 'match-scrum-event-zweck',
+    title: 'Scrum: Event → Zweck und Timebox',
+    topicId: 'projektmanagement',
+    instruction: 'Ordne jedem Scrum-Event seinen Zweck zu (Scrum Guide 2020). [RAND] = Randstoff.',
+    pairs: [
+      { left: 'Sprint', right: 'Rahmen für alle anderen Events; feste Länge von höchstens einem Monat' },
+      { left: 'Sprint Planning', right: 'legt Sprintziel, ausgewählte Einträge und den Umsetzungsplan fest (Warum, Was, Wie)' },
+      { left: 'Daily Scrum', right: 'höchstens 15 Minuten: Die Developers prüfen den Fortschritt zum Sprintziel' },
+      { left: 'Sprint Review', right: 'Scrum Team und Stakeholder prüfen das Ergebnis und passen das Product Backlog an' },
+      { left: 'Sprint Retrospective', right: 'Das Scrum Team verbessert Zusammenarbeit, Prozesse und Werkzeuge' },
+      { left: '[RAND] Product Backlog Refinement', right: 'laufende Tätigkeit, kein Event: Einträge zerlegen, präzisieren und schätzen' },
+    ],
+  },
 ]
 
 const ORDER_BASE: OrderTask[] = [
@@ -292,6 +406,38 @@ const ORDER_BASE: OrderTask[] = [
       'ping auf das Standardgateway – lokales Netz bis zum Router',
       'ping auf eine externe IP-Adresse – Weg ins Internet',
       'nslookup mit dem Namen der Webseite – Antwort des DNS-Servers',
+    ],
+  },
+  // PV1 Tag 3 (Projektmanagement): Rückwärtsrechnung als Gegenstück zu order-netzplan-vorwaertsrechnung
+  // (interactive-extra.json), Scrum-Ablauf mit Begriffen nach dem Scrum Guide 2020.
+  {
+    id: 'order-netzplan-rueckwaertsrechnung',
+    title: 'Netzplan: Rückwärtsrechnung und Puffer',
+    topicId: 'projektmanagement',
+    prompt:
+      'Die Vorwärtsrechnung ist fertig, ein späterer Endtermin ist nicht vorgegeben. Bringe die folgenden Schritte in die richtige Reihenfolge.',
+    correct: [
+      'Endvorgang: SEZ = sein FEZ (Projektende)',
+      'SAZ = SEZ − Dauer berechnen',
+      'SEZ eines Vorgängers = kleinster SAZ aller direkten Nachfolger übernehmen',
+      'Rechnung bis zum Startvorgang fortsetzen (Kontrolle: SAZ = 0)',
+      'Gesamtpuffer GP = SAZ − FAZ und freien Puffer FP bestimmen',
+      'Kritischen Pfad aus den Vorgängen mit GP = 0 bilden',
+    ],
+  },
+  {
+    id: 'order-scrum-sprint-ablauf',
+    title: 'Scrum: Ablauf eines Sprints',
+    topicId: 'projektmanagement',
+    prompt: 'Bringe die Stationen rund um einen Sprint in die richtige Reihenfolge (Begriffe nach dem Scrum Guide 2020).',
+    correct: [
+      'Product Owner ordnet das Product Backlog',
+      'Sprint Planning: Sprintziel und Auswahl der Einträge festlegen',
+      'Developers erstellen das Sprint Backlog (Plan für den Sprint)',
+      'Umsetzung mit täglichem Daily Scrum (höchstens 15 Minuten)',
+      'Increment erfüllt die Definition of Done',
+      'Sprint Review mit den Stakeholdern',
+      'Sprint Retrospective des Scrum Teams',
     ],
   },
 ]

@@ -4,6 +4,11 @@
 // Gateway-Plausibilität). Eigene Szenarien (Planungsbüro, Physiotherapiepraxis) statt der WBS-Folien und
 // -Übungen, alle Zahlen nachgerechnet. Einordnung Tag 2: USV-Klassen, Leistung und Überbrückungszeit = Kern;
 // Shutdown-Software und Wartung = [RAND] (Marker direkt am Teil).
+// Tag 3 (17.09.2026): Projektmanagement — Projektstart einer Kursbuchungs-App (Projektmerkmale, SMART-Ziel,
+// Lasten-/Pflichtenheft, Stakeholder, magisches Dreieck klassisch/agil; Kick-off = [RAND]) und Terminplanung eines
+// Kanzleiumzugs (PSP, Netzplan mit Gesamt- und freiem Puffer, Verzögerungen, Gantt mit Wochenende, Fehler finden).
+// Eigene Szenarien (Fitnessstudio, Steuerkanzlei) statt der WBS-Folien; Scrum-Begriffe nach dem Scrum Guide 2020,
+// weil die Kursfolien ältere bzw. falsche Angaben enthalten; alle Zahlen per Skript nachgerechnet.
 // Tag 1 — eigene Szenarien (Musikschule, Mobilitätsstation, Betriebskantine) — bewusst NICHT die IHK-/WBS-Originale
 // (AP1 Frühjahr 2026: Einzelklasse mit Attributen, Datentypen, Sichtbarkeit; WBS-Sammlung: Vererbung,
 // Aggregation/Komposition, Datentypen zuordnen, OOP-Begriffe), sondern gleiche Aufgabentypen mit anderem Fachkontext.
@@ -471,6 +476,303 @@ export const EXAM_PV1: ExamTask[] = [
           'Broadcast 192.168.40.95 und Hostbereich .65 bis .94 (1 P)',
           'Begründung: Gateway .97 liegt außerhalb des eigenen Netzes; lokale Ziele brauchen kein Gateway (1 P)',
           'richtige Gateway-Adresse 192.168.40.65 (1 P)',
+        ],
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // PV1 Tag 3 (17.09.2026): Projektmanagement
+  // ---------------------------------------------------------------------------------------------
+  {
+    id: 'task-pv1-projektstart-kursbuchungs-app',
+    title: 'Projektstart: Kursbuchungs-App für ein Fitnessstudio (Ziele, Lasten-/Pflichtenheft, Stakeholder)',
+    topicId: 'projektmanagement',
+    scenario:
+      'Das Fitnessstudio „Kraftwerk“ hat drei Standorte und rund 2.400 Mitglieder. Kursplätze werden bisher per Telefon und Aushang vergeben; montags ist das Telefon am Empfang oft dauerbesetzt. ' +
+      'Die Inhaberin beauftragt Ihren Arbeitgeber, ein Softwarehaus, mit der Entwicklung einer Kursbuchungs-App. Geplanter Start ist der **01.02.2027**, das Budget beträgt **38.000 € netto**.\n\n' +
+      'Beteiligt oder betroffen sind außerdem:\n\n' +
+      '- die Studioleitungen der drei Standorte\n' +
+      '- 20 Kurstrainerinnen und -trainer\n' +
+      '- das Empfangspersonal\n' +
+      '- der externe Datenschutzbeauftragte des Studios\n' +
+      '- ein Zahlungsdienstleister, über den kostenpflichtige Kurse abgerechnet werden\n\n' +
+      'Die Vorarbeiten (Projektauftrag, Lastenheft, Grobplanung) laufen klassisch; die Entwicklung selbst organisiert Ihr Team mit Scrum.\n\n' +
+      '**Einordnung:** Teil a) bis e) sind AP1-Kern (Projektmerkmale, SMART-Ziele, Lasten- und Pflichtenheft, Stakeholder, magisches Dreieck, klassisches und agiles Vorgehen). Teil f) zum Kick-off ist [RAND].',
+    parts: [
+      {
+        label: 'a)',
+        operator: 'erläutern',
+        points: 3,
+        prompt:
+          'Eine Studioleiterin fragt, warum die Einführung der App als Projekt geführt wird, die monatliche Aktualisierung des Kursplans aber nicht. Erläutern Sie den Unterschied anhand von drei Projektmerkmalen.',
+        modelAnswer:
+          'Nach DIN 69901-5 (sinngemäß) zeichnet sich ein Projekt vor allem dadurch aus, dass seine Rahmenbedingungen zusammengenommen einmalig sind, etwa Ziel, Zeitrahmen, Budget, Personal und Organisation (Stichwort **Einmaligkeit der Bedingungen**). Drei der folgenden Merkmale genügen, jeweils mit Bezug zur Situation:\n' +
+          '**Einmaligkeit:** Die App wird einmal neu entwickelt. Der Kursplan wird jeden Monat auf die gleiche Weise aktualisiert – das ist eine wiederkehrende Routineaufgabe.\n' +
+          '**zeitliche Begrenzung:** Das Projekt hat einen festen Anfang und ein festes Ende (Start der App am 01.02.2027). Die Pflege des Kursplans endet nie.\n' +
+          '**begrenzte Mittel:** festes Budget von 38.000 € netto und ein festes Team.\n' +
+          '**klare Zielvorgabe:** eine bestimmte App mit festgelegten Funktionen.\n' +
+          '**Neuartigkeit, Komplexität und Risiko:** neue Software, viele Beteiligte, unsichere Aufwandsschätzung.\n' +
+          '**eigene Projektorganisation:** Team und feste Ansprechpartner im Studio nur für dieses Vorhaben.\n' +
+          'Hinweis: Die alte Norm DIN 69901:1987 nannte zusätzlich die „Abgrenzung gegenüber anderen Vorhaben“; das Merkmal steht noch in vielen Lehrbüchern. Meilensteine sind ein Planungsmittel, kein Projektmerkmal.',
+        rubric: [
+          'erstes Merkmal mit Bezug auf App und Kursplan (1 P)',
+          'zweites Merkmal mit Bezug zur Situation (1 P)',
+          'drittes Merkmal mit Bezug; die Kursplanpflege als wiederkehrende Routine erkannt (1 P)',
+        ],
+      },
+      {
+        label: 'b)',
+        operator: 'beurteilen',
+        points: 4,
+        prompt:
+          'In der ersten Besprechung formuliert die Inhaberin das Ziel: „Wir wollen bald eine moderne App, mit der unsere Mitglieder einfacher buchen können.“ Beurteilen Sie das Ziel anhand von drei SMART-Kriterien. Formulieren Sie es anschließend so um, dass es alle SMART-Kriterien erfüllt und keinen Lösungsweg vorwegnimmt.',
+        modelAnswer:
+          '**Beurteilung (drei genügen):**\n' +
+          '**nicht spezifisch:** Offen bleibt, was „buchen“ umfasst (Kurse buchen, stornieren, Warteliste?) und für welche Standorte es gilt.\n' +
+          '**nicht messbar:** „modern“ und „einfacher“ sind Eindrücke, keine prüfbaren Größen.\n' +
+          '**nicht terminiert:** „bald“ ist kein Termin.\n' +
+          '**A und R nicht beurteilbar:** Ohne Budget und ohne Abstimmung mit Studioleitungen und Trainern lässt sich nicht sagen, ob das Ziel akzeptiert und realistisch ist.\n' +
+          '**Umformulierung (Beispiel):** „Bis zum 01.02.2027 können Mitglieder aller drei Standorte Kursplätze rund um die Uhr per Smartphone buchen und bis zwei Stunden vor Kursbeginn stornieren. Bis zum 30.06.2027 laufen mindestens 70 % aller Kursbuchungen digital. Das Projektbudget beträgt höchstens 38.000 € netto.“\n' +
+          '**Lösungsneutral:** Das Ziel nennt kein Framework, keine Datenbank und keinen Hersteller – es beschreibt das WAS; das WIE gehört ins Pflichtenheft. **Akzeptiert** ist es, wenn Inhaberin und Studioleitungen zustimmen (z. B. weil der Empfang weniger Anrufe hat), **realistisch**, wenn die Aufwandsschätzung zu Termin und Budget passt.',
+        rubric: [
+          'drei verletzte SMART-Kriterien benannt (1 P)',
+          'Verletzungen mit dem Wortlaut begründet, z. B. „bald“, „modern/einfacher“, unklarer Umfang (1 P)',
+          'neues Ziel spezifisch, messbar (Kennzahl) und terminiert (1 P)',
+          'neues Ziel lösungsneutral und mit Budgetrahmen bzw. realistisch (1 P)',
+        ],
+      },
+      {
+        label: 'c)',
+        operator: 'zuordnen',
+        points: 4,
+        prompt:
+          'Ordnen Sie die folgenden Aussagen dem Lastenheft oder dem Pflichtenheft zu. Geben Sie außerdem an, wer das jeweilige Dokument erstellt, in welcher Reihenfolge die beiden entstehen und welches nach der Freigabe verbindliche Grundlage für die Abnahme wird.\n' +
+          '(1) „Mitglieder sollen Kursplätze bis zwei Stunden vor Kursbeginn kostenfrei stornieren können.“\n' +
+          '(2) „Die Stornofrist prüft ein REST-Dienst auf dem Server; die Buchungen werden in einer PostgreSQL-Datenbank gespeichert.“\n' +
+          '(3) „Auch Mitglieder ohne Technikerfahrung sollen die App ohne Einweisung bedienen können.“\n' +
+          '(4) „Die App wird mit dem Framework Flutter für Android ab Version 12 und iOS ab Version 16 entwickelt.“',
+        modelAnswer:
+          '**(1) Lastenheft** – funktionale Anforderung aus Sicht der Anwender (WAS).\n' +
+          '**(2) Pflichtenheft** – technische Umsetzung (WIE und WOMIT).\n' +
+          '**(3) Lastenheft** – nicht-funktionale Anforderung (Benutzbarkeit), lösungsneutral formuliert.\n' +
+          '**(4) Pflichtenheft** – Technologie- und Plattformentscheidung des Auftragnehmers.\n' +
+          '**Ersteller und Reihenfolge:** Das **Lastenheft** schreibt der Auftraggeber (das Fitnessstudio). Danach schreibt der Auftragnehmer (das Softwarehaus) das **Pflichtenheft** als Antwort auf das Lastenheft.\n' +
+          '**Verbindlichkeit:** Das vom Auftraggeber geprüfte und **freigegebene Pflichtenheft** wird Vertragsgrundlage. Bei einer Individualentwicklung liegt meist ein Werkvertrag vor; bei der Abnahme wird das Ergebnis gegen das Pflichtenheft geprüft.\n' +
+          '[RAND] Manche Vorgehensweisen unterscheiden ein vorläufiges Pflichtenheft (mit dem Angebot) und ein endgültiges (nach der Feinabstimmung).',
+        rubric: [
+          'alle vier Zuordnungen richtig (2 P; drei richtig: 1 P)',
+          'Lastenheft vom Auftraggeber zuerst, Pflichtenheft vom Auftragnehmer danach (1 P)',
+          'freigegebenes Pflichtenheft als verbindliche Grundlage für Umsetzung und Abnahme (1 P)',
+        ],
+      },
+      {
+        label: 'd)',
+        operator: 'beurteilen',
+        points: 5,
+        prompt:
+          'Nennen Sie vier Stakeholder des Projekts und ordnen Sie jeden aus Sicht des Fitnessstudios als intern oder extern ein. Schätzen Sie für zwei davon Einfluss und Einstellung zum Projekt ein und leiten Sie jeweils eine Maßnahme ab.',
+        modelAnswer:
+          '**Stakeholder (vier genügen):**\n' +
+          '**intern:** Inhaberin (Auftraggeberin), Studioleitungen, Kurstrainerinnen und -trainer, Empfangspersonal\n' +
+          '**extern:** Mitglieder, Softwarehaus (Auftragnehmer), externer Datenschutzbeauftragter, Zahlungsdienstleister\n' +
+          '**Einschätzung und Maßnahme (zwei genügen):**\n' +
+          '**Kurstrainer:** Einfluss mittel – sie arbeiten täglich mit den Teilnehmerlisten und können die Einführung durch Nichtnutzung ausbremsen. Einstellung eher skeptisch (Sorge vor Mehrarbeit oder Kontrolle). Maßnahme: früh einbinden, zwei Trainer als Key User benennen, schulen und ihre Rückmeldungen in die Sprint Reviews holen.\n' +
+          '**Mitglieder:** Einfluss hoch auf den Erfolg – ohne Nutzung kein Nutzen. Einstellung überwiegend positiv, ältere Mitglieder teils zurückhaltend. Maßnahme: Testphase mit ausgewählten Mitgliedern, Buchung am Empfang als Alternative beibehalten, per Aushang und Newsletter informieren.\n' +
+          '**Datenschutzbeauftragter:** Einfluss mittel bis hoch – er berät und überwacht die Einhaltung der DSGVO; Beanstandungen können den Start verzögern. Einstellung neutral bis kritisch. Maßnahme: früh beteiligen, Datenschutzhinweise, Rechtsgrundlagen und Verträge mit Dienstleistern (z. B. Hosting) vor dem Start klären.\n' +
+          '**Empfangspersonal:** Einstellung gemischt (weniger Anrufe, aber Sorge um die eigene Rolle). Maßnahme: offen informieren und neue Aufgaben klären, z. B. Hilfe bei der App.\n' +
+          '[RAND] Zur Darstellung eignet sich eine Einfluss-Interesse-Matrix (Stakeholder-Portfolio).',
+        rubric: [
+          'vier passende Stakeholder genannt (1 P)',
+          'intern/extern schlüssig aus Sicht des Studios zugeordnet (1 P)',
+          'Einfluss und Einstellung für zwei Stakeholder nachvollziehbar eingeschätzt (1 P)',
+          'passende Maßnahme für den ersten Stakeholder (1 P)',
+          'passende Maßnahme für den zweiten Stakeholder (1 P)',
+        ],
+      },
+      {
+        label: 'e)',
+        operator: 'erläutern',
+        points: 4,
+        prompt:
+          'Kurz nach dem Projektstart bittet die Inhaberin, die App schon am 04.01.2027 freizugeben, weil im Januar besonders viele Neumitglieder kommen. Das Budget bleibt gleich. Erläutern Sie anhand des magischen Dreiecks zwei mögliche Folgen. Stellen Sie außerdem dar, wie ein klassisch geplantes Projekt und wie das Scrum-Team auf den Wunsch reagieren würden.',
+        modelAnswer:
+          '**Magisches Dreieck:** Leistung (Umfang und Qualität), Zeit und Kosten hängen voneinander ab; ändert sich eine Größe, muss mindestens eine andere nachgeben. Vier Wochen weniger Zeit bei gleichem Budget führen zu (zwei genügen):\n' +
+          '**weniger Leistung:** Funktionen fallen zum Start weg oder kommen später, z. B. Warteliste oder Kursbewertungen.\n' +
+          '**Qualitätsrisiko:** weniger Zeit für Tests, mehr Fehler nach dem Start.\n' +
+          '**höhere Kosten:** Überstunden oder zusätzliche Entwickler, wenn der Umfang bleiben soll – das widerspricht dem festen Budget und müsste neu verhandelt werden.\n' +
+          '**Klassisch:** Der Leistungsumfang steht im Pflichtenheft fest, Zeit und Kosten wurden daraus geplant. Die Projektleitung prüft den Terminplan (kritischer Pfad, Puffer) und legt die Folgen offen. Über einen **Änderungsantrag** wird entschieden: mehr Personal und damit höhere Kosten oder weniger Umfang.\n' +
+          '**Scrum:** Zeit (Sprints mit fester Länge) und Kosten (festes Team) sind fest, der **Umfang ist variabel**. Der **Product Owner ordnet das Product Backlog neu**, sodass bis zum 04.01.2027 die wertvollsten Funktionen (buchen, stornieren) als nutzbares Increment fertig sind; weniger wichtige folgen in späteren Sprints. Die Definition of Done wird dafür nicht gelockert.',
+        rubric: [
+          'erste Folge nach dem magischen Dreieck, begründet (1 P)',
+          'zweite Folge (1 P)',
+          'klassisch: Umfang fest; Termin, Kosten oder Umfang nur über einen Änderungsantrag anpassen (1 P)',
+          'Scrum: Zeit und Kosten fest, Product Owner ordnet das Backlog neu, Umfang variabel (1 P)',
+        ],
+      },
+      {
+        label: 'f)',
+        operator: 'angeben',
+        points: 2,
+        prompt:
+          '[RAND] Das Softwarehaus plant ein Kick-off-Meeting. Geben Sie an, wann es nach DIN 69901-5 stattfindet, und nennen Sie drei Tagesordnungspunkte.',
+        modelAnswer:
+          '**Zeitpunkt:** sinngemäß nach DIN 69901-5 **nach Abschluss der Projektplanung und vor Beginn der Durchführung** (so die Kursunterlagen und Sekundärquellen). In der Praxis gibt es oft schon direkt nach dem Projektauftrag einen Start-Workshop – in der Prüfung gilt die Lesart der Aufgabe.\n' +
+          '**Teilnehmende:** Projektteam und Auftraggeberin, meist auch Studioleitungen und Key User.\n' +
+          '**Tagesordnung (drei genügen):** Ausgangslage und Projektziele (auch Nichtziele) · Projektorganisation und Rollen (Product Owner, Scrum Master, Developers, Ansprechpartner im Studio) · Termin- und Meilensteinplan · Kommunikationsregeln (Sprint Reviews, Statusberichte) · bekannte Risiken und offene Punkte.',
+        rubric: [
+          'Zeitpunkt: nach der Planung, vor der Durchführung (1 P)',
+          'drei passende Tagesordnungspunkte (1 P)',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'task-pv1-terminplanung-kanzleiumzug',
+    title: 'Terminplanung: Umzug der Kanzlei-Buchhaltung (PSP, Netzplan mit Puffern, Gantt)',
+    topicId: 'projektmanagement',
+    scenario:
+      'Die Steuerkanzlei Brandt zieht mit ihrer Buchhaltung in eine neue Etage. Ihr Arbeitgeber, ein Systemhaus, übernimmt die IT. Die Arbeitspakete sind in einer Vorgangsliste erfasst:\n\n' +
+      '| Vorgang | Tätigkeit | Dauer (h) | Vorgänger |\n' +
+      '|---|---|---|---|\n' +
+      '| A | Bestandsaufnahme der Arbeitsplätze | 3 | – |\n' +
+      '| B | Netzwerkdosen in der neuen Etage prüfen | 2 | A |\n' +
+      '| C | neue Rechner vorkonfigurieren | 6 | A |\n' +
+      '| D | Altgeräte abbauen | 2 | A |\n' +
+      '| E | Patchfeld und Switch konfigurieren | 4 | B |\n' +
+      '| F | Arbeitsplätze aufbauen | 5 | C, D |\n' +
+      '| G | Fachanwendungen einrichten | 3 | E, F |\n' +
+      '| H | Abnahmetest mit der Kanzlei | 2 | G |\n\n' +
+      'Gearbeitet wird von 8 bis 16 Uhr (8 Stunden pro Tag, Pausen bleiben unberücksichtigt), am Wochenende nicht. Für parallele Vorgänge steht genug Personal bereit. Das Projekt beginnt am **Donnerstag, 12.11.2026, um 8:00 Uhr**.\n\n' +
+      '**Knotenschema laut Legende:** oben FAZ · Dauer · FEZ, in der Mitte Nummer und Bezeichnung, unten SAZ · GP · SEZ, der freie Puffer (FP) rechts neben dem Knoten. Andere Quellen ordnen die Felder anders an – in der Prüfung gilt immer die Legende der Aufgabe.\n\n' +
+      '**Einordnung:** Alle Teile sind AP1-Kern (Projektstrukturplan, Netzplan mit Puffern, Gantt-Diagramm).',
+    parts: [
+      {
+        label: 'a)',
+        operator: 'erstellen',
+        points: 3,
+        prompt:
+          'Die Arbeitspakete stammen aus einem phasenorientierten Projektstrukturplan (PSP). Erstellen Sie den PSP mit drei Ebenen und Nummerierung (auf Papier skizzieren). Erläutern Sie außerdem, warum der PSP allein noch kein Terminplan ist.',
+        modelAnswer:
+          '**Ebene 1:** Umzug der Buchhaltung (Projekt)\n' +
+          '**Ebene 2 und 3 (ein möglicher Aufbau):**\n' +
+          '**1 Vorbereitung:** 1.1 Bestandsaufnahme (A), 1.2 Netzwerkdosen prüfen (B), 1.3 Rechner vorkonfigurieren (C)\n' +
+          '**2 Umsetzung:** 2.1 Altgeräte abbauen (D), 2.2 Patchfeld und Switch konfigurieren (E), 2.3 Arbeitsplätze aufbauen (F), 2.4 Fachanwendungen einrichten (G)\n' +
+          '**3 Abschluss:** 3.1 Abnahmetest (H)\n' +
+          'Andere schlüssige Phasenzuordnungen sind ebenfalls richtig, solange jedes Arbeitspaket genau einmal vorkommt. Die **Arbeitspakete** bilden die unterste Ebene: kleinste abgegrenzte Einheiten mit einer verantwortlichen Person, deren Aufwand sich schätzen lässt.\n' +
+          '**Kein Terminplan:** Der PSP zeigt nur, **was** zu tun ist. Reihenfolge, Abhängigkeiten, Dauern und Termine fehlen – sie kommen erst mit der Vorgangsliste und dem Netzplan bzw. Gantt-Diagramm hinzu.\n' +
+          'Zum Vergleich: Ein **objektorientierter** PSP gliedert nach Bestandteilen (z. B. Netzwerk, Arbeitsplätze, Software), ein **funktionsorientierter** nach Tätigkeiten (z. B. prüfen, konfigurieren, aufbauen).',
+        rubric: [
+          'drei Ebenen (Projekt – Phasen – Arbeitspakete) mit Nummerierung (1 P)',
+          'alle acht Arbeitspakete genau einmal schlüssig zugeordnet (1 P)',
+          'PSP enthält keine Reihenfolge, Dauern und Termine (1 P)',
+        ],
+      },
+      {
+        label: 'b)',
+        operator: 'berechnen',
+        points: 6,
+        prompt:
+          'Erstellen Sie den Netzplan und berechnen Sie für alle Vorgänge FAZ, FEZ, SAZ, SEZ, den Gesamtpuffer (GP) und den freien Puffer (FP) in Stunden.',
+        modelAnswer:
+          '**Vorwärtsrechnung** (FEZ = FAZ + Dauer; FAZ = größter FEZ aller direkten Vorgänger):\n' +
+          '`A: FAZ 0 · FEZ 3`, `B: FAZ 3 · FEZ 5`, `C: FAZ 3 · FEZ 9`, `D: FAZ 3 · FEZ 5`, `E: FAZ 5 · FEZ 9`\n' +
+          '`F: FAZ = max(FEZ C 9, FEZ D 5) = 9 · FEZ 14`\n' +
+          '`G: FAZ = max(FEZ E 9, FEZ F 14) = 14 · FEZ 17`, `H: FAZ 17 · FEZ 19`\n' +
+          '**Rückwärtsrechnung** (SAZ = SEZ − Dauer; SEZ = kleinster SAZ aller direkten Nachfolger):\n' +
+          '`H: SAZ 17 · SEZ 19`, `G: SAZ 14 · SEZ 17`, `E: SAZ 10 · SEZ 14`, `F: SAZ 9 · SEZ 14`\n' +
+          '`B: SEZ = SAZ E = 10 → SAZ 8`, `C: SEZ = SAZ F = 9 → SAZ 3`, `D: SEZ = SAZ F = 9 → SAZ 7`\n' +
+          '`A: SEZ = min(SAZ B 8, SAZ C 3, SAZ D 7) = 3 → SAZ 0` (Kontrolle erfüllt)\n' +
+          '**Puffer** (GP = SAZ − FAZ; FP = kleinster FAZ der direkten Nachfolger − eigener FEZ):\n' +
+          '`A: GP 0 · FP 0`, `B: GP 5 · FP 0`, `C: GP 0 · FP 0`, `D: GP 4 · FP 4`\n' +
+          '`E: GP 5 · FP 5`, `F: GP 0 · FP 0`, `G: GP 0 · FP 0`, `H: GP 0 · FP 0`\n' +
+          'Warum hat B keinen freien Puffer? E kann direkt nach B beginnen (FAZ E = FEZ B = 5). Die 5 Stunden Gesamtpuffer teilen sich B und E.',
+        rubric: [
+          'Vorwärtsrechnung A bis E richtig (1 P)',
+          'F und G mit dem größten FEZ der Vorgänger (FAZ 9 bzw. 14), H 17–19 (1 P)',
+          'Rückwärtsrechnung H bis B richtig (1 P)',
+          'A mit dem kleinsten SAZ der Nachfolger (SEZ 3, SAZ 0) (1 P)',
+          'GP aller Vorgänge: B 5, D 4, E 5, sonst 0 (1 P)',
+          'FP aller Vorgänge: D 4, E 5, sonst 0 – insbesondere B = 0 (1 P)',
+        ],
+      },
+      {
+        label: 'c)',
+        operator: 'ermitteln',
+        points: 2,
+        prompt: 'Geben Sie die Projektdauer und den kritischen Pfad an und begründen Sie Ihre Angabe.',
+        modelAnswer:
+          '**Projektdauer: 19 Stunden** (FEZ des Endvorgangs H).\n' +
+          '**Kritischer Pfad: A – C – F – G – H**, weil diese Vorgänge den Gesamtpuffer 0 haben; jede Verzögerung auf diesem Weg verschiebt das Projektende. Kontrolle: 3 + 6 + 5 + 3 + 2 = 19 h.\n' +
+          'Falle: Die Summe aller Dauern (27 h) ist nicht die Projektdauer – B, C und D laufen parallel.',
+        rubric: [
+          'Projektdauer 19 h (1 P)',
+          'kritischer Pfad A–C–F–G–H, begründet über GP = 0 (1 P)',
+        ],
+      },
+      {
+        label: 'd)',
+        operator: 'beurteilen',
+        points: 3,
+        prompt:
+          'Betrachten Sie zwei Störungen jeweils einzeln: (1) Die Prüfung der Netzwerkdosen (B) dauert 3 Stunden länger. (2) Der Abbau der Altgeräte (D) dauert 7 statt 2 Stunden. Beurteilen Sie jeweils die Auswirkungen auf die Nachfolger und auf das Projektende.',
+        modelAnswer:
+          '**(1) B + 3 h:** B endet bei 8 statt 5. Weil der **freie Puffer von B 0** ist, verschiebt sich E sofort auf 8–12. Die 3 h liegen aber im **Gesamtpuffer von 5 h**: E endet vor seinem SEZ 14, G beginnt weiter bei 14, das **Projektende bleibt bei 19 h** (Montag, 11:00 Uhr). E hat danach nur noch 2 h Puffer.\n' +
+          '**(2) D + 5 h:** D endet bei 10 statt 5. Die Verzögerung übersteigt den **Gesamtpuffer von 4 h um 1 h**: F beginnt bei max(9, 10) = 10 und endet bei 15, G läuft von 15 bis 18, H von 18 bis 20 → **Projektende 20 h**, also Montag, 16.11.2026, **12:00 Uhr** statt 11:00 Uhr.\n' +
+          'Der **kritische Pfad** wechselt auf **A – D – F – G – H** (3 + 7 + 5 + 3 + 2 = 20 h); C hat jetzt 1 h Puffer. Mögliche Maßnahme: den Abbau mit einer zweiten Person beschleunigen oder die Kanzlei rechtzeitig über die spätere Abnahme informieren.',
+        rubric: [
+          '(1) E verschiebt sich um 3 h, weil FP von B = 0 (1 P)',
+          '(1) Projektende bleibt 19 h, weil 3 h ≤ GP 5 h (1 P)',
+          '(2) Projektende 20 h (Mo 12:00 Uhr), weil 5 h > GP 4 h; D wird kritisch (1 P)',
+        ],
+      },
+      {
+        label: 'e)',
+        operator: 'erstellen',
+        points: 5,
+        prompt:
+          'Übertragen Sie den Netzplan in ein Gantt-Diagramm (früheste Lage, auf Papier). Geben Sie für jeden Vorgang Beginn und Ende mit Wochentag und Uhrzeit an und tragen Sie das Projektende als Meilenstein „Abnahme erfolgt“ ein. Geben Sie außerdem die späteste Lage von Vorgang E an.',
+        modelAnswer:
+          'Umrechnung: Stunde 0 = Do 8:00 Uhr, Stunde 8 = Fr 8:00 Uhr, Stunde 16 = Mo 8:00 Uhr (das Wochenende zählt nicht).\n' +
+          '**A:** Do 08–11 Uhr\n' +
+          '**B:** Do 11–13 Uhr\n' +
+          '**C:** Do 11–16 Uhr und Fr 08–09 Uhr\n' +
+          '**D:** Do 11–13 Uhr\n' +
+          '**E:** Do 13–16 Uhr und Fr 08–09 Uhr\n' +
+          '**F:** Fr 09–14 Uhr\n' +
+          '**G:** Fr 14–16 Uhr und Mo 16.11. 08–09 Uhr\n' +
+          '**H:** Mo 09–11 Uhr\n' +
+          '**Meilenstein „Abnahme erfolgt“:** Mo, 16.11.2026, 11:00 Uhr – als Raute ohne Dauer am Ende von H.\n' +
+          '**Späteste Lage von E:** SAZ 10 h = **Fr 10:00 Uhr**, SEZ 14 h = **Fr 14:00 Uhr**. Der Pufferbalken reicht vom frühesten Ende (Fr 09:00 Uhr) bis zum spätesten Ende (Fr 14:00 Uhr) – das sind die 5 h Gesamtpuffer.\n' +
+          'Falle: Wer Samstag und Sonntag mitzählt, setzt die Abnahme fälschlich auf Samstag, 11:00 Uhr.',
+        rubric: [
+          'A, B und D richtig am Donnerstag (1 P)',
+          'C und E mit Tageswechsel richtig (Fr 08–09 Uhr) (1 P)',
+          'F, G und H richtig, Wochenende ausgelassen (1 P)',
+          'Meilenstein Mo, 16.11.2026, 11:00 Uhr ohne Dauer (1 P)',
+          'späteste Lage von E: Fr 10:00 bis 14:00 Uhr (1 P)',
+        ],
+      },
+      {
+        label: 'f)',
+        operator: 'beurteilen',
+        points: 3,
+        prompt:
+          'Ein Kollege hat den Netzplan ebenfalls berechnet. In seinem Auszug stecken drei voneinander unabhängige Fehler:\n' +
+          '`B: FAZ 3 · FEZ 5 · SAZ 8 · SEZ 10 · GP 5 · FP 5`\n' +
+          '`C: FAZ 3 · FEZ 9 · SAZ 3 · SEZ 9 · GP 0 · FP 0`\n' +
+          '`D: FAZ 3 · FEZ 5 · SAZ 7 · SEZ 9 · GP −4 · FP 4`\n' +
+          '`E: FAZ 5 · FEZ 9 · SAZ 10 · SEZ 14 · GP 5 · FP 5`\n' +
+          '`F: FAZ 5 · FEZ 10 · SAZ 9 · SEZ 14 · GP 0 · FP 0`\n' +
+          'Benennen Sie die drei Fehler, geben Sie die richtigen Werte an und nennen Sie jeweils die Regel, gegen die verstoßen wurde.',
+        modelAnswer:
+          '**Fehler 1 – B, FP 5:** richtig ist **FP 0**. Regel: FP = kleinster FAZ der direkten Nachfolger − eigener FEZ = FAZ E 5 − FEZ B 5 = 0. Der Kollege hat den Gesamtpuffer übernommen.\n' +
+          '**Fehler 2 – D, GP −4:** richtig ist **GP 4**. Regel: GP = SAZ − FAZ = 7 − 3; gerechnet wurde FAZ − SAZ. Ohne vorgegebenen späteren Endtermin ist ein negativer Puffer immer ein Rechenfehler.\n' +
+          '**Fehler 3 – F, FAZ 5 und FEZ 10:** richtig sind **FAZ 9 und FEZ 14**. Regel: Bei mehreren Vorgängern gilt der **größte** FEZ, hier max(FEZ C 9, FEZ D 5) = 9. Wer nur die GP-Spalte nachrechnet, stößt bei F auf 9 − 5 = 4 statt 0 – die eigentliche Ursache ist aber der falsche FAZ.\n' +
+          'Die Werte von C und E sind richtig.',
+        rubric: [
+          'Fehler bei B erkannt und mit FP 0 samt Regel berichtigt (1 P)',
+          'Fehler bei D erkannt: GP 4 = SAZ − FAZ (1 P)',
+          'Fehler bei F erkannt: FAZ 9 und FEZ 14 über den größten FEZ der Vorgänger (1 P)',
         ],
       },
     ],

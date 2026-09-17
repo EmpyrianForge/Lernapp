@@ -120,6 +120,10 @@
         {
           "left": "GP",
           "right": "Gesamtpuffer"
+        },
+        {
+          "left": "FP",
+          "right": "Freier Puffer"
         }
       ]
     },
