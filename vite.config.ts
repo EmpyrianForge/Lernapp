@@ -29,6 +29,9 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // Der Inhalt steckt im JS-Bundle (> 2 MiB seit den Übungsprüfungen, 18.09.2026).
+        // Workbox cacht per Default nur bis 2 MiB – ohne diese Grenze fehlt die App offline.
+        maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
         cleanupOutdatedCaches: true,
         clientsClaim: true,
       },
