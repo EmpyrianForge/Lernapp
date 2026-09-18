@@ -3266,5 +3266,664 @@
     ],
     "source": "PV1 Tag 3 · eigene Aufgabe",
     "peripheral": true
+  },
+  {
+    "id": "calc--steckdosenleiste-belastbarkeit-p-u-i",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 5,
+    "prompt": "In einem Schulungsraum liegt eine Steckdosenleiste, die laut Aufdruck mit höchstens 10 A bei 230 V belastet werden darf. Angeschlossen werden sollen: ein Beamer mit 280 W; ein Laserdrucker, der beim Aufheizen 1.150 W aufnimmt; zwei Monitore mit je 25 W; ein Notebook-Netzteil mit 90 W; ein Heizlüfter mit 1.450 W. Rechnen Sie vereinfacht mit P = U × I (Leistungsfaktor 1). a) Berechnen Sie die höchste zulässige Leistung der Leiste. b) Berechnen Sie Gesamtleistung und Gesamtstrom aller Geräte und beurteilen Sie, ob die Leiste ausreicht. c) Der Heizlüfter kommt an eine eigene Wanddose. Berechnen Sie den Strom der übrigen Geräte und die verbleibende Leistungsreserve der Leiste.",
+    "solutionSteps": [
+      "a) P_max = U × I_max = 230 V × 10 A = 2.300 W",
+      "b) Gesamtleistung: 280 W + 1.150 W + 2 × 25 W + 90 W + 1.450 W = 3.020 W",
+      "b) Gesamtstrom: I = P / U = 3.020 W / 230 V ≈ 13,13 A",
+      "b) Prüfung in beide Richtungen: 3.020 W > 2.300 W und 13,13 A > 10 A → die Leiste wäre überlastet, die Geräte dürfen so nicht gemeinsam angeschlossen werden",
+      "c) ohne Heizlüfter: 3.020 W − 1.450 W = 1.570 W → I = 1.570 W / 230 V ≈ 6,83 A",
+      "c) Reserve: 2.300 W − 1.570 W = 730 W (entspricht 10 A − 6,83 A ≈ 3,17 A)"
+    ],
+    "answer": "a) 2.300 W; b) 3.020 W bzw. ≈ 13,13 A → die Leiste reicht nicht; c) ≈ 6,83 A, Reserve 730 W (≈ 3,17 A)",
+    "unit": "W / A",
+    "rubric": [
+      {
+        "criterion": "a) P_max = 230 V × 10 A = 2.300 W",
+        "points": 1
+      },
+      {
+        "criterion": "b) Gesamtleistung 3.020 W (beide Monitore gezählt)",
+        "points": 1
+      },
+      {
+        "criterion": "b) Gesamtstrom über I = P / U ≈ 13,13 A",
+        "points": 1
+      },
+      {
+        "criterion": "b) Urteil „Leiste überlastet“ mit Vergleich gegen 2.300 W bzw. 10 A",
+        "points": 1
+      },
+      {
+        "criterion": "c) ≈ 6,83 A und Reserve 730 W",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "I = P × U statt I = P / U rechnen: Der Strom ist die Leistung geteilt durch die Spannung.",
+      "Mit einem kleinen Betriebswert statt mit der Spitzenleistung rechnen: Ein Laserdrucker nimmt beim Aufheizen kurzzeitig viel mehr auf als im Bereitschaftsbetrieb, maßgeblich ist die Spitze.",
+      "Nur Leistung oder nur Strom prüfen: Beide Wege führen zum selben Urteil und sind eine gute Gegenprobe (2.300 W entsprechen 10 A).",
+      "Vereinfachung beachten: Geräte mit Schaltnetzteil haben einen Leistungsfaktor unter 1, ihr tatsächlicher Strom liegt also etwas über P / U. Gerechnet wird so, wie die Aufgabe es vorgibt.",
+      "Praxis: Steckdosenleisten nicht hintereinanderstecken – die Last aller angehängten Leisten fließt dann über die erste."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--netzteil-dimensionieren-reserve-stufe",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 6,
+    "prompt": "Für eine Videoschnitt-Workstation soll das Netzteil ausgewählt werden. Maximale Leistungsaufnahme laut Datenblättern: Prozessor 125 W (1 Stück); Grafikkarte 285 W (1 Stück); RAM-Modul 6 W (4 Stück); NVMe-SSD 8 W (2 Stück); Festplatte 9 W (2 Stück); Mainboard 45 W (1 Stück); Gehäuselüfter 3 W (5 Stück); USB-Geräte zusammen 12 W. Auf die Summe ist eine Reserve von 20 % aufzuschlagen. Lieferbar sind Netzteile mit 500 W, 600 W, 700 W, 850 W und 1.000 W. a) Berechnen Sie die benötigte Leistung und wählen Sie das kleinste geeignete Netzteil. b) Später soll die Grafikkarte gegen ein Modell mit 360 W getauscht werden. Prüfen Sie, ob das gewählte Netzteil dann noch reicht.",
+    "solutionSteps": [
+      "a) Summe mit Stückzahlen: 125 W + 285 W + 4 × 6 W + 2 × 8 W + 2 × 9 W + 45 W + 5 × 3 W + 12 W",
+      "a) = 125 W + 285 W + 24 W + 16 W + 18 W + 45 W + 15 W + 12 W = 540 W",
+      "a) Reserve als Aufschlag: 540 W × 1,2 = 648 W",
+      "a) Auswahl: 600 W < 648 W scheidet aus → 700 W ist die kleinste geeignete Stufe",
+      "b) neue Summe: 540 W − 285 W + 360 W = 615 W",
+      "b) mit Reserve: 615 W × 1,2 = 738 W > 700 W → das Netzteil reicht nicht mehr, nötig wäre die 850-W-Stufe"
+    ],
+    "answer": "a) 540 W, mit Reserve 648 W → Netzteil mit 700 W; b) 615 W × 1,2 = 738 W → 700 W reicht nicht, 850 W nötig",
+    "unit": "W",
+    "rubric": [
+      {
+        "criterion": "a) Stückzahlen berücksichtigt, Summe 540 W",
+        "points": 2
+      },
+      {
+        "criterion": "a) Reserve: 540 W × 1,2 = 648 W",
+        "points": 1
+      },
+      {
+        "criterion": "a) Stufe 700 W gewählt (600 W zu klein)",
+        "points": 1
+      },
+      {
+        "criterion": "b) neue Last 615 W bzw. 738 W mit Reserve",
+        "points": 1
+      },
+      {
+        "criterion": "b) Urteil: reicht nicht, 850-W-Stufe nötig",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Stückzahlen übersehen: Wer jede Komponente nur einmal zählt, kommt auf 493 W, mit Reserve 591,6 W, und wählt fälschlich 600 W.",
+      "Reserve als Aufschlag (× 1,2) und Auslastungsgrenze (÷ 0,8) unterscheiden: „höchstens 80 % Auslastung“ ergäbe 540 W / 0,8 = 675 W. Hier bleibt es bei 700 W, bei knappen Werten kann der Unterschied aber die Stufe ändern.",
+      "Nie abrunden: Die gewählte Stufe muss mindestens den berechneten Bedarf decken, also immer die nächsthöhere lieferbare Stufe.",
+      "Die Nennleistung eines Netzteils ist seine Ausgangsleistung. Der Wirkungsgrad zählt erst bei der Leistungsaufnahme aus der Steckdose und bei den Stromkosten, nicht bei der Dimensionierung."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--netzteil-wirkungsgrad-monatskosten",
+    "topicId": "hardware",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 6,
+    "prompt": "In einem Callcenter werden 20 Arbeitsplatzrechner erneuert. Jeder Rechner braucht im Betrieb im Mittel 184 W Ausgangsleistung seines Netzteils. Zur Wahl stehen ein einfaches Netzteil mit 80 % und ein effizientes Netzteil mit 92 % Wirkungsgrad. Die Rechner laufen an 22 Arbeitstagen im Monat je 8 Stunden, der Strompreis beträgt 0,34 €/kWh. a) Berechnen Sie für beide Netzteile die Leistungsaufnahme aus dem Netz und die Verlustleistung je Rechner. b) Berechnen Sie die monatlichen Energiekosten aller 20 Rechner für beide Varianten. c) Wie hoch ist die monatliche Ersparnis mit dem effizienten Netzteil?",
+    "solutionSteps": [
+      "Wirkungsgrad η = P_ab / P_zu → P_zu = P_ab / η",
+      "a) einfach: 184 W / 0,80 = 230 W aus dem Netz → Verlust 230 W − 184 W = 46 W",
+      "a) effizient: 184 W / 0,92 = 200 W aus dem Netz → Verlust 200 W − 184 W = 16 W",
+      "b) Betriebsstunden: 22 × 8 h = 176 h pro Monat",
+      "b) einfach: 20 × 230 W = 4,6 kW → 4,6 kW × 176 h = 809,6 kWh → 809,6 kWh × 0,34 €/kWh = 275,264 € ≈ 275,26 €",
+      "b) effizient: 20 × 200 W = 4,0 kW → 4,0 kW × 176 h = 704 kWh → 704 kWh × 0,34 €/kWh = 239,36 €",
+      "c) Ersparnis: 275,26 € − 239,36 € = 35,90 € pro Monat (105,6 kWh weniger)"
+    ],
+    "answer": "a) 230 W mit 46 W Verlust bzw. 200 W mit 16 W Verlust; b) 275,26 € bzw. 239,36 € pro Monat; c) 35,90 € pro Monat",
+    "unit": "€",
+    "rubric": [
+      {
+        "criterion": "a) Leistungsaufnahme über P_ab / η: 230 W und 200 W",
+        "points": 1
+      },
+      {
+        "criterion": "a) Verlustleistungen 46 W und 16 W",
+        "points": 1
+      },
+      {
+        "criterion": "b) 176 Betriebsstunden pro Monat",
+        "points": 1
+      },
+      {
+        "criterion": "b) Energie 809,6 kWh und 704 kWh (W in kW umgerechnet)",
+        "points": 1
+      },
+      {
+        "criterion": "b) Kosten 275,26 € und 239,36 €",
+        "points": 1
+      },
+      {
+        "criterion": "c) Ersparnis 35,90 € pro Monat",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Mit dem Wirkungsgrad multiplizieren statt dadurch teilen: 184 W × 0,8 = 147,2 W wäre weniger, als der Rechner braucht. Aus dem Netz kommt immer mehr, als das Netzteil abgibt.",
+      "Verlust als 184 W × (1 − η) rechnen: 36,8 W statt 46 W. Der Verlust ist die Differenz zwischen aufgenommener und abgegebener Leistung.",
+      "W × h ergibt Wh – vor dem Strompreis durch 1.000 teilen (kWh).",
+      "Effizienzsiegel wie 80 PLUS nennen Mindestwirkungsgrade bei bestimmten Auslastungen. Der Wirkungsgrad hängt von der Auslastung ab, die Aufgabe rechnet mit einem festen Wert.",
+      "Die Verlustleistung wird zu Wärme: Das effiziente Netzteil entlastet zusätzlich Lüftung und Klimatisierung, das steckt in der Rechnung nicht drin."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--amortisation-mehrpreis-monatliche-ersparnis",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II–III",
+    "points": 6,
+    "prompt": "Ein Steuerbüro ersetzt seinen Abteilungsdrucker. Gerät A kostet 1.290 €, Gerät B 1.980 €. Bei Gerät B sinken die Kosten für Toner und Wartung von 2,4 Cent auf 1,1 Cent je Seite, außerdem spart es 1,20 € Strom pro Monat. Das Büro druckt im Mittel 3.800 Seiten im Monat, die geplante Nutzungsdauer beträgt 48 Monate. a) Berechnen Sie den Mehrpreis und die monatliche Ersparnis von Gerät B. b) Nach wie vielen vollen Monaten hat sich der Mehrpreis amortisiert? c) Wie ändert sich die Amortisationsdauer, wenn das Druckvolumen auf 2.500 Seiten im Monat sinkt? d) Beurteilen Sie die Anschaffung von Gerät B mit Blick auf die Nutzungsdauer.",
+    "solutionSteps": [
+      "a) Mehrpreis: 1.980 € − 1.290 € = 690 €",
+      "a) Ersparnis je Seite: 2,4 ct − 1,1 ct = 1,3 ct = 0,013 €",
+      "a) monatliche Ersparnis: 3.800 × 0,013 € + 1,20 € = 49,40 € + 1,20 € = 50,60 €",
+      "b) Amortisationsdauer = Mehrpreis / monatliche Ersparnis = 690 € / 50,60 € ≈ 13,64 Monate",
+      "b) auf volle Monate aufrunden: Nach 13 Monaten sind erst 657,80 € zurückgeflossen, nach 14 Monaten 708,40 € → 14 Monate",
+      "c) 2.500 × 0,013 € + 1,20 € = 32,50 € + 1,20 € = 33,70 € → 690 € / 33,70 € ≈ 20,47 → 21 Monate",
+      "d) Vorteil über 48 Monate (bei 3.800 Seiten): 48 × 50,60 € − 690 € = 2.428,80 € − 690 € = 1.738,80 €",
+      "d) Beurteilung: Selbst beim geringeren Druckvolumen liegt die Amortisation (21 Monate) deutlich innerhalb der Nutzungsdauer (48 Monate) → Gerät B ist wirtschaftlich zu empfehlen."
+    ],
+    "answer": "a) Mehrpreis 690 €, Ersparnis 50,60 € pro Monat; b) ≈ 13,64 → 14 Monate; c) ≈ 20,47 → 21 Monate; d) Vorteil 1.738,80 € über 48 Monate → Gerät B empfehlen",
+    "unit": "Monate",
+    "rubric": [
+      {
+        "criterion": "a) Mehrpreis 690 € und Ersparnis 50,60 € pro Monat (Cent in Euro umgerechnet, Stromersparnis addiert)",
+        "points": 1
+      },
+      {
+        "criterion": "b) Ansatz Mehrpreis ÷ monatliche Ersparnis ≈ 13,64",
+        "points": 1
+      },
+      {
+        "criterion": "b) aufgerundet auf 14 volle Monate",
+        "points": 1
+      },
+      {
+        "criterion": "c) 33,70 € pro Monat → 21 Monate",
+        "points": 1
+      },
+      {
+        "criterion": "d) Vorteil 1.738,80 € über die Nutzungsdauer",
+        "points": 1
+      },
+      {
+        "criterion": "d) Urteil mit Bezug auf die Nutzungsdauer (Amortisation liegt deutlich darin)",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Kaufmännisch runden statt aufrunden: Hier ergibt 13,64 zufällig auch 14, bei 13,4 wären 13 Monate aber falsch. Amortisiert ist erst der Monat, in dem die Ersparnisse den Mehrpreis erreichen – also immer aufrunden.",
+      "Den vollen Preis von Gerät B statt des Mehrpreises teilen: 1.980 € / 50,60 € ≈ 39,1 Monate. Ein Gerät wird ohnehin gekauft, zurückverdienen muss B nur den Unterschied.",
+      "Cent und Euro vermischen: 3.800 × 1,3 ct = 4.940 ct = 49,40 €.",
+      "„Rückfluss = Gewinn + Abschreibung“ gehört zur Investitionsrechnung. Bei einem Mehrpreis ist der Rückfluss die Ersparnis gegenüber der günstigeren Alternative.",
+      "Gibt die Aufgabe für eine Folgeteilaufgabe einen Ersatzwert vor, mit diesem weiterrechnen – auch wenn das eigene Ergebnis abweicht."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--kritische-lizenzzahl-eigenentwicklung-mietlizenz",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 6,
+    "prompt": "Eine Hausverwaltung braucht eine Software für die Nebenkostenabrechnung und vergleicht zwei Wege über einen Zeitraum von 6 Jahren. Eigenentwicklung durch die hauseigene IT: 420 Stunden Entwicklung und danach 60 Stunden Wartung pro Jahr, jeweils zum internen Stundensatz von 68 €; diese Kosten hängen nicht von der Nutzerzahl ab. Mietlizenz: 14,50 € je Nutzer und Monat. a) Berechnen Sie die Kosten der Eigenentwicklung über 6 Jahre und die Mietkosten je Nutzer über 6 Jahre. b) Ab welcher Nutzerzahl ist die Eigenentwicklung günstiger? c) Die Hausverwaltung plant mit 38 Nutzern. Welche Variante empfehlen Sie, und wie groß ist der Unterschied?",
+    "solutionSteps": [
+      "a) Entwicklung: 420 h × 68 €/h = 28.560 €",
+      "a) Wartung: 60 h × 68 €/h × 6 Jahre = 24.480 €",
+      "a) Eigenentwicklung gesamt: 28.560 € + 24.480 € = 53.040 € (fest, unabhängig von der Nutzerzahl)",
+      "a) Miete je Nutzer: 14,50 € × 12 Monate × 6 Jahre = 14,50 € × 72 = 1.044 €",
+      "b) Gleichstand: 53.040 € / 1.044 € je Nutzer ≈ 50,8 Nutzer",
+      "b) Gegenprobe: 50 Nutzer kosten zur Miete 52.200 € (< 53.040 €), 51 Nutzer 53.244 € (> 53.040 €) → ab 51 Nutzern ist die Eigenentwicklung günstiger",
+      "c) 38 Nutzer: 38 × 1.044 € = 39.672 € → die Mietlizenz ist um 53.040 € − 39.672 € = 13.368 € günstiger"
+    ],
+    "answer": "a) Eigenentwicklung 53.040 €, Miete 1.044 € je Nutzer; b) Gleichstand ≈ 50,8 → ab 51 Nutzern; c) bei 38 Nutzern die Mietlizenz, 13.368 € günstiger",
+    "unit": "Nutzer",
+    "rubric": [
+      {
+        "criterion": "a) Entwicklungskosten 28.560 €",
+        "points": 1
+      },
+      {
+        "criterion": "a) Wartung über alle 6 Jahre (24.480 €), gesamt 53.040 €",
+        "points": 1
+      },
+      {
+        "criterion": "a) Miete je Nutzer über 72 Monate: 1.044 €",
+        "points": 1
+      },
+      {
+        "criterion": "b) Gleichstand 53.040 € / 1.044 € ≈ 50,8",
+        "points": 1
+      },
+      {
+        "criterion": "b) Ergebnis „ab 51 Nutzern“ (nächste ganze Zahl über dem Gleichstand)",
+        "points": 1
+      },
+      {
+        "criterion": "c) Mietlizenz empfohlen, Unterschied 13.368 €",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die Miete nur für ein Jahr ansetzen (174 € je Nutzer): Beide Varianten müssen über denselben Zeitraum verglichen werden.",
+      "Die Wartung vergessen oder nur einmal ansetzen: Sie fällt in jedem der 6 Jahre an.",
+      "Auf 50 abrunden: Bei 50 Nutzern ist die Miete noch günstiger. „Günstiger ab“ heißt die nächste ganze Zahl über dem Gleichstand.",
+      "Einen Deckungsbeitrag braucht man hier nicht, es wird nichts verkauft. Die kritische Menge ist: feste Kosten der Eigenlösung ÷ Kosten je Nutzer der Mietlösung im selben Zeitraum.",
+      "Rechnerisch entscheidet die Nutzerzahl. Für eine Empfehlung zählen auch Wartungsrisiko, Abhängigkeit von einzelnen Entwicklern und die laufenden Updates der Mietlösung."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--hotline-kostendeckender-minutenpreis",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 6,
+    "prompt": "Ein Systemhaus richtet für seine Kunden eine Wochenend-Hotline mit zwei Stufen ein und plant mit 4 Wochenenden im Monat. Stufe 1 (Annahme): Bereitschaftspauschale 150 € je Wochenende, Kosten je Gesprächsminute 0,85 €, erwartet 1.100 Minuten im Monat. Stufe 2 (Techniker): Bereitschaftspauschale 240 € je Wochenende, Kosten je Gesprächsminute 1,45 €, erwartet 350 Minuten im Monat. Den Kunden wird jede Gesprächsminute zum gleichen Preis berechnet. a) Berechnen Sie die monatlichen Gesamtkosten der Hotline. b) Berechnen Sie den kostendeckenden Minutenpreis, auf volle Cent aufgerundet. c) Im Sommer erwartet das Systemhaus nur 800 Minuten in Stufe 1 und 200 Minuten in Stufe 2. Berechnen Sie den kostendeckenden Minutenpreis und erklären Sie, warum er steigt.",
+    "solutionSteps": [
+      "a) Bereitschaft: (150 € + 240 €) × 4 Wochenenden = 1.560 €",
+      "a) Gesprächskosten: 1.100 min × 0,85 € + 350 min × 1,45 € = 935 € + 507,50 € = 1.442,50 €",
+      "a) Gesamtkosten: 1.560 € + 1.442,50 € = 3.002,50 € pro Monat",
+      "b) abgerechnete Minuten: 1.100 + 350 = 1.450 min",
+      "b) Kostensatz: 3.002,50 € / 1.450 min ≈ 2,0707 €/min → aufgerundet 2,08 €/min (mit 2,07 € blieben Kosten ungedeckt: 1.450 × 2,07 € = 3.001,50 €)",
+      "c) Gesprächskosten: 800 × 0,85 € + 200 × 1,45 € = 680 € + 290 € = 970 €; Gesamtkosten 1.560 € + 970 € = 2.530 €",
+      "c) 2.530 € / 1.000 min = 2,53 €/min",
+      "c) Begründung: Die Bereitschaftskosten von 1.560 € fallen unabhängig von der Zahl der Anrufe an und verteilen sich nun auf weniger Minuten (1,56 € statt ≈ 1,08 € je Minute)."
+    ],
+    "answer": "a) 3.002,50 € pro Monat; b) ≈ 2,0707 → 2,08 € je Minute; c) 2,53 € je Minute, weil sich die festen Bereitschaftskosten auf weniger Minuten verteilen",
+    "unit": "€/min",
+    "rubric": [
+      {
+        "criterion": "a) Bereitschaftskosten 1.560 € (je Wochenende × 4)",
+        "points": 1
+      },
+      {
+        "criterion": "a) Gesprächskosten 1.442,50 €, Summe 3.002,50 €",
+        "points": 1
+      },
+      {
+        "criterion": "b) Division durch alle 1.450 Minuten",
+        "points": 1
+      },
+      {
+        "criterion": "b) aufgerundet auf 2,08 €/min",
+        "points": 1
+      },
+      {
+        "criterion": "c) 2,53 €/min",
+        "points": 1
+      },
+      {
+        "criterion": "c) Begründung über die festen Bereitschaftskosten",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die Bereitschaftspauschale nur einmal statt für jedes Wochenende ansetzen.",
+      "Die Minutensätze der Stufen einfach mitteln ((0,85 € + 1,45 €) / 2 = 1,15 €): Das übersieht, dass in Stufe 1 viel mehr Minuten anfallen. Jede Stufe wird mit ihren eigenen Minuten gerechnet.",
+      "Kaufmännisch auf 2,07 € runden: Dann bleiben die Kosten ungedeckt. Ein kostendeckender Preis wird aufgerundet.",
+      "Allgemein gilt: Kosten- bzw. Verrechnungssatz = Gesamtkosten (fest + variabel) ÷ Leistungseinheiten. Ein Gewinnaufschlag kommt erst danach auf die Selbstkosten."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--monatskosten-arbeitsplaetze-nutzungsdauer-leasing",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 7,
+    "prompt": "Ein Reisebüro richtet 6 Arbeitsplätze ein. Je Arbeitsplatz werden gekauft: ein Mini-PC für 780 € (Nutzungsdauer 48 Monate); zwei Monitore für je 210 € (Nutzungsdauer 60 Monate); ein Headset für 90 € (Nutzungsdauer 24 Monate). Der Händler gewährt 8 % Rabatt auf die gesamte Hardware. Für die Software fällt eine Leasingrate von 23,50 € je Arbeitsplatz und Monat an, für die Wartung aller Geräte eine Pauschale von 1.080 € pro Jahr. Alle Preise sind netto. Berechnen Sie die laufenden monatlichen Kosten aller 6 Arbeitsplätze, wenn die Hardware gleichmäßig auf ihre Nutzungsdauer verteilt wird, und geben Sie die Kosten je Arbeitsplatz an.",
+    "solutionSteps": [
+      "Rabatt: Preise × 0,92 → Mini-PC 717,60 €, Monitor 193,20 €, Headset 82,80 €",
+      "Mini-PC je Monat: 717,60 € / 48 = 14,95 €",
+      "Monitore je Monat: 2 × 193,20 € / 60 = 386,40 € / 60 = 6,44 €",
+      "Headset je Monat: 82,80 € / 24 = 3,45 €",
+      "Hardware je Arbeitsplatz: 14,95 € + 6,44 € + 3,45 € = 24,84 € → für 6 Plätze: 6 × 24,84 € = 149,04 €",
+      "Softwareleasing: 6 × 23,50 € = 141,00 €",
+      "Wartung: 1.080 € / 12 = 90,00 €",
+      "Summe: 149,04 € + 141,00 € + 90,00 € = 380,04 € pro Monat → je Arbeitsplatz 380,04 € / 6 = 63,34 €"
+    ],
+    "answer": "380,04 € pro Monat für alle 6 Arbeitsplätze, das sind 63,34 € je Arbeitsplatz",
+    "unit": "€/Monat",
+    "rubric": [
+      {
+        "criterion": "Rabatt auf die Hardware angewandt (717,60 €, 193,20 €, 82,80 €)",
+        "points": 1
+      },
+      {
+        "criterion": "Mini-PC 14,95 € pro Monat (÷ 48)",
+        "points": 1
+      },
+      {
+        "criterion": "Monitore 6,44 € pro Monat (beide Monitore, ÷ 60)",
+        "points": 1
+      },
+      {
+        "criterion": "Headset 3,45 € pro Monat (÷ 24)",
+        "points": 1
+      },
+      {
+        "criterion": "Softwareleasing 141,00 € für 6 Plätze",
+        "points": 1
+      },
+      {
+        "criterion": "Wartung 90,00 € pro Monat (÷ 12)",
+        "points": 1
+      },
+      {
+        "criterion": "Summe 380,04 € und 63,34 € je Arbeitsplatz",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Alle Geräte über dieselbe Dauer verteilen: Jedes Gerät hat seine eigene Nutzungsdauer.",
+      "Die Jahrespauschale für die Wartung nicht durch 12 teilen.",
+      "Den zweiten Monitor vergessen oder den Rabatt auch auf Leasing und Wartung anwenden: Der Rabatt gilt laut Aufgabe nur für die Hardware.",
+      "Jahre und Monate vermischen: 48 Monate sind 4 Jahre, geteilt wird hier durch Monate.",
+      "Das gleichmäßige Verteilen erinnert an die lineare Abschreibung, gefragt ist aber nur eine Kostenrechnung je Monat."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--upload-dauer-gib-mbit",
+    "topicId": "neu-2025",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.9,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 6,
+    "prompt": "Eine Fotografin sichert nach einem Auftrag 3,5 GiB Rohdaten in einen Cloud-Speicher. Ein Speedtest an ihrem Anschluss ergibt 250 Mbit/s im Download und 40 Mbit/s im Upload. Rechnen Sie ohne Protokoll-Overhead mit 1 GiB = 1024 × 1024 × 1024 Byte und 1 Mbit/s = 1.000.000 bit/s. a) Begründen Sie, welche Datenrate für die Sicherung maßgeblich ist. b) Berechnen Sie die Datenmenge in Bit. c) Berechnen Sie die Übertragungsdauer, auf volle Sekunden aufgerundet, und geben Sie sie in Minuten und Sekunden an. d) Welche Dauer ergäbe sich, wenn man die Datenmenge fälschlich als 3,5 GB (dezimal) liest?",
+    "solutionSteps": [
+      "a) Beim Sichern in die Cloud werden Daten vom eigenen Anschluss weggeschickt → maßgeblich ist der Upload mit 40 Mbit/s",
+      "b) 3,5 GiB = 3,5 × 1024 × 1024 × 1024 Byte = 3.758.096.384 Byte",
+      "b) in Bit: 3.758.096.384 Byte × 8 = 30.064.771.072 bit",
+      "c) t = 30.064.771.072 bit / 40.000.000 bit/s ≈ 751,62 s → aufgerundet 752 s",
+      "c) 752 s = 12 × 60 s + 32 s = 12 min 32 s",
+      "d) dezimal: 3,5 × 1.000.000.000 Byte × 8 = 28.000.000.000 bit → 28.000.000.000 bit / 40.000.000 bit/s = 700 s = 11 min 40 s, also rund 52 s zu wenig"
+    ],
+    "answer": "a) Upload maßgeblich; b) 30.064.771.072 bit; c) ≈ 751,62 s → 752 s = 12 min 32 s; d) dezimal fälschlich 700 s = 11 min 40 s",
+    "unit": "min:s",
+    "rubric": [
+      {
+        "criterion": "a) Upload-Rate als maßgeblich begründet",
+        "points": 1
+      },
+      {
+        "criterion": "b) GiB binär umgerechnet: 3.758.096.384 Byte",
+        "points": 1
+      },
+      {
+        "criterion": "b) Byte in Bit (× 8): 30.064.771.072 bit",
+        "points": 1
+      },
+      {
+        "criterion": "c) 751,62 s auf 752 s aufgerundet",
+        "points": 1
+      },
+      {
+        "criterion": "c) Angabe 12 min 32 s",
+        "points": 1
+      },
+      {
+        "criterion": "d) dezimal 700 s = 11 min 40 s, Abweichung erkannt",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Mit dem Download rechnen: 30.064.771.072 bit / 250.000.000 bit/s ≈ 120,26 s – viel zu kurz. Sichern heißt hochladen.",
+      "GiB dezimal umrechnen: Größen mit „i“ (KiB, MiB, GiB, TiB) sind 1024er-Stufen, Datenraten in Mbit/s sind immer dezimal.",
+      "Bit und Byte verwechseln: Die Datenrate steht in Bit pro Sekunde, die Dateigröße in Byte, also × 8.",
+      "751,62 s als „7 min 51 s“ lesen: Erst durch 60 teilen (12 volle Minuten), dann den Rest als Sekunden angeben.",
+      "„Auf volle Sekunden aufrunden“ gilt auch bei kleinen Nachkommastellen – die Übertragung ist erst danach fertig."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--tagesvolumen-tib-archivscan",
+    "topicId": "multimedia",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.38,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 6,
+    "prompt": "Eine Stadtbibliothek digitalisiert ihr Zeitungsarchiv. 6 Buchscanner laufen im Zweischichtbetrieb 16 Stunden am Tag, jeder Scanner schafft 14 Seiten pro Minute. Je Seite entstehen eine Bilddatei mit 24 MiB und eine PDF-Seite mit 450 KiB. a) Berechnen Sie die Zahl der gescannten Seiten pro Tag. b) Berechnen Sie das Tagesvolumen in TiB und runden Sie es für die Planung auf volle TiB auf. c) Für 20 Arbeitstage soll Speicher mit dem Planungswert beschafft werden. Berechnen Sie den Bedarf in TiB und in TB sowie die Mindestzahl an Festplatten mit 8 TB (Herstellerangabe, dezimal), ohne Redundanz.",
+    "solutionSteps": [
+      "a) 6 Scanner × 14 Seiten/min × 60 min/h × 16 h = 80.640 Seiten pro Tag",
+      "b) je Seite: 24 MiB = 24 × 1024 KiB = 24.576 KiB, dazu 450 KiB → 25.026 KiB",
+      "b) Tagesvolumen: 80.640 × 25.026 KiB = 2.018.096.640 KiB",
+      "b) in TiB: 2.018.096.640 KiB / 1024 / 1024 / 1024 ≈ 1,88 TiB → aufgerundet 2 TiB (Planungswert)",
+      "c) 20 Tage × 2 TiB = 40 TiB",
+      "c) in TB: 40 × 1024 × 1024 × 1024 × 1024 Byte = 43.980.465.111.040 Byte ≈ 43,98 TB",
+      "c) Platten: 43,98 TB / 8 TB ≈ 5,5 → mindestens 6 Festplatten"
+    ],
+    "answer": "a) 80.640 Seiten; b) ≈ 1,88 TiB → Planungswert 2 TiB pro Tag; c) 40 TiB ≈ 43,98 TB → mindestens 6 Festplatten zu 8 TB",
+    "unit": "TiB",
+    "rubric": [
+      {
+        "criterion": "a) 80.640 Seiten pro Tag",
+        "points": 1
+      },
+      {
+        "criterion": "b) Größe je Seite in einer Einheit: 25.026 KiB (oder ≈ 24,44 MiB)",
+        "points": 1
+      },
+      {
+        "criterion": "b) Tagesvolumen ≈ 1,88 TiB",
+        "points": 1
+      },
+      {
+        "criterion": "b) aufgerundet auf 2 TiB",
+        "points": 1
+      },
+      {
+        "criterion": "c) 40 TiB ≈ 43,98 TB",
+        "points": 1
+      },
+      {
+        "criterion": "c) mindestens 6 Festplatten",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "MiB und KiB einfach addieren (24 + 450): Erst auf eine gemeinsame Einheit bringen.",
+      "Durch 1000 statt durch 1024 teilen: Einheiten mit „i“ (KiB, MiB, GiB, TiB) sind 1024er-Stufen.",
+      "TiB und TB gleichsetzen: 40 TiB / 8 TB = 5 Platten wäre zu wenig. Festplattenhersteller rechnen dezimal (1 TB = 10^12 Byte), 1 TiB sind ≈ 1,0995 TB.",
+      "Kaufmännisch runden statt aufrunden: Ein Planungswert für Speicher wird nach oben gerundet, sonst reicht der Platz nicht.",
+      "In der Praxis kommen Dateisystem-Verwaltungsdaten und Redundanz (z. B. Spiegelung) dazu; die Aufgabe klammert das bewusst aus."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--ki-assistent-jahreskosten-schulung",
+    "topicId": "neu-2025",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 0.9,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 6,
+    "prompt": "Ein Ingenieurbüro führt für 5 Mitarbeitende einen KI-Schreibassistenten ein. Das Abo kostet 28 € je Nutzer und Monat. Der Anbieter berechnet eine einmalige Einrichtungspauschale von 450 € für das ganze Büro und eine Pflichtschulung von 180 € je Teilnehmer. Die Schulung dauert 6 Stunden; in dieser Zeit können die Mitarbeitenden keine Aufträge bearbeiten, je Stunde entgeht dem Büro ein Umsatz von 95 €. a) Berechnen Sie die Kosten im ersten Jahr, getrennt nach Anbieterkosten und entgangenem Umsatz. b) Wie viele Arbeitsstunden muss der Assistent je Mitarbeitendem und Monat mindestens einsparen, damit sich das erste Jahr trägt, wenn eine eingesparte Stunde mit 95 € bewertet wird? c) Nennen Sie die Kosten im zweiten Jahr.",
+    "solutionSteps": [
+      "a) Abo: 5 Nutzer × 28 € × 12 Monate = 1.680 €",
+      "a) Einrichtung: 450 € (einmal für das Büro); Schulung: 5 × 180 € = 900 €",
+      "a) Anbieterkosten Jahr 1: 1.680 € + 450 € + 900 € = 3.030 €",
+      "a) entgangener Umsatz: 5 Personen × 6 h × 95 €/h = 2.850 €",
+      "a) Gesamtbelastung Jahr 1: 3.030 € + 2.850 € = 5.880 €",
+      "b) Spart jede Person x Stunden pro Monat, ist das im Jahr x × 5 Personen × 12 Monate × 95 €/h = x × 5.700 € wert",
+      "b) x = 5.880 € / 5.700 € ≈ 1,03 h → rund 62 Minuten je Person und Monat",
+      "c) Im zweiten Jahr fallen Einrichtung und Schulung weg → nur das Abo mit 1.680 €"
+    ],
+    "answer": "a) Anbieterkosten 3.030 € (Abo 1.680 €, Einrichtung 450 €, Schulung 900 €) plus 2.850 € entgangener Umsatz = 5.880 € im ersten Jahr; b) ≈ 1,03 h (rund 62 min) je Person und Monat; c) 1.680 €",
+    "unit": "€",
+    "rubric": [
+      {
+        "criterion": "a) Abo 1.680 € (Nutzer × Monatspreis × 12)",
+        "points": 1
+      },
+      {
+        "criterion": "a) Einrichtung einmal 450 €, Schulung 900 € → Anbieterkosten 3.030 €",
+        "points": 1
+      },
+      {
+        "criterion": "a) entgangener Umsatz 2.850 € (5 × 6 h × 95 €)",
+        "points": 1
+      },
+      {
+        "criterion": "a) Gesamtbelastung 5.880 €, beide Kostenarten getrennt ausgewiesen",
+        "points": 1
+      },
+      {
+        "criterion": "b) ≈ 1,03 h (rund 62 min) je Person und Monat",
+        "points": 1
+      },
+      {
+        "criterion": "c) zweites Jahr 1.680 €",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Die Einrichtungspauschale mit 5 multiplizieren: Sie gilt laut Aufgabe für das ganze Büro. Genau lesen, ob ein Betrag je Nutzer, je Arbeitsplatz oder je Betrieb gilt.",
+      "Das Abo ohne Nutzerzahl oder nur für einen Monat rechnen: 5 × 28 € × 12.",
+      "Entgangener Umsatz sind Opportunitätskosten des Büros, keine Rechnung des Anbieters. Fragt eine Aufgabe nur nach den Kosten des Anbieters, bleibt er draußen – deshalb getrennt ausweisen.",
+      "Die Schulungsstunden nur einmal rechnen: 6 h × 95 € = 570 € gilt für eine Person, geschult werden alle 5.",
+      "Einmalkosten fallen nur im ersten Jahr an; im Folgejahr bleibt das Abo."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe"
+  },
+  {
+    "id": "calc--ratendarlehen-tilgungsplan",
+    "topicId": "wirtschaftlichkeit",
+    "type": "calc",
+    "tags": [
+      "ap1",
+      "rechnen"
+    ],
+    "examFrequency": 1,
+    "ap1Status": "core",
+    "operator": "berechnen",
+    "afb": "II",
+    "points": 7,
+    "prompt": "Ein Handwerksbetrieb finanziert neue Server- und Netzwerktechnik mit einem Ratendarlehen über 42.000 €. Der Zinssatz beträgt 4,8 % pro Jahr, die Laufzeit 3 Jahre. Getilgt wird in gleich hohen Jahresbeträgen; Zinsen und Tilgung werden jeweils am Jahresende gezahlt, die Zinsen auf die Restschuld zu Jahresbeginn. a) Stellen Sie den Tilgungsplan auf: je Jahr Restschuld zu Jahresbeginn, Zinsen, Tilgung, Jahreszahlung und Restschuld am Jahresende. b) Bilden Sie die Summen für Zinsen, Tilgung und Zahlungen. c) Erklären Sie, warum die Jahreszahlung von Jahr zu Jahr sinkt.",
+    "solutionSteps": [
+      "Tilgung je Jahr: 42.000 € / 3 = 14.000 €",
+      "Jahr 1: Restschuld 42.000 €; Zinsen 42.000 € × 0,048 = 2.016 €; Tilgung 14.000 €; Zahlung 16.016 €; Restschuld am Ende 28.000 €",
+      "Jahr 2: Restschuld 28.000 €; Zinsen 28.000 € × 0,048 = 1.344 €; Tilgung 14.000 €; Zahlung 15.344 €; Restschuld am Ende 14.000 €",
+      "Jahr 3: Restschuld 14.000 €; Zinsen 14.000 € × 0,048 = 672 €; Tilgung 14.000 €; Zahlung 14.672 €; Restschuld am Ende 0 €",
+      "b) Summen: Zinsen 2.016 € + 1.344 € + 672 € = 4.032 €; Tilgung 42.000 €; Zahlungen 16.016 € + 15.344 € + 14.672 € = 46.032 €",
+      "b) Kontrolle: Zahlungen = Darlehen + Zinsen = 42.000 € + 4.032 € = 46.032 €",
+      "c) Die Tilgung bleibt gleich, die Restschuld sinkt jedes Jahr um 14.000 €. Die Zinsen werden auf die kleinere Restschuld berechnet und sinken, also sinkt auch die Jahreszahlung (Tilgung + Zinsen)."
+    ],
+    "answer": "Tilgung 14.000 € pro Jahr; Zinsen 2.016 €, 1.344 €, 672 €; Zahlungen 16.016 €, 15.344 €, 14.672 €; Summen: Zinsen 4.032 €, Tilgung 42.000 €, Zahlungen 46.032 €",
+    "unit": "€",
+    "rubric": [
+      {
+        "criterion": "Tilgung 14.000 € je Jahr",
+        "points": 1
+      },
+      {
+        "criterion": "Zinsen Jahr 1: 2.016 €",
+        "points": 1
+      },
+      {
+        "criterion": "Zinsen Jahr 2 und 3 auf die Restschuld: 1.344 € und 672 €",
+        "points": 1
+      },
+      {
+        "criterion": "Jahreszahlungen 16.016 €, 15.344 €, 14.672 €",
+        "points": 1
+      },
+      {
+        "criterion": "Restschulden am Jahresende 28.000 €, 14.000 €, 0 €",
+        "points": 1
+      },
+      {
+        "criterion": "b) Summen: Zinsen 4.032 €, Tilgung 42.000 €, Zahlungen 46.032 €",
+        "points": 1
+      },
+      {
+        "criterion": "c) Begründung: gleiche Tilgung, sinkende Restschuld → sinkende Zinsen",
+        "points": 1
+      }
+    ],
+    "pitfalls": [
+      "Zinsen jedes Jahr auf den ursprünglichen Betrag rechnen (3 × 2.016 € = 6.048 €): Verzinst wird nur die Restschuld zu Jahresbeginn.",
+      "Ratendarlehen und Annuitätendarlehen verwechseln: Beim Ratendarlehen ist die Tilgung gleich und die Zahlung sinkt, beim Annuitätendarlehen ist die Zahlung (Annuität) gleich und der Tilgungsanteil steigt.",
+      "Die Kontrolle nutzen: Summe der Tilgungen = Darlehensbetrag, Summe der Zahlungen = Darlehen + Zinsen.",
+      "[RAND] Darlehen und Tilgungspläne stehen nicht ausdrücklich im AP1-Katalog, kamen in einer AP1 aber schon als Rechenaufgabe vor. Das Schema ist schnell gelernt."
+    ],
+    "source": "PV1 Prüfungsabgleich · eigene Aufgabe",
+    "peripheral": true
   }
 ]

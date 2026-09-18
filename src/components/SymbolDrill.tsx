@@ -10,10 +10,17 @@ import { useGuide } from './DrillGuide'
 // BPMN & UML-Aktivitätsdiagramm sind neu/verstärkt im Katalog 2025 (11-Neu-2025).
 // Anwendungsfall-Satz und Klassenbeziehungen ergänzt nach PV1 Tag 1 (UML, 15.09.2026).
 // ERM-Sätze (Chen, Krähenfuß) ergänzt nach dem Lückencheck AP1 (16.09.2026).
+// Satz „Anschlüsse & Funk-Symbole“ ergänzt nach dem Lückencheck AP1 Nr. 6 (18.09.2026):
+// eigene, schematische Buchsen-Zeichnungen (Blick von vorn), keine Fotos oder Herstellergrafiken.
 
 const S = 40
 const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: 2 }
 const dashed = { ...stroke, strokeDasharray: '4 3' }
+const thin = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.5 }
+
+// Eine Reihe Kontaktlöcher (Pinfeld bei DVI und VGA) als gefüllte Punkte.
+const pinRow = (xs: number[], y: number, r = 1) =>
+  xs.map((x) => <circle key={`${x}-${y}`} cx={x} cy={y} r={r} fill="currentColor" />)
 
 const SYMBOLS: Record<string, ReactNode> = {
   circleThin: <circle cx={20} cy={20} r={13} {...stroke} />,
@@ -111,6 +118,86 @@ const SYMBOLS: Record<string, ReactNode> = {
   ermCfZeroOne: <><line x1={2} y1={20} x2={11} y2={20} {...stroke} /><circle cx={16} cy={20} r={5} {...stroke} /><line x1={21} y1={20} x2={35} y2={20} {...stroke} /><line x1={28} y1={12} x2={28} y2={28} {...stroke} /><path d="M40,5 H35 V35 H40" {...stroke} /></>,
   ermCfOneMany: <><line x1={2} y1={20} x2={35} y2={20} {...stroke} /><line x1={18} y1={12} x2={18} y2={28} {...stroke} /><path d="M25,20 L35,12 M25,20 L35,28" {...stroke} /><path d="M40,5 H35 V35 H40" {...stroke} /></>,
   ermCfZeroMany: <><line x1={2} y1={20} x2={9} y2={20} {...stroke} /><circle cx={14} cy={20} r={5} {...stroke} /><line x1={19} y1={20} x2={35} y2={20} {...stroke} /><path d="M25,20 L35,12 M25,20 L35,28" {...stroke} /><path d="M40,5 H35 V35 H40" {...stroke} /></>,
+  // Anschlüsse (18.09.2026): Buchsen von vorn, Umriss = Erkennungsmerkmal, Kontakte angedeutet
+  conUsbA: (
+    <>
+      <rect x={5} y={13} width={30} height={14} {...stroke} />
+      <rect x={9} y={16.5} width={22} height={4.5} fill="currentColor" />
+      <path d="M12.5,21 V23.5 M17.5,21 V23.5 M22.5,21 V23.5 M27.5,21 V23.5" {...thin} />
+    </>
+  ),
+  conUsbC: (
+    <>
+      <rect x={5} y={14} width={30} height={12} rx={6} {...stroke} />
+      <rect x={11} y={18.5} width={18} height={3} rx={1.5} fill="currentColor" />
+      <path
+        d="M14,16.5 V18.5 M17,16.5 V18.5 M20,16.5 V18.5 M23,16.5 V18.5 M26,16.5 V18.5 M14,21.5 V23.5 M17,21.5 V23.5 M20,21.5 V23.5 M23,21.5 V23.5 M26,21.5 V23.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.2}
+      />
+    </>
+  ),
+  conRj45: (
+    <>
+      <path d="M7,8 H33 V29 H25 V34 H15 V29 H7 Z" {...stroke} />
+      <path
+        d="M11,11 V17 M13.57,11 V17 M16.14,11 V17 M18.71,11 V17 M21.29,11 V17 M23.86,11 V17 M26.43,11 V17 M29,11 V17"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.2}
+      />
+    </>
+  ),
+  conHdmi: (
+    <>
+      <path d="M4,13 H36 V19 L31,27 H9 L4,19 Z" {...stroke} />
+      <rect x={10} y={17} width={20} height={3} fill="currentColor" />
+    </>
+  ),
+  conDp: (
+    <>
+      <path d="M5,13 H35 V27 H12 L5,20 Z" {...stroke} />
+      <rect x={11} y={17.5} width={19} height={3} fill="currentColor" />
+    </>
+  ),
+  conDvi: (
+    <>
+      <path d="M8,12 H32 V25 L29,28 H11 L8,25 Z" {...stroke} />
+      <circle cx={3.5} cy={20} r={1.8} {...thin} />
+      <circle cx={36.5} cy={20} r={1.8} {...thin} />
+      {pinRow([11, 13.5, 16, 18.5, 21, 23.5], 16, 0.9)}
+      {pinRow([11, 13.5, 16, 18.5, 21, 23.5], 20, 0.9)}
+      {pinRow([11, 13.5, 16, 18.5, 21, 23.5], 24, 0.9)}
+      <line x1={26.5} y1={20} x2={30} y2={20} {...stroke} />
+    </>
+  ),
+  conVga: (
+    <>
+      <path d="M6,12 H34 L31,28 H9 Z" {...stroke} />
+      <circle cx={3} cy={20} r={1.6} {...thin} />
+      <circle cx={37} cy={20} r={1.6} {...thin} />
+      {pinRow([12, 16, 20, 24, 28], 16)}
+      {pinRow([13, 16.5, 20, 23.5, 27], 20)}
+      {pinRow([14, 17, 20, 23, 26], 24)}
+    </>
+  ),
+  conC14: (
+    <>
+      <path d="M6,15 L10,11 H30 L34,15 V29 H6 Z" {...stroke} />
+      <rect x={19} y={14} width={2} height={6} fill="currentColor" />
+      <rect x={11} y={20} width={2} height={6} fill="currentColor" />
+      <rect x={27} y={20} width={2} height={6} fill="currentColor" />
+    </>
+  ),
+  // Funk-Symbole: WLAN-Fächer (Punkt + drei Wellen) und Bluetooth-Rune
+  radioWlan: (
+    <>
+      <circle cx={20} cy={30} r={2.5} fill="currentColor" />
+      <path d="M15.76,25.76 A6,6 0 0 1 24.24,25.76 M11.51,21.51 A12,12 0 0 1 28.49,21.51 M7.27,17.27 A18,18 0 0 1 32.73,17.27" {...stroke} />
+    </>
+  ),
+  radioBluetooth: <polyline points="13,13 27,27 20,34 20,6 27,13 13,27" {...stroke} />,
 }
 
 function Sym({ id }: { id: string }) {
@@ -209,6 +296,23 @@ const DECKS: SymDeck[] = [
       { sym: "ermCfZeroMany", meaning: "am Kasten: keins oder viele (beliebig viele)" },
     ],
   },
+  {
+    id: 'anschluesse',
+    title: 'Anschlüsse & Funk-Symbole',
+    // Kern (17-Lueckencheck Nr. 6): Buchsen an der Form erkennen und benennen, dazu die Funk-Symbole.
+    pairs: [
+      { sym: 'conUsbA', meaning: 'USB-A – nur in einer Richtung steckbar; Tastatur, Maus, USB-Stick' },
+      { sym: 'conUsbC', meaning: 'USB-C – verdrehsicher; je nach Port Daten, Laden (Power Delivery), Video (DP Alt Mode)' },
+      { sym: 'conRj45', meaning: 'RJ45 – 8 Kontakte, Aussparung für die Rastnase; LAN über Twisted Pair, auch PoE' },
+      { sym: 'conHdmi', meaning: 'HDMI – Bild und Ton digital in einem Kabel; Fernseher, Beamer, Monitor' },
+      { sym: 'conDp', meaning: 'DisplayPort – eine abgeschrägte Ecke; PC-Monitore, hohe Bildwiederholraten' },
+      { sym: 'conDvi', meaning: 'DVI – Pinfeld und Flachkontakt, verschraubt; digitales Bild (DVI-I auch analog), ältere Monitore' },
+      { sym: 'conVga', meaning: 'VGA (D-Sub, 15 Pole in 3 Reihen) – analoges Bild, verschraubt; alte Monitore und Beamer' },
+      { sym: 'conC14', meaning: 'Kaltgerätebuchse (C14) – 230-V-Netzanschluss am PC-Netzteil, Monitor oder Drucker' },
+      { sym: 'radioWlan', meaning: 'WLAN – Funknetz nach IEEE 802.11, Netzzugang ohne Kabel' },
+      { sym: 'radioBluetooth', meaning: 'Bluetooth – Kurzstreckenfunk (PAN) für Headset, Maus, Tastatur' },
+    ],
+  },
 ]
 
 function Game({ deck, onExit }: { deck: SymDeck; onExit: () => void }) {
@@ -229,8 +333,13 @@ function Game({ deck, onExit }: { deck: SymDeck; onExit: () => void }) {
       setMatched((m) => new Set(m).add(selLeft))
       setSelLeft(null)
       if (newSize === deck.pairs.length) {
-        // ERM-Sätze getrennt zählen, damit die bestehende UML/BPMN-Statistik unverändert bleibt.
-        recordDrill(deck.id.startsWith('erm-') ? 'ERM-Symbole' : 'UML/BPMN-Symbole', deck.pairs.length, deck.pairs.length + mistakes)
+        // ERM- und Anschluss-Sätze getrennt zählen, damit die bestehende UML/BPMN-Statistik unverändert bleibt.
+        const label = deck.id.startsWith('erm-')
+          ? 'ERM-Symbole'
+          : deck.id === 'anschluesse'
+            ? 'Anschluss-Symbole'
+            : 'UML/BPMN-Symbole'
+        recordDrill(label, deck.pairs.length, deck.pairs.length + mistakes)
       }
     } else {
       setMistakes((n) => n + 1)
@@ -302,7 +411,7 @@ export function SymbolDrill({ onExit }: { onExit: () => void }) {
     <section className="panel">
       <header className="panel-head">
         <button className="btn ghost" onClick={onExit}>← Zurück</button>
-        <h2>Diagramm-Symbole (UML, BPMN, ERM)</h2>
+        <h2>Symbole (UML, BPMN, ERM, Anschlüsse)</h2>
       </header>
       <p className="muted small">Wähle einen Satz. Ordne jedes gezeichnete Symbol seiner Bedeutung zu.</p>
       <div className="deck-list">

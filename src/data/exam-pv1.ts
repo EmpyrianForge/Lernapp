@@ -777,4 +777,763 @@ export const EXAM_PV1: ExamTask[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // PV1 Nachtrag 18.09.2026: Lücken aus der Auswertung der acht AP1-Originalsätze (H2021–F2025).
+  // Englische Fachtexte, Kaufvertrag/Leasing, Phishing/Malware/Logging, IPv6-Adressplan, Hardware
+  // aufrüsten. Alle Szenarien, Texte, Geräte und Zahlen sind selbst geschrieben (keine Übernahme aus den
+  // Aufgabensätzen); die englischen Texte sind eigene Herstellertexte; Rechnungen per Skript geprüft.
+  // ---------------------------------------------------------------------------------------------
+  {
+    id: 'task-pv1-englisch-herstellerhinweise',
+    title: 'Englischer Herstellertext: NAS einrichten und absichern',
+    topicId: 'it-sicherheit',
+    scenario:
+      'Eine Hebammenpraxis mit sechs Mitarbeiterinnen ersetzt ihre externe USB-Festplatte durch ein NAS. Sie sollen das Gerät einrichten. Die Kurzanleitung liegt nur auf Englisch vor:\n\n' +
+      '**StoraLine N4 network storage: setup and security notes**\n' +
+      '**Before you start.** Place the device on a flat, stable surface in a well-ventilated room. Keep at least 10 cm of free space behind the unit and never cover the air vents. Connect the NAS to an uninterruptible power supply (UPS) to protect your data during power failures.\n' +
+      '**Initial setup.** Connect the LAN port to your switch and open the setup wizard in a web browser. The wizard asks you to create a new administrator account; the default account "admin" is disabled afterwards. Choose a password with at least 12 characters.\n' +
+      '**Security recommendations.** Enable automatic firmware updates so that security patches are installed as soon as they are released. Turn on two-step verification for every account with administrative rights. Do not make the management interface reachable from the internet; use a VPN connection for remote access instead. Create snapshots on a regular basis and keep at least one backup copy on a separate device.\n' +
+      '**Warning.** Never remove a drive while its status LED is flashing.\n\n' +
+      'Beantworten Sie die Fragen auf Deutsch; englische Fachbegriffe dürfen Sie übernehmen. Planen Sie für die Aufgabe etwa 20 Minuten ein, das Lesen eingeschlossen.\n\n' +
+      '**Einordnung:** Kern. Englischsprachige Texte interpretieren steht im Katalog 2025 (02.03, 02.04) und kam als Lesetext mit Sicherheitshinweisen bereits vor; NAS, 2FA, Updates und Backup gehören zum Kern von 06.04.',
+    parts: [
+      {
+        label: 'a)',
+        operator: 'nennen',
+        points: 3,
+        prompt: 'Nennen Sie drei Vorgaben des Herstellers zum Aufstellen und zur Stromversorgung des NAS.',
+        modelAnswer:
+          'Drei der folgenden Vorgaben:\n' +
+          '**ebene, stabile Fläche** (flat, stable surface)\n' +
+          '**gut belüfteter Raum** (well-ventilated room)\n' +
+          '**mindestens 10 cm Abstand hinter dem Gerät** (free space behind the unit)\n' +
+          '**Lüftungsschlitze nie abdecken** (never cover the air vents)\n' +
+          '**Anschluss an eine USV**, damit bei Stromausfall keine Daten verloren gehen (uninterruptible power supply)',
+        rubric: [
+          'erste Vorgabe sinngemäß richtig wiedergegeben (1 P)',
+          'zweite Vorgabe (1 P)',
+          'dritte Vorgabe; zwei Aussagen zu Belüftung zählen nur einmal, wenn sie dasselbe meinen (1 P)',
+        ],
+      },
+      {
+        label: 'b)',
+        operator: 'wiedergeben',
+        points: 4,
+        prompt: 'Geben Sie vier Maßnahmen wieder, die der Hersteller zur Absicherung des NAS empfiehlt oder bei der Einrichtung selbst umsetzt.',
+        modelAnswer:
+          'Vier der folgenden Maßnahmen:\n' +
+          '**Firmware automatisch aktualisieren**, damit Sicherheitspatches sofort nach Erscheinen installiert werden.\n' +
+          '**Zwei-Schritt-Verifizierung** (2FA) für alle Konten mit Administratorrechten einschalten.\n' +
+          '**Verwaltungsoberfläche nicht aus dem Internet erreichbar machen**; Fernzugriff nur über **VPN**.\n' +
+          '**Regelmäßig Snapshots** anlegen und **mindestens eine Sicherungskopie auf einem getrennten Gerät** aufbewahren.\n' +
+          '**Eigenes Administratorkonto** anlegen; das Standardkonto „admin“ wird danach deaktiviert.\n' +
+          '**Passwort mit mindestens 12 Zeichen** wählen.\n' +
+          'Bewertung der USV: Sie gehört zur Stromversorgung aus a) und zählt in b) nicht (keine Doppelwertung). Fachlich ist sie durchaus eine Absicherungsmaßnahme, und zwar für das Schutzziel Verfügbarkeit.',
+        rubric: [
+          'erste Maßnahme sinngemäß richtig, z. B. automatische Firmware-Updates (1 P)',
+          'zweite Maßnahme, z. B. Zwei-Schritt-Verifizierung für Admin-Konten (1 P)',
+          'dritte Maßnahme, z. B. kein Internetzugriff auf die Verwaltung, Fernzugriff per VPN (1 P)',
+          'vierte Maßnahme, z. B. Snapshots und Sicherung auf getrenntem Gerät; die USV aus a) zählt hier nicht noch einmal (1 P)',
+        ],
+      },
+      {
+        label: 'c)',
+        operator: 'erklären',
+        points: 4,
+        prompt: 'Erklären Sie die Begriffe **firmware**, **two-step verification**, **VPN** und **snapshot** jeweils in ein bis zwei Sätzen.',
+        modelAnswer:
+          '**Firmware:** fest im Gerät gespeicherte Software, die die Hardware steuert (beim NAS das Betriebssystem des Geräts). Updates schließen Sicherheitslücken und beheben Fehler.\n' +
+          '**Two-step verification (Zwei-Faktor-Authentisierung):** Die Anmeldung verlangt neben dem Passwort (Wissen) einen zweiten, unabhängigen Nachweis, z. B. einen Code aus einer Authenticator-App (Besitz). Ein erbeutetes Passwort allein reicht dann nicht.\n' +
+          '**VPN (Virtual Private Network):** verschlüsselter Tunnel über das Internet ins Praxisnetz. Von außen erreichbar ist nur der VPN-Zugang, nicht die Verwaltungsoberfläche selbst.\n' +
+          '**Snapshot:** Momentaufnahme des Datenbestands zu einem Zeitpunkt, auf demselben Gerät gespeichert. Versehentlich gelöschte oder veränderte Dateien lassen sich schnell auf diesen Stand zurücksetzen.',
+        rubric: [
+          'Firmware als gerätenahe Steuersoftware, Updates schließen Lücken (1 P)',
+          'Two-step verification: zweiter, unabhängiger Faktor neben dem Passwort (1 P)',
+          'VPN als verschlüsselter Tunnel ins interne Netz (1 P)',
+          'Snapshot als Momentaufnahme auf demselben Gerät zum schnellen Zurücksetzen (1 P)',
+        ],
+      },
+      {
+        label: 'd)',
+        operator: 'begründen',
+        points: 3,
+        prompt: 'Begründen Sie die beiden Vorgaben, das Standardkonto „admin“ zu deaktivieren und die Verwaltungsoberfläche nicht aus dem Internet erreichbar zu machen.',
+        modelAnswer:
+          '**Standardkonto deaktivieren:** Der Name „admin“ ist allgemein bekannt. Ein Angreifer muss dann nur noch das Passwort erraten oder durchprobieren (Brute-Force- bzw. Wörterbuchangriff). Ein selbst gewählter Kontoname ist ein zusätzliches Hindernis, und ein vergessenes Standardkonto mit Werkspasswort ist ausgeschlossen.\n' +
+          '**Keine Verwaltung aus dem Internet:** Jede aus dem Internet erreichbare Oberfläche wird von automatisierten Scannern gefunden und angegriffen, z. B. mit Anmeldeversuchen oder über noch nicht gepatchte Schwachstellen. Wer die Verwaltung übernimmt, kann alle Daten lesen, verschlüsseln oder löschen. Über VPN bleibt die **Angriffsfläche** klein: Nur ein gehärteter, verschlüsselter Zugang ist offen.',
+        rubric: [
+          'Standardname bekannt, Angreifer muss nur noch das Passwort erraten (1 P)',
+          'Verwaltung im Internet wird gefunden und angegriffen (Scans, Anmeldeversuche, Schwachstellen) (1 P)',
+          'Folge bzw. Gegenmittel: volle Kontrolle über alle Daten; VPN verkleinert die Angriffsfläche (1 P)',
+        ],
+      },
+      {
+        label: 'e)',
+        operator: 'erläutern',
+        points: 2,
+        prompt: 'Erläutern Sie den Warnhinweis am Ende des Textes und warum er wichtig ist.',
+        modelAnswer:
+          '**Inhalt:** Eine Festplatte darf nie herausgezogen werden, solange ihre Status-LED blinkt.\n' +
+          '**Grund:** Das Blinken zeigt, dass gerade auf die Platte zugegriffen wird (Lesen oder Schreiben). Wird sie dabei entfernt, können Dateien bzw. das Dateisystem beschädigt werden und Daten verloren gehen. Deshalb erst warten, bis kein Zugriff mehr läuft, bzw. das Laufwerk vorher in der Verwaltungsoberfläche abmelden.',
+        rubric: [
+          'Inhalt richtig wiedergegeben: nicht entfernen, solange die LED blinkt (1 P)',
+          'Begründung: laufender Zugriff, Gefahr von Datenverlust bzw. beschädigtem Dateisystem (1 P)',
+        ],
+      },
+      {
+        label: 'f)',
+        operator: 'beurteilen',
+        points: 3,
+        prompt: 'Die Praxisinhaberin meint: „Wenn das NAS jeden Tag Snapshots macht, brauchen wir die alte USB-Festplatte nicht mehr.“ Beurteilen Sie die Aussage mithilfe des Textes und Ihres Fachwissens.',
+        modelAnswer:
+          '**Die Aussage stimmt nicht.** Der Text verlangt ausdrücklich zusätzlich eine Sicherungskopie auf einem **getrennten Gerät** (keep at least one backup copy on a separate device).\n' +
+          '**Begründung:** Snapshots liegen auf demselben NAS. Fällt das Gerät aus, wird es gestohlen, brennt es oder löscht ein Angreifer mit Administratorrechten die Snapshots und verschlüsselt die Daten, sind Original und Snapshots zugleich verloren. Ein Snapshot schützt vor versehentlichem Löschen, ersetzt aber keine Datensicherung.\n' +
+          '**Empfehlung:** Die USB-Festplatte weiter als Sicherungsziel nutzen und nach der Sicherung trennen (offline), besser noch im Wechsel mit einer zweiten Platte außer Haus lagern (3-2-1-Regel).',
+        rubric: [
+          'Aussage abgelehnt mit Bezug auf die Textstelle „separate device“ (1 P)',
+          'Begründung: Snapshots auf demselben Gerät, gemeinsamer Verlust bei Defekt, Diebstahl oder Ransomware (1 P)',
+          'Empfehlung: getrennte, möglichst offline bzw. außer Haus gelagerte Sicherung (1 P)',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'task-pv1-englisch-servicevertrag',
+    title: 'Englischer Anbietertext: Service-Levels und Preise eines IT-Dienstleisters',
+    topicId: 'qs-vertraege',
+    scenario:
+      'Ein Reisebüro mit zwei Filialen will die Betreuung seiner Rechner an einen IT-Dienstleister abgeben. Die Filialen sind montags bis freitags von 9 bis 19 Uhr und samstags von 10 bis 14 Uhr geöffnet. Betreut werden sollen 16 Arbeitsplatzrechner, die sich 24 Beschäftigte im Schichtbetrieb teilen, und die 2 Notebooks der Geschäftsführung (eines je Person). Ein Anbieter schickt folgende Leistungsbeschreibung:\n\n' +
+      '**Managed Workplace: service levels and pricing**\n' +
+      'Our managed workplace service is available in three service levels. Every level includes remote support, patch management and antivirus monitoring. You can choose the level for each device.\n' +
+      '**Basic:** Requests are accepted Monday to Friday from 7:30 a.m. to 4:30 p.m. We respond within eight business hours.\n' +
+      '**Business:** Support hours are Monday to Friday from 7 a.m. to 7 p.m. Critical incidents receive a response within two hours. Up to four on-site visits per year are included.\n' +
+      '**Premium:** Critical incidents are handled 24/7 with a response time of 30 minutes. You get a dedicated contact person.\n' +
+      '**Monthly price per device:** Basic EUR 18, Business EUR 29, Premium EUR 47. A one-time setup fee of EUR 35 per device is charged. The minimum contract term is 12 months.\n' +
+      '**Pricing models:** Instead of paying per device, you can choose per-user pricing: a fixed monthly price for every named user, who may use up to three devices (Business EUR 44, Premium EUR 69; Basic is only available per device). If you sign for 24 months instead of 12, we reduce all monthly prices by 10 %. The setup fee is never discounted.\n\n' +
+      'Beantworten Sie die Fragen auf Deutsch. Alle Preise sind Nettopreise.\n\n' +
+      '**Einordnung:** Kern (englischsprachige Texte 02.03/02.04, Support-Level 01.03, Angebote bewerten und vergleichen, Vertragslaufzeit).',
+    parts: [
+      {
+        label: 'a)',
+        operator: 'wiedergeben',
+        points: 4,
+        prompt: 'Geben Sie für die drei Service-Levels jeweils die Servicezeit und die zugesagte Reaktionszeit wieder. Nennen Sie außerdem zwei Leistungen, die in allen Levels enthalten sind, und eine Zusatzleistung, die es erst ab Business gibt.',
+        modelAnswer:
+          '**Basic:** Anfragen Mo–Fr 7:30–16:30 Uhr, Reaktion innerhalb von **acht Geschäftsstunden**.\n' +
+          '**Business:** Servicezeit Mo–Fr 7–19 Uhr, bei kritischen Störungen Reaktion innerhalb von **zwei Stunden**.\n' +
+          '**Premium:** kritische Störungen **rund um die Uhr an sieben Tagen** (24/7), Reaktion innerhalb von **30 Minuten**.\n' +
+          '**In allen Levels (zwei genügen):** Fernwartung bzw. Remote-Support, Patchmanagement, Überwachung des Virenschutzes.\n' +
+          '**Erst ab Business:** bis zu vier Vor-Ort-Einsätze pro Jahr; bei Premium zusätzlich ein fester Ansprechpartner.',
+        rubric: [
+          'Basic: Mo–Fr 7:30–16:30 Uhr, Reaktion in acht Geschäftsstunden (1 P)',
+          'Business: Mo–Fr 7–19 Uhr, zwei Stunden bei kritischen Störungen (1 P)',
+          'Premium: 24/7, 30 Minuten (1 P)',
+          'zwei Leistungen aller Levels und eine Zusatzleistung (Vor-Ort-Einsätze oder fester Ansprechpartner) (1 P)',
+        ],
+      },
+      {
+        label: 'b)',
+        operator: 'erklären',
+        points: 3,
+        prompt: 'Erklären Sie die Angaben **response time**, **eight business hours** und **minimum contract term**. Zeigen Sie an einem Beispiel, wann der Anbieter im Level Basic spätestens reagieren muss, wenn eine Anfrage am Freitag um 15:00 Uhr eingeht.',
+        modelAnswer:
+          '**Response time (Reaktionszeit):** Zeit bis zur ersten qualifizierten Rückmeldung bzw. bis zum Beginn der Bearbeitung. Sie sagt **nichts darüber, wann die Störung behoben ist** – das wäre eine Lösungs- bzw. Wiederherstellungszeit, die hier nicht zugesagt wird.\n' +
+          '**Eight business hours:** Gezählt werden nur Stunden innerhalb der Servicezeit (Mo–Fr 7:30–16:30 Uhr). Beispiel: Eingang Freitag 15:00 Uhr → bis 16:30 Uhr laufen 1,5 Stunden, die restlichen 6,5 Stunden ab Montag 7:30 Uhr → Reaktion spätestens **Montag, 14:00 Uhr**.\n' +
+          '**Minimum contract term:** Mindestvertragslaufzeit von 12 Monaten. Vorher kann das Reisebüro nicht ordentlich kündigen; es bezahlt also mindestens zwölf Monatsbeiträge.',
+        rubric: [
+          'Reaktionszeit ist nicht Lösungszeit (1 P)',
+          'Geschäftsstunden nur innerhalb der Servicezeit; Beispiel ergibt Montag 14:00 Uhr (1 P)',
+          'Mindestvertragslaufzeit: frühestens nach 12 Monaten kündbar (1 P)',
+        ],
+      },
+      {
+        label: 'c)',
+        operator: 'erläutern',
+        points: 4,
+        prompt: 'Erläutern Sie die beiden Abrechnungsmodelle, die der Text beschreibt. Geben Sie für das Level Business an, ab wie vielen Geräten je Person sich die Abrechnung je Benutzer lohnt, und begründen Sie, welches Modell zum Reisebüro passt.',
+        modelAnswer:
+          '**Je Gerät (per device):** Für jedes betreute Gerät fällt der Monatspreis seines Levels an, egal wie viele Personen es nutzen.\n' +
+          '**Je Benutzer (per user):** Für jede namentlich benannte Person fällt ein fester Monatspreis an; sie darf bis zu drei Geräte nutzen. Basic gibt es nur je Gerät.\n' +
+          '**Vergleich Business:** 1 Gerät je Person: 29 € < 44 € → je Gerät günstiger. 2 Geräte je Person: 2 × 29 € = 58 € > 44 € → **ab dem zweiten Gerät** lohnt sich die Abrechnung je Benutzer. (Premium ebenso: 2 × 47 € = 94 € > 69 €.)\n' +
+          '**Reisebüro:** 24 Beschäftigte teilen sich 16 Rechner. Je Benutzer kostete Business 24 × 44 € = 1.056 € im Monat, je Gerät nur 16 × 29 € = 464 €. Auch die Geschäftsführung hat nur ein Gerät je Person (47 € je Gerät < 69 € je Benutzer). → **Abrechnung je Gerät**.\n' +
+          'Falle: Die Abrechnung je Benutzer lohnt sich nur, wenn jede Person mehrere Geräte hat (z. B. PC, Notebook und Tablet), nicht bei geteilten Rechnern.',
+        rubric: [
+          'Abrechnung je Gerät richtig erklärt (1 P)',
+          'Abrechnung je Benutzer mit bis zu drei Geräten richtig erklärt (1 P)',
+          'Business: je Benutzer lohnt sich ab dem zweiten Gerät je Person (58 € > 44 €) (1 P)',
+          'Empfehlung je Gerät, begründet mit geteilten Rechnern bzw. einem Gerät je Person (1 P)',
+        ],
+      },
+      {
+        label: 'd)',
+        operator: 'beurteilen',
+        points: 3,
+        prompt: 'Der Anbieter gewährt bei 24 Monaten Laufzeit 10 % Nachlass. Beurteilen Sie, ob das Reisebüro die längere Laufzeit wählen sollte. Nennen Sie dazu einen Vorteil und einen Nachteil und geben Sie eine begründete Empfehlung.',
+        modelAnswer:
+          '**Vorteil (einer genügt):** 10 % weniger auf jeden Monatspreis, z. B. Business 26,10 € statt 29 € je Gerät; die Einrichtungsgebühr bleibt gleich. Außerdem sind die Kosten zwei Jahre lang fest und planbar.\n' +
+          '**Nachteil (einer genügt):** Die Bindung ist doppelt so lang. Arbeitet der Anbieter schlecht, schließt eine Filiale oder sinkt die Zahl der Rechner, kann das Reisebüro vor Ablauf der 24 Monate nicht ordentlich kündigen und zahlt weiter; günstigere Angebote kann es erst später nutzen.\n' +
+          '**Empfehlung (eine begründete Variante genügt):** Ist der Anbieter neu und unbekannt, zuerst 12 Monate testen; der Nachlass wiegt das Risiko einer schlechten Betreuung nicht auf. 24 Monate nur, wenn Referenzen überzeugen und der Gerätebestand stabil bleibt, dann möglichst mit Sonderkündigungsrecht bei wiederholt überschrittenen Reaktionszeiten.',
+        rubric: [
+          'Vorteil: 10 % Nachlass auf die Monatspreise bzw. planbare Kosten (1 P)',
+          'Nachteil: längere Bindung, kein Ausstieg bei schlechter Leistung oder geändertem Bedarf (1 P)',
+          'begründete Empfehlung mit Bezug zum Reisebüro (1 P)',
+        ],
+      },
+      {
+        label: 'e)',
+        operator: 'berechnen',
+        points: 5,
+        prompt: 'Das Reisebüro möchte die 16 Arbeitsplatzrechner im Level Business und die 2 Notebooks der Geschäftsführung im Level Premium betreuen lassen, abgerechnet je Gerät bei 12 Monaten Laufzeit. Berechnen Sie die Kosten für das erste Vertragsjahr und für jedes Folgejahr. Berechnen Sie außerdem die durchschnittlichen Kosten je Gerät und Monat im ersten Jahr (auf Cent gerundet).',
+        modelAnswer:
+          '**Einrichtung (einmalig):** 18 Geräte × 35 € = **630 €**\n' +
+          '**Monatlich:** 16 × 29 € + 2 × 47 € = 464 € + 94 € = **558 €**\n' +
+          '**Jahresbeitrag:** 558 € × 12 = **6.696 €**\n' +
+          '**Erstes Jahr:** 6.696 € + 630 € = **7.326 €**\n' +
+          '**Jedes Folgejahr:** **6.696 €** (die Einrichtungsgebühr fällt nur einmal an)\n' +
+          '**Durchschnitt im ersten Jahr:** 7.326 € ÷ (18 Geräte × 12 Monate) = 7.326 € ÷ 216 = **33,92 € je Gerät und Monat**\n' +
+          'Falle: Die Einrichtungsgebühr gilt je Gerät („per device“), nicht einmal für den ganzen Vertrag.',
+        rubric: [
+          'Einrichtung 18 × 35 € = 630 € (1 P)',
+          'Monatsbeitrag 558 € (1 P)',
+          'erstes Jahr 7.326 € (1 P)',
+          'Folgejahr 6.696 € ohne Einrichtungsgebühr (1 P)',
+          'Durchschnitt 33,92 € je Gerät und Monat (1 P)',
+        ],
+      },
+      {
+        label: 'f)',
+        operator: 'beurteilen',
+        points: 3,
+        prompt: 'Beurteilen Sie, ob die gewählte Aufteilung zu den Öffnungszeiten des Reisebüros passt. Machen Sie einen begründeten Vorschlag.',
+        modelAnswer:
+          '**Werktags:** Business deckt Mo–Fr 7–19 Uhr ab und damit die Öffnungszeit 9–19 Uhr. Basic würde nur bis 16:30 Uhr reichen, und acht Geschäftsstunden Reaktionszeit können bis zum nächsten Tag dauern – für die Buchungsarbeitsplätze zu wenig.\n' +
+          '**Samstag:** Die Filialen haben geöffnet, Business gilt aber nur Mo–Fr. Am Samstag ist nur Premium erreichbar – und auch dort ist die 24/7-Reaktion nur für **kritische** Störungen zugesagt. Fällt samstags ein Buchungsrechner aus, gibt es keine vertragliche Hilfe.\n' +
+          '**Vorschlag (begründet, eine Variante genügt):** Beim Anbieter eine Samstagserweiterung für Business nachverhandeln; oder die Rechner, an denen samstags gebucht wird (z. B. je einer pro Filiale), in Premium einstufen – Mehrkosten je Gerät (47 € − 29 €) × 12 = 216 € im Jahr; oder bewusst das Risiko tragen und einen Ersatzrechner vorhalten. Premium für die Notebooks der Geschäftsführung ist nur sinnvoll, wenn dort wirklich außerhalb der Geschäftszeiten kritische Arbeit anfällt.',
+        rubric: [
+          'werktags passt Business zur Öffnungszeit, Basic nicht (1 P)',
+          'Lücke am Samstag erkannt, Premium nur für kritische Störungen (1 P)',
+          'schlüssiger Vorschlag mit Begründung, z. B. Samstagserweiterung oder Samstagsrechner in Premium (1 P)',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'task-pv1-beschaffung-kaufvertrag-leasing',
+    title: 'Beschaffung für eine Fahrschule: Kaufvertrag, Lieferverzug und Leasing',
+    topicId: 'qs-vertraege',
+    scenario:
+      'Eine Fahrschule mit drei Filialen stellt den Theorieunterricht auf Tablets um. Sie betreuen als Auszubildende bzw. Auszubildender eines IT-Dienstleisters die Beschaffung. Der Ablauf bisher:\n\n' +
+      '| Datum | Vorgang |\n' +
+      '|---|---|\n' +
+      '| 26.10.2026 | Die Inhaberin sieht im Online-Katalog eines Händlers ein passendes Tablet „ab 389 € netto“. |\n' +
+      '| 02.11.2026 | Der Händler schickt auf Anfrage ein schriftliches Angebot: 6 Tablets zu je 379 € netto, Lieferung frei Haus **bis spätestens 27.11.2026**, Zahlung innerhalb von 30 Tagen, 2 % Skonto innerhalb von 10 Tagen. „An dieses Angebot halten wir uns bis zum 16.11.2026 gebunden.“ |\n' +
+      '| 06.11.2026 | Die Fahrschule bestellt per E-Mail 6 Tablets zu den Bedingungen des Angebots. Eine Auftragsbestätigung kommt nicht. |\n' +
+      '| 09.11.2026 | Die Fahrschule bestellt per E-Mail zusätzlich 6 Schutzhüllen zu je 24 € aus der Preisliste; ein Angebot dazu gab es nicht. Der Händler antwortet nicht. |\n' +
+      '| 13.11.2026 | Die Schutzhüllen werden geliefert. |\n' +
+      '| 01.12.2026 | Die Tablets sind noch nicht da. Der Theorieunterricht muss mit Leihgeräten laufen. |\n\n' +
+      'Außerdem braucht die Hauptfiliale ein Farblaser-Multifunktionsgerät. Kaufpreis: **1.290 € netto**. Alternativ bietet eine Leasinggesellschaft das Gerät für **39 € netto im Monat** bei **36 Monaten** Laufzeit an; am Ende kann die Fahrschule es für einen **Restwert von 120 € netto** kaufen.\n\n' +
+      '**Einordnung:** Kern (Kaufvertrag und Vertragsstörungen 07.01, Kauf/Miete/Leasing 03.04). Fixkauf und die Leasingarten sind [RAND] und stehen nur als Zusatz in den Lösungen.',
+    parts: [
+      {
+        label: 'a)',
+        operator: 'erläutern',
+        points: 4,
+        prompt: 'Erläutern Sie, wie ein Kaufvertrag zustande kommt. Geben Sie an, ob der Online-Katalog schon ein Angebot im rechtlichen Sinn ist, und bestimmen Sie mit Begründung, an welchem Tag der Kaufvertrag über die Tablets und der über die Schutzhüllen zustande gekommen ist.',
+        modelAnswer:
+          '**Grundsatz:** Ein Kaufvertrag entsteht durch **zwei übereinstimmende Willenserklärungen**: Antrag (Angebot) und Annahme. Eine bestimmte Form ist grundsätzlich nicht vorgeschrieben; E-Mail genügt.\n' +
+          '**Online-Katalog:** kein Antrag, sondern eine **Aufforderung, selbst ein Angebot abzugeben** (invitatio ad offerendum). Der Händler will sich nicht gegenüber jedem Leser binden, etwa weil sein Vorrat begrenzt ist.\n' +
+          '**Tablets – 06.11.2026:** Das schriftliche Angebot vom 02.11. ist der **Antrag**, an den der Händler bis zum 16.11. gebunden ist. Die Bestellung vom 06.11. stimmt mit dem Angebot überein und kommt rechtzeitig: Sie ist die **Annahme**. Eine Auftragsbestätigung ist dafür nicht nötig.\n' +
+          '**Schutzhüllen – 13.11.2026:** Ohne vorheriges Angebot ist die Bestellung vom 09.11. der **Antrag**. Der Händler nimmt ihn nicht ausdrücklich an, sondern durch **schlüssiges Handeln**: Er liefert. Schweigen allein wäre keine Annahme.\n' +
+          '[RAND] Hätte die Fahrschule erst nach dem 16.11. oder mit geänderten Bedingungen bestellt (z. B. 8 statt 6 Tablets), wäre ihre Bestellung ein **neuer Antrag** gewesen, den der Händler erst annehmen müsste. „Freibleibend“ oder „ohne Obligo“ im Angebot schließt die Bindung aus.',
+        rubric: [
+          'zwei übereinstimmende Willenserklärungen: Antrag und Annahme (1 P)',
+          'Katalog ist kein Antrag, sondern Aufforderung zur Abgabe eines Angebots (1 P)',
+          'Tablets: Vertrag am 06.11. durch fristgerechte Bestellung auf das bindende Angebot (1 P)',
+          'Schutzhüllen: Bestellung als Antrag, Vertrag am 13.11. durch Lieferung (schlüssiges Handeln) (1 P)',
+        ],
+      },
+      {
+        label: 'b)',
+        operator: 'nennen',
+        points: 4,
+        prompt: 'Nennen Sie vier Inhalte, die in einem Kaufvertrag über die Tablets geregelt sein sollten. Geben Sie außerdem die Hauptpflichten des Verkäufers und des Käufers an.',
+        modelAnswer:
+          '**Inhalte (vier genügen):** Art und Beschaffenheit bzw. Güte der Ware (genaues Modell, Speicher, Ausstattung) · Menge · Preis und Preisnachlässe (Rabatt, Skonto) · Lieferbedingungen (Liefertermin, Versandkosten, z. B. frei Haus) · Zahlungsbedingungen (Zahlungsziel, Skontofrist) · Erfüllungsort und Gerichtsstand · Gewährleistung bzw. zusätzliche Garantie · Eigentumsvorbehalt.\n' +
+          '**Pflichten des Verkäufers:** die Ware **übergeben** und das **Eigentum** daran verschaffen, und zwar frei von Sach- und Rechtsmängeln.\n' +
+          '**Pflichten des Käufers:** den vereinbarten **Kaufpreis zahlen** und die Ware **abnehmen**.\n' +
+          'Diese Hauptpflichten stehen in § 433 BGB; die Inhalte oben legen fest, wie sie im Einzelfall aussehen.',
+        rubric: [
+          'zwei passende Vertragsinhalte (1 P)',
+          'zwei weitere passende Vertragsinhalte (1 P)',
+          'Verkäufer: übergeben und Eigentum verschaffen, mangelfrei (1 P)',
+          'Käufer: Kaufpreis zahlen und Ware abnehmen (1 P)',
+        ],
+      },
+      {
+        label: 'c)',
+        operator: 'prüfen',
+        points: 4,
+        prompt: 'Prüfen Sie, ob sich der Händler am 01.12.2026 mit den Tablets im Lieferverzug befindet. Erläutern Sie anschließend, welche Rechte die Fahrschule hat.',
+        modelAnswer:
+          '**Voraussetzungen des Lieferverzugs:**\n' +
+          '**Fälligkeit und Nichtlieferung:** Liefertermin war der 27.11.2026; am 01.12. ist nichts geliefert.\n' +
+          '**Mahnung:** grundsätzlich nötig, hier aber **entbehrlich**, weil der Termin **kalendermäßig bestimmt** ist („bis spätestens 27.11.2026“). Mit Ablauf des Termins tritt der Verzug ohne Mahnung ein.\n' +
+          '**Verschulden:** Der Händler muss die Verspätung zu vertreten haben (Vorsatz oder Fahrlässigkeit). Das wird vermutet; er müsste sich entlasten, z. B. mit höherer Gewalt.\n' +
+          '→ Der Händler ist **im Lieferverzug**.\n' +
+          '**Rechte ohne Nachfrist:** weiterhin **Lieferung verlangen** und zusätzlich **Ersatz des Verzugsschadens**, z. B. die Kosten der Leihgeräte.\n' +
+          '**Rechte nach Ablauf einer angemessenen Nachfrist:** **vom Vertrag zurücktreten** (z. B. um anderswo zu kaufen) und/oder **Schadensersatz statt der Leistung** verlangen, etwa den Mehrpreis eines Ersatzkaufs.\n' +
+          '[RAND] Ist der Termin so wichtig, dass eine spätere Lieferung sinnlos wäre, und ist das vereinbart („fix“), liegt ein **Fixkauf** vor; dann ist der Rücktritt auch ohne Nachfrist möglich.',
+        rubric: [
+          'Fälligkeit und Nichtlieferung zum 27.11. festgestellt (1 P)',
+          'Mahnung entbehrlich wegen kalendermäßig bestimmten Termins; Verschulden als Voraussetzung (1 P)',
+          'Rechte ohne Nachfrist: Lieferung plus Verzugsschaden (1 P)',
+          'Rechte nach angemessener Nachfrist: Rücktritt und/oder Schadensersatz statt der Leistung (1 P)',
+        ],
+      },
+      {
+        label: 'd)',
+        operator: 'nennen',
+        points: 3,
+        prompt: 'Die Fahrschule will künftigen Störungen bei Beschaffungen vorbeugen. Nennen Sie zwei Maßnahmen gegen Lieferverzug und eine Maßnahme gegen mangelhafte Lieferung (Schlechtleistung), die sie vor oder bei Vertragsschluss treffen kann.',
+        modelAnswer:
+          '**Gegen Lieferverzug (zwei genügen):** verbindlichen, kalendermäßig bestimmten Liefertermin vereinbaren · Vertragsstrafe (Konventionalstrafe) für jede Woche Verspätung vereinbaren · zuverlässigen Lieferanten wählen (Erfahrungen, Bewertungen, Lagerbestand erfragen) · zeitlichen Puffer vor dem Einsatztermin einplanen · einen zweiten Lieferanten als Ausweichmöglichkeit kennen.\n' +
+          '**Gegen Schlechtleistung (eine genügt):** Ware im Vertrag genau beschreiben (Modell, Ausstattung) · vorab ein Testgerät bzw. Muster prüfen · Wareneingangskontrolle sofort bei Lieferung einplanen · eine Garantie oder zugesicherte Eigenschaften vereinbaren.\n' +
+          'Zur Einordnung: Weitere Störungen des Kaufvertrags gehen vom Käufer aus – **Zahlungsverzug** und **Annahmeverzug**.',
+        rubric: [
+          'erste Maßnahme gegen Lieferverzug, z. B. fester Termin oder Vertragsstrafe (1 P)',
+          'zweite, andere Maßnahme gegen Lieferverzug (1 P)',
+          'Maßnahme gegen Schlechtleistung, z. B. genaue Spezifikation oder Wareneingangsprüfung (1 P)',
+        ],
+      },
+      {
+        label: 'e)',
+        operator: 'erläutern',
+        points: 3,
+        prompt: 'Erläutern Sie das Grundprinzip des Leasings am Beispiel des Multifunktionsgeräts. Gehen Sie dabei auf Eigentum und Besitz ein und nennen Sie je einen Vor- und Nachteil für die Fahrschule.',
+        modelAnswer:
+          '**Prinzip:** Die **Leasinggesellschaft (Leasinggeber)** kauft das Gerät beim Hersteller oder Händler und überlässt es der **Fahrschule (Leasingnehmer)** für eine feste Laufzeit zur Nutzung. Dafür zahlt die Fahrschule monatliche **Leasingraten**.\n' +
+          '**Eigentum und Besitz:** Die Leasinggesellschaft bleibt **Eigentümerin** (rechtliche Herrschaft). Die Fahrschule wird **Besitzerin** (tatsächliche Herrschaft): Sie hat das Gerät in der Filiale und nutzt es.\n' +
+          '**Vorteil (einer genügt):** keine hohe Anfangsausgabe, die Liquidität bleibt erhalten; feste, planbare Raten; die Raten sind als Betriebsausgaben absetzbar; nach der Laufzeit leicht auf neue Technik wechseln.\n' +
+          '**Nachteil (einer genügt):** insgesamt meist teurer als der Kauf; feste Bindung an die Laufzeit; kein Eigentum, deshalb Auflagen z. B. zu Versicherung, Pflege und Rückgabezustand.\n' +
+          '[RAND] Beim Finanzierungsleasing trägt der Leasingnehmer Wartung und Risiko; beim Operating- bzw. Full-Service-Leasing sind Wartung und Service oft in der Rate enthalten.',
+        rubric: [
+          'Prinzip: Leasinggeber kauft, Leasingnehmer nutzt gegen Raten für eine feste Laufzeit (1 P)',
+          'Eigentum beim Leasinggeber, Besitz bei der Fahrschule (1 P)',
+          'je ein passender Vor- und Nachteil (1 P)',
+        ],
+      },
+      {
+        label: 'f)',
+        operator: 'beurteilen',
+        points: 4,
+        prompt: 'Nennen Sie drei Möglichkeiten der Fahrschule am Ende der Leasinglaufzeit. Berechnen Sie, was das Gerät kostet, wenn sie es 36 Monate least und dann zum Restwert kauft, und vergleichen Sie mit dem Sofortkauf. Beurteilen Sie das Ergebnis kurz.',
+        modelAnswer:
+          '**Möglichkeiten (drei genügen):** Gerät **zurückgeben** · Gerät zum Restwert **kaufen** (Kaufoption) · Vertrag **verlängern** (meist mit niedrigerer Rate) · ein **neues Gerät leasen** (Anschlussleasing bzw. Austausch).\n' +
+          '**Leasing mit Kauf:** 39 € × 36 = 1.404 € Raten + 120 € Restwert = **1.524 €**\n' +
+          '**Vergleich:** 1.524 € − 1.290 € = **234 € mehr** als beim Sofortkauf.\n' +
+          '**Beurteilung:** Rein nach den Zahlen ist der Kauf günstiger (Zinsen und Wartung sind nicht berücksichtigt). Leasing kann sich trotzdem lohnen, wenn die Fahrschule ihr Geld für andere Zwecke braucht (Liquidität) oder wenn Service in der Rate enthalten ist. Wer das Gerät ohnehin behalten will, fährt mit dem Kauf besser.',
+        rubric: [
+          'drei Möglichkeiten am Laufzeitende (1 P)',
+          'Leasing mit Kauf: 1.404 € + 120 € = 1.524 € (1 P)',
+          'Mehrkosten gegenüber dem Kauf: 234 € (1 P)',
+          'Beurteilung mit Kosten und einem nicht rein finanziellen Argument (Liquidität, Service) (1 P)',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'task-pv1-sicherheitsvorfall-phishing-malware',
+    title: 'Sicherheitsvorfall in einer Hausverwaltung: Phishing, Malware, Passwörter und Protokollierung',
+    topicId: 'it-sicherheit',
+    scenario:
+      'Eine Hausverwaltung mit 18 Beschäftigten verwaltet rund 900 Mietwohnungen; auf dem Server liegen Mietverträge, Bankverbindungen und Nebenkostenabrechnungen. Die Firma nutzt den Maildienst „CloudMail Business“, dessen echte Adressen auf `cloudmail.example` enden. Heute leitet eine Sachbearbeiterin folgende Nachricht an die IT weiter:\n\n' +
+      '`Von: CloudMail Business Support <support@cloudmai1-business.example>`\n' +
+      '`Betreff: WICHTIG: Ihr Postfach wird heute um 18:00 Uhr gesperrt`\n' +
+      '`Anhang: Nutzungsbedingungen_2026.pdf.exe`\n' +
+      '„Sehr geehrter Kunde, bei einer Sicherheitsprüfung haben wir ungewöhnliche Anmeldungen auf Ihrem Konto festgestellt. Damit Ihr Postfach nicht gesperrt und alle Nachrichten gelöscht werden, bestätigen Sie bitte umgehend Ihr Passwort über den folgenden Link: Konto jetzt bestätigen. Im Anhang finden Sie unsere neuen Nutzungsbedingungen. Mit freundlichen Grüßen, Ihr Support-Team“\n' +
+      'Beim Überfahren des Links mit der Maus zeigt das Mailprogramm: `http://cloudmail-login.verify-account.example/confirm`\n\n' +
+      'Ein Kollege aus der Buchhaltung hat vor einer Woche den Anhang einer ähnlichen Mail geöffnet. Seitdem ist sein PC langsam, und heute meldet der Virenscanner einen Keylogger. In den Protokollen der Firewall fallen nächtliche Verbindungen seines PCs zu einem unbekannten Server auf. Sie unterstützen den IT-Verantwortlichen bei der Aufarbeitung.\n\n' +
+      '**Einordnung:** Kern (Angriffe und Malware, Passwort-Policy bewerten 06.04, Protokollierung, Datenschutzgrundsätze nach Art. 5 DSGVO). [RAND] sind Rootkit, SPF/DKIM/DMARC und die Mitbestimmung des Betriebsrats; sie stehen nur als Zusatz in den Lösungen.',
+    parts: [
+      {
+        label: 'a)',
+        operator: 'nennen',
+        points: 3,
+        prompt: 'Nennen Sie drei Merkmale, an denen man erkennt, dass es sich bei der weitergeleiteten Nachricht um eine Phishing-Mail handelt. Beziehen Sie sich auf die Mail.',
+        modelAnswer:
+          'Drei der folgenden Merkmale:\n' +
+          '**gefälschte Absenderadresse:** `cloudmai1-business.example` statt `cloudmail.example` – eine Ziffer 1 statt des Buchstabens l und eine fremde Domain.\n' +
+          '**Zeitdruck und Drohung:** Sperrung „heute um 18:00 Uhr“, Löschung aller Nachrichten.\n' +
+          '**Aufforderung, das Passwort einzugeben:** Seriöse Anbieter fragen Zugangsdaten nie per Mail ab.\n' +
+          '**Link-Ziel passt nicht zum Anbieter:** Die Adresse endet auf `verify-account.example`, nicht auf `cloudmail.example`; außerdem ohne https.\n' +
+          '**gefährlicher Anhang mit doppelter Endung:** `.pdf.exe` ist ein ausführbares Programm, das sich als PDF tarnt.\n' +
+          '**unpersönliche Anrede:** „Sehr geehrter Kunde“ statt des Namens.',
+        rubric: [
+          'erstes Merkmal mit Bezug zur Mail (1 P)',
+          'zweites Merkmal mit Bezug zur Mail (1 P)',
+          'drittes Merkmal mit Bezug zur Mail (1 P)',
+        ],
+      },
+      {
+        label: 'b)',
+        operator: 'unterscheiden',
+        points: 4,
+        prompt: 'Nennen Sie zwei Maßnahmen, mit denen sich die Hausverwaltung als Unternehmen gegen Phishing schützt, und zwei Verhaltensregeln für die Beschäftigten beim Umgang mit E-Mails.',
+        modelAnswer:
+          '**Maßnahmen des Unternehmens (zwei genügen):**\n' +
+          'technisch: Spam- und Phishing-Filter bzw. Mail-Gateway; ausführbare Anhänge (.exe, Makros in Office-Dateien) blockieren; externe Mails kennzeichnen; Zwei-Faktor-Authentisierung für Mail- und Cloudkonten, damit ein erbeutetes Passwort allein nicht reicht; Updates und Virenschutz aktuell halten. [RAND] Absenderprüfung mit SPF, DKIM und DMARC.\n' +
+          'organisatorisch: regelmäßige Sensibilisierungsschulungen (Awareness), simulierte Phishing-Mails, klarer Meldeweg an die IT, Richtlinie zum Umgang mit E-Mails.\n' +
+          '**Verhaltensregeln für Beschäftigte (zwei genügen):** Absenderadresse und Link-Ziel prüfen (Maus darüber halten, nicht klicken) · niemals Zugangsdaten über einen Link aus einer Mail eingeben, sondern die Seite selbst aufrufen · keine unerwarteten Anhänge öffnen, schon gar nicht mit doppelter Endung · im Zweifel über einen bekannten Weg nachfragen (Telefonnummer aus dem eigenen Adressbuch, nicht aus der Mail) · verdächtige Mails sofort der IT melden und nicht weiterleiten, auch nach einem versehentlichen Klick.\n' +
+          'Wichtig ist die Trennung: Das Unternehmen schafft Technik und Regeln, die Beschäftigten verhalten sich im Einzelfall richtig.',
+        rubric: [
+          'erste Maßnahme des Unternehmens (technisch oder organisatorisch) (1 P)',
+          'zweite, andere Maßnahme des Unternehmens (1 P)',
+          'erste Verhaltensregel für Beschäftigte (1 P)',
+          'zweite Verhaltensregel; Unternehmens- und Mitarbeiterebene nicht vermischt (1 P)',
+        ],
+      },
+      {
+        label: 'c)',
+        operator: 'zuordnen',
+        points: 3,
+        prompt:
+          'Der IT-Verantwortliche erstellt ein Merkblatt. Ordnen Sie jeder Beschreibung die passende Schadprogrammart zu.\n' +
+          '(1) zeichnet unbemerkt alle Tastatureingaben auf und schickt sie an den Angreifer\n' +
+          '(2) hängt sich an ein Programm oder Dokument und wird aktiv, sobald dieses geöffnet wird; verbreitet sich über weitergegebene Dateien\n' +
+          '(3) verbreitet sich selbstständig über das Netzwerk, indem es Sicherheitslücken anderer Rechner ausnutzt\n' +
+          '(4) gibt sich als nützliches Programm aus, z. B. als Rechnungsbetrachter, und führt im Hintergrund Schadfunktionen aus\n' +
+          '(5) verschlüsselt Dateien auf dem Rechner und den Netzlaufwerken und verlangt Lösegeld\n' +
+          '(6) richtet einen versteckten Zugang ein, über den der Angreifer den Rechner später aus der Ferne steuern kann',
+        modelAnswer:
+          '**(1) Keylogger** (eine Form der Spyware)\n' +
+          '**(2) Virus** – braucht eine Wirtsdatei und das Zutun des Nutzers.\n' +
+          '**(3) Wurm** – verbreitet sich ohne Wirtsdatei und ohne Zutun selbstständig.\n' +
+          '**(4) Trojaner** (Trojanisches Pferd) – Tarnung als nützliches Programm.\n' +
+          '**(5) Ransomware** (Erpressungstrojaner)\n' +
+          '**(6) Backdoor** (Hintertür); oft von einem Trojaner installiert.\n' +
+          '[RAND] Ein **Rootkit** nistet sich tief im Betriebssystem ein und verbirgt seine Prozesse und Dateien vor Virenscanner und Taskmanager.\n' +
+          'Im Fall der Buchhaltung: Der Anhang war vermutlich ein Trojaner, der einen Keylogger nachgeladen hat; die nächtlichen Verbindungen deuten darauf hin, dass Daten abfließen oder eine Backdoor besteht.',
+        rubric: [
+          '(1) Keylogger und (2) Virus richtig (1 P)',
+          '(3) Wurm und (4) Trojaner richtig (1 P)',
+          '(5) Ransomware und (6) Backdoor richtig (1 P)',
+        ],
+      },
+      {
+        label: 'd)',
+        operator: 'beurteilen',
+        points: 4,
+        prompt:
+          'Nach dem Vorfall müssen alle Passwörter geändert werden. Der IT-Verantwortliche legt dazu eine neue Richtlinie vor: „Passwörter haben mindestens 8 Zeichen und enthalten eine Ziffer. Sie werden alle 30 Tage geändert. Damit man sie sich merken kann, darf das neue Passwort das alte mit einer um eins höheren Zahl am Ende sein.“ ' +
+          'Beurteilen Sie die Richtlinie. Nennen Sie drei Kriterien für sichere Passwörter mit ihrer Wirkung und erläutern Sie, warum Passwortregeln allein gegen den gefundenen Keylogger nicht helfen.',
+        modelAnswer:
+          '**Beurteilung:** Die Richtlinie ist zu schwach. **8 Zeichen** mit nur einer Ziffer ergeben einen kleinen Suchraum, der sich durch Durchprobieren (Brute Force) schnell abarbeiten lässt. Das **Hochzählen am Ende** macht jedes neue Passwort aus dem alten vorhersagbar – ein erbeutetes altes Passwort verrät das neue. Der **Zwangswechsel alle 30 Tage** führt genau zu solchen Mustern; das BSI empfiehlt einen Wechsel deshalb vor allem bei Verdacht auf Kompromittierung, wie jetzt. (Manche Lehrbücher und ältere Lösungen nennen „regelmäßig ändern“ noch als Kriterium; wer es mit Begründung nennt, verliert keinen Punkt.)\n' +
+          '**Kriterien mit Wirkung (drei genügen):**\n' +
+          '**Länge**, z. B. mindestens 12 Zeichen oder eine lange Passphrase: Jedes zusätzliche Zeichen vervielfacht die Zahl der möglichen Kombinationen.\n' +
+          '**großer Zeichenvorrat** (Groß- und Kleinbuchstaben, Ziffern, Sonderzeichen): mehr Möglichkeiten je Stelle.\n' +
+          '**kein Wort und kein Muster** (Wörterbuchbegriffe, Tastaturfolgen, bekannte Schemata): schützt vor Wörterbuchangriffen.\n' +
+          '**kein persönlicher Bezug** (Namen, Geburtsdaten, Firmenname): schützt vor gezieltem Raten mit persönlichem Wissen.\n' +
+          'Zusatz (Nutzungsregel, keine Eigenschaft des Passworts selbst): **für jeden Dienst ein eigenes Passwort**, damit ein erbeutetes Passwort nicht alle Konten öffnet (Passwortmanager nutzen). Mit dieser Begründung wird es anerkannt; die eigentlichen Kriterien sind Länge, Zeichenvorrat, kein Wort bzw. Muster und kein persönlicher Bezug.\n' +
+          '**Keylogger:** Er liest das Passwort bei der Eingabe mit – egal wie lang und komplex es ist. Dagegen helfen ein **zweiter Faktor** (2FA), die Bereinigung bzw. Neuinstallation des befallenen PCs und das Ändern der Passwörter **von einem sauberen Gerät** aus.\n' +
+          'Begriffsfalle: Passwörter werden nicht „entschlüsselt“, sondern erraten, durchprobiert oder abgegriffen; gespeicherte Passwörter liegen als Hashwerte vor.',
+        rubric: [
+          'Schwächen erkannt: 8 Zeichen zu kurz, Hochzählen vorhersagbar (1 P)',
+          'Zwangswechsel kritisch gesehen oder Wechsel bei Verdacht begründet (1 P)',
+          'drei Kriterien mit Wirkung, z. B. Länge, Zeichenvorrat, kein Wort bzw. Muster, kein persönlicher Bezug; die Nutzungsregel „eigenes Passwort je Dienst“ wird mit Begründung anerkannt (1 P)',
+          'Keylogger liest jedes Passwort mit; 2FA bzw. saubere Neuinstallation nötig (1 P)',
+        ],
+      },
+      {
+        label: 'e)',
+        operator: 'erläutern',
+        points: 3,
+        prompt: 'Erläutern Sie an diesem Vorfall, welchen Beitrag die Protokollierung (Logging) zur IT-Sicherheit leistet. Nennen Sie drei Aspekte.',
+        modelAnswer:
+          'Drei der folgenden Aspekte, jeweils mit Bezug zum Vorfall:\n' +
+          '**Angriffe erkennen:** Das Firewall-Protokoll hat die nächtlichen Verbindungen zum unbekannten Server sichtbar gemacht; Auswertungen oder Alarme melden solche Auffälligkeiten früh, ebenso gehäufte Fehlanmeldungen.\n' +
+          '**Vorfall nachvollziehen:** Wann kam die Mail, wann wurde der Anhang geöffnet, mit welchen Konten hat sich jemand seitdem angemeldet, auf welche Daten wurde zugegriffen? Daraus folgt, welche Passwörter und Systeme betroffen sind.\n' +
+          '**Schaden einschätzen und Meldepflichten prüfen:** Nur mit Protokollen lässt sich sagen, ob Mieterdaten abgeflossen sind. Dann muss die Hausverwaltung die Meldung an die Datenschutz-Aufsichtsbehörde binnen 72 Stunden prüfen.\n' +
+          '**Beweissicherung:** Protokolle dienen als Beleg für Strafanzeige, Versicherung oder Forensik.\n' +
+          '**Nachweis und Verbesserung:** Die Firma kann zeigen, dass ihre Schutzmaßnahmen wirken, und Lücken gezielt schließen.',
+        rubric: [
+          'erster Aspekt mit Bezug zum Vorfall, z. B. Angriffe erkennen (1 P)',
+          'zweiter Aspekt, z. B. Ablauf und betroffene Konten nachvollziehen (1 P)',
+          'dritter Aspekt, z. B. Schadensumfang, Meldepflicht oder Beweissicherung (1 P)',
+        ],
+      },
+      {
+        label: 'f)',
+        operator: 'beurteilen',
+        points: 4,
+        prompt: 'Der Geschäftsführer will künftig „zur Sicherheit“ alle Tastatureingaben und alle besuchten Webseiten jeder und jedes Beschäftigten dauerhaft speichern lassen. Beurteilen Sie den Vorschlag aus Sicht des Datenschutzes und nennen Sie drei Anforderungen, die eine zulässige Protokollierung erfüllen muss.',
+        modelAnswer:
+          '**Beurteilung:** Der Vorschlag ist **unzulässig**. Protokolle mit Benutzername, Zeit und Tätigkeit sind **personenbezogene Daten**. Alle Tastatureingaben dauerhaft zu speichern, ist eine lückenlose Überwachung der Beschäftigten: nicht erforderlich, unverhältnismäßig und ein schwerer Eingriff in ihr Persönlichkeitsrecht. Die Firma würde selbst einen Keylogger betreiben und dabei auch Passwörter und private Inhalte sammeln.\n' +
+          '**Anforderungen (drei genügen):**\n' +
+          '**Zweckbindung:** nur für IT-Sicherheit und Fehleranalyse, nicht zur Leistungs- oder Verhaltenskontrolle.\n' +
+          '**Datenminimierung:** nur sicherheitsrelevante Ereignisse protokollieren (An- und Abmeldungen, Fehlversuche, Rechteänderungen, Verbindungen), keine Inhalte und keine Tastatureingaben.\n' +
+          '**Speicherbegrenzung:** feste Löschfrist, danach automatisch löschen.\n' +
+          '**Zugriffsschutz, Vertraulichkeit und Integrität:** nur wenige berechtigte Personen, möglichst im Vier-Augen-Prinzip; Protokolle gegen Veränderung schützen.\n' +
+          '**Transparenz:** Die Beschäftigten werden informiert, was zu welchem Zweck wie lange protokolliert wird.\n' +
+          '[RAND] Gibt es einen Betriebsrat, hat er bei technischen Einrichtungen, die Verhalten oder Leistung überwachen können, ein Mitbestimmungsrecht (§ 87 Abs. 1 Nr. 6 BetrVG); üblich ist eine Betriebsvereinbarung.',
+        rubric: [
+          'Vorschlag abgelehnt: personenbezogene Daten, lückenlose Überwachung unverhältnismäßig (1 P)',
+          'erste Anforderung, z. B. Zweckbindung (1 P)',
+          'zweite Anforderung, z. B. Datenminimierung oder Löschfrist (1 P)',
+          'dritte Anforderung, z. B. Zugriffsschutz oder Transparenz (1 P)',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'task-pv1-ipv6-adressplan',
+    title: 'IPv6-Adressplan für die Stadtbücherei: Präfix, Subnetze, Gateway, Link-Local',
+    topicId: 'netzwerke',
+    scenario:
+      'Die Stadtbücherei stellt ihr Netz auf IPv6 um. Der Provider hat ihr das Präfix `2001:db8:4a0::/48` zugewiesen (2001:db8::/32 ist der Adressbereich für Dokumentation und Beispiele; echte Präfixe vergibt der Provider). Die Bücherei teilt es in /64-Subnetze auf:\n\n' +
+      '| Netz | Subnetz-ID |\n' +
+      '|---|---|\n' +
+      '| Verwaltung | `0010` |\n' +
+      '| Selbstverbuchung und Rückgabe | `002c` |\n' +
+      '| Recherche-PCs für Besucher | `0040` |\n' +
+      '| Besucher-WLAN | `00a0` |\n\n' +
+      'Der Router ist in jedem Subnetz Standardgateway und hat dort die Interface-ID `::1`. Die Geräte der Selbstverbuchung werden fest adressiert, die Recherche-PCs konfigurieren sich automatisch (SLAAC).\n\n' +
+      '**Einordnung:** Kern (IPv4/IPv6-Konfiguration 04.01; Aufbau, Kürzen und Ausschreiben, Adresstypen). EUI-64, Zonen-ID und temporäre Adressen (Privacy Extensions) sind [RAND] und stehen nur als Zusatz in den Lösungen.',
+    parts: [
+      {
+        label: 'a)',
+        operator: 'angeben',
+        points: 3,
+        prompt: 'Recherche-PC 7 hat die Adresse `2001:db8:4a0:40::7`. Geben Sie an, wie viele Bit Standortpräfix, Subnetz-ID und Interface-ID lang sind, und bestimmen Sie diese drei Teile für die Adresse.',
+        modelAnswer:
+          '**Längen:** Standortpräfix **48 Bit** · Subnetz-ID **16 Bit** · Interface-ID **64 Bit** (zusammen 128 Bit).\n' +
+          '**Standortpräfix:** `2001:0db8:04a0` (die ersten drei Blöcke)\n' +
+          '**Subnetz-ID:** `0040` (vierter Block) – das Netz der Recherche-PCs\n' +
+          '**Interface-ID:** `0000:0000:0000:0007` (die letzten vier Blöcke, gekürzt `::7`)\n' +
+          'Jeder Block hat 4 Hexadezimalziffern = 16 Bit. Das /64-Netz des PCs ist also `2001:db8:4a0:40::/64`.',
+        rubric: [
+          'Längen 48, 16 und 64 Bit (1 P)',
+          'Standortpräfix 2001:0db8:04a0 und Subnetz-ID 0040 (1 P)',
+          'Interface-ID 0000:0000:0000:0007 bzw. die letzten 64 Bit (1 P)',
+        ],
+      },
+      {
+        label: 'b)',
+        operator: 'ermitteln',
+        points: 3,
+        prompt: 'Schreiben Sie die Adressen `2001:db8:4a0:40::7` und `2001:db8:4a0:2c::c1:1f` vollständig (ungekürzt) aus. In einer Dokumentation findet sich außerdem die Schreibweise `2001:db8:4a0::2c::1`. Begründen Sie, warum sie ungültig ist.',
+        modelAnswer:
+          '**Vorgehen:** In jedem Block führende Nullen auf 4 Ziffern ergänzen; `::` durch so viele `0000`-Blöcke ersetzen, dass es 8 Blöcke werden.\n' +
+          '`2001:db8:4a0:40::7` → 5 Blöcke vorhanden, `::` steht für 3 Blöcke → `2001:0db8:04a0:0040:0000:0000:0000:0007`\n' +
+          '`2001:db8:4a0:2c::c1:1f` → 6 Blöcke vorhanden, `::` steht für 2 Blöcke → `2001:0db8:04a0:002c:0000:0000:00c1:001f`\n' +
+          '**Ungültig:** `::` darf nur **einmal** vorkommen. Bei zweimal `::` ist nicht eindeutig, wie viele Nullblöcke an welcher Stelle fehlen.\n' +
+          'Falle: Nur **führende** Nullen dürfen wegfallen. `00c1` wird zu `c1`, aber `c100` darf nicht zu `c1` gekürzt werden.',
+        rubric: [
+          'erste Adresse richtig ausgeschrieben (1 P)',
+          'zweite Adresse richtig ausgeschrieben, :: steht für zwei Blöcke (1 P)',
+          'Begründung: :: nur einmal erlaubt, sonst mehrdeutig (1 P)',
+        ],
+      },
+      {
+        label: 'c)',
+        operator: 'berechnen',
+        points: 3,
+        prompt: 'Berechnen Sie, wie viele /64-Subnetze die Bücherei aus ihrem /48-Präfix bilden kann und wie viele Interface-IDs es in jedem Subnetz gibt. Begründen Sie, warum man Subnetze für Endgeräte bei IPv6 nicht kleiner als /64 macht.',
+        modelAnswer:
+          '**Subnetze:** 64 − 48 = 16 Bit Subnetz-ID → 2^16 = **65.536** Subnetze (Subnetz-IDs `0000` bis `ffff`).\n' +
+          '**Interface-IDs je Subnetz:** 2^64 ≈ **1,8 · 10^19**. Anders als bei IPv4 muss man keine Hosts zählen: Es gibt keinen Broadcast, und kein Endgerätenetz wird je zu klein.\n' +
+          '**Warum /64:** Die automatische Adresskonfiguration **SLAAC** bildet die Adresse aus dem 64-Bit-Präfix des Routers und einer 64 Bit langen Interface-ID. Bei einem längeren Präfix (z. B. /80) funktioniert SLAAC nicht mehr, und Geräte ohne feste Adresse bekommen keine Adresse.',
+        rubric: [
+          '2^16 = 65.536 Subnetze (1 P)',
+          '2^64 Interface-IDs je Subnetz (1 P)',
+          'Begründung /64: SLAAC braucht eine 64-Bit-Interface-ID (1 P)',
+        ],
+      },
+      {
+        label: 'd)',
+        operator: 'erstellen',
+        points: 5,
+        prompt: 'Erstellen Sie für das Subnetz der Selbstverbuchung einen Adressplan. Geben Sie für die Router-Schnittstelle, den Switch (Verwaltungszugang), zwei Verbuchungsterminals und den Rückgabeautomaten jeweils die IPv6-Adresse mit Präfixlänge und das Standardgateway an.',
+        modelAnswer:
+          'Präfix des Subnetzes: `2001:db8:4a0:2c::/64` (Standortpräfix + Subnetz-ID `002c`). Ein möglicher Plan:\n' +
+          '`Router-Schnittstelle · 2001:db8:4a0:2c::1/64 · kein Gateway (er ist selbst das Gateway)`\n' +
+          '`Switch · 2001:db8:4a0:2c::2/64 · Gateway 2001:db8:4a0:2c::1`\n' +
+          '`Terminal 1 · 2001:db8:4a0:2c::11/64 · Gateway 2001:db8:4a0:2c::1`\n' +
+          '`Terminal 2 · 2001:db8:4a0:2c::12/64 · Gateway 2001:db8:4a0:2c::1`\n' +
+          '`Rückgabeautomat · 2001:db8:4a0:2c::21/64 · Gateway 2001:db8:4a0:2c::1`\n' +
+          'Andere Interface-IDs sind richtig, solange jede nur einmal vorkommt und alle Adressen im Präfix `2001:db8:4a0:2c::/64` liegen. Der Switch arbeitet auf Schicht 2; er braucht die Adresse nur für seine Verwaltung.\n' +
+          '**Gateway:** immer die Router-Adresse **im eigenen Subnetz**. Genauso richtig ist die Link-Local-Adresse des Routers (z. B. `fe80::1`), die er per Router Advertisement bekannt gibt.\n' +
+          '[RAND] Die Interface-ID aus lauter Nullen (`2001:db8:4a0:2c::`) ist die Subnet-Router-Anycast-Adresse und wird keinem Gerät fest zugewiesen.',
+        rubric: [
+          'alle Adressen mit dem Präfix 2001:db8:4a0:2c (1 P)',
+          'Präfixlänge /64 angegeben (1 P)',
+          'Interface-IDs eindeutig, Router mit ::1 (1 P)',
+          'Router ohne eigenes Gateway (1 P)',
+          'Gateway aller Geräte = Router-Adresse im selben Subnetz bzw. seine Link-Local-Adresse (1 P)',
+        ],
+      },
+      {
+        label: 'e)',
+        operator: 'erläutern',
+        points: 4,
+        prompt:
+          'An einem Recherche-PC zeigt `ipconfig` unter anderem:\n' +
+          '`IPv6-Adresse. . . . . . . . . . . : 2001:db8:4a0:40:5a2f:40ff:fe0c:9a27`\n' +
+          '`Temporäre IPv6-Adresse. . . . . . : 2001:db8:4a0:40:c41d:7e02:95ab:3f60`\n' +
+          '`Verbindungslokale IPv6-Adresse  . : fe80::5a2f:40ff:fe0c:9a27%7`\n' +
+          '`Standardgateway . . . . . . . . . : fe80::1%7`\n' +
+          'Geben Sie an, welche Adresse die Link-Local-Adresse ist und woran man sie erkennt. Erläutern Sie ihren Gültigkeitsbereich, schreiben Sie sie ungekürzt aus und begründen Sie, warum als Standardgateway eine Link-Local-Adresse stehen darf.',
+        modelAnswer:
+          '**Link-Local-Adresse:** `fe80::5a2f:40ff:fe0c:9a27` („verbindungslokal“). Erkennbar am Beginn **fe80** – sie liegt im Bereich `fe80::/10`.\n' +
+          '**Gültigkeit:** nur im eigenen Netzsegment (Link); Router leiten sie nicht weiter. Jede IPv6-Schnittstelle bildet sie automatisch, auch ohne Router und ohne DHCP. Sie dient z. B. der Nachbarerkennung und der Kommunikation mit dem Router.\n' +
+          '**Ungekürzt:** `fe80:0000:0000:0000:5a2f:40ff:fe0c:9a27` – Präfix fe80:0:0:0 mit Präfixlänge **/64**, dahinter die Interface-ID. Falle: Der Adressbereich ist /10, die Präfixlänge der einzelnen Adresse aber /64.\n' +
+          '**Gateway als Link-Local:** Der Router gibt sich per **Router Advertisement** mit seiner Link-Local-Adresse bekannt. Das Gateway muss nur **im selben Segment direkt erreichbar** sein – das ist bei einer Link-Local-Adresse der Fall.\n' +
+          '[RAND] `%7` ist die **Zonen-ID** (Schnittstellenindex); sie legt fest, über welchen Adapter die Link-Local-Adresse gilt. `ff:fe` in der Mitte zeigt eine Interface-ID nach **EUI-64** aus der MAC-Adresse 58-2F-40-0C-9A-27 (Hälften trennen, `fffe` einfügen, 7. Bit kippen: 58 → 5a). Die **temporäre Adresse** (Privacy Extensions) wechselt regelmäßig und nutzt eine Zufalls-ID, damit der PC im Internet nicht über die MAC wiedererkannt wird.',
+        rubric: [
+          'Link-Local-Adresse benannt, erkannt an fe80 bzw. fe80::/10 (1 P)',
+          'nur im eigenen Segment gültig, wird nicht geroutet, automatisch vorhanden (1 P)',
+          'ungekürzt fe80:0000:0000:0000:5a2f:40ff:fe0c:9a27 (1 P)',
+          'Gateway darf Link-Local sein: Router im selben Segment, per Router Advertisement bekannt (1 P)',
+        ],
+      },
+      {
+        label: 'f)',
+        operator: 'nennen',
+        points: 2,
+        prompt: 'Nennen Sie zwei ping-Befehle, mit denen Sie an Terminal 1 der Selbstverbuchung die IPv6-Konfiguration von innen nach außen prüfen, und was eine Antwort jeweils aussagt.',
+        modelAnswer:
+          '`ping ::1` – Loopback-Adresse: Der IPv6-Stack des Terminals arbeitet.\n' +
+          '`ping 2001:db8:4a0:2c::1` – Standardgateway: Kabel, Switch und Subnetz bis zum Router funktionieren.\n' +
+          'Weitere Schritte: eine Adresse in einem anderen Subnetz bzw. im Internet (Routing), danach ein Name mit `ping -6` (Namensauflösung über AAAA-Einträge).',
+        rubric: [
+          'ping ::1 als Test des eigenen IPv6-Stacks (1 P)',
+          'ping auf das Gateway als Test des lokalen Subnetzes (1 P)',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'task-pv1-arbeitsplatz-hardware-aufruesten',
+    title: 'Schnittplatz im Lokalradio aufrüsten: Anschlüsse, RAM, CPU-Werte, Netzteil, Steckdosenleiste',
+    topicId: 'hardware',
+    scenario:
+      'Die Redaktion eines Lokalradios schneidet Beiträge an einem Desktop-PC, der zu langsam geworden ist. Sie sollen ihn aufrüsten und neu verkabeln. An den PC kommen: Monitor 1 (nur DisplayPort-Eingang), Monitor 2 (nur HDMI-Eingang), ein Audio-Interface mit USB-C-Kabel, Tastatur und Maus mit USB-A-Stecker sowie das Netzwerkkabel. Auf der Rückseite des PCs finden Sie diese Buchsen:\n\n' +
+      '| Nr. | Beschreibung der Buchse |\n' +
+      '|---|---|\n' +
+      '| 1 | flach und breit, die Unterseite ist zu beiden Ecken hin abgeschrägt (Trapezform), 19 Kontakte |\n' +
+      '| 2 | flach, nur **eine** Ecke abgeschrägt, 20 Kontakte |\n' +
+      '| 3 | klein und länglich mit abgerundeten Enden, symmetrisch; der Stecker passt in beiden Richtungen |\n' +
+      '| 4 | rechteckig mit einer Kunststoffzunge im Inneren; der Stecker passt nur in einer Richtung |\n' +
+      '| 5 | fast quadratisch mit Aussparung für eine Rastnase, 8 Kontakte, daneben zwei kleine LEDs |\n' +
+      '| 6 | breit, drei Reihen Kontaktlöcher, daneben ein flacher Schlitz mit vier Löchern, links und rechts je ein Schraubgewinde |\n' +
+      '| 7 | am Netzteil: drei Metallstifte in einer Umrandung mit zwei abgeschrägten Ecken |\n\n' +
+      '**Einordnung:** Kern (Anschlüsse erkennen, RAM DDR4/DDR5, Kerne und Threads, Netzteil dimensionieren; Strom und Leistung nach Mackes Themenliste zum Katalog Okt. 2024, siehe Lückencheck 2.2, Lesart B). [RAND] sind die Taktabsenkung bei vier Modulen und die Details zu Power Delivery und Alternate Mode.',
+    parts: [
+      {
+        label: 'a)',
+        operator: 'zuordnen',
+        points: 5,
+        prompt: 'Ordnen Sie den Buchsen 1 bis 7 die Anschlussbezeichnungen zu und geben Sie an, welches der oben genannten Geräte Sie jeweils anschließen. Nennen Sie außerdem zwei Vorteile von USB-C gegenüber USB-A.',
+        modelAnswer:
+          '`1 · HDMI · Monitor 2`\n' +
+          '`2 · DisplayPort · Monitor 1`\n' +
+          '`3 · USB-C · Audio-Interface`\n' +
+          '`4 · USB-A · Tastatur und Maus`\n' +
+          '`5 · RJ45 (Ethernet) · Netzwerkkabel; die LEDs zeigen Verbindung und Datenverkehr`\n' +
+          '`6 · DVI (mit analogen Kontakten am Schlitz: DVI-I) · bleibt frei`\n' +
+          '`7 · Kaltgeräteanschluss C14 · Netzkabel mit Kaltgerätekupplung C13`\n' +
+          '**Vorteile USB-C (zwei genügen):** Der Stecker ist **verdrehsicher**, er passt in beiden Richtungen. Er ist **kleiner**, also auch für flache Geräte geeignet. Über USB-C können **höhere Ladeleistungen** fließen (USB Power Delivery). Mit dem **Alternate Mode** überträgt er auch Bildsignale (z. B. DisplayPort), sodass **ein Kabel** für Bild, Daten und Strom reicht. Nur über USB-C gibt es die schnellsten Standards (USB 3.2 Gen 2x2, USB4, Thunderbolt 3 bis 5).\n' +
+          'Falle: Die Buchsenform sagt nichts über die Geschwindigkeit. Hinter einer USB-C-Buchse kann auch nur USB 2.0 stecken – das steht im Handbuch bzw. Datenblatt.',
+        rubric: [
+          'Buchsen 1 und 2 richtig (HDMI, DisplayPort) mit den passenden Monitoren (1 P)',
+          'Buchsen 3 und 4 richtig (USB-C, USB-A) mit Audio-Interface bzw. Tastatur und Maus (1 P)',
+          'Buchsen 5, 6 und 7 richtig (RJ45, DVI, Kaltgeräteanschluss) (1 P)',
+          'erster Vorteil von USB-C (1 P)',
+          'zweiter Vorteil von USB-C (1 P)',
+        ],
+      },
+      {
+        label: 'b)',
+        operator: 'beurteilen',
+        points: 5,
+        prompt:
+          'Im PC stecken 2 × 8 GB DDR4-3200 (DIMM) in den Steckplätzen A2 und B2; A1 und B1 sind frei. Laut Handbuch unterstützen Mainboard und Prozessor DDR4 bis 3200 MT/s und höchstens 128 GB. Der Arbeitsspeicher soll auf 32 GB wachsen, die alten Module bleiben drin. Angebote:\n' +
+          '`A · 2 × 8 GB DDR5-5600 DIMM · 52 €`\n' +
+          '`B · 2 × 8 GB DDR4-3600 DIMM · 46 €`\n' +
+          '`C · 2 × 8 GB DDR4-3200 SO-DIMM · 37 €`\n' +
+          '`D · 2 × 8 GB DDR4-3200 DIMM · 42 €`\n' +
+          'Beurteilen Sie jedes Angebot, empfehlen Sie eines und geben Sie an, in welche Steckplätze die neuen Module kommen.',
+        modelAnswer:
+          '**A – ungeeignet:** DDR5 ist mit DDR4 weder mechanisch (Kerbe an anderer Stelle) noch elektrisch (andere Spannung und Signale) kompatibel; das Board unterstützt nur DDR4.\n' +
+          '**B – läuft, lohnt aber nicht:** Die Module sind kompatibel, arbeiten aber nur mit **3200 MT/s**: Der Speichercontroller der CPU unterstützt nicht mehr, und gemischte Module laufen mit dem Takt des langsamsten. Die 4 € Aufpreis bringen nichts.\n' +
+          '**C – ungeeignet:** SO-DIMM ist die kurze Bauform für Notebooks und passt nicht in die DIMM-Steckplätze eines Desktop-PCs.\n' +
+          '**D – Empfehlung:** gleicher Typ wie die vorhandenen Module (DDR4-3200, DIMM) und das günstigste passende Angebot. Ergebnis: 4 × 8 GB = **32 GB** (≤ 128 GB).\n' +
+          '**Steckplätze:** die freien **A1 und B1**. So hat jeder der beiden Kanäle zwei gleiche Module, und der **Dual-Channel-Betrieb** bleibt erhalten. Die genaue Reihenfolge steht im Mainboard-Handbuch.\n' +
+          '[RAND] Mit vier Modulen senken manche Boards den Takt automatisch ab. Am stabilsten laufen Module mit gleichen Timings, am besten aus einem Kit.',
+        rubric: [
+          'A abgelehnt: DDR5 inkompatibel zu DDR4 (1 P)',
+          'C abgelehnt: SO-DIMM passt nicht in DIMM-Steckplätze (1 P)',
+          'B: kompatibel, läuft aber nur mit 3200 MT/s, Aufpreis ohne Nutzen (1 P)',
+          'D empfohlen: gleicher Typ und günstigstes passendes Angebot, 32 GB (1 P)',
+          'Steckplätze A1 und B1, Dual-Channel bleibt erhalten (1 P)',
+        ],
+      },
+      {
+        label: 'c)',
+        operator: 'erklären',
+        points: 3,
+        prompt:
+          'Der Task-Manager zeigt für den Prozessor unter anderem: `Kerne: 8 · Logische Prozessoren: 16 · Basisgeschwindigkeit: 3,80 GHz`. ' +
+          'Erklären Sie, warum es doppelt so viele logische Prozessoren wie Kerne gibt, und beurteilen Sie, ob der Prozessor damit doppelt so schnell rechnet. Geben Sie die Basisgeschwindigkeit in Hertz an.',
+        modelAnswer:
+          '**Logische Prozessoren:** Der Prozessor beherrscht **Simultaneous Multithreading** (SMT, bei Intel „Hyper-Threading“): Jeder physische Kern kann **zwei Threads** gleichzeitig bearbeiten. Das Betriebssystem sieht deshalb 8 × 2 = 16 logische Prozessoren und verteilt Threads auf sie.\n' +
+          '**Nicht doppelt so schnell:** Die beiden Threads eines Kerns teilen sich dessen Rechenwerke und Caches. SMT nutzt Wartezeiten eines Threads für den anderen und bringt deshalb spürbar weniger als die doppelte Leistung – und nur, wenn die Software viele Threads parallel nutzt.\n' +
+          '**Basisgeschwindigkeit:** 3,80 GHz = 3,80 · 10^9 Hz = **3.800.000.000 Hz** (G = Giga = 10^9).',
+        rubric: [
+          'SMT bzw. Hyper-Threading: je Kern zwei Threads, BS sieht 16 logische Prozessoren (1 P)',
+          'keine doppelte Leistung, weil sich die Threads die Rechenwerke eines Kerns teilen (1 P)',
+          '3.800.000.000 Hz (1 P)',
+        ],
+      },
+      {
+        label: 'd)',
+        operator: 'berechnen',
+        points: 4,
+        prompt:
+          'Nach dem Umbau hat der PC folgende maximale Leistungsaufnahmen je Komponente: Prozessor 105 W · Grafikkarte 165 W · Mainboard 45 W · 4 RAM-Module je 4 W · 2 NVMe-SSDs je 7 W · 1 Festplatte 9 W · 4 Gehäuselüfter je 3 W · USB-Geräte zusammen 15 W. ' +
+          'Auf die Summe soll eine Reserve von 25 % aufgeschlagen werden. Netzteile gibt es mit 450 W, 550 W, 650 W und 750 W; eingebaut ist ein 450-W-Netzteil. Berechnen Sie die benötigte Leistung, wählen Sie das passende Netzteil und begründen Sie, ob das alte Netzteil ausreicht.',
+        modelAnswer:
+          '**Summe:** 105 W + 165 W + 45 W + 4 × 4 W + 2 × 7 W + 9 W + 4 × 3 W + 15 W = 105 + 165 + 45 + 16 + 14 + 9 + 12 + 15 = **381 W**\n' +
+          '**Mit 25 % Reserve:** 381 W × 1,25 = **476,25 W**\n' +
+          '**Wahl:** die nächstgrößere Stufe → **550-W-Netzteil**.\n' +
+          '**Altes Netzteil:** 450 W < 476,25 W → **reicht nicht**. Ohne Reserve würde es zwar knapp genügen (381 W), bei Lastspitzen, Alterung und Dauerbetrieb nahe der Grenze drohen aber Abstürze; außerdem arbeiten Netzteile im mittleren Lastbereich am effizientesten.\n' +
+          'Falle: Die Stückzahlen (4 RAM-Module, 2 SSDs, 4 Lüfter) nicht vergessen – wer jede Komponente nur einmal zählt, kommt auf 353 W.',
+        rubric: [
+          'Summe 381 W mit Stückzahlen (1 P)',
+          'Reserve als Aufschlag: 476,25 W (1 P)',
+          '550-W-Netzteil gewählt (1 P)',
+          'altes 450-W-Netzteil reicht nicht, begründet (1 P)',
+        ],
+      },
+      {
+        label: 'e)',
+        operator: 'berechnen',
+        points: 4,
+        prompt:
+          'Alle Geräte des Schnittplatzes hängen an einer Steckdosenleiste mit dem Aufdruck „max. 10 A / 230 V~“: PC höchstens 430 W, 2 Monitore je 35 W, 2 Aktivlautsprecher je 60 W und ein Laserdrucker, der beim Aufheizen bis zu 850 W aufnimmt. Ein Kollege möchte zusätzlich einen Wasserkocher mit 2.200 W einstecken. ' +
+          'Berechnen Sie die höchste zulässige Leistung der Leiste sowie Gesamtleistung und Gesamtstrom mit und ohne Wasserkocher (vereinfacht P = U · I). Beurteilen Sie den Wunsch des Kollegen.',
+        modelAnswer:
+          '**Belastbarkeit der Leiste:** P = U · I = 230 V · 10 A = **2.300 W**\n' +
+          '**Ohne Wasserkocher:** 430 W + 2 · 35 W + 2 · 60 W + 850 W = **1.470 W**; I = P / U = 1.470 W / 230 V ≈ **6,39 A** < 10 A → zulässig.\n' +
+          '**Mit Wasserkocher:** 1.470 W + 2.200 W = **3.670 W** > 2.300 W; I = 3.670 W / 230 V ≈ **15,96 A** > 10 A → **überlastet**.\n' +
+          '**Beurteilung:** Der Wasserkocher darf nicht an diese Leiste. Der Leitungsschutzschalter des Stromkreises (meist B16) löst bei knapp 16 A nicht aus. Die 10-A-Leiste wird also dauerhaft überlastet, ohne dass eine Sicherung eingreift: Leiste und Kabel werden heiß – **Brandgefahr**. Nur Leisten mit eigenem Überlastschalter schalten ab. Der Wasserkocher gehört an eine eigene Wandsteckdose, am besten in der Küche. Steckdosenleisten auch nicht hintereinanderstecken.\n' +
+          'Hinweis: P = U · I gilt genau nur für die Wirkleistung ohmscher Verbraucher; für Geräte mit Schaltnetzteil wäre die Scheinleistung S = U · I zu prüfen (vgl. USV-Aufgabe). In der Prüfung reicht meist die vereinfachte Rechnung.',
+        rubric: [
+          'Belastbarkeit 230 V · 10 A = 2.300 W (1 P)',
+          'ohne Wasserkocher 1.470 W bzw. etwa 6,39 A, zulässig (1 P)',
+          'mit Wasserkocher 3.670 W bzw. etwa 15,96 A, überlastet (1 P)',
+          'Beurteilung: Überlast mit Brandgefahr, die Sicherung des Stromkreises greift nicht ein; Wasserkocher an eine eigene Steckdose (1 P)',
+        ],
+      },
+    ],
+  },
 ]

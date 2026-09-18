@@ -183,7 +183,7 @@ const MATCH_BASE: MatchDeck[] = [
       { left: 'Der PC hat 169.254.x.x, das Kabel steckt jetzt richtig – neue Adresse ohne Neustart holen', right: 'ipconfig /renew' },
       { left: 'Nach einer DNS-Umstellung löst der PC den Namen noch zur alten IP auf – lokalen Zwischenspeicher leeren', right: 'ipconfig /flushdns' },
       { left: 'Der Server antwortet auf seine IP-Adresse, nicht auf seinen Namen – was liefert der DNS-Server direkt?', right: 'nslookup' },
-      { left: '[RAND] Welche MAC-Adresse hat das gerade angepingte Standardgateway?', right: 'arp -a' },
+      { left: 'Welche MAC-Adresse hat das gerade angepingte Standardgateway?', right: 'arp -a' },
       { left: '[RAND] Welcher Prozess belegt Port 8080?', right: 'netstat -ano' },
     ],
   },
@@ -299,6 +299,143 @@ const MATCH_BASE: MatchDeck[] = [
       { left: 'Sprint Review', right: 'Scrum Team und Stakeholder prüfen das Ergebnis und passen das Product Backlog an' },
       { left: 'Sprint Retrospective', right: 'Das Scrum Team verbessert Zusammenarbeit, Prozesse und Werkzeuge' },
       { left: '[RAND] Product Backlog Refinement', right: 'laufende Tätigkeit, kein Event: Einträge zerlegen, präzisieren und schätzen' },
+    ],
+  },
+  // PV1 Übungsprüfungen (18.09.2026): Lücken aus der Auswertung von acht AP1-Originalen (H2021–F2025).
+  // Eigene Szenarien und Formulierungen, nichts aus den Aufgabensätzen oder Lösungshinweisen übernommen.
+  // Rootkit ist [RAND] (in keinem der ausgewerteten Sätze gefragt); Mahnung und Mängelrüge stehen als
+  // Gegenprobe im Vertragsstörungs-Deck, weil beides Reaktionen sind und oft fälschlich als Vorbeugung gilt.
+  {
+    id: 'match-malware-merkmal',
+    title: 'Malware-Art → Merkmal',
+    topicId: 'it-sicherheit',
+    instruction:
+      'Ordne jeder Schadsoftware-Art ihr Unterscheidungsmerkmal zu. [RAND] = Randstoff. Falle: Nur der Virus braucht eine Wirtsdatei, der Wurm nicht.',
+    pairs: [
+      { left: 'Virus', right: 'schleust sich in eine Wirtsdatei ein und wird erst aktiv, wenn diese ausgeführt wird' },
+      { left: 'Wurm', right: 'verbreitet sich selbstständig über Netzwerke, ohne Wirtsdatei und ohne Zutun des Nutzers' },
+      { left: 'Trojaner', right: 'tarnt sich als nützliches Programm und führt versteckt eine Schadfunktion aus' },
+      { left: 'Ransomware', right: 'verschlüsselt Daten und verlangt Lösegeld für die Entschlüsselung' },
+      { left: 'Spyware', right: 'sammelt heimlich Daten über Nutzer und Nutzung und schickt sie an Dritte' },
+      { left: 'Keylogger', right: 'protokolliert Tastatureingaben, um etwa Passwörter abzugreifen' },
+      { left: 'Backdoor', right: 'schafft einen versteckten Zugang, über den Angreifer den Rechner später fernsteuern' },
+      { left: '[RAND] Rootkit', right: 'verbirgt sich und andere Schadsoftware mit Administrator- bzw. Kernelrechten tief im System vor dem Virenscanner' },
+    ],
+  },
+  {
+    id: 'match-vertragsstoerung-vorbeugung',
+    title: 'Vertragsstörung → vorbeugende Maßnahme',
+    topicId: 'qs-vertraege',
+    instruction:
+      'Ordne jeder Störung beim Kaufvertrag die Maßnahme zu, mit der die betroffene Seite ihr schon beim Vertragsschluss vorbeugt. Die beiden letzten Zeilen sind Gegenproben: Nachfrist und Mängelrüge reagieren auf eine bereits eingetretene Störung, sie beugen nicht vor.',
+    pairs: [
+      { left: 'Lieferverzug: Der Lieferant liefert nicht rechtzeitig', right: 'festen Kalendertermin für die Lieferung und eine Vertragsstrafe vereinbaren' },
+      { left: 'Schlechtleistung: Die gelieferte Ware ist mangelhaft', right: 'Beschaffenheit genau vereinbaren (Qualitätsvorgaben, Muster) und den Lieferanten nach Referenzen auswählen' },
+      { left: 'Falschlieferung: Es kommt ein anderer Artikel als bestellt', right: 'Bestellung mit Artikelnummern eindeutig formulieren und die Auftragsbestätigung damit abgleichen' },
+      { left: 'Zahlungsverzug: Der Kunde zahlt nicht rechtzeitig', right: 'Bonität des Kunden prüfen und Vorkasse oder eine Anzahlung vereinbaren' },
+      { left: 'Annahmeverzug: Der Kunde nimmt die pünktlich angebotene Ware nicht ab', right: 'Liefertermin und Anlieferzeit verbindlich absprechen und die Lieferung vorher ankündigen' },
+      { left: 'Gegenprobe: Die Lieferung ist schon überfällig', right: 'Nachfrist setzen (Mahnung), danach Rücktritt oder bei Verschulden Schadensersatz – Reaktion, keine Vorbeugung' },
+      { left: 'Gegenprobe: Beim Auspacken fällt ein Mangel auf', right: 'Mangel unverzüglich rügen und Nacherfüllung verlangen – Reaktion, keine Vorbeugung' },
+    ],
+  },
+  {
+    id: 'match-leasing-begriffe',
+    title: 'Leasing: Begriff → Bedeutung',
+    topicId: 'wirtschaftlichkeit',
+    instruction:
+      'Ein Planungsbüro least zwölf CAD-Workstations über einen Finanzierungsleasingvertrag mit 36 Monaten Laufzeit. Ordne jeden Begriff seiner Bedeutung in diesem Vertrag zu. Die letzten drei Zeilen sind die Möglichkeiten am Laufzeitende.',
+    pairs: [
+      { left: 'Leasinggeber', right: 'die Leasinggesellschaft: kauft die Geräte und überlässt sie gegen monatliche Raten' },
+      { left: 'Leasingnehmer', right: 'das Planungsbüro: nutzt die Geräte und zahlt die Raten' },
+      { left: 'Eigentum', right: 'rechtliche Herrschaft über die Geräte; bleibt während der Laufzeit beim Leasinggeber' },
+      { left: 'Besitz', right: 'tatsächliche Herrschaft über die Geräte; liegt beim Leasingnehmer, denn sie stehen in seinem Büro' },
+      { left: 'Restwert', right: 'bei Vertragsschluss kalkulierter Wert der Geräte am Ende der Laufzeit' },
+      { left: 'Kaufoption', right: 'Recht des Leasingnehmers, die Geräte am Laufzeitende zu einem vorab festgelegten Preis (oft dem Restwert) zu kaufen' },
+      { left: 'Verlängerungsoption', right: 'Recht, die Geräte nach Ablauf weiter zu nutzen, oft zu einer niedrigeren Rate' },
+      { left: 'Rückgabe mit Anschlussleasing', right: 'die alten Geräte gehen zurück, neue werden über einen neuen Vertrag geleast' },
+    ],
+  },
+  {
+    id: 'match-schulungsform-merkmal',
+    title: 'Schulungsform → Merkmal',
+    topicId: 'kommunikation',
+    instruction:
+      'Ordne jeder Form der Anwenderschulung ihr typisches Merkmal zu. Zur Vertiefung: Überlege je Form einen Vorteil und einen Nachteil, die genau aus diesem Merkmal folgen.',
+    pairs: [
+      { left: 'Präsenzschulung im eigenen Haus', right: 'Gruppe und Trainer sind zur selben Zeit im selben Raum, Fragen werden sofort geklärt' },
+      { left: 'Arbeitsplatzschulung (Einzeleinweisung)', right: 'findet am eigenen Gerät im echten Arbeitsablauf statt und ist auf eine Person zugeschnitten' },
+      { left: 'Webinar', right: 'live per Videokonferenz mit Bildschirmfreigabe, mehrere Standorte ohne Anreise' },
+      { left: 'E-Learning bzw. Video-Tutorial', right: 'selbstgesteuert, jederzeit und beliebig oft abrufbar, aber ohne direkte Rückfrage' },
+      { left: 'Multiplikatorenschulung (Key User)', right: 'wenige Schlüsselanwender werden intensiv geschult und geben ihr Wissen im Team weiter' },
+      { left: 'Externes Seminar beim Schulungsanbieter', right: 'offener Kurs mit Teilnehmenden anderer Firmen und Standardinhalten statt der eigenen Abläufe' },
+      { left: 'Blended Learning', right: 'kombiniert Präsenztermine mit selbstgesteuerten Online-Anteilen' },
+    ],
+  },
+  {
+    id: 'match-anschluss-merkmal',
+    title: 'Anschluss → Merkmal',
+    topicId: 'hardware',
+    instruction:
+      'Ordne jedem Anschluss das Merkmal zu, an dem du ihn erkennst oder wofür er steht. Falle bei USB-C: Die Steckerform sagt nichts über Datenrate, Bildausgabe oder Ladeleistung.',
+    pairs: [
+      { left: 'USB-C', right: 'klein, oval und beidseitig steckbar; ob Daten, Bild oder Laden geht, hängt vom unterstützten Standard ab' },
+      { left: 'USB-A', right: 'flach und rechteckig, passt nur in einer Richtung; klassisch für Tastatur, Maus und USB-Stick' },
+      { left: 'RJ45', right: 'achtpoliger Stecker mit Rastnase für Twisted-Pair-Netzwerkkabel (Ethernet)' },
+      { left: 'HDMI', right: 'Bild und Ton digital; flache Buchse mit zwei gleich abgeschrägten Ecken, Standard an Fernseher und Beamer' },
+      { left: 'DisplayPort', right: 'Bild und Ton digital; nur eine Ecke abgeschrägt, Stecker meist mit Rastverriegelung' },
+      { left: 'DVI', right: 'breiter Stecker mit Stiftfeld, flachem Querkontakt und zwei Schrauben; überträgt nur das Bild' },
+      { left: 'Kaltgerätebuchse (C14 am Gerät)', right: 'dreipoliger Netzanschluss für 230 V an PC-Netzteil, Monitor oder Server' },
+    ],
+  },
+  {
+    id: 'match-osi-protokoll-adresse-fehlerbild',
+    title: 'Protokoll, Adresse, Fehlerbild → OSI-Schicht',
+    topicId: 'netzwerke',
+    instruction:
+      'Ordne jede Angabe der OSI-Schicht zu, zu der sie gehört. Mehrere Angaben können auf dieselbe Schicht fallen. Das ist zugleich das Raster für die Fehlersuche von unten nach oben.',
+    pairs: [
+      { left: 'HTTP, SMTP und DNS', right: 'Schicht 7 – Anwendung' },
+      { left: 'TCP und UDP; adressiert wird über die Portnummer', right: 'Schicht 4 – Transport' },
+      { left: 'IP und ICMP (ping); adressiert wird über die IP-Adresse', right: 'Schicht 3 – Vermittlung' },
+      { left: 'Ethernet-Rahmen im LAN zustellen; adressiert wird über die MAC-Adresse', right: 'Schicht 2 – Sicherung' },
+      { left: 'Kabel, Stecker und Funksignal; hier gibt es keine Adressen', right: 'Schicht 1 – Bitübertragung' },
+      { left: 'Fehlerbild: Die Link-LED am Switch-Port bleibt dunkel', right: 'Schicht 1 – Bitübertragung' },
+      { left: 'Fehlerbild: Der Access Point weist das Notebook ab, weil dessen MAC-Adresse nicht in der Filterliste steht', right: 'Schicht 2 – Sicherung' },
+      { left: 'Fehlerbild: Das Standardgateway ist falsch eingetragen, nur das lokale Netz ist erreichbar', right: 'Schicht 3 – Vermittlung' },
+    ],
+  },
+  {
+    id: 'match-iec-si-praefixe',
+    title: 'Datenmengen: IEC- und SI-Präfixe',
+    topicId: 'hardware',
+    instruction:
+      'Ordne jedem Einheitenzeichen seinen Wert zu. IEC-Präfixe (Ki, Mi, Gi, Ti) gehen in 1024er-Stufen, SI-Präfixe (k, M, G, T) in 1000er-Stufen. Datenraten wie Mbit/s sind immer dezimal. Falle: Windows rechnet in 1024er-Stufen, schreibt aber „GB“.',
+    pairs: [
+      { left: '1 KiB', right: '1.024 Byte' },
+      { left: '1 MiB', right: '1.024 KiB = 1.048.576 Byte' },
+      { left: '1 GiB', right: '1.024 MiB = 1.073.741.824 Byte' },
+      { left: '1 TiB', right: '1.024 GiB = 1.099.511.627.776 Byte' },
+      { left: '1 kB', right: '1.000 Byte' },
+      { left: '1 MB', right: '1.000 kB = 1.000.000 Byte' },
+      { left: '1 GB', right: '1.000 MB = 1.000.000.000 Byte' },
+      { left: '1 TB', right: '1.000 GB = 1.000.000.000.000 Byte' },
+    ],
+  },
+  {
+    id: 'match-phishing-schutz-rolle',
+    title: 'Phishing-Schutz: Unternehmen oder Mitarbeitende?',
+    topicId: 'it-sicherheit',
+    instruction:
+      'Ordne jede Maßnahme gegen Phishing zu: Setzt das Unternehmen sie um (technisch oder organisatorisch), oder ist sie eine Verhaltensregel für die Mitarbeitenden? Prüfungen fragen beide Seiten getrennt ab. [RAND] = Randstoff.',
+    pairs: [
+      { left: 'Mail-Gateway mit Spamfilter, das Anhänge und Links vor der Zustellung prüft', right: 'Unternehmen – technisch' },
+      { left: '[RAND] eingehende Mails per SPF, DKIM und DMARC auf gefälschte Absenderdomains prüfen', right: 'Unternehmen – technisch' },
+      { left: 'Makros in Office-Dateien aus dem Internet zentral sperren', right: 'Unternehmen – technisch' },
+      { left: 'regelmäßige Awareness-Schulungen mit simulierten Phishing-Mails', right: 'Unternehmen – organisatorisch' },
+      { left: 'einen festen Meldeweg für verdächtige Mails festlegen und bekannt machen', right: 'Unternehmen – organisatorisch' },
+      { left: 'Absenderadresse und Linkziel (Mauszeiger darüber halten) prüfen, bevor man klickt', right: 'Mitarbeitende – Verhaltensregel' },
+      { left: 'bei Zahlungs- oder Passwortaufforderungen über eine bekannte Telefonnummer rückfragen', right: 'Mitarbeitende – Verhaltensregel' },
+      { left: 'eine verdächtige Mail nicht öffnen oder weiterleiten, sondern über den Meldeweg melden', right: 'Mitarbeitende – Verhaltensregel' },
     ],
   },
 ]
@@ -438,6 +575,39 @@ const ORDER_BASE: OrderTask[] = [
       'Increment erfüllt die Definition of Done',
       'Sprint Review mit den Stakeholdern',
       'Sprint Retrospective des Scrum Teams',
+    ],
+  },
+  // PV1 Übungsprüfungen (18.09.2026): CPU-Montage (bisher 0 Karten, 0 Aufgaben) und Zustandekommen
+  // des Kaufvertrags mit der Frage, ob die Bestellung Antrag oder Annahme ist. Eigene Formulierungen.
+  {
+    id: 'order-cpu-einbau',
+    title: 'CPU in den Sockel einbauen',
+    topicId: 'hardware',
+    prompt:
+      'Ein PC wird aufgerüstet, die neue CPU soll in den Sockel des eingebauten Mainboards. Bringe die Arbeitsschritte in die richtige Reihenfolge. Der Schritt mit Wärmeleitpaste und Kühler ist Randstoff [RAND].',
+    correct: [
+      'Netzstecker ziehen und sich per ESD-Armband oder durch Berühren des blanken Gehäusemetalls entladen',
+      'Hebel am Sockel lösen und hochklappen, dann den Halterahmen öffnen',
+      'CPU nur an den Kanten greifen und ihre Markierung (Dreieck) zur Markierung am Sockel ausrichten',
+      'CPU senkrecht und ohne Druck einlegen – sie muss ohne Kraft passgenau im Sockel liegen',
+      'Halterahmen schließen und den Hebel wieder einrasten',
+      'Wärmeleitpaste dünn auftragen (entfällt bei vorbeschichtetem Kühler), Kühler montieren und das Lüfterkabel an CPU_FAN anschließen',
+    ],
+  },
+  {
+    id: 'order-kaufvertrag-zustandekommen',
+    title: 'Kaufvertrag: von der Anfrage bis zur Zahlung',
+    topicId: 'qs-vertraege',
+    prompt:
+      'Ein Tonstudio kauft zwei Audio-Interfaces bei einem Fachhändler. Bringe die Schritte in die übliche Reihenfolge. Hinweis: Hier kommt der Vertrag mit der Bestellung zustande, weil sie ein verbindliches Angebot rechtzeitig und unverändert annimmt. Gab es kein verbindliches Angebot oder weicht die Bestellung davon ab, ist sie nur ein neuer Antrag; der Vertrag entsteht dann erst mit der Auftragsbestätigung oder durch die Lieferung.',
+    correct: [
+      'Anfrage: Das Studio bittet unverbindlich um ein Angebot',
+      'Angebot: Der Händler nennt Ware, Preis, Liefer- und Zahlungsbedingungen und ist daran gebunden',
+      'Bestellung: Das Studio nimmt das Angebot fristgerecht und unverändert an – der Kaufvertrag ist geschlossen',
+      'Auftragsbestätigung: Der Händler bestätigt die Bestellung schriftlich',
+      'Lieferung: Der Händler übergibt die Ware mit Lieferschein, das Studio prüft sie unverzüglich',
+      'Rechnung: Der Händler fordert den Kaufpreis mit Zahlungsziel an',
+      'Zahlung: Das Studio überweist den Betrag, innerhalb der Skontofrist mit Abzug',
     ],
   },
 ]
